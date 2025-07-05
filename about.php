@@ -57,6 +57,10 @@
                 color: var(--link-color);
             }
 
+            footer.footer {
+                background: white;
+            }
+
             footer .text-lg-right a {
                 color: mediumaquamarine;
             }
@@ -64,7 +68,7 @@
         </style>
 
     </head>
-    <body id="page-top">
+    <body id="page-top" class="bg-dark">
 
         <div class="loader" style="display: none;"></div>
 
