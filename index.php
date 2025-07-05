@@ -470,7 +470,7 @@ if (!isset($_GET['url'])) {
             <div class="modal-content">
 
               <div class="modal-header">
-                <h5 class="modal-title" id="analyzeModalLabel">Analyze a News Article</h5>
+                <h5 class="modal-title" id="analyzeModalLabel">Analyze Any News Article</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
