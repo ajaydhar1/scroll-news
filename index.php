@@ -13,7 +13,7 @@ $random_article = getRandomArticle();
 if (!isset($_GET['url'])) {
 
     // Redirect to same page with the chosen article as a query param
-    header("Location: index.php?url=" . urlencode($random_article['link'] ."&category=" . $random_article['category']));
+    header("Location: index.php?url=" . urlencode($random_article['link']) ."&category=" . $random_article['category']);
     exit;
 }
 
