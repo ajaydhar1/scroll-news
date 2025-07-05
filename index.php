@@ -357,7 +357,7 @@ if (!isset($_GET['url'])) {
         <a name="analytics"></a>
 
         <?php if (isset($_GET['error']) && $_GET['error'] == '1'): ?>
-          <div class="container mt-4">
+          <div class="container-fluid mt-4">
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
               <strong>Oops!</strong> We were unable to fully analyze this article. The NLP dashboard or image may be incomplete.
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -387,14 +387,24 @@ if (!isset($_GET['url'])) {
                     <h3>📰 Article Screenshot</h3>
                   </div>
                   <div class="d-flex justify-content-center align-items-start px-3">
-                    <img 
-                      src="https://news-nlp-api-08865bb82971.herokuapp.com/screenshot?url=<?= urlencode($url) ?>" 
-                      alt="Article Screenshot" 
-                      onload="document.getElementById('img-loader').style.display='none';"
-                      style="max-width: 100%; height: auto; margin-bottom: 20px;"
-                      onerror="window.location.href = 'index.php?url=<?= urlencode($_GET["url"]) ?>&error=1';"
-                    />
-                    <div id="img-loader" class="text-center mt-3">Loading screenshot...</div>
+                    
+                    <?php 
+                        if (!isset($_GET["error"])) {
+                    ?>
+
+                                <img 
+                                  src="https://news-nlp-api-08865bb82971.herokuapp.com/screenshot?url=<?= urlencode($url) ?>" 
+                                  alt="Article Screenshot" 
+                                  onload="document.getElementById('img-loader').style.display='none';"
+                                  style="max-width: 100%; height: auto; margin-bottom: 20px;"
+                                  onerror="window.location.href = 'index.php?url=<?= urlencode($_GET["url"]) ?>&error=1';"
+                                />
+                                <div id="img-loader" class="text-center mt-3">Loading screenshot...</div>
+
+                    <?php
+                        }
+
+                    ?>
                   </div>
                 </div>
               </div>
@@ -495,6 +505,10 @@ if (!isset($_GET['url'])) {
           <script>
             $(document).ready(function() {
 
+            <?php
+                if ($url && !isset($_GET["error"])) {
+              ?>
+
               var ele = document.getElementById("lottie");
 
               lottie.loadAnimation({
@@ -504,11 +518,6 @@ if (!isset($_GET['url'])) {
                 autoplay: true,
                 path: "assets/img/animation-w500-h500.json" // the path to the animation json
               });
-
-
-              <?php
-                if ($url) {
-              ?>
 
                 $.ajax({
                   type:   "POST",
@@ -599,105 +608,113 @@ if (!isset($_GET['url'])) {
 
                 echo '
 
-                    var ele2 = document.getElementById("lottie2");
+                    if (typeof myArray !== "undefined") {
 
-                    lottie.loadAnimation({
-                        container: ele2, // the dom element that will contain the animation
-                        renderer: "svg",
-                        loop: true,
-                        autoplay: true,
-                        path: "assets/img/animation-w500-h500.json" // the path to the animation json
-                    });
+                        var ele2 = document.getElementById("lottie2");
 
+                        lottie.loadAnimation({
+                            container: ele2, // the dom element that will contain the animation
+                            renderer: "svg",
+                            loop: true,
+                            autoplay: true,
+                            path: "assets/img/animation-w500-h500.json" // the path to the animation json
+                        });
+
+                        
+                    }
                     ';
+
 
 
                 echo '
 
                 $.ajaxSetup({cache: false});
 
-                $.ajax({
-                    type:   "POST",
-                    url:    "wiki-fragments.php",
-                    data:   {data: encodeURIComponent(myArray)},
-                    success: function(msg) {
-                        $("#wiki-list-1").html(msg);
-                        //$("#wiki-list-1 .description a").removeAttr("href");
-                        $("#wiki-list-1 p sup").remove();
-                        $("a[href^=\\"/wiki/\\"]").each(function() {
-                            var currentHref = $(this).attr("href");
-                            $(this).attr("href", "https://en.wikipedia.org" + currentHref);
-                            $(this).attr("target", "_blank");
-                            $(this).attr("data-hashtext", $(this).text());
-                            $(this).removeAttr("title");
-                        });
+                if (typeof myArray !== "undefined") {
 
-                        $(".topics").attr("data-step","11");
-                        $(".topics").attr("data-intro","Dimensions of this story. Connect some of these dots with each other and across other stories to develop a mental model of the world.");
-
-
-                        $("body *").not(".description a").click(function() {
-                            $(".description a").popover("hide");
-                            tapped = 0;
-                        });
-
-
-                        $(".description a").each(function(i, obj) {
-                            $(this).attr("data-container", "body");
-                            $(this).attr("data-toggle", "popover");
-                            $(this).attr("data-placement", "auto");
-                            $(this).attr("data-content", "temp");
-                            $(this).attr("data-html", "true");
-                        })
-
-
-
-                        if (!isMobile()) {
-                            $(".description a").mouseenter(function() {
-                                getDefinitions($(this), $(this).attr("data-hashtext"));
-                            }).mouseleave(function() {
-                                $(this).popover("hide");
+                    $.ajax({
+                        type:   "POST",
+                        url:    "wiki-fragments.php",
+                        data:   {data: encodeURIComponent(myArray)},
+                        success: function(msg) {
+                            $("#wiki-list-1").html(msg);
+                            //$("#wiki-list-1 .description a").removeAttr("href");
+                            $("#wiki-list-1 p sup").remove();
+                            $("a[href^=\\"/wiki/\\"]").each(function() {
+                                var currentHref = $(this).attr("href");
+                                $(this).attr("href", "https://en.wikipedia.org" + currentHref);
+                                $(this).attr("target", "_blank");
+                                $(this).attr("data-hashtext", $(this).text());
+                                $(this).removeAttr("title");
                             });
-                        }
-                        else {
 
-                            $(".description a").on("click", function(e) {
-                                // open popover
-                                if (tapped == 0) { // if no popover open
-                                    // show popover
+                            $(".topics").attr("data-step","11");
+                            $(".topics").attr("data-intro","Dimensions of this story. Connect some of these dots with each other and across other stories to develop a mental model of the world.");
+
+
+                            $("body *").not(".description a").click(function() {
+                                $(".description a").popover("hide");
+                                tapped = 0;
+                            });
+
+
+                            $(".description a").each(function(i, obj) {
+                                $(this).attr("data-container", "body");
+                                $(this).attr("data-toggle", "popover");
+                                $(this).attr("data-placement", "auto");
+                                $(this).attr("data-content", "temp");
+                                $(this).attr("data-html", "true");
+                            })
+
+
+
+                            if (!isMobile()) {
+                                $(".description a").mouseenter(function() {
                                     getDefinitions($(this), $(this).attr("data-hashtext"));
-                                    tapped = 1; // change flag to popoever open
+                                }).mouseleave(function() {
+                                    $(this).popover("hide");
+                                });
+                            }
+                            else {
 
-                                    // don"t let link click through
-                                    e.preventDefault();
-                                    e.stopImmediatePropagation();
+                                $(".description a").on("click", function(e) {
+                                    // open popover
+                                    if (tapped == 0) { // if no popover open
+                                        // show popover
+                                        getDefinitions($(this), $(this).attr("data-hashtext"));
+                                        tapped = 1; // change flag to popoever open
 
-                                }
-                                // click on link if same link clicked twice, or call all popovers
-                                else {
-                                    // close all popovers
-                                    $(".description a").popover("hide");
-                                    tapped = 0;
-
-                                    // if not the same linked that was clicked, prevent link, but show popover
-                                    var attr = $(this).attr("aria-describedby");
-                                    if (attr == false || typeof attr == "undefined") {
+                                        // don"t let link click through
                                         e.preventDefault();
                                         e.stopImmediatePropagation();
 
-                                        getDefinitions($(this), $(this).attr("data-hashtext"));
-                                        tapped = 1;
                                     }
-                                    //showLoader();
-                                }
-                            });
-                        }
+                                    // click on link if same link clicked twice, or call all popovers
+                                    else {
+                                        // close all popovers
+                                        $(".description a").popover("hide");
+                                        tapped = 0;
 
-                    },
-                    error: function(msg) {
-                        console.log(msg);
-                    }
-                })
+                                        // if not the same linked that was clicked, prevent link, but show popover
+                                        var attr = $(this).attr("aria-describedby");
+                                        if (attr == false || typeof attr == "undefined") {
+                                            e.preventDefault();
+                                            e.stopImmediatePropagation();
+
+                                            getDefinitions($(this), $(this).attr("data-hashtext"));
+                                            tapped = 1;
+                                        }
+                                        //showLoader();
+                                    }
+                                });
+                            }
+
+                        },
+                        error: function(msg) {
+                            console.log(msg);
+                        }
+                    })
+                }
 
                 ';
 

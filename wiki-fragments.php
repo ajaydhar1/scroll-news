@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ERROR | E_PARSE);
 require_once("simple_html_dom.php");
 require_once('___modules.php');
 
