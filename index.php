@@ -36,6 +36,7 @@ if (!isset($_GET['url'])) {
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/custom.css" rel="stylesheet" />
 
         <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
         <script src="https://www.amcharts.com/lib/3/serial.js"></script>
@@ -50,9 +51,9 @@ if (!isset($_GET['url'])) {
         <style>
 
             :root {
-                --circle-btn-outline-color: #ff00fb;
-                --btn-outline-color: #ff00fb; /* Slate Gray */
-                --link-color: #00be7c; /* Bright Green */
+                --circle-btn-outline-color: #00bfa6;
+                --btn-outline-color: white; /* Slate Gray */
+                --link-color: #00bfa6; /* Bright Green */
                 /* --link-color: #838685; Light Gray */
 
             }
@@ -122,7 +123,11 @@ if (!isset($_GET['url'])) {
             }
 
             footer .text-lg-right a {
-                color: mediumaquamarine;
+                color: #00bfa6;
+            }
+
+            footer .text-lg-right a:hover {
+                color: black;
             }
 
             .amcharts-export-menu.amcharts-export-menu-top-right.amExportButton {
@@ -270,8 +275,7 @@ if (!isset($_GET['url'])) {
             }
 
             .analyze-btn:hover {
-                color: white !important;
-                background: black;
+                background: #00bfa6;
             }
 
 
@@ -307,6 +311,9 @@ if (!isset($_GET['url'])) {
                 else if ($key == 'title') {
                     $title = $value;
                     $title = str_replace("â", "'", $title);
+                    $title = str_replace("", "", $title);
+                    $title = str_replace("�", "", $title);
+
                     $youtube_search = $title;
                 }
                 else if ($key == 'site_name') {
@@ -332,9 +339,9 @@ if (!isset($_GET['url'])) {
                         </a>
                     </div>
                     <div class="col-lg-4 my-3 my-lg-0">
-                        <a data-step="2" data-intro="Click here for information on our analytics." class="btn btn-dark btn-social mx-2" href="about.php"><i class="fas fa-align-right"></i></a>
-                        <a data-step="1" data-intro="Welcome to Scroll News! We provide analytics for the latest news stories. Click this play button to scroll through trending articles." class="btn btn-dark btn-social mx-2" href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>" onclick=""><i class="fas fa-play"></i></a>
-                        <a data-step="3" data-intro="Click here to see our newsroom video trailer." class="btn btn-dark btn-social mx-2" href="newsroom.php"><i class="fas fa-align-left"></i></a>
+                        <a data-step="2" data-intro="Click here for information on our analytics." class="btn btn-black btn-social mx-2" href="about.php"><i class="fas fa-align-right"></i></a>
+                        <a data-step="1" data-intro="Welcome to Scroll News! We provide analytics for the latest news stories. Click this play button to scroll through trending articles." class="btn btn-black btn-social mx-2" href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>" onclick=""><i class="fas fa-play"></i></a>
+                        <a data-step="3" data-intro="Click here to see our newsroom video trailer." class="btn btn-black btn-social mx-2" href="newsroom.php"><i class="fas fa-align-left"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-right font-weight-bold" style="color: var(--link-color);"><a href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>">scroll news</a></div>
                 </div>
@@ -344,10 +351,10 @@ if (!isset($_GET['url'])) {
         <!-- Masthead-->
         <header class="masthead" style="background-image: url(<?php echo $img; ?>)">
             <div class="container cover-img py-5">
-                <div class="mb-2" style="color: #00ffa7; font-size: 1.25rem;"><strong>#<?php if (isset($_GET['category'])) { echo $_GET['category']; } else { echo "Article"; } ?></strong></div>
+                <div class="mb-2" style="color: #00bfa6; font-size: 1.25rem;"><strong>#<?php if (isset($_GET['category'])) { echo $_GET['category']; } else { echo "Article"; } ?></strong></div>
                 <div class="masthead-subheading"><?php echo $pub; ?></div>
-                <div class="masthead-heading text-uppercase"><?php echo $title; ?></div>
-                <a id="scroll" class="btn btn-primary btn-lg btn-rectangle js-scroll-trigger text-dark mr-3" href="#">Analytics</a>
+                <div class="masthead-heading text-uppercase"><?php echo clean_headline($title); ?></div>
+                <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-dark mr-3" href="#">Analytics</a>
                 <a class="btn btn-outline-secondary btn-lg btn-rectangle js-scroll-trigger" target='_blank' href="<?php echo $url; ?>" style="color: white; border-color: transparent;">Go to Story</a>
             </div>
         </header>
@@ -355,7 +362,7 @@ if (!isset($_GET['url'])) {
         <div class="container-fluid">
             <span class="link"><?= $url ?></span>
         </div>
-        
+
         <a name="analytics"></a>
 
         <?php if (isset($_GET['error']) && $_GET['error'] == '1'): ?>
@@ -446,9 +453,9 @@ if (!isset($_GET['url'])) {
                     <div class="col-lg-4 text-lg-left">Copyright © Scroll News <?= date("Y") ?></div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <!--<a class="btn btn-light btn-social mx-2" href="#"><i class="fab fa-twitter"></i></a>-->
-                        <a class="btn btn-dark btn-social mx-2" href="about.php"><i class="fas fa-align-right"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>" onclick=""><i class="fas fa-play"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="newsroom.php"><i class="fas fa-align-left"></i></a>
+                        <a class="btn btn-black btn-social mx-2" href="about.php"><i class="fas fa-align-right"></i></a>
+                        <a class="btn btn-black btn-social mx-2" href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>" onclick=""><i class="fas fa-play"></i></a>
+                        <a class="btn btn-black btn-social mx-2" href="newsroom.php"><i class="fas fa-align-left"></i></a>
                         <!--
                         <a class="btn btn-light btn-social mx-2" href="#"><ion-icon name="logo-instagram"></ion-icon></a>-->
                     </div>
@@ -478,7 +485,7 @@ if (!isset($_GET['url'])) {
                 </div>
 
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary text-dark">Analyze</button>
+                  <button type="submit" class="btn btn-green text-dark">Analyze</button>
                 </div>
               </form>
 

@@ -331,6 +331,11 @@ function clean_string($str) {
     return preg_replace('/[.,\s()]/', '', $str);
 }
 
+function clean_headline($str) {
+
+  return str_replace("", "", str_replace('�', '', $str));
+}
+
 function is_file_width_over_min($html) {
     if (preg_match('/data-file-width\s*=\s*"(\d+)"/i', $html, $matches)) {
         $width = (int)$matches[1];

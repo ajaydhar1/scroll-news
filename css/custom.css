@@ -15,7 +15,20 @@
 }
 
 .btn {
-  box-shadow: 0 0 0 0.2rem deeppink !important;
+  box-shadow: 0 0 0 0.2rem #00bfa6 !important;
+}
+
+.btn-black {
+  background-color: black;
+  color: white;
+}
+
+.btn-green {
+  background-color: #00bfa6;
+}
+
+.btn-black:hover {
+  color: #00bfa6;
 }
 
 .container.cover-img {

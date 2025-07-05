@@ -20,9 +20,9 @@
         <style>
 
             :root {
-                --circle-btn-outline-color: mediumaquamarine;
+                --circle-btn-outline-color: #00bfa6;
                 --btn-outline-color: #415158; /* Slate Gray */
-                --link-color: #838685; /* Light Gray */
+                --link-color: #00bfa6; /* Light Gray */
                 --light-text: gray;
             }
 
@@ -53,13 +53,8 @@
                 color: var(--light-text);
             }
 
-            .text-lg-left,
-            .text-lg-right a {
+            .col-lg-4.text-lg-left {
                 color: white;
-            }
-
-            .btn {
-                box-shadow: 0 0 0 0.2rem black !important;
             }
 
         </style>

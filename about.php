@@ -20,9 +20,9 @@
         <style>
 
             :root {
-                --circle-btn-outline-color: deeppink;
+                --circle-btn-outline-color: #00bfa6;
                 --btn-outline-color: #415158; /* Slate Gray */
-                --link-color: #00be7c; /* Bright Green */
+                --link-color: #00bfa6; /* Bright Green */
                 /* --link-color: #838685; Light Gray */
 
             }
@@ -62,7 +62,7 @@
             }
 
             footer .text-lg-right a {
-                color: mediumaquamarine;
+                color: #00bfa6;
             }
 
         </style>
@@ -103,7 +103,7 @@
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x" style="color: mediumaquamarine"></i>
+                            <i class="fas fa-circle fa-stack-2x" style="color: #00bfa6;"></i>
                             <i class="fas fa-chart-bar fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 class="my-3">Analytics</h4>

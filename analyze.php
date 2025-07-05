@@ -105,6 +105,7 @@
                       </div>
                       <!-- Card Body -->
                       <div class="card-body">
+                        <h5 class="m-0 font-weight-bold">Wikipedia</h5>
                         <div id="wikipedia">
                           <ol>
                             <?php
@@ -291,27 +292,27 @@
               "dataProvider": [ {
                 "country": "angry",
                 "visits": <?= $reaction['angry'] ?>,
-                "color": "#acd373"
+                "color": "#00bfa6"
               },
               {
                 "country": "inspired",
                 "visits": <?= $reaction['inspired'] ?>,
-                "color": "#acd373"
+                "color": "#00bfa6"
               },
               {
                 "country": "satisfied",
                 "visits": <?= $reaction['satisfied'] ?>,
-                "color": "#acd373"
+                "color": "#00bfa6"
               },
               {
                 "country": "happy",
                 "visits": <?= $reaction['happy'] ?>,
-                "color": "#acd373"
+                "color": "#00bfa6"
               },
               {
                 "country": "unsure",
                 "visits": <?= $reaction['unsure'] ?>,
-                "color": "#acd373"
+                "color": "#00bfa6"
               }
               ],
 
