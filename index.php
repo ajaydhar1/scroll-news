@@ -257,6 +257,10 @@ if (!isset($_GET['url'])) {
                 background-color: #fafafa;
             }
 
+            .introjs-helperLayer {
+                border: 1px solid rgb(255 255 255 / 87%) !important;
+            }
+
 
         </style>
 
