@@ -265,6 +265,15 @@ if (!isset($_GET['url'])) {
                 opacity: .85 !important;
             }
 
+            .analyze-btn {
+                box-shadow: 0 0 0 0.14rem var(--link-color-break) !important;
+            }
+
+            .analyze-btn:hover {
+                color: white !important;
+                background: black;
+            }
+
 
         </style>
 
@@ -317,7 +326,11 @@ if (!isset($_GET['url'])) {
         <footer class="footer py-4 bg-white sticky-top">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left">Copyright © Scroll News <?= date("Y") ?></div>
+                    <div class="col-lg-4 text-lg-left">
+                        <a class="btn btn-outline-secondary analyze-btn mx-2" data-toggle="modal" data-target="#analyzeModal">
+                          Analyze Article
+                        </a>
+                    </div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a data-step="2" data-intro="Click here for information on our analytics." class="btn btn-dark btn-social mx-2" href="about.php"><i class="fas fa-align-right"></i></a>
                         <a data-step="1" data-intro="Welcome to Scroll News! We provide analytics for the latest news stories. Click this play button to scroll through trending articles." class="btn btn-dark btn-social mx-2" href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>" onclick=""><i class="fas fa-play"></i></a>
@@ -331,7 +344,7 @@ if (!isset($_GET['url'])) {
         <!-- Masthead-->
         <header class="masthead" style="background-image: url(<?php echo $img; ?>)">
             <div class="container cover-img py-5">
-                <div class="mb-2" style="color: #00ffa7; font-size: 1.25rem;"><strong>#<?php echo $_GET['category']; ?></strong></div>
+                <div class="mb-2" style="color: #00ffa7; font-size: 1.25rem;"><strong>#<?php if (isset($_GET['category'])) { echo $_GET['category']; } else { echo "Article"; } ?></strong></div>
                 <div class="masthead-subheading"><?php echo $pub; ?></div>
                 <div class="masthead-heading text-uppercase"><?php echo $title; ?></div>
                 <a id="scroll" class="btn btn-primary btn-lg btn-rectangle js-scroll-trigger text-dark mr-3" href="#">Analytics</a>
@@ -342,6 +355,17 @@ if (!isset($_GET['url'])) {
         <span class="link"><?= $url ?></span>
 
         <a name="analytics"></a>
+
+        <?php if (isset($_GET['error']) && $_GET['error'] == '1'): ?>
+          <div class="container mt-4">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Oops!</strong> We were unable to fully analyze this article. The NLP dashboard or image may be incomplete.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        <?php endif; ?>
 
         <div id="side-by-side-panel"> <?php // class="mb-4" style="min-height:480px;" ?>
           <div class="container-fluid" style="padding-top: 30px;">
@@ -367,7 +391,8 @@ if (!isset($_GET['url'])) {
                       src="https://news-nlp-api-08865bb82971.herokuapp.com/screenshot?url=<?= urlencode($url) ?>" 
                       alt="Article Screenshot" 
                       onload="document.getElementById('img-loader').style.display='none';"
-                      style="max-width: 100%; height: auto; margin-bottom: 20px;" 
+                      style="max-width: 100%; height: auto; margin-bottom: 20px;"
+                      onerror="window.location.href = 'index.php?url=<?= urlencode($_GET["url"]) ?>&error=1';"
                     />
                     <div id="img-loader" class="text-center mt-3">Loading screenshot...</div>
                   </div>
@@ -419,6 +444,36 @@ if (!isset($_GET['url'])) {
                 </div>
             </div>
         </footer>
+
+
+        <div class="modal fade" id="analyzeModal" tabindex="-1" role="dialog" aria-labelledby="analyzeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <h5 class="modal-title" id="analyzeModalLabel">Analyze a News Article</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <form id="analyzeForm">
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="articleUrl">Enter article URL:</label>
+                    <input type="url" class="form-control" id="articleUrl" name="articleUrl" placeholder="https://example.com/article" required>
+                  </div>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary text-dark">Analyze</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
         
 
         <!-- Bootstrap core JS-->
@@ -703,9 +758,21 @@ if (!isset($_GET['url'])) {
 
           </script>
 
+
+          <script>
+              $('#analyzeForm').on('submit', function(e) {
+                e.preventDefault();
+                const url = $('#articleUrl').val().trim();
+                if (url) {
+                  const encoded = encodeURIComponent(url);
+                  window.location.href = `index.php?url=${encoded}`;
+                }
+              });
+            </script>
+
+
+
           <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
-
-
           
 
     </body>

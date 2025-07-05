@@ -157,6 +157,17 @@ foreach ($themes as $key => $value) {
               }
             }
 
+            if (endsWith(strtolower(trim($tab_content_string)), "may refer to: </p>")) {
+              continue;
+            }
+            else if (endsWith(strtolower(trim($tab_content_string)), 'may also refer to: </p>')) {
+              // Remove the last <p>...</p> block
+              $last_p_pos = strrpos($tab_content_string, '<p>');
+              if ($last_p_pos !== false) {
+                  $tab_content_string = substr($tab_content_string, 0, $last_p_pos);
+              }
+            }
+
             if ($html->find('img')) {
               $tab_content_string .= '<div class="mt-5 images">';
               foreach($html->find('img') as $element) {
@@ -197,6 +208,14 @@ foreach ($themes as $key => $value) {
             if (endsWith(strtolower(trim($tab_content_string)), "may refer to: </p>")) {
               continue;
             }
+            else if (endsWith(strtolower(trim($tab_content_string)), 'may also refer to: </p>')) {
+              // Remove the last <p>...</p> block
+              $last_p_pos = strrpos($tab_content_string, '<p>');
+              if ($last_p_pos !== false) {
+                  $tab_content_string = substr($tab_content_string, 0, $last_p_pos);
+              }
+            }
+
 
             if ($html->find('img')) {
               $tab_content_string .= '<div class="mt-5 images">';

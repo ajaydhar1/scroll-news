@@ -5,7 +5,13 @@
           require_once('___modules.php');
 
           // get analytics
-            $arr = azeo_site_results($_POST['url']);
+          $arr = azeo_site_results($_POST['url']);
+
+          // Example: If NLP or screenshot fails
+          if (empty($arr)) {
+              header("Location: index.php?url=" . urlencode($_POST['url']) . "&error=1");
+              exit;
+          }
 
         ?>
         
