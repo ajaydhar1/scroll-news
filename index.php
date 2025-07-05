@@ -378,7 +378,7 @@ if (!isset($_GET['url'])) {
                 <div id="recurring-news-themes" class="custom-card px-4 py-2" style="min-height:450px; border-radius: 0px;">
                     
                     <div class="text-center mb-3 mt-3">
-                        <h3 class="topics" data-step="11" data-intro="Dimensions of this story. Connect some of these dots with each other and across other stories to develop a mental model of the world.">📋 Depth Chart</h3>
+                        <h3 class="topics">📋 Depth Chart</h3>
                       </div>
 
                 
@@ -572,6 +572,9 @@ if (!isset($_GET['url'])) {
                             $(this).attr("data-hashtext", $(this).text());
                             $(this).removeAttr("title");
                         });
+
+                        $(".topics").attr("data-step","11");
+                        $(".topics").attr("data-intro","Dimensions of this story. Connect some of these dots with each other and across other stories to develop a mental model of the world.");
 
 
                         $("body *").not(".description a").click(function() {
