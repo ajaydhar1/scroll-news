@@ -306,7 +306,7 @@ function doesntContainAny($string, array $needles) {
 function getRandomArticle() {
   $articles = [];
 
-  $filter_out = array("usatoday", "independent.co.uk", "nytimes", "9to5google", "tomsguide", "cnn", "thehockeynews", "cbssports", "businessinsider", "abc7chicago", "livescience", "wlns", "myedmondsnews", "reuters", "sportingnews", "bloomberg", "wane.com", "politico", "wvpublic", "cnbc");
+  $filter_out = array("usatoday", "independent.co.uk", "nytimes", "9to5google", "tomsguide", "cnn", "thehockeynews", "cbssports", "businessinsider", "abc7chicago", "livescience", "wlns", "myedmondsnews", "reuters", "sportingnews", "bloomberg", "wane.com", "politico", "wvpublic", "cnbc", "mercurynews");
           
   $rss_feeds = array("US Politics" => "https://rss.app/feeds/tCdH9nGB4aPpVPLh.xml", "Health" => "https://rss.app/feeds/tZPiCoHdJqTYlcZc.xml", "Science" => "https://rss.app/feeds/tLSguoVp4t7wa1eJ.xml", "Business" => "https://rss.app/feeds/tDmGft5qv7QGmWHv.xml", "Sports" => "https://rss.app/feeds/tCQMLQm6AHeQ5hJk.xml", "Technology" => "https://rss.app/feeds/t8coleFVxgPf56NK.xml", "Politics" => "https://rss.app/feeds/tahaOzLGHPxMD9OC.xml");
 
@@ -328,7 +328,7 @@ function getRandomArticle() {
 
 function clean_string($str) {
     // Remove spaces, parentheses, and periods
-    return preg_replace('/[.\s()]/', '', $str);
+    return preg_replace('/[.,\s()]/', '', $str);
 }
 
 function is_file_width_over_min($html) {
