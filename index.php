@@ -261,6 +261,10 @@ if (!isset($_GET['url'])) {
                 border: 1px solid rgb(255 255 255 / 87%) !important;
             }
 
+            .introjs-overlay {
+                opacity: .85 !important;
+            }
+
 
         </style>
 
