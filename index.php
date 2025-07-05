@@ -144,6 +144,10 @@ if (!isset($_GET['url'])) {
                 opacity: 1;
             }
 
+            #side-by-side-panel {
+                margin-bottom: 40px;
+            }
+
             /* SM Small Device :320px. */
             @media only screen and (min-width: 280px) and (max-width: 499px) {
               #scroll {
@@ -161,6 +165,14 @@ if (!isset($_GET['url'])) {
               span.link {
                 display: none;
               } 
+
+              #side-by-side-panel {
+                /* margin-bottom: 60px; */
+              }
+
+              #panel-inner-row {
+                height: unset !important;
+              }
             }
 
             @media only screen and (max-width: 896px) and (orientation: landscape) {
@@ -177,8 +189,12 @@ if (!isset($_GET['url'])) {
                 position: relative;
               }
 
-              #content-area {
-                min-height:  unset !important;
+              #side-by-side-panel {
+                margin-bottom: 60px;
+              }
+
+              #panel-inner-row {
+                height: unset !important;
               }
             }
 
@@ -306,9 +322,9 @@ if (!isset($_GET['url'])) {
 
         <a name="analytics"></a>
 
-        <div id="content-area" class="mb-4" style="min-height:480px;">
+        <div id="side-by-side-panel"> <?php // class="mb-4" style="min-height:480px;" ?>
           <div class="container-fluid" style="padding-top: 30px;">
-              <div class="row flex-row" style="height: 95vh;">
+              <div id="panel-inner-row" class="row flex-row" style="height: 95vh;">
                 <!-- NLP Dashboard Panel -->
                 <div class="col-md-6 panel" style="overflow-y: auto; border-right: 2px solid #eee;">
                   <div class="text-center mb-3">
