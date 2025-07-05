@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Gymnastics conditioning montage." />
+        <meta name="author" content="Gymnastiks Life" />
+        <title>Scroll News - The Newsroom</title>
+        <link rel="icon" type="image/png" href="assets/img/play-pink.png" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/custom.css" rel="stylesheet" />
+
+        <style>
+
+            :root {
+                --circle-btn-outline-color: mediumaquamarine;
+                --btn-outline-color: #415158; /* Slate Gray */
+                --link-color: #838685; /* Light Gray */
+                --light-text: gray;
+            }
+
+            .content {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                /* background: rgba(255, 255, 255, 1); */
+                color: #0a0a0a;
+                width: 100%;
+                padding: 20px;
+                /* height: 190px; */
+                margin-top: -95px;
+                text-align: center;
+            }
+
+            @media only screen and (max-width : 768px) {
+                .content {
+                    bottom: 50%;
+                }            
+            }
+
+            a {
+                color: var(--link-color);
+            }
+
+            .light-text {
+                color: var(--light-text);
+            }
+
+            .text-lg-left,
+            .text-lg-right a {
+                color: white;
+            }
+
+            .btn {
+                box-shadow: 0 0 0 0.2rem black !important;
+            }
+
+        </style>
+
+
+    </head>
+
+    <body id="page-top">
+
+        <div class="loader" style="display: none;"></div>
+        
+        <video autoplay muted loop playsinline id="myVideo">
+            <source src="assets/videos/newsroom.mp4" type="video/mp4">
+        </video>
+
+
+        <div class="content">
+            <h1 class="text-white">Stumble Through the News</h1>
+            <h2 class="light-text">Smart analytics. Fresh perspectives.</h2>
+            <!-- Use a button to pause/play the video with JavaScript -->
+            <!--<button type="submit" class="btn btn-lg text-white font-weight-bold" style="background-color: black;" id="myBtn" onclick="goToAnalytics()">Tell Me More</button>-->
+        </div>
+
+
+        <!-- Footer-->
+        
+        <?php require('___footer.php'); ?>
+        
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Contact form JS-->
+        <script src="assets/mail/jqBootstrapValidation.js"></script>
+        <script src="assets/mail/contact_me.js"></script>
+        <!-- Core theme JS-->
+        <!--<script src="js/scripts.js"></script>-->
+
+        <script>
+
+
+            function goToAnalytics() {
+                if (!isMobile()) {
+                //place script you don't want to run on mobile here
+                    $(".loader").fadeIn("slow");
+                }
+            }
+
+            function isMobile() {
+                return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            }
+    
+        </script>
+    </body>
+</html>

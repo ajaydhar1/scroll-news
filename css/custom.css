@@ -1,0 +1,86 @@
+#myVideo {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100vw;
+}
+
+/* SM Small Device :320px. */
+@media only screen and (min-width: 320px) and (max-width: 1024px) {
+  #myVideo {
+    height: 100vh;
+    -o-object-fit: cover;
+    object-fit: cover;
+  } 
+}
+
+.btn {
+  box-shadow: 0 0 0 0.2rem deeppink !important;
+}
+
+.container.cover-img {
+  background-color: rgba(0, 247, 216, 0.8);
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  color: deeppink;
+}
+
+a, .text-pink {
+  color: deeppink;
+}
+
+.amcharts-export-menu.amcharts-export-menu-top-right.amExportButton {
+  display: none;
+}
+
+.card-header {
+  background-color: white;
+}
+
+ion-icon {
+  font-size: 20px;
+}
+
+.loader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url(../assets/img/loading-2.gif) 50% 50% no-repeat #f9f9f9;
+  opacity: 1;
+}
+
+/* SM Small Device :320px. */
+@media only screen and (min-width: 280px) and (max-width: 499px) {
+  #scroll {
+    margin-right: 0 !important;
+    margin-bottom: 19px !important;
+  } 
+}
+
+@media only screen and (max-width : 768px) {
+  .content {
+    bottom: 50%;
+  }            
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px)  and (max-width : 1024px) {
+  /* Styles */
+  .page-section {
+    padding: 2rem 0;
+  }
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px) {
+  /* Styles */
+  .page-section {
+    padding: 2rem 0;
+  }
+}
