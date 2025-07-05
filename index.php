@@ -352,8 +352,10 @@ if (!isset($_GET['url'])) {
             </div>
         </header>
 
-        <span class="link"><?= $url ?></span>
-
+        <div class="container-fluid">
+            <span class="link"><?= $url ?></span>
+        </div>
+        
         <a name="analytics"></a>
 
         <?php if (isset($_GET['error']) && $_GET['error'] == '1'): ?>
