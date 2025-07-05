@@ -143,7 +143,7 @@ foreach ($themes as $key => $value) {
   
           <div class="mt-4">
             <h2>Axis '.$theme_num.': <a href="'.$value[0].'" target="_blank">'.$key.'</a></h2>
-            <div class="description mb-2" style="color: #545454; font-size: 17px;">'; 
+            <div class="description mb-2" style="">'; 
 
             $tab_content_string .= $p1;
             if ($is_ul_1) $tab_content_string .= $ul_1;
@@ -192,6 +192,10 @@ foreach ($themes as $key => $value) {
                 $tab_content_string .= $p3;
                 if ($is_ul_3) $tab_content_string .= $ul_3;    
               }
+            }
+
+            if (endsWith(strtolower(trim($tab_content_string)), "may refer to: </p>")) {
+              continue;
             }
 
             if ($html->find('img')) {

@@ -339,4 +339,12 @@ function is_file_width_over_min($html) {
     return false; // attribute not found
 }
 
+function endsWith($haystack, $needle) {
+    $length = strlen($needle);
+    if ($length == 0) {
+        return true; // Any string ends with an empty string
+    }
+    return substr_compare($haystack, $needle, -$length) === 0;
+}
+
 ?>

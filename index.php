@@ -244,6 +244,19 @@ if (!isset($_GET['url'])) {
                 margin: 5px;
             }
 
+            .description {
+                color: #525252;
+                font-size: 16.69px;
+            }
+
+            .card.shadow {
+                box-shadow: none !important;
+            }
+
+            #depth-panel {
+                background-color: #fafafa;
+            }
+
 
         </style>
 
@@ -313,8 +326,8 @@ if (!isset($_GET['url'])) {
                 <div class="mb-2" style="color: #00ffa7; font-size: 1.25rem;"><strong>#<?php echo $_GET['category']; ?></strong></div>
                 <div class="masthead-subheading"><?php echo $pub; ?></div>
                 <div class="masthead-heading text-uppercase"><?php echo $title; ?></div>
-                <a id="scroll" class="btn btn-primary btn-lg btn-rectangle text-uppercase js-scroll-trigger text-dark mr-3" href="#">Analytics</a>
-                <a class="btn btn-outline-secondary btn-lg btn-rectangle text-uppercase js-scroll-trigger" target='_blank' href="<?php echo $url; ?>" style="color: white; border-color: transparent;">Go to Story</a>
+                <a id="scroll" class="btn btn-primary btn-lg btn-rectangle js-scroll-trigger text-dark mr-3" href="#">Analytics</a>
+                <a class="btn btn-outline-secondary btn-lg btn-rectangle js-scroll-trigger" target='_blank' href="<?php echo $url; ?>" style="color: white; border-color: transparent;">Go to Story</a>
             </div>
         </header>
 
@@ -337,7 +350,7 @@ if (!isset($_GET['url'])) {
                 </div>
 
                 <!-- Article Screenshot Panel -->
-                <div class="col-md-6 panel" style="height: 100%; padding: 0; overflow-y: auto; background-color: #f4f4f4;">
+                <div class="col-md-6 panel" style="height: 100%; padding: 0; overflow-y: auto;"> <?php //background-color: #fcfcfc; ?>
                   <div class="text-center mb-3 pt-3">
                     <h3>📰 Article Screenshot</h3>
                   </div>
@@ -356,26 +369,26 @@ if (!isset($_GET['url'])) {
             </div>
         </div>
 
-        <div class="row cards builder mt-5">
-                    <div id="wiki-list-container" class="col-md-12">
-                        <div id="recurring-news-themes" class="custom-card px-4 py-2" style="min-height:450px; border-radius: 0px;">
-                            
-                            <div class="text-center mb-3">
-                                <h3 class="topics" data-step="11" data-intro="Dimensions of this story. Connect some of these dots with each other and across other stories to develop a mental model of the world.">📋 Depth Chart</h3>
-                              </div>
+        <div id="depth-panel" class="row cards builder mt-5">
+            <div id="wiki-list-container" class="col-md-12">
+                <div id="recurring-news-themes" class="custom-card px-4 py-2" style="min-height:450px; border-radius: 0px;">
+                    
+                    <div class="text-center mb-3 mt-3">
+                        <h3 class="topics" data-step="11" data-intro="Dimensions of this story. Connect some of these dots with each other and across other stories to develop a mental model of the world.">📋 Depth Chart</h3>
+                      </div>
 
-                        
-                            <div id="wiki-list-1" class="">
-                                <div class="row mb-5">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-6"><div id="lottie2"></div></div>
-                                    <div class="col-md-3"></div>
-                                </div>
-                            </div>
-
+                
+                    <div id="wiki-list-1" class="">
+                        <div class="row mb-5">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6"><div id="lottie2"></div></div>
+                            <div class="col-md-3"></div>
                         </div>
                     </div>
+
                 </div>
+            </div>
+        </div>
 
 
         
