@@ -355,7 +355,7 @@ if (!isset($_GET['url'])) {
 
                 <!-- Article Screenshot Panel -->
                 <div class="col-md-6 panel" style="height: 100%; padding: 0; overflow-y: auto;"> <?php //background-color: #fcfcfc; ?>
-                  <div class="text-center mb-3 pt-3">
+                  <div class="text-center mb-3">
                     <h3>📰 Article Screenshot</h3>
                   </div>
                   <div class="d-flex justify-content-center align-items-start px-3">
