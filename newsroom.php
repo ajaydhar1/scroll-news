@@ -6,7 +6,7 @@
         <meta name="description" content="Gymnastics conditioning montage." />
         <meta name="author" content="Gymnastiks Life" />
         <title>Scroll News - The Newsroom</title>
-        <link rel="icon" type="image/png" href="assets/img/play-pink.png" />
+        <link rel="icon" type="image/png" href="assets/img/play-green.png" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -20,8 +20,8 @@
         <style>
 
             :root {
-                --circle-btn-outline-color: #00bfa6;
-                --btn-outline-color: #415158; /* Slate Gray */
+                --brand-color: #00bfa6;
+                --brand-color: #415158; /* Slate Gray */
                 --link-color: #00bfa6; /* Light Gray */
                 --light-text: gray;
             }

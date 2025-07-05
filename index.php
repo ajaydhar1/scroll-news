@@ -27,7 +27,7 @@ if (!isset($_GET['url'])) {
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Scroll News - News Analytics</title>
-        <link rel="icon" type="image/png" href="assets/img/play-pink.png" />
+        <link rel="icon" type="image/png" href="assets/img/play-green.png" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -49,14 +49,6 @@ if (!isset($_GET['url'])) {
         <?php //<link href="https://unpkg.com/intro.js/minified/introjs.min.css" rel="stylesheet"> ?>
 
         <style>
-
-            :root {
-                --circle-btn-outline-color: #00bfa6;
-                --btn-outline-color: white; /* Slate Gray */
-                --link-color: #00bfa6; /* Bright Green */
-                /* --link-color: #838685; Light Gray */
-
-            }
 
             .custom-highlight {
                 background-color: transparent !important;
@@ -103,11 +95,11 @@ if (!isset($_GET['url'])) {
             }
 
             .btn {
-                box-shadow: 0 0 0 0.14rem var(--circle-btn-outline-color) !important;
+                box-shadow: 0 0 0 0.14rem var(--brand-color) !important;
             }
 
             .btn.btn-rectangle {
-                box-shadow: 0 0 0 0.14rem var(--btn-outline-color) !important;
+                box-shadow: 0 0 0 0.14rem var(--brand-color) !important;
             }
 
             .container.cover-img {      
@@ -119,7 +111,7 @@ if (!isset($_GET['url'])) {
             }
 
             a {
-                color: var(--link-color);
+                color: var(--brand-color);
             }
 
             footer .text-lg-right a {
@@ -271,7 +263,7 @@ if (!isset($_GET['url'])) {
             }
 
             .analyze-btn {
-                box-shadow: 0 0 0 0.14rem var(--link-color-break) !important;
+                box-shadow: 0 0 0 0.14rem var(--brand-color-break) !important;
             }
 
             .analyze-btn:hover {
@@ -340,10 +332,10 @@ if (!isset($_GET['url'])) {
                     </div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a data-step="2" data-intro="Click here for information on our analytics." class="btn btn-black btn-social mx-2" href="about.php"><i class="fas fa-align-right"></i></a>
-                        <a data-step="1" data-intro="Welcome to Scroll News! We provide analytics for the latest news stories. Click this play button to scroll through trending articles." class="btn btn-black btn-social mx-2" href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>" onclick=""><i class="fas fa-play"></i></a>
+                        <a data-step="1" data-intro="Welcome to Scroll News! We provide analytics for the latest news stories. Click this play button to scroll through trending articles." class="btn btn-green btn-social mx-2" href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>" onclick=""><i class="fas fa-play"></i></a>
                         <a data-step="3" data-intro="Click here to see our newsroom video trailer." class="btn btn-black btn-social mx-2" href="newsroom.php"><i class="fas fa-align-left"></i></a>
                     </div>
-                    <div class="col-lg-4 text-lg-right font-weight-bold" style="color: var(--link-color);"><a href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>">scroll news</a></div>
+                    <div class="col-lg-4 text-lg-right font-weight-bold" style="color: var(--brand-color);"><a href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>">scroll news</a></div>
                 </div>
             </div>
         </footer>
@@ -354,7 +346,7 @@ if (!isset($_GET['url'])) {
                 <div class="mb-2" style="color: #00bfa6; font-size: 1.25rem;"><strong>#<?php if (isset($_GET['category'])) { echo $_GET['category']; } else { echo "Article"; } ?></strong></div>
                 <div class="masthead-subheading"><?php echo $pub; ?></div>
                 <div class="masthead-heading text-uppercase"><?php echo clean_headline($title); ?></div>
-                <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-dark mr-3" href="#">Analytics</a>
+                <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black mr-3" href="#">Analytics</a>
                 <a class="btn btn-outline-secondary btn-lg btn-rectangle js-scroll-trigger" target='_blank' href="<?php echo $url; ?>" style="color: white; border-color: transparent;">Go to Story</a>
             </div>
         </header>
@@ -454,12 +446,12 @@ if (!isset($_GET['url'])) {
                     <div class="col-lg-4 my-3 my-lg-0">
                         <!--<a class="btn btn-light btn-social mx-2" href="#"><i class="fab fa-twitter"></i></a>-->
                         <a class="btn btn-black btn-social mx-2" href="about.php"><i class="fas fa-align-right"></i></a>
-                        <a class="btn btn-black btn-social mx-2" href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>" onclick=""><i class="fas fa-play"></i></a>
+                        <a class="btn btn-green btn-social mx-2" href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>" onclick=""><i class="fas fa-play"></i></a>
                         <a class="btn btn-black btn-social mx-2" href="newsroom.php"><i class="fas fa-align-left"></i></a>
                         <!--
                         <a class="btn btn-light btn-social mx-2" href="#"><ion-icon name="logo-instagram"></ion-icon></a>-->
                     </div>
-                    <div class="col-lg-4 text-lg-right font-weight-bold" style="color: var(--link-color);"><a href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>">scroll news</a></div>
+                    <div class="col-lg-4 text-lg-right font-weight-bold" style="color: var(--brand-color);"><a href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>">scroll news</a></div>
                 </div>
             </div>
         </footer>
@@ -485,7 +477,7 @@ if (!isset($_GET['url'])) {
                 </div>
 
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-green text-dark">Analyze</button>
+                  <button type="submit" class="btn btn-green text-black">Analyze</button>
                 </div>
               </form>
 
@@ -543,7 +535,7 @@ if (!isset($_GET['url'])) {
                         $("#youtube-tags").css("display", "none");
                         $("#idea-tags").css("display", "none");
                         $("#twitter-icon").css("color", "#34495E");
-                        $("#insta-icon").css("color", "var(--link-color)");
+                        $("#insta-icon").css("color", "var(--brand-color)");
                         $("#google-icon").css("color", "#34495E");
                         $("#youtube-icon").css("color", "#34495E");
                         $("#idea-icon").css("color", "#34495E");
@@ -558,7 +550,7 @@ if (!isset($_GET['url'])) {
                         $("#youtube-tags").css("display", "none");
                         $("#idea-tags").css("display", "none");
                         $("#insta-icon").css("color", "#34495E");
-                        $("#twitter-icon").css("color", "var(--link-color)");
+                        $("#twitter-icon").css("color", "var(--brand-color)");
                         $("#google-icon").css("color", "#34495E");
                         $("#youtube-icon").css("color", "#34495E");
                         $("#idea-icon").css("color", "#34495E");
@@ -573,7 +565,7 @@ if (!isset($_GET['url'])) {
                         $("#idea-tags").css("display", "none");
                         $("#insta-icon").css("color", "#34495E");
                         $("#twitter-icon").css("color", "#34495E");
-                        $("#google-icon").css("color", "var(--link-color)");
+                        $("#google-icon").css("color", "var(--brand-color)");
                         $("#youtube-icon").css("color", "#34495E");
                         $("#idea-icon").css("color", "#34495E");
                       });
@@ -588,7 +580,7 @@ if (!isset($_GET['url'])) {
                         $("#insta-icon").css("color", "#34495E");
                         $("#twitter-icon").css("color", "#34495E");
                         $("#google-icon").css("color", "#34495E");
-                        $("#youtube-icon").css("color", "var(--link-color)");
+                        $("#youtube-icon").css("color", "var(--brand-color)");
                         $("#idea-icon").css("color", "#34495E");
                       });
 

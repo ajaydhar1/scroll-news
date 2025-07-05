@@ -1,3 +1,8 @@
+:root {
+    --brand-color: white; /* Slate Gray */
+    --brand-color: #00bfa6; /* Bright Green */
+}
+
 #myVideo {
   position: fixed;
   right: 0;
@@ -25,6 +30,12 @@
 
 .btn-green {
   background-color: #00bfa6;
+  color: black !important;
+}
+
+.btn-green:hover, .btn-green:focus {
+  background-color: #1ce3c0;
+    color: black !important;
 }
 
 .btn-black:hover {

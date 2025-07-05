@@ -6,7 +6,7 @@
         <meta name="description" content="About Gymnastiks Life." />
         <meta name="author" content="Gymnastiks Life" />
         <title>Scroll News - About the Analytics</title>
-        <link rel="icon" type="image/png" href="assets/img/play-pink.png" />
+        <link rel="icon" type="image/png" href="assets/img/play-green.png" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -18,14 +18,6 @@
         <link href="css/custom.css" rel="stylesheet" />
 
         <style>
-
-            :root {
-                --circle-btn-outline-color: #00bfa6;
-                --btn-outline-color: #415158; /* Slate Gray */
-                --link-color: #00bfa6; /* Bright Green */
-                /* --link-color: #838685; Light Gray */
-
-            }
 
             .content {
                 position: fixed;
@@ -54,7 +46,7 @@
             }
 
             a {
-                color: var(--link-color);
+                color: var(--brand-color);
             }
 
             footer.footer {
@@ -63,6 +55,10 @@
 
             footer .text-lg-right a {
                 color: #00bfa6;
+            }
+
+            footer .text-lg-right a:hover {
+                color: black;
             }
 
         </style>

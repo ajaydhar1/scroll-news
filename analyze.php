@@ -34,7 +34,7 @@
                   <div class="basement_title">
                     <span class="h5" id="sm-tags">Google</span>
                       <span id="hash-icons" data-step="5" data-intro="Click an icon to change the platform for the hashtags" style="float:right;height:22px;">
-                        <a id="google-link" class="item google-highlight waves-effect waves-light" href="javascript:void(0)"><em id="google-icon" style="color:var(--link-color);" class="fa fa-search"></em></a>
+                        <a id="google-link" class="item google-highlight waves-effect waves-light" href="javascript:void(0)"><em id="google-icon" style="color:var(--brand-color);" class="fa fa-search"></em></a>
                         <a id="youtube-link" class="item youtube-highlight waves-effect waves-light" href="javascript:void(0)"><em id="youtube-icon" style="color:#34495E" class="fab fa-youtube"></em></a>
                         <a id="twitter-link" class="item twitter-highlight waves-effect waves-light" href="javascript:void(0)"><em id="twitter-icon" style="color:#34495E" class="fab fa-twitter"></em></a>
                         <a id="insta-link" class="item instagram-highlight waves-effect waves-light" href="javascript:void(0)"><em id="insta-icon" style="color:#34495E" class="fab fa-instagram"></em></a>

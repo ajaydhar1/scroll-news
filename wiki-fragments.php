@@ -160,7 +160,7 @@ foreach ($themes as $key => $value) {
             if (endsWith(strtolower(trim($tab_content_string)), "may refer to: </p>")) {
               continue;
             }
-            else if (endsWith(strtolower(trim($tab_content_string)), 'may also refer to: </p>')) {
+            else if (endsWith(strtolower(trim($tab_content_string)), 'may also refer to: </p>') || endsWith(strtolower(trim($tab_content_string)), 'can also refer to: </p>')) {
               // Remove the last <p>...</p> block
               $last_p_pos = strrpos($tab_content_string, '<p>');
               if ($last_p_pos !== false) {
@@ -208,7 +208,7 @@ foreach ($themes as $key => $value) {
             if (endsWith(strtolower(trim($tab_content_string)), "may refer to: </p>")) {
               continue;
             }
-            else if (endsWith(strtolower(trim($tab_content_string)), 'may also refer to: </p>')) {
+            else if (endsWith(strtolower(trim($tab_content_string)), 'may also refer to: </p>') || endsWith(strtolower(trim($tab_content_string)), 'can also refer to: </p>')) {
               // Remove the last <p>...</p> block
               $last_p_pos = strrpos($tab_content_string, '<p>');
               if ($last_p_pos !== false) {
