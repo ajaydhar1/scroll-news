@@ -299,13 +299,13 @@
                 "color": "#00bfa6"
               },
               {
-                "country": "satisfied",
-                "visits": <?= $reaction['satisfied'] ?>,
+                "country": "happy",
+                "visits": <?= $reaction['happy'] ?>,
                 "color": "#00bfa6"
               },
               {
-                "country": "happy",
-                "visits": <?= $reaction['happy'] ?>,
+                "country": "satisfied",
+                "visits": <?= $reaction['satisfied'] ?>,
                 "color": "#00bfa6"
               },
               {
