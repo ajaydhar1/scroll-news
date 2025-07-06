@@ -209,22 +209,11 @@
 
                           <?php
 
-                            /*
-                            $react['wow']=0;
-                            $react['ahah']=0;
-                            $react['angry']=0;
-                            $react['love']=0;
-                            $react['sad']=0;
-                            */
-
+                            $reaction['love']=0;
                             $reaction['angry']=0;
-                            //$reaction['curious']=0;
-                            $reaction['happy']=0;
-                            $reaction['inspired']=0;
-                            //$reaction['relaxed']=0;
-                            $reaction['satisfied']=0;
-                            $reaction['unsure']=0;
-                            //$reaction['urgency']=0;
+                            $reaction['ahah']=0;
+                            $reaction['wow']=0;
+                            $reaction['sad']=0;
 
                             foreach ($arr['emotional_reaction'] as $key => $value) {
                                 
@@ -289,28 +278,28 @@
               "type": "serial",
               "theme": "light",
               "dataProvider": [ {
+                "country": "love",
+                "visits": <?= $reaction['love'] ?>,
+                "color": "#00bfa6"
+              },
+              {
                 "country": "angry",
                 "visits": <?= $reaction['angry'] ?>,
                 "color": "#00bfa6"
               },
               {
-                "country": "inspired",
-                "visits": <?= $reaction['inspired'] ?>,
+                "country": "ahah",
+                "visits": <?= $reaction['ahah'] ?>,
                 "color": "#00bfa6"
               },
               {
-                "country": "happy",
-                "visits": <?= $reaction['happy'] ?>,
+                "country": "wow",
+                "visits": <?= $reaction['wow'] ?>,
                 "color": "#00bfa6"
               },
               {
-                "country": "satisfied",
-                "visits": <?= $reaction['satisfied'] ?>,
-                "color": "#00bfa6"
-              },
-              {
-                "country": "unsure",
-                "visits": <?= $reaction['unsure'] ?>,
+                "country": "sad",
+                "visits": <?= $reaction['sad'] ?>,
                 "color": "#00bfa6"
               }
               ],
