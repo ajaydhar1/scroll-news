@@ -1,4 +1,7 @@
 <?php
+
+set_time_limit(300);
+
 /**
  * Website: http://sourceforge.net/projects/simplehtmldom/
  * Additional projects that may be used: http://sourceforge.net/projects/debugobject/

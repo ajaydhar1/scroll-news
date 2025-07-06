@@ -34,6 +34,12 @@ if (!isset($_GET['url'])) {
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        
+
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Lato&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter&display=swap" rel="stylesheet">
+        
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/custom.css" rel="stylesheet" />
@@ -213,6 +219,7 @@ if (!isset($_GET['url'])) {
                 background: linear-gradient(to top right, #b91d73, #f953c6);
                 color: white;
                 border: solid 2px yellow;
+                font-family: 'Open Sans', sans-serif;
             }
 
             .popover-body strong {
@@ -374,7 +381,7 @@ if (!isset($_GET['url'])) {
                 <!-- NLP Dashboard Panel -->
                 <div class="col-md-6 panel" style="overflow-y: auto; border-right: 2px solid #eee;">
                   <div class="text-center mb-3">
-                    <h3>🧠 NLP Dashboard</h3>
+                    <h2>🧠 NLP Dashboard</h2>
                   </div>
                   <div id="analytics">
                     <div id="lottie" class="mb-4"></div>
@@ -385,7 +392,7 @@ if (!isset($_GET['url'])) {
                 <!-- Article Screenshot Panel -->
                 <div class="col-md-6 panel" style="height: 100%; padding: 0; overflow-y: auto;"> <?php //background-color: #fcfcfc; ?>
                   <div class="text-center mb-3">
-                    <h3>📰 Article Screenshot</h3>
+                    <h2>📰 Article Screenshot</h2>
                   </div>
                   <div class="d-flex justify-content-center align-items-start px-3">
                     
@@ -418,7 +425,7 @@ if (!isset($_GET['url'])) {
                 <div id="recurring-news-themes" class="custom-card px-4 py-2" style="min-height:450px; border-radius: 0px;">
                     
                     <div class="text-center mb-3 mt-3">
-                        <h3 class="topics">📋 Depth Chart</h3>
+                        <h2 class="topics">📋 Depth Chart</h2>
                       </div>
 
                 

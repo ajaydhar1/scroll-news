@@ -3,6 +3,67 @@
     --brand-color: #00bfa6; /* Bright Green */
 }
 
+
+
+/* OPTION A - Crisp & Professional */
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, .masthead-heading,
+.page-section h3.section-subheading,
+header.masthead .masthead-subheading {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.btn {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+/* OPTION B - Elegant and Trustworthy */
+/*
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+h1, h2, h3, .masthead-heading,
+.page-section h3.section-subheading,
+header.masthead .masthead-subheading {
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+}
+
+.btn {
+  font-family: 'Lato', sans-serif;
+}
+*/
+
+
+/* OPTION C - Sleek and Tech-Inspired */
+
+/*
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, .masthead-heading,
+.page-section h3.section-subheading,
+header.masthead .masthead-subheading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+}
+
+.btn {
+  font-family: 'Inter', sans-serif;
+}
+*/
+
+
+
+
 #myVideo {
   position: fixed;
   right: 0;

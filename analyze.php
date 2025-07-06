@@ -17,7 +17,7 @@
         ?>
         
 
-        <button class="btn btn-small btn-primary btn-rectangle mt-3 ml-3" style="color: black;" onclick="introJs().setOptions({highlightClass: 'custom-highlight', overlayOpacity: 0.5}).start();"><i class="fa fa-play-circle" style=""></i><span>&nbsp;&nbsp;&nbsp;Guide</span></button>
+        <button class="btn btn-small btn-primary btn-rectangle mt-3" style="color: black; box-shadow: none !important;" onclick="introJs().setOptions({highlightClass: 'custom-highlight', overlayOpacity: 0.5}).start();"><i class="fa fa-play-circle" style=""></i><span>&nbsp;&nbsp;&nbsp;Guide</span></button>
 
         <div class="row mt-3 d-flex align-items-stretch">
 
@@ -105,7 +105,6 @@
                       </div>
                       <!-- Card Body -->
                       <div class="card-body">
-                        <h5 class="m-0 font-weight-bold">Wikipedia</h5>
                         <div id="wikipedia">
                           <ol>
                             <?php
