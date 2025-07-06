@@ -1137,32 +1137,62 @@ foreach ($og as $key => $value) {
               const query = $("#newsSearchInput").val().trim();
               if (!query) return;
 
-              fetch(`search_news_proxy.php?q=${encodeURIComponent(query)}`)
-                .then(res => res.json())
+              fetchWithRetry(`search_news_proxy.php?q=${encodeURIComponent(query)}`, {
+                  method: 'GET',
+                  cache: 'no-store'
+                })
+                //.then(res => res.json())
                 .then(data => {
                   if (!data.items) return;
 
                   const rows = data.items.map(article => {
-                    return `
-                      <tr>
-                        <td>${article.title}</td>
-                        <td>${article.publisher}</td>
-                        <td>${timeElapsedString(new Date(article.pubDate))}</td>
-                        <td><button class="btn btn-sm btn-green" onclick="analyzeNews('${article.link}')">Analyze</button></td>
-                      </tr>
-                    `;
-                  }).join('');
+                      return [
+                        article.title,
+                        article.publisher,
+                        timeElapsedString(new Date(article.pubDate)),
+                        `<button class="btn btn-sm btn-green" onclick="analyzeNews('${article.link}')">Analyze</button>`
+                      ];
+                    });
 
-                  $("#searchResultsTable tbody").html(rows);
+                    if (!searchTable) {
+                      searchTable = $('#searchResultsTable').DataTable({
+                        data: rows,
+                        columns: [
+                          { title: "Title" },
+                          { title: "Publisher" },
+                          { title: "Published" },
+                          { title: "Actions" }
+                        ]
+                      });
+                    } else {
+                      searchTable.clear();
+                      searchTable.rows.add(rows).draw();
+                    }
 
-                  if (!searchTable) {
-                    searchTable = $('#searchResultsTable').DataTable();
-                  } else {
-                    searchTable.clear().destroy();
-                    searchTable = $('#searchResultsTable').DataTable();
-                  }
+                })
+                .catch(err => {
+                  alert("Failed to fetch.");
+                  console.error("Fetch error:", err);
                 });
             });
+
+            function fetchWithRetry(url, options = {}, retries = 3, delay = 1000) {
+              return fetch(url, { cache: 'no-store', ...options })
+                .then(res => {
+                  if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+                  return res.json();
+                })
+                .catch(err => {
+                  if (retries > 0) {
+                    return new Promise(resolve => setTimeout(resolve, delay)).then(() =>
+                      fetchWithRetry(url, options, retries - 1, delay)
+                    );
+                  } else {
+                    alert("Failed to fetch after retries.");
+                    throw err;
+                  }
+                });
+            }
 
             function analyzeNews(rssLink) {
               fetch(`get_real_url.php?link=${encodeURIComponent(rssLink)}`)
@@ -1175,6 +1205,14 @@ foreach ($og as $key => $value) {
                   }
                 });
             }
+
+
+            document.getElementById("newsSearchInput").addEventListener("keydown", function(event) {
+              if (event.key === "Enter") {
+                event.preventDefault(); // Prevent form submission if inside a form
+                document.getElementById("searchNewsBtn").click(); // Simulate button click
+              }
+            });
 
           </script>
 

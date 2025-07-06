@@ -18,21 +18,25 @@ $rss = Feed::loadRss($rss_url);
 
 $items = [];
 foreach ($rss->item as $item) {
+
     $title = (string)$item->title;
     $link = (string)$item->link;
     $pubDate = (string)$item->pubDate;
-
+      
     // Extract publisher (typically after the " - " in title)
     $parts = explode(" - ", $title);
     $publisher = count($parts) > 1 ? array_pop($parts) : 'Unknown';
+      
     $title = implode(" - ", $parts);
 
-    $items[] = [
-        'title' => $title,
-        'publisher' => $publisher,
-        'link' => $link,
-        'pubDate' => date(DATE_ISO8601, strtotime($pubDate))
-    ];
+    if (doesntContainAny(strtolower(str_replace(" ", "", $publisher)), $filter_out)) {
+        $items[] = [
+            'title' => $title,
+            'publisher' => $publisher,
+            'link' => $link,
+            'pubDate' => date(DATE_ISO8601, strtotime($pubDate))
+        ];
+    }
 }
 
 echo json_encode(['items' => $items]);
