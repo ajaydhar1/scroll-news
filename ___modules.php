@@ -25,7 +25,7 @@ function search_google_knowledge($query) {
 function azeo_wiki_results_2($keyword) {
   // WIKIPEDIA SEARCH API
 
-  $url='https://en.wikipedia.org/w/api.php?action=opensearch&limit=1&format=json&search='.strtolower($keyword); 
+  $url='https://en.wikipedia.org/w/api.php?action=opensearch&limit=1&format=json&search='.$keyword; 
 
   $arr=azeo_getData($url); 
 
@@ -328,8 +328,7 @@ function getRandomArticle() {
 
 function clean_string($str) {
     // Remove spaces, parentheses, and periods
-    return preg_replace('/[.,\s()]/', '', $str);
-}
+    return preg_replace('/[.,\s()\-\&]/', '', $str);}
 
 function clean_headline($str) {
 

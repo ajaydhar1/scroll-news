@@ -157,6 +157,9 @@ foreach ($themes as $key => $value) {
               }
             }
 
+            // Remove all <style>...</style> blocks
+            $tab_content_string = preg_replace('/<style\b[^>]*>.*?<\/style>/is', '', $tab_content_string);
+
             if (endsWith(strtolower(trim($tab_content_string)), "may refer to: </p>")) {
               continue;
             }
@@ -204,6 +207,9 @@ foreach ($themes as $key => $value) {
                 if ($is_ul_3) $tab_content_string .= $ul_3;    
               }
             }
+
+            // Remove all <style>...</style> blocks
+            $tab_content_string = preg_replace('/<style\b[^>]*>.*?<\/style>/is', '', $tab_content_string);
 
             if (endsWith(strtolower(trim($tab_content_string)), "may refer to: </p>")) {
               continue;
