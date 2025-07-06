@@ -175,7 +175,9 @@ foreach ($themes as $key => $value) {
               $tab_content_string .= '<div class="mt-5 images">';
               foreach($html->find('img') as $element) {
                 if ((strpos($element, 'Wikimedia') == false) && (strpos($element, 'MediaWiki') == false) && (strpos($element, '/static/images/') == false) && is_file_width_over_min($element)) {
+                  $tab_content_string .= '<a href="" data-lightbox="tab-'. $tab_content_count .'" class="wiki-image">';
                   $tab_content_string .= $element;
+                  $tab_content_string .= '</a>';
                 }
               }
               $tab_content_string .= '</div>';
@@ -227,7 +229,9 @@ foreach ($themes as $key => $value) {
               $tab_content_string .= '<div class="mt-5 images">';
               foreach($html->find('img') as $element) {
                 if ((strpos($element, 'Wikimedia') == false) && (strpos($element, 'MediaWiki') == false) && (strpos($element, '/static/images/') == false) && is_file_width_over_min($element)) {
+                  $tab_content_string .= '<a href="" data-lightbox="tab-'. $tab_content_count .'" class="wiki-image">';
                   $tab_content_string .= $element;
+                  $tab_content_string .= '</a>';
                 }
               }
               $tab_content_string .= '</div>';

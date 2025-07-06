@@ -93,6 +93,8 @@ foreach ($og as $key => $value) {
         <link href="css/introjs.css" rel="stylesheet">
         <?php //<link href="https://unpkg.com/intro.js/minified/introjs.min.css" rel="stylesheet"> ?>
 
+        <link href="css/lightbox.css" rel="stylesheet" />
+
         <style>
 
             .custom-highlight {
@@ -258,6 +260,10 @@ foreach ($og as $key => $value) {
               color: white !important;
             }
 
+            .popover-header {
+                display: none;
+            }
+
             .popover-body {
                 background: linear-gradient(to top right, #b91d73, #f953c6);
                 color: white;
@@ -281,7 +287,7 @@ foreach ($og as $key => $value) {
             button.nav-link.active {
                 background: linear-gradient(to top right, #b91d73, #f953c6);
                 color: white !important;
-                border: solid 2px yellow !important;
+                /* border: solid 2px yellow !important; */
             }
 
             #wiki-list-1 img {
@@ -618,6 +624,9 @@ foreach ($og as $key => $value) {
         <script type="text/javascript" src="js/intro.js"></script>
         <?php //<script type="text/javascript" src="https://unpkg.com/intro.js/minified/intro.min.js"></script> ?>
 
+        <script type="text/javascript" src="js/lightbox.js"></script>
+
+
           <script>
             $(document).ready(function() {
 
@@ -762,7 +771,26 @@ foreach ($og as $key => $value) {
                                 $(this).attr("target", "_blank");
                                 $(this).attr("data-hashtext", $(this).text());
                                 $(this).removeAttr("title");
+                                $(this).removeAttr("data-original-title");
                             });
+
+                            /*
+                            var imageCount = 1;
+                            $("#wiki-list-1 img").each(function() {
+                                $(this).attr("data-lightbox", imageCount.toString());
+                                imageCount++;
+                            });
+                            */
+
+                            $("#wiki-list-1 .tab-pane").each(function() {
+                                $(this).find(".wiki-image").each(function() {
+                                    $(this).attr("href", $(this).find("img").attr("src"));
+                                });
+                            });
+  
+                            // Re-initialize Lightbox
+                            lightbox.init();
+
 
                             $("h2 a").each(function() {
                                 $(this).attr("data-hashtext", $(this).text());
@@ -778,7 +806,7 @@ foreach ($og as $key => $value) {
                             });
 
 
-                            $("#wiki-list-container a").each(function(i, obj) {
+                            $("#wiki-list-container a:not(.wiki-image)").each(function(i, obj) {
                                 $(this).attr("data-container", "body");
                                 $(this).attr("data-toggle", "popover");
                                 $(this).attr("data-placement", "auto");
@@ -789,7 +817,7 @@ foreach ($og as $key => $value) {
 
 
                             if (!isMobile()) {
-                                $("#wiki-list-container a").mouseenter(function() {
+                                $("#wiki-list-container a:not(.wiki-image)").mouseenter(function() {
                                     getDefinitions($(this), $(this).attr("data-hashtext"));
                                 }).mouseleave(function() {
                                     $(this).popover("hide");
@@ -797,7 +825,7 @@ foreach ($og as $key => $value) {
                             }
                             else {
 
-                                $("#wiki-list-container a").on("click", function(e) {
+                                $("#wiki-list-container a:not(.wiki-image)").on("click", function(e) {
                                     // open popover
                                     if (tapped == 0) { // if no popover open
                                         // show popover
@@ -812,7 +840,7 @@ foreach ($og as $key => $value) {
                                     // click on link if same link clicked twice, or call all popovers
                                     else {
                                         // close all popovers
-                                        $("#wiki-list-container a").popover("hide");
+                                        $("#wiki-list-container a:not(.wiki-image)").popover("hide");
                                         tapped = 0;
 
                                         // if not the same linked that was clicked, prevent link, but show popover
