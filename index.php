@@ -318,6 +318,10 @@ foreach ($og as $key => $value) {
                 opacity: .85 !important;
             }
 
+            .introjs-tooltiptext {
+                font-size: 14px;
+            }
+
             .analyze-btn {
                 box-shadow: 0 0 0 0.14rem var(--brand-color-break) !important;
             }
