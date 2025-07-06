@@ -160,7 +160,7 @@ foreach ($themes as $key => $value) {
             // Remove all <style>...</style> blocks
             $tab_content_string = preg_replace('/<style\b[^>]*>.*?<\/style>/is', '', $tab_content_string);
 
-            if (endsWith(strtolower(trim($tab_content_string)), "may refer to: </p>")) {
+            if (endsWith(strtolower(trim($tab_content_string)), "may refer to: </p>") || endsWith(strtolower(trim($tab_content_string)), "can refer to: </p>")) {
               continue;
             }
             else if (endsWith(strtolower(trim($tab_content_string)), 'may also refer to: </p>') || endsWith(strtolower(trim($tab_content_string)), 'can also refer to: </p>')) {
@@ -211,7 +211,7 @@ foreach ($themes as $key => $value) {
             // Remove all <style>...</style> blocks
             $tab_content_string = preg_replace('/<style\b[^>]*>.*?<\/style>/is', '', $tab_content_string);
 
-            if (endsWith(strtolower(trim($tab_content_string)), "may refer to: </p>")) {
+            if (endsWith(strtolower(trim($tab_content_string)), "may refer to: </p>") || endsWith(strtolower(trim($tab_content_string)), "can refer to: </p>")) {
               continue;
             }
             else if (endsWith(strtolower(trim($tab_content_string)), 'may also refer to: </p>') || endsWith(strtolower(trim($tab_content_string)), 'can also refer to: </p>')) {

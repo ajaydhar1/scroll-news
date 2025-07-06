@@ -18,6 +18,45 @@ if (!isset($_GET['url'])) {
 }
 
 
+
+$url = $_GET['url'];
+
+// Pull article headline and image using the open graph card
+
+$og = OpenGraph::fetch($url);
+
+
+$title = 'No Title';
+$youtube_search='';
+$pub = "Unknown Publisher";
+$des = 'No description';
+$time = 'Publish date unknown';
+$img='';
+
+foreach ($og as $key => $value) {
+    if ($key == 'image') {
+        $img = $value;
+        $img = fix_image_if_broken($img);
+    }
+    else if ($key == 'title') {
+        $title = $value;
+        $title = str_replace("â", "'", $title);
+        $title = str_replace("", "", $title);
+        $title = str_replace("�", "", $title);
+
+        $youtube_search = $title;
+    }
+    else if ($key == 'site_name') {
+        $pub = $value;
+    }
+    else if ($key == 'description') {
+        $des = $value;
+    }
+
+}
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +65,7 @@ if (!isset($_GET['url'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Scroll News - News Analytics</title>
+        <title><?= clean_headline($title) ?></title>
         <link rel="icon" type="image/png" href="assets/img/play-green.png" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
@@ -39,7 +78,7 @@ if (!isset($_GET['url'])) {
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Lato&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter&display=swap" rel="stylesheet">
-        
+
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/custom.css" rel="stylesheet" />
@@ -120,6 +159,8 @@ if (!isset($_GET['url'])) {
                 color: var(--brand-color);
             }
 
+
+            /*
             footer .text-lg-right a {
                 color: #00bfa6;
             }
@@ -127,6 +168,7 @@ if (!isset($_GET['url'])) {
             footer .text-lg-right a:hover {
                 color: black;
             }
+            */
 
             .amcharts-export-menu.amcharts-export-menu-top-right.amExportButton {
                 display: none;
@@ -210,9 +252,10 @@ if (!isset($_GET['url'])) {
               overflow-y: auto;
             }
 
+            .blue-hover:hover,
             .btn-outline-secondary:hover {
-              background-color: #3F51B5;
-              color: white;
+              background-color: #3F51B5 !important;
+              color: white !important;
             }
 
             .popover-body {
@@ -278,6 +321,67 @@ if (!isset($_GET['url'])) {
             }
 
 
+            .browse-btn {
+                color: var(--dark);
+                box-shadow: 0 0 0 0.14rem var(--brand-color-break) !important;
+            }
+
+            .browse-btn:hover {
+                color: white;
+            }
+
+            .analyze-btn,
+            .browse-btn {
+                width: 150px;
+            }
+
+            #browseNewsModal p.card-text {
+                font-size: 14px;
+            }
+
+            .card-img-top.news-modal {
+                height: 230px;
+                object-fit: cover;
+            }
+
+            /*
+            #browseNewsModal .modal-content {
+              background: rgba(255, 255, 255, 0.75);
+              backdrop-filter: blur(12px);
+              -webkit-backdrop-filter: blur(12px);
+              border-radius: 16px;
+              box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+              border: 1px solid rgba(255,255,255,0.3);
+            }
+            */
+
+            /*
+            #browseNewsModal .modal-content {
+              background-color: #1e1e1e;
+              color: #f1f1f1;
+            }
+
+            #browseNewsModal .card {
+              background-color: #2a2a2a;
+              border: 1px solid #00bfa6;
+            }
+            */
+
+            /*
+            .modal-content {
+              background-color: #fdfcf8;
+              font-family: 'Georgia', serif;
+            }
+
+            .card {
+              background-color: #ffffff;
+              border: 1px solid #ddd;
+              box-shadow: none;
+            }
+            */
+
+
+
         </style>
 
 
@@ -286,55 +390,14 @@ if (!isset($_GET['url'])) {
 
         <div class="loader" style="display: none;"></div>
 
-        <?php 
-
-            $url = $_GET['url'];
-
-            // Pull article headline and image using the open graph card
-
-            $og = OpenGraph::fetch($url);
-
-
-            $title = 'No Title';
-            $youtube_search='';
-            $pub = "Unknown Publisher";
-            $des = 'No description';
-            $time = 'Publish date unknown';
-            $img='';
-
-            foreach ($og as $key => $value) {
-                if ($key == 'image') {
-                    $img = $value;
-                    $img = fix_image_if_broken($img);
-                }
-                else if ($key == 'title') {
-                    $title = $value;
-                    $title = str_replace("â", "'", $title);
-                    $title = str_replace("", "", $title);
-                    $title = str_replace("�", "", $title);
-
-                    $youtube_search = $title;
-                }
-                else if ($key == 'site_name') {
-                    $pub = $value;
-                }
-                else if ($key == 'description') {
-                    $des = $value;
-                }
-
-            }
-
-
-        ?>
-
         <!-- Footer-->
         
         <footer class="footer py-4 bg-white sticky-top">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-left">
-                        <a class="btn btn-outline-secondary analyze-btn mx-2" data-toggle="modal" data-target="#analyzeModal">
-                          Analyze Article
+                        <a class="btn btn-outline-dark analyze-btn" data-toggle="modal" data-target="#analyzeModal">
+                            Analyze Article
                         </a>
                     </div>
                     <div class="col-lg-4 my-3 my-lg-0">
@@ -342,7 +405,11 @@ if (!isset($_GET['url'])) {
                         <a data-step="1" data-intro="Welcome to Scroll News! We provide analytics for the latest news stories. Click this play button to scroll through trending articles." class="btn btn-green btn-social mx-2" href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>" onclick=""><i class="fas fa-play"></i></a>
                         <a data-step="3" data-intro="Click here to see our newsroom video trailer." class="btn btn-black btn-social mx-2" href="newsroom.php"><i class="fas fa-align-left"></i></a>
                     </div>
-                    <div class="col-lg-4 text-lg-right font-weight-bold" style="color: var(--brand-color);"><a href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>">scroll news</a></div>
+                    <div class="col-lg-4 text-lg-right font-weight-bold" style="">
+                        <a class="btn btn-outline-dark blue-hover browse-btn" data-toggle="modal" data-target="#browseNewsModal">
+                            Browse News
+                        </a>
+                    </div>
                 </div>
             </div>
         </footer>
@@ -491,6 +558,38 @@ if (!isset($_GET['url'])) {
             </div>
           </div>
         </div>
+
+
+        <div class="modal fade" id="browseNewsModal" tabindex="-1" role="dialog" aria-labelledby="browseNewsLabel" aria-hidden="true" style="">
+          <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Browse News by Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="mb-3">
+                          <label for="categorySelect">Select Category:</label>
+                          <select id="categorySelect" class="form-control">
+                            <option value="https://rss.app/feeds/tahaOzLGHPxMD9OC.xml">Politics</option>
+                            <option value="https://rss.app/feeds/tDmGft5qv7QGmWHv.xml">Business</option>
+                            <option value="https://rss.app/feeds/t8coleFVxgPf56NK.xml">Technology</option>
+                            <option value="https://rss.app/feeds/tCQMLQm6AHeQ5hJk.xml">Sports</option>
+                            <option value="https://rss.app/feeds/tBiQM8jJROm1RYn3.xml">Entertainment</option>
+                          </select>
+                        </div>
+                    </div>
+                </div>
+                <div id="rssArticles" class="row"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
         
 
@@ -656,17 +755,21 @@ if (!isset($_GET['url'])) {
                                 $(this).removeAttr("title");
                             });
 
+                            $("h2 a").each(function() {
+                                $(this).attr("data-hashtext", $(this).text());
+                            });
+
                             $(".topics").attr("data-step","11");
                             $(".topics").attr("data-intro","Dimensions of this story. Connect some of these dots with each other and across other stories to develop a mental model of the world.");
 
 
-                            $("body *").not(".description a").click(function() {
-                                $(".description a").popover("hide");
+                            $("body *").not("#wiki-list-container a").click(function() {
+                                $("#wiki-list-container a").popover("hide");
                                 tapped = 0;
                             });
 
 
-                            $(".description a").each(function(i, obj) {
+                            $("#wiki-list-container a").each(function(i, obj) {
                                 $(this).attr("data-container", "body");
                                 $(this).attr("data-toggle", "popover");
                                 $(this).attr("data-placement", "auto");
@@ -677,7 +780,7 @@ if (!isset($_GET['url'])) {
 
 
                             if (!isMobile()) {
-                                $(".description a").mouseenter(function() {
+                                $("#wiki-list-container a").mouseenter(function() {
                                     getDefinitions($(this), $(this).attr("data-hashtext"));
                                 }).mouseleave(function() {
                                     $(this).popover("hide");
@@ -685,7 +788,7 @@ if (!isset($_GET['url'])) {
                             }
                             else {
 
-                                $(".description a").on("click", function(e) {
+                                $("#wiki-list-container a").on("click", function(e) {
                                     // open popover
                                     if (tapped == 0) { // if no popover open
                                         // show popover
@@ -700,7 +803,7 @@ if (!isset($_GET['url'])) {
                                     // click on link if same link clicked twice, or call all popovers
                                     else {
                                         // close all popovers
-                                        $(".description a").popover("hide");
+                                        $("#wiki-list-container a").popover("hide");
                                         tapped = 0;
 
                                         // if not the same linked that was clicked, prevent link, but show popover
@@ -794,6 +897,94 @@ if (!isset($_GET['url'])) {
                 }
               });
             </script>
+
+
+          <script>
+            function fetchRSSArticles(feedUrl, category) {
+              $.ajax({
+                url: "rss_proxy.php", // PHP file that fetches RSS content
+                method: "POST",
+                data: { feed: feedUrl },
+                dataType: "json", // This is the key addition
+                success: function(response) {
+                  const articles = response.items || [];
+                  const container = $("#rssArticles");
+                  container.empty();
+
+                  if (articles.length === 0) {
+                    container.append('<p>No articles found.</p>');
+                    return;
+                  }
+
+                  articles.forEach(article => {
+                    const card = `
+                      <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                          <img src="${article.image || 'assets/img/news-placeholder.jpg'}" class="card-img-top news-modal" alt="" onerror="this.src = 'assets/img/news-placeholder.jpg';">
+                          <div class="card-body d-flex flex-column">
+                             <h4 class="card-title mb-2">${article.title}</h4>
+                             <p class="card-text text-muted mb-1"><small><a target="_blank" href="https://${article.publisher}">${article.publisher}</a>${article.pubDate ? ' • ' + timeElapsedString(article.pubDate) : ''}</small></p>
+                             <p class="card-text">${article.description}</p>
+                             <a href="index.php?url=${encodeURIComponent(article.link)}&category=${category}" class="btn btn-green mt-auto">Analyze</a>
+                          </div>
+                        </div>
+                      </div>
+                    `;
+                    container.append(card);
+                  });
+                }
+              });
+            }
+
+            $(document).ready(function() {
+              const defaultFeed = $("#categorySelect").val();
+              fetchRSSArticles(defaultFeed, "Politics");
+
+              $("#categorySelect").change(function() {
+                fetchRSSArticles($(this).val(), $(this).find(":selected").text());
+              });
+            });
+
+
+
+
+
+            function timeElapsedString(pubDateStr) {
+              const past = new Date(pubDateStr).getTime();
+
+              const now = Date.now();
+
+              if (isNaN(past)) return 'Unknown time';
+
+              let etime = Math.floor((now - past) / 1000); // time difference in seconds
+
+              if (etime < 1) return 'just now';
+
+              const intervals = {
+                year: 365 * 24 * 60 * 60,
+                month: 30 * 24 * 60 * 60,
+                day: 24 * 60 * 60,
+                hour: 60 * 60,
+                minute: 60,
+                second: 1
+              };
+
+              for (const [label, seconds] of Object.entries(intervals)) {
+                const d = etime / seconds;
+                if (d >= 1) {
+                  const r = Math.round(d);
+                  return `${r} ${label}${r > 1 ? 's' : ''} ago`;
+                }
+              }
+            }
+
+
+
+
+
+
+
+          </script>
 
 
 

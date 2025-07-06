@@ -144,7 +144,7 @@
                             echo ' 
                                 <li class="rec-list-head">
                               
-                                  <div class="left-view"> <b> '.$key.'  </b>
+                                  <div class="left-view"> '.$key.' 
                                 
                                     <span class="right-view">  <b> '.number_format($value * 100,2).'%  </b></span>
                                 

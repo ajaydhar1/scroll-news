@@ -7,6 +7,7 @@ $term = $_GET['term'];
 
 $result = '';
 
+/*
 
 // get 2 definitions
 $def_api_endpoint = "https://api.dictionaryapi.dev/api/v2/entries/en_US/";
@@ -35,7 +36,9 @@ if (!empty($defs)) {
 
 // if no good definition, check wikipedia
 
-else {
+*/
+
+//else {
 
 	$wiki_api_endpoint = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=";
 
@@ -46,7 +49,7 @@ else {
 		$result = $result . '...';
 	}
 
-}
+//}
 
 
 // get image
