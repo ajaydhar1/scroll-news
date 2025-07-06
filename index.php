@@ -386,6 +386,10 @@ foreach ($og as $key => $value) {
                 border-top-right-radius: 0.5rem;
             }
 
+            .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+                border-color: #cbcbcb;
+            }
+
         </style>
 
 
