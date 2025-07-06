@@ -443,6 +443,9 @@ foreach ($og as $key => $value) {
                         <a class="btn btn-outline-dark blue-hover browse-btn" data-toggle="modal" data-target="#browseNewsModal">
                             Browse News
                         </a>
+                        <button class="btn btn-outline-dark blue-hover browse-btn ml-2" data-toggle="modal" data-target="#searchNewsModal">
+                            Search News
+                        </button>
                     </div>
                 </div>
             </div>
@@ -627,6 +630,46 @@ foreach ($og as $key => $value) {
         </div>
 
 
+        <div class="modal fade" id="searchNewsModal" tabindex="-1" role="dialog" aria-labelledby="searchNewsLabel" aria-hidden="true">
+          <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <h5 class="modal-title" id="searchNewsLabel">Search News Articles</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span>&times;</span>
+                </button>
+              </div>
+
+              <div class="modal-body">
+                <div class="form-inline mb-3">
+                  <input type="text" id="newsSearchInput" class="form-control mr-2" placeholder="Search for news articles..." style="flex: 1;">
+                  <button id="searchNewsBtn" class="btn btn-green">Search</button>
+                </div>
+
+                <div class="table-responsive">
+                  <table id="searchResultsTable" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>Headline</th>
+                        <th>Publisher</th>
+                        <th>Published</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Dynamically populated -->
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
         
 
         <!-- Bootstrap core JS-->
@@ -646,6 +689,11 @@ foreach ($og as $key => $value) {
         <?php //<script type="text/javascript" src="https://unpkg.com/intro.js/minified/intro.min.js"></script> ?>
 
         <script type="text/javascript" src="js/lightbox.js"></script>
+
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+        <!-- DataTables JS -->
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
 
           <script>
@@ -1077,7 +1125,54 @@ foreach ($og as $key => $value) {
 
           </script>
 
+          <script>
 
+            let searchTable;
+
+            $("#searchNewsBtn").click(function () {
+              const query = $("#newsSearchInput").val().trim();
+              if (!query) return;
+
+              fetch(`search_news_proxy.php?q=${encodeURIComponent(query)}`)
+                .then(res => res.json())
+                .then(data => {
+                  if (!data.items) return;
+
+                  const rows = data.items.map(article => {
+                    return `
+                      <tr>
+                        <td>${article.title}</td>
+                        <td>${article.publisher}</td>
+                        <td>${timeElapsedString(new Date(article.pubDate))}</td>
+                        <td><button class="btn btn-sm btn-green" onclick="analyzeNews('${article.link}')">Analyze</button></td>
+                      </tr>
+                    `;
+                  }).join('');
+
+                  $("#searchResultsTable tbody").html(rows);
+
+                  if (!searchTable) {
+                    searchTable = $('#searchResultsTable').DataTable();
+                  } else {
+                    searchTable.clear().destroy();
+                    searchTable = $('#searchResultsTable').DataTable();
+                  }
+                });
+            });
+
+            function analyzeNews(rssLink) {
+              fetch(`get_real_url.php?link=${encodeURIComponent(rssLink)}`)
+                .then(res => res.json())
+                .then(data => {
+                  if (data.resolved_url) {
+                    window.location.href = `index.php?url=${encodeURIComponent(data.resolved_url)}`;
+                  } else {
+                    alert("Could not resolve article URL.");
+                  }
+                });
+            }
+
+          </script>
 
           <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
           
