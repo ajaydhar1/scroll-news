@@ -1,6 +1,6 @@
 :root {
-    --brand-color: white; /* Slate Gray */
     --brand-color: #00bfa6; /* Bright Green */
+    --brand-hover-color: #1ce3c0;
 }
 
 
@@ -95,8 +95,8 @@ header.masthead .masthead-subheading {
 }
 
 .btn-green:hover, .btn-green:focus {
-  background-color: #1ce3c0;
-    color: black !important;
+  background-color: var(--brand-hover-color);
+  color: black !important;
 }
 
 .btn-black:hover {

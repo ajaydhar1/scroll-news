@@ -305,13 +305,14 @@ function doesntContainAny($string, array $needles) {
 
 $filter_out = array("usatoday", "independent.co.uk", "nytimes", "9to5google", "tomsguide", "thehockeynews", "cbssports", "businessinsider", "abc7chicago", "livescience", "wlns", "myedmondsnews", "reuters", "sportingnews", "bloomberg", "wane.com", "politico", "wvpublic", "cnbc", "mercurynews", "utahstories");
 
+$rss_feeds = array("Politics" => "https://rss.app/feeds/tahaOzLGHPxMD9OC.xml", "Business" => "https://rss.app/feeds/tDmGft5qv7QGmWHv.xml", "Technology" => "https://rss.app/feeds/t8coleFVxgPf56NK.xml", "Sports" => "https://rss.app/feeds/tCQMLQm6AHeQ5hJk.xml", "Health" => "https://rss.app/feeds/tZPiCoHdJqTYlcZc.xml", "Science" => "https://rss.app/feeds/tLSguoVp4t7wa1eJ.xml", "Entertainment" => "https://rss.app/feeds/tBiQM8jJROm1RYn3.xml");
+
 function getRandomArticle() {
 
   global $filter_out;
+  global $rss_feeds;
 
   $articles = [];
-          
-  $rss_feeds = array("US Politics" => "https://rss.app/feeds/tCdH9nGB4aPpVPLh.xml", "Health" => "https://rss.app/feeds/tZPiCoHdJqTYlcZc.xml", "Science" => "https://rss.app/feeds/tLSguoVp4t7wa1eJ.xml", "Business" => "https://rss.app/feeds/tDmGft5qv7QGmWHv.xml", "Sports" => "https://rss.app/feeds/tCQMLQm6AHeQ5hJk.xml", "Technology" => "https://rss.app/feeds/t8coleFVxgPf56NK.xml", "Politics" => "https://rss.app/feeds/tahaOzLGHPxMD9OC.xml");
 
   $key = array_rand($rss_feeds);
   $value = $rss_feeds[$key];

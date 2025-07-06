@@ -397,6 +397,25 @@ foreach ($og as $key => $value) {
                 border-color: #cbcbcb;
             }
 
+            .category-link:hover {
+                color: var(--brand-hover-color);
+            }
+
+            .category-no-link {
+                color: grey;
+                text-decoration: none;
+            }
+
+            .category-no-link:hover {
+                color: grey;
+                text-decoration: none;
+                cursor: text;
+            }
+
+            .form-control:focus {
+                box-shadow: 0 0 0 0.2rem var(--brand-color);
+            }
+
         </style>
 
 
@@ -432,7 +451,7 @@ foreach ($og as $key => $value) {
         <!-- Masthead-->
         <header class="masthead" style="background-image: url(<?php echo $img; ?>)">
             <div class="container cover-img py-5">
-                <div class="mb-2" style="color: #00bfa6; font-size: 1.25rem;"><strong>#<?php if (isset($_GET['category'])) { echo $_GET['category']; } else { echo "Article"; } ?></strong></div>
+                <div class="mb-2" style="font-size: 1.25rem;"><strong><a href="" class="<?php if (array_key_exists($_GET['category'], $rss_feeds)) {echo 'category-link';} else {echo 'category-no-link';} ?>" data-category="<?= $_GET['category'] ?>" data-category-url="<?= $rss_feeds[$_GET['category']] ?>">#<?php if (isset($_GET['category'])) { echo $_GET['category']; } else { echo "Article"; } ?></a></strong></div>
                 <div class="masthead-subheading"><?php echo $pub; ?></div>
                 <div class="masthead-heading text-uppercase"><?php echo clean_headline($title); ?></div>
                 <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black mr-3" href="#">Analytics</a>
@@ -594,6 +613,8 @@ foreach ($og as $key => $value) {
                             <option value="https://rss.app/feeds/tDmGft5qv7QGmWHv.xml">Business</option>
                             <option value="https://rss.app/feeds/t8coleFVxgPf56NK.xml">Technology</option>
                             <option value="https://rss.app/feeds/tCQMLQm6AHeQ5hJk.xml">Sports</option>
+                            <option value="https://rss.app/feeds/tZPiCoHdJqTYlcZc.xml">Health</option>
+                            <option value="https://rss.app/feeds/tLSguoVp4t7wa1eJ.xml">Science</option>
                             <option value="https://rss.app/feeds/tBiQM8jJROm1RYn3.xml">Entertainment</option>
                           </select>
                         </div>
@@ -1018,7 +1039,40 @@ foreach ($og as $key => $value) {
 
 
 
+            $(document).on("click", ".category-link", function(e) {
+              e.preventDefault();
 
+              // Get category from data attribute
+              const category = $(this).data("category");
+
+              <?php
+
+                    // Get the keys of the associative array
+                    $keys = array_keys($rss_feeds);
+
+                    // Encode the keys into a JSON string
+                    $jsonKeys = json_encode($keys);
+
+                    // Output the JSON string within a JavaScript variable declaration
+                    echo "var categoryArray = " . $jsonKeys . ";";
+              ?>
+
+              if (categoryArray.includes(category)) {
+
+                  // Get the RSS URL from the data attribute
+                  const rssUrl = $(this).data("category-url");
+
+                  // Set the dropdown in the modal to match this URL
+                  $("#categorySelect").val(rssUrl);
+
+                  // Open the modal
+                  $("#browseNewsModal").modal("show");
+
+                  // Trigger the article fetch
+                  fetchRSSArticles(rssUrl);
+
+              }
+            });
 
 
           </script>
