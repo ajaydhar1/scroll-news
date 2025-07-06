@@ -31,7 +31,7 @@
               <!-- Card Body -->
               <div class="card-body">
                 <div id="hashtags">
-                  <div class="basement_title">
+                  <div class="basement_title mb-2">
                     <span class="h5" id="sm-tags">Google</span>
                       <span id="hash-icons" data-step="5" data-intro="Click an icon to change the platform for the hashtags" style="float:right;height:22px;">
                         <a id="google-link" class="item google-highlight waves-effect waves-light" href="javascript:void(0)"><em id="google-icon" style="color:var(--brand-color);" class="fa fa-search"></em></a>
