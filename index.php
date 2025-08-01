@@ -441,7 +441,7 @@ foreach ($og as $key => $value) {
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a data-step="2" data-intro="Click here for information on our analytics." class="btn btn-black btn-social mx-2" href="about.php"><i class="fas fa-align-right"></i></a>
                         <a data-step="1" data-intro="Welcome to Scroll News! We provide analytics for the latest news stories. Click this play button to stumble through trending articles." class="btn btn-green btn-social mx-2" href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>" onclick=""><i class="fas fa-play"></i></a>
-                        <a data-step="3" data-intro="Click here to see our newsroom video trailer." class="btn btn-black btn-social mx-2" href="newsroom.php"><i class="fas fa-align-left"></i></a>
+                        <a data-step="3" data-intro="Click here to see our newsroom video trailer." class="btn btn-black btn-social mx-2" href="newsroom.html"><i class="fas fa-align-left"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-right font-weight-bold" style="">
                         <a class="btn btn-outline-dark blue-hover browse-btn" data-toggle="modal" data-target="#browseNewsModal">
@@ -553,23 +553,7 @@ foreach ($og as $key => $value) {
         
 
         <!-- Footer-->
-        
-        <footer class="footer footer-bottom py-4">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left">Copyright © Scroll News <?= date("Y") ?></div>
-                    <div class="col-lg-4 my-3 my-lg-0">
-                        <!--<a class="btn btn-light btn-social mx-2" href="#"><i class="fab fa-twitter"></i></a>-->
-                        <a class="btn btn-black btn-social mx-2" href="about.php"><i class="fas fa-align-right"></i></a>
-                        <a class="btn btn-green btn-social mx-2" href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>" onclick=""><i class="fas fa-play"></i></a>
-                        <a class="btn btn-black btn-social mx-2" href="newsroom.php"><i class="fas fa-align-left"></i></a>
-                        <!--
-                        <a class="btn btn-light btn-social mx-2" href="#"><ion-icon name="logo-instagram"></ion-icon></a>-->
-                    </div>
-                    <div class="col-lg-4 text-lg-right font-weight-bold" style="color: var(--brand-color);"><a href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>">scroll news</a></div>
-                </div>
-            </div>
-        </footer>
+        <?php require_once("___footer.php"); ?>
 
 
         <div class="modal fade" id="analyzeModal" tabindex="-1" role="dialog" aria-labelledby="analyzeModalLabel" aria-hidden="true">
