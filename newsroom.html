@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="Gymnastics conditioning montage." />
         <meta name="author" content="Gymnastiks Life" />
-        <title>Scroll News - The Newsroom</title>
+        <title>The Newsroom | Scroll News</title>
         <link rel="icon" type="image/png" href="assets/img/play-green.png" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
@@ -25,8 +25,6 @@
         <style>
 
             :root {
-                --brand-color: #00bfa6;
-                --brand-color: #415158; /* Slate Gray */
                 --link-color: #00bfa6; /* Light Gray */
                 --light-text: gray;
             }
@@ -38,7 +36,6 @@
                 /* background: rgba(255, 255, 255, 1); */
                 color: #0a0a0a;
                 width: 100%;
-                padding: 20px;
                 /* height: 190px; */
                 margin-top: -95px;
                 text-align: center;
@@ -58,8 +55,29 @@
                 color: var(--light-text);
             }
 
+            .brand-text {
+                color: var(--brand-color);
+            }
+
             .col-lg-4.text-lg-left {
                 color: white;
+            }
+
+
+            html, body {
+              height: 100%;
+              margin: 0;
+              padding: 0;
+            }
+
+            .page-container {
+              min-height: 100vh; /* full viewport height */
+              display: flex;
+              flex-direction: column;
+            }
+
+            .footer-bottom {
+              margin-top: auto; /* pushes footer down neatly */
             }
 
         </style>
@@ -69,38 +87,64 @@
 
     <body id="page-top">
 
-        <div class="loader" style="display: none;"></div>
-        
-        <video autoplay muted loop playsinline id="myVideo">
-            <source src="assets/videos/newsroom.mp4" type="video/mp4">
-        </video>
+        <div class="page-container">
 
-        <!-- topnav-->
-        <footer class="footer py-4 bg-white sticky-top">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left"><a href="index.php">Home</a></div>
-                    <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-black btn-social mx-2" href="about.html"><i class="fas fa-align-right"></i></a>
-                        <a class="btn btn-green btn-social mx-2" href="index.php" onclick=""><i class="fas fa-play"></i></a>
-                        <a class="btn btn-black btn-social mx-2" href="newsroom.html"><i class="fas fa-align-left"></i></a>
+            <div class="loader" style="display: none;"></div>
+            
+            <div class="page-container">
+
+                <video autoplay muted loop playsinline id="myVideo">
+                    <source src="assets/videos/newsroom.mp4" type="video/mp4">
+                </video>
+
+                <!-- topnav-->
+                <footer class="footer py-4 bg-white sticky-top">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-4 text-lg-left"><a href="index.php">Home</a></div>
+                            <div class="col-lg-4 my-3 my-lg-0">
+                                <a class="btn btn-black btn-social mx-2" href="about.html"><i class="fas fa-align-right"></i></a>
+                                <a class="btn btn-green btn-social mx-2" href="index.php" onclick=""><i class="fas fa-play"></i></a>
+                                <a class="btn btn-black btn-social mx-2" href="newsroom.html"><i class="fas fa-align-left"></i></a>
+                            </div>
+                            <div class="col-lg-4 text-lg-right" style=""><a href="about.html">About</a></div>
+                        </div>
                     </div>
-                    <div class="col-lg-4 text-lg-right" style=""><a href="about.html">About</a></div>
+                </footer>
+
+                <div class="content">
+                    <h1 class="text-white">Stumble Through the News</h1>
+                    <h2 class="brand-text">Smart analytics. Fresh perspectives.</h2>
+                    <!-- Use a button to pause/play the video with JavaScript -->
+                    <!--<button type="submit" class="btn btn-lg text-white font-weight-bold" style="background-color: black;" id="myBtn" onclick="goToAnalytics()">Tell Me More</button>-->
+                
+                    <!-- Footer-->        
+                    <div class="bg-dark mt-4" style="height: 338px;">        
+                        <footer class="footer footer-bottom bg-white py-4">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-4 text-lg-left">Copyright © Scroll News 2025</div>
+                                    <div class="col-lg-4 my-3 my-lg-0">
+                                        <a class="btn btn-black btn-social mx-2" href="about.html"><i class="fas fa-align-right"></i></a>
+                                        <a class="btn btn-green btn-social mx-2" href="index.php"><i class="fas fa-play"></i></a>
+                                        <a class="btn btn-black btn-social mx-2" href="newsroom.html"><i class="fas fa-align-left"></i></a>
+                                    </div>
+                                    <div class="col-lg-4 text-lg-right font-weight-bold">
+                                        <a href="index.php">scroll news</a>
+                                        <br>
+                                        <a href="terms.html" class="text-muted small mr-3">Terms</a>
+                                        <a href="privacy.html" class="text-muted small">Privacy</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </footer>
+                    </div>
+
                 </div>
             </div>
-        </footer>
 
-        <div class="content">
-            <h1 class="text-white">Stumble Through the News</h1>
-            <h2 class="light-text">Smart analytics. Fresh perspectives.</h2>
-            <!-- Use a button to pause/play the video with JavaScript -->
-            <!--<button type="submit" class="btn btn-lg text-white font-weight-bold" style="background-color: black;" id="myBtn" onclick="goToAnalytics()">Tell Me More</button>-->
         </div>
 
-
-        <!-- Footer-->        
-
-        
 
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>

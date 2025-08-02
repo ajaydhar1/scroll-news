@@ -440,7 +440,7 @@ foreach ($og as $key => $value) {
                     </div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a data-step="2" data-intro="Click here for information on our analytics." class="btn btn-black btn-social mx-2" href="about.php"><i class="fas fa-align-right"></i></a>
-                        <a data-step="1" data-intro="Welcome to Scroll News! We provide analytics for the latest news stories. Click this play button to stumble through trending articles." class="btn btn-green btn-social mx-2" href="index.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>" onclick=""><i class="fas fa-play"></i></a>
+                        <a data-step="1" data-intro="Welcome to Scroll News! We provide analytics for the latest news stories. Click this play button to stumble through trending articles." class="btn btn-green btn-social mx-2" href="index.php" onclick=""><i class="fas fa-play"></i></a>
                         <a data-step="3" data-intro="Click here to see our newsroom video trailer." class="btn btn-black btn-social mx-2" href="newsroom.html"><i class="fas fa-align-left"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-right font-weight-bold" style="">
@@ -553,7 +553,26 @@ foreach ($og as $key => $value) {
         
 
         <!-- Footer-->
-        <?php require_once("___footer.php"); ?>
+        <div class="bg-dark" style="height: 338px;">        
+            <footer class="footer footer-bottom bg-white py-4">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-4 text-lg-left">Copyright © Scroll News 2025</div>
+                        <div class="col-lg-4 my-3 my-lg-0">
+                            <a class="btn btn-black btn-social mx-2" href="about.html"><i class="fas fa-align-right"></i></a>
+                            <a class="btn btn-green btn-social mx-2" href="index.php"><i class="fas fa-play"></i></a>
+                            <a class="btn btn-black btn-social mx-2" href="newsroom.html"><i class="fas fa-align-left"></i></a>
+                        </div>
+                        <div class="col-lg-4 text-lg-right font-weight-bold">
+                            <a href="index.php">scroll news</a>
+                            <br>
+                            <a href="terms.html" class="text-muted small mr-3">Terms</a>
+                            <a href="privacy.html" class="text-muted small">Privacy</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
 
 
         <div class="modal fade" id="analyzeModal" tabindex="-1" role="dialog" aria-labelledby="analyzeModalLabel" aria-hidden="true">
