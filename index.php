@@ -67,6 +67,19 @@ foreach ($og as $key => $value) {
         <meta name="author" content="" />
         <title><?= clean_headline($title) ?></title>
         <link rel="icon" type="image/png" href="assets/img/play-green.png" />
+
+        <!-- Twitter card and Open Graph-->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Scroll News" />
+        <meta name="twitter:description" content="<?= clean_headline($title) ?>" />
+        <meta name="twitter:image" content="<?php echo $img; ?>" />
+    
+        <meta property="og:url" content="https://scrollnews.io" />
+        <meta property="og:title" content="Scroll News" />
+        <meta property="og:description" content="<?= clean_headline($title) ?>" />
+        <meta property="og:image" content="<?php echo $img; ?>" />    
+        <meta property="og:site_name" content="Scroll News" />
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
