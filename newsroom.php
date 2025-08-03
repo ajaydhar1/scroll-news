@@ -209,18 +209,7 @@ foreach ($og as $key => $value) {
             }
 
             /* SM Small Device :320px. */
-            @media only screen and (min-width: 280px) and (max-width: 499px) {
-              #scroll {
-                margin-right: 0 !important;
-                /* margin-bottom: 19px !important; */
-              } 
-            }
-
-            /* SM Small Device :320px. */
             @media only screen and (min-width: 280px) and (max-width: 1024px) {
-              .footer-bottom {
-                display: none;
-              }
 
               span.link {
                 display: none;

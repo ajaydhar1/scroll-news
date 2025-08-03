@@ -144,14 +144,6 @@ ion-icon {
   opacity: 1;
 }
 
-/* SM Small Device :320px. */
-@media only screen and (min-width: 280px) and (max-width: 499px) {
-  #scroll {
-    margin-right: 0 !important;
-    margin-bottom: 19px !important;
-  } 
-}
-
 @media only screen and (max-width : 768px) {
   .content {
     bottom: 50%;
