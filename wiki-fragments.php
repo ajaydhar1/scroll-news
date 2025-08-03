@@ -3,6 +3,48 @@ error_reporting(E_ERROR | E_PARSE);
 require_once("simple_html_dom.php");
 require_once('___modules.php');
 
+
+
+// Check cache based on $_POST['data']
+
+/*
+Generate a unique cache key: For each unique combination of GET variables, create a distinct identifier (cache key). A simple way to do this is to serialize or hash the $_GET array, or combine the relevant GET variable values into a string.
+*/
+
+$cache_key = md5(serialize($_POST)); 
+// Or, for specific variables:
+// $cache_key = 'page_' . (isset($_GET['page']) ? $_GET['page'] : 'default') . '_category_' . (isset($_GET['category']) ? $_GET['category'] : 'all');
+
+
+/*
+Check for cached content: Before generating the response, check if content associated with the cache_key already exists in your chosen caching mechanism (e.g., file system, Memcached, Redis, APCu).
+*/
+
+
+$cached_content = null; 
+// Example using file system cache:
+$cache_file = 'cache/' . $cache_key . '.html';
+if (file_exists($cache_file) && (time() - filemtime($cache_file) < 3600*24*5)) { // Cache for 1 hour * 24 (one day) * 5 (5 days)
+  $cached_content = file_get_contents($cache_file);
+}
+
+
+/*
+Serve cached content or generate new content: If cached content is found and valid, serve it directly and exit. Otherwise, generate the dynamic content as usual.
+*/
+
+if ($cached_content) {
+  echo $cached_content;
+  exit;
+}
+
+// Generate your dynamic content here
+ob_start(); // Start output buffering
+
+
+// ... your PHP code to generate the page ...
+
+
 $entities = explode("---", $_POST['data']);
 
 //print_r($entities);
@@ -289,5 +331,14 @@ foreach ($tab_strings_array as $key => $value) {
 }
 
 echo '</div>';
+
+
+// Save the output to cache
+
+$output = ob_get_clean(); // Get the generated output
+file_put_contents($cache_file, $output); // Save to cache
+echo $output;
+
+
 
 ?>
