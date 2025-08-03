@@ -395,9 +395,6 @@ foreach ($og as $key => $value) {
 
             .nav-tabs .nav-link {
                 border: 1px solid #cbcbcb;
-                border-top-left-radius: 0.5rem;
-                border-top-right-radius: 0.5rem;
-                margin-top: -7px;
             }
 
             .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
