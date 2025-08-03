@@ -13,7 +13,7 @@ $random_article = getRandomArticle();
 if (!isset($_GET['url'])) {
 
     // Redirect to same page with the chosen article as a query param
-    header("Location: index.php?url=" . urlencode($random_article['link']) ."&category=" . $random_article['category']);
+    header("Location: newsroom.php?url=" . urlencode($random_article['link']) ."&category=" . $random_article['category']);
     exit;
 }
 
@@ -454,7 +454,7 @@ foreach ($og as $key => $value) {
                     </div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a data-step="2" data-intro="Click here for information on our analytics." class="btn btn-black btn-social mx-2" title="About" href="about.html"><i class="fas fa-align-right"></i></a>
-                        <a data-step="1" data-intro="Welcome to the Scroll News newsroom! Here we provide analytics for the latest news stories. Click this play button to stumble through trending articles." class="btn btn-green btn-social mx-2" title="Stumble through articles" href="index.php" onclick=""><i class="fas fa-play"></i></a>
+                        <a data-step="1" data-intro="Welcome to the Scroll News newsroom! Here we provide analytics for the latest news stories. Click this play button to stumble through trending articles." class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" onclick=""><i class="fas fa-play"></i></a>
                         <a data-step="3" data-intro="Click here to see our newsroom video trailer." class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.html"><i class="fas fa-align-left"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-right font-weight-bold" style="">
@@ -527,7 +527,7 @@ foreach ($og as $key => $value) {
                                   alt="Article Screenshot" 
                                   onload="document.getElementById('img-loader').style.display='none';"
                                   style="max-width: 100%; height: auto; margin-bottom: 20px;"
-                                  onerror="window.location.href = 'index.php?url=<?= urlencode($_GET["url"]) ?>&error=1';"
+                                  onerror="window.location.href = 'newsroom.php?url=<?= urlencode($_GET["url"]) ?>&error=1';"
                                 />
                                 <div id="img-loader" class="text-center mt-3">Loading screenshot...</div>
 
@@ -574,11 +574,11 @@ foreach ($og as $key => $value) {
                         <div class="col-lg-4 text-lg-left">Copyright © Scroll News 2025</div>
                         <div class="col-lg-4 my-3 my-lg-0">
                             <a class="btn btn-black btn-social mx-2" title="About" href="about.html"><i class="fas fa-align-right"></i></a>
-                            <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="index.php"><i class="fas fa-play"></i></a>
+                            <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php"><i class="fas fa-play"></i></a>
                             <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.html"><i class="fas fa-align-left"></i></a>
                         </div>
                         <div class="col-lg-4 text-lg-right font-weight-bold">
-                            <a href="index.php">scroll news</a>
+                            <a href="index.html">scroll news</a>
                             <br>
                             <a href="terms.html" class="text-muted small mr-3">Terms</a>
                             <a href="privacy.html" class="text-muted small">Privacy</a>
@@ -1020,7 +1020,7 @@ foreach ($og as $key => $value) {
                 const url = $('#articleUrl').val().trim();
                 if (url) {
                   const encoded = encodeURIComponent(url);
-                  window.location.href = `index.php?url=${encoded}`;
+                  window.location.href = `newsroom.php?url=${encoded}`;
                 }
               });
             </script>
@@ -1052,7 +1052,7 @@ foreach ($og as $key => $value) {
                              <h4 class="card-title mb-2">${article.title}</h4>
                              <p class="card-text text-muted mb-1"><small><a target="_blank" href="https://${article.publisher}">${article.publisher}</a>${article.pubDate ? ' • ' + timeElapsedString(article.pubDate) : ''}</small></p>
                              <p class="card-text">${article.description}</p>
-                             <a href="index.php?url=${encodeURIComponent(article.link)}&category=${category}" class="btn btn-green mt-auto">Analyze</a>
+                             <a href="newsroom.php?url=${encodeURIComponent(article.link)}&category=${category}" class="btn btn-green mt-auto">Analyze</a>
                           </div>
                         </div>
                       </div>
@@ -1216,7 +1216,7 @@ foreach ($og as $key => $value) {
                 .then(res => res.json())
                 .then(data => {
                   if (data.resolved_url) {
-                    window.location.href = `index.php?url=${encodeURIComponent(data.resolved_url)}`;
+                    window.location.href = `newsroom.php?url=${encodeURIComponent(data.resolved_url)}`;
                   } else {
                     alert("Could not resolve article URL.");
                   }

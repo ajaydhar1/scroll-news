@@ -10,7 +10,7 @@
 
           // Example: If NLP or screenshot fails
           if (empty($arr)) {
-              header("Location: index.php?url=" . urlencode($_POST['url']) . "&error=1");
+              header("Location: newsroom.php?url=" . urlencode($_POST['url']) . "&error=1");
               exit;
           }
 
