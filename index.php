@@ -70,12 +70,12 @@ foreach ($og as $key => $value) {
 
         <!-- Twitter card and Open Graph-->
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Scroll News" />
+        <meta name="twitter:title" content="Scroll News: [<?php echo $pub; ?> - <?= clean_headline($title) ?>]" />
         <meta name="twitter:description" content="<?= clean_headline($title) ?>" />
         <meta name="twitter:image" content="<?php echo $img; ?>" />
     
         <meta property="og:url" content="https://scrollnews.io" />
-        <meta property="og:title" content="Scroll News" />
+        <meta property="og:title" content="Scroll News: [<?php echo $pub; ?> - <?= clean_headline($title) ?>]" />
         <meta property="og:description" content="<?= clean_headline($title) ?>" />
         <meta property="og:image" content="<?php echo $img; ?>" />    
         <meta property="og:site_name" content="Scroll News" />
