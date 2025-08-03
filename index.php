@@ -320,7 +320,7 @@ foreach ($og as $key => $value) {
 
             .introjs-tooltiptext {
                 font-size: 18px;
-                line-height: calc(var(--line-height-unit) * 1.17) !important;
+                line-height: calc(var(--line-height-unit) * 1.22) !important;
             }
 
             .analyze-btn {
