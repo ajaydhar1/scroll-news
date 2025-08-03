@@ -440,7 +440,7 @@ foreach ($og as $key => $value) {
                         </a>
                     </div>
                     <div class="col-lg-4 my-3 my-lg-0">
-                        <a data-step="2" data-intro="Click here for information on our analytics." class="btn btn-black btn-social mx-2" href="about.php"><i class="fas fa-align-right"></i></a>
+                        <a data-step="2" data-intro="Click here for information on our analytics." class="btn btn-black btn-social mx-2" href="about.html"><i class="fas fa-align-right"></i></a>
                         <a data-step="1" data-intro="Welcome to the Scroll News newsroom! Here we provide analytics for the latest news stories. Click this play button to stumble through trending articles." class="btn btn-green btn-social mx-2" href="index.php" onclick=""><i class="fas fa-play"></i></a>
                         <a data-step="3" data-intro="Click here to see our newsroom video trailer." class="btn btn-black btn-social mx-2" href="control-room.html"><i class="fas fa-align-left"></i></a>
                     </div>
