@@ -4,9 +4,13 @@
     --line-height-unit: 1;
 }
 
-
 .text-green {
   color: var(--brand-color);
+}
+
+footer h5 a:hover {
+  color: var(--brand-color);
+  text-decoration: none;
 }
 
 /* OPTION A - Crisp & Professional */
@@ -25,48 +29,6 @@ header.masthead .masthead-subheading {
 .btn {
   font-family: 'Poppins', sans-serif;
 }
-
-
-/* OPTION B - Elegant and Trustworthy */
-/*
-body {
-  font-family: 'Lato', sans-serif;
-}
-
-h1, h2, h3, h4, h5, h6, .masthead-heading,
-.page-section h3.section-subheading,
-header.masthead .masthead-subheading {
-  font-family: 'Merriweather', serif;
-  font-weight: 700;
-}
-
-.btn {
-  font-family: 'Lato', sans-serif;
-}
-*/
-
-
-/* OPTION C - Sleek and Tech-Inspired */
-
-/*
-body {
-  font-family: 'Inter', sans-serif;
-}
-
-h1, h2, h3, h4, h5, h6, .masthead-heading,
-.page-section h3.section-subheading,
-header.masthead .masthead-subheading {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 600;
-}
-
-.btn {
-  font-family: 'Inter', sans-serif;
-}
-*/
-
-
-
 
 #myVideo {
   position: fixed;
