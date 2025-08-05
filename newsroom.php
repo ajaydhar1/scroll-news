@@ -271,6 +271,7 @@ foreach ($og as $key => $value) {
                 color: white;
                 border: solid 2px yellow;
                 font-family: 'Open Sans', sans-serif;
+                line-height: 1.22;
             }
 
             .popover-body strong {

@@ -13,6 +13,11 @@ footer h5 a:hover {
   text-decoration: none;
 }
 
+a:hover {
+    text-decoration: none; /* Removes underline */
+    color: #2cae86; /* Slightly brighter or darker teal shade for a gentle effect */
+}
+
 /* OPTION A - Crisp & Professional */
 
 body {
@@ -157,3 +162,4 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 p {
   line-height: calc(var(--line-height-unit) * 1.4);
 }
+
