@@ -19,6 +19,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Lato&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter&display=swap" rel="stylesheet">
     
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
@@ -83,7 +84,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-left text-bolder">
                         <h5 class="mb-0">
-                            <a href="index.html">
+                            <a href="index.php">
                                 <img src="assets/img/play-green.png" alt="Logo" style="height: 24px; width: auto; vertical-align: middle; margin-right: 5px; margin-bottom: 5px;">
                                 Scroll News
                             </a>
@@ -288,6 +289,11 @@
                 </ul>
             </div>
         </section>
+
+
+        <?php require_once("___scroll_strip.php"); ?>
+
+
         <!-- Team-->
         <section class="page-section bg-light" id="team">
             <div class="container">
@@ -362,7 +368,7 @@
                             <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.html"><i class="fas fa-align-left"></i></a>
                         </div>
                         <div class="col-lg-4 text-lg-right font-weight-bold">
-                            <a href="index.html">scroll news</a>
+                            <a href="index.php">scroll news</a>
                             <br>
                             <a href="terms.html" class="text-muted small mr-3">Terms</a>
                             <a href="privacy.html" class="text-muted small">Privacy</a>
@@ -373,7 +379,6 @@
         </div>
         
         <!-- Bootstrap core JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>

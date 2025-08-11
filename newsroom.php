@@ -28,10 +28,17 @@ $og = OpenGraph::fetch($url);
 
 $title = 'No Title';
 $youtube_search='';
-$pub = "Unknown Publisher";
 $des = 'No description';
 $time = 'Publish date unknown';
 $img='';
+
+$pub = "Unknown Publisher";
+// Get the host part of the URL
+$host = parse_url($url, PHP_URL_HOST);
+// Remove "www." if present
+$domain = preg_replace('/^www\./', '', $host);
+$pub = $domain;
+$pub_link = "https://" . $pub;
 
 foreach ($og as $key => $value) {
     if ($key == 'image') {
@@ -48,6 +55,7 @@ foreach ($og as $key => $value) {
     }
     else if ($key == 'site_name') {
         $pub = $value;
+        //$pub = "Pub name from OpenGraph";
     }
     else if ($key == 'description') {
         $des = $value;
@@ -406,6 +414,10 @@ foreach ($og as $key => $value) {
                 color: var(--brand-hover-color);
             }
 
+            .bright-link-hover:hover {
+                color: var(--brand-hover-color);
+            }
+
             .category-no-link {
                 color: grey;
                 text-decoration: none;
@@ -460,7 +472,7 @@ foreach ($og as $key => $value) {
         <header class="masthead" style="background-image: url(<?php echo $img; ?>)">
             <div class="container cover-img py-5">
                 <div class="mb-2" style="font-size: 1.25rem;"><strong><a href="" class="<?php if (array_key_exists($_GET['category'], $rss_feeds)) {echo 'category-link';} else {echo 'category-no-link';} ?>" data-category="<?= $_GET['category'] ?>" data-category-url="<?= $rss_feeds[$_GET['category']] ?>">#<?php if (isset($_GET['category'])) { echo $_GET['category']; } else { echo "Article"; } ?></a></strong></div>
-                <div class="masthead-subheading"><?php echo $pub; ?></div>
+                <div class="masthead-subheading"><a href="<?= $pub_link ?>" target="_blank" class="bright-link-hover"><?php echo $pub; ?></a></div>
                 <div class="masthead-heading text-uppercase"><?php echo clean_headline($title); ?></div>
                 <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black mr-3" href="#">Analytics</a>
                 <a class="btn btn-outline-secondary btn-lg btn-rectangle js-scroll-trigger" target='_blank' href="<?php echo $url; ?>" style="color: white; border-color: transparent;">Go to Story</a>
@@ -565,7 +577,7 @@ foreach ($og as $key => $value) {
                             <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.html"><i class="fas fa-align-left"></i></a>
                         </div>
                         <div class="col-lg-4 text-lg-right font-weight-bold">
-                            <a href="index.html">scroll news</a>
+                            <a href="index.php">scroll news</a>
                             <br>
                             <a href="terms.html" class="text-muted small mr-3">Terms</a>
                             <a href="privacy.html" class="text-muted small">Privacy</a>
