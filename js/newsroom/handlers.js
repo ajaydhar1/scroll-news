@@ -227,7 +227,7 @@ function applyWiki(wikiResp) {
     $("#wiki-list-1").html(wikiResp);
     //$("#wiki-list-1 .description a").removeAttr("href");
     $("#wiki-list-1 p sup").remove();
-    $("a[href^=\\"/wiki/\\"]").each(function() {
+    $("a[href^=\"/wiki/\"]").each(function() {
         var currentHref = $(this).attr("href");
         $(this).attr("href", "https://en.wikipedia.org" + currentHref);
         $(this).attr("target", "_blank");

@@ -15,13 +15,14 @@
 // ============================
 define('APP_ROOT', dirname(__DIR__));
 define('PUBLIC_DIR', APP_ROOT . '/newsroom_core/public');
-define('SHOT_DIR', PUBLIC_DIR . '/newsroom_core/shots');      // where screenshots are stored
-define('SHOT_URL_BASE', '/newsroom_core/shots');              // public URL prefix for shots
+define('SHOT_DIR', PUBLIC_DIR . '/newsroom_core/public/shots');      // where screenshots are stored
+define('SHOT_URL_BASE', '/newsroom_core/public/shots');              // public URL prefix for shots
 
 // External services (replace with your real endpoints)
-define('NLP_ENDPOINT',  getenv('NLP_ENDPOINT')  ?: 'https://your-nlp.example.com/analyze?url=');
-define('WIKI_ENDPOINT', getenv('WIKI_ENDPOINT') ?: 'https://your-wiki.example.com/summarize?url=');
-define('SHOT_ENDPOINT', getenv('SHOT_ENDPOINT') ?: 'https://your-shot.example.com/screenshot?url=');
+define('BASE_URL', 'http://127.0.0.1/scroll-news/'); // or your dev host
+define('NLP_ENDPOINT',  getenv('NLP_ENDPOINT')  ?: BASE_URL . 'analyze.php?url=');
+define('WIKI_ENDPOINT', getenv('WIKI_ENDPOINT') ?: BASE_URL . 'newsroom_core/public/api/wiki_by_url.php?url=');
+define('SHOT_ENDPOINT', getenv('SHOT_ENDPOINT') ?: BASE_URL . 'screenshot.php?url=');
 
 // TTLs
 define('NLP_TTL',   2 * 24 * 3600);  // 2 days
@@ -71,7 +72,14 @@ function normalize_url(string $url): string {
   $query = http_build_query($q);
   return $scheme.'://'.$host.$path.($query ? '?'.$query : '');
 }
-function cache_key(string $url): string { return 'newsroom:' . sha1(normalize_url($url)); }
+
+// Windows-safe helpers + cache key
+function _safe_name(string $s): string {
+  return preg_replace('/[^a-z0-9._-]/i', '_', $s);
+}
+function cache_key(string $url): string {
+  return 'newsroom_' . sha1(normalize_url($url)); // no colons
+}
 
 // ============================
 // Helpers
@@ -148,8 +156,14 @@ function multiFetch(array $requests, int $timeout = 12): array {
 // ============================
 
 // ---------- File backend ----------
-function _file_cache_path(string $url): string { return CACHE_DIR . '/' . cache_key($url) . '.json'; }
-function _file_lock_path(string $key): string { return LOCK_DIR . '/' . preg_replace('/[^a-z0-9:_-]/i','_', $key) . '.lock'; }
+function _file_cache_path(string $url): string {
+  $name = _safe_name(cache_key($url));
+  return CACHE_DIR . '/' . $name . '.json';
+}
+function _file_lock_path(string $key): string {
+  $name = _safe_name($key);
+  return LOCK_DIR . '/' . $name . '.lock';
+}
 
 function file_cache_get_payload($_unused, string $url): ?array {
   $path = _file_cache_path($url);

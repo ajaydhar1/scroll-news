@@ -29,7 +29,7 @@
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 
-require_once dirname(__DIR__) . '/newsroom_core/app/newsroom_cache_core.php';
+require_once __DIR__ . '/../../app/newsroom_cache_core.php';
 
 try {
   $articleUrl = $_GET['url'] ?? '';

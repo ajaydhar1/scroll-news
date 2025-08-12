@@ -22,7 +22,9 @@
 
     
     function getData(cb){
-        $.getJSON('newsroom_core/public/api/newsroom_data.php', { url: articleUrl }).done(cb);
+        $.getJSON('newsroom_core/public/api/newsroom_data.php', { url: articleUrl }).done(cb).fail(err => {
+            console.error('newsroom_data error', err);
+        });
     }
 
     // 1) initial fast hit

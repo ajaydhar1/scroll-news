@@ -3,8 +3,8 @@ error_reporting(E_ERROR | E_PARSE);
 require_once('___session_results.php');
 require_once('___modules.php');
 
-require_once __DIR__ . '/../app/newsroom_core/___request.php';
-require_once __DIR__ . '/../app/newsroom_core/___og_meta.php';
+require_once __DIR__ . '/newsroom_core/___request_resolution_layer.php';
+require_once __DIR__ . '/newsroom_core/___og_meta.php';
 
 // Resolve chosen article (redirects if none)
 $resolved = newsroom_resolve_article();
@@ -60,8 +60,8 @@ $youtube_search  = $meta['youtube_search'];
 
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-        <link href="css/newsroom.css" rel="stylesheet" />
         <link href="css/custom.css" rel="stylesheet" />
+        <link href="css/newsroom.css" rel="stylesheet" />
 
         <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
         <script src="https://www.amcharts.com/lib/3/serial.js"></script>
@@ -268,6 +268,28 @@ $youtube_search  = $meta['youtube_search'];
 
         <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
           
+        <script src="js/newsroom/utils.js" defer></script>
+        <script src="js/newsroom/handlers.js" defer></script>
+        <script src="js/newsroom/modules.js" defer></script>
+        <!--<script src="js/newsroom/api_legacy.js" defer></script>-->
+        <script src="js/newsroom/api_unified.js" defer></script>
+        <script src="js/newsroom/init.js" defer></script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                if ((<?=$_SESSION["resultViewed"]?> < 2) && ('<?=$_GET['siteSubmit']?>' != 'true')) {
+                    introJs().setOptions({
+                        highlightClass: 'custom-highlight',
+                        overlayOpacity: 0.5  // or 0 if you want no darkening at all
+                    }).start();
+                }
+
+            });
+
+        </script>
+
 
     </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 // app/newsroom_core/og_meta.php
-require_once __DIR__ . '/request_resolution_layer.php'; // ensures modules + OpenGraph loaded
+require_once __DIR__ . '/___request_resolution_layer.php'; // ensures modules + OpenGraph loaded
 
 function newsroom_extract_meta(string $url): array {
   $og = OpenGraph::fetch($url);
