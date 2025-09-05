@@ -66,7 +66,7 @@
                         {
 
                     ?>
-                            <div class="hashtag"><a href="https://twitter.com/search?q=%23<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]))?>" target="_blank" data-hashtext="<?= $arr['entities'][$i] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]))?></a></div>                  
+                            <div class="hashtag"><a href="https://twitter.com/search?q=%23<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?>" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>                  
                     <?php } ?>
 
                   </div>
@@ -77,7 +77,7 @@
                         for($i=0;$i<count($arr['entities']);$i++)
                         {
                     ?>
-                            <div class="hashtag"><a href="https://www.instagram.com/explore/tags/<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]))?>/" target="_blank" data-hashtext="<?= $arr['entities'][$i] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]))?></a></div>
+                            <div class="hashtag"><a href="https://www.instagram.com/explore/tags/<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?>/" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>
                     <?php } ?>
 
                   </div>
@@ -88,7 +88,7 @@
                         for($i=0;$i<count($arr['entities']);$i++)
                         {
                     ?>
-                            <div class="hashtag"><a href="https://www.google.com/search?q=<?=str_replace(' ', '+', $arr['entities'][$i])?>" target="_blank" data-hashtext="<?= $arr['entities'][$i] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]))?></a></div>
+                            <div class="hashtag"><a href="https://www.google.com/search?q=<?=str_replace(' ', '+', $arr['entities'][$i]['text'])?>" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>
                                         
                     <?php } ?>
 
@@ -100,7 +100,7 @@
                         for($i=0;$i<count($arr['entities']);$i++)
                         {
                     ?>
-                            <div class="hashtag"><a href="https://www.youtube.com/results?search_query=<?=str_replace(' ', '+', $arr['entities'][$i])?>"  target="_blank" data-hashtext="<?= $arr['entities'][$i] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]))?></a></div>
+                            <div class="hashtag"><a href="https://www.youtube.com/results?search_query=<?=str_replace(' ', '+', $arr['entities'][$i]['text'])?>"  target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>
                         
                     <?php } ?>
 
@@ -125,14 +125,13 @@
                         <div id="wikipedia">
                           <ol>
                             <?php
-            
-                             $wiki = $arr['wikipedia'];
+
+                             foreach ($arr['entities'] as $entity) {
                               
-                             foreach ($wiki as $key => $value) {
-                              
-                                echo '
-                                      <li><a href="'.$value.'" target="_blank">'.$key.'</a></li>';
-                                      
+                                if (array_key_exists("wikipedia_url", $entity)) {
+                                  echo '
+                                      <li><a href="'.$entity["wikipedia_url"].'" target="_blank">'.$entity["text"].'</a></li>';
+                                }    
                               }
                             ?>
 
@@ -364,7 +363,7 @@
 
                 $entityStr = '';
                 for($i=0;$i<count($arr['entities']);$i++) {
-                    $entityStr = $entityStr.$arr['entities'][$i].'---';
+                    $entityStr = $entityStr.$arr['entities'][$i]['text'].'---';
                 }
         
                 $entityStr = substr($entityStr, 0, -3);

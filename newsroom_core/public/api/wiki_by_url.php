@@ -14,7 +14,7 @@ $entities = $payload['nlp']['entities'] ?? null;
 
 // 3) if missing, call analyze.php to get NLP
 if (!$entities) {
-  $analyzeUrl = BASE_URL . '/api/analyze.php?url=' . rawurlencode($norm);
+  $analyzeUrl = BASE_URL . '/analyze.php?format=json&url=' . rawurlencode($norm);
   $resp = multiFetch(['nlp'=>['url'=>$analyzeUrl]], 12);
   if (($resp['nlp']['code'] ?? 0) === 200 && valid_json_string($resp['nlp']['body'])) {
     $nlp = json_decode($resp['nlp']['body'], true);
@@ -28,10 +28,12 @@ if (!$entities) {
 function build_entity_string($entities): string {
   if (!is_array($entities)) return '';
   // tweak as needed to match your analyzer output shape
+
   $names = [];
   foreach ($entities as $e) {
     // e.g., $e = ['name'=>'Donald Trump','type'=>'PERSON', ...]
-    if (!empty($e['name'])) $names[] = $e['name'];
+    //if (!empty($e['name'])) $names[] = $e['name'];
+    if ($e !== "") $names[] = $e;
   }
   // unique + top N if you want
   $names = array_values(array_unique($names));
@@ -41,6 +43,8 @@ function build_entity_string($entities): string {
 
 $entityString = build_entity_string($entities);
 
+//echo json_encode(['entity_string_test' => $entityString]);
+
 // 5) if we still have nothing, return a soft error
 if ($entityString === '') {
   echo json_encode(['summary'=>null,'fragmentsHtml'=>'','note'=>'No entities available']);
@@ -48,7 +52,7 @@ if ($entityString === '') {
 }
 
 // 6) POST to your existing wiki-fragments.php which expects $_POST["data"]
-$ch = curl_init(BASE_URL . '/api/wiki-fragments.php');
+$ch = curl_init(BASE_URL . '/wiki-fragments.php');
 curl_setopt_array($ch, [
   CURLOPT_POST => true,
   CURLOPT_POSTFIELDS => ['data' => $entityString],
@@ -61,6 +65,9 @@ curl_setopt_array($ch, [
 $body = curl_exec($ch);
 $code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
 curl_close($ch);
+
+echo json_encode(['wiki-fragments_response_test1' => $body]);
+exit;
 
 // 7) ensure JSON output (adapt if wiki-fragments returns HTML)
 if ($code === 200 && valid_json_string($body)) {

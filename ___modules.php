@@ -22,16 +22,49 @@ function search_google_knowledge($query) {
   return $response;
 }
 
+function http_get($url) {
+  $ch = curl_init($url);
+  curl_setopt_array($ch, [
+    CURLOPT_SSL_VERIFYHOST => 0,
+    CURLOPT_SSL_VERIFYPEER => 0,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_MAXREDIRS      => 10,
+    CURLOPT_CONNECTTIMEOUT => 10,
+    CURLOPT_TIMEOUT        => 20,
+    CURLOPT_ENCODING       => '', // auto-decode gzip/deflate
+    CURLOPT_USERAGENT      => 'ScrollNewsBot/1.0 (+https://scrollnews.io/contact)',
+    CURLOPT_HTTPHEADER     => [
+      'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      'Accept-Language: en-US,en;q=0.9',
+    ],
+    // CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4, // uncomment if IPv6 issues
+  ]);
+
+  $body   = curl_exec($ch);
+  $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  $err    = curl_error($ch);
+  curl_close($ch);
+  return [$status, $body, $err];
+}
+
 function azeo_wiki_results_2($keyword) {
   // WIKIPEDIA SEARCH API
 
-  $url='https://en.wikipedia.org/w/api.php?action=opensearch&limit=1&format=json&search='.$keyword; 
+  $url='https://en.wikipedia.org/w/api.php?action=opensearch&limit=1&format=json&search='.urlencode($keyword); 
+
+  //print_r($url);
 
   $arr=azeo_getData($url); 
 
   $return_result = [];
 
-  if (count($arr[3]) > 0) {
+  //print_r("Before array print");
+  //print_r($arr);
+  //print_r("After array print");
+  //exit;
+
+  if (is_array($arr) && count($arr[3]) > 0) {
     $return_result['title'] = $arr[1][0];
     $return_result['url'] = $arr[3][0];
   }
@@ -106,7 +139,35 @@ function time_elapsed_string($ptime) {
   }
 }
 
+
 function azeo_getData($url) {
+
+    //print_r("before url");
+    //print_r($url);
+    //print_r("after url");
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL,$url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+    // Set the custom User-Agent string
+    $userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36";
+    curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
+
+    $data = curl_exec($ch);
+
+    //print_r("before data");
+    //print_r($data);
+    //print_r("after data");
+
+    curl_close ($ch);
+    $json=json_decode($data, true); 
+    return $json;
+
+}
+
+function azeo_getData_second($url) {
 
     $arrContextOptions=array(
         "ssl"=>array(

@@ -7,7 +7,7 @@ $(document).ready(function() {
         renderer: "svg",
         loop: true,
         autoplay: true,
-        path: "/assets/img/animation-w500-h500.json" // the path to the animation json
+        path: "assets/img/animation-w500-h500.json" // the path to the animation json
     });
 
     $.ajax({
@@ -236,133 +236,6 @@ $(document).ready(function() {
                 });
             }
            
-
-            if (typeof myArray !== "undefined") {
-
-                var ele2 = document.getElementById("lottie2");
-
-                lottie.loadAnimation({
-                    container: ele2, // the dom element that will contain the animation
-                    renderer: "svg",
-                    loop: true,
-                    autoplay: true,
-                    path: "/assets/img/animation-w500-h500.json" // the path to the animation json
-                });
-                
-            }
-
-
-            $.ajaxSetup({cache: false});
-
-            if (typeof myArray !== "undefined") {
-
-                $.ajax({
-                    type:   "POST",
-                    url:    "wiki-fragments.php",
-                    data:   {data: encodeURIComponent(myArray)},
-                    success: function(msg) {
-                        $("#wiki-list-1").html(msg);
-                        //$("#wiki-list-1 .description a").removeAttr("href");
-                        $("#wiki-list-1 p sup").remove();
-                        $("a[href^=\\"/wiki/\\"]").each(function() {
-                            var currentHref = $(this).attr("href");
-                            $(this).attr("href", "https://en.wikipedia.org" + currentHref);
-                            $(this).attr("target", "_blank");
-                            $(this).attr("data-hashtext", $(this).text());
-                            $(this).removeAttr("title");
-                            $(this).removeAttr("data-original-title");
-                        });
-
-                        /*
-                        var imageCount = 1;
-                        $("#wiki-list-1 img").each(function() {
-                            $(this).attr("data-lightbox", imageCount.toString());
-                            imageCount++;
-                        });
-                        */
-
-                        $("#wiki-list-1 .tab-pane").each(function() {
-                            $(this).find(".wiki-image").each(function() {
-                                $(this).attr("href", $(this).find("img").attr("src"));
-                            });
-                        });
-
-                        // Re-initialize Lightbox
-                        lightbox.init();
-
-
-                        $("h2 a").each(function() {
-                            $(this).attr("data-hashtext", $(this).text());
-                        });
-
-                        $(".topics").attr("data-step","11");
-                        $(".topics").attr("data-intro","Dimensions of this story. Connect some of these dots with each other and across other stories to develop a mental model of the world.");
-
-
-                        $("body *").not("#wiki-list-container a").click(function() {
-                            $("#wiki-list-container a").popover("hide");
-                            tapped = 0;
-                        });
-
-
-                        $("#wiki-list-container a:not(.wiki-image)").each(function(i, obj) {
-                            $(this).attr("data-container", "body");
-                            $(this).attr("data-toggle", "popover");
-                            $(this).attr("data-placement", "auto");
-                            $(this).attr("data-content", "temp");
-                            $(this).attr("data-html", "true");
-                        })
-
-
-
-                        if (!isMobile()) {
-                            $("#wiki-list-container a:not(.wiki-image)").mouseenter(function() {
-                                getDefinitions($(this), $(this).attr("data-hashtext"));
-                            }).mouseleave(function() {
-                                $(this).popover("hide");
-                            });
-                        }
-                        else {
-
-                            $("#wiki-list-container a:not(.wiki-image)").on("click", function(e) {
-                                // open popover
-                                if (tapped == 0) { // if no popover open
-                                    // show popover
-                                    getDefinitions($(this), $(this).attr("data-hashtext"));
-                                    tapped = 1; // change flag to popoever open
-
-                                    // don"t let link click through
-                                    e.preventDefault();
-                                    e.stopImmediatePropagation();
-
-                                }
-                                // click on link if same link clicked twice, or call all popovers
-                                else {
-                                    // close all popovers
-                                    $("#wiki-list-container a:not(.wiki-image)").popover("hide");
-                                    tapped = 0;
-
-                                    // if not the same linked that was clicked, prevent link, but show popover
-                                    var attr = $(this).attr("aria-describedby");
-                                    if (attr == false || typeof attr == "undefined") {
-                                        e.preventDefault();
-                                        e.stopImmediatePropagation();
-
-                                        getDefinitions($(this), $(this).attr("data-hashtext"));
-                                        tapped = 1;
-                                    }
-                                    //showLoader();
-                                }
-                            });
-                        }
-
-                    },
-                    error: function(msg) {
-                        console.log(msg);
-                    }
-                })
-            }
-
         }  
     })
 
