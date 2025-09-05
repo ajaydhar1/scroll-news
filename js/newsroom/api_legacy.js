@@ -11,9 +11,8 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        type:   "POST",
-        url:    "analyze.php",
-        data:   {url: "<?= $url ?>"},
+        type:   "GET",
+        url:    "analyze.php?url=<?= $url ?>",
         success: function(msg) {
         
             $("#analytics").html(msg);

@@ -152,7 +152,7 @@ function azeo_getData($url) {
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
     // Set the custom User-Agent string
-    $userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36";
+    $userAgent = "ScrollNewsBot/1.0 (+https://scrollnews.io/contact)";
     curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
 
     $data = curl_exec($ch);
@@ -268,7 +268,7 @@ function azeo_site_results($url2) {
 
   $url='https://news-nlp-api-08865bb82971.herokuapp.com/analyze_article';
 
-  $arr=azeo_postData($url, 'article_url='.$url2); 
+  $arr=azeo_getData($url . '?url='.$url2); 
   return $arr;
     
 }
