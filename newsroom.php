@@ -516,5 +516,34 @@ $youtube_search  = $meta['youtube_search'];
 
         </script>
 
+        <script>
+            async function reanalyzeAnalytics(url, container = '#analytics') {
+              const el = document.querySelector(container);
+              el.innerHTML = `
+                <div class="card shadow-sm border-0">
+                  <div class="card-body">
+                    <div class="placeholder-glow">
+                      <span class="placeholder col-7"></span>
+                      <span class="placeholder col-4"></span>
+                      <span class="placeholder col-6"></span>
+                    </div>
+                  </div>
+                </div>`;
+
+              const form = new URLSearchParams({ url, revalidate: '1' });
+              try {
+                const res = await fetch('analyze.php', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                  body: form
+                });
+                const html = await res.text();
+                el.innerHTML = html;
+              } catch (e) {
+                el.innerHTML = `<div class="alert alert-warning mb-0">Sorry—reanalysis failed.</div>`;
+              }
+            }
+        </script>
+
     </body>
 </html>
