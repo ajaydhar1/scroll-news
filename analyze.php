@@ -11,7 +11,7 @@
           $arr = azeo_site_results($url);
 
 
-          if ($arr["error"] == "No features in text.") {
+          if (($arr["error"] == "No features in text.")  || empty($arr['entities'])) {
             echo render_empty_analytics($url);
             exit;
           }
