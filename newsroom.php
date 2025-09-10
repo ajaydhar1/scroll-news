@@ -174,7 +174,7 @@ $youtube_search  = $meta['youtube_search'];
 
                                     <img 
                                         id="shot"
-                                        src="https://news-nlp-api-08865bb82971.herokuapp.com/screenshot?url=<?= urlencode($url) ?>" 
+                                        src="https://nlp-api-exr1.onrender.com/screenshot?url=<?= urlencode($url) ?>" 
                                         alt="Article Screenshot" 
                                         onload="document.getElementById('img-loader').style.display='none';"
                                         style="max-width: 100%; height: auto; margin-bottom: 20px;"
