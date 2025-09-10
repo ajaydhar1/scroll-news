@@ -172,15 +172,60 @@ $youtube_search  = $meta['youtube_search'];
                                 if (!isset($_GET["error"])) {
                             ?>
 
-                                    <img 
+                                    <img
                                         id="shot"
-                                        src="https://nlp-api-exr1.onrender.com/screenshot?url=<?= urlencode($url) ?>" 
-                                        alt="Article Screenshot" 
-                                        onload="document.getElementById('img-loader').style.display='none';"
-                                        style="max-width: 100%; height: auto; margin-bottom: 20px;"
-                                        onerror="window.location.href = 'newsroom.php?url=<?= urlencode($_GET["url"]) ?>&error=1';"
-                                    />
+                                        src="https://nlp-api-exr1.onrender.com/screenshot?url=<?= urlencode($url) ?>"
+                                        alt="Article Screenshot"
+                                        loading="lazy" decoding="async"
+                                        style="max-width:100%;height:auto;margin-bottom:20px;"
+                                      />
+
                                     <div id="img-loader" class="text-center mt-3">Loading screenshot...</div>
+
+                                    <script>
+                                    (function () {
+                                      const img = document.getElementById('shot');
+                                      const imgLoader = document.getElementById('img-loader');
+                                      const originalSrc = img.src;
+                                      const fallbackSrc = 'assets/img/screenshot-load-failed.svg';
+
+                                      let swapped = false;
+                                      const timeoutMs = 7000;
+
+                                      const t = setTimeout(() => {
+                                        if (swapped) return;
+                                        swapped = true;
+                                        img.dataset.err = 'timeout';
+                                        imgLoader.style.display = 'none';
+                                        img.src = fallbackSrc;            // cancels the in-flight request
+                                      }, timeoutMs);
+
+                                      img.addEventListener('load', () => {
+                                        // Only treat as success if the ORIGINAL loaded, not the fallback
+                                        if (img.currentSrc === originalSrc || img.src === originalSrc) {
+                                          clearTimeout(t);
+                                        }
+                                      });
+
+                                      img.addEventListener('error', () => {
+                                        clearTimeout(t);
+                                        if (!swapped) {
+                                          swapped = true;
+                                          img.src = fallbackSrc;
+                                        }
+                                      });
+
+                                      // Optional: click-to-retry if fallback is showing
+                                      img.addEventListener('click', () => {
+                                        if (img.src.includes(fallbackSrc)) {
+                                          swapped = false;
+                                          const bust = (originalSrc.includes('?') ? '&' : '?') + 't=' + Date.now();
+                                          img.src = originalSrc + bust;   // retry with cache-bust
+                                          setTimeout(() => { /* you can reset the timer if you want */ }, 0);
+                                        }
+                                      });
+                                    })();
+                                    </script>
 
                             <?php
                                 }

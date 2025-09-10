@@ -265,3 +265,7 @@ button.nav-link.active {
 .form-control:focus {
     box-shadow: 0 0 0 0.2rem var(--brand-color);
 }
+
+#shot { opacity: 0; transition: opacity .25s ease; }
+#shot[src*="screenshot?"] { opacity: 1; }      /* once set */
+#shot[src$=".svg"] { opacity: 1; }             /* fallback */
