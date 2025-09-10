@@ -271,6 +271,8 @@ $youtube_search  = $meta['youtube_search'];
 
         <script>
 
+            pubsToFilterOut = <?php echo json_encode($filter_out); ?>;
+
             $(document).ready(function() {
 
                 var ele = document.getElementById("lottie");

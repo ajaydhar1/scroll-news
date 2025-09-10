@@ -33,20 +33,28 @@ function fetchRSSArticles(feedUrl, category) {
       		}
 
       		articles.forEach(article => {
-        		const card = `
-          			<div class="col-md-4 mb-4">
-            			<div class="card h-100">
-              				<img src="${article.image || 'assets/img/news-placeholder.jpg'}" class="card-img-top news-modal" alt="" onerror="this.src = 'assets/img/news-placeholder.jpg';">
-              				<div class="card-body d-flex flex-column">
-                 				<h4 class="card-title mb-2">${article.title}</h4>
-                 				<p class="card-text text-muted mb-1"><small><a target="_blank" href="https://${article.publisher}">${article.publisher}</a>${article.pubDate ? ' • ' + timeElapsedString(article.pubDate) : ''}</small></p>
-                 				<p class="card-text">${article.description}</p>
-                 				<a href="newsroom.php?url=${encodeURIComponent(article.link)}&category=${category}" class="btn btn-green mt-auto">Analyze</a>
-              				</div>
-            			</div>
-         			</div>
-        		`;
-        		container.append(card);
+
+            const filterOutPublisher = pubsToFilterOut.some(substring => article.link.includes(substring));
+
+            if (!filterOutPublisher) {
+
+              const card = `
+                <div class="col-md-4 mb-4">
+                  <div class="card h-100">
+                      <img src="${article.image || 'assets/img/news-placeholder.jpg'}" class="card-img-top news-modal" alt="" onerror="this.src = 'assets/img/news-placeholder.jpg';">
+                      <div class="card-body d-flex flex-column">
+                        <h4 class="card-title mb-2">${article.title}</h4>
+                        <p class="card-text text-muted mb-1"><small><a target="_blank" href="https://${article.publisher}">${article.publisher}</a>${article.pubDate ? ' • ' + timeElapsedString(article.pubDate) : ''}</small></p>
+                        <p class="card-text">${article.description}</p>
+                        <a href="newsroom.php?url=${encodeURIComponent(article.link)}&category=${category}" class="btn btn-green mt-auto">Analyze</a>
+                      </div>
+                  </div>
+              </div>
+            `;
+            container.append(card);
+
+            }
+
       		});
    		}
   	});
@@ -106,29 +114,34 @@ $("#searchNewsBtn").click(function () {
     .then(data => {
     	if (!data.items) return;
 
-        const rows = data.items.map(article => {
-        	return [
-             	article.title,
-                article.publisher,
-               	timeElapsedString(new Date(article.pubDate)),
-               	`<button class="btn btn-sm btn-green" onclick="analyzeNews('${article.link}')">Analyze</button>`
-            ];
-        });
+      const rows = data.items.map(article => {
+      	
+        const filterOutPublisher = pubsToFilterOut.some(substring => article.link.includes(substring));
 
-        if (!searchTable) {
-        	searchTable = $('#searchResultsTable').DataTable({
-            	data: rows,
-                columns: [
-                	{ title: "Title" },
-                    { title: "Publisher" },
-                    { title: "Published" },
-                    { title: "Actions" }
-                ]
-            });
-        } else {
-        	searchTable.clear();
-            searchTable.rows.add(rows).draw();
+        if (!filterOutPublisher) {
+          return [
+             	article.title,
+              article.publisher,
+              timeElapsedString(new Date(article.pubDate)),
+              `<button class="btn btn-sm btn-green" onclick="analyzeNews('${article.link}')">Analyze</button>`
+            ];
         }
+      });
+
+      if (!searchTable) {
+      	searchTable = $('#searchResultsTable').DataTable({
+          	data: rows,
+              columns: [
+              	{ title: "Title" },
+                  { title: "Publisher" },
+                  { title: "Published" },
+                  { title: "Actions" }
+              ]
+          });
+      } else {
+      	searchTable.clear();
+        searchTable.rows.add(rows).draw();
+      }
 
     })
     .catch(err => {
