@@ -25,7 +25,7 @@ function search_google_knowledge($query) {
   //  echo $element['result']['name'] . '<br/>';
   //}
   return $response;
-} 
+}
 
 function http_get($url) {
   $ch = curl_init($url);
@@ -50,7 +50,6 @@ function http_get($url) {
   $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
   $err    = curl_error($ch);
   curl_close($ch);
-  
   return [$status, $body, $err];
 }
 
