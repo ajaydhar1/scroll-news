@@ -474,7 +474,28 @@ function getRandomArticle_fromRSS() {
   return ['category' => $key, 'link' => $articles[array_rand($articles)]];
 }
 
-function getRandomArticle_fromDB() {
+// Helper: build "url NOT ILIKE :f0 AND url NOT ILIKE :f1 ..." + params
+function buildNotILikeNamed(array $needles, string $col = 'url'): array {
+    if (empty($needles)) return ['', []];
+    $parts  = [];
+    $params = [];
+    foreach (array_values($needles) as $i => $s) {
+        $key = ":f{$i}";
+        $parts[] = "$col NOT ILIKE $key";
+        $params[$key] = '%' . $s . '%';   // contains substring, case-insensitive
+    }
+    return [implode(' AND ', $parts), $params];
+}
+
+// Obtain PDO the same way you already do.
+// If you have getPdoOrExplain(), this will use it; otherwise falls back to getPdo().
+function _pdo_or_null() {
+    if (function_exists('getPdoOrExplain')) return getPdoOrExplain();
+    if (function_exists('getPdo'))         return getPdo();
+    return null;
+}
+
+function getRandomArticle_fromDB_byRandom() {
 
     global $filter_out;
 
@@ -529,6 +550,116 @@ function getRandomArticle_fromDB() {
         error_log("getRandomArticle DB error: " . $e->getMessage());
         return ['category' => 'db', 'link' => null];
     }
+}
+
+// ID-range sampler version
+function getRandomArticle_fromDB(bool $requireEntities = false): array {
+    global $filter_out;                    // use your existing array
+    $pdo = _pdo_or_null();
+    if (!$pdo) {
+        // No driver / no DATABASE_URL — keep your existing fallback
+        return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
+                                                          : ['category' => 'db', 'link' => null];
+    }
+
+    // Base "ready" predicate
+    $ready = "nlp IS NOT NULL AND COALESCE(octet_length(screenshot_bytes),0) > 0";
+
+    // Optional: require non-empty nlp.entities (treat nlp as jsonb)
+    if ($requireEntities) {
+        $ready .= " AND ((nlp::jsonb) ? 'entities'
+                     AND jsonb_typeof((nlp::jsonb)->'entities') = 'array'
+                     AND jsonb_array_length((nlp::jsonb)->'entities') > 0)";
+    }
+
+    // Filters: NOT ILIKE any of $filter_out
+    [$notLikeSql, $notLikeParams] = buildNotILikeNamed(is_array($filter_out) ? $filter_out : []);
+
+    // ---- 1) Get bounds over READY rows (helps the sampler jump into the range)
+    $sqlBounds = "
+        SELECT MIN(id) AS min_id, MAX(id) AS max_id
+        FROM articles
+        WHERE $ready " . ($notLikeSql ? " AND $notLikeSql" : "");
+    $stmt = $pdo->prepare($sqlBounds);
+    $stmt->execute($notLikeParams);
+    $b = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $minId = (int)($b['min_id'] ?? 0);
+    $maxId = (int)($b['max_id'] ?? 0);
+    if ($minId === 0 || $maxId === 0) {
+        // No ready rows in DB — fall back
+        return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
+                                                          : ['category' => 'db', 'link' => null];
+    }
+
+    // ---- 2) Fast ID-range picks (forward + wrap), a few attempts
+    $pickFwdSql = "
+        SELECT id, url, title
+        FROM articles
+        WHERE id >= :cand AND $ready " . ($notLikeSql ? " AND $notLikeSql" : "") . "
+        ORDER BY id ASC
+        LIMIT 1";
+    $pickWrapSql = "
+        SELECT id, url, title
+        FROM articles
+        WHERE id < :cand AND $ready " . ($notLikeSql ? " AND $notLikeSql" : "") . "
+        ORDER BY id ASC
+        LIMIT 1";
+
+    $pickFwd  = $pdo->prepare($pickFwdSql);
+    $pickWrap = $pdo->prepare($pickWrapSql);
+
+    for ($i = 0; $i < 8; $i++) {
+        $cand = ($maxId > $minId) ? random_int($minId, $maxId) : $minId;
+
+        // Forward from candidate
+        $params = array_merge([':cand' => $cand], $notLikeParams);
+        $pickFwd->execute($params);
+        $row = $pickFwd->fetch(PDO::FETCH_ASSOC);
+        if ($row && !empty($row['url'])) {
+            return [
+                'category'   => 'db',
+                'link'       => $row['url'],
+                'article_id' => (int)$row['id'],
+                'title'      => $row['title'] ?? null,
+            ];
+        }
+
+        // Wrap-around to beginning of range
+        $pickWrap->execute($params);
+        $row = $pickWrap->fetch(PDO::FETCH_ASSOC);
+        if ($row && !empty($row['url'])) {
+            return [
+                'category'   => 'db',
+                'link'       => $row['url'],
+                'article_id' => (int)$row['id'],
+                'title'      => $row['title'] ?? null,
+            ];
+        }
+    }
+
+    // ---- 3) Last-resort: RANDOM() over READY set (still respects filters)
+    $sqlFallback = "
+        SELECT id, url, title
+        FROM articles
+        WHERE $ready " . ($notLikeSql ? " AND $notLikeSql" : "") . "
+        ORDER BY RANDOM()
+        LIMIT 1";
+    $stmt = $pdo->prepare($sqlFallback);
+    $stmt->execute($notLikeParams);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($row && !empty($row['url'])) {
+        return [
+            'category'   => 'db',
+            'link'       => $row['url'],
+            'article_id' => (int)$row['id'],
+            'title'      => $row['title'] ?? null,
+        ];
+    }
+
+    // Nothing matched — fall back
+    return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
+                                                      : ['category' => 'db', 'link' => null];
 }
 
 // Returns the row or null if not found
