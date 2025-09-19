@@ -517,7 +517,7 @@ function getRandomArticle_fromDB() {
 }
 
 // Returns the row or null if not found
-function getNLPFromDB(PDO $pdo, string $url): ?array {
+function getNLPFromDB(string $url): ?array {
     
     $pdo = getPdoOrExplain();
     if (!$pdo) {
