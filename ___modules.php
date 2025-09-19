@@ -526,7 +526,7 @@ function getNLPFromDB(string $url): ?array {
     }
 
     $sql = "
-        SELECT id, url, title, nlp, screenshot_bytes
+        SELECT id, url, nlp, screenshot_bytes
         FROM articles
         WHERE url = :url
         LIMIT 1
