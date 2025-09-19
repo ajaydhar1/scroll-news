@@ -474,6 +474,17 @@ function getRandomArticle_fromRSS() {
   return ['category' => $key, 'link' => $articles[array_rand($articles)]];
 }
 
+// Build "url NOT ILIKE ? AND url NOT ILIKE ? ..."
+function buildNotLikeClause(array $needles, string $col = 'url'): array {
+    $clauses = [];
+    $params  = [];
+    foreach ($needles as $s) {
+        $clauses[] = "$col NOT ILIKE ?";
+        $params[]  = '%' . $s . '%';   // contains substring (case-insensitive)
+    }
+    return [implode(' AND ', $clauses), $params];
+}
+
 function getRandomArticle_fromDB() {
 
     global $filter_out;
@@ -484,16 +495,20 @@ function getRandomArticle_fromDB() {
         return getRandomArticle_fromRSS();
     }
 
+    // Usage in getRandomArticle_fromDB():
+    [$notLikeSql, $notLikeParams] = buildNotLikeClause($filter_out);
+
     // Pull a single random article that is fully "ready"
     // - nlp IS NOT NULL
     // - screenshot_bytes present (bytea or text; we check size > 0)
     $sql = "
-        SELECT id, url, nlp, screenshot_bytes
-        FROM articles
-        WHERE nlp IS NOT NULL
-          AND octet_length(screenshot_bytes) > 0
-        ORDER BY RANDOM()
-        LIMIT 1
+      SELECT id, url, nlp, screenshot_bytes
+      FROM articles
+      WHERE nlp IS NOT NULL
+        AND COALESCE(octet_length(screenshot_bytes),0) > 0
+        " . ($notLikeSql ? " AND $notLikeSql" : "") . "
+      ORDER BY RANDOM()
+      LIMIT 1
     ";
 
     try {
