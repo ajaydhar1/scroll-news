@@ -553,7 +553,7 @@ function getRandomArticle_fromDB_byRandom() {
 }
 
 // ID-range sampler version
-function getRandomArticle_fromDB(bool $requireEntities = false): array {
+function getRandomArticle_fromDB(bool $requireEntities = true): array {
     global $filter_out;                    // use your existing array
     $pdo = _pdo_or_null();
     if (!$pdo) {
