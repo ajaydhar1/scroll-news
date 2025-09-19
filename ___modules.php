@@ -6,6 +6,34 @@ $filter_out = array("usatoday", "independent.co.uk", "nytimes", "9to5google", "t
 
 $rss_feeds = array("Politics" => "https://rss.app/feeds/tahaOzLGHPxMD9OC.xml", "Business" => "https://rss.app/feeds/tDmGft5qv7QGmWHv.xml", "Technology" => "https://rss.app/feeds/t8coleFVxgPf56NK.xml", "Sports" => "https://rss.app/feeds/tCQMLQm6AHeQ5hJk.xml", "Health" => "https://rss.app/feeds/tZPiCoHdJqTYlcZc.xml", "Science" => "https://rss.app/feeds/tLSguoVp4t7wa1eJ.xml", "Entertainment" => "https://rss.app/feeds/tBiQM8jJROm1RYn3.xml");
 
+function getPdo(): PDO {
+    static $pdo = null;
+    if ($pdo) return $pdo;
+
+    $dbUrl = getenv('DATABASE_URL');
+    if ($dbUrl) {
+        $parts = parse_url($dbUrl);
+        $host  = $parts['host'] ?? '127.0.0.1';
+        $port  = $parts['port'] ?? 5432;
+        $user  = $parts['user'] ?? '';
+        $pass  = $parts['pass'] ?? '';
+        $db    = ltrim($parts['path'] ?? '', '/');
+        $dsn   = "pgsql:host={$host};port={$port};dbname={$db};sslmode=require";
+    } else {
+        $host = getenv('PGHOST')     ?: '127.0.0.1';
+        $port = getenv('PGPORT')     ?: '5432';
+        $db   = getenv('PGDATABASE') ?: 'postgres';
+        $user = getenv('PGUSER')     ?: 'postgres';
+        $pass = getenv('PGPASSWORD') ?: '';
+        $dsn  = "pgsql:host={$host};port={$port};dbname={$db}";
+    }
+
+    $pdo = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ]);
+    return $pdo;
+}
 
 function search_google_knowledge($query) {
   $api_key = 'AIzaSyBhQWmKz8I-IRm3lKiQcHK9NANFgnbfAf0';
@@ -369,7 +397,7 @@ function doesntContainAny($string, array $needles) {
   return true; // No matches found after checking all substrings
 }
 
-function getRandomArticle() {
+function getRandomArticle_fromRSS() {
 
   global $filter_out;
   global $rss_feeds;
@@ -390,6 +418,50 @@ function getRandomArticle() {
   }
 
   return ['category' => $key, 'link' => $articles[array_rand($articles)]];
+}
+
+function getRandomArticle_fromDB() {
+
+    try {
+        $pdo = getPdo(); // PDO for Postgres
+    }
+    catch (Exception $e) {
+        // call your old RSS-based randomizer
+        return getRandomArticle_fromRSS();
+    }
+
+    // Pull a single random article that is fully "ready"
+    // - nlp IS NOT NULL
+    // - screenshot_bytes present (bytea or text; we check size > 0)
+    $sql = "
+        SELECT id, url, title, nlp, screenshot_bytes
+        FROM articles
+        WHERE nlp IS NOT NULL
+          AND octet_length(screenshot_bytes) > 0
+        ORDER BY RANDOM()
+        LIMIT 1
+    ";
+
+    try {
+        $stmt = $pdo->query($sql);
+        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$row || empty($row['url'])) {
+            // Nothing ready in cache; return a safe fallback shape.
+            return ['category' => 'db', 'link' => null];
+        }
+
+        // Optional: keep the full row in case your caller wants it later.
+        // Return shape remains backward-compatible.
+        return [
+            'category' => 'db',          // previously was RSS category; now mark as DB
+            'link'     => $row['url'],   // the URL your app will open
+            'article'  => $row           // (optional) full record for advanced use
+        ];
+    } catch (Throwable $e) {
+        error_log("getRandomArticle DB error: " . $e->getMessage());
+        return ['category' => 'db', 'link' => null];
+    }
 }
 
 function clean_string($str) {

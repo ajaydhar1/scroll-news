@@ -7,7 +7,7 @@ require_once __DIR__ . '/../Feed.php';
 function newsroom_resolve_article(): array {
     // If no URL, pick a random and redirect (preserves your current behavior)
     if (empty($_GET['url'])) {
-        $random = getRandomArticle(); // ['category'=>..., 'link'=>...]
+        $random = getRandomArticle_fromDB(); // ['category'=>..., 'link'=>...]
         header('Location: newsroom.php?url=' . urlencode($random['link']) . '&category=' . urlencode($random['category']));
         exit;
     }
