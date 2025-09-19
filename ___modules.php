@@ -594,13 +594,13 @@ function getRandomArticle_fromDB(bool $requireEntities = false): array {
 
     // ---- 2) Fast ID-range picks (forward + wrap), a few attempts
     $pickFwdSql = "
-        SELECT id, url, title
+        SELECT id, url
         FROM articles
         WHERE id >= :cand AND $ready " . ($notLikeSql ? " AND $notLikeSql" : "") . "
         ORDER BY id ASC
         LIMIT 1";
     $pickWrapSql = "
-        SELECT id, url, title
+        SELECT id, url
         FROM articles
         WHERE id < :cand AND $ready " . ($notLikeSql ? " AND $notLikeSql" : "") . "
         ORDER BY id ASC
@@ -620,8 +620,7 @@ function getRandomArticle_fromDB(bool $requireEntities = false): array {
             return [
                 'category'   => 'db',
                 'link'       => $row['url'],
-                'article_id' => (int)$row['id'],
-                'title'      => $row['title'] ?? null,
+                'article_id' => (int)$row['id']
             ];
         }
 
@@ -632,8 +631,7 @@ function getRandomArticle_fromDB(bool $requireEntities = false): array {
             return [
                 'category'   => 'db',
                 'link'       => $row['url'],
-                'article_id' => (int)$row['id'],
-                'title'      => $row['title'] ?? null,
+                'article_id' => (int)$row['id']
             ];
         }
     }
@@ -652,8 +650,7 @@ function getRandomArticle_fromDB(bool $requireEntities = false): array {
         return [
             'category'   => 'db',
             'link'       => $row['url'],
-            'article_id' => (int)$row['id'],
-            'title'      => $row['title'] ?? null,
+            'article_id' => (int)$row['id']
         ];
     }
 
