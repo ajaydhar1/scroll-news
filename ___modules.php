@@ -566,7 +566,7 @@ function getRandomArticle_fromDB(bool $requireEntities = true): array {
     $entitiesClause = '';
     if ($requireEntities) {
       // Requires: ..."entities": [ <something not just ] >
-      $entitiesClause = " AND (nlp ? 'entities' AND jsonb_typeof(nlp->'entities') = 'array' AND jsonb_array_length(nlp->'entities') > 0)";
+      $entitiesClause = " AND (nlp::text) NOT LIKE '%\"entities\": []%'";
     }
 
     // Base ready predicate (no JSON casts)
@@ -596,13 +596,13 @@ function getRandomArticle_fromDB(bool $requireEntities = true): array {
     $pickFwdSql = "
         SELECT id, url
         FROM articles
-        WHERE id >= :cand AND $ready " . ($notLikeSql ? " AND $notLikeSql" : "") . "
+        WHERE id >= :cand AND $ready $entitiesClause " . ($notLikeSql ? " AND $notLikeSql" : "") . "
         ORDER BY id ASC
         LIMIT 1";
     $pickWrapSql = "
         SELECT id, url
         FROM articles
-        WHERE id < :cand AND $ready " . ($notLikeSql ? " AND $notLikeSql" : "") . "
+        WHERE id < :cand AND $ready $entitiesClause " . ($notLikeSql ? " AND $notLikeSql" : "") . "
         ORDER BY id ASC
         LIMIT 1";
 
