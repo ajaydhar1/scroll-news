@@ -35,6 +35,60 @@ function getPdo(): PDO {
     return $pdo;
 }
 
+// Tiny JSON logger
+function logj(string $msg, array $ctx = []): void {
+    error_log($msg . ' ' . json_encode($ctx, JSON_UNESCAPED_SLASHES));
+}
+
+function getPdoOrExplain(): ?PDO {
+    // Make sure errors go to logs
+    error_reporting(E_ALL);
+    ini_set('log_errors', '1');
+    ini_set('display_errors', '0');
+
+    // 1) Driver present?
+    $drivers = class_exists('PDO') ? PDO::getAvailableDrivers() : [];
+    if (!in_array('pgsql', $drivers, true)) {
+        logj('DB init: pdo_pgsql not loaded', ['drivers' => $drivers]);
+        return null;
+    }
+
+    // 2) Build DSN from DATABASE_URL (Heroku/Render) or PG* envs
+    $dbUrl = getenv('DATABASE_URL') ?: '';
+    if ($dbUrl) {
+        $p = parse_url($dbUrl);
+        $host = $p['host'] ?? '';
+        $port = $p['port'] ?? 5432;
+        $user = isset($p['user']) ? urldecode($p['user']) : '';
+        $pass = isset($p['pass']) ? urldecode($p['pass']) : '';
+        $db   = isset($p['path']) ? ltrim($p['path'], '/') : '';
+
+        // Internal Render DB hosts (e.g., *.internal) typically don't need SSL.
+        $isInternal = preg_match('/\.internal$/', $host) || in_array($host, ['localhost','127.0.0.1'], true);
+        $sslmode = $isInternal ? 'prefer' : 'require';
+
+        $dsn = "pgsql:host={$host};port={$port};dbname={$db};sslmode={$sslmode}";
+        try {
+            logj('DB connect try', ['host' => $host, 'port' => (int)$port, 'db' => $db, 'sslmode' => $sslmode]);
+            $pdo = new PDO($dsn, $user, $pass, [
+                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES   => false,
+            ]);
+            // Sanity ping
+            $pdo->query('SELECT 1');
+            logj('DB connect ok');
+            return $pdo;
+        } catch (Throwable $e) {
+            logj('DB connect failed', ['err' => $e->getMessage(), 'code' => $e->getCode()]);
+            return null;
+        }
+    } else {
+        logj('DB init: DATABASE_URL not set');
+        return null;
+    }
+}
+
 function search_google_knowledge($query) {
   $api_key = 'AIzaSyBhQWmKz8I-IRm3lKiQcHK9NANFgnbfAf0';
   $service_url = 'https://kgsearch.googleapis.com/v1/entities:search';
@@ -422,11 +476,9 @@ function getRandomArticle_fromRSS() {
 
 function getRandomArticle_fromDB() {
 
-    try {
-        $pdo = getPdo(); // PDO for Postgres
-    }
-    catch (Exception $e) {
-        // call your old RSS-based randomizer
+    $pdo = getPdoOrExplain();
+    if (!$pdo) {
+        logj('DB guard: falling back to RSS (no PDO)');
         return getRandomArticle_fromRSS();
     }
 
@@ -467,12 +519,10 @@ function getRandomArticle_fromDB() {
 // Returns the row or null if not found
 function getNLPFromDB(PDO $pdo, string $url): ?array {
     
-    try {
-        $pdo = getPdo(); // PDO for Postgres
-    }
-    catch (Exception $e) {
-        // call your old RSS-based randomizer
-        return getRandomArticle_fromRSS();
+    $pdo = getPdoOrExplain();
+    if (!$pdo) {
+        logj('DB guard: falling back to RSS (no PDO)');
+        return null;
     }
 
     $sql = "
@@ -481,7 +531,7 @@ function getNLPFromDB(PDO $pdo, string $url): ?array {
         WHERE url = :url
         LIMIT 1
     ";
-    
+
     $stmt = $pdo->prepare($sql);
     $stmt->execute([':url' => $url]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
