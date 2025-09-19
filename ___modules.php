@@ -474,17 +474,6 @@ function getRandomArticle_fromRSS() {
   return ['category' => $key, 'link' => $articles[array_rand($articles)]];
 }
 
-// Build "url NOT ILIKE ? AND url NOT ILIKE ? ..."
-function buildNotLikeClause(array $needles, string $col = 'url'): array {
-    $clauses = [];
-    $params  = [];
-    foreach ($needles as $s) {
-        $clauses[] = "$col NOT ILIKE ?";
-        $params[]  = '%' . $s . '%';   // contains substring (case-insensitive)
-    }
-    return [implode(' AND ', $clauses), $params];
-}
-
 function getRandomArticle_fromDB() {
 
     global $filter_out;
@@ -495,34 +484,35 @@ function getRandomArticle_fromDB() {
         return getRandomArticle_fromRSS();
     }
 
-    // Usage in getRandomArticle_fromDB():
-    [$notLikeSql, $notLikeParams] = buildNotLikeClause($filter_out);
+    // Build the filter params once
+    $filters = array_map(fn($s) => '%' . $s . '%', $filter_out);
 
-    // Pull a single random article that is fully "ready"
-    // - nlp IS NOT NULL
-    // - screenshot_bytes present (bytea or text; we check size > 0)
+    // Only add the clause if there are filters
+    $notLikeClause = '';
+    if (!empty($filters)) {
+        $placeholders = implode(',', array_fill(0, count($filters), '?'));
+        $notLikeClause = " AND NOT (url ILIKE ANY(ARRAY[$placeholders]))";
+    }
+
     $sql = "
       SELECT id, url, nlp, screenshot_bytes
       FROM articles
       WHERE nlp IS NOT NULL
         AND COALESCE(octet_length(screenshot_bytes),0) > 0
-        " . ($notLikeSql ? " AND $notLikeSql" : "") . "
+      $notLikeClause
       ORDER BY RANDOM()
       LIMIT 1
     ";
 
     try {
-        $stmt = $pdo->query($sql);
-        $row  = $stmt->fetch(PDO::FETCH_ASSOC);
+        // IMPORTANT: prepare + execute WITH params
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($filters); // <— this must match the number of ? in ARRAY[...]
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$row || empty($row['url'])) {
             // Nothing ready in cache; return a safe fallback shape.
             return ['category' => 'db', 'link' => null];
-        }
-
-        // If the publisher should be filtered out, find another article
-        if (!doesntContainAny($row['url'], $filter_out)) {
-          return getRandomArticle_fromDB();
         }
 
         // Optional: keep the full row in case your caller wants it later.
