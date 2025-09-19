@@ -486,7 +486,7 @@ function getRandomArticle_fromDB() {
     // - nlp IS NOT NULL
     // - screenshot_bytes present (bytea or text; we check size > 0)
     $sql = "
-        SELECT id, url, title, nlp, screenshot_bytes
+        SELECT id, url, nlp, screenshot_bytes
         FROM articles
         WHERE nlp IS NOT NULL
           AND octet_length(screenshot_bytes) > 0
