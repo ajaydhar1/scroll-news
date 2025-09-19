@@ -199,7 +199,7 @@ button.nav-link.active {
 }
 
 .introjs-tooltiptext {
-    font-size: 18px;
+    font-size: 16px;
     line-height: calc(var(--line-height-unit) * 1.22) !important;
 }
 
