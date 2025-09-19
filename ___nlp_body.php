@@ -321,39 +321,4 @@
           </script>
 
 
-          <?php
-            function render_empty_analytics(string $url, string $reason = 'No features in text.') {
-              $host = parse_url($url, PHP_URL_HOST) ?: 'this page';
-              // Small, in-panel empty state card
-              return <<<HTML
-            <div class="card shadow-sm border-0 empty-analytics">
-              <div class="card-body d-flex align-items-start gap-3">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <circle cx="12" cy="12" r="10" fill="#eef2ff"></circle>
-                  <path d="M12 7v6" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
-                  <circle cx="12" cy="16" r="1.5" fill="#6366f1"/>
-                </svg>
-                <div>
-                  <h6 class="mb-1">Nothing to analyze</h6>
-                  <p class="mb-2 text-muted small">
-                    We couldn’t find enough readable text on <span class="fw-semibold">{$host}</span> to compute keywords, entities, topics, or sentiment.
-                  </p>
-                  <div class="d-flex gap-2">
-                    <a class="btn btn-sm btn-outline-secondary mr-2" href="{$url}" target="_blank" rel="noopener">Open article</a>
-                    <button class="btn btn-sm btn-primary" onclick="reanalyzeAnalytics('{$url}')">Retry</button>
-                  </div>
-                  <details class="mt-2 small text-muted">
-                    <summary class="pointer">Why?</summary>
-                    <ul class="mb-0 ps-3">
-                      <li>Video/live page or gallery</li>
-                      <li>Very short post or headline-only</li>
-                      <li>Paywall or script-rendered content</li>
-                    </ul>
-                  </details>
-                </div>
-              </div>
-            </div>
-            HTML;
-            }
-
-            ?>
+          
