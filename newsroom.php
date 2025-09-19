@@ -684,7 +684,7 @@ $youtube_search  = $meta['youtube_search'];
               const hide = () => overlay && (overlay.hidden = true);
 
               // Show spinner when navigating away (page links/forms)
-              window.addEventListener('beforeunload', show);
+              //window.addEventListener('beforeunload', show);
 
               // Hide when page is ready (covers BFCache too)
               window.addEventListener('pageshow', hide);

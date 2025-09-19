@@ -78,6 +78,25 @@
 
     </head>
     <body id="page-top">
+
+        <!-- Loading overlay -->
+        <div id="loadingOverlay" class="loading-overlay" aria-live="polite" aria-busy="true" hidden>
+          <div class="loading-spinner" role="status" aria-label="Loading"></div>
+        </div>
+
+        <style>
+          .loading-overlay{
+            position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+            background:rgba(255,255,255,0.82); z-index:2000; backdrop-filter:saturate(120%) blur(2px);
+          }
+          .loading-spinner{
+            width:48px; height:48px; border:4px solid #e5e7eb; border-top-color:#0d6efd;
+            border-radius:50%; animation:spin 1s linear infinite;
+          }
+          @keyframes spin{to{transform:rotate(360deg)}}
+          @media (prefers-reduced-motion: reduce){ .loading-spinner{animation:none} }
+        </style>
+
         <!-- topnav-->
         <footer class="footer py-4 bg-white sticky-top">
             <div class="container">
@@ -92,7 +111,7 @@
                     </div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-black btn-social mx-2" title="About" href="about.html"><i class="fas fa-align-right"></i></a>
-                        <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" onclick=""><i class="fas fa-play"></i></a>
+                        <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" onclick="" data-loading><i class="fas fa-play"></i></a>
                         <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.html"><i class="fas fa-align-left"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-right" style=""><a href="about.html">About</a></div>
@@ -389,5 +408,39 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+        <script>
+            (function(){
+              const overlay = document.getElementById('loadingOverlay');
+              const show = () => overlay && (overlay.hidden = false);
+              const hide = () => overlay && (overlay.hidden = true);
+
+              // Show spinner when navigating away (page links/forms)
+              //window.addEventListener('beforeunload', show);
+
+              // Hide when page is ready (covers BFCache too)
+              window.addEventListener('pageshow', hide);
+
+              // For specific buttons/links, add data-loading attribute
+              document.addEventListener('click', function(e){
+                const t = e.target.closest('[data-loading]');
+                if (t) show();
+              });
+
+              // Optional: inline button spinner (keeps overlay too)
+              document.addEventListener('click', function(e){
+                const btn = e.target.closest('[data-loading-btn]');
+                if (!btn) return;
+                btn.dataset.originalHtml = btn.innerHTML;
+                btn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span>&nbsp;Loading…';
+                btn.classList.add('disabled'); btn.setAttribute('aria-busy','true');
+              });
+
+              // Minimal CSS for inline button spinner:
+              const style = document.createElement('style');
+              style.textContent = '.btn-spinner{display:inline-block;width:1em;height:1em;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .6s linear infinite;vertical-align:-0.125em}';
+              document.head.appendChild(style);
+            })();
+        </script>
     </body>
 </html>

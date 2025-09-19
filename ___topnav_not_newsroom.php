@@ -1,3 +1,21 @@
+        <!-- Loading overlay -->
+        <div id="loadingOverlay" class="loading-overlay" aria-live="polite" aria-busy="true" hidden>
+          <div class="loading-spinner" role="status" aria-label="Loading"></div>
+        </div>
+
+        <style>
+          .loading-overlay{
+            position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+            background:rgba(255,255,255,0.82); z-index:2000; backdrop-filter:saturate(120%) blur(2px);
+          }
+          .loading-spinner{
+            width:48px; height:48px; border:4px solid #e5e7eb; border-top-color:#0d6efd;
+            border-radius:50%; animation:spin 1s linear infinite;
+          }
+          @keyframes spin{to{transform:rotate(360deg)}}
+          @media (prefers-reduced-motion: reduce){ .loading-spinner{animation:none} }
+        </style>
+
         <footer class="footer py-4 bg-white sticky-top">
             <div class="container">
                 <div class="row align-items-center">
