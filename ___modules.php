@@ -535,7 +535,7 @@ function getNLPFromDB(string $url) {
     $stmt = $pdo->prepare($sql);
     $stmt->execute([':url' => $url]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $row['nlp'] ?: null;
+    return json_decode($row['nlp'], true) ?: null;
 }
 
 function clean_string($str) {
