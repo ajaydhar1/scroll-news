@@ -464,6 +464,30 @@ function getRandomArticle_fromDB() {
     }
 }
 
+// Returns the row or null if not found
+function getNLPFromDB(PDO $pdo, string $url): ?array {
+    
+    try {
+        $pdo = getPdo(); // PDO for Postgres
+    }
+    catch (Exception $e) {
+        // call your old RSS-based randomizer
+        return getRandomArticle_fromRSS();
+    }
+
+    $sql = "
+        SELECT id, url, title, nlp, screenshot_bytes
+        FROM articles
+        WHERE url = :url
+        LIMIT 1
+    ";
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':url' => $url]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row ?: null;
+}
+
 function clean_string($str) {
     // Remove spaces, parentheses, and periods
     return preg_replace('/[.,\s()\-\&]/', '', $str);}

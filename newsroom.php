@@ -156,8 +156,24 @@ $youtube_search  = $meta['youtube_search'];
                             <h2>🧠 NLP Dashboard</h2>
                         </div>
                         <div id="analytics" class="skeleton">
-                            <div id="lottie" class="mb-4"></div>
-                            <!-- NLP results (injected from AJAX) will appear here -->
+
+                            <?php
+
+                            if ($category == "db") {
+                                $arr = getNLPFromDB($url);
+                                require_once("___nlp_body.php");
+                            }
+
+                            else {
+
+                                echo '
+                                    <div id="lottie" class="mb-4"></div>
+                                    <!-- NLP results (injected from AJAX) will appear here -->
+                                ';
+                            
+                            }
+
+                            ?>
                         </div>
                     </div>
 
@@ -314,6 +330,12 @@ $youtube_search  = $meta['youtube_search'];
 
         </script>
 
+        <?php
+
+        if ($category !== "db") {
+
+        ?>
+        
         <script>
 
             pubsToFilterOut = <?php echo json_encode($filter_out); ?>;
@@ -562,6 +584,12 @@ $youtube_search  = $meta['youtube_search'];
             });
 
         </script>
+
+        <?php
+
+        } 
+
+        ?>
 
         <script>
             async function reanalyzeAnalytics(url, container = '#analytics') {
