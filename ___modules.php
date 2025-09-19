@@ -498,7 +498,9 @@ function getRandomArticle_fromDB() {
       SELECT id, url, nlp, screenshot_bytes
       FROM articles
       WHERE nlp IS NOT NULL
-        AND nlp NOT LIKE '%\"entities\": []%'
+        AND ( (nlp::jsonb) ? 'entities'
+              AND jsonb_typeof((nlp::jsonb)->'entities') = 'array'
+              AND jsonb_array_length((nlp::jsonb)->'entities') > 0 )
         AND COALESCE(octet_length(screenshot_bytes),0) > 0
       $notLikeClause
       ORDER BY RANDOM()
