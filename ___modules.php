@@ -562,15 +562,15 @@ function getRandomArticle_fromDB(bool $requireEntities = true): array {
                                                           : ['category' => 'db', 'link' => null];
     }
 
-    // Base "ready" predicate
-    $ready = "nlp IS NOT NULL AND COALESCE(octet_length(screenshot_bytes),0) > 0";
-
-    // Optional: require non-empty nlp.entities (treat nlp as jsonb)
+    // Add near the top of the function:
+    $entitiesClause = '';
     if ($requireEntities) {
-        $ready .= " AND ((nlp::jsonb) ? 'entities'
-                     AND jsonb_typeof((nlp::jsonb)->'entities') = 'array'
-                     AND jsonb_array_length((nlp::jsonb)->'entities') > 0)";
+      // Requires: ..."entities": [ <something not just ] >
+      $entitiesClause = " AND nlp ~ '\"entities\"\\s*:\\s*\\[\\s*[^\\]]'";
     }
+
+    // Base ready predicate (no JSON casts)
+    $ready = "nlp IS NOT NULL AND COALESCE(octet_length(screenshot_bytes),0) > 0";
 
     // Filters: NOT ILIKE any of $filter_out
     [$notLikeSql, $notLikeParams] = buildNotILikeNamed(is_array($filter_out) ? $filter_out : []);
@@ -579,7 +579,7 @@ function getRandomArticle_fromDB(bool $requireEntities = true): array {
     $sqlBounds = "
         SELECT MIN(id) AS min_id, MAX(id) AS max_id
         FROM articles
-        WHERE $ready " . ($notLikeSql ? " AND $notLikeSql" : "");
+        WHERE $ready $entitiesClause " . ($notLikeSql ? " AND $notLikeSql" : "");
     $stmt = $pdo->prepare($sqlBounds);
     $stmt->execute($notLikeParams);
     $b = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -640,7 +640,7 @@ function getRandomArticle_fromDB(bool $requireEntities = true): array {
     $sqlFallback = "
         SELECT id, url, title
         FROM articles
-        WHERE $ready " . ($notLikeSql ? " AND $notLikeSql" : "") . "
+        WHERE $ready $entitiesClause " . ($notLikeSql ? " AND $notLikeSql" : "") . "
         ORDER BY RANDOM()
         LIMIT 1";
     $stmt = $pdo->prepare($sqlFallback);
