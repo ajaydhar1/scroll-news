@@ -566,7 +566,7 @@ function getRandomArticle_fromDB(bool $requireEntities = true): array {
     $entitiesClause = '';
     if ($requireEntities) {
       // Requires: ..."entities": [ <something not just ] >
-      $entitiesClause = " AND nlp ~ '\"entities\"\\s*:\\s*\\[\\s*[^\\]]'";
+      $entitiesClause = " AND (nlp ? 'entities' AND jsonb_typeof(nlp->'entities') = 'array' AND jsonb_array_length(nlp->'entities') > 0)";
     }
 
     // Base ready predicate (no JSON casts)
