@@ -2,7 +2,7 @@
 
 date_default_timezone_set('America/New_York');
 
-$filter_out = array("usatoday", "independent.co.uk", "nytimes", "9to5google", "tomsguide", "thehockeynews", "cbssports", "businessinsider", "abc7chicago", "livescience", "wlns", "myedmondsnews", "reuters", "sportingnews", "bloomberg", "wane.com", "politico", "wvpublic", "cnbc", "mercurynews", "utahstories", "imdb", "9to5mac", "cnn", "mashable", "stpetecatalyst", "kark", "journalism.cuny.edu", "yahoo.com", "startribune", "wgntv");
+$filter_out = array("usatoday", "independent.co.uk", "nytimes", "9to5google", "tomsguide", "thehockeynews", "cbssports", "businessinsider", "abc7chicago", "livescience", "wlns", "myedmondsnews", "reuters", "sportingnews", "bloomberg", "wane.com", "politico", "wvpublic", "cnbc", "mercurynews", "utahstories", "imdb", "9to5mac", "cnn", "mashable", "stpetecatalyst", "kark", "journalism.cuny.edu", "yahoo.com", "startribune", "wgntv", "msnbc");
 
 $rss_feeds = array("Politics" => "https://rss.app/feeds/tahaOzLGHPxMD9OC.xml", "Business" => "https://rss.app/feeds/tDmGft5qv7QGmWHv.xml", "Technology" => "https://rss.app/feeds/t8coleFVxgPf56NK.xml", "Sports" => "https://rss.app/feeds/tCQMLQm6AHeQ5hJk.xml", "Health" => "https://rss.app/feeds/tZPiCoHdJqTYlcZc.xml", "Science" => "https://rss.app/feeds/tLSguoVp4t7wa1eJ.xml", "Entertainment" => "https://rss.app/feeds/tBiQM8jJROm1RYn3.xml");
 
@@ -476,6 +476,8 @@ function getRandomArticle_fromRSS() {
 
 function getRandomArticle_fromDB() {
 
+    global $filter_out;
+
     $pdo = getPdoOrExplain();
     if (!$pdo) {
         logj('DB guard: falling back to RSS (no PDO)');
@@ -501,6 +503,11 @@ function getRandomArticle_fromDB() {
         if (!$row || empty($row['url'])) {
             // Nothing ready in cache; return a safe fallback shape.
             return ['category' => 'db', 'link' => null];
+        }
+
+        // If the publisher should be filtered out, find another article
+        if (!doesntContainAny($row['url'], $filter_out)) {
+          return getRandomArticle_fromDB();
         }
 
         // Optional: keep the full row in case your caller wants it later.
