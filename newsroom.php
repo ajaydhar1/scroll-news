@@ -113,7 +113,13 @@ $youtube_search  = $meta['youtube_search'];
         <footer class="footer py-4 bg-white sticky-top">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left">
+                    <div class="col-lg-4 text-lg-left d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 align-items-center">
+                            <a href="index.php">
+                                <img src="assets/img/play-green.png" alt="Logo" style="height: 24px; width: auto; vertical-align: middle; margin-right: 5px; margin-bottom: 5px;">
+                                Scroll News
+                            </a>
+                        </h5>
                         <a class="btn btn-outline-dark analyze-btn" data-toggle="modal" data-target="#analyzeModal">
                             Analyze Article
                         </a>
