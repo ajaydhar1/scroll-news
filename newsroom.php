@@ -393,6 +393,12 @@ $youtube_search  = $meta['youtube_search'];
 
         </script>
 
+        <script>
+
+          pubsToFilterOut = <?php echo json_encode($filter_out); ?>;
+
+        </script>
+
         <?php
 
         if ($category !== "db") {
@@ -400,8 +406,6 @@ $youtube_search  = $meta['youtube_search'];
         ?>
         
         <script>
-
-            pubsToFilterOut = <?php echo json_encode($filter_out); ?>;
 
             $(document).ready(function() {
 
