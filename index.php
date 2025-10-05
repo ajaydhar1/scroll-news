@@ -27,6 +27,8 @@
 
         <link href="css/lightbox.css" rel="stylesheet" />
 
+        <link rel="preload" as="image" href="assets/img/header-bg-3.jpg">
+
         <style>
 
             header.masthead {
