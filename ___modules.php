@@ -553,7 +553,7 @@ function getRandomArticle_fromDB_byRandom() {
 }
 
 // ID-range sampler version
-function getRandomArticle_fromDB(bool $requireEntities = true): array {
+function getRandomArticle_fromDB_withoutRecent(bool $requireEntities = true): array {
     global $filter_out;                    // use your existing array
     $pdo = _pdo_or_null();
     if (!$pdo) {
@@ -645,6 +645,188 @@ function getRandomArticle_fromDB(bool $requireEntities = true): array {
         LIMIT 1";
     $stmt = $pdo->prepare($sqlFallback);
     $stmt->execute($notLikeParams);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($row && !empty($row['url'])) {
+        return [
+            'category'   => 'db',
+            'link'       => $row['url'],
+            'article_id' => (int)$row['id']
+        ];
+    }
+
+    // Nothing matched — fall back
+    return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
+                                                      : ['category' => 'db', 'link' => null];
+}
+
+// ID-range sampler version, with "recent only" window
+function getRandomArticle_fromDB(bool $requireEntities = true, int $days = 35): array {
+    global $filter_out;
+    $pdo = _pdo_or_null();
+    if (!$pdo) {
+        return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
+                                                          : ['category' => 'db', 'link' => null];
+    }
+
+    // ---- Helper: figure out which timestamp column we can use
+    $tsCol = 'updated_at';
+    /*
+    $tsCol = null;
+    try {
+        $candidates = ['published_at','created_at','indexed_at','added_at','first_seen_at','crawled_at'];
+        $in = implode(",", array_map(fn($i) => $pdo->quote($i), $candidates));
+        $chk = $pdo->query("
+            SELECT column_name
+            FROM information_schema.columns
+            WHERE table_name = 'articles' AND column_name IN ($in)
+            ORDER BY
+              CASE column_name
+                WHEN 'published_at' THEN 1
+                WHEN 'created_at'  THEN 2
+                WHEN 'indexed_at'  THEN 3
+                WHEN 'added_at'    THEN 4
+                WHEN 'first_seen_at' THEN 5
+                WHEN 'crawled_at'  THEN 6
+                ELSE 99
+              END
+            LIMIT 1
+        ");
+        $tsCol = ($chk && ($row = $chk->fetch(PDO::FETCH_ASSOC))) ? $row['column_name'] : null;
+    } catch (\Throwable $e) {
+        $tsCol = null; // proceed without date column if anything odd happens
+    }
+    */
+
+    // Entities filter (string-based, keeps you clear of JSONB regex issues)
+    $entitiesClause = '';
+    if ($requireEntities) {
+      $entitiesClause =
+        " AND (nlp::text) NOT LIKE '%\"entities\": []%'".
+        " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"X-Forbidden\", \"count\": 1, \"label\": \"ORG\"}]%'".
+        " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"JavaScript\", \"count\": 1, \"label\": \"PRODUCT\"}]%'".
+        " AND (nlp::text) NOT LIKE '%\"emotional_reaction\": {}%'";
+    }
+
+    // Ready predicate
+    $ready = "nlp IS NOT NULL AND COALESCE(octet_length(screenshot_bytes),0) > 0";
+
+    // Filters: NOT ILIKE any of $filter_out
+    [$notLikeSql, $notLikeParams] = buildNotILikeNamed(is_array($filter_out) ? $filter_out : []);
+
+    // Build the "recent" WHERE part + params, widening window if needed
+    $recentWhere = '';
+    $recentParams = [];
+    $windowDays  = $days;
+
+    $buildRecent = function(int $d) use ($tsCol) {
+        if ($tsCol) {
+            return [" AND {$tsCol} >= :since_ts", [':since_ts' => (new DateTimeImmutable("now"))->modify("-{$d} days")->format('Y-m-d H:i:s')]];
+        }
+        // If no timestamp column, we can’t time-filter reliably; return empty and rely on ID recency bias.
+        return ['', []];
+    };
+
+    // Try primary window
+    [$recentWhere, $recentParams] = $buildRecent($windowDays);
+
+    // ---- 1) Bounds over READY & RECENT rows
+    $sqlBounds = "
+        SELECT MIN(id) AS min_id, MAX(id) AS max_id
+        FROM articles
+        WHERE $ready $entitiesClause $recentWhere " . ($notLikeSql ? " AND $notLikeSql" : "");
+    $stmt = $pdo->prepare($sqlBounds);
+    $stmt->execute(array_merge($recentParams, $notLikeParams));
+    $b = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $minId = (int)($b['min_id'] ?? 0);
+    $maxId = (int)($b['max_id'] ?? 0);
+
+    // If nothing in the narrow window and we DO have a ts column, widen to ~90 days
+    if ($tsCol && ($minId === 0 || $maxId === 0)) {
+        $windowDays = 90;
+        [$recentWhere, $recentParams] = $buildRecent($windowDays);
+        $stmt = $pdo->prepare($sqlBounds);
+        $stmt->execute(array_merge($recentParams, $notLikeParams));
+        $b = $stmt->fetch(PDO::FETCH_ASSOC);
+        $minId = (int)($b['min_id'] ?? 0);
+        $maxId = (int)($b['max_id'] ?? 0);
+    }
+
+    // If still nothing and we had *no* ts column, we proceed without date restriction (legacy behavior)
+    if (($minId === 0 || $maxId === 0) && !$tsCol) {
+        // Try legacy bounds without a recentWhere
+        $sqlBoundsLegacy = "
+            SELECT MIN(id) AS min_id, MAX(id) AS max_id
+            FROM articles
+            WHERE $ready $entitiesClause " . ($notLikeSql ? " AND $notLikeSql" : "");
+        $stmt = $pdo->prepare($sqlBoundsLegacy);
+        $stmt->execute($notLikeParams);
+        $b = $stmt->fetch(PDO::FETCH_ASSOC);
+        $minId = (int)($b['min_id'] ?? 0);
+        $maxId = (int)($b['max_id'] ?? 0);
+    }
+
+    if ($minId === 0 || $maxId === 0) {
+        return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
+                                                          : ['category' => 'db', 'link' => null];
+    }
+
+    // ---- 2) Fast ID-range picks constrained by RECENT
+    $commonWhere = "$ready $entitiesClause $recentWhere" . ($notLikeSql ? " AND $notLikeSql" : "");
+
+    $pickFwdSql = "
+        SELECT id, url
+        FROM articles
+        WHERE id >= :cand AND $commonWhere
+        ORDER BY id ASC
+        LIMIT 1";
+    $pickWrapSql = "
+        SELECT id, url
+        FROM articles
+        WHERE id < :cand AND $commonWhere
+        ORDER BY id ASC
+        LIMIT 1";
+
+    $pickFwd  = $pdo->prepare($pickFwdSql);
+    $pickWrap = $pdo->prepare($pickWrapSql);
+
+    for ($i = 0; $i < 8; $i++) {
+        $cand = ($maxId > $minId) ? random_int($minId, $maxId) : $minId;
+
+        $params = array_merge([':cand' => $cand], $recentParams, $notLikeParams);
+
+        // Forward from candidate
+        $pickFwd->execute($params);
+        $row = $pickFwd->fetch(PDO::FETCH_ASSOC);
+        if ($row && !empty($row['url'])) {
+            return [
+                'category'   => 'db',
+                'link'       => $row['url'],
+                'article_id' => (int)$row['id']
+            ];
+        }
+
+        // Wrap-around
+        $pickWrap->execute($params);
+        $row = $pickWrap->fetch(PDO::FETCH_ASSOC);
+        if ($row && !empty($row['url'])) {
+            return [
+                'category'   => 'db',
+                'link'       => $row['url'],
+                'article_id' => (int)$row['id']
+            ];
+        }
+    }
+
+    // ---- 3) RANDOM over READY & RECENT set
+    $sqlFallback = "
+        SELECT id, url, title
+        FROM articles
+        WHERE $commonWhere
+        ORDER BY RANDOM()
+        LIMIT 1";
+    $stmt = $pdo->prepare($sqlFallback);
+    $stmt->execute(array_merge($recentParams, $notLikeParams));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($row && !empty($row['url'])) {
         return [
