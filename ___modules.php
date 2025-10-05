@@ -566,7 +566,7 @@ function getRandomArticle_fromDB(bool $requireEntities = true): array {
     $entitiesClause = '';
     if ($requireEntities) {
       // Requires: ..."entities": [ <something not just ] >
-      $entitiesClause = " AND (nlp::text) NOT LIKE '%\"entities\": []%'";
+      $entitiesClause = " AND (nlp::text) NOT LIKE '%\"entities\": []%' AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"X-Forbidden\", \"count\": 1, \"label\": \"ORG\"}]%'";
     }
 
     // Base ready predicate (no JSON casts)
