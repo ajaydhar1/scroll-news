@@ -172,7 +172,7 @@
                     <h2 class="section-heading text-uppercase">Newsroom Modules</h2>
                     <h3 class="section-subheading text-muted"> <!--Lorem ipsum dolor sit amet consectetur.--></h3>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 1-->
                         <div class="portfolio-item">
@@ -233,6 +233,7 @@
                             </div>
                         </div>
                     </div>
+                    <?php /*
                     <div class="col-lg-4 col-sm-6">
                         <!-- Portfolio item 6-->
                         <div class="portfolio-item">
@@ -245,6 +246,7 @@
                             </div>
                         </div>
                     </div>
+                    */ ?>
                 </div>
             </div>
         </section>
