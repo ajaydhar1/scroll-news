@@ -195,7 +195,7 @@ function strip_tags_content($text, $tags = '', $invert = FALSE) {
 } 
 
 function time_elapsed_string($ptime) {
-  $etime = time() - $ptime - (4*60*60);
+  $etime = time() - $ptime;
 
   if ($etime < 1) {
     return '0 seconds';
@@ -451,6 +451,172 @@ function doesntContainAny($string, array $needles) {
   return true; // No matches found after checking all substrings
 }
 
+/**
+ * Convert many date/time inputs to ISO-8601 UTC with literal Z (e.g. 2025-10-04T12:00:01Z).
+ *
+ * @param mixed  $value      String like "Sat, 04 Oct 2025 12:00:01 GMT", "2025-10-04 08:00:01",
+ *                           ISO-8601, or Unix epoch (int/float/num-string; sec or ms).
+ * @param string $assumeTz   If input has no timezone, assume this one (default 'UTC').
+ * @return string|null       ISO string with Z, or null if parsing fails.
+ */
+function toIsoZ($value, string $assumeTz = 'UTC'): ?string
+{
+    // 1) DateTimeInterface passthrough
+    if ($value instanceof DateTimeInterface) {
+        return (new DateTimeImmutable('@' . $value->getTimestamp()))
+            ->setTimezone(new DateTimeZone('UTC'))
+            ->format('Y-m-d\TH:i:s\Z');
+    }
+
+    // Normalize scalars
+    if (is_int($value) || is_float($value) || (is_string($value) && ctype_digit(str_replace([' ', "\t"], '', $value)))) {
+        // 2) Numeric epochs: detect ms vs sec
+        $num = (int)trim((string)$value);
+        if ($num > 0) {
+            if ($num > 20000000000) { // > ~ 2001-09 in ms
+                $num = (int) floor($num / 1000); // convert ms -> sec
+            }
+            return (new DateTimeImmutable('@' . $num))
+                ->setTimezone(new DateTimeZone('UTC'))
+                ->format('Y-m-d\TH:i:s\Z');
+        }
+    }
+
+    if (!is_string($value)) {
+        return null;
+    }
+
+    $in = trim($value);
+    if ($in === '') {
+        return null;
+    }
+
+    $assumedTz = new DateTimeZone($assumeTz);
+
+    // 3) Try a list of explicit formats first (fast & strict)
+    $formats = [
+        // RFC 2822 / RFC 7231 (HTTP-date)
+        'D, d M Y H:i:s T',            // "Sat, 04 Oct 2025 12:00:01 GMT"
+        'D, d M Y H:i:s \G\M\T',       // explicit literal GMT
+
+        // ISO 8601 variants
+        'Y-m-d\TH:i:sP',               // "2025-10-04T12:00:01+00:00"
+        'Y-m-d\TH:i:s\Z',              // "2025-10-04T12:00:01Z"
+        'Y-m-d\TH:i:s.uP',             // with microseconds
+        'Y-m-d\TH:i:s.u\Z',
+
+        // Common log / db formats (no tz)
+        'Y-m-d H:i:s',                 // "2025-10-04 08:00:01"
+        'Y-m-d H:i',                   // "2025-10-04 08:00"
+        'Y/m/d H:i:s',
+        'Y/m/d H:i',
+
+        // US / EU patterns
+        'm/d/Y H:i:s',
+        'm/d/Y g:i:s A',
+        'm/d/Y H:i',
+        'd/m/Y H:i:s',
+        'd/m/Y H:i',
+
+        // Syslog-ish
+        'D M d H:i:s Y',               // "Sat Oct 04 12:00:01 2025"
+    ];
+
+    foreach ($formats as $fmt) {
+        $dt = DateTimeImmutable::createFromFormat($fmt, $in, $assumedTz);
+        if ($dt instanceof DateTimeInterface) {
+            // If input had an explicit TZ (e.g., ISO with +02:00), PHP respected it;
+            // if not, we used $assumedTz. Always output UTC with literal Z:
+            return $dt->setTimezone(new DateTimeZone('UTC'))->format('Y-m-d\TH:i:s\Z');
+        }
+    }
+
+    // 4) Last resort: strtotime (handles many free-form strings & named tz)
+    $ts = strtotime($in);
+    if ($ts !== false) {
+        return (new DateTimeImmutable('@' . $ts))
+            ->setTimezone(new DateTimeZone('UTC'))
+            ->format('Y-m-d\TH:i:s\Z');
+    }
+
+    return null; // could not parse
+}
+
+/**
+ * Convert many date/time inputs to Unix epoch seconds (UTC).
+ *
+ * @param mixed  $value      ISO/RFC string (possibly URL-encoded), Unix epoch (sec or ms),
+ *                           or DateTimeInterface.
+ * @param string $assumeTz   Timezone to assume when input has no TZ info.
+ * @return int|null          Unix timestamp (seconds), or null on failure.
+ */
+function toEpoch($value, string $assumeTz = 'UTC'): ?int
+{
+    // Pass-through for DateTime*:
+    if ($value instanceof DateTimeInterface) {
+        return $value->getTimestamp();
+    }
+
+    // Numeric epochs (string/int/float): detect ms vs sec
+    if (is_int($value) || is_float($value) || (is_string($value) && preg_match('/^\s*\d+\s*$/', $value))) {
+        $num = (int) trim((string)$value);
+        if ($num > 20000000000) { // likely milliseconds
+            $num = (int) floor($num / 1000);
+        }
+        return $num;
+    }
+
+    if (!is_string($value)) {
+        return null;
+    }
+
+    $in = urldecode(trim($value));
+    if ($in === '') return null;
+
+    $assumedTz = new DateTimeZone($assumeTz);
+
+    // Try explicit formats first (strict)
+    $formats = [
+        // RFC 2822 / HTTP-date
+        'D, d M Y H:i:s T',
+        'D, d M Y H:i:s \G\M\T',
+
+        // ISO 8601 variants
+        DateTimeInterface::ATOM,      // Y-m-d\TH:i:sP
+        'Y-m-d\TH:i:s\Z',
+        'Y-m-d\TH:i:s.uP',
+        'Y-m-d\TH:i:s.u\Z',
+
+        // Common DB/log (no tz)
+        'Y-m-d H:i:s',
+        'Y-m-d H:i',
+        'Y/m/d H:i:s',
+        'Y/m/d H:i',
+
+        // US/EU (no tz)
+        'm/d/Y H:i:s',
+        'm/d/Y g:i:s A',
+        'm/d/Y H:i',
+        'd/m/Y H:i:s',
+        'd/m/Y H:i',
+
+        // Syslog-ish
+        'D M d H:i:s Y',
+    ];
+
+    foreach ($formats as $fmt) {
+        $dt = DateTimeImmutable::createFromFormat($fmt, $in, $assumedTz);
+        if ($dt instanceof DateTimeInterface) {
+            return $dt->getTimestamp();
+        }
+    }
+
+    // Last resort: strtotime (handles many free-form strings & named TZs)
+    $ts = strtotime($in);
+    return $ts === false ? null : $ts;
+}
+
+
 function getRandomArticle_fromRSS() {
 
   global $filter_out;
@@ -467,11 +633,13 @@ function getRandomArticle_fromRSS() {
 
   foreach ($rss->item as $item) {
       if (doesntContainAny($item->link->__toString(), $filter_out)) {
-          array_push($articles, $item->link->__toString()); 
+          array_push($articles, array('article_link' => $item->link->__toString(), 'publish_date' => toEpoch(toIsoZ($item->pubDate->__toString())))); 
       }
   }
 
-  return ['category' => $key, 'link' => $articles[array_rand($articles)]];
+  $random_article = $articles[array_rand($articles)];
+
+  return ['category' => $key, 'link' => $random_article['article_link'], 'pub_date' => $random_article['publish_date']];
 }
 
 // Helper: build "url NOT ILIKE :f0 AND url NOT ILIKE :f1 ..." + params
@@ -665,7 +833,7 @@ function getRandomArticle_fromDB(bool $requireEntities = true, int $days = 35): 
     $pdo = _pdo_or_null();
     if (!$pdo) {
         return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
-                                                          : ['category' => 'db', 'link' => null];
+                                                          : ['category' => 'db', 'link' => null, 'pub_date' => null];
     }
 
     // ---- Helper: figure out which timestamp column we can use
@@ -768,20 +936,20 @@ function getRandomArticle_fromDB(bool $requireEntities = true, int $days = 35): 
 
     if ($minId === 0 || $maxId === 0) {
         return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
-                                                          : ['category' => 'db', 'link' => null];
+                                                          : ['category' => 'db', 'link' => null, 'pub_date' => null];
     }
 
     // ---- 2) Fast ID-range picks constrained by RECENT
     $commonWhere = "$ready $entitiesClause $recentWhere" . ($notLikeSql ? " AND $notLikeSql" : "");
 
     $pickFwdSql = "
-        SELECT id, url
+        SELECT id, url, created_at
         FROM articles
         WHERE id >= :cand AND $commonWhere
         ORDER BY id ASC
         LIMIT 1";
     $pickWrapSql = "
-        SELECT id, url
+        SELECT id, url, created_at
         FROM articles
         WHERE id < :cand AND $commonWhere
         ORDER BY id ASC
@@ -802,7 +970,8 @@ function getRandomArticle_fromDB(bool $requireEntities = true, int $days = 35): 
             return [
                 'category'   => 'db',
                 'link'       => $row['url'],
-                'article_id' => (int)$row['id']
+                'article_id' => (int)$row['id'],
+                'pub_date'   => toEpoch(toIsoZ($row['created_at']))
             ];
         }
 
@@ -813,14 +982,15 @@ function getRandomArticle_fromDB(bool $requireEntities = true, int $days = 35): 
             return [
                 'category'   => 'db',
                 'link'       => $row['url'],
-                'article_id' => (int)$row['id']
+                'article_id' => (int)$row['id'],
+                'pub_date'   => toEpoch(toIsoZ($row['created_at']))
             ];
         }
     }
 
     // ---- 3) RANDOM over READY & RECENT set
     $sqlFallback = "
-        SELECT id, url, title
+        SELECT id, url, title, created_at
         FROM articles
         WHERE $commonWhere
         ORDER BY RANDOM()
@@ -832,13 +1002,14 @@ function getRandomArticle_fromDB(bool $requireEntities = true, int $days = 35): 
         return [
             'category'   => 'db',
             'link'       => $row['url'],
-            'article_id' => (int)$row['id']
+            'article_id' => (int)$row['id'],
+            'pub_date'   => toEpoch(toIsoZ($row['created_at']))
         ];
     }
 
     // Nothing matched — fall back
     return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
-                                                      : ['category' => 'db', 'link' => null];
+                                                      : ['category' => 'db', 'link' => null, 'pub_date' => null];
 }
 
 // Returns the row or null if not found

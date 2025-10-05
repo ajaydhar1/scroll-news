@@ -145,7 +145,8 @@ $youtube_search  = $meta['youtube_search'];
         <header class="masthead" style="background-image: url(<?php echo $img; ?>)">
             <div class="container cover-img py-5">
                 <div class="mb-2" style="font-size: 1.25rem;"><strong><a href="" class="<?php if (array_key_exists($_GET['category'], $rss_feeds)) {echo 'category-link';} else {echo 'category-no-link';} ?>" data-category="<?= $_GET['category'] ?>" data-category-url="<?= $rss_feeds[$_GET['category']] ?>">#<?php if (isset($_GET['category'])) { echo $_GET['category']; } else { echo "Article"; } ?></a></strong></div>
-                <div class="masthead-subheading"><a href="<?= $pub_link ?>" target="_blank" class="bright-link-hover"><?php echo $pub; ?></a></div>
+                <div class="masthead-subheading mb-1"><a href="<?= $pub_link ?>" target="_blank" class="bright-link-hover"><?php echo $pub; ?></a></div>
+                <div class="mb-2 text-muted" style="font-size: 1.25rem;"><strong><?php if (isset($_GET['pub_date'])) { echo time_elapsed_string($_GET["pub_date"]); } ?></strong></div>
                 <div class="masthead-heading text-uppercase"><?php echo clean_headline($title); ?></div>
                 <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black mr-3" href="#">Analytics</a>
                 <a class="btn btn-outline-secondary btn-lg btn-rectangle js-scroll-trigger" target='_blank' href="<?php echo $url; ?>" style="color: white; border-color: transparent;">Go to Story</a>

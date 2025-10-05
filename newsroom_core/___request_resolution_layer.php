@@ -15,7 +15,7 @@ function newsroom_resolve_article(): array {
             error_log("getRandomArticle DB error: " . $e->getMessage());
         }
 
-        header('Location: newsroom.php?url=' . urlencode($random['link']) . '&category=' . urlencode($random['category']));
+        header('Location: newsroom.php?url=' . urlencode($random['link']) . '&category=' . urlencode($random['category']) . '&pub_date=' . urlencode($random['pub_date']));
         exit;
     }
     // Normalize / sanitize URL a bit
