@@ -123,7 +123,7 @@ $("#searchNewsBtn").click(function () {
              	article.title,
               article.publisher,
               timeElapsedString(new Date(article.pubDate)),
-              `<button class="btn btn-sm btn-green" onclick="analyzeNews('${article.link}')">Analyze</button>`
+              `<button class="btn btn-sm btn-green" onclick="analyzeNews('${article.link}', '${article.pubDateForLink}')">Analyze</button>`
             ];
         }
       });
@@ -168,12 +168,12 @@ function fetchWithRetry(url, options = {}, retries = 3, delay = 1000) {
 	});
 }
 
-function analyzeNews(rssLink) {
+function analyzeNews(rssLink, pubDateForLink) {
 	fetch(`get_real_url.php?link=${encodeURIComponent(rssLink)}`)
     .then(res => res.json())
     .then(data => {
     	if (data.resolved_url) {
-        	window.location.href = `newsroom.php?url=${encodeURIComponent(data.resolved_url)}`;
+        	window.location.href = `newsroom.php?url=${encodeURIComponent(data.resolved_url)}&pub_date=${pubDateForLink}`;
         } else {
         	alert("Could not resolve article URL.");
         }

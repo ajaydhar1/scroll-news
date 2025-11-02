@@ -34,7 +34,8 @@ foreach ($rss->item as $item) {
             'title' => $title,
             'publisher' => $publisher,
             'link' => $link,
-            'pubDate' => date(DATE_ISO8601, strtotime($pubDate))
+            'pubDate' => date(DATE_ISO8601, strtotime($pubDate)),
+            'pubDateForLink' => isset($item->pubDate) ? toEpoch(toIsoZ(strtotime($item->pubDate))) : null
         ];
     }
 }
