@@ -31,6 +31,10 @@
 
         <style>
 
+            html {
+                scroll-behavior: smooth;
+            }
+
             header.masthead {
                 background-image: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)), url(assets/img/header-bg-3.jpg);
             }
@@ -73,6 +77,10 @@
 
             section#contact {29;
                 background-image: url(assets/img/laptop-sparkle.jpg);
+            }
+
+            section#playlists {
+                scroll-margin-top: 95px; /* Adjust the offset as needed */
             }
 
 
@@ -127,7 +135,7 @@
                 <div class="masthead-subheading">Welcome To Scroll News!</div>
                 <div class="masthead-heading text-uppercase">AI-Driven News Summaries</div>
                 <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black mr-3" href="newsroom.php">Launch Newsroom</a>
-                <a class="btn btn-outline-secondary btn-lg btn-rectangle js-scroll-trigger" href="control-room.html" style="color: white; border-color: transparent;">Watch Video</a>
+                <a class="btn btn-outline-secondary btn-lg btn-rectangle js-scroll-trigger" href="#playlists" style="color: white; border-color: transparent;">Watch Video</a>
             </div>
         </header>
         <!-- Services-->
@@ -316,7 +324,7 @@
 
         <?php require_once("___scroll_strip.php"); ?>
 
-        <section class="pt-5">
+        <section id="playlists" class="pt-5">
             <div class="container">
                 <div style="max-width:880px;margin:auto">
                     <label for="ytTab" style="display:block;margin:0 0 8px">News playlists</label>
