@@ -46,7 +46,7 @@ function fetchRSSArticles(feedUrl, category) {
                         <h4 class="card-title mb-2">${article.title}</h4>
                         <p class="card-text text-muted mb-1"><small><a target="_blank" href="https://${article.publisher}">${article.publisher}</a>${article.pubDate ? ' • ' + timeElapsedString(article.pubDate) : ''}</small></p>
                         <p class="card-text">${article.description}</p>
-                        <a href="newsroom.php?url=${encodeURIComponent(article.link)}&category=${category}" class="btn btn-green mt-auto">Analyze</a>
+                        <a href="newsroom.php?url=${encodeURIComponent(article.link)}&category=${category}&pub_date=${article.pubDateForLink}" class="btn btn-green mt-auto">Analyze</a>
                       </div>
                   </div>
               </div>

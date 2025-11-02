@@ -27,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'description' => strip_tags((string) $item->description),
             'image' => $image,
             'publisher' => $publisher,
-            'pubDate' => isset($item->pubDate) ? date('Y-m-d\TH:i:s\Z', strtotime($item->pubDate)) : null
+            'pubDate' => isset($item->pubDate) ? date('Y-m-d\TH:i:s\Z', strtotime($item->pubDate)) : null,
+            'pubDateForLink' => isset($item->pubDate) ? toEpoch(toIsoZ(strtotime($item->pubDate))) : null
         ];
 
     }

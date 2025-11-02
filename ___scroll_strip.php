@@ -140,7 +140,7 @@
       const encodedPub = encodeURIComponent(a.publisher);
 
       // Build Scroll News newsroom link
-      const newsroomLink = `newsroom.php?url=${encodedUrl}&category=Politics&publisher=${encodedPub}`;
+      const newsroomLink = `newsroom.php?url=${encodedUrl}&category=Politics&publisher=${encodedPub}&pub_date=${a.pubDateForLink}`;
 
       return `
         <a class="sn-card" role="listitem" href="${newsroomLink}" rel="noopener noreferrer">
