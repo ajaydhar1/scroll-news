@@ -316,6 +316,56 @@
 
         <?php require_once("___scroll_strip.php"); ?>
 
+        <section class="pt-5">
+            <div class="container">
+                <div style="max-width:880px;margin:auto">
+                    <label for="ytTab" style="display:block;margin:0 0 8px">News playlists</label>
+                    <select id="ytTab" style="width:100%;padding:8px">
+                        <option value="PLQOa26lW-uI8H1WxYPbSEqQJYoTRq2h5n">ABC News (Daily News Updates)</option>
+                        <option value="PL0tDb4jw6kPz6KY3KYoZ5bRLdMAEzpSbb">NBC News (Top News)</option>
+                        <option value="PLEb3ThbkPrFazUgt4b5WwVCj9QpaflUbl">CBS News (Top News)</option>
+                        <option value="PLGaYlBJIOoa9DV4I6sC8R8bX4L0Jq16XZ">Bloomberg (Stock Market News and Analysis)</option>
+                        <option value="PLVbP054jv0KrD7L2lIuW8WuQK9--rAAgx">CNBC (Squawk Box)</option>
+                        <option value="PLv1qHE0zuJL_99FPlL25gsQ1FvbbAP3pX">Fox Business (The Big Money Show)</option>
+                        <option value="PLn3nHXu50t5wkud7Iv0LFazfV8dja6dc3">ESPN (First Take)</option>
+                        <option value="PLn3nHXu50t5xU9FvI2M2km5a4GgfqfKlY">ESPN (Get Up)</option>
+                        <option value="PLGmceqLQ0UeYSzvsA6agwpkdoCMySiLA6">Fox News (Trump Administration)</option>
+                        <option value="PLDIVi-vBsOExM37bFPYowCBBiohZCV1iC">MSNBC (The Latest)</option>
+                        <!-- Paste more playlist URLs or IDs as options; ID or full URL both work -->
+                        <!-- <option value="https://www.youtube.com/playlist?list=PLxxxx">World</option> -->
+                        <!-- <option value="PLyyyy">Technology</option> -->
+                    </select>
+
+                    <div style="position:relative;padding-top:56.25%;margin-top:12px;border-radius:12px;overflow:hidden">
+                        <iframe id="ytFrame" allow="autoplay; encrypted-media" allowfullscreen
+                            style="position:absolute;inset:0;width:100%;height:100%;border:0"
+                            src="about:blank"></iframe>
+                    </div>
+                </div>
+
+                <script>
+                    const frame = document.getElementById('ytFrame');
+                    const sel   = document.getElementById('ytTab');
+
+                    const toPlaylistId = (val) => {
+                        // Accept raw IDs or full playlist URLs (?list=...)
+                        try { 
+                            const u = new URL(val);
+                            return u.searchParams.get('list') || val;
+                        } catch { return val; }
+                    };
+
+                    const embed = (plId) =>
+                    `https://www.youtube.com/embed/videoseries?list=${encodeURIComponent(plId)}&rel=0&modestbranding=1`;
+
+                    const load = () => (frame.src = embed(toPlaylistId(sel.value)));
+
+                    sel.addEventListener('change', load);
+                    load(); // init on first render
+                </script>
+            </div>
+        </section>
+
 
         <!-- Team-->
         <section class="page-section bg-light" id="team">
@@ -363,6 +413,8 @@
                 -->
             </div>
         </section>
+
+
         <!-- Trusted by creators text section -->
         <section class="py-5">
             <div class="container text-center">
@@ -404,14 +456,14 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <?php //<script src="js/scripts.js"></script> ?>
 
         <script type="text/javascript" src="js/lightbox.js"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <?php //<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script> ?>
 
         <script>
             (function(){
