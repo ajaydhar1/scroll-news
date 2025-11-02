@@ -226,6 +226,34 @@ function time_elapsed_string($ptime) {
   }
 }
 
+/**
+ * Format a Unix timestamp (sec or ms) for newsroom display.
+ */
+function format_news_date($rawTs, $tzId = 'America/New_York') {
+  // Strip non-digits just in case and normalize ms→s
+  $digits = preg_replace('/\D/', '', (string)$rawTs);
+  if ($digits === '') return '';
+  $ts = (int)$digits;
+  if ($ts > 1000000000000) { // looks like ms
+    $ts = (int)round($ts / 1000);
+  }
+
+  try {
+    $tz = new DateTimeZone($tzId);
+    $dt = (new DateTimeImmutable('@' . $ts))->setTimezone($tz);
+
+    // Same-year compact vs cross-year full
+    $now = new DateTimeImmutable('now', $tz);
+    $fmt = ($dt->format('Y') === $now->format('Y'))
+      ? 'M j • g:i A T'      // e.g., "Nov 2 • 1:03 AM ET"
+      : 'M j, Y • g:i A T';  // e.g., "Dec 28, 2024 • 9:10 PM ET"
+
+    return $dt->format($fmt);
+  } catch (Throwable $e) {
+    return ''; // fail quietly
+  }
+}
+
 
 function azeo_getData($url) {
 
