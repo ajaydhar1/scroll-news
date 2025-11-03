@@ -31,6 +31,8 @@ $youtube_search  = $meta['youtube_search'];
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <meta name="robots" content="noindex, nofollow">
+        
         <title><?= clean_headline($title) ?></title>
         <link rel="icon" type="image/png" href="assets/img/play-green.png" />
 

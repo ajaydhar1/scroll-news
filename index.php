@@ -8,6 +8,7 @@
         <title>Scroll News: Fast AI-Driven Summaries & Headlines</title>
         <!-- Favicon-->
         <link rel="icon" type="image/png" href="assets/img/play-green.png" />
+        <link rel="canonical" href="https://scrollnews.io/">
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->

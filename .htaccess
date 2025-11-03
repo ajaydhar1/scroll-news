@@ -1,0 +1,30 @@
+# .htaccess
+
+# 1) Safety: use the project root as the base
+RewriteEngine On
+RewriteBase /
+
+# 2) Serve real files/dirs as-is
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# 3) Redirect .php/.html to clean paths (canonicalize)
+#    /about.php  -> /about
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?]
+RewriteRule ^ %1 [R=301,L]
+
+#    /about.html -> /about
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?]
+RewriteRule ^ %1 [R=301,L]
+
+# 4) Map clean paths to .php if it exists
+RewriteCond %{DOCUMENT_ROOT}/$1.php -f
+RewriteRule ^(.+?)/?$ $1.php [L]
+
+# 5) Otherwise map to .html if that exists
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# 6) Optional: default to index.php for unknown routes (comment out if not needed)
+# RewriteRule ^ index.php [L]

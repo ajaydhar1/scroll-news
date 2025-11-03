@@ -8,7 +8,7 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 # Enable Apache mod_rewrite (useful for clean URLs)
-RUN a2enmod rewrite
+RUN a2enmod rewrite headers
 
 # Copy app into the Apache web root
 COPY . /var/www/html/
