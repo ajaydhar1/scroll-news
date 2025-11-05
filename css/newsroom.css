@@ -139,31 +139,6 @@ ion-icon {
   color: white !important;
 }
 
-.popover-header {
-    display: none;
-}
-
-.popover-body {
-    background: linear-gradient(to top right, #b91d73, #f953c6);
-    color: white;
-    border: solid 2px yellow;
-    font-family: 'Open Sans', sans-serif;
-    line-height: 1.22;
-}
-
-.popover-body strong {
-    color: yellow;
-}
-
-.popover-body img {
-    object-fit: cover;
-    object-position: center top;
-    width: 100%;
-    height: 200px;
-    text-align: center;
-    /* border: solid yellow 1px; */
-}
-
 button.nav-link.active {
     background: linear-gradient(to top right, #b91d73, #f953c6);
     color: white !important;
@@ -269,3 +244,126 @@ button.nav-link.active {
 #shot { opacity: 0; transition: opacity .25s ease; }
 #shot[src*="screenshot?"] { opacity: 1; }      /* once set */
 #shot[src$=".svg"] { opacity: 1; }             /* fallback */
+
+
+
+
+/*
+
+.popover-header {
+    display: none;
+}
+
+.popover-body {
+    background: linear-gradient(to top right, #b91d73, #f953c6);
+    color: white;
+    border: solid 2px yellow;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.22;
+}
+
+.popover-body strong {
+    color: yellow;
+}
+
+.popover-body img {
+    object-fit: cover;
+    object-position: center top;
+    width: 100%;
+    height: 200px;
+    text-align: center;
+}
+
+*/
+
+/* === Knowledge Card Popover (Google-like) ======================= */
+.popover {
+  --gkp-w: 340px;
+  --gkp-radius: 14px;
+  --gkp-border: #e5e7eb;            /* slate-200 */
+  --gkp-text: #111827;              /* slate-900 */
+  --gkp-muted: #6b7280;             /* slate-500 */
+  --gkp-shadow: 0 10px 24px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.06);
+
+  width: var(--gkp-w);
+  max-width: var(--gkp-w);
+  background: #fff;
+  color: var(--gkp-text);
+  border: 1px solid var(--gkp-border);
+  border-radius: var(--gkp-radius);
+  box-shadow: var(--gkp-shadow);
+  padding: 0;                       /* we’ll handle inner spacing */
+  overflow: hidden;                 /* round the image corners */
+}
+
+/* Arrow matches card */
+.popover .popover-arrow::before,
+.popover .popover-arrow::after {
+  border-color: transparent;
+}
+.popover.bs-popover-top.has-knowledge-card .popover-arrow::after { border-top-color: #fff; }
+.popover.bs-popover-bottom.has-knowledge-card .popover-arrow::after { border-bottom-color: #fff; }
+.popover .popover-arrow { filter: drop-shadow(0 2px 6px rgba(0,0,0,.06)); }
+
+/* Media (top image) */
+.popover .gkp__media {
+  width: 100%;
+  aspect-ratio: 16 / 10;            /* tidy Google-ish aspect */
+  background: #f3f4f6;              /* slate-100 placeholder */
+  overflow: hidden;
+}
+/* Hide the media block when there’s no <img> */
+.popover .gkp__media:empty,
+.popover .gkp__media:not(:has(img)) {
+  display: none;
+}
+.popover .gkp__media img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+
+/* Body */
+.popover .popover-body {
+  padding: 12px 14px 14px;
+}
+
+/* Title + Meta row */
+.popover .gkp__title {
+  font-size: 28px; font-weight: 700; line-height: 1.2;
+  margin: 2px 0 2px;
+}
+.popover .gkp__meta {
+  font-size: 12px; font-weight: 600;
+  color: var(--gkp-muted);
+  margin-bottom: 6px;
+}
+
+/* Description (clamped like Google) */
+.popover .gkp__desc {
+  font-size: 14px; line-height: 1.45; color: #374151;   /* slate-700 */
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+/* Source link */
+.popover .gkp__source {
+  display: inline-block;
+  font-size: 12px; color: var(--gkp-muted);
+  text-decoration: none;
+}
+.popover .gkp__source:hover { text-decoration: underline; }
+
+/* Compact option (if you need a smaller card) */
+.popover.gkp--compact { --gkp-w: 300px; }
+
+/* Dark mode polish (optional) */
+@media (prefers-color-scheme: dark) {
+  .popover {
+    background: #111827; color: #e5e7eb; border-color: #1f2937;
+    box-shadow: 0 10px 24px rgba(0,0,0,.35);
+  }
+  .popover .gkp__desc { color: #d1d5db; }
+  .popover .gkp__meta,
+  .popover .gkp__source { color: #9ca3af; }
+}

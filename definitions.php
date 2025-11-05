@@ -20,7 +20,7 @@ if (is_array($wiki)
   $title   = $wiki['query']['search'][0]['title'];
   // Snippet can contain HTML spans; strip & trim.
   $snippet = strip_tags($wiki['query']['search'][0]['snippet']);
-  $result  = '<strong>' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '. </strong> ' . $snippet . '...';
+  $result  = $snippet . '...';
 }
 
 /* ---------- Image (pageimages) ---------- */
@@ -54,4 +54,16 @@ if ($result === '' || $result === '<strong>. </strong> ...') {
 }
 
 /* ---------- Output (image + text) ---------- */
-echo $img_tag . $result;
+//echo $img_tag . $result;
+
+$knowledge_card = '
+  <div class="gkp__media">
+    '.$img_tag.'
+  </div>
+  <div class="gkp__title">'.$term.'</div>
+  <div class="gkp__meta">Term</div>
+  <div class="gkp__desc">
+    '.$result.'
+  </div>';
+
+echo $knowledge_card;
