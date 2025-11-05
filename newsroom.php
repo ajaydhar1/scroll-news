@@ -32,7 +32,7 @@ $youtube_search  = $meta['youtube_search'];
         <meta name="description" content="" />
         <meta name="author" content="" />
         <meta name="robots" content="noindex, nofollow">
-        
+
         <title><?= clean_headline($title) ?></title>
         <link rel="icon" type="image/png" href="assets/img/play-green.png" />
 
@@ -256,12 +256,12 @@ $youtube_search  = $meta['youtube_search'];
                             ?>
 
                                     <img
-                                        id="shot"
-                                        src="https://nlp-api-exr1.onrender.com/screenshot?url=<?= urlencode($url) ?>"
-                                        alt="Article Screenshot"
-                                        loading="lazy" decoding="async"
-                                        style="max-width:100%;height:auto;margin-bottom:20px;"
-                                      />
+                                      id="shot"
+                                      src="https://nlp-api-exr1.onrender.com/screenshot?url=<?= urlencode($url) ?>"
+                                      alt="Article Screenshot"
+                                      loading="lazy" decoding="async"
+                                      style="max-width:100%;height:auto;margin-bottom:20px;"
+                                    />
 
                                     <div id="img-loader" class="text-center mt-3">Loading screenshot...</div>
 
@@ -275,23 +275,30 @@ $youtube_search  = $meta['youtube_search'];
                                       let swapped = false;
                                       const timeoutMs = 7000;
 
+                                      const hideLoader = () => { if (imgLoader) imgLoader.style.display = 'none'; };
+
+                                      // If the image was cached and already loaded
+                                      if (img.complete && img.naturalWidth > 0) {
+                                        hideLoader();
+                                      }
+
                                       const t = setTimeout(() => {
                                         if (swapped) return;
                                         swapped = true;
                                         img.dataset.err = 'timeout';
-                                        imgLoader.style.display = 'none';
-                                        img.src = fallbackSrc;            // cancels the in-flight request
+                                        hideLoader();
+                                        img.src = fallbackSrc; // cancels in-flight request and shows fallback
                                       }, timeoutMs);
 
                                       img.addEventListener('load', () => {
-                                        // Only treat as success if the ORIGINAL loaded, not the fallback
-                                        if (img.currentSrc === originalSrc || img.src === originalSrc) {
-                                          clearTimeout(t);
-                                        }
+                                        // Any loaded image (original or fallback) means we can hide the text
+                                        clearTimeout(t);
+                                        hideLoader();
                                       });
 
                                       img.addEventListener('error', () => {
                                         clearTimeout(t);
+                                        hideLoader();
                                         if (!swapped) {
                                           swapped = true;
                                           img.src = fallbackSrc;
@@ -303,8 +310,7 @@ $youtube_search  = $meta['youtube_search'];
                                         if (img.src.includes(fallbackSrc)) {
                                           swapped = false;
                                           const bust = (originalSrc.includes('?') ? '&' : '?') + 't=' + Date.now();
-                                          img.src = originalSrc + bust;   // retry with cache-bust
-                                          setTimeout(() => { /* you can reset the timer if you want */ }, 0);
+                                          img.src = originalSrc + bust;
                                         }
                                       });
                                     })();
