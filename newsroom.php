@@ -378,8 +378,6 @@ $youtube_search  = $meta['youtube_search'];
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
         <!-- DataTables JS -->
         <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-
-        <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
           
         <script src="js/newsroom/utils.js" defer></script>
         <script src="js/newsroom/handlers.js" defer></script>
