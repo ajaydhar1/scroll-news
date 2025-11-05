@@ -9,6 +9,14 @@
         <!-- Favicon-->
         <link rel="icon" type="image/png" href="assets/img/play-green.png" />
         <link rel="canonical" href="https://scrollnews.io/">
+
+        <!-- Performance: YouTube preconnects -->
+        <link rel="preconnect" href="https://www.youtube.com" crossorigin>
+        <link rel="preconnect" href="https://www.google.com" crossorigin>
+        <link rel="preconnect" href="https://i.ytimg.com" crossorigin>
+        <link rel="preconnect" href="https://yt3.ggpht.com" crossorigin>
+        <link rel="dns-prefetch" href="https://s.ytimg.com">
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -21,6 +29,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter&display=swap" rel="stylesheet">
     
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
