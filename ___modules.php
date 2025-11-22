@@ -1104,9 +1104,9 @@ function getRecentWeightedArticle_fromDB(
 
     $params = array_merge(
         $notLikeParams,
-        $tsCol ? [':since_ts' => $sinceTs] : []
+        $tsCol ? [':since_ts' => $sinceTs] : [],
+        [':limit_rows' => $limit]  // <-- include limit here
     );
-    $stmt->bindValue(':limit_rows', $limit, PDO::PARAM_INT);
 
     $stmt->execute($params);
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);

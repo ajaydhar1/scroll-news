@@ -12,7 +12,7 @@ function newsroom_resolve_article(): array {
             $random = getRecentWeightedArticle_fromDB(); // ['category'=>..., 'link'=>...]
         
         } catch (Throwable $e) {
-            error_log("getRandomArticle DB error: " . $e->getMessage());
+            error_log("getRecentWeightedArticle_fromDB DB error: " . $e->getMessage());
         }
 
         header('Location: newsroom.php?url=' . urlencode($random['link']) . '&category=' . urlencode($random['category']) . '&pub_date=' . urlencode($random['pub_date']));
