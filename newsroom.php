@@ -178,7 +178,7 @@ $youtube_search  = $meta['youtube_search'];
             <div class="container-fluid" style="padding-top: 30px;">
                 <div id="panel-inner-row" class="row flex-row" style="height: 95vh;">
                     <!-- NLP Dashboard Panel -->
-                    <div class="col-md-6 panel" style="overflow-y: auto; border-right: 2px solid #eee;">
+                    <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12 panel" style="overflow-y: auto; border-right: 2px solid #eee;">
                         <div class="text-center mb-3">
                             <h2>🧠 NLP Dashboard</h2>
                         </div>
@@ -245,7 +245,7 @@ $youtube_search  = $meta['youtube_search'];
                     </div>
 
                     <!-- Article Screenshot Panel -->
-                    <div class="col-md-6 panel" style="height: 100%; padding: 0; overflow-y: auto;"> <?php //background-color: #fcfcfc; ?>
+                    <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12 panel" style="height: 100%; padding: 0; overflow-y: auto;"> <?php //background-color: #fcfcfc; ?>
                         <div class="text-center mb-3">
                             <h2>📰 Article Screenshot</h2>
                         </div>

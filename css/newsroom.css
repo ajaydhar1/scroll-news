@@ -1,3 +1,16 @@
+@media (min-width: 1600px) {
+    .col-xxl-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+.col-xxl, .col-xxl-auto, .col-xxl-6 {
+    position: relative;
+    width: 100%;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+}
+
 .custom-highlight {
     background-color: transparent !important;
     opacity: 1 !important;

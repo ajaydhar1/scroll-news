@@ -64,6 +64,7 @@ $knowledge_card = '
   <div class="gkp__meta">Term</div>
   <div class="gkp__desc">
     '.$result.'
-  </div>';
+  </div>
+  <div class="gkp__source">Source: Wikipedia</div>';
 
 echo $knowledge_card;
