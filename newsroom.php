@@ -407,64 +407,6 @@ $youtube_search  = $meta['youtube_search'];
 
         </script>
 
-        <?php
-
-        if ($category !== "db") {
-
-        ?>
-        
-        <script>
-
-            $(document).ready(function() {
-
-                var ele = document.getElementById("lottie");
-
-                lottie.loadAnimation({
-                    container: ele, // the dom element that will contain the animation
-                    renderer: "svg",
-                    loop: true,
-                    autoplay: true,
-                    path: "assets/img/animation-w500-h500.json" // the path to the animation json
-                });
-
-                $.ajax({
-                    type:   "POST",
-                    url:    "analyze.php",
-                    data:   {url: "<?= $url ?>"},
-                    success: function(msg) {
-                    
-                        $("#analytics").html(msg);
-
-                        setupAnalyticsJS();
-                       
-                    }  
-                })
-
-            });
-
-        </script>
-
-        <?php
-
-        } 
-
-        else {
-
-        ?>
-
-        <script>
-
-          setupAnalyticsJS();
-
-        </script>
-
-
-        <?php
-
-        }
-
-        ?>
-
         <script>
 
           function setupAnalyticsJS() {
@@ -689,6 +631,66 @@ $youtube_search  = $meta['youtube_search'];
           }
 
         </script>
+
+        <?php
+
+        if ($category !== "db") {
+
+        ?>
+        
+        <script>
+
+            $(document).ready(function() {
+
+                var ele = document.getElementById("lottie");
+
+                lottie.loadAnimation({
+                    container: ele, // the dom element that will contain the animation
+                    renderer: "svg",
+                    loop: true,
+                    autoplay: true,
+                    path: "assets/img/animation-w500-h500.json" // the path to the animation json
+                });
+
+                $.ajax({
+                    type:   "POST",
+                    url:    "analyze.php",
+                    data:   {url: "<?= $url ?>"},
+                    success: function(msg) {
+                    
+                        $("#analytics").html(msg);
+
+                        setupAnalyticsJS();
+                       
+                    }  
+                })
+
+            });
+
+        </script>
+
+        <?php
+
+        } 
+
+        else {
+
+        ?>
+
+        <script>
+
+          setupAnalyticsJS();
+
+        </script>
+
+
+        <?php
+
+        }
+
+        ?>
+
+        
 
         <script>
             async function reanalyzeAnalytics(url, container = '#analytics') {
