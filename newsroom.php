@@ -176,7 +176,7 @@ $youtube_search  = $meta['youtube_search'];
 
         <div id="side-by-side-panel"> <?php // class="mb-4" style="min-height:480px;" ?>
             <div class="container-fluid" style="padding-top: 30px;">
-                <div id="panel-inner-row" class="row flex-row" style="height: 95vh;">
+                <div id="panel-inner-row" class="row flex-row"> <?php //  style="height: 95vh;" ?>
                     <!-- NLP Dashboard Panel -->
                     <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12 panel" style="overflow-y: auto; border-right: 2px solid #eee;">
                         <div class="text-center mb-3">
