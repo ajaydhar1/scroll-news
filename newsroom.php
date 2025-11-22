@@ -604,7 +604,7 @@ $youtube_search  = $meta['youtube_search'];
 
               function getDefinitions(element, term) {
                   $.ajax({
-                      url:"definitions.php?term=" + encodeURIComponent(term),
+                      url:"definitions.php?term=" + encodeURIComponent(term) + "&label=" + element.attr("data-label"),
                       type:"GET",
                       success:function(result) {
                           def = '';

@@ -30,7 +30,7 @@
                         {
 
                     ?>
-                            <div class="hashtag"><a href="https://twitter.com/search?q=%23<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?>" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>                  
+                            <div class="hashtag"><a href="https://twitter.com/search?q=%23<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?>" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>" data-label="<?= $arr['entities'][$i]['label'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>                  
                     <?php } ?>
 
                   </div>
@@ -41,7 +41,7 @@
                         for($i=0;$i<count($arr['entities']);$i++)
                         {
                     ?>
-                            <div class="hashtag"><a href="https://www.instagram.com/explore/tags/<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?>/" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>
+                            <div class="hashtag"><a href="https://www.instagram.com/explore/tags/<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?>/" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>" data-label="<?= $arr['entities'][$i]['label'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>
                     <?php } ?>
 
                   </div>
@@ -52,7 +52,7 @@
                         for($i=0;$i<count($arr['entities']);$i++)
                         {
                     ?>
-                            <div class="hashtag"><a href="https://www.google.com/search?q=<?=str_replace(' ', '+', $arr['entities'][$i]['text'])?>" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>
+                            <div class="hashtag"><a href="https://www.google.com/search?q=<?=str_replace(' ', '+', $arr['entities'][$i]['text'])?>" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>" data-label="<?= $arr['entities'][$i]['label'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>
                                         
                     <?php } ?>
 
@@ -64,7 +64,7 @@
                         for($i=0;$i<count($arr['entities']);$i++)
                         {
                     ?>
-                            <div class="hashtag"><a href="https://www.youtube.com/results?search_query=<?=str_replace(' ', '+', $arr['entities'][$i]['text'])?>"  target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>
+                            <div class="hashtag"><a href="https://www.youtube.com/results?search_query=<?=str_replace(' ', '+', $arr['entities'][$i]['text'])?>"  target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>" data-label="<?= $arr['entities'][$i]['label'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>
                         
                     <?php } ?>
 
@@ -94,7 +94,7 @@
                               
                                 if (array_key_exists("wikipedia_url", $entity)) {
                                   echo '
-                                      <li><a href="'.$entity["wikipedia_url"].'" target="_blank">'.$entity["text"].'</a></li>';
+                                      <li><a href="'.$entity["wikipedia_url"].'" target="_blank" data-label="'.$entity["label"].'">'.$entity["text"].'</a></li>';
                                 }    
                               }
                             ?>
