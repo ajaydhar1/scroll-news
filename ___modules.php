@@ -1040,6 +1040,130 @@ function getRandomArticle_fromDB(bool $requireEntities = true, int $days = 35): 
                                                       : ['category' => 'db', 'link' => null, 'pub_date' => null];
 }
 
+/**
+ * Recent-weighted article picker:
+ * - Filters to READY + NLP + non-empty screenshot + notLike filters
+ * - Restricts to the last $days days using $tsCol
+ * - Pulls up to $limit most recent rows
+ * - Picks one in PHP with an exponential decay weight so
+ *   newest articles are much more likely.
+ */
+function getRecentWeightedArticle_fromDB(
+    bool $requireEntities = true,
+    int $days = 35,
+    int $limit = 500,       // how many recent rows to consider
+    float $decay = 0.15     // higher = stronger bias to the top
+): array {
+    global $filter_out;
+    $pdo = _pdo_or_null();
+    if (!$pdo) {
+        return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
+            : ['category' => 'db', 'link' => null, 'pub_date' => null];
+    }
+
+    // Timestamp column we trust for recency
+    $tsCol = 'updated_at';
+
+    // Entities filter (same as your other function)
+    $entitiesClause = '';
+    if ($requireEntities) {
+        $entitiesClause =
+            " AND (nlp::text) NOT LIKE '%\"entities\": []%'".
+            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"X-Forbidden\", \"count\": 1, \"label\": \"ORG\"}]%'".
+            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"JavaScript\", \"count\": 1, \"label\": \"PRODUCT\"}]%'".
+            " AND (nlp::text) NOT LIKE '%\"emotional_reaction\": {}%'";
+    }
+
+    // Ready predicate
+    $ready = "nlp IS NOT NULL AND COALESCE(octet_length(screenshot_bytes),0) > 0";
+
+    // Filters: NOT ILIKE any of $filter_out
+    [$notLikeSql, $notLikeParams] = buildNotILikeNamed(is_array($filter_out) ? $filter_out : []);
+
+    // Time window
+    $sinceTs = (new DateTimeImmutable('now'))
+        ->modify("-{$days} days")
+        ->format('Y-m-d H:i:s');
+
+    $recentWhere = $tsCol
+        ? " AND {$tsCol} >= :since_ts"
+        : ''; // fallback if tsCol somehow missing
+
+    $commonWhere = "$ready $entitiesClause $recentWhere" . ($notLikeSql ? " AND $notLikeSql" : "");
+
+    // Pull a capped list of the *most recent* matching articles
+    $sql = "
+        SELECT id, url, created_at
+        FROM articles
+        WHERE $commonWhere
+        ORDER BY {$tsCol} DESC
+        LIMIT :limit_rows
+    ";
+
+    $stmt = $pdo->prepare($sql);
+
+    $params = array_merge(
+        $notLikeParams,
+        $tsCol ? [':since_ts' => $sinceTs] : []
+    );
+    $stmt->bindValue(':limit_rows', $limit, PDO::PARAM_INT);
+
+    $stmt->execute($params);
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if (!$rows) {
+        // Fall back to your existing random function or RSS
+        return function_exists('getRandomArticle_fromDB')
+            ? getRandomArticle_fromDB($requireEntities, $days)
+            : (function_exists('getRandomArticle_fromRSS')
+                ? getRandomArticle_fromRSS()
+                : ['category' => 'db', 'link' => null, 'pub_date' => null]);
+    }
+
+    // --- Weighted pick in PHP ---
+    // Newest row is index 0. We assign weight w_i = exp(-decay * i)
+    $weights = [];
+    $totalWeight = 0.0;
+    $n = count($rows);
+
+    for ($i = 0; $i < $n; $i++) {
+        $w = exp(-$decay * $i);
+        $weights[$i] = $w;
+        $totalWeight += $w;
+    }
+
+    $r = mt_rand() / mt_getrandmax() * $totalWeight;
+    $acc = 0.0;
+    $chosenIndex = 0;
+
+    for ($i = 0; $i < $n; $i++) {
+        $acc += $weights[$i];
+        if ($r <= $acc) {
+            $chosenIndex = $i;
+            break;
+        }
+    }
+
+    $row = $rows[$chosenIndex];
+
+    if (empty($row['url'])) {
+        // Safety fallback if something is weird
+        return function_exists('getRandomArticle_fromDB')
+            ? getRandomArticle_fromDB($requireEntities, $days)
+            : (function_exists('getRandomArticle_fromRSS')
+                ? getRandomArticle_fromRSS()
+                : ['category' => 'db', 'link' => null, 'pub_date' => null]);
+    }
+
+    return [
+        'category'   => 'db',
+        'link'       => $row['url'],
+        'article_id' => (int)$row['id'],
+        'pub_date'   => toEpoch(toIsoZ($row['created_at'])),
+    ];
+}
+
+
 // Returns the row or null if not found
 function getNLPFromDB(string $url) {
     

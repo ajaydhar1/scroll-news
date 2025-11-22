@@ -9,7 +9,7 @@ function newsroom_resolve_article(): array {
     if (empty($_GET['url'])) {
 
         try { 
-            $random = getRandomArticle_fromDB(); // ['category'=>..., 'link'=>...]
+            $random = getRecentWeightedArticle_fromDB(); // ['category'=>..., 'link'=>...]
         
         } catch (Throwable $e) {
             error_log("getRandomArticle DB error: " . $e->getMessage());
