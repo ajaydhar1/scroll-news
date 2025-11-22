@@ -1186,6 +1186,40 @@ function getNLPFromDB(string $url) {
     return json_decode($row['nlp'], true) ?: null;
 }
 
+function normalize_headline(string $s): string
+{
+    // If it’s not valid UTF-8, assume Win-1252 and convert
+    if (!mb_check_encoding($s, 'UTF-8')) {
+        $s = mb_convert_encoding($s, 'UTF-8', 'Windows-1252');
+    }
+
+    // Fix common mojibake / stray characters
+    $replacements = [
+        // Smart quotes
+        "â€˜" => "‘",
+        "â€™" => "’",
+        "â€œ" => "“",
+        "â€" => "”",
+
+        // Dashes
+        "â€“" => "–",
+        "â€”" => "—",
+
+        // Non-breaking space / stray Â
+        "Â "  => " ",
+        "Â"   => "",
+
+        // Fallback: these specific cp1252 chars sometimes leak as raw bytes
+        "\x91" => "‘",
+        "\x92" => "’",
+        "\x93" => "“",
+        "\x94" => "”",
+        "\x96" => "–",
+    ];
+
+    return strtr($s, $replacements);
+}
+
 function clean_string($str) {
     // Remove spaces, parentheses, and periods
     return preg_replace('/[.,\s()\-\&]/', '', $str);}
