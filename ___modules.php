@@ -1226,29 +1226,22 @@ function clean_string($str) {
 
 function clean_headline(string $str): string
 {
-    // If it’s not valid UTF-8, try to normalize from Windows-1252 (very common on news sites)
-    if (!mb_check_encoding($str, 'UTF-8')) {
-        $str = mb_convert_encoding($str, 'UTF-8', 'Windows-1252');
-    }
+    // Specific targeted fixes FIRST
+    // Replace the mojibake combo: '  →  – 
+    $str = str_replace(["'", "", "�“"], "–", $str);
 
-    // Fix some common mojibake sequences *if* they appear
-    $map = [
-        "â€˜" => "‘",
-        "â€™" => "’",
-        "â€œ" => "“",
-        "â€" => "”",
-        "â€“" => "–",
-        "â€”" => "—",
-        "Â "  => " ",
-        "Â"   => "",
-    ];
-    $str = strtr($str, $map);
+    // Strip the classic broken characters (already-lost data)
+    $str = str_replace(
+        [
+            "�",                // replacement diamond
+            "",               // stray cp1252 control char
+            "\xEF\xBF\xBD"     // UTF-8 replacement char explicitly
+        ],
+        "",
+        $str
+    );
 
-    // Last-resort cleanup: remove replacement diamonds + that stray 0x99 you were seeing
-    // (these are already “broken” characters, so stripping is better than showing them)
-    $str = str_replace(["", "�"], '', $str);
-
-    // Collapse double spaces that might be left behind
+    // Collapse excess whitespace after replacements/stripping
     $str = preg_replace('/\s+/', ' ', $str);
 
     return trim($str);
