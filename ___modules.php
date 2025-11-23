@@ -1047,12 +1047,20 @@ function getRandomArticle_fromDB(bool $requireEntities = true, int $days = 35): 
  * - Pulls up to $limit most recent rows
  * - Picks one in PHP with an exponential decay weight so
  *   newest articles are much more likely.
+
+$decay values:
+  0.15 → super aggressive (top 20–40 rows dominate)
+  0.13 → still aggressive, but ~2–3 days start to appear
+  0.12 → noticeably smoother (good mix of last 2–4 days)
+  0.11 → softer bias, pulls from ~5–7 days more often
+  0.10 → gentle slope, pulls from ~7–10 days regularly
+
  */
 function getRecentWeightedArticle_fromDB(
     bool $requireEntities = true,
     int $days = 35,
     int $limit = 500,       // how many recent rows to consider
-    float $decay = 0.15     // higher = stronger bias to the top
+    float $decay = 0.12     // higher = stronger bias to the top (baseline: 0.15)
 ): array {
     global $filter_out;
     $pdo = _pdo_or_null();
