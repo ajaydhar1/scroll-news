@@ -1224,9 +1224,34 @@ function clean_string($str) {
     // Remove spaces, parentheses, and periods
     return preg_replace('/[.,\s()\-\&]/', '', $str);}
 
-function clean_headline($str) {
+function clean_headline(string $str): string
+{
+    // If it’s not valid UTF-8, try to normalize from Windows-1252 (very common on news sites)
+    if (!mb_check_encoding($str, 'UTF-8')) {
+        $str = mb_convert_encoding($str, 'UTF-8', 'Windows-1252');
+    }
 
-  return str_replace("", "", str_replace('�', '', $str));
+    // Fix some common mojibake sequences *if* they appear
+    $map = [
+        "â€˜" => "‘",
+        "â€™" => "’",
+        "â€œ" => "“",
+        "â€" => "”",
+        "â€“" => "–",
+        "â€”" => "—",
+        "Â "  => " ",
+        "Â"   => "",
+    ];
+    $str = strtr($str, $map);
+
+    // Last-resort cleanup: remove replacement diamonds + that stray 0x99 you were seeing
+    // (these are already “broken” characters, so stripping is better than showing them)
+    $str = str_replace(["", "�"], '', $str);
+
+    // Collapse double spaces that might be left behind
+    $str = preg_replace('/\s+/', ' ', $str);
+
+    return trim($str);
 }
 
 function is_file_width_over_min($html) {
