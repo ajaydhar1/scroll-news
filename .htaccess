@@ -28,3 +28,11 @@ RewriteRule ^(.+?)/?$ $1.html [L]
 
 # 6) Optional: default to index.php for unknown routes (comment out if not needed)
 # RewriteRule ^ index.php [L]
+
+# Use custom error pages
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+
+# (Optional but often helpful)
+# Make sure Apache doesn't try to be clever with content negotiation
+Options -MultiViews
