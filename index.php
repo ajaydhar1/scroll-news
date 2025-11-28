@@ -3,9 +3,10 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Scroll News: Fast AI-Driven Summaries & Headlines</title>
+        <meta name="description" content="Scroll News uses AI to break down U.S. news into fast, readable summaries. Browse trending stories, search headlines, and explore interactive analytics." />
+        <meta name="author" content="Scroll News" />
+        <title>Scroll News – AI-Powered U.S. News Summaries & Trending Headlines</title>
+
         <!-- Favicon-->
         <link rel="icon" type="image/png" href="assets/img/play-green.png" />
         <link rel="canonical" href="https://scrollnews.io/">
@@ -123,7 +124,7 @@
                     <div class="col-lg-4 text-lg-left text-bolder">
                         <h5 class="mb-0">
                             <a href="index.php">
-                                <img src="assets/img/play-green.png" alt="Logo" style="height: 24px; width: auto; vertical-align: middle; margin-right: 5px; margin-bottom: 5px;">
+                                <img src="assets/img/play-green.png" alt="Logo play button" style="height: 24px; width: auto; vertical-align: middle; margin-right: 5px; margin-bottom: 5px;">
                                 Scroll News
                             </a>
                         </h5>
@@ -194,7 +195,7 @@
                         <!-- Portfolio item 1-->
                         <div class="portfolio-item">
                             <a class="portfolio-link" href="assets/img/portfolio/analyze-article.jpg" data-lightbox="modules">
-                                <img class="img-fluid" src="assets/img/portfolio/analyze-article.jpg" alt="..." data-lightbox="1"/>
+                                <img class="img-fluid" src="assets/img/portfolio/analyze-article.jpg" alt="Screenshot of the Analyze Article tool with a URL input box" data-lightbox="1"/>
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Analyze Article</div>
@@ -206,7 +207,7 @@
                         <!-- Portfolio item 2-->
                         <div class="portfolio-item">
                             <a class="portfolio-link" href="assets/img/portfolio/browse-news.jpg" data-lightbox="modules">
-                                <img class="img-fluid" src="assets/img/portfolio/browse-news.jpg" alt="..." data-lightbox="2"/>
+                                <img class="img-fluid" src="assets/img/portfolio/browse-news.jpg" alt="Screenshot of the article grid organized by topic in Scroll News" data-lightbox="2"/>
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Browse News</div>
@@ -218,7 +219,7 @@
                         <!-- Portfolio item 3-->
                         <div class="portfolio-item">
                             <a class="portfolio-link" href="assets/img/portfolio/search-news.jpg" data-lightbox="modules">
-                                <img class="img-fluid" src="assets/img/portfolio/search-news.jpg" alt="..." data-lightbox="3"/>
+                                <img class="img-fluid" src="assets/img/portfolio/search-news.jpg" alt="Screenshot of news search results in Scroll News" data-lightbox="3"/>
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Search News</div>
@@ -230,7 +231,7 @@
                         <!-- Portfolio item 4-->
                         <div class="portfolio-item">
                             <a class="portfolio-link" href="assets/img/portfolio/nlp-dashboard.jpg" data-lightbox="modules">
-                                <img class="img-fluid" src="assets/img/portfolio/nlp-dashboard.jpg" alt="..." data-lightbox="4"/>
+                                <img class="img-fluid" src="assets/img/portfolio/nlp-dashboard.jpg" alt="Screenshot of the NLP dashboard with charts and article stats" data-lightbox="4"/>
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">NLP Dashboard</div>
@@ -242,7 +243,7 @@
                         <!-- Portfolio item 5-->
                         <div class="portfolio-item">
                             <a class="portfolio-link" href="assets/img/portfolio/article-screenshot.jpg" data-lightbox="modules">
-                                <img class="img-fluid" src="assets/img/portfolio/article-screenshot.jpg" alt="..." data-lightbox="5"/>
+                                <img class="img-fluid" src="assets/img/portfolio/article-screenshot.jpg" alt="Screenshot of a news article captured by Scroll News" data-lightbox="5"/>
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Article Screenshot</div>
@@ -276,7 +277,7 @@
                 </div>
                 <ul class="timeline">
                     <li>
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/nlp.jpg" alt="..." /></div>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/nlp.jpg" alt="Team climbing a mountain, representing the early NLP news project" /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4>October 2017</h4>
@@ -286,7 +287,7 @@
                         </div>
                     </li>
                     <li class="timeline-inverted">
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/inflection.jpg" alt="..." /></div>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/inflection.jpg" alt="Friends playing a board game, representing a turning point in our product" /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4>March 2018</h4>
@@ -296,7 +297,7 @@
                         </div>
                     </li>
                     <li>
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/gymnastics.jpg" alt="..." /></div>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/tennis.jpg" alt="Man playing tennis, symbolizing opening the platform to new ideas" /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4>Febuary 2020</h4>
@@ -306,7 +307,7 @@
                         </div>
                     </li>
                     <li class="timeline-inverted">
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/creating-scroll-news.jpg" alt="..." /></div>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/creating-scroll-news.jpg" alt="Young man in a suit, representing the launch of Scroll News" /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4>July 2025</h4>
@@ -398,7 +399,7 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/parveen-anand.jpg" alt="..." />
+                            <img class="mx-auto rounded-circle" src="assets/img/team/parveen-anand.jpg" alt="Illustrated headshot of Parveen Anand, Lead Developer" />
                             <h4>Parveen Anand</h4>
                             <p class="text-muted">Lead Developer</p>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
@@ -408,7 +409,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/matt-elsher.jpg" alt="..." />
+                            <img class="mx-auto rounded-circle" src="assets/img/team/matt-elsher.jpg" alt="Illustrated headshot of Matt Elsher, Product Manager" />
                             <h4>Matt Elsher</h4>
                             <p class="text-muted">Product Manager</p>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>
@@ -418,7 +419,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/diana-keri.jpg" alt="..." />
+                            <img class="mx-auto rounded-circle" src="assets/img/team/diana-keri.jpg" alt="Illustrated headshot of Diana Keri, Lead Marketer" />
                             <h4>Diana Keri</h4>
                             <p class="text-muted">Lead Marketer</p>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i class="fab fa-twitter"></i></a>

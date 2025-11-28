@@ -29,11 +29,13 @@ $youtube_search  = $meta['youtube_search'];
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
         <meta name="robots" content="noindex, nofollow">
+        <meta name="description" content="Browse the Scroll News Newsroom to see AI-analyzed U.S. headlines, scroll through article screenshots, and quickly understand what’s happening right now." />
+        <meta name="author" content="Scroll News" />
 
         <title><?= clean_headline($title) ?></title>
+
+        <!-- Favicon-->
         <link rel="icon" type="image/png" href="assets/img/play-green.png" />
 
         <!-- Twitter card and Open Graph-->
