@@ -18,8 +18,63 @@
         <link rel="preconnect" href="https://yt3.ggpht.com" crossorigin>
         <link rel="dns-prefetch" href="https://s.ytimg.com">
 
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://scrollnews.io/" />
+        <meta property="og:title" content="Scroll News — Analyze, Browse, Search the news" />
+        <meta property="og:description" content="A smarter way to catch up on the news. Analyze articles by URL, browse top stories by topic, and search the latest headlines." />
+        <meta property="og:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-home-1200x630.png" />
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://scrollnews.io/" />
+        <meta name="twitter:title" content="Scroll News — Analyze, Browse, Search the news" />
+        <meta name="twitter:description" content="A smarter way to catch up on the news. Analyze articles by URL, browse top stories by topic, and search the latest headlines." />
+        <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-home-1200x630.png" />
+
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebSite",
+              "@id": "https://scrollnews.io/#website",
+              "url": "https://scrollnews.io/",
+              "name": "Scroll News",
+              "description": "A smarter way to catch up on the news. Analyze articles by URL, browse stories by topic, and search the latest headlines.",
+              "inLanguage": "en",
+              "publisher": {
+                "@id": "https://scrollnews.io/#organization"
+              }
+            },
+            {
+              "@type": "Organization",
+              "@id": "https://scrollnews.io/#organization",
+              "name": "Scroll News",
+              "url": "https://scrollnews.io/",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://scrollnews.io/assets/img/logos/scrollnews-icon-512.png"
+              }
+            },
+            {
+              "@type": "WebPage",
+              "@id": "https://scrollnews.io/#homepage",
+              "url": "https://scrollnews.io/",
+              "name": "Scroll News — Analyze, Browse, Search the news",
+              "description": "A smarter way to catch up on the news. Analyze articles by URL, browse stories by topic, and search the latest headlines.",
+              "inLanguage": "en",
+              "isPartOf": {
+                "@id": "https://scrollnews.io/#website"
+              }
+            }
+          ]
+        }
+        </script>
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
