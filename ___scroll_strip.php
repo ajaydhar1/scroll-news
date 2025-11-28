@@ -143,7 +143,7 @@
       const newsroomLink = `newsroom.php?url=${encodedUrl}&category=Politics&publisher=${encodedPub}&pub_date=${a.pubDateForLink}`;
 
       return `
-        <a class="sn-card" role="listitem" href="${newsroomLink}" rel="noopener noreferrer" data-loading>
+        <a class="sn-card" role="listitem" href="${newsroomLink}" rel="noopener noreferrer" aria-label="Open article: ${a.title}" data-loading>
           <div class="sn-media">
             <img src="${a.image}" alt="${a.title}" onerror="this.src = 'assets/img/news-placeholder.jpg';">
             <span class="sn-badge">${a.publisher}</span>

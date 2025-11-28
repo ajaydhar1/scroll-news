@@ -124,9 +124,9 @@ $youtube_search  = $meta['youtube_search'];
                                 Scroll News
                             </a>
                         </h5>
-                        <a class="btn btn-outline-dark analyze-btn" data-toggle="modal" data-target="#analyzeModal">
+                        <button class="btn btn-outline-dark analyze-btn" data-toggle="modal" data-target="#analyzeModal" aria-label="Analyze an article by URL">
                             Analyze Article
-                        </a>
+                        </button>
                     </div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a data-step="2" data-intro="Click here for information on our analytics." class="btn btn-black btn-social mx-2" title="About" href="about.html"><i class="fas fa-align-right"></i></a>
@@ -134,10 +134,10 @@ $youtube_search  = $meta['youtube_search'];
                         <a data-step="3" data-intro="Click here to see our newsroom video trailer." class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.html"><i class="fas fa-align-left"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-right font-weight-bold" style="">
-                        <a class="btn btn-outline-dark blue-hover browse-btn" data-toggle="modal" data-target="#browseNewsModal">
+                        <button class="btn btn-outline-dark blue-hover browse-btn" data-toggle="modal" data-target="#browseNewsModal" aria-label="Browse news by topic">
                             Browse News
-                        </a>
-                        <button class="btn btn-outline-dark blue-hover browse-btn ml-2" data-toggle="modal" data-target="#searchNewsModal">
+                        </button>
+                        <button class="btn btn-outline-dark blue-hover browse-btn ml-2" data-toggle="modal" data-target="#searchNewsModal" aria-label="Search news articles">
                             Search News
                         </button>
                     </div>
