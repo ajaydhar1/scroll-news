@@ -1213,6 +1213,117 @@ function sn_get_latest_articles(int $limit = 12): array {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+/**
+ * Fetch a single RSS feed and return normalized items.
+ *
+ * @param string $url
+ * @param string $category  e.g. "Business"
+ * @param int    $limit
+ * @return array
+ */
+function sn_fetch_rss_feed_items(string $url, string $category, int $limit = 8): array
+{
+    $items = [];
+
+    // suppress warnings on network/XML issues
+    $xml = @simplexml_load_file($url);
+    if ($xml === false || !isset($xml->channel->item)) {
+        return $items;
+    }
+
+    // media: namespace
+    $media_ns = 'http://search.yahoo.com/mrss/';
+
+    $count = 0;
+    foreach ($xml->channel->item as $item) {
+        if ($count >= $limit) break;
+        $count++;
+
+        $title = trim((string)$item->title);
+        $link  = trim((string)$item->link);
+        $pub   = trim((string)$item->pubDate);
+
+        // Default image: try media:content
+        $image_url = null;
+        $media = $item->children($media_ns);
+        if (isset($media->content)) {
+            // media:content can be multiple; handle first
+            $image_url = (string)$media->content[0]['url'];
+        }
+
+        // Fallback: extract <img src="..."> from description
+        if (!$image_url && isset($item->description)) {
+            $desc = (string)$item->description;
+            if (preg_match('/<img[^>]+src=["\']([^"\']+)["\']/i', $desc, $m)) {
+                $image_url = $m[1];
+            }
+        }
+
+        // Normalize published_at as timestamp
+        $ts = $pub ? strtotime($pub) : null;
+
+        // “Source” — we can use the category + domain
+        $host = null;
+        if ($link) {
+            $parsed = parse_url($link);
+            if (!empty($parsed['host'])) {
+                $host = $parsed['host'];
+            }
+        }
+
+        $source_parts = [];
+        if ($category) {
+            $source_parts[] = $category;
+        }
+        if ($host) {
+            $source_parts[] = $host;
+        }
+        $source = implode(' • ', $source_parts);
+
+        $items[] = [
+            'title'        => $title,
+            'url'          => $link,
+            'image_url'    => $image_url,
+            'source'       => $source,
+            'published_at' => $ts,      // unix timestamp
+        ];
+    }
+
+    return $items;
+}
+
+/**
+ * Get merged + sorted headlines for homepage.
+ *
+ * @param int $limit total articles to return after merging
+ * @return array
+ */
+function sn_get_homepage_headlines(int $limit = 13): array
+{
+    global $rss_feeds;
+
+    $all = [];
+
+    foreach ($rss_feeds as $category => $url) {
+        $feed_items = sn_fetch_rss_feed_items($url, $category, 6); // per-feed limit
+        $all = array_merge($all, $feed_items);
+    }
+
+    // Sort by published_at DESC (newest first)
+    usort($all, function ($a, $b) {
+        $ta = $a['published_at'] ?? 0;
+        $tb = $b['published_at'] ?? 0;
+        return $tb <=> $ta;
+    });
+
+    // Trim to desired overall limit
+    if (count($all) > $limit) {
+        $all = array_slice($all, 0, $limit);
+    }
+
+    return $all;
+}
+
 function normalize_headline(string $s): string
 {
     // If it’s not valid UTF-8, assume Win-1252 and convert

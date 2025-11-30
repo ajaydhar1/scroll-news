@@ -390,19 +390,6 @@
         <?php require_once("___scroll_strip.php"); ?>
 
 
-        <?php
-
-        require_once __DIR__ . '/___modules.php';
-
-        // Assuming you already have a $pdo or db() helper:
-        $latest_articles = sn_get_latest_articles(12);
-        
-        require_once __DIR__ . '/___home-article-grid.php';
-        
-        ?>
-
-
-
         <section id="playlists" class="pt-5">
             <div class="container">
                 <div style="max-width:880px;margin:auto">
