@@ -4,7 +4,7 @@
 
           <div class="col-12 col-md-12 col-lg-12 col-xl-4 d-flex align-items-stretch">
 
-            <div data-step="4" data-intro="Hashtags of people, places, and organizations." class="card shadow w-100 mb-4">
+            <div data-step="4" data-intro="Hashtags of people, places, and organizations." class="card w-100 shadow mb-3">
               <!-- Card Header - Dropdown -->
               <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
                 <h5 class="m-0 font-weight-bold">Hashtags</h5>
@@ -79,7 +79,7 @@
           <div class="col-12 col-md-12 col-lg-12 col-xl-8 d-flex align-items-stretch">
             <div class="row d-flex align-items-stretch">
                 <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch" style="max-height: 340px;">
-                    <div data-step="6" data-intro="Wikipedia articles." class="card w-100 shadow mb-4">
+                    <div data-step="6" data-intro="Wikipedia articles." class="card w-100 shadow mb-3">
                       <!-- Card Header - Dropdown -->
                       <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
                         <h5 class="m-0 font-weight-bold">Wikipedia</h5>
@@ -106,7 +106,7 @@
                   </div>
 
                   <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch">
-                    <div data-step="7" data-intro="A taxonomy of the topics covered in the article." class="card w-100 shadow mb-4">
+                    <div data-step="7" data-intro="A taxonomy of the topics covered in the article." class="card w-100 shadow mb-3">
                       <!-- Card Header - Dropdown -->
                       <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
                         <h5 class="m-0 font-weight-bold">Subject Matter</h5>
@@ -178,7 +178,7 @@
 
                   </div>
                   <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch">
-                    <div data-step="8" data-intro="Emotions evoked." class="card w-100 shadow mb-4">
+                    <div data-step="8" data-intro="Emotions evoked." class="card w-100 shadow mb-3">
                       <!-- Card Header - Dropdown -->
                       <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
                         <h5 class="m-0 font-weight-bold">Emotional Reaction</h5>
@@ -208,7 +208,7 @@
                     </div>
                   </div>
                   <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch">
-                    <div data-step="9" data-intro="Author's tone." class="card w-100 shadow mb-4">
+                    <div data-step="9" data-intro="Author's tone." class="card w-100 shadow mb-3">
                       <!-- Card Header - Dropdown -->
                       <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
                         <h5 class="m-0 font-weight-bold">Sentiment</h5>
