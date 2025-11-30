@@ -37,6 +37,24 @@ $mime = 'image/png'; // or 'image/jpeg' depending on how you store them
 
 $bytes = $row['screenshot_bytes'];
 
+// 🔍 DEBUG BLOCK — TEMPORARY
+if (isset($_GET['debug'])) {
+    header('Content-Type: text/plain; charset=utf-8');
+
+    echo "Length: " . (is_string($bytes) ? strlen($bytes) : 'not a string') . "\n\n";
+    echo "First 80 chars:\n";
+
+    if (is_string($bytes)) {
+        echo substr($bytes, 0, 80);
+    } else {
+        var_dump($bytes);
+    }
+
+    exit;
+}
+// 🔍 END DEBUG
+
+
 header('Content-Type: ' . $mime);
 header('Content-Length: ' . strlen($bytes));
 // cache for a day — optional but nice
