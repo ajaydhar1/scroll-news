@@ -154,8 +154,10 @@ $youtube_search  = $meta['youtube_search'];
                 <div class="masthead-subheading mb-1"><a href="<?= $pub_link ?>" target="_blank" class="bright-link-hover"><?php echo $pub; ?></a></div>
                 <div class="mb-2 text-muted" style="font-size: 1.25rem;"><strong><?php if (isset($_GET['pub_date'])) { echo format_news_date($_GET["pub_date"]); } ?></strong></div>
                 <div class="masthead-heading text-uppercase"><?php echo clean_headline($title); ?></div>
-                <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black mr-3" href="#">Analytics</a>
-                <a class="btn btn-outline-secondary btn-lg btn-rectangle js-scroll-trigger" target='_blank' href="<?php echo $url; ?>" style="color: white; border-color: transparent;">Go to Story</a>
+                <div class="text-center">
+                    <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black d-block d-md-inline-block mb-3 mr-md-2" href="#">Analytics</a>
+                    <a class="btn btn-outline-secondary btn-lg btn-rectangle js-scroll-trigger d-block d-md-inline-block mb-3" target='_blank' href="<?php echo $url; ?>" style="color: white; border-color: transparent;">Go to Story</a>
+                </div>
             </div>
         </header>
 
