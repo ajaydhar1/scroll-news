@@ -397,7 +397,7 @@
         // Assuming you already have a $pdo or db() helper:
         $latest_articles = sn_get_latest_articles(12);
         
-        require_once __DIR__ . '___home-article-grid.php';
+        require_once __DIR__ . '/___home-article-grid.php';
         
         ?>
 
