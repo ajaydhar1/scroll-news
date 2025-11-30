@@ -44,7 +44,7 @@ function getPdoOrExplain(): ?PDO {
     // Make sure errors go to logs
     error_reporting(E_ALL);
     ini_set('log_errors', '1');
-    ini_set('display_errors', '0');
+    ini_set('display_errors', '1');
 
     // 1) Driver present?
     $drivers = class_exists('PDO') ? PDO::getAvailableDrivers() : [];
@@ -1192,6 +1192,22 @@ function getNLPFromDB(string $url) {
     $stmt->execute([':url' => $url]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     return json_decode($row['nlp'], true) ?: null;
+}
+
+function sn_get_latest_articles(PDO $pdo, int $limit = 12): array {
+    $sql = "
+        SELECT id, url, screenshot_bytes, created_at
+        FROM articles
+        WHERE screenshot_bytes IS NOT NULL
+        ORDER BY created_at DESC
+        LIMIT :limit
+    ";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function normalize_headline(string $s): string

@@ -389,6 +389,18 @@
 
         <?php require_once("___scroll_strip.php"); ?>
 
+
+        <?php
+
+        // Assuming you already have a $pdo or db() helper:
+        $latest_articles = sn_get_latest_articles($pdo, 12);
+        
+        require '___home-article-grid.php';
+        
+        ?>
+
+
+
         <section id="playlists" class="pt-5">
             <div class="container">
                 <div style="max-width:880px;margin:auto">
