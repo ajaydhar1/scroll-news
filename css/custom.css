@@ -8,6 +8,14 @@
   color: var(--brand-color);
 }
 
+/* Disable sticky on small screens */
+@media (max-width: 767.98px) {
+    .sn-top-nav.sticky-top {
+        position: static !important;
+        top: auto !important;
+    }
+}
+
 footer h5 a:hover {
   color: var(--brand-color);
   text-decoration: none;

@@ -173,7 +173,7 @@
         </style>
 
         <!-- topnav-->
-        <footer class="footer py-4 bg-white sticky-top">
+        <footer class="footer py-4 bg-white sticky-top sn-top-nav">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-left text-bolder">

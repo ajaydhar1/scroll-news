@@ -16,7 +16,7 @@
           @media (prefers-reduced-motion: reduce){ .loading-spinner{animation:none} }
         </style>
 
-        <footer class="footer py-4 bg-white sticky-top">
+        <footer class="footer py-4 bg-white sticky-top sn-top-nav">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-left"><a href="index.php">Home</a></div>
