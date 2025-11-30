@@ -1194,7 +1194,10 @@ function getNLPFromDB(string $url) {
     return json_decode($row['nlp'], true) ?: null;
 }
 
-function sn_get_latest_articles(PDO $pdo, int $limit = 12): array {
+function sn_get_latest_articles(int $limit = 12): array {
+
+    $pdo = _pdo_or_null();
+
     $sql = "
         SELECT id, url, screenshot_bytes, created_at
         FROM articles

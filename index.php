@@ -393,7 +393,7 @@
         <?php
 
         // Assuming you already have a $pdo or db() helper:
-        $latest_articles = sn_get_latest_articles($pdo, 12);
+        $latest_articles = sn_get_latest_articles(12);
         
         require '___home-article-grid.php';
         
