@@ -1,12 +1,11 @@
 <?php
 // screenshot.php — stream article screenshot from DB by id
 
-ini_set('display_errors', '1');
+ini_set('display_errors', '1');              // you can turn these off later
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
 require_once __DIR__ . '/___modules.php';
-
 
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 if ($id <= 0) {
@@ -15,6 +14,10 @@ if ($id <= 0) {
 }
 
 $pdo = _pdo_or_null();
+if (!$pdo) {
+    http_response_code(500);
+    exit('No DB connection');
+}
 
 $sql = "
     SELECT screenshot_bytes
@@ -32,32 +35,25 @@ if (!$row) {
     exit('Not found');
 }
 
-// If you have a screenshot_mime_type column, use that instead of hardcoding:
-$mime = 'image/png'; // or 'image/jpeg' depending on how you store them
-
 $bytes = $row['screenshot_bytes'];
 
-// 🔍 DEBUG BLOCK — TEMPORARY
-if (isset($_GET['debug'])) {
-    header('Content-Type: text/plain; charset=utf-8');
-
-    echo "Length: " . (is_string($bytes) ? strlen($bytes) : 'not a string') . "\n\n";
-    echo "First 80 chars:\n";
-
-    if (is_string($bytes)) {
-        echo substr($bytes, 0, 80);
-    } else {
-        var_dump($bytes);
-    }
-
-    exit;
+// ❗ Convert stream resource → string
+if (is_resource($bytes)) {
+    $bytes = stream_get_contents($bytes);
 }
-// 🔍 END DEBUG
 
+if (!is_string($bytes) || $bytes === '') {
+    http_response_code(500);
+    exit('Empty screenshot data');
+}
+
+// If you know your screenshotter saves PNGs, keep this.
+// Change to image/jpeg if they're JPEGs.
+$mime = 'image/png';
 
 header('Content-Type: ' . $mime);
-header('Content-Length: ' . strlen($bytes));
-// cache for a day — optional but nice
+// You can skip Content-Length while debugging; uncomment later if you want
+// header('Content-Length: ' . strlen($bytes));
 header('Cache-Control: public, max-age=86400');
 
 echo $bytes;
