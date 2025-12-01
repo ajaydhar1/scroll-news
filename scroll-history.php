@@ -340,7 +340,7 @@ foreach ($items as $item) {
                             <article class="article-card">
                                 <div class="article-image-wrap">
                                     <?php if (!empty($mediaUrl)): ?>
-                                        <img src="<?php echo htmlspecialchars($mediaUrl); ?>" alt="" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x225?text=Scroll+News';">
+                                        <img src="<?php echo htmlspecialchars($mediaUrl); ?>" alt="" onerror="this.onerror=null;this.src='assets/img/news-placeholder.jpg';">
                                     <?php else: ?>
                                         <img src="https://via.placeholder.com/400x225?text=Scroll+News" alt="">
                                     <?php endif; ?>
