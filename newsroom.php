@@ -22,6 +22,10 @@ $title  = $des = $img = $pub = $pub_link = $youtube_search = '';
 if ($db !== '') {
     $article = getArticleFromDBByUrl($url);  // your helper
     $meta = build_meta_from_db_article($url, $article);
+
+    if ($meta['image'] == '') {
+      $meta = newsroom_extract_meta($url);
+    }
 }
 else {
     // Extract OpenGraph/meta
