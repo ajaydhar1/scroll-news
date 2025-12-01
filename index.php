@@ -90,6 +90,9 @@
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/custom.css" rel="stylesheet" />
 
+        <!-- Add IntroJs styles -->
+        <link href="css/introjs.css" rel="stylesheet">
+
         <link href="css/lightbox.css" rel="stylesheet" />
 
         <link rel="preload" as="image" href="assets/img/header-bg-3.jpg">
@@ -148,6 +151,27 @@
                 scroll-margin-top: 95px; /* Adjust the offset as needed */
             }
 
+            .introjs-bullets {
+                display: none;
+            }
+
+            .introjs-helperLayer {
+                border: 1px solid rgb(255 255 255 / 87%) !important;
+            }
+
+            .introjs-overlay {
+                opacity: .85 !important;
+            }
+
+            .introjs-tooltiptext {
+                font-size: 15px;
+                line-height: calc(var(--line-height-unit) * 1.4) !important;
+            }
+
+            .custom-highlight {
+                background-color: transparent !important;
+                opacity: 1 !important;
+            }
 
         </style>
 
@@ -186,7 +210,7 @@
                     </div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-black btn-social mx-2" title="About" href="about.html"><i class="fas fa-align-right"></i></a>
-                        <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" onclick="" data-loading><i class="fas fa-play"></i></a>
+                        <a data-step="1" data-intro="Start here" class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" onclick="" data-loading><i class="fas fa-play"></i></a>
                         <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.html"><i class="fas fa-align-left"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-right" style=""><a href="about.html">About</a></div>
@@ -538,6 +562,8 @@
         <!-- Core theme JS-->
         <?php //<script src="js/scripts.js"></script> ?>
 
+        <script type="text/javascript" src="js/intro.js"></script>
+
         <script type="text/javascript" src="js/lightbox.js"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
@@ -576,6 +602,15 @@
               const style = document.createElement('style');
               style.textContent = '.btn-spinner{display:inline-block;width:1em;height:1em;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .6s linear infinite;vertical-align:-0.125em}';
               document.head.appendChild(style);
+            })();
+        </script>
+
+        <script>
+            (function(){
+                introJs().setOptions({
+                    highlightClass: 'custom-highlight',
+                    overlayOpacity: 0.5  // or 0 if you want no darkening at all
+                }).start();
             })();
         </script>
     </body>
