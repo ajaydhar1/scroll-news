@@ -392,7 +392,7 @@
         <?php require_once("___scroll_strip.php"); ?>
 
 
-        <section id="playlists" class="py-5">
+        <section id="playlists" class="pt-4 pb-5 pt-sm-5">
             <div class="container">
                 <div style="max-width:880px;margin:auto">
                     <label for="ytTab" style="display:block;margin:0 0 8px">News playlists</label>

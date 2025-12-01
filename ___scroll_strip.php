@@ -19,6 +19,11 @@
 
 <style>
   .sn-section { --gap: 16px; --card-w: 280px; --radius: 16px; --shadow: 0 6px 20px rgba(0,0,0,.12); padding: 3rem 0; }
+  @media (max-width: 575.98px) {
+    .sn-section {
+        padding-bottom: 1.5rem;
+    }
+  }
   .sn-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
   .sn-header h2 { font-size:1.1rem; margin:0; letter-spacing:.2px; }
   .sn-controls { display:flex; gap:8px; }
