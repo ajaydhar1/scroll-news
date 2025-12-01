@@ -15,30 +15,45 @@ $db = $resolved['db'] ?? '';
 $fromDb = $db == "1" || $category == "db";
 
 // Get meta data for article
-$meta   = [];
-$title  = $des = $img = $pub = $pub_link = $youtube_search = '';
+$meta           = [];
+$title          = '';
+$des            = '';
+$img            = '';
+$pub            = '';
+$pub_link       = '';
+$youtube_search = '';
 
 // If we're in "db mode", try to pull the article from the DB instead of scraping
-if ($db !== '') {
-    $article = getArticleFromDBByUrl($url);  // your helper
-    $meta = build_meta_from_db_article($url, $article);
+if (!empty($db)) {
+    $article = getArticleFromDBByUrl($url);
 
-    if ($meta['image'] == '') {
-      $meta = newsroom_extract_meta($url);
+    if (!empty($article) && is_array($article)) {
+        $dbMeta = build_meta_from_db_article($url, $article);
+        if (is_array($dbMeta)) {
+            $meta = $dbMeta;
+        }
     }
 }
-else {
-    // Extract OpenGraph/meta
-    $meta = newsroom_extract_meta($url);
+
+// If we don't have an image yet (or $meta is still empty), fall back to scraping
+if (empty($meta['image'])) {
+    $scraped = newsroom_extract_meta($url);
+
+    if (is_array($scraped)) {
+        // Merge scraped meta in without nuking DB values that already exist
+        $meta = array_merge($scraped, $meta);
+        // If you want DB to win over scraped, flip the order:
+        // $meta = array_merge($meta, $scraped);
+    }
 }
 
-// If you want individual vars (keeps the rest of your page unchanged):
-$title           = $meta['title'];
-$des             = $meta['description'];
-$img             = $meta['image'];
-$pub             = $meta['publisher'];
-$pub_link        = $meta['publisher_link'];
-$youtube_search  = $meta['youtube_search'];
+// Finally, hydrate the individual vars safely
+$title          = $meta['title']          ?? '';
+$des            = $meta['description']    ?? '';
+$img            = $meta['image']          ?? '';
+$pub            = $meta['publisher']      ?? '';
+$pub_link       = $meta['publisher_link'] ?? '';
+$youtube_search = $meta['youtube_search'] ?? $title;
 
 
 ?>
