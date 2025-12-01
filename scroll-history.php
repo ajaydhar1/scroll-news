@@ -292,7 +292,7 @@ foreach ($items as $item) {
                     </button>
 
                     <!-- Horizontal track -->
-                    <div class="articles-track" id="<?php echo $trackId; ?>">
+                    <div class="articles-track py-2" id="<?php echo $trackId; ?>">
                         <?php foreach ($articles as $item): ?>
                             <?php
                                 $title    = $item['title'] ?? '';
