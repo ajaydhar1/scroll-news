@@ -19,7 +19,7 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // ----- Group items by *local-ish* date using a fixed offset -----
 // If DB time is ~4.5 hours ahead of what you want, we'll shift backwards.
 // Start with -5 hours as a simple approximation (adjust if needed).
-$offsetSeconds = -4.5 * 3600;  // -5 hours; change to -4 * 3600 if you want -4 hours, etc.
+$offsetSeconds = 0 * 3600;  // -5 hours; change to -4 * 3600 if you want -4 hours, etc.
 
 $days = [];
 
