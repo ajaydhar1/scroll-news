@@ -191,9 +191,10 @@ $youtube_search  = $meta['youtube_search'];
                             <?php
 
                             if ($category == "db") {
-                                $arr = getArticleFromDBByUrl($url);
+                                $article = getArticleFromDBByUrl($url);
+                                $arr = $article['nlp'];
 
-                                if (($arr["error"] == "No features in text.")  || empty($arr['entities'])) {
+                                if (!$arr || (!empty($arr['error']) && $arr['error'] === 'No features in text.') || empty($arr['entities'])) {
                                     $host = parse_url($url, PHP_URL_HOST) ?: 'this page';
                                       // Small, in-panel empty state card
                                     echo '
@@ -259,7 +260,7 @@ $youtube_search  = $meta['youtube_search'];
                                 if (!isset($_GET["error"])) {
 
                                     // 1) Prefer DB media image, then OG image ($img), else null
-                                    $dbMedia   = $arr['media'] ?? null;   // from DB
+                                    $dbMedia   = $article['media_url'] ?? null;   // from DB
                                     $ogImage   = $img ?? null;           // scraped OG tag
                                     $primary   = $dbMedia ?: $ogImage;
 
@@ -275,7 +276,7 @@ $youtube_search  = $meta['youtube_search'];
                                       src="<?php echo htmlspecialchars($initialSrc, ENT_QUOTES); ?>"
                                       alt="Article image"
                                       loading="lazy" decoding="async"
-                                      style="max-width:100%;height:auto;margin-bottom:20px;"
+                                      style="width:100%;height:auto;margin-bottom:20px;"
                                     />
 
                                     <div id="img-loader" class="text-center mt-3">Loading image...</div>
