@@ -118,7 +118,11 @@ foreach ($items as $item) {
             /* Daily Scroll-specific styles */
 
             .sn-archive-header {
-                margin-bottom: 2.5rem;
+                /* margin-bottom: 2.5rem; */
+            }
+
+            .page-section h2.section-heading {
+                margin-bottom: .5rem;
             }
 
             .sn-archive-header h2 {
@@ -342,6 +346,14 @@ foreach ($items as $item) {
             }
             @keyframes spin{to{transform:rotate(360deg)}}
             @media (prefers-reduced-motion: reduce){ .loading-spinner{animation:none} }
+
+
+            a.btn.btn-outline-primary.btn-analyze:hover {
+                background: #00bfa6;
+                border: none;
+            }
+
+
         </style>
 
     </head>
@@ -455,11 +467,11 @@ foreach ($items as $item) {
                                                     <img
                                                         src="<?php echo htmlspecialchars($mediaUrl); ?>"
                                                         alt=""
-                                                        onerror="this.onerror=null;this.src='https://via.placeholder.com/400x225?text=Scroll+News';"
+                                                        onerror="this.onerror=null;this.src='assets/img/news-placeholder.jpg';"
                                                     />
                                                 <?php else: ?>
                                                     <img
-                                                        src="https://via.placeholder.com/400x225?text=Scroll+News"
+                                                        src="assets/img/news-placeholder.jpg"
                                                         alt=""
                                                     />
                                                 <?php endif; ?>
