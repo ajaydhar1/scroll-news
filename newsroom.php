@@ -1,5 +1,10 @@
 <?php
-error_reporting(E_ERROR | E_PARSE);
+// Production-ish settings
+ini_set('display_errors', '0');
+ini_set('display_startup_errors', '0');
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+ini_set('log_errors', '1');
+
 require_once('___session_results.php');
 require_once('___modules.php');
 
