@@ -12,6 +12,8 @@ $url      = $resolved['url'];
 $category = $resolved['category'] ?? '';
 $db = $resolved['db'] ?? '';
 
+$fromDb = $db == "1" || $category == "db";
+
 // Get meta data for article
 $meta   = [];
 $title  = $des = $img = $pub = $pub_link = $youtube_search = '';
@@ -202,7 +204,7 @@ $youtube_search  = $meta['youtube_search'];
 
                             <?php
 
-                            if ($db == "1" || $category == "db") {
+                            if ($fromDb) {
                                 $arr = $article['nlp'];
 
                                 if (!$arr || (!empty($arr['error']) && $arr['error'] === 'No features in text.') || empty($arr['entities'])) {
@@ -639,7 +641,7 @@ $youtube_search  = $meta['youtube_search'];
 
         <?php
 
-        if ($category !== "db") {
+        if (!$fromDb) {
 
         ?>
         
