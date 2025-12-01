@@ -191,7 +191,7 @@ $youtube_search  = $meta['youtube_search'];
                             <?php
 
                             if ($category == "db") {
-                                $arr = getNLPFromDB($url);
+                                $arr = getArticleFromDBByUrl($url);
 
                                 if (($arr["error"] == "No features in text.")  || empty($arr['entities'])) {
                                     $host = parse_url($url, PHP_URL_HOST) ?: 'this page';
@@ -257,27 +257,35 @@ $youtube_search  = $meta['youtube_search'];
                     
                             <?php 
                                 if (!isset($_GET["error"])) {
+
+                                    // 1) Prefer DB media image, then OG image ($img), else null
+                                    $dbMedia   = $arr['media'] ?? null;   // from DB
+                                    $ogImage   = $img ?? null;           // scraped OG tag
+                                    $primary   = $dbMedia ?: $ogImage;
+
+                                    // 2) Hard fallback path
+                                    $fallbackSrc = 'assets/img/news-placeholder.jpg';
+
+                                    // 3) If we don't even have a primary, start with the fallback
+                                    $initialSrc = $primary ?: $fallbackSrc;
                             ?>
 
                                     <img
                                       id="shot"
-                                      src="https://nlp-api-exr1.onrender.com/screenshot?url=<?= urlencode($url) ?>"
-                                      alt="Article Screenshot"
+                                      src="<?php echo htmlspecialchars($initialSrc, ENT_QUOTES); ?>"
+                                      alt="Article image"
                                       loading="lazy" decoding="async"
                                       style="max-width:100%;height:auto;margin-bottom:20px;"
                                     />
 
-                                    <div id="img-loader" class="text-center mt-3">Loading screenshot...</div>
+                                    <div id="img-loader" class="text-center mt-3">Loading image...</div>
 
                                     <script>
                                     (function () {
-                                      const img = document.getElementById('shot');
-                                      const imgLoader = document.getElementById('img-loader');
-                                      const originalSrc = img.src;
-                                      const fallbackSrc = 'assets/img/screenshot-load-failed.svg';
-
-                                      let swapped = false;
-                                      const timeoutMs = 7000;
+                                      const img        = document.getElementById('shot');
+                                      const imgLoader  = document.getElementById('img-loader');
+                                      const originalSrc = img.getAttribute('src');
+                                      const fallbackSrc = '<?php echo $fallbackSrc; ?>';
 
                                       const hideLoader = () => { if (imgLoader) imgLoader.style.display = 'none'; };
 
@@ -286,35 +294,14 @@ $youtube_search  = $meta['youtube_search'];
                                         hideLoader();
                                       }
 
-                                      const t = setTimeout(() => {
-                                        if (swapped) return;
-                                        swapped = true;
-                                        img.dataset.err = 'timeout';
-                                        hideLoader();
-                                        img.src = fallbackSrc; // cancels in-flight request and shows fallback
-                                      }, timeoutMs);
-
                                       img.addEventListener('load', () => {
-                                        // Any loaded image (original or fallback) means we can hide the text
-                                        clearTimeout(t);
                                         hideLoader();
                                       });
 
                                       img.addEventListener('error', () => {
-                                        clearTimeout(t);
                                         hideLoader();
-                                        if (!swapped) {
-                                          swapped = true;
+                                        if (img.src !== fallbackSrc) {
                                           img.src = fallbackSrc;
-                                        }
-                                      });
-
-                                      // Optional: click-to-retry if fallback is showing
-                                      img.addEventListener('click', () => {
-                                        if (img.src.includes(fallbackSrc)) {
-                                          swapped = false;
-                                          const bust = (originalSrc.includes('?') ? '&' : '?') + 't=' + Date.now();
-                                          img.src = originalSrc + bust;
                                         }
                                       });
                                     })();
@@ -322,7 +309,6 @@ $youtube_search  = $meta['youtube_search'];
 
                             <?php
                                 }
-
                             ?>
                         </div>
                     </div>

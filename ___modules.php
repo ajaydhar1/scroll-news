@@ -1171,6 +1171,135 @@ function getRecentWeightedArticle_fromDB(
     ];
 }
 
+/**
+ * Recent-weighted article picker for the "Stumble" button:
+ * - Filters to NLP-ready articles (no screenshot requirement)
+ * - Applies entity filters (unless $requireEntities = false)
+ * - Respects global $filter_out NOT ILIKE terms
+ * - Restricts to the last $days days using $tsCol
+ * - Pulls up to $limit most recent rows
+ * - Picks one in PHP with an exponential decay weight so
+ *   newest articles are much more likely.
+ *
+ * This is similar to getRecentWeightedArticle_fromDB(), but
+ * DOES NOT require screenshot_bytes to be present.
+ */
+function getRecentWeightedArticle_forStumble_fromDB(
+    bool $requireEntities = true,
+    int $days = 35,
+    int $limit = 500,
+    float $decay = 0.12
+): array {
+    global $filter_out;
+    $pdo = _pdo_or_null();
+    if (!$pdo) {
+        return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
+            : ['category' => 'db', 'link' => null, 'pub_date' => null];
+    }
+
+    // Timestamp column we trust for recency
+    $tsCol = 'updated_at';
+
+    // Entities filter (same as your other function)
+    $entitiesClause = '';
+    if ($requireEntities) {
+        $entitiesClause =
+            " AND (nlp::text) NOT LIKE '%\"entities\": []%'".
+            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"X-Forbidden\", \"count\": 1, \"label\": \"ORG\"}]%'".
+            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"JavaScript\", \"count\": 1, \"label\": \"PRODUCT\"}]%'".
+            " AND (nlp::text) NOT LIKE '%\"emotional_reaction\": {}%'";
+    }
+
+    // Ready predicate for STUMBLE:
+    // NLP must be present, but we do NOT require screenshot_bytes
+    $ready = "nlp IS NOT NULL";
+
+    // Filters: NOT ILIKE any of $filter_out
+    [$notLikeSql, $notLikeParams] = buildNotILikeNamed(is_array($filter_out) ? $filter_out : []);
+
+    // Time window
+    $sinceTs = (new DateTimeImmutable('now'))
+        ->modify("-{$days} days")
+        ->format('Y-m-d H:i:s');
+
+    $recentWhere = $tsCol
+        ? " AND {$tsCol} >= :since_ts"
+        : '';
+
+    $commonWhere = "$ready $entitiesClause $recentWhere" . ($notLikeSql ? " AND $notLikeSql" : "");
+
+    // Pull a capped list of the *most recent* matching articles
+    $sql = "
+        SELECT id, url, created_at
+        FROM articles
+        WHERE $commonWhere
+        ORDER BY {$tsCol} DESC
+        LIMIT :limit_rows
+    ";
+
+    $stmt = $pdo->prepare($sql);
+
+    $params = array_merge(
+        $notLikeParams,
+        $tsCol ? [':since_ts' => $sinceTs] : [],
+        [':limit_rows' => $limit]
+    );
+
+    $stmt->execute($params);
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if (!$rows) {
+        // Fall back to your existing random function or RSS
+        return function_exists('getRandomArticle_fromDB')
+            ? getRandomArticle_fromDB($requireEntities, $days)
+            : (function_exists('getRandomArticle_fromRSS')
+                ? getRandomArticle_fromRSS()
+                : ['category' => 'db', 'link' => null, 'pub_date' => null]);
+    }
+
+    // --- Weighted pick in PHP ---
+    // Newest row is index 0. We assign weight w_i = exp(-decay * i)
+    $weights = [];
+    $totalWeight = 0.0;
+    $n = count($rows);
+
+    for ($i = 0; $i < $n; $i++) {
+        $w = exp(-$decay * $i);
+        $weights[$i] = $w;
+        $totalWeight += $w;
+    }
+
+    $r = mt_rand() / mt_getrandmax() * $totalWeight;
+    $acc = 0.0;
+    $chosenIndex = 0;
+
+    for ($i = 0; $i < $n; $i++) {
+        $acc += $weights[$i];
+        if ($r <= $acc) {
+            $chosenIndex = $i;
+            break;
+        }
+    }
+
+    $row = $rows[$chosenIndex];
+
+    if (empty($row['url'])) {
+        // Safety fallback if something is weird
+        return function_exists('getRandomArticle_fromDB')
+            ? getRandomArticle_fromDB($requireEntities, $days)
+            : (function_exists('getRandomArticle_fromRSS')
+                ? getRandomArticle_fromRSS()
+                : ['category' => 'db', 'link' => null, 'pub_date' => null]);
+    }
+
+    return [
+        'category'   => 'db',
+        'link'       => $row['url'],
+        'article_id' => (int)$row['id'],
+        'pub_date'   => toEpoch(toIsoZ($row['created_at'])),
+    ];
+}
+
 
 // Returns the row or null if not found
 function getNLPFromDB(string $url) {
@@ -1193,6 +1322,88 @@ function getNLPFromDB(string $url) {
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     return json_decode($row['nlp'], true) ?: null;
 }
+
+/**
+ * Fetch full article row (including NLP + media_url) by canonical URL.
+ *
+ * Returns:
+ *   - null if not found
+ *   - assoc array:
+ *       [
+ *         'id'            => int,
+ *         'url'           => string,
+ *         'title'         => ?string,
+ *         'description'   => ?string,
+ *         'author'        => ?string,
+ *         'pub_date'      => ?string (ISO / DB datetime),
+ *         'media_url'     => ?string,
+ *         'rss_item_id'   => ?int,
+ *         'feed_id'       => ?int,
+ *         'source_slug'   => ?string,
+ *         'screenshot_bytes' => ?string (raw bytes or null),
+ *         'nlp'           => ?array (decoded JSON),
+ *       ]
+ */
+function getArticleFromDBByUrl(string $url): ?array
+{
+    $pdo = getPdoOrExplain();
+    if (!$pdo) {
+        logj('DB guard: getArticleFromDBByUrl() falling back (no PDO)');
+        return null;
+    }
+
+    $sql = "
+        SELECT
+            id,
+            url,
+            title,
+            description,
+            author,
+            pub_date,
+            media_url,
+            rss_item_id,
+            feed_id,
+            source_slug,
+            nlp,
+            screenshot_bytes
+        FROM articles
+        WHERE url = :url
+        LIMIT 1
+    ";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':url' => $url]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$row) {
+        return null;
+    }
+
+    // Decode NLP JSON into a PHP array (but keep the original row fields too)
+    $nlp = null;
+    if (!empty($row['nlp'])) {
+        $decoded = json_decode($row['nlp'], true);
+        if (is_array($decoded)) {
+            $nlp = $decoded;
+        }
+    }
+
+    return [
+        'id'              => (int) $row['id'],
+        'url'             => $row['url'],
+        'title'           => $row['title'] ?? null,
+        'description'     => $row['description'] ?? null,
+        'author'          => $row['author'] ?? null,
+        'pub_date'        => $row['pub_date'] ?? null,
+        'media_url'       => $row['media_url'] ?? null,
+        'rss_item_id'     => isset($row['rss_item_id']) ? (int) $row['rss_item_id'] : null,
+        'feed_id'         => isset($row['feed_id']) ? (int) $row['feed_id'] : null,
+        'source_slug'     => $row['source_slug'] ?? null,
+        'screenshot_bytes'=> $row['screenshot_bytes'] ?? null,
+        'nlp'             => $nlp,
+    ];
+}
+
 
 function sn_get_latest_articles(int $limit = 12): array {
 
