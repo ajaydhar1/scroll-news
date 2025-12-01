@@ -1230,7 +1230,7 @@ function getRecentWeightedArticle_forStumble_fromDB(
 
     // Pull a capped list of the *most recent* matching articles
     $sql = "
-        SELECT id, url, created_at
+        SELECT id, url, source_slug, created_at
         FROM articles
         WHERE $commonWhere
         ORDER BY {$tsCol} DESC
@@ -1293,7 +1293,7 @@ function getRecentWeightedArticle_forStumble_fromDB(
     }
 
     return [
-        'category'   => 'db',
+        'category' => isset($row['source_slug']) ? ucfirst($row['source_slug']) : 'db',
         'link'       => $row['url'],
         'article_id' => (int)$row['id'],
         'pub_date'   => toEpoch(toIsoZ($row['created_at'])),
