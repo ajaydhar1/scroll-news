@@ -8,13 +8,13 @@ require_once('___modules.php');
 
 $pdo = _pdo_or_null();
 
-// ----- Fetch all RSS items ordered by published_at DESC -----
+// ----- Fetch all RSS items ordered by pub_date DESC -----
 // Adjust column names if your schema is different.
 $sql = "
-    SELECT id, title, url, published_at, publisher, media_url
+    SELECT id, title, link, pub_date, publisher, media_url
     FROM rss_items
-    WHERE published_at IS NOT NULL
-    ORDER BY published_at DESC, id DESC
+    WHERE pub_date IS NOT NULL
+    ORDER BY pub_date DESC, id DESC
 ";
 $stmt = $pdo->query($sql);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -22,7 +22,7 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // ----- Group items by date (Y-m-d) -----
 $days = [];
 foreach ($items as $item) {
-    $dt = new DateTime($item['published_at']);
+    $dt = new DateTime($item['pub_date']);
     $dateKey = $dt->format('Y-m-d');
     if (!isset($days[$dateKey])) {
         $days[$dateKey] = [];
@@ -304,9 +304,9 @@ foreach ($items as $item) {
                         <?php
                             $title = $item['title'] ?? '';
                             $publisher = $item['publisher'] ?? '';
-                            $url = $item['url'] ?? '#';
+                            $url = $item['link'] ?? '#';
                             $mediaUrl = $item['media_url'] ?? '';
-                            $pubDt = new DateTime($item['published_at']);
+                            $pubDt = new DateTime($item['pub_date']);
                             $pubTime = $pubDt->format('g:i A');
                         ?>
                         <article class="article-card">
