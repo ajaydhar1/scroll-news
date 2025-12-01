@@ -1,15 +1,12 @@
 <?php
 // scroll-history.php — "Daily Scroll" archive view for Scroll News
 
-// If you already have a shared config/DB helper, include that instead:
-# require_once __DIR__ . '/config.php';
-
 require_once('___modules.php');
 
 $pdo = _pdo_or_null();
 
 // ----- Fetch all RSS items ordered by pub_date DESC -----
-// Adjust column names if your schema is different.
+// Columns you actually have: id, title, link, pub_date, media_url
 $sql = "
     SELECT id, title, link, pub_date, media_url
     FROM rss_items
@@ -19,26 +16,31 @@ $sql = "
 $stmt = $pdo->query($sql);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// ----- Group items by date (Y-m-d) in local time -----
-$tzUtc   = new DateTimeZone('UTC');                // assume stored as UTC-ish
-$tzLocal = new DateTimeZone('America/New_York');   // your viewing timezone
+// ----- Group items by *local-ish* date using a fixed offset -----
+// If DB time is ~4.5 hours ahead of what you want, we'll shift backwards.
+// Start with -5 hours as a simple approximation (adjust if needed).
+$offsetSeconds = -4.5 * 3600;  // -5 hours; change to -4 * 3600 if you want -4 hours, etc.
 
 $days = [];
+
 foreach ($items as $item) {
     if (empty($item['pub_date'])) {
         continue;
     }
 
-    // Parse as UTC, then convert
-    $dtUtc   = new DateTime($item['pub_date'], $tzUtc);
-    $dtLocal = clone $dtUtc;
-    $dtLocal->setTimezone($tzLocal);
+    $sourceTs = strtotime($item['pub_date']);
+    if ($sourceTs === false) {
+        continue; // skip bad/unknown dates
+    }
 
-    // Use local date as key
-    $dateKey = $dtLocal->format('Y-m-d');
+    // Apply the offset to get your "local" time
+    $localTs = $sourceTs + $offsetSeconds;
 
-    // Attach the converted DateTime so we can reuse it later
-    $item['_local_dt'] = $dtLocal;
+    // Save it on the item so we can reuse it when rendering cards
+    $item['_local_ts'] = $localTs;
+
+    // Group by the *local* date (this fixes the split-day issue)
+    $dateKey = date('Y-m-d', $localTs);
 
     if (!isset($days[$dateKey])) {
         $days[$dateKey] = [];
@@ -46,10 +48,9 @@ foreach ($items as $item) {
     $days[$dateKey][] = $item;
 }
 
-// Optional: if you want newest days at top, keep as-is.
-// If you ever want oldest → newest, you can ksort($days).
-
+// Optional: newest days at top is fine; if you ever want reverse order, use ksort($days) instead.
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -303,7 +304,7 @@ foreach ($items as $item) {
     <?php else: ?>
         <?php foreach ($days as $dateKey => $articles): ?>
             <?php
-                $dt = DateTime::createFromFormat('Y-m-d', $dateKey, $tzLocal);
+                $dt = DateTime::createFromFormat('Y-m-d', $dateKey);
                 $friendlyDate = $dt ? $dt->format('F j, Y') : htmlspecialchars($dateKey);
                 $count = count($articles);
             ?>
@@ -322,8 +323,8 @@ foreach ($items as $item) {
                             $publisher = $item['publisher'] ?? '';
                             $url = $item['link'] ?? '#';
                             $mediaUrl = $item['media_url'] ?? '';
-                            $pubDt = $item['_local_dt'] ?? null;
-                            $pubTime = $pubDt ? $pubDt->format('g:i A') : '';
+                            $localTs = $item['_local_ts'] ?? null;
+                            $pubTime = $localTs ? date('g:i A', $localTs) : '';
                         ?>
                         <article class="article-card">
                             <div class="article-image-wrap">
@@ -339,10 +340,6 @@ foreach ($items as $item) {
                                     <?php echo htmlspecialchars($title); ?>
                                 </h3>
                                 <div class="article-meta">
-                                    <?php if (!empty($publisher)): ?>
-                                        <?php echo htmlspecialchars($publisher); ?>
-                                        &middot;
-                                    <?php endif; ?>
                                     <?php echo $pubTime; ?>
                                 </div>
                                 <div class="article-actions">
