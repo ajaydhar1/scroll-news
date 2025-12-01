@@ -196,18 +196,8 @@ foreach ($items as $item) {
                 border: 1px solid rgba(0, 0, 0, 0.06);
                 display: flex;
                 flex-direction: column;
-                transition:
-                    transform 150ms ease-out,
-                    box-shadow 150ms ease-out,
-                    border-color 150ms ease-out;
             }
 
-            .article-card:hover,
-            .article-card:focus-within {
-                transform: translateY(-4px) scale(1.02);
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-                border-color: rgba(0, 0, 0, 0.14);
-            }
 
             .article-image-wrap {
                 background: #e1e1e8;
