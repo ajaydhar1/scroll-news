@@ -25,12 +25,12 @@ $tzLocal = new DateTimeZone('America/New_York');   // your viewing timezone
 
 $days = [];
 foreach ($items as $item) {
-    if (empty($item['published_at'])) {
+    if (empty($item['pub_date'])) {
         continue;
     }
 
     // Parse as UTC, then convert
-    $dtUtc   = new DateTime($item['published_at'], $tzUtc);
+    $dtUtc   = new DateTime($item['pub_date'], $tzUtc);
     $dtLocal = clone $dtUtc;
     $dtLocal->setTimezone($tzLocal);
 
