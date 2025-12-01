@@ -41,3 +41,42 @@ function newsroom_extract_meta(string $url): array {
 
   return $meta;
 }
+
+
+<?php
+// fragments/newsroom_meta.php
+
+function build_meta_from_db_article(string $url, array $article): array
+{
+    if (empty($article)) {
+        return [];
+    }
+
+    // Parse the URL into its components
+    $parsedUrl = parse_url($url);
+
+    // Extract the scheme and host
+    $scheme = isset($parsedUrl['scheme']) ? $parsedUrl['scheme'] : 'https'; // default to https
+    $host   = $parsedUrl['host'] ?? '';
+
+    // Construct the main homepage URL (empty if we somehow have no host)
+    $homepageUrl = $host !== '' ? $scheme . '://' . $host : '';
+
+    // Clean up the title a bit
+    $rawTitle   = $article['title'] ?? '';
+    $cleanTitle = str_replace(
+        ["â", "", "�"],
+        ["'",   "",   ""],
+        $rawTitle
+    );
+
+    // Build $meta from DB row
+    return [
+        'title'           => $cleanTitle,
+        'description'     => $article['description']   ?? '',
+        'image'           => $article['media_url']     ?? '',
+        'publisher'       => $host,
+        'publisher_link'  => $homepageUrl,
+        'youtube_search'  => $cleanTitle,
+    ];
+}

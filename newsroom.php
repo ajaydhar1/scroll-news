@@ -4,15 +4,27 @@ require_once('___session_results.php');
 require_once('___modules.php');
 
 require_once __DIR__ . '/newsroom_core/___request_resolution_layer.php';
-require_once __DIR__ . '/newsroom_core/___og_meta.php';
+require_once __DIR__ . '/newsroom_core/___newsroom_meta.php';
 
 // Resolve chosen article (redirects if none)
 $resolved = newsroom_resolve_article();
 $url      = $resolved['url'];
 $category = $resolved['category'] ?? '';
+$db = $resolved['db'] ?? '';
 
-// Extract OpenGraph/meta
-$meta = newsroom_extract_meta($url);
+// Get meta data for article
+$meta   = [];
+$title  = $des = $img = $pub = $pub_link = $youtube_search = '';
+
+// If we're in "db mode", try to pull the article from the DB instead of scraping
+if ($db !== '') {
+    $article = getArticleFromDBByUrl($url);  // your helper
+    $meta = build_meta_from_db_article($url, $article);
+}
+else {
+    // Extract OpenGraph/meta
+    $meta = newsroom_extract_meta($url);
+}
 
 // If you want individual vars (keeps the rest of your page unchanged):
 $title           = $meta['title'];
@@ -191,7 +203,6 @@ $youtube_search  = $meta['youtube_search'];
                             <?php
 
                             if ($category == "db") {
-                                $article = getArticleFromDBByUrl($url);
                                 $arr = $article['nlp'];
 
                                 if (!$arr || (!empty($arr['error']) && $arr['error'] === 'No features in text.') || empty($arr['entities'])) {
