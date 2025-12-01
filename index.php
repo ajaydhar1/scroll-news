@@ -200,8 +200,8 @@
                 <div class="masthead-subheading">Welcome To Scroll News!</div>
                 <div class="masthead-heading text-uppercase">AI-Driven News Summaries</div>
                 <div class="text-center">
-                    <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black d-block d-md-inline-block mb-3 mr-md-2" href="newsroom.php" data-loading>Launch Newsroom</a>
-                    <a class="btn btn-outline-secondary btn-lg btn-rectangle js-scroll-trigger d-block d-md-inline-block mb-3" href="#playlists" style="color: white; border-color: transparent;">Watch Video</a>
+                    <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black d-block d-md-inline-block btn-width-mobile-75 mx-auto mb-3 mr-md-2" href="newsroom.php" data-loading>Launch Newsroom</a>
+                    <a class="btn btn-outline-secondary btn-lg btn-rectangle js-scroll-trigger d-block d-md-inline-block btn-width-mobile-75 w-md-auto mx-auto mb-3" href="#playlists" style="color: white; border-color: transparent;">Watch Video</a>
                 </div>
             </div>
         </header>

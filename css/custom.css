@@ -16,6 +16,21 @@
     }
 }
 
+header.masthead {
+    padding-top: 8.5rem;
+    padding-bottom: 5rem;
+}
+
+.btn-width-mobile-75 {
+    width: 75%;
+}
+
+@media (min-width: 768px) { /* match your Bootstrap md breakpoint */
+    .btn-width-mobile-75 {
+        width: auto;
+    }
+}
+
 footer h5 a:hover {
   color: var(--brand-color);
   text-decoration: none;
