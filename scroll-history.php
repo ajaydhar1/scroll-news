@@ -11,7 +11,7 @@ $pdo = _pdo_or_null();
 // ----- Fetch all RSS items ordered by pub_date DESC -----
 // Adjust column names if your schema is different.
 $sql = "
-    SELECT id, title, link, pub_date, publisher, media_url
+    SELECT id, title, link, pub_date, media_url
     FROM rss_items
     WHERE pub_date IS NOT NULL
     ORDER BY pub_date DESC, id DESC
