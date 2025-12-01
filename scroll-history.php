@@ -19,11 +19,27 @@ $sql = "
 $stmt = $pdo->query($sql);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// ----- Group items by date (Y-m-d) -----
+// ----- Group items by date (Y-m-d) in local time -----
+$tzUtc   = new DateTimeZone('UTC');                // assume stored as UTC-ish
+$tzLocal = new DateTimeZone('America/New_York');   // your viewing timezone
+
 $days = [];
 foreach ($items as $item) {
-    $dt = new DateTime($item['pub_date']);
-    $dateKey = $dt->format('Y-m-d');
+    if (empty($item['published_at'])) {
+        continue;
+    }
+
+    // Parse as UTC, then convert
+    $dtUtc   = new DateTime($item['published_at'], $tzUtc);
+    $dtLocal = clone $dtUtc;
+    $dtLocal->setTimezone($tzLocal);
+
+    // Use local date as key
+    $dateKey = $dtLocal->format('Y-m-d');
+
+    // Attach the converted DateTime so we can reuse it later
+    $item['_local_dt'] = $dtLocal;
+
     if (!isset($days[$dateKey])) {
         $days[$dateKey] = [];
     }
@@ -287,7 +303,7 @@ foreach ($items as $item) {
     <?php else: ?>
         <?php foreach ($days as $dateKey => $articles): ?>
             <?php
-                $dt = DateTime::createFromFormat('Y-m-d', $dateKey);
+                $dt = DateTime::createFromFormat('Y-m-d', $dateKey, $tzLocal);
                 $friendlyDate = $dt ? $dt->format('F j, Y') : htmlspecialchars($dateKey);
                 $count = count($articles);
             ?>
@@ -306,8 +322,8 @@ foreach ($items as $item) {
                             $publisher = $item['publisher'] ?? '';
                             $url = $item['link'] ?? '#';
                             $mediaUrl = $item['media_url'] ?? '';
-                            $pubDt = new DateTime($item['pub_date']);
-                            $pubTime = $pubDt->format('g:i A');
+                            $pubDt = $item['_local_dt'] ?? null;
+                            $pubTime = $pubDt ? $pubDt->format('g:i A') : '';
                         ?>
                         <article class="article-card">
                             <div class="article-image-wrap">
