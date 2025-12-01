@@ -353,6 +353,11 @@ foreach ($items as $item) {
                 border: none;
             }
 
+            .btn-outline-primary {
+                color: black;
+                border: none;
+            }
+
 
         </style>
 
