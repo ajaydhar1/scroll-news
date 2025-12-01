@@ -30,5 +30,5 @@ function newsroom_resolve_article(): array {
 
     $db = isset($_GET['db']) ? trim($_GET['db']) : '';
 
-    return ['url' => $url, 'category' => $db];
+    return ['url' => $url, 'category' => $category, 'db' => $db];
 }
