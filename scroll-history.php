@@ -358,6 +358,10 @@ foreach ($items as $item) {
                 border: none;
             }
 
+            .btn {
+                box-shadow: 0 0 0 2px #00bfa6 !important;
+            }
+
 
         </style>
 
