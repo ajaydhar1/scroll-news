@@ -167,7 +167,7 @@ $youtube_search = $meta['youtube_search'] ?? $title;
                         </button>
                     </div>
                     <div class="col-lg-4 my-3 my-lg-0">
-                        <a data-step="2" data-intro="Click here for a feed of fresh articles analyzed and indexed by Scroll News." class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php"><i class="fas fa-history"></i></a>
+                        <a data-step="2" data-intro="Click here for a feed of fresh articles analyzed and indexed by Scroll News." class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
                         <a data-step="1" data-intro="Welcome to the Scroll News newsroom! Here we provide analytics for the latest news stories. Click this play button to stumble through trending articles." class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" onclick="" data-loading><i class="fas fa-play"></i></a>
                         <a data-step="3" data-intro="Click here to see our newsroom video trailer." class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.html"><i class="fas fa-dashboard"></i></a>
                     </div>
@@ -362,7 +362,7 @@ $youtube_search = $meta['youtube_search'] ?? $title;
                         <div class="col-lg-4 text-lg-left">Copyright © Scroll News 2025</div>
                         <div class="col-lg-4 my-3 my-lg-0">
                             <a class="btn btn-black btn-social mx-2" title="X profile" href="https://x.com/scrollnewsio" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                            <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php"><i class="fas fa-history"></i></a>
+                            <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
                             <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" data-loading><i class="fas fa-play"></i></a>
                             <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.html"><i class="fas fa-dashboard"></i></a>
                             <a class="btn btn-black btn-social mx-2" title="IG profile" href="https://www.instagram.com/scrollnewsio/" target="_blank"><i class="fa-brands fa-instagram"></i></a>

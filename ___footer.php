@@ -15,7 +15,7 @@ $random_article = getRandomArticle();
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-left">Copyright © Scroll News <?= date("Y") ?></div>
                     <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php"><i class="fas fa-history"></i></a>
+                        <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
                         <a class="btn btn-green btn-social mx-2" href="newsroom.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>" data-loading><i class="fas fa-play"></i></a>
                         <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.html"><i class="fas fa-dashboard"></i></a>
                     </div>
