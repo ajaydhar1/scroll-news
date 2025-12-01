@@ -202,7 +202,7 @@ $youtube_search  = $meta['youtube_search'];
 
                             <?php
 
-                            if ($category == "db") {
+                            if ($db == "1" || $category == "db") {
                                 $arr = $article['nlp'];
 
                                 if (!$arr || (!empty($arr['error']) && $arr['error'] === 'No features in text.') || empty($arr['entities'])) {
