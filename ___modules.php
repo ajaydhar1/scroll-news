@@ -43,8 +43,8 @@ function logj(string $msg, array $ctx = []): void {
 function getPdoOrExplain(): ?PDO {
     // Make sure errors go to logs
     error_reporting(E_ALL);
-    ini_set('log_errors', '1');
-    ini_set('display_errors', '1');
+    ini_set('log_errors', '0');
+    ini_set('display_errors', '0');
 
     // 1) Driver present?
     $drivers = class_exists('PDO') ? PDO::getAvailableDrivers() : [];
