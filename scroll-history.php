@@ -236,6 +236,29 @@ foreach ($items as $item) {
                 right: 0;
             }
         }
+
+        .article-image-wrap {
+            background: #e1e1e8;
+            position: relative; /* add this */
+        }
+
+        .domain-chip {
+            position: absolute;
+            left: 0.5rem;
+            bottom: 0.5rem;
+            padding: 0.18rem 0.55rem;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.72);
+            color: #f8f9fa;
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            max-width: 70%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
     </style>
 </head>
 <body>
@@ -300,13 +323,32 @@ foreach ($items as $item) {
                                 $mediaUrl = $item['media_url'] ?? '';
                                 $pubDt    = $item['_dt'] ?? null;
                                 $pubTime  = $pubDt ? $pubDt->format('g:i A') : '';
+
+                                // Extract domain for chip (like the scroll strip)
+                                $domain = '';
+                                if (!empty($url) && $url !== '#') {
+                                    $host = parse_url($url, PHP_URL_HOST);
+                                    if ($host) {
+                                        // Strip leading www.
+                                        if (strpos($host, 'www.') === 0) {
+                                            $host = substr($host, 4);
+                                        }
+                                        $domain = $host;
+                                    }
+                                }
                             ?>
                             <article class="article-card">
                                 <div class="article-image-wrap">
                                     <?php if (!empty($mediaUrl)): ?>
-                                        <img src="<?php echo htmlspecialchars($mediaUrl); ?>" alt="">
+                                        <img src="<?php echo htmlspecialchars($mediaUrl); ?>" alt="" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x225?text=Scroll+News';">
                                     <?php else: ?>
                                         <img src="https://via.placeholder.com/400x225?text=Scroll+News" alt="">
+                                    <?php endif; ?>
+
+                                    <?php if (!empty($domain)): ?>
+                                        <div class="domain-chip">
+                                            <?php echo htmlspecialchars($domain); ?>
+                                        </div>
                                     <?php endif; ?>
                                 </div>
                                 <div class="article-body">
