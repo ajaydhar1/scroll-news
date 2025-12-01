@@ -6,51 +6,33 @@ require_once('___modules.php');
 $pdo = _pdo_or_null();
 
 // ----- Fetch all RSS items ordered by pub_date DESC -----
-// Columns you actually have: id, title, link, pub_date, media_url
 $sql = "
     SELECT id, title, link, pub_date, media_url
     FROM rss_items
     WHERE pub_date IS NOT NULL
     ORDER BY pub_date DESC, id DESC
 ";
-$stmt = $pdo->query($sql);
+$stmt  = $pdo->query($sql);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// ----- Group items by *local-ish* date using a fixed offset -----
-// If DB time is ~4.5 hours ahead of what you want, we'll shift backwards.
-// Start with -5 hours as a simple approximation (adjust if needed).
-$offsetSeconds = 0 * 3600;  // -5 hours; change to -4 * 3600 if you want -4 hours, etc.
-
+// ----- Group items by date (Y-m-d) -----
+// (Using pub_date as-is; you've already confirmed it looks correct.)
 $days = [];
-
 foreach ($items as $item) {
     if (empty($item['pub_date'])) {
         continue;
     }
 
-    $sourceTs = strtotime($item['pub_date']);
-    if ($sourceTs === false) {
-        continue; // skip bad/unknown dates
-    }
+    $dt = new DateTime($item['pub_date']);
+    $item['_dt'] = $dt; // store for later display
 
-    // Apply the offset to get your "local" time
-    $localTs = $sourceTs + $offsetSeconds;
-
-    // Save it on the item so we can reuse it when rendering cards
-    $item['_local_ts'] = $localTs;
-
-    // Group by the *local* date (this fixes the split-day issue)
-    $dateKey = date('Y-m-d', $localTs);
-
+    $dateKey = $dt->format('Y-m-d');
     if (!isset($days[$dateKey])) {
         $days[$dateKey] = [];
     }
     $days[$dateKey][] = $item;
 }
-
-// Optional: newest days at top is fine; if you ever want reverse order, use ksort($days) instead.
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,8 +40,11 @@ foreach ($items as $item) {
     <title>Daily Scroll Archive — Scroll News</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- If you have shared CSS, include it here -->
-    <!-- <link rel="stylesheet" href="/assets/css/app.css"> -->
+    <!-- Bootstrap CSS (remove if you already include it globally) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
 
     <style>
         :root {
@@ -70,79 +55,34 @@ foreach ($items as $item) {
             --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
             --card-shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.18);
             --text-muted: #6b6b7a;
-            --accent: #3800ff; /* adjust to Scroll News brand */
-        }
-
-        * {
-            box-sizing: border-box;
+            --accent: #3800ff; /* Scroll News brand color-ish */
         }
 
         body {
-            margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background: var(--scroll-bg);
-            color: #111;
         }
 
-        .page-shell {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1.5rem 1.5rem 3rem;
-        }
-
-        .page-header {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            padding: 0.75rem 1rem;
-            margin: -1.5rem -1.5rem 1rem;
-            background: linear-gradient(to bottom, rgba(245,245,247,0.96), rgba(245,245,247,0.9), rgba(245,245,247,0));
+        .page-header-blur {
+            background: linear-gradient(
+                to bottom,
+                rgba(245,245,247,0.96),
+                rgba(245,245,247,0.9),
+                rgba(245,245,247,0)
+            );
             backdrop-filter: blur(10px);
         }
 
-        .page-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .page-subtitle {
-            margin: 0.25rem 0 0;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
         .day-row {
-            padding: 1.5rem 0 2rem;
             border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-        }
-
-        .day-header {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 0.75rem;
-            margin: 0 0 0.5rem;
-        }
-
-        .day-title {
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        .day-meta {
-            font-size: 0.8rem;
-            color: var(--text-muted);
         }
 
         .articles-track {
             display: flex;
             gap: 1rem;
             overflow-x: auto;
-            padding: 0.25rem 0 0.75rem;
             scroll-snap-type: x mandatory;
-            /* Hide ugly scrollbars (optional, browser-dependent) */
             -webkit-overflow-scrolling: touch;
+            padding-bottom: 0.5rem;
         }
 
         .articles-track::-webkit-scrollbar {
@@ -157,14 +97,13 @@ foreach ($items as $item) {
         }
 
         /* Alternating horizontal offsets for rows */
-        .day-row:nth-of-type(odd) .articles-track {
-            margin-left: 0;
-            margin-right: 2rem;
+        .day-row:nth-of-type(odd) .articles-track-wrapper {
+            padding-left: 0;
+            padding-right: 2rem;
         }
-
-        .day-row:nth-of-type(even) .articles-track {
-            margin-left: 2rem;
-            margin-right: 0;
+        .day-row:nth-of-type(even) .articles-track-wrapper {
+            padding-left: 2rem;
+            padding-right: 0;
         }
 
         .article-card {
@@ -192,8 +131,6 @@ foreach ($items as $item) {
         }
 
         .article-image-wrap {
-            position: relative;
-            overflow: hidden;
             background: #e1e1e8;
         }
 
@@ -232,26 +169,14 @@ foreach ($items as $item) {
         }
 
         .btn-analyze {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.25rem 0.7rem;
             border-radius: 999px;
-            border: 1px solid var(--accent);
+            border-width: 1px;
             font-size: 0.78rem;
-            font-weight: 500;
-            color: var(--accent);
-            text-decoration: none;
-            background: rgba(56, 0, 255, 0.04);
-        }
-
-        .btn-analyze:hover {
-            background: rgba(56, 0, 255, 0.08);
+            padding: 0.25rem 0.7rem;
         }
 
         .link-read {
             font-size: 0.78rem;
-            color: inherit;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -266,104 +191,182 @@ foreach ($items as $item) {
             text-decoration: underline;
         }
 
-        /* Keyboard focus visibility */
-        .article-card a:focus-visible,
-        .article-card button:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
+        /* Scroll buttons on each side of the track */
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+        }
+
+        .scroll-btn-left {
+            left: 0.25rem;
+        }
+
+        .scroll-btn-right {
+            right: 0.25rem;
+        }
+
+        .scroll-btn:disabled {
+            opacity: 0.4;
+            cursor: default;
+            box-shadow: none;
         }
 
         @media (max-width: 768px) {
-            .page-shell {
-                padding-inline: 1rem;
+            .day-row:nth-of-type(even) .articles-track-wrapper {
+                padding-left: 1rem;
+                padding-right: 0;
             }
 
-            .page-header {
-                margin-inline: -1rem;
+            .scroll-btn-left {
+                left: 0;
             }
-
-            .day-row:nth-of-type(even) .articles-track {
-                margin-left: 1rem;
-                margin-right: 0;
+            .scroll-btn-right {
+                right: 0;
             }
         }
     </style>
 </head>
 <body>
-<div class="page-shell">
 
-    <header class="page-header">
-        <h1 class="page-title">Daily Scroll Archive</h1>
-        <p class="page-subtitle">
-            Flip through every article Scroll News has captured — day by day, row by row.
-        </p>
+<div class="container-fluid py-3">
+
+    <!-- Sticky header -->
+    <header class="page-header-blur sticky-top pb-2 mb-3 border-bottom">
+        <div class="d-flex flex-column flex-sm-row align-items-sm-end justify-content-between px-2 px-sm-3">
+            <div>
+                <h1 class="h4 mb-1 fw-bold">Daily Scroll Archive</h1>
+                <p class="text-muted small mb-0">
+                    Flip through every article Scroll News has captured — day by day, row by row.
+                </p>
+            </div>
+        </div>
     </header>
 
     <?php if (empty($days)): ?>
-        <p>No articles found in the archive yet.</p>
+        <p class="text-muted px-2">No articles found in the archive yet.</p>
     <?php else: ?>
+        <?php $rowIndex = 0; ?>
         <?php foreach ($days as $dateKey => $articles): ?>
             <?php
+                $rowIndex++;
+                $trackId = 'articles-track-' . $rowIndex;
                 $dt = DateTime::createFromFormat('Y-m-d', $dateKey);
                 $friendlyDate = $dt ? $dt->format('F j, Y') : htmlspecialchars($dateKey);
                 $count = count($articles);
             ?>
-            <section class="day-row">
-                <div class="day-header">
-                    <h2 class="day-title"><?php echo $friendlyDate; ?></h2>
-                    <div class="day-meta">
-                        <?php echo $count; ?> article<?php echo $count !== 1 ? 's' : ''; ?>
+            <section class="day-row py-3">
+                <div class="row gx-2 gx-sm-3 mb-2 px-2 px-sm-3">
+                    <div class="col-12 d-flex justify-content-between align-items-baseline">
+                        <h2 class="h6 mb-0 fw-semibold"><?php echo $friendlyDate; ?></h2>
+                        <div class="text-muted small">
+                            <?php echo $count; ?> article<?php echo $count !== 1 ? 's' : ''; ?>
+                        </div>
                     </div>
                 </div>
 
-                <div class="articles-track">
-                    <?php foreach ($articles as $item): ?>
-                        <?php
-                            $title = $item['title'] ?? '';
-                            $publisher = $item['publisher'] ?? '';
-                            $url = $item['link'] ?? '#';
-                            $mediaUrl = $item['media_url'] ?? '';
-                            $localTs = $item['_local_ts'] ?? null;
-                            $pubTime = $localTs ? date('g:i A', $localTs) : '';
-                        ?>
-                        <article class="article-card">
-                            <div class="article-image-wrap">
-                                <?php if (!empty($mediaUrl)): ?>
-                                    <img src="<?php echo htmlspecialchars($mediaUrl); ?>" alt="">
-                                <?php else: ?>
-                                    <!-- Simple placeholder if no image -->
-                                    <img src="https://via.placeholder.com/400x225?text=Scroll+News" alt="">
-                                <?php endif; ?>
-                            </div>
-                            <div class="article-body">
-                                <h3 class="article-title">
-                                    <?php echo htmlspecialchars($title); ?>
-                                </h3>
-                                <div class="article-meta">
-                                    <?php echo $pubTime; ?>
+                <div class="position-relative articles-track-wrapper px-4">
+                    <!-- Scroll buttons -->
+                    <button class="scroll-btn scroll-btn-left"
+                            type="button"
+                            data-track="<?php echo $trackId; ?>"
+                            data-direction="left">
+                        ‹
+                    </button>
+                    <button class="scroll-btn scroll-btn-right"
+                            type="button"
+                            data-track="<?php echo $trackId; ?>"
+                            data-direction="right">
+                        ›
+                    </button>
+
+                    <!-- Horizontal track -->
+                    <div class="articles-track" id="<?php echo $trackId; ?>">
+                        <?php foreach ($articles as $item): ?>
+                            <?php
+                                $title    = $item['title'] ?? '';
+                                $url      = $item['link'] ?? '#';
+                                $mediaUrl = $item['media_url'] ?? '';
+                                $pubDt    = $item['_dt'] ?? null;
+                                $pubTime  = $pubDt ? $pubDt->format('g:i A') : '';
+                            ?>
+                            <article class="article-card">
+                                <div class="article-image-wrap">
+                                    <?php if (!empty($mediaUrl)): ?>
+                                        <img src="<?php echo htmlspecialchars($mediaUrl); ?>" alt="">
+                                    <?php else: ?>
+                                        <img src="https://via.placeholder.com/400x225?text=Scroll+News" alt="">
+                                    <?php endif; ?>
                                 </div>
-                                <div class="article-actions">
-                                    <!-- Adjust this to your actual analyze endpoint -->
-                                    <a class="btn-analyze"
-                                       href="<?php echo '/analyze.php?id=' . urlencode($item['id']); ?>">
-                                        Analyze
-                                    </a>
-                                    <a class="link-read"
-                                       href="<?php echo htmlspecialchars($url); ?>"
-                                       target="_blank"
-                                       rel="noopener noreferrer">
-                                        <span>Read story</span>
-                                        <span class="icon">↗</span>
-                                    </a>
+                                <div class="article-body">
+                                    <h3 class="article-title mb-0">
+                                        <?php echo htmlspecialchars($title); ?>
+                                    </h3>
+                                    <div class="article-meta">
+                                        <?php echo $pubTime; ?>
+                                    </div>
+                                    <div class="article-actions">
+                                        <a class="btn btn-outline-primary btn-analyze"
+                                           href="<?php echo '/analyze.php?id=' . urlencode($item['id']); ?>">
+                                            Analyze
+                                        </a>
+                                        <a class="link-read"
+                                           href="<?php echo htmlspecialchars($url); ?>"
+                                           target="_blank"
+                                           rel="noopener noreferrer">
+                                            <span>Read story</span>
+                                            <span class="icon">↗</span>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
-                    <?php endforeach; ?>
+                            </article>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </section>
         <?php endforeach; ?>
     <?php endif; ?>
 
 </div>
+
+<!-- Optional: Bootstrap JS (only needed if you use other components) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+<script>
+// Simple left/right scroll buttons for each articles-track
+document.addEventListener('DOMContentLoaded', function () {
+    const SCROLL_AMOUNT = 600; // px per click; tweak if you want
+
+    document.querySelectorAll('.scroll-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            const trackId = btn.getAttribute('data-track');
+            const dir     = btn.getAttribute('data-direction');
+            const track   = document.getElementById(trackId);
+            if (!track) return;
+
+            const delta = (dir === 'right' ? 1 : -1) * SCROLL_AMOUNT;
+
+            track.scrollBy({
+                left: delta,
+                behavior: 'smooth'
+            });
+        });
+    });
+});
+</script>
+
 </body>
 </html>
