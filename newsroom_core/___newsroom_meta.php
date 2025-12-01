@@ -43,9 +43,6 @@ function newsroom_extract_meta(string $url): array {
 }
 
 
-<?php
-// fragments/newsroom_meta.php
-
 function build_meta_from_db_article(string $url, array $article): array
 {
     if (empty($article)) {
