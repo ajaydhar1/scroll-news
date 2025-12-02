@@ -6,11 +6,26 @@ require_once('___modules.php');
 $pdo = _pdo_or_null();
 
 // Fetch all RSS items ordered by pub_date DESC
+/*
 $sql = "
     SELECT id, title, link, pub_date, media_url
     FROM rss_items
     WHERE pub_date IS NOT NULL
     ORDER BY pub_date DESC, id DESC
+";
+*/
+$sql = "
+    SELECT 
+        ri.id,
+        ri.title,
+        ri.link,
+        ri.pub_date,
+        ri.media_url,
+        f.name AS feed_name
+    FROM rss_items ri
+    JOIN feeds f ON f.id = ri.feed_id
+    WHERE ri.pub_date IS NOT NULL
+    ORDER BY ri.pub_date DESC, ri.id DESC
 ";
 $stmt  = $pdo->query($sql);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -446,7 +461,11 @@ foreach ($items as $item) {
                                             $url      = $item['link'] ?? '#';
                                             $mediaUrl = $item['media_url'] ?? '';
                                             $pubDt    = $item['_dt'] ?? null;
+                                            $ts       = !empty($item['pub_date']) ? (strtotime($item['pub_date']) ?: null) : null;
                                             $pubTime  = $pubDt ? $pubDt->format('g:i A') : '';
+                                            $category = $item['feed_name'] ?? '';
+
+                                            $analyzeUrl = 'newsroom.php?url=' . urlencode($url) . '&category=' . urlencode($category) . '&pub_date=' . urlencode($ts);
 
                                             // Extract domain for chip
                                             $domain = '';
@@ -490,7 +509,7 @@ foreach ($items as $item) {
                                                 </div>
                                                 <div class="article-actions">
                                                     <a class="btn btn-outline-primary btn-analyze"
-                                                       href="<?php echo '/analyze.php?id=' . urlencode($item['id']); ?>">
+                                                       href="<?php echo $analyzeUrl; ?>">
                                                         Analyze
                                                     </a>
                                                     <a class="link-read"
