@@ -100,14 +100,14 @@ foreach ($items as $item) {
         <meta property="og:url" content="https://scrollnews.io/scroll-history.php" />
         <meta property="og:title" content="Daily Scroll Archive — Every Article in One Place" />
         <meta property="og:description" content="Flip through the full Scroll News archive like a book, with one horizontal row of cards for each day." />
-        <meta property="og:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-about-1200x630.png" />
+        <meta property="og:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-history-1200x630.png" />
 
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://scrollnews.io/scroll-history.php" />
         <meta name="twitter:title" content="Daily Scroll Archive — Every Article in One Place" />
         <meta name="twitter:description" content="Flip through the full Scroll News archive like a book, with one horizontal row of cards for each day." />
-        <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-about-1200x630.png" />
+        <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-history-1200x630.png" />
 
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous"></script>

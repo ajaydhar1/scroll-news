@@ -79,14 +79,14 @@ function sn_format_pub_date(?string $raw): string {
         <meta property="og:url" content="https://scrollnews.io/search.php" />
         <meta property="og:title" content="Search headlines on Scroll News" />
         <meta property="og:description" content="Search recent U.S. news headlines across Scroll News feeds, then read or analyze stories in detail." />
-        <meta property="og:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-about-1200x630.png" />
+        <meta property="og:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-search-1200x630.png" />
 
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://scrollnews.io/search.php" />
         <meta name="twitter:title" content="Search headlines on Scroll News" />
         <meta name="twitter:description" content="Search recent headlines and jump into Scroll News analysis or publisher stories." />
-        <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-about-1200x630.png" />
+        <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-search-1200x630.png" />
 
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous"></script>
