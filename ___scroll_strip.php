@@ -147,6 +147,9 @@
       // Build Scroll News newsroom link
       const newsroomLink = `newsroom.php?url=${encodedUrl}&category=Politics&publisher=${encodedPub}&pub_date=${a.pubDateForLink}`;
 
+      // Google favicon endpoint using the full URL (your working pattern)
+      const faviconUrl = 'https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://' + encodedPub + '&size=64';
+
       return `
         <a class="sn-card" role="listitem" href="${newsroomLink}" rel="noopener noreferrer" aria-label="Open article: ${a.title}" data-loading>
           <div class="sn-media">
@@ -156,6 +159,11 @@
           <div class="sn-body">
             <div class="sn-title">${a.title}</div>
             <div class="sn-meta">
+              <img
+                  src="${faviconUrl}"
+                  alt="${encodedPub} logo"
+                  class="sn-favicon mr-0"
+              >
               <span>${a.publisher}</span>
               <span class="sn-dot" aria-hidden="true"></span>
               <time datetime="${a.pubDate}">${timeAgo(a.pubDate)}</time>

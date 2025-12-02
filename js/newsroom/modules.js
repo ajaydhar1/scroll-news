@@ -38,13 +38,20 @@ function fetchRSSArticles(feedUrl, category) {
 
             if (!filterOutPublisher) {
 
+              // Encode source for query string
+              const encodedPub = encodeURIComponent(article.publisher);
+
+              // Google favicon endpoint using the full URL (your working pattern)
+              const faviconUrl = 'https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://' + encodedPub + '&size=64';
+
               const card = `
                 <div class="col-md-4 mb-4">
                   <div class="card h-100">
                       <img src="${article.image || 'assets/img/news-placeholder.jpg'}" class="card-img-top news-modal" alt="" onerror="this.src = 'assets/img/news-placeholder.jpg';">
                       <div class="card-body d-flex flex-column">
                         <h4 class="card-title mb-2">${article.title}</h4>
-                        <p class="card-text text-muted mb-1"><small><a target="_blank" href="https://${article.publisher}">${article.publisher}</a>${article.pubDate ? ' • ' + timeElapsedString(article.pubDate) : ''}</small></p>
+                        <p class="card-text text-muted mb-1">
+                        <img src="${faviconUrl}" alt="${encodedPub} logo" class="sn-favicon"><small><a target="_blank" href="https://${article.publisher}">${article.publisher}</a>${article.pubDate ? ' • ' + timeElapsedString(article.pubDate) : ''}</small></p>
                         <p class="card-text">${article.description}</p>
                         <a href="newsroom.php?url=${encodeURIComponent(article.link)}&category=${category}&pub_date=${article.pubDateForLink}" class="btn btn-green mt-auto">Analyze</a>
                       </div>

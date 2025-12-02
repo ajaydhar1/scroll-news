@@ -382,3 +382,7 @@ button.nav-link.active {
   .popover .gkp__meta,
   .popover .gkp__source { color: #9ca3af; }
 }
+
+.sn-favicon {
+    margin-right: 0.35rem;
+}

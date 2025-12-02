@@ -61,6 +61,24 @@ $pub_link       = $meta['publisher_link'] ?? '';
 $youtube_search = $meta['youtube_search'] ?? $title;
 
 
+// Derive domain from the readUrl
+$domain = '';
+$favicon_url = null;
+if (!empty($url)) {
+    $host = parse_url($url, PHP_URL_HOST);
+    if ($host) {
+        // Strip leading www.
+        $domain = preg_replace('/^www\./i', '', $host);
+
+        // Google favicon endpoint using the full URL (your working pattern)
+        $favicon_url = 'https://t0.gstatic.com/faviconV2'
+            . '?client=SOCIAL&type=FAVICON'
+            . '&fallback_opts=TYPE,SIZE,URL'
+            . '&url=' . rawurlencode($url)
+            . '&size=64';
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -124,7 +142,12 @@ $youtube_search = $meta['youtube_search'] ?? $title;
 
         <style>
 
-            
+            .badge .pub-favicon {
+                width: 16px;
+                height: 16px;
+                border-radius: 4px;
+                object-fit: contain;
+            }
 
         </style>
 
@@ -325,6 +348,14 @@ $youtube_search = $meta['youtube_search'] ?? $title;
                                         <?php if ($domain): ?>
                                             <div class="position-absolute top-0 end-0 m-2">
                                                 <span class="badge rounded-pill bg-light text-muted border small">
+                                                    <?php if (!empty($favicon_url)): ?>
+                                                        <img
+                                                            class="pub-favicon"
+                                                            src="<?php echo htmlspecialchars($favicon_url); ?>"
+                                                            alt=""
+                                                            onerror="this.style.display='none';"
+                                                        />
+                                                    <?php endif; ?>
                                                     <?php echo htmlspecialchars($domain, ENT_QUOTES); ?>
                                                 </span>
                                             </div>
