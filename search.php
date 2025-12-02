@@ -297,7 +297,7 @@ function sn_format_pub_date(?string $raw): string {
                                                 <?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?>
                                             </h5>
 
-                                            <div class="sn-search-meta small text-muted mb-2 d-flex align-items-center">
+                                            <div class="sn-search-meta small text-muted mb-3 d-flex align-items-center">
                                                 <?php if ($faviconUrl): ?>
                                                     <img
                                                         src="<?php echo htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8'); ?>"
