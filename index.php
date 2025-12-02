@@ -324,6 +324,7 @@
                             </div>
                         </div>
                     </div>
+                    <?php /*
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 3-->
                         <div class="portfolio-item">
@@ -360,7 +361,6 @@
                             </div>
                         </div>
                     </div>
-                    <?php /*
                     <div class="col-lg-4 col-sm-6">
                         <!-- Portfolio item 6-->
                         <div class="portfolio-item">

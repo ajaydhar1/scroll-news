@@ -172,12 +172,15 @@ $youtube_search = $meta['youtube_search'] ?? $title;
                         <a data-step="3" data-intro="Click here to see our newsroom video trailer." class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.html"><i class="fas fa-dashboard"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-right font-weight-bold" style="">
-                        <button class="btn btn-outline-dark blue-hover browse-btn" data-toggle="modal" data-target="#browseNewsModal" aria-label="Browse news by topic">
+                        <button class="btn btn-outline-dark blue-hover browse-btn mr-3" data-toggle="modal" data-target="#browseNewsModal" aria-label="Browse news by topic">
                             Browse News
                         </button>
-                        <button class="btn btn-outline-dark blue-hover browse-btn ml-2 mr-3" data-toggle="modal" data-target="#searchNewsModal" aria-label="Search news articles">
+                        
+                        <?php /*
+                        <button class="btn btn-outline-dark blue-hover browse-btn ml-2" data-toggle="modal" data-target="#searchNewsModal" aria-label="Search news articles">
                             Search News
                         </button>
+                        */ ?>
                         <a class="search-button" href="search.php" title="Search" aria-label="Search">🔍</a>
                     </div>
                 </div>
@@ -287,10 +290,10 @@ $youtube_search = $meta['youtube_search'] ?? $title;
                         </div>
                     </div>
 
-                    <!-- Article Screenshot Panel -->
+                    <!-- Article Image Panel -->
                     <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12 panel" style="height: 100%; padding: 0; overflow-y: auto;"> <?php //background-color: #fcfcfc; ?>
                         <div class="text-center mb-3">
-                            <h2>📰 Article Screenshot</h2>
+                            <h2>📰 Article Image</h2>
                         </div>
                         <div class="d-flex justify-content-center align-items-start px-3">
                     
@@ -383,7 +386,7 @@ $youtube_search = $meta['youtube_search'] ?? $title;
 
         <?php require_once("views/modals/___modal_analyze.php"); ?>
         <?php require_once("views/modals/___modal_browse.php"); ?>
-        <?php require_once("views/modals/___modal_search.php"); ?>
+        <?php // require_once("views/modals/___modal_search.php"); ?>
 
 
         
