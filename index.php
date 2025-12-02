@@ -45,6 +45,11 @@
               "inLanguage": "en",
               "publisher": {
                 "@id": "https://scrollnews.io/#organization"
+              },
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://scrollnews.io/search.php?q={search_term_string}",
+                "query-input": "required name=search_term_string"
               }
             },
             {
