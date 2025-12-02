@@ -261,6 +261,7 @@ foreach ($items as $item) {
                 object-fit: cover;
             }
 
+            <?php /*
             .domain-chip {
                 position: absolute;
                 left: 0.5rem;
@@ -277,6 +278,7 @@ foreach ($items as $item) {
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
+            */ ?>
 
             .article-body {
                 padding: 0.75rem 0.9rem 0.9rem;
@@ -408,14 +410,15 @@ foreach ($items as $item) {
 
             .domain-chip {
                 position: absolute;
-                top: 8px;
-                right: 8px;
+                left: 0.5rem;
+                bottom: 0.5rem;
                 padding: 4px 8px;
                 border-radius: 999px;
                 background: rgba(0, 0, 0, 0.65);
                 color: #fff;
                 font-size: 0.75rem;
                 display: inline-flex;
+                letter-spacing: 0.02em;
                 align-items: center;
                 gap: 4px;
             }
