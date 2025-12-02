@@ -200,3 +200,23 @@ a:focus-visible,
     outline-offset: 3px;
     box-shadow: none;
 }
+
+/* Search result cards */
+.sn-search-card {
+    border-radius: 10px;
+}
+
+/* Meta bar with favicon + text */
+.sn-search-meta {
+    font-size: 0.82rem;
+    color: #6c757d;
+}
+
+/* Tiny favicon */
+.sn-favicon {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    object-fit: contain;
+}

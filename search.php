@@ -265,26 +265,31 @@ function sn_format_pub_date(?string $raw): string {
                                     $pubHuman = sn_format_pub_date($row['pub_date'] ?? null);
                                     $hasNlp   = !empty($row['article_id']);
 
-                                    // Match whatever pattern Scroll History uses for newsroom URLs:
+                                    // Build Analyze (newsroom) URL if NLP/article exists.
                                     $analyzeUrl = null;
                                     if ($hasNlp) {
                                         $analyzeUrl = 'newsroom.php'
                                             . '?feed=' . urlencode($feedName)
-                                            . '&id=' . (int)$row['article_id'];
+                                            . '&id=' . (int)$row['article_id'];  // or &article_id=... if that's your pattern
                                     }
 
-                                    // Extract domain for chip
+                                    // Derive domain from the readUrl
                                     $domain = '';
-                                    if (!empty($readUrl) && $readUrl !== '#') {
+                                    $faviconUrl = null;
+                                    if (!empty($readUrl)) {
                                         $host = parse_url($readUrl, PHP_URL_HOST);
                                         if ($host) {
-                                            if (strpos($host, 'www.') === 0) {
-                                                $host = substr($host, 4);
-                                            }
-                                            $domain = $host;
+                                            // Strip leading www.
+                                            $domain = preg_replace('/^www\./i', '', $host);
+
+                                            // Google favicon endpoint using the full URL (your working pattern)
+                                            $faviconUrl = 'https://t0.gstatic.com/faviconV2'
+                                                . '?client=SOCIAL&type=FAVICON'
+                                                . '&fallback_opts=TYPE,SIZE,URL'
+                                                . '&url=' . rawurlencode($readUrl)
+                                                . '&size=64';
                                         }
                                     }
-
                                     ?>
                                     <div class="card mb-3 shadow-sm border-0">
                                         <div class="card-body">
