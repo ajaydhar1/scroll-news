@@ -223,11 +223,14 @@ a:focus-visible,
 }
 
 a.search-button {
-    display: inline-block;       /* ensures the circle behaves nicely */
-    padding: .5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
-    line-height: 1;              /* keeps the icon visually centered */
-    text-decoration: none;       /* in case links are underlined globally */
+    text-decoration: none;
+    line-height: 1; /* avoid inherited tall line-height */
 }
 
 a.search-button:hover {
