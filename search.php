@@ -184,7 +184,7 @@ function sn_format_pub_date(?string $raw): string {
                     </div>
                     <div class="col-lg-4 text-lg-right">
                         <a href="about.html" class="mr-3">About</a>
-                        <a href="search.php"><span class="mr-1">🔍</span>Search</a>
+                        <a href="search.php">🔍</a>
                     </div>
                 </div>
             </div>
