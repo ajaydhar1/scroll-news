@@ -558,12 +558,16 @@ foreach ($items as $item) {
                                                     <img
                                                         src="<?php echo htmlspecialchars($mediaUrl); ?>"
                                                         alt=""
+                                                        loading="lazy"
+                                                        decoding="async"
                                                         onerror="this.onerror=null;this.src='assets/img/news-placeholder.jpg';"
                                                     />
                                                 <?php else: ?>
                                                     <img
                                                         src="assets/img/news-placeholder.jpg"
                                                         alt=""
+                                                        loading="lazy"
+                                                        decoding="async"
                                                     />
                                                 <?php endif; ?>
 
