@@ -30,17 +30,52 @@ $sql = "
 $stmt  = $pdo->query($sql);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Group items by date (Y-m-d) based on pub_date
+// Group items by local date (Y-m-d) based on pub_date, using same offset logic as format_news_date()
 $days = [];
+
+$tzId = 'America/New_York';
+$tz   = new DateTimeZone($tzId);
+
 foreach ($items as $item) {
     if (empty($item['pub_date'])) {
-        continue;
+        continue; // nothing to group
     }
 
-    $dt = new DateTime($item['pub_date']);
-    $item['_dt'] = $dt; // store for later display
+    $raw = $item['pub_date'];
 
+    // Allow either a Unix timestamp-ish value or a datetime string from the DB
+    $ts = null;
+
+    if (is_numeric($raw)) {
+        // Normalize digits and guard against ms
+        $digits = preg_replace('/\D/', '', (string)$raw);
+        if ($digits !== '') {
+            $ts = (int)$digits;
+            if ($ts > 1000000000000) { // looks like ms
+                $ts = (int)round($ts / 1000);
+            }
+        }
+    } else {
+        // Treat as TIMESTAMPTZ string like "2025-12-01 18:15:00+00"
+        $tmp = strtotime($raw);
+        if ($tmp !== false) {
+            $ts = $tmp;
+        }
+    }
+
+    if ($ts === null) {
+        continue; // can't parse, skip
+    }
+
+    // Apply same offset logic as the masthead: start from UTC and shift to America/New_York
+    $dt = (new DateTimeImmutable('@' . $ts))->setTimezone($tz);
+
+    // Store for later display (you can reuse this with format_news_date if you want)
+    $item['_dt'] = $dt;
+
+    // Group by local calendar date
     $dateKey = $dt->format('Y-m-d');
+
     if (!isset($days[$dateKey])) {
         $days[$dateKey] = [];
     }
