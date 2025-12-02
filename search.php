@@ -302,7 +302,7 @@ function sn_format_pub_date(?string $raw): string {
                                                     <img
                                                         src="<?php echo htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8'); ?>"
                                                         alt="<?php echo htmlspecialchars($domain ?: $feedName ?: 'Site', ENT_QUOTES, 'UTF-8'); ?> logo"
-                                                        class="sn-favicon me-2"
+                                                        class="sn-favicon"
                                                     >
                                                 <?php endif; ?>
 
