@@ -291,24 +291,36 @@ function sn_format_pub_date(?string $raw): string {
                                         }
                                     }
                                     ?>
-                                    <div class="card mb-3 shadow-sm border-0">
+                                    <div class="card mb-3 shadow-sm border-0 sn-search-card">
                                         <div class="card-body">
                                             <h5 class="card-title mb-1">
                                                 <?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?>
                                             </h5>
 
-                                            <div class="small text-muted mb-2">
-                                                <?php if ($pubHuman): ?>
-                                                    <?php echo htmlspecialchars($pubHuman, ENT_QUOTES, 'UTF-8'); ?>
+                                            <div class="sn-search-meta small text-muted mb-2 d-flex align-items-center">
+                                                <?php if ($faviconUrl): ?>
+                                                    <img
+                                                        src="<?php echo htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8'); ?>"
+                                                        alt="<?php echo htmlspecialchars($domain ?: $feedName ?: 'Site', ENT_QUOTES, 'UTF-8'); ?> logo"
+                                                        class="sn-favicon me-2"
+                                                    >
                                                 <?php endif; ?>
-                                                <?php if ($feedName): ?>
-                                                    <?php if ($pubHuman): ?> • <?php endif; ?>
-                                                    <?php echo htmlspecialchars($feedName, ENT_QUOTES, 'UTF-8'); ?>
-                                                <?php endif; ?>
-                                                <?php if ($domain): ?>
-                                                    <?php if ($pubHuman || $feedName): ?> • <?php endif; ?>
-                                                    <?php echo htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>
-                                                <?php endif; ?>
+
+                                                <div class="sn-meta-text">
+                                                    <?php if ($pubHuman): ?>
+                                                        <?php echo htmlspecialchars($pubHuman, ENT_QUOTES, 'UTF-8'); ?>
+                                                    <?php endif; ?>
+
+                                                    <?php if ($feedName): ?>
+                                                        <?php if ($pubHuman): ?> • <?php endif; ?>
+                                                        <?php echo htmlspecialchars($feedName, ENT_QUOTES, 'UTF-8'); ?>
+                                                    <?php endif; ?>
+
+                                                    <?php if ($domain): ?>
+                                                        <?php if ($pubHuman || $feedName): ?> • <?php endif; ?>
+                                                        <?php echo htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>
+                                                    <?php endif; ?>
+                                                </div>
                                             </div>
 
                                             <div class="btn-group btn-group-sm" role="group">
