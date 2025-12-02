@@ -402,6 +402,31 @@ foreach ($items as $item) {
                 box-shadow: 0 0 0 2px #00bfa6 !important;
             }
 
+            .article-image-wrap {
+                position: relative;
+            }
+
+            .domain-chip {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                padding: 4px 8px;
+                border-radius: 999px;
+                background: rgba(0, 0, 0, 0.65);
+                color: #fff;
+                font-size: 0.75rem;
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+            }
+
+            .domain-chip .pub-favicon {
+                width: 16px;
+                height: 16px;
+                border-radius: 4px;
+                object-fit: contain;
+            }
+
 
         </style>
 
@@ -505,6 +530,13 @@ foreach ($items as $item) {
 
                                             $analyzeUrl = 'newsroom.php?url=' . urlencode($url) . '&category=' . urlencode($category) . '&pub_date=' . urlencode($ts);
 
+                                            // Publisher favicon (update key name if different)
+                                            $faviconUrl = 'https://t0.gstatic.com/faviconV2'
+                                                . '?client=SOCIAL&type=FAVICON'
+                                                . '&fallback_opts=TYPE,SIZE,URL'
+                                                . '&url=' . rawurlencode($url)
+                                                . '&size=64';
+
                                             // Extract domain for chip
                                             $domain = '';
                                             if (!empty($url) && $url !== '#') {
@@ -534,6 +566,14 @@ foreach ($items as $item) {
 
                                                 <?php if (!empty($domain)): ?>
                                                     <div class="domain-chip">
+                                                        <?php if (!empty($faviconUrl)): ?>
+                                                            <img
+                                                                class="pub-favicon"
+                                                                src="<?php echo htmlspecialchars($faviconUrl); ?>"
+                                                                alt=""
+                                                                onerror="this.style.display='none';"
+                                                            />
+                                                        <?php endif; ?>
                                                         <?php echo htmlspecialchars($domain); ?>
                                                     </div>
                                                 <?php endif; ?>
