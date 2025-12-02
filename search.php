@@ -272,6 +272,19 @@ function sn_format_pub_date(?string $raw): string {
                                             . '?feed=' . urlencode($feedName)
                                             . '&id=' . (int)$row['article_id'];
                                     }
+
+                                    // Extract domain for chip
+                                    $domain = '';
+                                    if (!empty($readUrl) && $readUrl !== '#') {
+                                        $host = parse_url($readUrl, PHP_URL_HOST);
+                                        if ($host) {
+                                            if (strpos($host, 'www.') === 0) {
+                                                $host = substr($host, 4);
+                                            }
+                                            $domain = $host;
+                                        }
+                                    }
+
                                     ?>
                                     <div class="card mb-3 shadow-sm border-0">
                                         <div class="card-body">
@@ -286,6 +299,10 @@ function sn_format_pub_date(?string $raw): string {
                                                 <?php if ($feedName): ?>
                                                     <?php if ($pubHuman): ?> • <?php endif; ?>
                                                     <?php echo htmlspecialchars($feedName, ENT_QUOTES, 'UTF-8'); ?>
+                                                <?php endif; ?>
+                                                <?php if ($domain): ?>
+                                                    <?php if ($pubHuman || $feedName): ?> • <?php endif; ?>
+                                                    <?php echo htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>
                                                 <?php endif; ?>
                                             </div>
 
