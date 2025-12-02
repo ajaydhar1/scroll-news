@@ -268,9 +268,8 @@ function sn_format_pub_date(?string $raw): string {
                                     // Build Analyze (newsroom) URL if NLP/article exists.
                                     $analyzeUrl = null;
                                     if ($hasNlp) {
-                                        $analyzeUrl = 'newsroom.php'
-                                            . '?feed=' . urlencode($feedName)
-                                            . '&id=' . (int)$row['article_id'];  // or &article_id=... if that's your pattern
+                                        $ts = !empty($row['pub_date']) ? (strtotime($row['pub_date']) ?: null) : null;
+                                        $analyzeUrl = 'newsroom.php?url=' . urlencode($readUrl) . '&category=' . urlencode($feedName) . '&pub_date=' . urlencode($ts);
                                     }
 
                                     // Derive domain from the readUrl
