@@ -2,7 +2,7 @@
 
 date_default_timezone_set('America/New_York');
 
-$filter_out = array("usatoday", "independent.co.uk", "nytimes", "9to5google", "tomsguide", "thehockeynews", "cbssports", "businessinsider", "abc7chicago", "livescience", "wlns", "myedmondsnews", "reuters", "sportingnews", "bloomberg", "wane.com", "politico", "wvpublic", "cnbc", "mercurynews", "utahstories", "imdb", "9to5mac", "cnn", "mashable", "stpetecatalyst", "kark", "journalism.cuny.edu", "yahoo.com", "startribune", "wgntv", "msnbc", "kosu.org", "wpri.com", "theberkshireedge.com", "kron4.com", "nymag.com");
+$filter_out = array("usatoday", "independent.co.uk", "nytimes", "9to5google", "tomsguide", "thehockeynews", "cbssports", "businessinsider", "abc7chicago", "livescience", "wlns", "myedmondsnews", "reuters", "sportingnews", "bloomberg", "wane.com", "politico", "wvpublic", "cnbc", "mercurynews", "utahstories", "imdb", "9to5mac", "mashable", "stpetecatalyst", "kark", "journalism.cuny.edu", "yahoo.com", "startribune", "wgntv", "msnbc", "kosu.org", "wpri.com", "theberkshireedge.com", "kron4.com", "nymag.com");
 
 $rss_feeds = array("Politics" => "https://rss.app/feeds/tahaOzLGHPxMD9OC.xml", "Business" => "https://rss.app/feeds/tDmGft5qv7QGmWHv.xml", "Technology" => "https://rss.app/feeds/t8coleFVxgPf56NK.xml", "Sports" => "https://rss.app/feeds/tCQMLQm6AHeQ5hJk.xml", "Health" => "https://rss.app/feeds/tZPiCoHdJqTYlcZc.xml", "Science" => "https://rss.app/feeds/tLSguoVp4t7wa1eJ.xml", "Entertainment" => "https://rss.app/feeds/tBiQM8jJROm1RYn3.xml");
 
@@ -669,7 +669,7 @@ function getRandomArticle_fromRSS() {
 
   $random_article = $articles[array_rand($articles)];
 
-  return ['category' => $key, 'link' => $random_article['article_link'], 'pub_date' => $random_article['publish_date']];
+  return ['category' => $key, 'link' => $random_article['article_link'], 'pub_date' => $random_article['publish_date'], 'source' => 'rss'];
 }
 
 // Helper: build "url NOT ILIKE :f0 AND url NOT ILIKE :f1 ..." + params
@@ -1299,6 +1299,7 @@ function getRecentWeightedArticle_forStumble_fromDB(
         'link'       => $row['url'],
         'article_id' => (int)$row['id'],
         'pub_date'   => toEpoch(toIsoZ($row['created_at'])),
+        'source'     => 'db',
     ];
 }
 

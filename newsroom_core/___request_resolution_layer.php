@@ -15,7 +15,13 @@ function newsroom_resolve_article(): array {
             error_log("getRecentWeightedArticle_forStumble_fromDB DB error: " . $e->getMessage());
         }
 
-        header('Location: newsroom.php?url=' . urlencode($random['link']) . '&category=' . urlencode($random['category']) . '&pub_date=' . urlencode($random['pub_date']) . '&db=1');
+        $redirect_url = 'Location: newsroom.php?url=' . urlencode($random['link']) . '&category=' . urlencode($random['category']) . '&pub_date=' . urlencode($random['pub_date']);
+
+         if (!empty($random['source']) && $random['source'] === 'db') {
+            $redirect_url .= '&db=1';
+        }
+
+        header($redirect_url);
         exit;
     }
     // Normalize / sanitize URL a bit

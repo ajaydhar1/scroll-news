@@ -302,8 +302,17 @@ $youtube_search = $meta['youtube_search'] ?? $title;
 
                                     // 1) Prefer DB media image, then OG image ($img), else null
                                     $dbMedia   = $article['media_url'] ?? null;   // from DB
-                                    $ogImage   = $img ?? null;           // scraped OG tag
+                                    $ogImage   = $img ?? null;                    // scraped OG tag
                                     $primary   = $dbMedia ?: $ogImage;
+
+                                    // Extract domain from $url for the chip
+                                    $domain = '';
+                                    if (!empty($url)) {
+                                        $host = parse_url($url, PHP_URL_HOST);
+                                        if ($host) {
+                                            $domain = preg_replace('/^www\./i', '', $host);
+                                        }
+                                    }
 
                                     // 2) Hard fallback path
                                     $fallbackSrc = 'assets/img/news-placeholder.jpg';
@@ -312,13 +321,23 @@ $youtube_search = $meta['youtube_search'] ?? $title;
                                     $initialSrc = $primary ?: $fallbackSrc;
                             ?>
 
-                                    <img
-                                      id="shot"
-                                      src="<?php echo htmlspecialchars($initialSrc, ENT_QUOTES); ?>"
-                                      alt="Article image"
-                                      loading="lazy" decoding="async"
-                                      style="width:100%;height:auto;margin-bottom:20px;"
-                                    />
+                                    <div class="article-image-wrapper position-relative w-100 mb-3">
+                                        <?php if ($domain): ?>
+                                            <div class="position-absolute top-0 end-0 m-2">
+                                                <span class="badge rounded-pill bg-light text-muted border small">
+                                                    <?php echo htmlspecialchars($domain, ENT_QUOTES); ?>
+                                                </span>
+                                            </div>
+                                        <?php endif; ?>
+
+                                        <img
+                                          id="shot"
+                                          src="<?php echo htmlspecialchars($initialSrc, ENT_QUOTES); ?>"
+                                          alt="Article image"
+                                          loading="lazy" decoding="async"
+                                          style="width:100%;height:auto;display:block;"
+                                        />
+                                    </div>
 
                                     <div id="img-loader" class="text-center mt-3">Loading image...</div>
 
@@ -326,12 +345,10 @@ $youtube_search = $meta['youtube_search'] ?? $title;
                                     (function () {
                                       const img        = document.getElementById('shot');
                                       const imgLoader  = document.getElementById('img-loader');
-                                      const originalSrc = img.getAttribute('src');
                                       const fallbackSrc = '<?php echo $fallbackSrc; ?>';
 
                                       const hideLoader = () => { if (imgLoader) imgLoader.style.display = 'none'; };
 
-                                      // If the image was cached and already loaded
                                       if (img.complete && img.naturalWidth > 0) {
                                         hideLoader();
                                       }
