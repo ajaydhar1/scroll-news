@@ -219,7 +219,7 @@ a:focus-visible,
     border-radius: 4px;
     flex-shrink: 0;
     object-fit: contain;
-    margin-right: 0.5rem; /* replaces me-2 */
+    margin-right: 4px;
 }
 
 a.search-button {
