@@ -430,7 +430,10 @@ foreach ($items as $item) {
                         <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" data-loading><i class="fas fa-play"></i></a>
                         <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.html"><i class="fas fa-dashboard"></i></a>
                     </div>
-                    <div class="col-lg-4 text-lg-right"><a href="about.html">About</a></div>
+                    <div class="col-lg-4 text-lg-right">
+                        <a href="about.html" class="mr-3">About</a>
+                        <a href="search.php">🔍</a>
+                    </div>
                 </div>
             </div>
         </footer>
