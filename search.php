@@ -130,14 +130,15 @@ function sn_format_pub_date(?string $raw): string {
                 background: #00bfa6;
                 border: none;
             }
-
             .btn-outline-primary {
                 color: black;
                 border: none;
             }
-
             .btn {
-                box-shadow: 0 0 0 2px #00bfa6 !important;
+                box-shadow: none !important;
+            }
+            .btn-gray-border {
+                border: 2px solid #6c757d;
             }
         </style>
     </head>
@@ -208,7 +209,7 @@ function sn_format_pub_date(?string $raw): string {
                                 value="<?php echo htmlspecialchars($q, ENT_QUOTES, 'UTF-8'); ?>"
                                 aria-label="Search headlines"
                             />
-                            <button class="btn btn-primary" type="submit" data-loading>
+                            <button class="btn btn-green" type="submit" style="border-radius: 0 0.25rem 0.25rem 0;" data-loading>
                                 <i class="fas fa-search"></i>&nbsp;Search
                             </button>
                         </form>
@@ -297,7 +298,7 @@ function sn_format_pub_date(?string $raw): string {
                                                 <?php if ($hasNlp && $analyzeUrl): ?>
                                                     <a
                                                         href="<?php echo htmlspecialchars($analyzeUrl, ENT_QUOTES, 'UTF-8'); ?>"
-                                                        class="btn btn-primary"
+                                                        class="btn btn-green btn-gray-border"
                                                         data-loading
                                                     >
                                                         Analyze
