@@ -53,7 +53,7 @@
   }
   .sn-card:hover, .sn-card:focus-visible { transform:translateY(-2px); box-shadow:0 10px 28px rgba(0,0,0,.18); outline:none; }
   .sn-media { position:relative; aspect-ratio:16/9; background:#eee; overflow:hidden; }
-  .sn-media img { width:100%; height:100%; object-fit:cover; display:block; }
+  .sn-media img:not(.sn-favicon) { width:100%; height:100%; object-fit:cover; display:block; }
   .sn-badge {
     position:absolute; left:10px; bottom:10px;
     background:rgba(0,0,0,.7); color:#fff; font-size:.75rem;
@@ -154,16 +154,11 @@
         <a class="sn-card" role="listitem" href="${newsroomLink}" rel="noopener noreferrer" aria-label="Open article: ${a.title}" data-loading>
           <div class="sn-media">
             <img src="${a.image}" alt="${a.title}" onerror="this.src = 'assets/img/news-placeholder.jpg';">
-            <span class="sn-badge">${a.publisher}</span>
+            <span class="sn-badge"><img src="${faviconUrl}" alt="${encodedPub} logo" class="sn-favicon">${a.publisher}</span>
           </div>
           <div class="sn-body">
             <div class="sn-title">${a.title}</div>
             <div class="sn-meta">
-              <img
-                  src="${faviconUrl}"
-                  alt="${encodedPub} logo"
-                  class="sn-favicon mr-0"
-              >
               <span>${a.publisher}</span>
               <span class="sn-dot" aria-hidden="true"></span>
               <time datetime="${a.pubDate}">${timeAgo(a.pubDate)}</time>
