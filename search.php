@@ -134,6 +134,9 @@ function sn_format_pub_date(?string $raw): string {
                 color: black;
                 border: none;
             }
+            footer .btn {
+                box-shadow: 0 0 0 2px #00bfa6 !important;
+            }
             .btn {
                 box-shadow: none !important;
             }
@@ -180,7 +183,8 @@ function sn_format_pub_date(?string $raw): string {
                         <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.html"><i class="fas fa-dashboard"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-right">
-                        <a href="about.html">About</a>
+                        <a href="about.html" class="mr-3">About</a>
+                        <a href="search.php"><span class="mr-1">🔍</span>Search</a>
                     </div>
                 </div>
             </div>
