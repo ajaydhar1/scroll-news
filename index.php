@@ -324,19 +324,6 @@
                             </div>
                         </div>
                     </div>
-                    <?php /*
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 3-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" href="assets/img/portfolio/search-news.jpg" data-lightbox="modules">
-                                <img class="img-fluid" src="assets/img/portfolio/search-news.jpg" alt="Screenshot of news search results in Scroll News" data-lightbox="3"/>
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Search News</div>
-                                <!--<div class="portfolio-caption-subheading text-muted">Identity</div>-->
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
                         <!-- Portfolio item 4-->
                         <div class="portfolio-item">
@@ -349,18 +336,31 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item 3-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" href="assets/img/portfolio/search-headlines.jpg" data-lightbox="modules">
+                                <img class="img-fluid" src="assets/img/portfolio/search-headlines.jpg" alt="Screenshot of news search results in Scroll News" data-lightbox="3"/>
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Search Headlines</div>
+                                <!--<div class="portfolio-caption-subheading text-muted">Identity</div>-->
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
                         <!-- Portfolio item 5-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" href="assets/img/portfolio/article-screenshot.jpg" data-lightbox="modules">
-                                <img class="img-fluid" src="assets/img/portfolio/article-screenshot.jpg" alt="Screenshot of a news article captured by Scroll News" data-lightbox="5"/>
+                            <a class="portfolio-link" href="assets/img/portfolio/scroll-history.jpg" data-lightbox="modules">
+                                <img class="img-fluid" src="assets/img/portfolio/scroll-history.jpg" alt="Screenshot of a news article captured by Scroll News" data-lightbox="5"/>
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Article Screenshot</div>
+                                <div class="portfolio-caption-heading">Scroll History</div>
                                 <!--<div class="portfolio-caption-subheading text-muted">Website Design</div>-->
                             </div>
                         </div>
                     </div>
+                    <? /*
                     <div class="col-lg-4 col-sm-6">
                         <!-- Portfolio item 6-->
                         <div class="portfolio-item">
