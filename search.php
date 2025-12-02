@@ -124,6 +124,21 @@ function sn_format_pub_date(?string $raw): string {
             footer .text-lg-right a:hover {
                 color: black;
             }
+
+
+            a.btn.btn-outline-primary.btn-analyze:hover {
+                background: #00bfa6;
+                border: none;
+            }
+
+            .btn-outline-primary {
+                color: black;
+                border: none;
+            }
+
+            .btn {
+                box-shadow: 0 0 0 2px #00bfa6 !important;
+            }
         </style>
     </head>
     <body id="page-top" class="bg-dark">
