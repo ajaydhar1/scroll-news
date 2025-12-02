@@ -240,7 +240,7 @@
                     </div>
                     <div class="col-lg-4 text-lg-right" style="">
                         <a href="about.html" class="mr-3">About</a>
-                        <a href="search.php">🔍</a>
+                        <a class="search-button" href="search.php" title="Search" aria-label="Search">🔍</a>
                     </div>
                 </div>
             </div>

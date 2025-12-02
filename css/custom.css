@@ -221,3 +221,15 @@ a:focus-visible,
     object-fit: contain;
     margin-right: 0.5rem; /* replaces me-2 */
 }
+
+a.search-button {
+    display: inline-block;       /* ensures the circle behaves nicely */
+    padding: .5rem;
+    border-radius: 50%;
+    line-height: 1;              /* keeps the icon visually centered */
+    text-decoration: none;       /* in case links are underlined globally */
+}
+
+a.search-button:hover {
+    background: #e7e7e7;
+}

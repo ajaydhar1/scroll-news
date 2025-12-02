@@ -178,7 +178,7 @@ $youtube_search = $meta['youtube_search'] ?? $title;
                         <button class="btn btn-outline-dark blue-hover browse-btn ml-2 mr-3" data-toggle="modal" data-target="#searchNewsModal" aria-label="Search news articles">
                             Search News
                         </button>
-                        <a href="search.php">🔍</a>
+                        <a class="search-button" href="search.php" title="Search" aria-label="Search">🔍</a>
                     </div>
                 </div>
             </div>
