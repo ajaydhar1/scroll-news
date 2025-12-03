@@ -49,6 +49,10 @@ if (empty($meta['image'])) {
         $meta = array_merge($meta, $scraped);
         // If you want DB to win over scraped, flip the order:
         // $meta = array_merge($meta, $scraped);
+
+        if (empty($meta['image'])) {
+            $meta['image'] = 'assets/img/news-placeholder.jpg';
+        }
     }
 }
 
