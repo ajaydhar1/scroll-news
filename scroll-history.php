@@ -467,7 +467,7 @@ foreach ($items as $item) {
                 <?php else: ?>
 
                     <!-- Filter bar -->
-                    <section class="sn-history-filters mb-3">
+                    <div class="sn-history-filters mt-5 mb-3">
                         <div class="container-fluid px-0 px-md-1">
                             <div class="row align-items-end">
                                 <div class="col-md-4 mb-2">
@@ -489,7 +489,7 @@ foreach ($items as $item) {
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </div>
 
                     <?php $rowIndex = 0; ?>
                     <?php foreach ($days as $dateKey => $articles): ?>
