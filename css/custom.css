@@ -246,3 +246,31 @@ span#hash-icons {
     padding: 1px 4px 0 4px;
     border-radius: 4px;
 }
+
+.introjs-bullets {
+    display: none;
+}
+
+.introjs-helperLayer {
+    border: 1px solid rgb(255 255 255 / 87%) !important;
+}
+
+/*
+.introjs-overlay {
+    opacity: .85 !important;
+}
+*/
+
+.introjs-tooltiptext {
+    font-size: 15px;
+    line-height: calc(var(--line-height-unit) * 1.4) !important;
+}
+
+.custom-highlight {
+    background-color: transparent !important;
+    opacity: 1 !important;
+    box-shadow:
+        0 0 0 9999px rgba(0, 0, 0, 0.65),  /* dim the page */
+        0 0 18px rgba(25, 135, 84, 0.85) !important;  /* inner glow */
+    /* animation: introPlayPulse 1.5s ease-in-out infinite; */
+}

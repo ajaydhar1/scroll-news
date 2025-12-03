@@ -156,34 +156,6 @@
                 scroll-margin-top: 95px; /* Adjust the offset as needed */
             }
 
-            .introjs-bullets {
-                display: none;
-            }
-
-            .introjs-helperLayer {
-                border: 1px solid rgb(255 255 255 / 87%) !important;
-            }
-
-            /*
-            .introjs-overlay {
-                opacity: .85 !important;
-            }
-            */
-
-            .introjs-tooltiptext {
-                font-size: 15px;
-                line-height: calc(var(--line-height-unit) * 1.4) !important;
-            }
-
-            .custom-highlight {
-                background-color: transparent !important;
-                opacity: 1 !important;
-                box-shadow:
-                    0 0 0 9999px rgba(0, 0, 0, 0.65),  /* dim the page */
-                    0 0 18px rgba(25, 135, 84, 0.85);  /* inner glow */
-                /* animation: introPlayPulse 1.5s ease-in-out infinite; */
-            }
-
             /* Pulse animation on the glow ONLY */
             @keyframes introPlayPulse {
                 0% {
