@@ -808,6 +808,11 @@ foreach ($items as $item) {
                             group.classList.add('d-none');
                         }
                     });
+
+                    // 🔹 Reset all tracks back to the start (left) after filtering
+                    document.querySelectorAll('.articles-track').forEach(function (track) {
+                        track.scrollLeft = 0;
+                    });
                 }
 
                 keywordInput.addEventListener('input', applyFilters);
