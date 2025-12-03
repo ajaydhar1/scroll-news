@@ -6,14 +6,6 @@ require_once('___modules.php');
 $pdo = _pdo_or_null();
 
 // Fetch all RSS items ordered by pub_date DESC
-/*
-$sql = "
-    SELECT id, title, link, pub_date, media_url
-    FROM rss_items
-    WHERE pub_date IS NOT NULL
-    ORDER BY pub_date DESC, id DESC
-";
-*/
 $sql = "
     SELECT 
         ri.id,
@@ -71,10 +63,12 @@ foreach ($items as $item) {
     $dt = (new DateTimeImmutable('@' . $ts))->setTimezone($tz);
 
     // Store for later display (you can reuse this with format_news_date if you want)
-    $item['_dt'] = $dt;
+    $item['_dt']       = $dt;
+    $item['_ts']       = $ts;               // raw Unix seconds for filters
+    $item['_date_key'] = $dt->format('Y-m-d');
 
     // Group by local calendar date
-    $dateKey = $dt->format('Y-m-d');
+    $dateKey = $item['_date_key'];
 
     if (!isset($days[$dateKey])) {
         $days[$dateKey] = [];
@@ -248,7 +242,6 @@ foreach ($items as $item) {
                 flex-direction: column;
             }
 
-
             .article-image-wrap {
                 background: #e1e1e8;
                 position: relative;
@@ -260,25 +253,6 @@ foreach ($items as $item) {
                 height: 180px;
                 object-fit: cover;
             }
-
-            <?php /*
-            .domain-chip {
-                position: absolute;
-                left: 0.5rem;
-                bottom: 0.5rem;
-                padding: 0.18rem 0.55rem;
-                border-radius: 999px;
-                background: rgba(0, 0, 0, 0.72);
-                color: #f8f9fa;
-                font-size: 0.68rem;
-                font-weight: 500;
-                letter-spacing: 0.02em;
-                max-width: 70%;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            */ ?>
 
             .article-body {
                 padding: 0.75rem 0.9rem 0.9rem;
@@ -389,7 +363,6 @@ foreach ($items as $item) {
             @keyframes spin{to{transform:rotate(360deg)}}
             @media (prefers-reduced-motion: reduce){ .loading-spinner{animation:none} }
 
-
             a.btn.btn-outline-primary.btn-analyze:hover {
                 background: #00bfa6;
                 border: none;
@@ -430,7 +403,14 @@ foreach ($items as $item) {
                 object-fit: contain;
             }
 
-
+            /* Filter bar */
+            .sn-history-filters label {
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 0.04em;
+                color: #6b6b7a;
+                margin-bottom: 0.15rem;
+            }
         </style>
 
     </head>
@@ -485,6 +465,32 @@ foreach ($items as $item) {
                         </div>
                     </div>
                 <?php else: ?>
+
+                    <!-- Filter bar -->
+                    <section class="sn-history-filters mb-3">
+                        <div class="container-fluid px-0 px-md-1">
+                            <div class="row align-items-end">
+                                <div class="col-md-4 mb-2">
+                                    <label for="historyFilterKeyword">Filter by keyword</label>
+                                    <input id="historyFilterKeyword" type="text" class="form-control form-control-sm" placeholder="headline, topic, etc.">
+                                </div>
+                                <div class="col-md-4 mb-2">
+                                    <label for="historyFilterDomain">Filter by domain</label>
+                                    <input id="historyFilterDomain" type="text" class="form-control form-control-sm" placeholder="e.g. nytimes.com">
+                                </div>
+                                <div class="col-md-4 mb-2">
+                                    <label for="historyFilterTime">Time window</label>
+                                    <select id="historyFilterTime" class="form-control form-control-sm">
+                                        <option value="all">All time</option>
+                                        <option value="1d">Last 24 hours</option>
+                                        <option value="7d">Last 7 days</option>
+                                        <option value="30d">Last 30 days</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
                     <?php $rowIndex = 0; ?>
                     <?php foreach ($days as $dateKey => $articles): ?>
                         <?php
@@ -494,7 +500,7 @@ foreach ($items as $item) {
                             $friendlyDate = $dt ? $dt->format('F j, Y') : htmlspecialchars($dateKey);
                             $count = count($articles);
                         ?>
-                        <section class="day-row">
+                        <section class="day-row sn-history-day">
                             <div class="row gx-2 gx-sm-3 mb-2">
                                 <div class="col-12 d-flex justify-content-between align-items-baseline">
                                     <h3 class="day-title mb-0"><?php echo $friendlyDate; ?></h3>
@@ -514,8 +520,8 @@ foreach ($items as $item) {
                                 </button>
                                 <button class="scroll-btn scroll-btn-right"
                                         type="button"
-                                        data-track="<?php echo $trackId; ?>"
-                                        data-direction="right">
+                                        data-direction="right"
+                                        data-track="<?php echo $trackId; ?>">
                                     ›
                                 </button>
 
@@ -527,11 +533,13 @@ foreach ($items as $item) {
                                             $url      = $item['link'] ?? '#';
                                             $mediaUrl = $item['media_url'] ?? '';
                                             $pubDt    = $item['_dt'] ?? null;
-                                            $ts       = !empty($item['pub_date']) ? (strtotime($item['pub_date']) ?: null) : null;
+                                            $ts       = $item['_ts'] ?? null;
                                             $pubTime  = $pubDt ? $pubDt->format('g:i A') : '';
                                             $category = $item['feed_name'] ?? '';
 
-                                            $analyzeUrl = 'newsroom.php?url=' . urlencode($url) . '&category=' . urlencode($category) . '&pub_date=' . urlencode($ts);
+                                            $analyzeUrl = 'newsroom.php?url=' . urlencode($url)
+                                                . '&category=' . urlencode($category)
+                                                . '&pub_date=' . urlencode($ts);
 
                                             // Publisher favicon (update key name if different)
                                             $faviconUrl = 'https://t0.gstatic.com/faviconV2'
@@ -540,7 +548,7 @@ foreach ($items as $item) {
                                                 . '&url=' . rawurlencode($url)
                                                 . '&size=64';
 
-                                            // Extract domain for chip
+                                            // Extract domain for chip + filter
                                             $domain = '';
                                             if (!empty($url) && $url !== '#') {
                                                 $host = parse_url($url, PHP_URL_HOST);
@@ -552,7 +560,12 @@ foreach ($items as $item) {
                                                 }
                                             }
                                         ?>
-                                        <article class="article-card">
+                                        <article
+                                            class="article-card sn-history-item"
+                                            data-title="<?php echo htmlspecialchars($title); ?>"
+                                            data-domain="<?php echo htmlspecialchars($domain); ?>"
+                                            data-timestamp="<?php echo $ts ? (int)$ts : ''; ?>"
+                                        >
                                             <div class="article-image-wrap">
                                                 <?php if (!empty($mediaUrl)): ?>
                                                     <img
@@ -696,10 +709,11 @@ foreach ($items as $item) {
         </script>
 
         <script>
-        // Scroll buttons for each horizontal track
+        // Scroll buttons, keyboard navigation, and filters for Scroll History
         document.addEventListener('DOMContentLoaded', function () {
             var SCROLL_AMOUNT = 600; // px per click; tweak as needed
 
+            // Arrow button click scroll
             document.querySelectorAll('.scroll-btn').forEach(function (btn) {
                 btn.addEventListener('click', function () {
                     var trackId = btn.getAttribute('data-track');
@@ -715,6 +729,91 @@ foreach ($items as $item) {
                     });
                 });
             });
+
+            // Keyboard left/right navigation for each horizontal track
+            document.querySelectorAll('.articles-track').forEach(function (track) {
+                track.tabIndex = 0; // make focusable
+
+                track.addEventListener('keydown', function (e) {
+                    if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        track.scrollBy({
+                            left: track.clientWidth * 0.9,
+                            behavior: 'smooth'
+                        });
+                    } else if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        track.scrollBy({
+                            left: -track.clientWidth * 0.9,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Filter bar logic
+            var keywordInput = document.getElementById('historyFilterKeyword');
+            var domainInput  = document.getElementById('historyFilterDomain');
+            var timeSelect   = document.getElementById('historyFilterTime');
+
+            if (keywordInput && domainInput && timeSelect) {
+                var items = Array.prototype.slice.call(document.querySelectorAll('.sn-history-item'));
+                var dayGroups = Array.prototype.slice.call(document.querySelectorAll('.sn-history-day'));
+
+                function applyFilters() {
+                    var keyword = keywordInput.value.trim().toLowerCase();
+                    var domain  = domainInput.value.trim().toLowerCase();
+                    var timeVal = timeSelect.value;
+
+                    var nowSec = Math.floor(Date.now() / 1000);
+
+                    items.forEach(function (item) {
+                        var title      = (item.dataset.title || '').toLowerCase();
+                        var itemDomain = (item.dataset.domain || '').toLowerCase();
+                        var ts         = parseInt(item.dataset.timestamp || '0', 10);
+
+                        var visible = true;
+
+                        // Keyword filter
+                        if (keyword && !title.includes(keyword)) {
+                            visible = false;
+                        }
+
+                        // Domain filter
+                        if (visible && domain && !itemDomain.includes(domain)) {
+                            visible = false;
+                        }
+
+                        // Time window filter
+                        if (visible && timeVal !== 'all' && ts > 0) {
+                            var diffSec = nowSec - ts;
+                            if (timeVal === '1d'  && diffSec > 86400)        visible = false;
+                            if (timeVal === '7d'  && diffSec > 86400 * 7)    visible = false;
+                            if (timeVal === '30d' && diffSec > 86400 * 30)   visible = false;
+                        }
+
+                        if (visible) {
+                            item.classList.remove('d-none');
+                        } else {
+                            item.classList.add('d-none');
+                        }
+                    });
+
+                    // Hide whole day rows that have no visible items
+                    dayGroups.forEach(function (group) {
+                        var anyVisible = group.querySelector('.sn-history-item:not(.d-none)') !== null;
+                        if (anyVisible) {
+                            group.classList.remove('d-none');
+                        } else {
+                            group.classList.add('d-none');
+                        }
+                    });
+                }
+
+                keywordInput.addEventListener('input', applyFilters);
+                domainInput.addEventListener('input', applyFilters);
+                timeSelect.addEventListener('change', applyFilters);
+            }
         });
         </script>
 
