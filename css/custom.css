@@ -236,3 +236,7 @@ a.search-button {
 a.search-button:hover {
     background: #e7e7e7;
 }
+
+span.right-view {
+    float: right;
+}
