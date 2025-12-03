@@ -174,8 +174,8 @@ try {
     strip.innerHTML = articles.map(a => {
       const link    = a.link || a.url || "#";
       const image   = a.image || a.image_url || "assets/img/news-placeholder.jpg";
-      const pubDate = a.pubDate || a.pub_date || new Date().toISOString();
-      const pubForLink = a.pubDateForLink || a.pub_date || pubDate;
+      const pubDate    = a.pubDate || a.pub_date || new Date().toISOString();
+      const pubForLink = a.pubDateForLink || a.pub_date_ts || a.pub_date || pubDate;
 
       // 🔹 Safe category: use a.category (RSS), or a.source_slug (DB), else "Politics"
       const rawCategory = a.category || a.source_slug || "Politics";
@@ -254,18 +254,23 @@ try {
   // --- INIT ---
   (function initScrollStrip() {
     if (Array.isArray(dbArticlesRaw) && dbArticlesRaw.length > 0) {
-      // Use DB articles if available
-      const mapped = dbArticlesRaw.map(row => ({
-        title: row.title,
-        url: row.url,
-        category: row.source_slug,
-        image_url: row.image_url,   // aliased in SQL
-        pub_date: row.pub_date,
-        fromDb: true                // flag for &db=1
-      }));
+      const mapped = dbArticlesRaw.map(row => {
+        const pubDate = row.pub_date; // e.g. "2025-12-03 13:34:00+00"
+        const ts = Math.floor(new Date(pubDate).getTime() / 1000); // 10-digit Unix seconds
+
+        return {
+          title: row.title,
+          url: row.url,
+          category: row.source_slug,
+          image_url: row.image_url,
+          pub_date: pubDate,       // used for <time datetime="">
+          pubDateForLink: ts,      // used for URL param
+          fromDb: true
+        };
+      });
+
       renderNewsStrip("newsStrip", mapped);
     } else {
-      // Fallback to RSS
       const rssUrl = "https://rss.app/feeds/tahaOzLGHPxMD9OC.xml";
       fetchRSSArticlesForScrollStrip(rssUrl);
     }
