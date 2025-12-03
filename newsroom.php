@@ -46,7 +46,7 @@ if (empty($meta['image'])) {
 
     if (is_array($scraped)) {
         // Merge scraped meta in without nuking DB values that already exist
-        $meta = array_merge($scraped, $meta);
+        $meta = array_merge($meta, $scraped);
         // If you want DB to win over scraped, flip the order:
         // $meta = array_merge($meta, $scraped);
     }
