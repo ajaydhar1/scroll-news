@@ -500,12 +500,12 @@ if (!empty($url)) {
                   $("#insta-tags").css("display", "block");
                   $("#google-tags").css("display", "none");
                   $("#youtube-tags").css("display", "none");
-                  $("#idea-tags").css("display", "none");
+                  $("#search-tags").css("display", "none");
                   $("#twitter-icon").css("color", "#34495E");
                   $("#insta-icon").css("color", "var(--brand-color)");
                   $("#google-icon").css("color", "#34495E");
                   $("#youtube-icon").css("color", "#34495E");
-                  $("#idea-icon").css("color", "#34495E");  
+                  $("#search-icon").css("color", "#34495E");  
               });
 
               $("#twitter-link").click(function() {
@@ -514,12 +514,12 @@ if (!empty($url)) {
                   $("#twitter-tags").css("display", "block");
                   $("#google-tags").css("display", "none");
                   $("#youtube-tags").css("display", "none");
-                  $("#idea-tags").css("display", "none");
+                  $("#search-tags").css("display", "none");
                   $("#insta-icon").css("color", "#34495E");
                   $("#twitter-icon").css("color", "var(--brand-color)");
                   $("#google-icon").css("color", "#34495E");
                   $("#youtube-icon").css("color", "#34495E");
-                  $("#idea-icon").css("color", "#34495E");
+                  $("#search-icon").css("color", "#34495E");
               });
 
               $("#google-link").click(function() {
@@ -528,12 +528,12 @@ if (!empty($url)) {
                   $("#twitter-tags").css("display", "none");
                   $("#google-tags").css("display", "block");
                   $("#youtube-tags").css("display", "none");
-                  $("#idea-tags").css("display", "none");
+                  $("#search-tags").css("display", "none");
                   $("#insta-icon").css("color", "#34495E");
                   $("#twitter-icon").css("color", "#34495E");
                   $("#google-icon").css("color", "var(--brand-color)");
                   $("#youtube-icon").css("color", "#34495E");
-                  $("#idea-icon").css("color", "#34495E");
+                  $("#search-icon").css("color", "#34495E");
               });
 
               $("#youtube-link").click(function() {
@@ -541,13 +541,27 @@ if (!empty($url)) {
                   $("#insta-tags").css("display", "none");
                   $("#twitter-tags").css("display", "none");
                   $("#google-tags").css("display", "none");
-                  $("#idea-tags").css("display", "none");
+                  $("#search-tags").css("display", "none");
                   $("#youtube-tags").css("display", "block");
                   $("#insta-icon").css("color", "#34495E");
                   $("#twitter-icon").css("color", "#34495E");
                   $("#google-icon").css("color", "#34495E");
                   $("#youtube-icon").css("color", "var(--brand-color)");
-                  $("#idea-icon").css("color", "#34495E");
+                  $("#search-icon").css("color", "#34495E");
+              });
+
+              $("#search-link").click(function() {
+                  $("#sm-tags").text("News Search");
+                  $("#insta-tags").css("display", "none");
+                  $("#twitter-tags").css("display", "none");
+                  $("#google-tags").css("display", "none");
+                  $("#search-tags").css("display", "block");
+                  $("#youtube-tags").css("display", "none");
+                  $("#insta-icon").css("color", "#34495E");
+                  $("#twitter-icon").css("color", "#34495E");
+                  $("#google-icon").css("color", "#34495E");
+                  $("#youtube-icon").css("color", "#34495E");
+                  $("#search-icon").css("color", "var(--brand-color)");
               });
 
               /*
