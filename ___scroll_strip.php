@@ -3,31 +3,27 @@
 $scroll_strip_articles = [];
 
 try {
-    // Make sure config/DB is loaded (safe even if already included)
     require_once "___modules.php";
 
     $db = _pdo_or_null();
 
-    // Adjust $db / $pdo variable name to whatever you use in ___config.php
-    // Example assumes $db is a PDO instance.
-    if (!isset($db)) {
+    if (!$db) {
         throw new Exception("DB handle not available");
     }
 
-    // Adjust column names to match your `articles` table:
-    // url, title, publisher, image_url, pub_date are guesses.
+    // Use real column names, aliasing media_url for convenience
     $sql = "
         SELECT 
             url,
             title,
-            publisher,
-            image_url,
+            source_slug,
+            media_url AS image_url,
             pub_date
         FROM articles
         WHERE 
             url IS NOT NULL 
             AND title IS NOT NULL
-            AND image_url IS NOT NULL
+            AND media_url IS NOT NULL
         ORDER BY pub_date DESC
         LIMIT 12
     ";
@@ -40,7 +36,8 @@ try {
         $scroll_strip_articles = $rows;
     }
 } catch (Throwable $e) {
-    // If anything goes wrong, we just fall back to RSS on the frontend
+    // Log for debugging, but silently fall back to RSS in the UI
+    error_log("scroll_strip DB error: " . $e->getMessage());
     $scroll_strip_articles = [];
 }
 ?>
@@ -120,12 +117,16 @@ try {
 <script>
   // DB articles injected from PHP (if any)
   const dbArticlesRaw = <?php
-    echo json_encode($scroll_strip_articles, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
+    echo json_encode(
+        $scroll_strip_articles,
+        JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE |
+        JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP
+    );
   ?> || [];
 
   function fetchRSSArticlesForScrollStrip(feedUrl, category) {
     $.ajax({
-      url: "rss_proxy.php", // PHP file that fetches RSS content
+      url: "rss_proxy.php",
       method: "POST",
       cache: false,
       data: { feed: feedUrl },
@@ -135,7 +136,6 @@ try {
         renderNewsStrip("newsStrip", articles);
       },
       error: function() {
-        // If RSS fails too, you could optionally render nothing or a simple message.
         console.warn("RSS fetch failed for Scroll Strip");
       }
     });
@@ -155,43 +155,68 @@ try {
     return "just now";
   }
 
+  // 🔹 NEW: derive publisher/domain from URL when not provided
+  function extractDomain(url) {
+    try {
+      const u = new URL(url);
+      let host = u.hostname || "";
+      if (host.startsWith("www.")) host = host.slice(4);
+      return host || "Unknown";
+    } catch (e) {
+      return "Unknown";
+    }
+  }
+
   function renderNewsStrip(elId, articles) {
     const strip = document.getElementById(elId);
     if (!strip) return;
 
     strip.innerHTML = articles.map(a => {
-      const title      = a.title || "";
-      const publisher  = a.publisher || a.source || "Unknown";
-      const link       = a.link || a.url || "#";
-      const image      = a.image || a.image_url || "assets/img/news-placeholder.jpg";
-      const pubDate    = a.pubDate || a.pub_date || new Date().toISOString();
+      const link    = a.link || a.url || "#";
+      const image   = a.image || a.image_url || "assets/img/news-placeholder.jpg";
+      const pubDate = a.pubDate || a.pub_date || new Date().toISOString();
       const pubForLink = a.pubDateForLink || a.pub_date || pubDate;
 
+      // 🔹 Safe category: use a.category (RSS), or a.source_slug (DB), else "Politics"
+      const rawCategory = a.category || a.source_slug || "Politics";
+      const category = rawCategory
+        ? rawCategory.charAt(0).toUpperCase() + rawCategory.slice(1)
+        : "Politics";
+
+      // Publisher / domain logic
+      const domainOrSource = a.publisher || a.source || extractDomain(link);
+
       const encodedUrl = encodeURIComponent(link);
-      const encodedPub = encodeURIComponent(publisher);
+      const encodedCategory = encodeURIComponent(category);
 
-      let newsroomLink = `newsroom.php?url=${encodedUrl}&category=Politics&publisher=${encodedPub}&pub_date=${encodeURIComponent(pubForLink)}`;
+      let newsroomLink = `newsroom.php?url=${encodedUrl}&category=${encodedCategory}&pub_date=${encodeURIComponent(pubForLink)}`;
 
-      // If this article came from the articles table, add db=1
+      // If this article came from the DB, tag it so newsroom.php can branch logic
       if (a.fromDb) {
-        newsroomLink += '&db=1';
+        newsroomLink += "&db=1";
       }
 
-      const faviconUrl = 'https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://' + encodedPub + '&size=64';
+      // Favicon uses the domain
+      const faviconUrl =
+        "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=" +
+        encodeURIComponent("http://" + domainOrSource) +
+        "&size=64";
+
+      const safeTitle = a.title || "";
 
       return `
-        <a class="sn-card" role="listitem" href="${newsroomLink}" rel="noopener noreferrer" aria-label="Open article: ${title}" data-loading>
+        <a class="sn-card" role="listitem" href="${newsroomLink}" rel="noopener noreferrer" aria-label="Open article: ${safeTitle}" data-loading>
           <div class="sn-media">
-            <img src="${image}" alt="${title}" onerror="this.src = 'assets/img/news-placeholder.jpg';">
+            <img src="${image}" alt="${safeTitle}" onerror="this.src = 'assets/img/news-placeholder.jpg';" loading="lazy" decoding="async">
             <span class="sn-badge">
-              <img src="${faviconUrl}" alt="${publisher} logo" class="sn-favicon">
-              ${publisher}
+              <img src="${faviconUrl}" alt="${domainOrSource} logo" class="sn-favicon">
+              ${domainOrSource}
             </span>
           </div>
           <div class="sn-body">
-            <div class="sn-title">${title}</div>
+            <div class="sn-title">${safeTitle}</div>
             <div class="sn-meta">
-              <span>${publisher}</span>
+              <span>${domainOrSource}</span>
               <span class="sn-dot" aria-hidden="true"></span>
               <time datetime="${pubDate}">${timeAgo(pubDate)}</time>
             </div>
@@ -229,19 +254,18 @@ try {
   // --- INIT ---
   (function initScrollStrip() {
     if (Array.isArray(dbArticlesRaw) && dbArticlesRaw.length > 0) {
-      // Use DB articles if we got any
+      // Use DB articles if available
       const mapped = dbArticlesRaw.map(row => ({
         title: row.title,
-        publisher: row.publisher,
-        link: row.url,
-        image: row.image_url,
-        pubDate: row.pub_date,
-        pubDateForLink: row.pub_date,
-        fromDb: true          // 👈 flag that this came from the DB
+        url: row.url,
+        category: row.source_slug,
+        image_url: row.image_url,   // aliased in SQL
+        pub_date: row.pub_date,
+        fromDb: true                // flag for &db=1
       }));
       renderNewsStrip("newsStrip", mapped);
     } else {
-      // Fallback to RSS if DB unavailable or empty
+      // Fallback to RSS
       const rssUrl = "https://rss.app/feeds/tahaOzLGHPxMD9OC.xml";
       fetchRSSArticlesForScrollStrip(rssUrl);
     }
