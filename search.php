@@ -6,61 +6,62 @@
 //   - rss_items.feed_id -> feeds.id
 //   - articles has a URL column matching rss_items.link (adjust if needed)
 
-require_once('___modules.php');
+require_once "___modules.php"; // adjust if needed
 
-$pdo = _pdo_or_null();
-
-$q        = trim($_GET['q'] ?? '');
+$pdo      = _pdo_or_null();
 $results  = [];
 $errorMsg = null;
 
-if ($q !== '' && $pdo) {
+// Default query params
+$rawMode   = $_GET['mode']      ?? 'classic';
+$mode      = ($rawMode === 'nlp') ? 'nlp' : 'classic';  // sanitize
+$q         = trim($_GET['q']     ?? '');
+$emotion   = $_GET['emotion']   ?? null;   // e.g. 'Sad', 'Love', 'Wow'
+$sentiment = $_GET['sentiment'] ?? null;   // e.g. 'positive', 'negative'
+$range     = $_GET['range']     ?? 'all';  // '24h', 'older', 'all'
+
+if (!$pdo) {
+    $errorMsg = "Database connection not available.";
+} else {
     try {
-        $sql = "
-            SELECT
-                ri.id,
-                ri.title,
-                ri.link,
-                ri.pub_date,
-                ri.media_url,
-                f.name AS feed_name,
-                a.id AS article_id,
-                a.nlp
-            FROM rss_items ri
-            JOIN feeds f
-              ON f.id = ri.feed_id
-            LEFT JOIN articles a
-              ON a.url = ri.link  -- adjust if your schema differs
-            WHERE
-                ri.title ILIKE :q
-                OR ri.description ILIKE :q
-            ORDER BY
-                ri.pub_date DESC NULLS LAST,
-                ri.id DESC
-            LIMIT 100
-        ";
+        // Decide whether we actually run a search
+        $hasFilters =
+            ($q !== '') ||
+            !empty($emotion) ||
+            !empty($sentiment) ||
+            ($range !== 'all');
 
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([':q' => '%' . $q . '%']);
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        if ($hasFilters) {
+            if ($mode === 'nlp') {
+                // NLP search on articles table
+                $results = search_nlp($pdo, $q, [
+                    'emotion'   => $emotion,
+                    'sentiment' => $sentiment,
+                    'range'     => $range,
+                ]);
+            } else {
+                // Classic search on rss_items + feeds + articles
+                $results = search_classic($pdo, $q, [
+                    'range' => $range,
+                ]);
+            }
+        } else {
+            // No query/filters: leave $results empty
+            $results = [];
+        }
     } catch (Throwable $e) {
+        // Hide raw error in production if you want
         $errorMsg = 'There was a problem running your search.';
+        // For debugging you could also log: $e->getMessage()
+        $results = [];
     }
 }
 
-function sn_format_pub_date(?string $raw): string {
-    if (empty($raw)) return '';
-
-    $ts = strtotime($raw);
-    if ($ts === false) return '';
-
-    if (function_exists('format_news_date')) {
-        return format_news_date($ts, 'America/New_York');
-    }
-
-    return date('M j, Y • g:i A', $ts);
-}
+// From here down, render your HTML:
+// - use $q to populate the search box
+// - use $mode to highlight classic vs NLP toggle
+// - optionally show $emotion/$sentiment/$range chips
+// - loop over $results to show cards
 ?>
 <!DOCTYPE html>
 <html lang="en">

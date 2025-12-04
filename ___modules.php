@@ -1615,4 +1615,145 @@ function endsWith($haystack, $needle) {
     return substr_compare($haystack, $needle, -$length) === 0;
 }
 
+
+/**
+ * NLP-powered search over the articles table.
+ *
+ * $opts:
+ *   - 'emotion'   => e.g. 'Sad', 'Love', 'Wow'
+ *   - 'sentiment' => e.g. 'positive', 'negative', 'neutral'
+ *   - 'range'     => '24h', 'older', 'all'
+ */
+function search_nlp(PDO $db, string $q, array $opts = []): array
+{
+    $emotion   = $opts['emotion']   ?? null;
+    $sentiment = $opts['sentiment'] ?? null;
+    $range     = $opts['range']     ?? 'all';
+
+    $conds  = [];
+    $params = [];
+
+    // Only consider rows that actually have NLP JSON
+    $conds[] = "nlp IS NOT NULL";
+
+    // --- Time window ---
+    if ($range === '24h') {
+        $conds[] = "pub_date >= NOW() - INTERVAL '24 hours'";
+    } elseif ($range === 'older') {
+        $conds[] = "pub_date < NOW() - INTERVAL '24 hours'";
+    }
+
+    // --- Sentiment filter ---
+    if ($sentiment) {
+        // nlp.sentiment.label  (e.g. "positive")
+        $conds[] = "(nlp->'sentiment'->>'label') = :sentiment";
+        $params[':sentiment'] = $sentiment;
+    }
+
+    // --- Emotion filter ---
+    if ($emotion) {
+        // emotional_reaction is an object with keys like "Sad", "Love", etc.
+        $conds[] = "(nlp->'emotional_reaction' ? :emotion)";
+        $params[':emotion'] = $emotion;
+    }
+
+    // --- Text / topic / keyword / entity search ---
+    if ($q !== '') {
+        $conds[] = "(
+            title ILIKE :q
+            OR COALESCE((nlp->'topics')::text, '')    ILIKE :q  -- topics map
+            OR COALESCE((nlp->'keywords')::text, '')  ILIKE :q  -- keywords array
+            OR COALESCE((nlp->'entities')::text, '')  ILIKE :q  -- entities array
+        )";
+        $params[':q'] = '%' . $q . '%';
+    }
+
+    $where = $conds ? ('WHERE ' . implode(' AND ', $conds)) : '';
+
+    $sql = "
+        SELECT
+            id,
+            title,
+            url,
+            source_slug,
+            media_url,
+            pub_date,
+            nlp
+        FROM articles
+        $where
+        ORDER BY pub_date DESC
+        LIMIT 100
+    ";
+
+    $stmt = $db->prepare($sql);
+    $stmt->execute($params);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+/**
+ * Classic keyword search over rss_items, joined to feeds + articles.
+ *
+ * $opts:
+ *   - 'range' => '24h', 'older', 'all'
+ */
+function search_classic(PDO $db, string $q, array $opts = []): array
+{
+    $range  = $opts['range'] ?? 'all';
+
+    if ($q === '') {
+        return [];
+    }
+
+    $conds  = [];
+    $params = [];
+
+    // Text condition (same as your current query)
+    $conds[] = "(
+        ri.title ILIKE :q
+        OR ri.description ILIKE :q
+    )";
+    $params[':q'] = '%' . $q . '%';
+
+    // Optional time range filter on rss_items.pub_date
+    if ($range === '24h') {
+        $conds[] = "ri.pub_date >= NOW() - INTERVAL '24 hours'";
+    } elseif ($range === 'older') {
+        $conds[] = "ri.pub_date < NOW() - INTERVAL '24 hours'";
+    }
+
+    $where = 'WHERE ' . implode(' AND ', $conds);
+
+    $sql = "
+        SELECT
+            ri.id,
+            ri.title,
+            ri.link,
+            ri.pub_date,
+            ri.media_url,
+            f.name AS feed_name,
+            a.id  AS article_id,
+            a.nlp
+        FROM rss_items ri
+        JOIN feeds f
+          ON f.id = ri.feed_id
+        LEFT JOIN articles a
+          ON a.url = ri.link
+        $where
+        ORDER BY
+            ri.pub_date DESC NULLS LAST,
+            ri.id DESC
+        LIMIT 100
+    ";
+
+    $stmt = $db->prepare($sql);
+    $stmt->execute($params);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+
+
 ?>
