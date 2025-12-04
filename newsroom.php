@@ -182,7 +182,7 @@ if (!empty($url)) {
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-left d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0 align-items-center">
+                        <h5 class="mb-2 mb-sm-0 align-items-center">
                             <a href="index.php">
                                 <img src="assets/img/play-green.png" alt="Logo" style="height: 24px; width: auto; vertical-align: middle; margin-right: 5px; margin-bottom: 5px;">
                                 Scroll News
