@@ -24,7 +24,8 @@ if ($q !== '' && $pdo) {
                 ri.pub_date,
                 ri.media_url,
                 f.name AS feed_name,
-                a.id AS article_id
+                a.id AS article_id,
+                a.nlp
             FROM rss_items ri
             JOIN feeds f
               ON f.id = ri.feed_id
@@ -143,6 +144,65 @@ function sn_format_pub_date(?string $raw): string {
             .btn-gray-border {
                 border: 2px solid #6c757d;
             }
+
+
+
+            .sn-hashtag-chip {
+              display: inline-block;
+              font-size: 0.75rem;
+              padding: 2px 6px;
+              border-radius: 999px;
+              background: #f3f4f6;
+              color: #374151;
+              margin-right: 4px;
+              margin-bottom: 2px;
+            }
+
+            .sn-sentiment {
+              font-size: 0.78rem;
+              color: #4b5563;
+            }
+            .sn-sentiment-label {
+              font-weight: 500;
+            }
+
+            .sn-emotions {
+              margin-top: 0.25rem;
+            }
+
+            .sn-emotion-bar {
+              display: flex;
+              align-items: center;
+              gap: 6px;
+              font-size: 0.75rem;
+              margin-top: 2px;
+            }
+
+            .sn-emotion-label {
+              min-width: 48px;
+              color: #4b5563;
+            }
+
+            .sn-emotion-bar-track {
+              flex: 1;
+              height: 6px;
+              border-radius: 999px;
+              background: #e5e7eb;
+              overflow: hidden;
+            }
+
+            .sn-emotion-bar-fill {
+              height: 100%;
+              border-radius: 999px;
+              background: #10b981; /* if you want, you can later vary this by label */
+            }
+
+            .sn-emotion-value {
+              color: #6b7280;
+              min-width: 32px;
+              text-align: right;
+            }
+
         </style>
     </head>
     <body id="page-top" class="bg-dark">
@@ -291,6 +351,91 @@ function sn_format_pub_date(?string $raw): string {
                                                 . '&size=64';
                                         }
                                     }
+
+                                    /*
+                                     *
+                                     *  Prepare NLP data for analyzed articles
+                                     *
+                                     *
+                                     */
+
+
+                                    // NLP is jsonb in Postgres; PDO usually returns it as a string
+                                    $nlpRaw = $row['nlp'] ?? null;
+
+                                    if (is_string($nlpRaw)) {
+                                        $nlp = json_decode($nlpRaw, true) ?: [];
+                                    } elseif (is_array($nlpRaw)) {
+                                        // In case it's already decoded for some reason
+                                        $nlp = $nlpRaw;
+                                    } else {
+                                        $nlp = [];
+                                    }
+
+                                    /**
+                                     * 1) HASHTAGS from `keywords`
+                                     */
+                                    $keywords = $nlp['keywords'] ?? [];
+                                    $hashtags = [];
+
+                                    foreach ($keywords as $kw) {
+                                        $kw = trim((string)$kw);
+                                        if ($kw === '') continue;
+                                        // Make sure it starts with '#'
+                                        if ($kw[0] !== '#') {
+                                            $kw = '#' . $kw;
+                                        }
+                                        $hashtags[] = $kw;
+                                    }
+
+                                    // keep just the first 5
+                                    $hashtags = array_slice($hashtags, 0, 5);
+
+                                    /**
+                                     * 2) SENTIMENT (label + score)
+                                     */
+                                    $sentimentLabel = $nlp['sentiment']['label'] ?? null;
+                                    $sentimentScore = $nlp['sentiment']['score'] ?? null; // 0.1712 etc
+
+                                    $sentimentEmoji = '';
+                                    if ($sentimentLabel === 'positive') {
+                                        $sentimentEmoji = '😊';
+                                    } elseif ($sentimentLabel === 'negative') {
+                                        $sentimentEmoji = '😔';
+                                    } elseif ($sentimentLabel === 'neutral') {
+                                        $sentimentEmoji = '😐';
+                                    }
+
+                                    // Turn 0.1712 into 17% (optional)
+                                    $sentimentPercent = null;
+                                    if (is_numeric($sentimentScore)) {
+                                        $sentimentPercent = (int)round($sentimentScore * 100);
+                                    }
+
+                                    /**
+                                     * 3) EMOTIONAL REACTION (Wow / Love / etc.)
+                                     *    nlp['emotional_reaction'] is a map like: { "Wow": 35.71, "Love": 64.29 }
+                                     */
+                                    $emotionsRaw = $nlp['emotional_reaction'] ?? [];
+                                    $emotions = [];
+
+                                    // Normalize into a list of ['label' => 'Love', 'value' => 64.29]
+                                    foreach ($emotionsRaw as $label => $value) {
+                                        if (!is_numeric($value)) continue;
+                                        $emotions[] = [
+                                            'label' => $label,
+                                            'value' => (float)$value
+                                        ];
+                                    }
+
+                                    // Sort by value descending so the strongest reactions come first
+                                    usort($emotions, function ($a, $b) {
+                                        return $b['value'] <=> $a['value'];
+                                    });
+
+                                    // Take top 2–3 for display
+                                    $topEmotions = array_slice($emotions, 0, 3);
+
                                     ?>
                                     <div class="card mb-3 shadow-sm border-0 sn-search-card">
                                         <div class="card-body">
@@ -323,6 +468,52 @@ function sn_format_pub_date(?string $raw): string {
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
+
+                                            <?php if (!empty($hashtags)): ?>
+                                                <div class="sn-hashtags mt-1">
+                                                    <?php foreach ($hashtags as $tag): ?>
+                                                        <span class="sn-hashtag-chip">
+                                                            <?php echo htmlspecialchars($tag); ?>
+                                                        </span>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <?php if (!empty($sentimentLabel)): ?>
+                                                <div class="sn-sentiment mt-1">
+                                                    <span class="sn-sentiment-label">
+                                                        <?php if ($sentimentEmoji): ?>
+                                                            <span class="mr-1"><?php echo $sentimentEmoji; ?></span>
+                                                        <?php endif; ?>
+                                                        <?php echo ucfirst(htmlspecialchars($sentimentLabel)); ?>
+                                                    </span>
+                                                    <?php if ($sentimentPercent !== null): ?>
+                                                        <span class="sn-sentiment-score text-muted small">
+                                                            (<?php echo $sentimentPercent; ?>%)
+                                                        </span>
+                                                    <?php endif; ?>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <?php if (!empty($topEmotions)): ?>
+                                                <div class="sn-emotions mt-1">
+                                                    <?php foreach ($topEmotions as $emo): ?>
+                                                        <div class="sn-emotion-bar">
+                                                            <span class="sn-emotion-label">
+                                                                <?php echo htmlspecialchars($emo['label']); ?>
+                                                            </span>
+                                                            <div class="sn-emotion-bar-track">
+                                                                <div class="sn-emotion-bar-fill"
+                                                                     style="width: <?php echo max(5, min(100, $emo['value'])); ?>%;">
+                                                                </div>
+                                                            </div>
+                                                            <span class="sn-emotion-value">
+                                                                <?php echo (int)round($emo['value']); ?>%
+                                                            </span>
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            <?php endif; ?>
 
                                             <div class="btn-group btn-group-sm" role="group">
                                                 <a
