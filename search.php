@@ -8,11 +8,12 @@
 
 require_once "___modules.php"; // adjust if needed
 
-$pdo      = _pdo_or_null();
-$results  = [];
-$errorMsg = null;
+$pdo        = _pdo_or_null();
+$results    = [];
+$errorMsg   = null;
+$hasFilters = false;
 
-// Default query params
+// Read query params
 $rawMode   = $_GET['mode']      ?? 'classic';
 $mode      = ($rawMode === 'nlp') ? 'nlp' : 'classic';  // sanitize
 $q         = trim($_GET['q']     ?? '');
@@ -20,17 +21,17 @@ $emotion   = $_GET['emotion']   ?? null;   // e.g. 'Sad', 'Love', 'Wow'
 $sentiment = $_GET['sentiment'] ?? null;   // e.g. 'positive', 'negative'
 $range     = $_GET['range']     ?? 'all';  // '24h', 'older', 'all'
 
+// Decide if *any* filters are active (even without q)
+$hasFilters =
+    ($q !== '') ||
+    !empty($emotion) ||
+    !empty($sentiment) ||
+    ($range !== 'all');
+
 if (!$pdo) {
     $errorMsg = "Database connection not available.";
 } else {
     try {
-        // Decide whether we actually run a search
-        $hasFilters =
-            ($q !== '') ||
-            !empty($emotion) ||
-            !empty($sentiment) ||
-            ($range !== 'all');
-
         if ($hasFilters) {
             if ($mode === 'nlp') {
                 // NLP search on articles table
@@ -46,15 +47,26 @@ if (!$pdo) {
                 ]);
             }
         } else {
-            // No query/filters: leave $results empty
             $results = [];
         }
     } catch (Throwable $e) {
-        // Hide raw error in production if you want
         $errorMsg = 'There was a problem running your search.';
-        // For debugging you could also log: $e->getMessage()
-        $results = [];
+        $results  = [];
+        // (Optional) error_log($e->getMessage());
     }
+}
+
+function sn_format_pub_date(?string $raw): string {
+    if (empty($raw)) return '';
+
+    $ts = strtotime($raw);
+    if ($ts === false) return '';
+
+    if (function_exists('format_news_date')) {
+        return format_news_date($ts, 'America/New_York');
+    }
+
+    return date('M j, Y • g:i A', $ts);
 }
 
 // From here down, render your HTML:
@@ -296,7 +308,7 @@ if (!$pdo) {
                     </div>
                 <?php endif; ?>
 
-                <?php if ($q === ''): ?>
+                <?php if (!$hasFilters): ?>
                     <div class="row">
                         <div class="col-md-8 mx-auto">
                             <p class="text-muted">
@@ -308,16 +320,25 @@ if (!$pdo) {
                     <div class="row">
                         <div class="col-md-8 mx-auto">
                             <h2 class="h6 mb-3">
-                                Results for
-                                "<span class="fw-semibold"><?php echo htmlspecialchars($q, ENT_QUOTES, 'UTF-8'); ?></span>"
+                                <?php if ($q !== ''): ?>
+                                    Results for
+                                    "<span class="fw-semibold">
+                                        <?php echo htmlspecialchars($q, ENT_QUOTES, 'UTF-8'); ?>
+                                    </span>"
+                                <?php else: ?>
+                                    Filtered results
+                                <?php endif; ?>
+
                                 <?php if (!empty($results)): ?>
-                                    <span class="text-muted"> · <?php echo count($results); ?> found</span>
+                                    <span class="text-muted">
+                                        · <?php echo count($results); ?> found
+                                    </span>
                                 <?php endif; ?>
                             </h2>
 
                             <?php if (empty($results)): ?>
                                 <p class="text-muted">
-                                    No results matched your search. Try another keyword or a more general phrase.
+                                    No results matched your search or filters. Try another keyword or a more general phrase, or loosen your filters.
                                 </p>
                             <?php else: ?>
                                 <?php foreach ($results as $row): ?>
@@ -332,7 +353,10 @@ if (!$pdo) {
                                     $analyzeUrl = null;
                                     if ($hasNlp) {
                                         $ts = !empty($row['pub_date']) ? (strtotime($row['pub_date']) ?: null) : null;
-                                        $analyzeUrl = 'newsroom.php?url=' . urlencode($readUrl) . '&category=' . urlencode($feedName) . '&pub_date=' . urlencode($ts) . '&db=1';
+                                        $analyzeUrl = 'newsroom.php?url=' . urlencode($readUrl)
+                                            . '&category=' . urlencode($feedName)
+                                            . '&pub_date=' . urlencode($ts)
+                                            . '&db=1';
                                     }
 
                                     // Derive domain from the readUrl
@@ -357,9 +381,7 @@ if (!$pdo) {
                                      *
                                      *  Prepare NLP data for analyzed articles
                                      *
-                                     *
                                      */
-
 
                                     // NLP is jsonb in Postgres; PDO usually returns it as a string
                                     $nlpRaw = $row['nlp'] ?? null;
