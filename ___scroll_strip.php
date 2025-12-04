@@ -11,14 +11,15 @@ try {
         throw new Exception("DB handle not available");
     }
 
-    // Use real column names, aliasing media_url for convenience
+    // Pull recent articles + NLP
     $sql = "
         SELECT 
             url,
             title,
             source_slug,
             media_url AS image_url,
-            pub_date
+            pub_date,
+            nlp
         FROM articles
         WHERE 
             url IS NOT NULL 
@@ -33,7 +34,68 @@ try {
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if ($rows && count($rows) > 0) {
-        $scroll_strip_articles = $rows;
+        $enriched = [];
+
+        foreach ($rows as $row) {
+            $nlpRaw = $row['nlp'] ?? null;
+
+            if (is_string($nlpRaw)) {
+                $nlp = json_decode($nlpRaw, true) ?: [];
+            } elseif (is_array($nlpRaw)) {
+                $nlp = $nlpRaw;
+            } else {
+                $nlp = [];
+            }
+
+            // 1) Hashtags from keywords (first 3)
+            $keywords = $nlp['keywords'] ?? [];
+            $hashtagsRaw = [];
+            foreach ($keywords as $kw) {
+                $kw = trim((string)$kw);
+                if ($kw === '') continue;
+                if ($kw[0] !== '#') {
+                    $kw = '#' . $kw;
+                }
+                $hashtagsRaw[] = $kw;
+            }
+            $hashtags = array_slice($hashtagsRaw, 0, 3);
+
+            // 2) Sentiment
+            $sentimentLabel = $nlp['sentiment']['label'] ?? null;
+            $sentimentScore = $nlp['sentiment']['score'] ?? null; // e.g. 0.1712
+
+            // 3) Emotional reaction (Wow / Love / etc.) – sort and take top 3
+            $emotionsRaw = $nlp['emotional_reaction'] ?? [];
+            $emotions = [];
+
+            if (is_array($emotionsRaw)) {
+                foreach ($emotionsRaw as $label => $value) {
+                    if (!is_numeric($value)) continue;
+                    $emotions[] = [
+                        'label' => (string)$label,
+                        'value' => (float)$value
+                    ];
+                }
+                usort($emotions, function ($a, $b) {
+                    return $b['value'] <=> $a['value'];
+                });
+                $emotions = array_slice($emotions, 0, 3);
+            }
+
+            $enriched[] = [
+                'url'             => $row['url'],
+                'title'           => $row['title'],
+                'source_slug'     => $row['source_slug'],
+                'image_url'       => $row['image_url'],
+                'pub_date'        => $row['pub_date'],
+                'hashtags'        => $hashtags,
+                'sentiment_label' => $sentimentLabel,
+                'sentiment_score' => $sentimentScore,
+                'emotions'        => $emotions,
+            ];
+        }
+
+        $scroll_strip_articles = $enriched;
     }
 } catch (Throwable $e) {
     // Log for debugging, but silently fall back to RSS in the UI
@@ -103,11 +165,59 @@ try {
     padding:4px 8px; border-radius:999px; backdrop-filter:saturate(140%) blur(2px);
     display:flex; align-items:center; gap:6px;
   }
-  .sn-body { padding:12px 14px 14px; display:grid; gap:8px; }
+  .sn-body { padding:12px 14px 14px; display:grid; gap:6px; }
   .sn-title { font-size:.98rem; line-height:1.25; font-weight:600; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
-  .sn-meta { font-size:.8rem; color:#666; display:flex; align-items:center; gap:8px; }
+  .sn-meta { font-size:.8rem; color:#666; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
   .sn-dot { width:4px; height:4px; background:#bbb; border-radius:50%; display:inline-block; }
   .sn-favicon { width:14px; height:14px; border-radius:4px; }
+
+  /* NLP chips + emotion bars */
+  .sn-tags {
+    margin-top: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .sn-tag {
+    padding: 2px 6px;
+    background: #f3f4f6;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    color: #374151;
+  }
+
+  .sn-emotions {
+    margin-top: 4px;
+  }
+  .sn-emobar-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    margin-top: 2px;
+  }
+  .sn-emobar-label {
+    color: #4b5563;
+    min-width: 48px;
+  }
+  .sn-emobar-track {
+    flex: 1;
+    height: 5px;
+    border-radius: 999px;
+    background: #e5e7eb;
+    overflow: hidden;
+  }
+  .sn-emobar-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: #10b981;
+  }
+  .sn-emobar-value {
+    color: #6b7280;
+    min-width: 32px;
+    text-align: right;
+  }
+
   @media (max-width:480px) {
     .sn-section { --card-w: 240px; }
     .sn-header h2 { font-size:1rem; }
@@ -155,7 +265,7 @@ try {
     return "just now";
   }
 
-  // 🔹 NEW: derive publisher/domain from URL when not provided
+  // derive publisher/domain from URL when not provided
   function extractDomain(url) {
     try {
       const u = new URL(url);
@@ -177,7 +287,7 @@ try {
       const pubDate    = a.pubDate || a.pub_date || new Date().toISOString();
       const pubForLink = a.pubDateForLink || a.pub_date_ts || a.pub_date || pubDate;
 
-      // 🔹 Safe category: use a.category (RSS), or a.source_slug (DB), else "Politics"
+      // Safe category: use a.category (RSS), or a.source_slug (DB), else "Politics"
       const rawCategory = a.category || a.source_slug || "Politics";
       const category = rawCategory
         ? rawCategory.charAt(0).toUpperCase() + rawCategory.slice(1)
@@ -204,6 +314,53 @@ try {
 
       const safeTitle = a.title || "";
 
+      // NLP bits (only present for DB-backed articles)
+      const hashtags = Array.isArray(a.hashtags) ? a.hashtags : [];
+      const sentimentLabel = a.sentiment_label || null;
+      const sentimentScore = a.sentiment_score;
+      const emotions = Array.isArray(a.emotions) ? a.emotions : [];
+
+      // Sentiment emoji
+      let sentimentEmoji = "";
+      if (sentimentLabel === "positive") sentimentEmoji = "😊";
+      else if (sentimentLabel === "negative") sentimentEmoji = "😔";
+      else if (sentimentLabel === "neutral")  sentimentEmoji = "😐";
+
+      // Hashtag chips
+      let hashtagsHtml = "";
+      if (hashtags.length) {
+        hashtagsHtml = `
+          <div class="sn-tags">
+            ${hashtags.map(tag => `<span class="sn-tag">${tag}</span>`).join("")}
+          </div>
+        `;
+      }
+
+      // Emotion bars (full width, using top 3 already preselected in PHP)
+      let emotionsHtml = "";
+      if (emotions.length) {
+        emotionsHtml = `
+          <div class="sn-emotions">
+            ${emotions.map(e => {
+              const rawVal = typeof e.value === "number" ? e.value : parseFloat(e.value) || 0;
+              const width = Math.min(100, Math.max(5, rawVal)); // clamp between 5–100
+              const label = e.label || "";
+              const displayVal = Math.round(rawVal);
+
+              return `
+                <div class="sn-emobar-row">
+                  <span class="sn-emobar-label">${label}</span>
+                  <div class="sn-emobar-track">
+                    <div class="sn-emobar-fill" style="width: ${width}%;"></div>
+                  </div>
+                  <span class="sn-emobar-value">${displayVal}%</span>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        `;
+      }
+
       return `
         <a class="sn-card" role="listitem" href="${newsroomLink}" rel="noopener noreferrer" aria-label="Open article: ${safeTitle}" data-loading>
           <div class="sn-media">
@@ -217,9 +374,12 @@ try {
             <div class="sn-title">${safeTitle}</div>
             <div class="sn-meta">
               <span>${domainOrSource}</span>
+              ${sentimentEmoji ? `<span class="sn-dot" aria-hidden="true"></span><span>${sentimentEmoji}</span>` : ""}
               <span class="sn-dot" aria-hidden="true"></span>
               <time datetime="${pubDate}">${timeAgo(pubDate)}</time>
             </div>
+            ${hashtagsHtml}
+            ${emotionsHtml}
           </div>
         </a>
       `;
@@ -256,15 +416,13 @@ try {
     if (Array.isArray(dbArticlesRaw) && dbArticlesRaw.length > 0) {
       const mapped = dbArticlesRaw.map(row => {
         const pubDate = row.pub_date; // e.g. "2025-12-03 13:34:00+00"
-        const ts = Math.floor(new Date(pubDate).getTime() / 1000); // 10-digit Unix seconds
+        const ts = Math.floor(new Date(pubDate).getTime() / 1000); // Unix seconds
 
         return {
-          title: row.title,
-          url: row.url,
+          ...row,
           category: row.source_slug,
-          image_url: row.image_url,
-          pub_date: pubDate,       // used for <time datetime="">
-          pubDateForLink: ts,      // used for URL param
+          pub_date: pubDate,
+          pubDateForLink: ts,
           fromDb: true
         };
       });
