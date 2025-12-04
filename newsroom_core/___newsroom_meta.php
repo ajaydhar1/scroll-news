@@ -55,6 +55,7 @@ function build_meta_from_db_article(string $url, array $article): array
     // Extract the scheme and host
     $scheme = isset($parsedUrl['scheme']) ? $parsedUrl['scheme'] : 'https'; // default to https
     $host   = $parsedUrl['host'] ?? '';
+    $domain = preg_replace('/^www\./', '', (string)$host);
 
     // Construct the main homepage URL (empty if we somehow have no host)
     $homepageUrl = $host !== '' ? $scheme . '://' . $host : '';
@@ -72,7 +73,7 @@ function build_meta_from_db_article(string $url, array $article): array
         'title'           => $cleanTitle,
         'description'     => $article['description']   ?? '',
         'image'           => $article['media_url']     ?? '',
-        'publisher'       => $host,
+        'publisher'       => $domain,
         'publisher_link'  => $homepageUrl,
         'youtube_search'  => $cleanTitle,
     ];
