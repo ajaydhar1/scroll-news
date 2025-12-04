@@ -515,7 +515,11 @@ function sn_format_pub_date(?string $raw): string {
                                                 </div>
                                             <?php endif; ?>
 
-                                            <div class="btn-group btn-group-sm" role="group">
+                                            <div class="btn-group btn-group-sm<?php
+                                                if (!empty($hashtags) || !empty($sentimentLabel) || !empty($topEmotions)) {
+                                                    echo ' mt-2';
+                                                }
+                                            ?>" role="group">
                                                 <a
                                                     href="<?php echo htmlspecialchars($readUrl, ENT_QUOTES, 'UTF-8'); ?>"
                                                     class="btn btn-outline-secondary"
