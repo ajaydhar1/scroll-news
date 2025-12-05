@@ -109,7 +109,17 @@
             }
 
             header.masthead {
-                background-image: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)), url(assets/img/header-bg-3.jpg);
+                /* background-image: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)), url(assets/img/header-bg-3.jpg); */
+                background-image: none;
+                color: #212529;
+                padding-top: 5.5rem;
+                padding-bottom: 0rem;
+            }
+
+            @media (min-width: 768px) {
+                header.masthead .masthead-heading {
+                    margin-bottom: calc(4rem + 20px);
+                }
             }
 
             a {
@@ -175,6 +185,11 @@
                 }
             }
 
+            .cta-group a.btn.btn-rectangle {
+                border: none;
+                box-shadow: none !important;
+            }
+
         </style>
 
     </head>
@@ -226,19 +241,19 @@
         </footer>
 
         <!-- Masthead-->
-        <header class="masthead">
+        <header class="masthead bg-light">
             <div class="container">
                 <div class="masthead-subheading">Welcome To Scroll News!</div>
                 <div class="masthead-heading text-uppercase">AI-Driven News Summaries</div>
-                <div class="text-center">
-                    <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black d-block d-md-inline-block btn-width-mobile-75 mx-auto mb-3 mr-md-2" href="newsroom.php" data-loading>Launch Newsroom</a>
-                    <a class="btn btn-outline-secondary btn-lg btn-rectangle js-scroll-trigger d-block d-md-inline-block btn-width-mobile-75 w-md-auto mx-auto mb-3" href="#playlists" style="color: white; border-color: transparent;">Watch Video</a>
+                <div class="cta-group text-center">
+                    <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black d-block d-md-inline-block btn-width-mobile-75 mx-auto mb-3 mb-sm-0 mr-md-2" href="newsroom.php" data-loading>Launch Newsroom</a>
+                    <a class="btn btn-dark btn-lg btn-rectangle js-scroll-trigger d-block d-md-inline-block btn-width-mobile-75 w-md-auto mx-auto" href="#playlists" style="color: white; border-color: transparent;">Watch Video</a>
                 </div>
             </div>
         </header>
 
         <!-- News Intelligence Panel-->
-        <?php require_once __DIR__ . '/___news_intel_panel.php'; ?>
+        <?php // require_once __DIR__ . '/___news_intel_panel.php'; ?>
 
         <!-- Services-->
         <section class="page-section" id="services">

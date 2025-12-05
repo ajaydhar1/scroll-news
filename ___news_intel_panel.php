@@ -280,6 +280,12 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
 
 <style>
 
+.page-section.news-intel-panel {
+    padding: 4rem 0;
+}
+
+
+
 .news-intel-panel .intel-card {
     border-radius: 1rem;
 }
@@ -386,7 +392,7 @@ footer .btn {
 
 <section class="page-section news-intel-panel bg-light">
     <div class="container-fluid">
-        <div class="align-items-center mb-3">
+        <div class="align-items-center text-center mb-3">
             <div>
                 <h2 class="h5 mb-1">
                     🧠 News Intelligence
@@ -419,7 +425,7 @@ footer .btn {
                     <div class="card h-100 intel-card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h3 class="h6 mb-0">
+                                <h3 class="h6 mb-3">
                                     <?= htmlspecialchars($meta['icon'] . ' ' . $meta['title']) ?>
                                 </h3>
                             </div>
