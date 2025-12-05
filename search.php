@@ -460,19 +460,21 @@ function sn_format_pub_date(?string $raw): string {
                                     if ($isNlpMode) {
                                         // Results from `articles` (NLP search)
                                         $title    = $row['title']       ?? '';
-                                        $feedName = $row['source_slug'] ?? '';      // or '' if you prefer
+                                        $feedName = $row['source_slug'] ?? '';    // e.g. "foxnews"
+                                        if ($feedName !== '') {
+                                            $feedName = ucfirst($feedName);
+                                        }
                                         $readUrl  = $row['url']         ?? '#';
                                         $pubHuman = sn_format_pub_date($row['pub_date'] ?? null);
 
                                         // In NLP mode, every row IS an analyzed article
                                         $hasNlp = true;
 
-                                        // Build Analyze URL directly from the article URL
                                         $analyzeUrl = null;
                                         if (!empty($readUrl)) {
                                             $ts = !empty($row['pub_date']) ? (strtotime($row['pub_date']) ?: null) : null;
                                             $analyzeUrl = 'newsroom.php?url=' . urlencode($readUrl)
-                                                . '&category=' . urlencode(ucfirst($feedName))
+                                                . '&category=' . urlencode($feedName)
                                                 . '&pub_date=' . urlencode($ts)
                                                 . '&db=1';
                                         }
@@ -484,7 +486,6 @@ function sn_format_pub_date(?string $raw): string {
                                         $readUrl  = $row['link']      ?? '#';
                                         $pubHuman = sn_format_pub_date($row['pub_date'] ?? null);
 
-                                        // Only has NLP if it joined to an article row
                                         $hasNlp = !empty($row['article_id']);
 
                                         $analyzeUrl = null;
@@ -598,6 +599,13 @@ function sn_format_pub_date(?string $raw): string {
                                     $topEmotions = array_slice($emotions, 0, 3);
 
                                     ?>
+
+                                    <?php if ($isNlpMode && !empty($row) && !isset($debugDumped)): ?>
+                                        <pre><?php var_dump(array_keys($row)); ?></pre>
+                                        <?php $debugDumped = true; ?>
+                                    <?php endif; ?>
+
+                                    
                                     <div class="card mb-3 shadow-sm border-0 sn-search-card">
                                         <div class="card-body">
                                             <h5 class="card-title mb-1">
