@@ -83,15 +83,16 @@ try {
 
     $entityCounts  = [];
     $entityArticles = [];
+    $uniqueEntityKeys = [];
+    $entityLabelMap  = [];
 
     $placeCounts   = [];
     $placeArticles  = [];
+    $uniquePlaceKeys  = [];
+    $placeLabelMap = [];
 
     $topicCounts   = [];
     $topicArticles  = [];
-
-    $uniqueEntityKeys = [];
-    $uniquePlaceKeys  = [];
     $uniqueTopicKeys  = [];
 
     // Normalize place names so variants like "U.s", "Us", "U.S." map together
@@ -174,17 +175,15 @@ try {
             $name = is_array($ent) ? ($ent['text'] ?? null) : $ent;
             if (!$name) continue;
 
-            $key = mb_strtolower(trim($name));
+            $type = is_array($ent) ? ($ent['label'] ?? null) : null;
 
-            $type = is_array($ent) ? ($ent['label'] ?? null) : $ent;
-            if ($type == "PERSON") {
-
+            // People → trending entities
+            if ($type === "PERSON") {
                 // Normalize Trump variants etc.
                 $norm  = normalize_entity_name($name);
-                $key   = $norm['key'];
-                $label = $norm['label'];
+                $key   = $norm['key'];   // e.g. 'donald-trump'
+                $label = $norm['label']; // e.g. 'Donald Trump'
 
-                $entityLabelMap  = [];
                 $entityCounts[$key] = ($entityCounts[$key] ?? 0) + 1;
                 $entityArticles[$key][] = $row;
                 $uniqueEntityKeys[$key] = true;
@@ -193,19 +192,16 @@ try {
                     $entityLabelMap[$key] = $label;
                 }
             }
-            else if ($type == "GPE" || $type == "LOC") {
+            // GPE / LOC → trending places
+            elseif ($type === "GPE" || $type === "LOC") {
+                $norm  = normalize_place_name($name);
+                $key   = $norm['key'];   // e.g. 'us'
+                $label = $norm['label']; // e.g. 'U.S.'
 
-                $norm = normalize_place_name($name);
-                $key  = $norm['key'];
-                $label = $norm['label'];
-
-                $placeLabelMap = [];
                 $placeCounts[$key] = ($placeCounts[$key] ?? 0) + 1;
                 $placeArticles[$key][] = $row;
                 $uniquePlaceKeys[$key] = true;
 
-                // Remember a nice display label for this key
-                // (later, 'us' -> 'U.S.')
                 if (!isset($placeLabelMap[$key])) {
                     $placeLabelMap[$key] = $label;
                 }
