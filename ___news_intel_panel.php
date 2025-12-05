@@ -300,8 +300,16 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
                                     <ul class="list-unstyled mb-0 small intel-article-list">
                                         <?php foreach ($item['articles'] as $article): ?>
                                             <li class="intel-article-item text-truncate">
-                                                <a href="<?= htmlspecialchars($article['url']) ?>"
-                                                   class="text-decoration-none">
+                                                <?php
+                                                    $pub_ts = $article['pub_date'] ? strtotime($article['pub_date']) : '';
+                                                    $qs = http_build_query([
+                                                        'url'      => $article['url'],
+                                                        'category' => ucfirst($article['source_slug']),
+                                                        'pub_date' => $pub_ts,
+                                                        'db'       => 1,
+                                                    ]);
+                                                ?>
+                                                <a href="newsroom.php?<?= htmlspecialchars($qs) ?>" class="text-decoration-none">
                                                     <?= htmlspecialchars($article['title']) ?>
                                                 </a>
                                                 <?php if (!empty($article['source_slug'])): ?>
