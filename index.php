@@ -186,7 +186,6 @@
             }
 
             .cta-group a.btn.btn-rectangle {
-                border: none;
                 box-shadow: none !important;
             }
 
