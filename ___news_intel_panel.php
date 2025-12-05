@@ -68,7 +68,7 @@ try {
 
         // helper: decode JSON as array safely
         $entities_object = json_decode($row['nlp']   ?? '[]', true)['entities'] ?: [];
-        $topics_array = json_decode($row['topics'] ?? '{}', true) ?: [];
+        $topics_array = json_decode($row['nlp']      ?? '[]', true)['topics'] ?: {};
 
         // Normalize entities and places (can be array of strings or array of objects)
         foreach ($entities_object as $ent) {
