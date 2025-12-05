@@ -226,9 +226,9 @@ try {
         return $trending;
     };
 
-    $intel_panel['entities'] = $buildTrending($entityCounts, $entityArticles, 8, 2, 4);
-    $intel_panel['places']   = $buildTrending($placeCounts,  $placeArticles,  8, 2, 4, $placeLabelMap);
-    $intel_panel['topics']   = $buildTrending($topicCounts,  $topicArticles,  8, 2, 4);
+    $intel_panel['entities'] = $buildTrending($entityCounts, $entityArticles, 8, 2, 2);
+    $intel_panel['places']   = $buildTrending($placeCounts,  $placeArticles,  8, 2, 2, $placeLabelMap);
+    $intel_panel['topics']   = $buildTrending($topicCounts,  $topicArticles,  4, 2, 2);
 
 
     $intel_panel['stats'] = [
@@ -269,82 +269,84 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
 
 </style>
 
-<section class="news-intel-panel my-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <div>
-            <h2 class="h5 mb-1">
-                🧠 News Intelligence
-            </h2>
-            <p class="text-muted small mb-0">
-                Trending entities, places, and topics from the last 24 hours.
-            </p>
-        </div>
-        <?php if (!empty($intel_panel['stats'])): ?>
-            <div class="text-end small text-muted">
-                <div><?= (int)$intel_panel['stats']['article_count_24h'] ?> articles</div>
-                <div><?= (int)$intel_panel['stats']['unique_entities'] ?> entities · <?= (int)$intel_panel['stats']['unique_places'] ?> places · <?= (int)$intel_panel['stats']['unique_topics'] ?> topics</div>
+<section class="page-section news-intel-panel bg-light">
+    <div class="container-fluid">
+        <div class="align-items-center mb-3">
+            <div>
+                <h2 class="h5 mb-1">
+                    🧠 News Intelligence
+                </h2>
+                <p class="text-muted small mb-0">
+                    Trending entities, places, and topics from the last 24 hours.
+                </p>
             </div>
-        <?php endif; ?>
-    </div>
+            <?php if (!empty($intel_panel['stats'])): ?>
+                <div class="small text-muted mt-3">
+                    <div><?= (int)$intel_panel['stats']['article_count_24h'] ?> articles</div>
+                    <div><?= (int)$intel_panel['stats']['unique_entities'] ?> entities · <?= (int)$intel_panel['stats']['unique_places'] ?> places · <?= (int)$intel_panel['stats']['unique_topics'] ?> topics</div>
+                </div>
+            <?php endif; ?>
+        </div>
 
-    <div class="intel-sections row g-3">
-        <?php
-        $sections = [
-            'entities' => ['title' => 'Trending Entities', 'icon' => '👤'],
-            'places'   => ['title' => 'Trending Places',   'icon' => '🗺️'],
-            'topics'   => ['title' => 'Trending Topics',   'icon' => '🧵'],
-        ];
+        <div class="intel-sections row g-3">
+            <?php
+            $sections = [
+                'entities' => ['title' => 'Trending Entities', 'icon' => '👤'],
+                'places'   => ['title' => 'Trending Places',   'icon' => '🗺️'],
+                'topics'   => ['title' => 'Trending Topics',   'icon' => '🧵'],
+            ];
 
-        foreach ($sections as $key => $meta):
-            $items = $intel_panel[$key] ?? [];
-            if (!$items) continue;
-        ?>
-            <div class="col-12 col-lg-4">
-                <div class="card h-100 intel-card">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h3 class="h6 mb-0">
-                                <?= htmlspecialchars($meta['icon'] . ' ' . $meta['title']) ?>
-                            </h3>
-                        </div>
-                        <div class="intel-chip-list">
-                            <?php foreach ($items as $item): ?>
-                                <div class="intel-chip mb-3 pb-2 border-bottom">
-                                    <div class="d-flex justify-content-between align-items-center mb-1">
-                                        <div class="fw-semibold small">
-                                            <?= htmlspecialchars($item['label']) ?>
+            foreach ($sections as $key => $meta):
+                $items = $intel_panel[$key] ?? [];
+                if (!$items) continue;
+            ?>
+                <div class="col-12 col-lg-4">
+                    <div class="card h-100 intel-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h3 class="h6 mb-0">
+                                    <?= htmlspecialchars($meta['icon'] . ' ' . $meta['title']) ?>
+                                </h3>
+                            </div>
+                            <div class="intel-chip-list">
+                                <?php foreach ($items as $item): ?>
+                                    <div class="intel-chip mb-3 pb-2 border-bottom">
+                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <div class="fw-semibold small">
+                                                <?= htmlspecialchars($item['label']) ?>
+                                            </div>
+                                            <span class="badge rounded-pill bg-secondary-subtle text-body-secondary small">
+                                                <?= (int)$item['count'] ?> articles
+                                            </span>
                                         </div>
-                                        <span class="badge rounded-pill bg-secondary-subtle text-body-secondary small">
-                                            <?= (int)$item['count'] ?> articles
-                                        </span>
+                                        <ul class="list-unstyled mb-0 small intel-article-list">
+                                            <?php foreach ($item['articles'] as $article): ?>
+                                                <li class="intel-article-item text-truncate">
+                                                    <?php
+                                                        $pub_ts = $article['pub_date'] ? strtotime($article['pub_date']) : '';
+                                                        $qs = http_build_query([
+                                                            'url'      => $article['url'],
+                                                            'category' => ucfirst($article['source_slug']),
+                                                            'pub_date' => $pub_ts,
+                                                            'db'       => 1,
+                                                        ]);
+                                                    ?>
+                                                    <a href="newsroom.php?<?= htmlspecialchars($qs) ?>" class="text-decoration-none">
+                                                        <?= htmlspecialchars($article['title']) ?>
+                                                    </a>
+                                                    <?php if (!empty($article['source_slug'])): ?>
+                                                        <span class="text-muted"> · <?= htmlspecialchars($article['source_slug']) ?></span>
+                                                    <?php endif; ?>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
                                     </div>
-                                    <ul class="list-unstyled mb-0 small intel-article-list">
-                                        <?php foreach ($item['articles'] as $article): ?>
-                                            <li class="intel-article-item text-truncate">
-                                                <?php
-                                                    $pub_ts = $article['pub_date'] ? strtotime($article['pub_date']) : '';
-                                                    $qs = http_build_query([
-                                                        'url'      => $article['url'],
-                                                        'category' => ucfirst($article['source_slug']),
-                                                        'pub_date' => $pub_ts,
-                                                        'db'       => 1,
-                                                    ]);
-                                                ?>
-                                                <a href="newsroom.php?<?= htmlspecialchars($qs) ?>" class="text-decoration-none">
-                                                    <?= htmlspecialchars($article['title']) ?>
-                                                </a>
-                                                <?php if (!empty($article['source_slug'])): ?>
-                                                    <span class="text-muted"> · <?= htmlspecialchars($article['source_slug']) ?></span>
-                                                <?php endif; ?>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </div>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
     </div>
 </section>
