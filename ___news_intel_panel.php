@@ -360,6 +360,12 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
 
 
 
+.btn-xs, .btn-group-xs > .btn {
+    padding: 0.2rem 0.45rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
 a.btn.btn-outline-primary.btn-analyze:hover {
     background: #00bfa6;
     border: none;
@@ -522,7 +528,7 @@ footer .btn {
                                                         </div>
                                                     <?php endif; ?>
 
-                                                    <div class="btn-group btn-group-sm mt-2" role="group">
+                                                    <div class="btn-group btn-group-xs mt-2" role="group">
                                                         <a
                                                             href="<?php echo htmlspecialchars($article['url'], ENT_QUOTES, 'UTF-8'); ?>"
                                                             class="btn btn-outline-secondary"
