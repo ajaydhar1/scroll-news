@@ -343,24 +343,51 @@ function sn_format_pub_date(?string $raw): string {
                             <?php else: ?>
                                 <?php foreach ($results as $row): ?>
                                     <?php
-                                    $title    = $row['title'] ?? '';
-                                    $feedName = $row['feed_name'] ?? '';
-                                    $readUrl  = $row['link'] ?? '#';
-                                    $pubHuman = sn_format_pub_date($row['pub_date'] ?? null);
-                                    $hasNlp   = !empty($row['article_id']);
+                                    // Decide how to map fields based on search mode
+                                    $isNlpMode = ($mode === 'nlp');
 
-                                    // Build Analyze (newsroom) URL if NLP/article exists.
-                                    $analyzeUrl = null;
-                                    if ($hasNlp) {
-                                        $ts = !empty($row['pub_date']) ? (strtotime($row['pub_date']) ?: null) : null;
-                                        $analyzeUrl = 'newsroom.php?url=' . urlencode($readUrl)
-                                            . '&category=' . urlencode($feedName)
-                                            . '&pub_date=' . urlencode($ts)
-                                            . '&db=1';
+                                    if ($isNlpMode) {
+                                        // Results from `articles` (NLP search)
+                                        $title    = $row['title']       ?? '';
+                                        $feedName = $row['source_slug'] ?? '';      // or '' if you prefer
+                                        $readUrl  = $row['url']         ?? '#';
+                                        $pubHuman = sn_format_pub_date($row['pub_date'] ?? null);
+
+                                        // In NLP mode, every row IS an analyzed article
+                                        $hasNlp = true;
+
+                                        // Build Analyze URL directly from the article URL
+                                        $analyzeUrl = null;
+                                        if (!empty($readUrl)) {
+                                            $ts = !empty($row['pub_date']) ? (strtotime($row['pub_date']) ?: null) : null;
+                                            $analyzeUrl = 'newsroom.php?url=' . urlencode($readUrl)
+                                                . '&category=' . urlencode(ucfirst($feedName))
+                                                . '&pub_date=' . urlencode($ts)
+                                                . '&db=1';
+                                        }
+
+                                    } else {
+                                        // Classic search results from `rss_items` + `feeds` + `articles`
+                                        $title    = $row['title']     ?? '';
+                                        $feedName = $row['feed_name'] ?? '';
+                                        $readUrl  = $row['link']      ?? '#';
+                                        $pubHuman = sn_format_pub_date($row['pub_date'] ?? null);
+
+                                        // Only has NLP if it joined to an article row
+                                        $hasNlp = !empty($row['article_id']);
+
+                                        $analyzeUrl = null;
+                                        if ($hasNlp && !empty($readUrl)) {
+                                            $ts = !empty($row['pub_date']) ? (strtotime($row['pub_date']) ?: null) : null;
+                                            $analyzeUrl = 'newsroom.php?url=' . urlencode($readUrl)
+                                                . '&category=' . urlencode($feedName)
+                                                . '&pub_date=' . urlencode($ts)
+                                                . '&db=1';
+                                        }
                                     }
 
-                                    // Derive domain from the readUrl
-                                    $domain = '';
+                                    // Derive domain + favicon from the *read* URL (works for both modes)
+                                    $domain     = '';
                                     $faviconUrl = null;
                                     if (!empty($readUrl)) {
                                         $host = parse_url($readUrl, PHP_URL_HOST);
@@ -368,7 +395,7 @@ function sn_format_pub_date(?string $raw): string {
                                             // Strip leading www.
                                             $domain = preg_replace('/^www\./i', '', $host);
 
-                                            // Google favicon endpoint using the full URL (your working pattern)
+                                            // Google favicon endpoint using the full URL
                                             $faviconUrl = 'https://t0.gstatic.com/faviconV2'
                                                 . '?client=SOCIAL&type=FAVICON'
                                                 . '&fallback_opts=TYPE,SIZE,URL'
