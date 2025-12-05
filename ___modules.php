@@ -1636,6 +1636,9 @@ function search_nlp(PDO $db, string $q, array $opts = []): array
     // Only consider rows that actually have NLP JSON
     $conds[] = "nlp IS NOT NULL";
 
+    // And only those with a real pub_date
+    $conds[] = "pub_date IS NOT NULL";
+
     // --- Time window ---
     if ($range === '24h') {
         $conds[] = "pub_date >= NOW() - INTERVAL '24 hours'";

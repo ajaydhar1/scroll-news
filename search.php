@@ -600,12 +600,6 @@ function sn_format_pub_date(?string $raw): string {
 
                                     ?>
 
-                                    <?php if ($isNlpMode && !empty($row) && !isset($debugDumped)): ?>
-                                        <pre><?php var_dump(array_keys($row)); ?></pre>
-                                        <?php $debugDumped = true; ?>
-                                    <?php endif; ?>
-
-                                    
                                     <div class="card mb-3 shadow-sm border-0 sn-search-card">
                                         <div class="card-body">
                                             <h5 class="card-title mb-1">
