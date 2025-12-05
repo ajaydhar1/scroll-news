@@ -257,7 +257,7 @@ try {
     };
 
     $intel_panel['entities'] = $buildTrending($entityCounts, $entityArticles, 8, 2, 2);
-    $intel_panel['places']   = $buildTrending($placeCounts,  $placeArticles,  8, 2, 2, $placeLabelMap);
+    $intel_panel['places']   = $buildTrending($placeCounts,  $placeArticles,  4, 2, 2, $placeLabelMap);
     $intel_panel['topics']   = $buildTrending($topicCounts,  $topicArticles,  4, 2, 2);
 
 
