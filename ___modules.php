@@ -1759,6 +1759,167 @@ function search_classic(PDO $db, string $q, array $opts = []): array
 }
 
 
+function sn_intel_sentiment_counts(PDO $db): array
+{
+    $sql = "
+        SELECT
+            (nlp->'sentiment'->>'label') AS label,
+            COUNT(*) AS count
+        FROM articles
+        WHERE nlp IS NOT NULL
+          AND pub_date IS NOT NULL
+          AND pub_date >= NOW() - INTERVAL '24 hours'
+        GROUP BY (nlp->'sentiment'->>'label')
+    ";
+
+    $stmt = $db->query($sql);
+    $rows = $stmt->fetchAll(PDO::FETCH_KEY_PAIR); // [label => count]
+
+    // Normalize / ensure keys exist
+    return [
+        'positive' => (int)($rows['positive'] ?? 0),
+        'neutral'  => (int)($rows['neutral']  ?? 0),
+        'negative' => (int)($rows['negative'] ?? 0),
+    ];
+}
+
+function sn_intel_recent_sentiment_articles(PDO $db, string $label, int $limit = 3): array
+{
+    $sql = "
+        SELECT
+            id,
+            title,
+            url,
+            source_slug,
+            pub_date
+        FROM articles
+        WHERE nlp IS NOT NULL
+          AND pub_date IS NOT NULL
+          AND pub_date >= NOW() - INTERVAL '24 hours'
+          AND (nlp->'sentiment'->>'label') = :label
+        ORDER BY pub_date DESC
+        LIMIT :limit
+    ";
+
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':label', $label, PDO::PARAM_STR);
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function sn_intel_emotion_counts(PDO $db, array $emotions = ['Wow','Love','Sad']): array
+{
+    // We’ll loop in PHP and reuse one query
+    $out = [];
+    foreach ($emotions as $emotion) {
+        $sql = "
+            SELECT COUNT(*) AS count
+            FROM articles
+            WHERE nlp IS NOT NULL
+              AND pub_date IS NOT NULL
+              AND pub_date >= NOW() - INTERVAL '24 hours'
+              AND (nlp->'emotional_reaction'->>:emotion) IS NOT NULL
+        ";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([':emotion' => $emotion]);
+        $out[$emotion] = (int)$stmt->fetchColumn();
+    }
+    return $out;
+}
+
+function sn_intel_recent_emotion_articles(PDO $db, string $emotion, int $limit = 3): array
+{
+    $sql = "
+        SELECT
+            id,
+            title,
+            url,
+            source_slug,
+            pub_date
+        FROM articles
+        WHERE nlp IS NOT NULL
+          AND pub_date IS NOT NULL
+          AND pub_date >= NOW() - INTERVAL '24 hours'
+          AND (nlp->'emotional_reaction'->>:emotion) IS NOT NULL
+        ORDER BY pub_date DESC
+        LIMIT :limit
+    ";
+
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':emotion', $emotion, PDO::PARAM_STR);
+    $stmt->bindValue(':limit',   $limit,   PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function sn_intel_trending_entities(PDO $db, array $labels = ['PERSON','ORG','GPE'], int $limit = 5): array
+{
+    $sql = "
+        SELECT
+            ent->>'text'  AS entity_text,
+            ent->>'label' AS entity_label,
+            COUNT(*)      AS mentions,
+            COUNT(DISTINCT a.id) AS article_count
+        FROM articles a
+        CROSS JOIN LATERAL jsonb_array_elements(a.nlp->'entities') AS ent
+        WHERE a.nlp IS NOT NULL
+          AND a.pub_date IS NOT NULL
+          AND a.pub_date >= NOW() - INTERVAL '24 hours'
+          AND ent->>'label' = ANY(:labels)
+        GROUP BY entity_text, entity_label
+        HAVING COUNT(DISTINCT a.id) >= 2
+        ORDER BY mentions DESC
+        LIMIT :limit
+    ";
+
+    // Need to pass labels as text[] for Postgres
+    $labelsParam = '{' . implode(',', array_map('pg_escape_string', $labels)) . '}';
+
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':labels', $labelsParam, PDO::PARAM_STR);
+    $stmt->bindValue(':limit',  $limit,      PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function sn_intel_recent_entity_articles(PDO $db, string $entityText, int $limit = 3): array
+{
+    $sql = "
+        SELECT
+            a.id,
+            COALESCE(ri.title, a.title) AS title,
+            a.url,
+            COALESCE(f.name, a.source_slug) AS feed_name,
+            a.pub_date
+        FROM articles a
+        LEFT JOIN rss_items ri
+            ON ri.link = a.url
+        LEFT JOIN feeds f
+            ON f.id = ri.feed_id
+        WHERE a.nlp IS NOT NULL
+          AND a.pub_date IS NOT NULL
+          AND a.pub_date >= NOW() - INTERVAL '24 hours'
+          AND EXISTS (
+              SELECT 1
+              FROM jsonb_array_elements(a.nlp->'entities') ent
+              WHERE ent->>'text' = :entity
+          )
+        ORDER BY a.pub_date DESC
+        LIMIT :limit
+    ";
+
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':entity', $entityText, PDO::PARAM_STR);
+    $stmt->bindValue(':limit',  $limit,      PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 
 ?>

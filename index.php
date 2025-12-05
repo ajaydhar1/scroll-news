@@ -1,3 +1,22 @@
+<?php
+
+$sentiments     = sn_intel_sentiment_counts($pdo);
+$sentimentPosts = [
+    'positive' => sn_intel_recent_sentiment_articles($pdo, 'positive', 3),
+    'neutral'  => sn_intel_recent_sentiment_articles($pdo, 'neutral', 3),
+    'negative' => sn_intel_recent_sentiment_articles($pdo, 'negative', 3),
+];
+
+$emotionLabels  = ['Wow','Love','Sad'];
+$emotionCounts  = sn_intel_emotion_counts($pdo, $emotionLabels);
+$emotionPosts   = [];
+foreach ($emotionLabels as $emo) {
+    $emotionPosts[$emo] = sn_intel_recent_emotion_articles($pdo, $emo, 3);
+}
+
+$trendingEntities = sn_intel_trending_entities($pdo, ['PERSON','ORG','GPE'], 5);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -236,6 +255,73 @@
                 </div>
             </div>
         </header>
+
+        <!-- News Intelligence Panel-->
+        <section class="sn-intel-panel my-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h2 class="h5 mb-3">
+                        🧠 News Intelligence (last 24 hours)
+                    </h2>
+
+                    <!-- Sentiment row -->
+                    <div class="row mb-3">
+                        <?php
+                        $sentimentMeta = [
+                            'positive' => ['label' => 'Positive', 'emoji' => '😊', 'btn' => 'success'],
+                            'neutral'  => ['label' => 'Neutral',  'emoji' => '😐', 'btn' => 'secondary'],
+                            'negative' => ['label' => 'Negative', 'emoji' => '😔', 'btn' => 'danger'],
+                        ];
+
+                        foreach (['positive','neutral','negative'] as $key):
+                            $meta   = $sentimentMeta[$key];
+                            $count  = $sentiments[$key] ?? 0;
+                            $posts  = $sentimentPosts[$key] ?? [];
+                            $filterUrl = 'search.php?mode=nlp&sentiment=' . urlencode($key) . '&range=24h';
+                        ?>
+                            <div class="col-md-4 mb-3">
+                                <div class="sn-intel-card">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <div class="fw-semibold">
+                                            <?php echo $meta['emoji']; ?>
+                                            <?php echo $meta['label']; ?>
+                                        </div>
+                                        <a href="<?php echo htmlspecialchars($filterUrl); ?>"
+                                           class="badge bg-<?php echo $meta['btn']; ?> text-decoration-none">
+                                            <?php echo $count; ?> articles
+                                        </a>
+                                    </div>
+
+                                    <?php if (!empty($posts)): ?>
+                                        <ul class="list-unstyled small mb-0">
+                                            <?php foreach ($posts as $p): ?>
+                                                <li class="mb-1">
+                                                    <a href="<?php echo htmlspecialchars($p['url']); ?>"
+                                                       class="text-reset text-decoration-none"
+                                                       target="_blank" rel="noopener">
+                                                        <?php echo htmlspecialchars($p['title']); ?>
+                                                    </a>
+                                                    <?php
+                                                    $when = sn_format_pub_date($p['pub_date'] ?? null);
+                                                    if ($when): ?>
+                                                        <span class="text-muted"> · <?php echo htmlspecialchars($when); ?></span>
+                                                    <?php endif; ?>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    <?php else: ?>
+                                        <p class="text-muted small mb-0">No recent articles.</p>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+
+                    <!-- You can add a second row here for emotions or trending entities in a similar style -->
+                </div>
+            </div>
+        </section>
+
         <!-- Services-->
         <section class="page-section" id="services">
             <div class="container">
