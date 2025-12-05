@@ -26,22 +26,21 @@ function nlp_sentiment_emoji(?string $label): string
     }
 }
 
-// Get top N emotions above a minimum percentage
-function nlp_top_emotions(array $emotionalReaction, int $max = 2, float $minPercent = 20.0): array
+// Get top N emotions with percentages
+function nlp_top_emotions_detail(array $emotionalReaction, int $max = 2, float $minPercent = 10.0): array
 {
     if (!$emotionalReaction) return [];
-
-    // Sort by intensity descending
-    arsort($emotionalReaction);
+    arsort($emotionalReaction); // strongest first
 
     $out = [];
     foreach ($emotionalReaction as $name => $pct) {
         if (count($out) >= $max) break;
         if ($pct < $minPercent) continue;
-        $out[] = $name;
+        $out[] = ['name' => $name, 'pct' => (float)$pct];
     }
     return $out;
 }
+
 
 
 try {
@@ -325,17 +324,20 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
     white-space: nowrap;
 }
 
-.news-intel-panel .nlp-chip-topic {
-    /* slight green tint for topics */
-    background: rgba(0, 200, 140, 0.08);
-    color: #007558;
+.news-intel-panel .nlp-chip-entity {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    font-weight: 500;
 }
 
-.news-intel-panel .nlp-chip-emotion {
-    /* slight purple/blue tint for emotions */
-    background: rgba(80, 90, 250, 0.08);
-    color: #334;
+.news-intel-panel .nlp-chip-topic {
+    background: rgba(0, 200, 140, 0.10);
+    color: #006d50;
 }
+
+.news-intel-panel .nlp-emotion-line {
+    font-size: 11px;
+}
+
 
 
 </style>
@@ -400,19 +402,36 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
                                                 $sentLabel = $nlp['sentiment']['label'] ?? null;
                                                 $sentEmoji = nlp_sentiment_emoji($sentLabel);
 
-                                                // Emotional reaction (Wow, Love, etc.)
-                                                $emotionsRaw  = $nlp['emotional_reaction'] ?? [];
-                                                $topEmotions  = is_array($emotionsRaw) ? nlp_top_emotions($emotionsRaw, 2, 20.0) : [];
+                                                // Emotional reactions (Wow, Love, etc.)
+                                                $emotionsRaw   = $nlp['emotional_reaction'] ?? [];
+                                                $emotionDetail = is_array($emotionsRaw) ? nlp_top_emotions_detail($emotionsRaw, 2, 15.0) : [];
 
-                                                // Topics: sort by score desc, take top 3 above your threshold
-                                                $topicsRaw = $nlp['topics'] ?? [];
+                                                // Topics: top 2 above your score threshold
+                                                $topicsRaw  = $nlp['topics'] ?? [];
                                                 $topicChips = [];
                                                 if (is_array($topicsRaw)) {
                                                     arsort($topicsRaw); // highest score first
                                                     foreach ($topicsRaw as $tName => $score) {
-                                                        if (count($topicChips) >= 3) break;
+                                                        if (count($topicChips) >= 2) break;
                                                         if ((float)$score < 0.2) continue; // keep in sync with your TOPIC_MIN_SCORE
                                                         $topicChips[] = $tName;
+                                                    }
+                                                }
+
+                                                // Entities: top 2 by count
+                                                $entitiesRaw  = $nlp['entities'] ?? [];
+                                                $entityChips  = [];
+                                                if (is_array($entitiesRaw)) {
+                                                    usort($entitiesRaw, function ($a, $b) {
+                                                        $ca = (int)($a['count'] ?? 0);
+                                                        $cb = (int)($b['count'] ?? 0);
+                                                        return $cb <=> $ca;
+                                                    });
+                                                    foreach ($entitiesRaw as $ent) {
+                                                        if (count($entityChips) >= 2) break;
+                                                        $name = is_array($ent) ? ($ent['text'] ?? $ent['name'] ?? null) : $ent;
+                                                        if (!$name) continue;
+                                                        $entityChips[] = $name;
                                                     }
                                                 }
 
@@ -439,18 +458,28 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
                                                         <?php endif; ?>
                                                     </a>
 
-                                                    <?php if ($topicChips || $topEmotions): ?>
+                                                    <?php if ($entityChips || $topicChips): ?>
                                                         <div class="nlp-chip-row mt-1">
+                                                            <?php foreach ($entityChips as $name): ?>
+                                                                <span class="nlp-chip nlp-chip-entity">
+                                                                    #<?= htmlspecialchars($name) ?>
+                                                                </span>
+                                                            <?php endforeach; ?>
+
                                                             <?php foreach ($topicChips as $topicName): ?>
                                                                 <span class="nlp-chip nlp-chip-topic">
                                                                     <?= htmlspecialchars($topicName) ?>
                                                                 </span>
                                                             <?php endforeach; ?>
+                                                        </div>
+                                                    <?php endif; ?>
 
-                                                            <?php foreach ($topEmotions as $emotionName): ?>
-                                                                <span class="nlp-chip nlp-chip-emotion">
-                                                                    <?= htmlspecialchars($emotionName) ?>
-                                                                </span>
+                                                    <?php if ($emotionDetail): ?>
+                                                        <div class="nlp-emotion-line small text-muted mt-1">
+                                                            Emotions:
+                                                            <?php foreach ($emotionDetail as $idx => $emo): ?>
+                                                                <?= $idx > 0 ? ' · ' : '' ?>
+                                                                <?= htmlspecialchars($emo['name']) ?> <?= round($emo['pct']) ?>%
                                                             <?php endforeach; ?>
                                                         </div>
                                                     <?php endif; ?>
