@@ -362,9 +362,7 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
 
 .btn-xs, .btn-group-xs > .btn {
     padding: 0.2rem 0.45rem;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    border-radius: 0.2rem;
+    font-size: 0.87rem;
 }
 a.btn.btn-outline-primary.btn-analyze:hover {
     background: #00bfa6;
