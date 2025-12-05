@@ -253,7 +253,7 @@
         </header>
 
         <!-- News Intelligence Panel-->
-        <?php // require_once __DIR__ . '/___news_intel_panel.php'; ?>
+        <?php require_once __DIR__ . '/___news_intel_panel.php'; ?>
 
         <!-- Services-->
         <section class="page-section" id="services">
