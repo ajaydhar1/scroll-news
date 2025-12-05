@@ -273,7 +273,7 @@ try {
                 return strcmp($b['pub_date'], $a['pub_date']);
             });
 
-            $label = $labelMap[$key] ?? ucwords(str_replace('-', ' ', $key));
+            $label = $labelMap[$key] ?? str_replace('-', ' ', $key);
 
             $trending[] = [
                 'label'    => $label,
