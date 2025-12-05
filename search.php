@@ -216,6 +216,29 @@ function sn_format_pub_date(?string $raw): string {
               text-align: right;
             }
 
+
+
+            .sn-loading-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(10, 10, 15, 0.35);
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+                display: none;
+                align-items: center;
+                justify-content: center;
+                z-index: 2000; /* above navbar/content */
+            }
+
+            .sn-loading-overlay.active {
+                display: flex;
+            }
+
+            .sn-loading-spinner .spinner-border {
+                width: 3rem;
+                height: 3rem;
+            }
+
         </style>
     </head>
     <body id="page-top" class="bg-dark">
@@ -224,6 +247,15 @@ function sn_format_pub_date(?string $raw): string {
         <div id="loadingOverlay" class="loading-overlay" aria-live="polite" aria-busy="true" hidden>
           <div class="loading-spinner" role="status" aria-label="Loading"></div>
         </div>
+
+        <div id="sn-search-loading" class="sn-loading-overlay" aria-hidden="true">
+            <div class="sn-loading-spinner">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading…</span>
+                </div>
+            </div>
+        </div>
+
 
         <style>
           .loading-overlay{
@@ -383,6 +415,41 @@ function sn_format_pub_date(?string $raw): string {
                 <?php else: ?>
                     <div class="row">
                         <div class="col-md-8 mx-auto">
+
+                            <?php
+                            // Build a simple "Active filters" string
+                            $filterChips = [];
+
+                            if ($mode === 'nlp') {
+                                $filterChips[] = 'Smart (NLP)';
+                            } else {
+                                $filterChips[] = 'Keyword';
+                            }
+
+                            if ($range === '24h') {
+                                $filterChips[] = 'Last 24 hours';
+                            } elseif ($range === 'older') {
+                                $filterChips[] = 'Older than 24 hours';
+                            } else {
+                                $filterChips[] = 'All time';
+                            }
+
+                            if (!empty($sentiment)) {
+                                $filterChips[] = 'Sentiment: ' . ucfirst($sentiment);
+                            }
+
+                            if (!empty($emotion)) {
+                                $filterChips[] = 'Emotion: ' . $emotion;
+                            }
+                            ?>
+
+                            <?php if ($hasFilters && !empty($filterChips)): ?>
+                                <p class="small text-muted mb-1">
+                                    Active filters:
+                                    <?php echo htmlspecialchars(implode(' · ', $filterChips), ENT_QUOTES, 'UTF-8'); ?>
+                                </p>
+                            <?php endif; ?>
+
                             <h2 class="h6 mb-3">
                                 <?php if ($q !== ''): ?>
                                     Results for
@@ -725,5 +792,20 @@ function sn_format_pub_date(?string $raw): string {
               document.head.appendChild(style);
             })();
         </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var form    = document.querySelector('form[action="search.php"]');
+                var overlay = document.getElementById('sn-search-loading');
+
+                if (!form || !overlay) return;
+
+                form.addEventListener('submit', function () {
+                    // Show the overlay when the search is submitted
+                    overlay.classList.add('active');
+                });
+            });
+        </script>
+
     </body>
 </html>
