@@ -338,6 +338,25 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
     font-size: 11px;
 }
 
+/* Base: stacked on narrow screens */
+.news-intel-panel .intel-article-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem 1rem; /* row / col spacing */
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.news-intel-panel .intel-article-list .intel-article-item {
+    list-style: none;
+}
+
+/* On wider screens (e.g. lg and up), go 2 columns */
+@media (min-width: 992px) {
+    .news-intel-panel .intel-article-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
 
 
 </style>
