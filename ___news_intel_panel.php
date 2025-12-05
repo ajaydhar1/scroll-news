@@ -359,6 +359,25 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
 }
 
 
+
+a.btn.btn-outline-primary.btn-analyze:hover {
+    background: #00bfa6;
+    border: none;
+}
+.btn-outline-primary {
+    color: black;
+    border: none;
+}
+footer .btn {
+    box-shadow: 0 0 0 2px #00bfa6 !important;
+}
+.btn {
+    box-shadow: none !important;
+}
+.btn-gray-border {
+    border: 2px solid #6c757d;
+}
+
 </style>
 
 <section class="page-section news-intel-panel bg-light">
@@ -465,7 +484,7 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
                                                 ?>
                                                 <li class="intel-article-item mb-2">
                                                     <a href="newsroom.php?<?= htmlspecialchars($qs) ?>"
-                                                       class="text-decoration-none d-block">
+                                                       class="text-decoration-none d-block" data-loading>
                                                         <?php if ($sentEmoji): ?>
                                                             <span class="sentiment-emoji me-1"><?= htmlspecialchars($sentEmoji) ?></span>
                                                         <?php endif; ?>
@@ -502,6 +521,24 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
                                                             <?php endforeach; ?>
                                                         </div>
                                                     <?php endif; ?>
+
+                                                    <div class="btn-group btn-group-sm mt-2" role="group">
+                                                        <a
+                                                            href="<?php echo htmlspecialchars($article['url'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                            class="btn btn-outline-secondary"
+                                                            target="_blank"
+                                                            rel="noopener"
+                                                        >
+                                                            Read story
+                                                        </a>
+                                                        <a
+                                                            href="newsroom.php?<?= htmlspecialchars($qs) ?>"
+                                                            class="btn btn-green btn-gray-border"
+                                                            data-loading
+                                                        >
+                                                            Analyze
+                                                        </a>
+                                                    </div>
                                                 </li>
                                             <?php endforeach; ?>
                                         </ul>
