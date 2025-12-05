@@ -135,16 +135,95 @@ try {
         // Lowercase + strip punctuation for matching
         $clean = mb_strtolower(preg_replace('/[^\p{L}\p{N}\s]/u', '', $trimmed));
 
-        // Any variant that clearly refers to Donald Trump
-        // e.g. Trump, President Trump, Donald Trump, Donald J. Trump, Mr. Trump, etc.
-        if (preg_match('/\btrump\b/u', $clean)) {
-            return [
-                'key'   => 'donald-trump', // canonical key
-                'label' => 'Donald Trump', // how it shows up in the UI
-            ];
+        // Map of canonical people → label + matching patterns
+        $peopleMap = [
+            'donald-trump' => [
+                'label'    => 'Donald Trump',
+                'patterns' => [
+                    'trump',
+                    'donald trump',
+                    'donald j trump',
+                    'president trump',
+                    'mr trump',
+                ],
+            ],
+            'joe-biden' => [
+                'label'    => 'Joe Biden',
+                'patterns' => [
+                    'biden',
+                    'joe biden',
+                    'joseph r biden',
+                    'president biden',
+                    'mr biden',
+                ],
+            ],
+            'kamala-harris' => [
+                'label'    => 'Kamala Harris',
+                'patterns' => [
+                    'kamala',
+                    'kamala harris',
+                    'vice president harris',
+                    'vp harris',
+                ],
+            ],
+            'elon-musk' => [
+                'label'    => 'Elon Musk',
+                'patterns' => [
+                    'musk',
+                    'elon',
+                    'elon musk',
+                ],
+            ],
+            'vladimir-putin' => [
+                'label'    => 'Vladimir Putin',
+                'patterns' => [
+                    'putin',
+                    'vladimir putin',
+                    'president putin',
+                ],
+            ],
+            'xi-jinping' => [
+                'label'    => 'Xi Jinping',
+                'patterns' => [
+                    'xi',
+                    'xi jinping',
+                    'president xi',
+                ],
+            ],
+            'benjamin-netanyahu' => [
+                'label'    => 'Benjamin Netanyahu',
+                'patterns' => [
+                    'netanyahu',
+                    'benjamin netanyahu',
+                    'pm netanyahu',
+                ],
+            ],
+            'volodymyr-zelenskyy' => [
+                'label'    => 'Volodymyr Zelenskyy',
+                'patterns' => [
+                    'zelensky',
+                    'zelenskyy',
+                    'volodymyr zelensky',
+                    'volodymyr zelenskyy',
+                    'president zelensky',
+                ],
+            ],
+        ];
+
+        // Try to match against the known people map
+        foreach ($peopleMap as $key => $cfg) {
+            foreach ($cfg['patterns'] as $pat) {
+                // simple contains check on the cleaned string
+                if (strpos($clean, $pat) !== false) {
+                    return [
+                        'key'   => $key,           // canonical key for counts
+                        'label' => $cfg['label'],  // pretty label for UI
+                    ];
+                }
+            }
         }
 
-        // Default: use the original text as label, and a lowered key
+        // Default: use original text as label, lowered key
         return [
             'key'   => mb_strtolower($trimmed),
             'label' => $trimmed,
