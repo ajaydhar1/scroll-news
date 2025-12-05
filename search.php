@@ -325,21 +325,25 @@ function sn_format_pub_date(?string $raw): string {
 
                                 <div class="col-md-6 d-flex flex-wrap gap-2 justify-content-md-end mt-2 mt-md-0">
 
-                                    <!-- Mode pills -->
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Search mode">
+                                    <!-- Mode pills (do NOT have name="mode"; they update the hidden input) -->
+                                    <div class="btn-group btn-group-sm me-2" role="group" aria-label="Search mode">
                                         <button
-                                            type="submit"
-                                            name="mode"
-                                            value="classic"
+                                            type="button"
                                             class="btn <?php echo ($mode === 'classic') ? 'btn-primary' : 'btn-outline-secondary'; ?>"
+                                            onclick="
+                                                document.getElementById('mode-input').value='classic';
+                                                this.form.submit();
+                                            "
                                         >
                                             Keyword
                                         </button>
                                         <button
-                                            type="submit"
-                                            name="mode"
-                                            value="nlp"
+                                            type="button"
                                             class="btn <?php echo ($mode === 'nlp') ? 'btn-primary' : 'btn-outline-secondary'; ?>"
+                                            onclick="
+                                                document.getElementById('mode-input').value='nlp';
+                                                this.form.submit();
+                                            "
                                         >
                                             Smart (NLP)
                                         </button>
@@ -348,19 +352,19 @@ function sn_format_pub_date(?string $raw): string {
                                     <!-- Range selector (both modes) -->
                                     <select
                                         name="range"
-                                        class="form-select form-select-sm w-auto"
+                                        class="form-select form-select-sm w-auto me-2"
                                         onchange="this.form.submit()"
                                     >
-                                        <option value="all"  <?php if ($range === 'all')  echo 'selected'; ?>>All time</option>
-                                        <option value="24h"  <?php if ($range === '24h')  echo 'selected'; ?>>Last 24 hours</option>
-                                        <option value="older"<?php if ($range === 'older')echo 'selected'; ?>>Older than 24 hours</option>
+                                        <option value="all"   <?php if ($range === 'all')   echo 'selected'; ?>>All time</option>
+                                        <option value="24h"   <?php if ($range === '24h')   echo 'selected'; ?>>Last 24 hours</option>
+                                        <option value="older" <?php if ($range === 'older') echo 'selected'; ?>>Older than 24 hours</option>
                                     </select>
 
                                     <?php if ($mode === 'nlp'): ?>
                                         <!-- Sentiment filter (NLP mode only) -->
                                         <select
                                             name="sentiment"
-                                            class="form-select form-select-sm w-auto"
+                                            class="form-select form-select-sm w-auto me-2"
                                             onchange="this.form.submit()"
                                         >
                                             <option value="" <?php if (empty($sentiment)) echo 'selected'; ?>>Any sentiment</option>
@@ -372,22 +376,33 @@ function sn_format_pub_date(?string $raw): string {
                                         <!-- Emotion filter (NLP mode only) -->
                                         <select
                                             name="emotion"
-                                            class="form-select form-select-sm w-auto"
+                                            class="form-select form-select-sm w-auto me-2"
                                             onchange="this.form.submit()"
                                         >
                                             <option value="" <?php if (empty($emotion)) echo 'selected'; ?>>Any emotion</option>
                                             <option value="Wow"  <?php if ($emotion === 'Wow')  echo 'selected'; ?>>Wow</option>
                                             <option value="Love" <?php if ($emotion === 'Love') echo 'selected'; ?>>Love</option>
                                             <option value="Sad"  <?php if ($emotion === 'Sad')  echo 'selected'; ?>>Sad</option>
-                                            <!-- add more keys that exist in emotional_reaction if you want -->
+                                            <!-- Add more if you have them -->
                                         </select>
                                     <?php endif; ?>
 
-                                    <!-- Preserve current mode when typing + hitting Enter -->
-                                    <input type="hidden" name="mode" value="<?php echo htmlspecialchars($mode, ENT_QUOTES, 'UTF-8'); ?>">
+                                    <!-- Explicit Search button -->
+                                    <button type="submit" class="btn btn-sm btn-success">
+                                        Search
+                                    </button>
+
+                                    <!-- Hidden mode value (single source of truth) -->
+                                    <input
+                                        type="hidden"
+                                        name="mode"
+                                        id="mode-input"
+                                        value="<?php echo htmlspecialchars($mode, ENT_QUOTES, 'UTF-8'); ?>"
+                                    >
                                 </div>
                             </div>
                         </form>
+
                         <div class="small text-muted mt-2">
                             Search across recent items from all feeds.
                         </div>
