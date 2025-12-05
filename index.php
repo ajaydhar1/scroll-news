@@ -638,12 +638,14 @@
         </script>
 
         <script>
+            /*
             (function(){
                 introJs().setOptions({
                     highlightClass: 'custom-highlight',
                     overlayOpacity: 0.5  // or 0 if you want no darkening at all
                 }).start();
             })();
+            */
         </script>
     </body>
 </html>
