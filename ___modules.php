@@ -1920,6 +1920,17 @@ function sn_intel_recent_entity_articles(PDO $db, string $entityText, int $limit
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function sn_format_pub_date(?string $raw): string {
+    if (empty($raw)) return '';
 
+    $ts = strtotime($raw);
+    if ($ts === false) return '';
+
+    if (function_exists('format_news_date')) {
+        return format_news_date($ts, 'America/New_York');
+    }
+
+    return date('M j, Y • g:i A', $ts);
+}
 
 ?>

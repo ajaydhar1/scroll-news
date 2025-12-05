@@ -56,19 +56,6 @@ if (!$pdo) {
     }
 }
 
-function sn_format_pub_date(?string $raw): string {
-    if (empty($raw)) return '';
-
-    $ts = strtotime($raw);
-    if ($ts === false) return '';
-
-    if (function_exists('format_news_date')) {
-        return format_news_date($ts, 'America/New_York');
-    }
-
-    return date('M j, Y • g:i A', $ts);
-}
-
 // From here down, render your HTML:
 // - use $q to populate the search box
 // - use $mode to highlight classic vs NLP toggle
