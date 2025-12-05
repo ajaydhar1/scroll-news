@@ -279,18 +279,82 @@ function sn_format_pub_date(?string $raw): string {
 
                 <div class="row mb-4">
                     <div class="col-md-8 mx-auto">
-                        <form method="get" action="search.php" class="input-group">
-                            <input
-                                type="text"
-                                name="q"
-                                class="form-control"
-                                placeholder="Search headlines..."
-                                value="<?php echo htmlspecialchars($q, ENT_QUOTES, 'UTF-8'); ?>"
-                                aria-label="Search headlines"
-                            />
-                            <button class="btn btn-green" type="submit" style="border-radius: 0 0.25rem 0.25rem 0;" data-loading>
-                                <i class="fas fa-search"></i>&nbsp;Search
-                            </button>
+                        <form method="get" action="search.php" class="mb-4">
+                            <div class="row g-2 align-items-center">
+                                <div class="col-md-6">
+                                    <input
+                                        type="text"
+                                        name="q"
+                                        class="form-control"
+                                        placeholder="Search headlines…"
+                                        value="<?php echo htmlspecialchars($q, ENT_QUOTES, 'UTF-8'); ?>"
+                                    >
+                                </div>
+
+                                <div class="col-md-6 d-flex flex-wrap gap-2 justify-content-md-end mt-2 mt-md-0">
+
+                                    <!-- Mode pills -->
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Search mode">
+                                        <button
+                                            type="submit"
+                                            name="mode"
+                                            value="classic"
+                                            class="btn <?php echo ($mode === 'classic') ? 'btn-primary' : 'btn-outline-secondary'; ?>"
+                                        >
+                                            Keyword
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            name="mode"
+                                            value="nlp"
+                                            class="btn <?php echo ($mode === 'nlp') ? 'btn-primary' : 'btn-outline-secondary'; ?>"
+                                        >
+                                            Smart (NLP)
+                                        </button>
+                                    </div>
+
+                                    <!-- Range selector (both modes) -->
+                                    <select
+                                        name="range"
+                                        class="form-select form-select-sm w-auto"
+                                        onchange="this.form.submit()"
+                                    >
+                                        <option value="all"  <?php if ($range === 'all')  echo 'selected'; ?>>All time</option>
+                                        <option value="24h"  <?php if ($range === '24h')  echo 'selected'; ?>>Last 24 hours</option>
+                                        <option value="older"<?php if ($range === 'older')echo 'selected'; ?>>Older than 24 hours</option>
+                                    </select>
+
+                                    <?php if ($mode === 'nlp'): ?>
+                                        <!-- Sentiment filter (NLP mode only) -->
+                                        <select
+                                            name="sentiment"
+                                            class="form-select form-select-sm w-auto"
+                                            onchange="this.form.submit()"
+                                        >
+                                            <option value="" <?php if (empty($sentiment)) echo 'selected'; ?>>Any sentiment</option>
+                                            <option value="positive" <?php if ($sentiment === 'positive') echo 'selected'; ?>>Positive</option>
+                                            <option value="neutral"  <?php if ($sentiment === 'neutral')  echo 'selected'; ?>>Neutral</option>
+                                            <option value="negative" <?php if ($sentiment === 'negative') echo 'selected'; ?>>Negative</option>
+                                        </select>
+
+                                        <!-- Emotion filter (NLP mode only) -->
+                                        <select
+                                            name="emotion"
+                                            class="form-select form-select-sm w-auto"
+                                            onchange="this.form.submit()"
+                                        >
+                                            <option value="" <?php if (empty($emotion)) echo 'selected'; ?>>Any emotion</option>
+                                            <option value="Wow"  <?php if ($emotion === 'Wow')  echo 'selected'; ?>>Wow</option>
+                                            <option value="Love" <?php if ($emotion === 'Love') echo 'selected'; ?>>Love</option>
+                                            <option value="Sad"  <?php if ($emotion === 'Sad')  echo 'selected'; ?>>Sad</option>
+                                            <!-- add more keys that exist in emotional_reaction if you want -->
+                                        </select>
+                                    <?php endif; ?>
+
+                                    <!-- Preserve current mode when typing + hitting Enter -->
+                                    <input type="hidden" name="mode" value="<?php echo htmlspecialchars($mode, ENT_QUOTES, 'UTF-8'); ?>">
+                                </div>
+                            </div>
                         </form>
                         <div class="small text-muted mt-2">
                             Search across recent items from all feeds.
