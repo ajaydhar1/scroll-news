@@ -63,6 +63,40 @@ try {
     $uniquePlaceKeys  = [];
     $uniqueTopicKeys  = [];
 
+    // Normalize place names so variants like "U.s", "Us", "U.S." map together
+    function normalize_place_name(string $name): array
+    {
+        $trimmed = trim($name);
+        $lower   = mb_strtolower(preg_replace('/\./', '', $trimmed)); // remove dots for matching
+
+        // You can expand this list as needed
+        $usVariants = [
+            'us',
+            'u s',
+            'u.s',
+            'u.s.',
+            'united states',
+            'united states of america',
+            'usa',
+            'u s a',
+            'u.s.a',
+        ];
+
+        if (in_array($lower, $usVariants, true)) {
+            return [
+                'key'   => 'us',     // canonical key used internally
+                'label' => 'U.S.',   // how we display it in the UI
+            ];
+        }
+
+        // Default: use the lowercased key + original label
+        return [
+            'key'   => mb_strtolower($trimmed),
+            'label' => $trimmed,
+        ];
+    }
+
+
     foreach ($rows as $row) {
         $pubDate = $row['pub_date'];
 
@@ -85,23 +119,43 @@ try {
                 $uniqueEntityKeys[$key] = true;
             }
             else if ($type == "GPE" || $type == "LOC") {
+
+                $norm = normalize_place_name($name);
+                $key  = $norm['key'];
+                $label = $norm['label'];
+
+                $placeLabelMap = [];
                 $placeCounts[$key] = ($placeCounts[$key] ?? 0) + 1;
                 $placeArticles[$key][] = $row;
                 $uniquePlaceKeys[$key] = true;
+
+                // Remember a nice display label for this key
+                // (later, 'us' -> 'U.S.')
+                if (!isset($placeLabelMap[$key])) {
+                    $placeLabelMap[$key] = $label;
+                }
             }
         }
 
         // Normalize topics: $topics is now [ 'Health' => '0.07', 'Government' => '0.63', ... ]
+        // Only include topics where score >= 0.2
+        $TOPIC_MIN_SCORE = 0.2;
+
         foreach ($topics_array as $name => $score) {
             if (!$name) continue;
 
+            $scoreVal = (float)$score;
+            if ($scoreVal < $TOPIC_MIN_SCORE) {
+                continue; // skip weak topics
+            }
+
             $key = mb_strtolower(trim($name));
 
-            // If you want simple counts (each topic once per article):
+            // You can either treat each qualifying topic as 1…
             $topicCounts[$key] = ($topicCounts[$key] ?? 0) + 1;
 
-            // If you prefer to weight by score instead, use this instead:
-            // $topicCounts[$key] = ($topicCounts[$key] ?? 0) + (float)$score;
+            // …or weight by score, if you prefer:
+            // $topicCounts[$key] = ($topicCounts[$key] ?? 0) + $scoreVal;
 
             $topicArticles[$key][] = $row;
             $uniqueTopicKeys[$key] = true;
@@ -109,7 +163,14 @@ try {
     }
 
     // Helper to build “trending” list from counts + article map
-    $buildTrending = function (array $counts, array $articleMap, int $maxItems = 8, int $minCount = 2, int $maxArticlesPerItem = 4) {
+    $buildTrending = function (
+        array $counts,
+        array $articleMap,
+        int $maxItems = 8,
+        int $minCount = 2,
+        int $maxArticlesPerItem = 4,
+        array $labelMap = []
+    ) {
         if (!$counts) return [];
 
         arsort($counts); // highest first
@@ -118,20 +179,20 @@ try {
 
         foreach ($counts as $key => $count) {
             if ($count < $minCount) {
-                // stop once we hit items that only show up once
                 continue;
             }
 
             $articles = $articleMap[$key] ?? [];
             if (!$articles) continue;
 
-            // Sort articles by pub_date desc
             usort($articles, function ($a, $b) {
                 return strcmp($b['pub_date'], $a['pub_date']);
             });
 
+            $label = $labelMap[$key] ?? ucwords($key);
+
             $trending[] = [
-                'label'    => ucwords($key),
+                'label'    => $label,
                 'count'    => $count,
                 'articles' => array_slice($articles, 0, $maxArticlesPerItem),
             ];
@@ -145,8 +206,9 @@ try {
     };
 
     $intel_panel['entities'] = $buildTrending($entityCounts, $entityArticles, 8, 2, 4);
-    $intel_panel['places']   = $buildTrending($placeCounts,  $placeArticles,  8, 2, 4);
+    $intel_panel['places']   = $buildTrending($placeCounts,  $placeArticles,  8, 2, 4, $placeLabelMap);
     $intel_panel['topics']   = $buildTrending($topicCounts,  $topicArticles,  8, 2, 4);
+
 
     $intel_panel['stats'] = [
         'article_count_24h' => $articleCount,
