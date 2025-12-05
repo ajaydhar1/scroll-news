@@ -1,5 +1,7 @@
 <?php
 
+require_once('___modules.php');
+
 $sentiments     = sn_intel_sentiment_counts($pdo);
 $sentimentPosts = [
     'positive' => sn_intel_recent_sentiment_articles($pdo, 'positive', 3),
