@@ -139,7 +139,7 @@ try {
         // Normalize entities and places (can be array of strings or array of objects)
 
         // Only include entities that appear at least 3 times
-        $ENTITY_MIN_COUNT = 3;
+        $ENTITY_MIN_COUNT = 2;
 
         foreach ($entities_object as $ent) {
             // If it's not an array, it probably doesn't have a count field
@@ -256,7 +256,7 @@ try {
         return $trending;
     };
 
-    $intel_panel['entities'] = $buildTrending($entityCounts, $entityArticles, 8, 2, 2);
+    $intel_panel['entities'] = $buildTrending($entityCounts, $entityArticles, 2, 2, 2);
     $intel_panel['places']   = $buildTrending($placeCounts,  $placeArticles,  4, 2, 2, $placeLabelMap);
     $intel_panel['topics']   = $buildTrending($topicCounts,  $topicArticles,  4, 2, 2);
 
