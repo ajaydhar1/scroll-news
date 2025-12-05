@@ -189,6 +189,10 @@
                 box-shadow: none !important;
             }
 
+            section#contact {
+                background-size: cover;
+            }
+
         </style>
 
     </head>
