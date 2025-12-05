@@ -1651,9 +1651,11 @@ function search_nlp(PDO $db, string $q, array $opts = []): array
     }
 
     // --- Emotion filter ---
+    // emotional_reaction is an object with keys like "Wow", "Love", etc.
+    // We treat "emotion" as "this key exists in emotional_reaction"
     if ($emotion) {
-        // emotional_reaction is an object with keys like "Sad", "Love", etc.
-        $conds[] = "(nlp->'emotional_reaction' ? :emotion)";
+        // Look up that key; if it exists, ->> returns a value instead of NULL
+        $conds[] = "(nlp->'emotional_reaction'->>:emotion) IS NOT NULL";
         $params[':emotion'] = $emotion;
     }
 
