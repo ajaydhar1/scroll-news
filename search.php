@@ -310,7 +310,7 @@ function sn_format_pub_date(?string $raw): string {
 
                 <div class="row mb-4">
                     <div class="col-md-8 mx-auto">
-                        <form method="get" action="search.php" class="mb-4">
+                        <form id="sn-search-form" method="get" action="search.php" class="mb-4">
                             <div class="row g-2 align-items-center">
                                 <div class="col-md-6">
                                     <input
@@ -430,6 +430,42 @@ function sn_format_pub_date(?string $raw): string {
                 <?php else: ?>
                     <div class="row">
                         <div class="col-md-8 mx-auto">
+
+                            <?php
+                                // Build a simple "Active filters" string
+                                $filterChips = [];
+
+                                if ($mode === 'nlp') {
+                                    $filterChips[] = 'Smart (NLP)';
+                                } else {
+                                    $filterChips[] = 'Keyword';
+                                }
+
+                                if ($range === '24h') {
+                                    $filterChips[] = 'Last 24 hours';
+                                } elseif ($range === 'older') {
+                                    $filterChips[] = 'Older than 24 hours';
+                                } else {
+                                    $filterChips[] = 'All time';
+                                }
+
+                                if (!empty($sentiment)) {
+                                    $filterChips[] = 'Sentiment: ' . ucfirst($sentiment);
+                                }
+
+                                if (!empty($emotion)) {
+                                    $filterChips[] = 'Emotion: ' . $emotion;
+                                }
+                            ?>
+
+                            <?php if ($hasFilters && !empty($filterChips)): ?>
+                                <p class="small text-muted mb-1">
+                                    Active filters:
+                                    <?php echo htmlspecialchars(implode(' · ', $filterChips), ENT_QUOTES, 'UTF-8'); ?>
+                                </p>
+                            <?php endif; ?>
+
+
                             <h2 class="h6 mb-3">
                                 <?php if ($q !== ''): ?>
                                     Results for
@@ -777,13 +813,12 @@ function sn_format_pub_date(?string $raw): string {
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                var form    = document.querySelector('form[action="search.php"]');
+                var form    = document.getElementById('sn-search-form');
                 var overlay = document.getElementById('sn-search-loading');
 
                 if (!form || !overlay) return;
 
                 form.addEventListener('submit', function () {
-                    // Show the overlay when the search is submitted
                     overlay.classList.add('active');
                 });
             });
