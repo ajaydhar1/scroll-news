@@ -13,6 +13,37 @@ $intel_panel = [
     'topics'   => [],
 ];
 
+// Map sentiment label -> emoji
+function nlp_sentiment_emoji(?string $label): string
+{
+    if (!$label) return '';
+    switch (strtolower($label)) {
+        case 'positive': return '🙂';
+        case 'negative': return '☹️';
+        case 'neutral':  return '😐';
+        case 'mixed':    return '😶';
+        default:         return '😐';
+    }
+}
+
+// Get top N emotions above a minimum percentage
+function nlp_top_emotions(array $emotionalReaction, int $max = 2, float $minPercent = 20.0): array
+{
+    if (!$emotionalReaction) return [];
+
+    // Sort by intensity descending
+    arsort($emotionalReaction);
+
+    $out = [];
+    foreach ($emotionalReaction as $name => $pct) {
+        if (count($out) >= $max) break;
+        if ($pct < $minPercent) continue;
+        $out[] = $name;
+    }
+    return $out;
+}
+
+
 try {
     $db = _pdo_or_null();
     if (!$db) {
@@ -267,6 +298,46 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
     font-weight: 500;
 }
 
+
+
+.news-intel-panel .sentiment-emoji {
+    font-size: 0.9rem;
+    vertical-align: -1px;
+}
+
+.news-intel-panel .intel-article-item {
+    line-height: 1.35;
+}
+
+.news-intel-panel .nlp-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.news-intel-panel .nlp-chip {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 999px;
+    font-size: 11px;
+    background: rgba(0, 0, 0, 0.04);
+    color: #555;
+    white-space: nowrap;
+}
+
+.news-intel-panel .nlp-chip-topic {
+    /* slight green tint for topics */
+    background: rgba(0, 200, 140, 0.08);
+    color: #007558;
+}
+
+.news-intel-panel .nlp-chip-emotion {
+    /* slight purple/blue tint for emotions */
+    background: rgba(80, 90, 250, 0.08);
+    color: #334;
+}
+
+
 </style>
 
 <section class="page-section news-intel-panel bg-light">
@@ -321,21 +392,67 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
                                         </div>
                                         <ul class="list-unstyled mb-0 small intel-article-list">
                                             <?php foreach ($item['articles'] as $article): ?>
-                                                <li class="intel-article-item text-truncate">
-                                                    <?php
-                                                        $pub_ts = $article['pub_date'] ? strtotime($article['pub_date']) : '';
-                                                        $qs = http_build_query([
-                                                            'url'      => $article['url'],
-                                                            'category' => ucfirst($article['source_slug']),
-                                                            'pub_date' => $pub_ts,
-                                                            'db'       => 1,
-                                                        ]);
-                                                    ?>
-                                                    <a href="newsroom.php?<?= htmlspecialchars($qs) ?>" class="text-decoration-none">
-                                                        <?= htmlspecialchars($article['title']) ?>
+                                                <?php
+                                                // Decode NLP for this article
+                                                $nlp = json_decode($article['nlp'] ?? '{}', true) ?: [];
+
+                                                // Sentiment
+                                                $sentLabel = $nlp['sentiment']['label'] ?? null;
+                                                $sentEmoji = nlp_sentiment_emoji($sentLabel);
+
+                                                // Emotional reaction (Wow, Love, etc.)
+                                                $emotionsRaw  = $nlp['emotional_reaction'] ?? [];
+                                                $topEmotions  = is_array($emotionsRaw) ? nlp_top_emotions($emotionsRaw, 2, 20.0) : [];
+
+                                                // Topics: sort by score desc, take top 3 above your threshold
+                                                $topicsRaw = $nlp['topics'] ?? [];
+                                                $topicChips = [];
+                                                if (is_array($topicsRaw)) {
+                                                    arsort($topicsRaw); // highest score first
+                                                    foreach ($topicsRaw as $tName => $score) {
+                                                        if (count($topicChips) >= 3) break;
+                                                        if ((float)$score < 0.2) continue; // keep in sync with your TOPIC_MIN_SCORE
+                                                        $topicChips[] = $tName;
+                                                    }
+                                                }
+
+                                                // Build newsroom link with unix timestamp
+                                                $pub_ts = !empty($article['pub_date']) ? strtotime($article['pub_date']) : null;
+                                                $qs = http_build_query([
+                                                    'url'      => $article['url'],
+                                                    'category' => ucfirst($article['source_slug'] ?? ''),
+                                                    'pub_date' => $pub_ts,
+                                                    'db'       => 1,
+                                                ]);
+                                                ?>
+                                                <li class="intel-article-item mb-2">
+                                                    <a href="newsroom.php?<?= htmlspecialchars($qs) ?>"
+                                                       class="text-decoration-none d-block">
+                                                        <?php if ($sentEmoji): ?>
+                                                            <span class="sentiment-emoji me-1"><?= htmlspecialchars($sentEmoji) ?></span>
+                                                        <?php endif; ?>
+                                                        <span class="intel-article-title">
+                                                            <?= htmlspecialchars($article['title']) ?>
+                                                        </span>
+                                                        <?php if (!empty($article['source_slug'])): ?>
+                                                            <span class="text-muted"> · <?= htmlspecialchars($article['source_slug']) ?></span>
+                                                        <?php endif; ?>
                                                     </a>
-                                                    <?php if (!empty($article['source_slug'])): ?>
-                                                        <span class="text-muted"> · <?= htmlspecialchars($article['source_slug']) ?></span>
+
+                                                    <?php if ($topicChips || $topEmotions): ?>
+                                                        <div class="nlp-chip-row mt-1">
+                                                            <?php foreach ($topicChips as $topicName): ?>
+                                                                <span class="nlp-chip nlp-chip-topic">
+                                                                    <?= htmlspecialchars($topicName) ?>
+                                                                </span>
+                                                            <?php endforeach; ?>
+
+                                                            <?php foreach ($topEmotions as $emotionName): ?>
+                                                                <span class="nlp-chip nlp-chip-emotion">
+                                                                    <?= htmlspecialchars($emotionName) ?>
+                                                                </span>
+                                                            <?php endforeach; ?>
+                                                        </div>
                                                     <?php endif; ?>
                                                 </li>
                                             <?php endforeach; ?>
