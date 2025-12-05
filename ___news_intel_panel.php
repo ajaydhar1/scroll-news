@@ -106,7 +106,18 @@ try {
         $topics_array    = $nlp['topics']   ?? [];
 
         // Normalize entities and places (can be array of strings or array of objects)
+
+        // Only include entities that appear at least 3 times
+        $ENTITY_MIN_COUNT = 3;
+
         foreach ($entities_object as $ent) {
+            // If it's not an array, it probably doesn't have a count field
+            $count = isset($ent['count']) ? (int)$ent['count'] : 0;
+
+            if ($count < $ENTITY_MIN_COUNT) {
+                continue;
+            }
+
             $name = is_array($ent) ? ($ent['text'] ?? null) : $ent;
             if (!$name) continue;
 
@@ -141,25 +152,34 @@ try {
         // Only include topics where score >= 0.2
         $TOPIC_MIN_SCORE = 0.2;
 
-        foreach ($topics_array as $name => $score) {
-            if (!$name) continue;
+        // Only include articles with 6 or less topics
+        $TOPICS_MAX_COUNT = 6;
 
-            $scoreVal = (float)$score;
-            if ($scoreVal < $TOPIC_MIN_SCORE) {
-                continue; // skip weak topics
+        // Only include articles with 6 or fewer topics
+        if (is_array($topics_array) && count($topics_array) <= $TOPICS_MAX_COUNT) {
+            foreach ($topics_array as $name => $score) {
+                if (!$name) {
+                    continue;
+                }
+
+                $scoreVal = (float)$score;
+                if ($scoreVal < $TOPIC_MIN_SCORE) {
+                    continue; // skip weak topics
+                }
+
+                $key = mb_strtolower(trim($name));
+
+                // Each qualifying topic increments its count by 1…
+                $topicCounts[$key] = ($topicCounts[$key] ?? 0) + 1;
+
+                // …or if you want to weight by score, replace the line above with:
+                // $topicCounts[$key] = ($topicCounts[$key] ?? 0) + $scoreVal;
+
+                $topicArticles[$key][] = $row;
+                $uniqueTopicKeys[$key] = true;
             }
-
-            $key = mb_strtolower(trim($name));
-
-            // You can either treat each qualifying topic as 1…
-            $topicCounts[$key] = ($topicCounts[$key] ?? 0) + 1;
-
-            // …or weight by score, if you prefer:
-            // $topicCounts[$key] = ($topicCounts[$key] ?? 0) + $scoreVal;
-
-            $topicArticles[$key][] = $row;
-            $uniqueTopicKeys[$key] = true;
         }
+        // else: article has too many topics (7+), so we skip it entirely for trending topics
     }
 
     // Helper to build “trending” list from counts + article map
