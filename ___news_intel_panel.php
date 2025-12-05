@@ -36,6 +36,7 @@ try {
           AND pub_date >= :cutoff
           AND url IS NOT NULL
           AND title IS NOT NULL
+          AND LOWER(source_slug) != 'sports'
         ORDER BY pub_date DESC
         LIMIT 2000
     ";
