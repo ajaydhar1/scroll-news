@@ -127,6 +127,29 @@ try {
         ];
     }
 
+    function normalize_entity_name(string $name): array
+    {
+        $trimmed = trim($name);
+
+        // Lowercase + strip punctuation for matching
+        $clean = mb_strtolower(preg_replace('/[^\p{L}\p{N}\s]/u', '', $trimmed));
+
+        // Any variant that clearly refers to Donald Trump
+        // e.g. Trump, President Trump, Donald Trump, Donald J. Trump, Mr. Trump, etc.
+        if (preg_match('/\btrump\b/u', $clean)) {
+            return [
+                'key'   => 'donald-trump', // canonical key
+                'label' => 'Donald Trump', // how it shows up in the UI
+            ];
+        }
+
+        // Default: use the original text as label, and a lowered key
+        return [
+            'key'   => mb_strtolower($trimmed),
+            'label' => $trimmed,
+        ];
+    }
+
 
     foreach ($rows as $row) {
         $pubDate = $row['pub_date'];
@@ -144,7 +167,6 @@ try {
         foreach ($entities_object as $ent) {
             // If it's not an array, it probably doesn't have a count field
             $count = isset($ent['count']) ? (int)$ent['count'] : 0;
-
             if ($count < $ENTITY_MIN_COUNT) {
                 continue;
             }
@@ -156,9 +178,20 @@ try {
 
             $type = is_array($ent) ? ($ent['label'] ?? null) : $ent;
             if ($type == "PERSON") {
+
+                // Normalize Trump variants etc.
+                $norm  = normalize_entity_name($name);
+                $key   = $norm['key'];
+                $label = $norm['label'];
+
+                $entityLabelMap  = [];
                 $entityCounts[$key] = ($entityCounts[$key] ?? 0) + 1;
                 $entityArticles[$key][] = $row;
                 $uniqueEntityKeys[$key] = true;
+
+                if (!isset($entityLabelMap[$key])) {
+                    $entityLabelMap[$key] = $label;
+                }
             }
             else if ($type == "GPE" || $type == "LOC") {
 
@@ -256,7 +289,7 @@ try {
         return $trending;
     };
 
-    $intel_panel['entities'] = $buildTrending($entityCounts, $entityArticles, 2, 2, 2);
+    $intel_panel['entities'] = $buildTrending($entityCounts, $entityArticles, 2, 2, 2, $entityLabelMap);
     $intel_panel['places']   = $buildTrending($placeCounts,  $placeArticles,  4, 2, 2, $placeLabelMap);
     $intel_panel['topics']   = $buildTrending($topicCounts,  $topicArticles,  4, 2, 2);
 
