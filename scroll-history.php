@@ -608,14 +608,28 @@ foreach ($items as $item) {
                                                     <?php echo $pubTime; ?>
                                                 </div>
                                                 <div class="article-actions">
-                                                    <a class="btn btn-outline-primary btn-analyze"
-                                                       href="<?php echo $analyzeUrl; ?>">
+                                                    <a class="btn btn-outline-primary btn-analyze article-link"
+                                                       href="<?php echo $analyzeUrl; ?>"
+                                                       data-article-url="<?= htmlspecialchars($analyzeUrl) ?>"
+                                                       data-article-title="<?= htmlspecialchars($title) ?>"
+                                                       data-article-source="<?= htmlspecialchars(strtolower($category)) ?>"
+                                                       data-article-image="<?= htmlspecialchars($mediaUrl) ?>"
+                                                       data-article-pub-date="<?= htmlspecialchars($pubTime) ?>"
+                                                       data-article-kind="analyze"
+                                                       >
                                                         Analyze
                                                     </a>
-                                                    <a class="link-read"
+                                                    <a class="link-read article-link"
                                                        href="<?php echo htmlspecialchars($url); ?>"
                                                        target="_blank"
-                                                       rel="noopener noreferrer">
+                                                       rel="noopener noreferrer"
+                                                       data-article-url="<?= htmlspecialchars($url) ?>"
+                                                       data-article-title="<?= htmlspecialchars($title) ?>"
+                                                       data-article-source="<?= htmlspecialchars(strtolower($category)) ?>"
+                                                       data-article-image="<?= htmlspecialchars($mediaUrl) ?>"
+                                                       data-article-pub-date="<?= htmlspecialchars($pubTime) ?>"
+                                                       data-article-kind="external"
+                                                       >
                                                         <span>Read story</span>
                                                         <span class="icon">↗</span>
                                                     </a>
@@ -666,6 +680,8 @@ foreach ($items as $item) {
         <script src="assets/mail/contact_me.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+
+        <script src="js/sn_history.js"></script>
 
         <script>
             function goToAnalytics() {
