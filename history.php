@@ -81,18 +81,23 @@
         const parts = [];
 
         if (item.source) {
-            parts.push(item.source);
+          parts.push(item.source);
         }
 
         if (item.pub_date) {
-            parts.push('Published: ' + item.pub_date);
+          const dtPub = new Date(item.pub_date);
+          const nicePub = formatNiceDate(dtPub);
+          if (nicePub) {
+            parts.push('Published: ' + nicePub);
+          }
         }
 
         if (item.clicked_at) {
-            const dt = new Date(item.clicked_at);
-            if (!Number.isNaN(dt.getTime())) {
-                parts.push('Viewed: ' + dt.toLocaleString());
-            }
+          const dtClick = new Date(item.clicked_at);
+          const niceClick = formatNiceDate(dtClick);
+          if (niceClick) {
+            parts.push('Viewed: ' + niceClick);
+          }
         }
 
         if (item.kind === 'analyze') {
@@ -134,6 +139,30 @@
         container.appendChild(card);
     });
 })();
+
+function formatNiceDate(dt) {
+  if (!(dt instanceof Date) || Number.isNaN(dt.getTime())) {
+    return '';
+  }
+
+  const days   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  const dayName   = days[dt.getDay()];
+  const monthName = months[dt.getMonth()];
+  const dayNum    = String(dt.getDate()).padStart(2, '0');
+  const year      = dt.getFullYear();
+
+  let hours   = dt.getHours();
+  const mins  = String(dt.getMinutes()).padStart(2, '0');
+  const ampm  = hours >= 12 ? 'PM' : 'AM';
+  let hour12  = hours % 12;
+  if (hour12 === 0) hour12 = 12;
+
+  return `${dayName} ${monthName} ${dayNum} ${year} ${hour12}:${mins} ${ampm}`;
+}
+
+
 </script>
 
 </body>
