@@ -614,7 +614,7 @@ foreach ($items as $item) {
                                                        data-article-title="<?= htmlspecialchars($title) ?>"
                                                        data-article-source="<?= htmlspecialchars(strtolower($category)) ?>"
                                                        data-article-image="<?= htmlspecialchars($mediaUrl) ?>"
-                                                       data-article-pub-date="<?= htmlspecialchars($pubTime) ?>"
+                                                       data-article-pub-date="<?= htmlspecialchars($pubDt) ?>"
                                                        data-article-kind="analyze"
                                                        >
                                                         Analyze
@@ -627,7 +627,7 @@ foreach ($items as $item) {
                                                        data-article-title="<?= htmlspecialchars($title) ?>"
                                                        data-article-source="<?= htmlspecialchars(strtolower($category)) ?>"
                                                        data-article-image="<?= htmlspecialchars($mediaUrl) ?>"
-                                                       data-article-pub-date="<?= htmlspecialchars($pubTime) ?>"
+                                                       data-article-pub-date="<?= htmlspecialchars($pubDt) ?>"
                                                        data-article-kind="external"
                                                        >
                                                         <span>Read story</span>
