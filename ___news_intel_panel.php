@@ -529,7 +529,7 @@ footer .btn {
                 $items = $intel_panel[$key] ?? [];
                 if (!$items) continue;
             ?>
-                <div class="col-12 col-lg-4">
+                <div class="col-12 col-lg-4 mb-3">
                     <div class="card h-100 intel-card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-2">
