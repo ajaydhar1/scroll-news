@@ -33,17 +33,23 @@
 </div>
 
 <script>
-// If you put the logger snippet in a global JS, this should already exist:
-//   window.ScrollNewsHistory.getHistory()
 (function() {
+    const STORAGE_KEY = 'sn_article_history';
     const container = document.getElementById('history-list');
 
-    if (!window.ScrollNewsHistory || typeof ScrollNewsHistory.getHistory !== 'function') {
-        container.innerHTML = '<p class="text-muted">History is not available right now.</p>';
-        return;
+    function getHistoryDirect() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return [];
+            const parsed = JSON.parse(raw);
+            return Array.isArray(parsed) ? parsed : [];
+        } catch (e) {
+            console.warn('Error parsing history from localStorage', e);
+            return [];
+        }
     }
 
-    const history = ScrollNewsHistory.getHistory();
+    const history = getHistoryDirect();
 
     if (!history.length) {
         container.innerHTML = `
@@ -79,9 +85,6 @@
         }
 
         if (item.pub_date) {
-            // If pub_date is a unix timestamp string, you can convert it:
-            // const dt = new Date(parseInt(item.pub_date, 10) * 1000);
-            // parts.push('Published: ' + dt.toLocaleString());
             parts.push('Published: ' + item.pub_date);
         }
 
@@ -92,7 +95,6 @@
             }
         }
 
-        // Kind badge (Newsroom vs Publisher)
         if (item.kind === 'analyze') {
             parts.push('Type: Newsroom view');
         } else if (item.kind === 'external') {
@@ -105,57 +107,23 @@
         const actions = document.createElement('div');
         actions.className = 'd-flex flex-wrap gap-2 mt-2';
 
-        // Determine URLs
-        const analyzeUrl  = item.analyze_url  || (item.kind === 'analyze'  ? item.url : null);
-        const externalUrl = item.external_url || (item.kind === 'external' ? item.url : null);
-
-        // Primary button based on kind
-        if (item.kind === 'analyze' && analyzeUrl) {
+        // Basic behavior: just reopen the saved URL
+        if (item.url) {
             const btn = document.createElement('a');
             btn.className = 'btn btn-sm btn-primary';
-            btn.href = analyzeUrl;
-            btn.textContent = 'Open in Newsroom';
-            actions.appendChild(btn);
-        } else if (item.kind === 'external' && externalUrl) {
-            const btn = document.createElement('a');
-            btn.className = 'btn btn-sm btn-primary';
-            btn.href = externalUrl;
-            btn.target = '_blank';
-            btn.rel = 'noopener noreferrer';
-            btn.textContent = 'Open Publisher Site';
-            actions.appendChild(btn);
-        }
+            btn.href = item.url;
 
-        // Secondary buttons: show both if we have both URLs
-        if (analyzeUrl && externalUrl && analyzeUrl !== externalUrl) {
-            // Newsroom secondary
-            if (!(item.kind === 'analyze' && analyzeUrl === item.url)) {
-                const secNewsroom = document.createElement('a');
-                secNewsroom.className = 'btn btn-sm btn-outline-secondary';
-                secNewsroom.href = analyzeUrl;
-                secNewsroom.textContent = 'Newsroom';
-                actions.appendChild(secNewsroom);
+            if (item.kind === 'external') {
+                btn.target = '_blank';
+                btn.rel = 'noopener noreferrer';
+                btn.textContent = 'Open Publisher Site';
+            } else if (item.kind === 'analyze') {
+                btn.textContent = 'Open in Newsroom';
+            } else {
+                btn.textContent = 'Open link';
             }
 
-            // Publisher secondary
-            if (!(item.kind === 'external' && externalUrl === item.url)) {
-                const secPub = document.createElement('a');
-                secPub.className = 'btn btn-sm btn-outline-secondary';
-                secPub.href = externalUrl;
-                secPub.target = '_blank';
-                secPub.rel = 'noopener noreferrer';
-                secPub.textContent = 'Publisher';
-                actions.appendChild(secPub);
-            }
-        }
-
-        // Fallback: if we have no specific URLs, at least let them reopen item.url
-        if (!actions.childNodes.length && item.url) {
-            const fallbackBtn = document.createElement('a');
-            fallbackBtn.className = 'btn btn-sm btn-primary';
-            fallbackBtn.href = item.url;
-            fallbackBtn.textContent = 'Open link';
-            actions.appendChild(fallbackBtn);
+            actions.appendChild(btn);
         }
 
         body.appendChild(titleEl);
