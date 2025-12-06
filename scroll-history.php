@@ -537,6 +537,13 @@ foreach ($items as $item) {
                                             $pubDt    = $item['_dt'] ?? null;
                                             $ts       = $item['_ts'] ?? null;
                                             $pubTime  = $pubDt ? $pubDt->format('g:i A') : '';
+                                            // New: full datetime for data- attribute (ISO 8601)
+                                            $pubIso = '';
+                                            if ($pubDt instanceof DateTimeInterface) {
+                                                $pubIso = $pubDt->format(DATE_ATOM); // e.g. 2025-12-07T15:45:00+00:00
+                                            } elseif (!empty($ts)) {
+                                                $pubIso = gmdate(DATE_ATOM, (int)$ts);
+                                            }
                                             $category = $item['feed_name'] ?? '';
 
                                             $analyzeUrl = 'newsroom.php?url=' . urlencode($url)
@@ -614,7 +621,7 @@ foreach ($items as $item) {
                                                        data-article-title="<?= htmlspecialchars($title) ?>"
                                                        data-article-source="<?= htmlspecialchars(strtolower($category)) ?>"
                                                        data-article-image="<?= htmlspecialchars($mediaUrl) ?>"
-                                                       data-article-pub-date="<?= htmlspecialchars($pubDt) ?>"
+                                                       data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
                                                        data-article-kind="analyze"
                                                        >
                                                         Analyze
@@ -627,7 +634,7 @@ foreach ($items as $item) {
                                                        data-article-title="<?= htmlspecialchars($title) ?>"
                                                        data-article-source="<?= htmlspecialchars(strtolower($category)) ?>"
                                                        data-article-image="<?= htmlspecialchars($mediaUrl) ?>"
-                                                       data-article-pub-date="<?= htmlspecialchars($pubDt) ?>"
+                                                       data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
                                                        data-article-kind="external"
                                                        >
                                                         <span>Read story</span>
