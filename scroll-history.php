@@ -451,25 +451,19 @@ foreach ($items as $item) {
         <!-- Daily Scroll Archive -->
         <section class="page-section" id="services" style="padding: 4rem 0;">
             <div class="container-fluid px-3 px-md-4">
-
-                <div class="row align-items-center sn-archive-header mb-3">
-                    <div class="col-md-8 text-center text-md-start">
-                        <h2 class="section-heading text-uppercase mb-1">Daily Scroll Archive</h2>
-                        <p class="section-subheading mb-0">
+                <div class="row justify-content-center sn-archive-header">
+                    <div class="col-md-8 text-center">
+                        <h2 class="section-heading text-uppercase">Daily Scroll Archive</h2>
+                        <p class="section-subheading">
                             Flip through every article Scroll News has captured—one horizontal row of cards for each day.
                         </p>
                     </div>
-                    <div class="col-md-4 text-center text-md-end mt-3 mt-md-0">
-                        <a href="history.php" class="btn btn-sm btn-outline-light">
-                            Your Reading History
-                        </a>
-                    </div>
                 </div>
 
-                <p class="small text-muted mb-3">
-                  This is the global Scroll History of all cached articles.
-                  Want to see only what <em>you’ve</em> read?
-                  <a href="history.php">View your reading history →</a>
+                <p class="small text-muted text-center mb-3">
+                    This is the global Scroll History of all cached articles.
+                    Want to see only what <em>you’ve</em> read?
+                    <a href="history.php">View your reading history →</a>
                 </p>
 
                 <?php if (empty($days)): ?>
