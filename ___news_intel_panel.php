@@ -591,8 +591,24 @@ footer .btn {
                                                     }
                                                 }
 
-                                                // Build newsroom link with unix timestamp
-                                                $pub_ts = !empty($article['pub_date']) ? strtotime($article['pub_date']) : null;
+                                                $pubRaw = $article['pub_date'] ?? null;
+
+                                                $pubIso = '';
+                                                $pub_ts = null;
+
+                                                if (is_numeric($pubRaw)) {
+                                                    // DB stored as unix timestamp (e.g. INT)
+                                                    $pub_ts = (int) $pubRaw;
+                                                    $pubIso = gmdate(DATE_ATOM, $pub_ts);
+                                                } elseif (is_string($pubRaw) && $pubRaw !== '') {
+                                                    // DB stored as a datetime string (e.g. "2025-12-07 15:45:00")
+                                                    $tmp = strtotime($pubRaw);
+                                                    if ($tmp !== false) {
+                                                        $pub_ts = $tmp;
+                                                        $pubIso = gmdate(DATE_ATOM, $pub_ts);
+                                                    }
+                                                }
+
                                                 $qs = http_build_query([
                                                     'url'      => $article['url'],
                                                     'category' => ucfirst($article['source_slug'] ?? ''),
@@ -602,7 +618,14 @@ footer .btn {
                                                 ?>
                                                 <li class="intel-article-item mb-2">
                                                     <a href="newsroom.php?<?= htmlspecialchars($qs) ?>"
-                                                       class="text-decoration-none d-block" data-loading>
+                                                       class="text-decoration-none d-block"
+                                                       data-article-url="newsroom.php?<?= htmlspecialchars($qs) ?>"
+                                                       data-article-title="<?= htmlspecialchars($article['title']) ?>"
+                                                       data-article-source="<?= htmlspecialchars($article['source_slug']) ?>"
+                                                       data-article-image="<?= htmlspecialchars($article['media_url']) ?>"
+                                                       data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
+                                                       data-article-kind="analyze"
+                                                       data-loading>
                                                         <?php if ($sentEmoji): ?>
                                                             <span class="sentiment-emoji me-1"><?= htmlspecialchars($sentEmoji) ?></span>
                                                         <?php endif; ?>
@@ -646,12 +669,24 @@ footer .btn {
                                                             class="btn btn-outline-secondary"
                                                             target="_blank"
                                                             rel="noopener"
+                                                            data-article-url="<?php echo htmlspecialchars($article['url'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                            data-article-title="<?= htmlspecialchars($article['title']) ?>"
+                                                            data-article-source="<?= htmlspecialchars($article['source_slug']) ?>"
+                                                            data-article-image="<?= htmlspecialchars($article['media_url']) ?>"
+                                                            data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
+                                                            data-article-kind="external"
                                                         >
                                                             Read story
                                                         </a>
                                                         <a
                                                             href="newsroom.php?<?= htmlspecialchars($qs) ?>"
                                                             class="btn btn-green btn-gray-border"
+                                                            data-article-url="newsroom.php?<?= htmlspecialchars($qs) ?>"
+                                                            data-article-title="<?= htmlspecialchars($article['title']) ?>"
+                                                            data-article-source="<?= htmlspecialchars($article['source_slug']) ?>"
+                                                            data-article-image="<?= htmlspecialchars($article['media_url']) ?>"
+                                                            data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
+                                                            data-article-kind="analyze"
                                                             data-loading
                                                         >
                                                             Analyze

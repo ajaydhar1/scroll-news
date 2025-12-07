@@ -628,6 +628,7 @@ foreach ($items as $item) {
                                                        data-article-image="<?= htmlspecialchars($mediaUrl) ?>"
                                                        data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
                                                        data-article-kind="analyze"
+                                                       data-loading
                                                        >
                                                         Analyze
                                                     </a>
