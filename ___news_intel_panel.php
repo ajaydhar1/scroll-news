@@ -622,7 +622,7 @@ footer .btn {
                                                        data-article-url="newsroom.php?<?= htmlspecialchars($qs) ?>"
                                                        data-article-title="<?= htmlspecialchars($article['title']) ?>"
                                                        data-article-source="<?= htmlspecialchars($article['source_slug']) ?>"
-                                                       data-article-image="<?= htmlspecialchars($article['media_url']) ?>"
+                                                       data-article-image="<?= htmlspecialchars($article['image_url']) ?>"
                                                        data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
                                                        data-article-kind="analyze"
                                                        data-loading>
@@ -672,7 +672,7 @@ footer .btn {
                                                             data-article-url="<?php echo htmlspecialchars($article['url'], ENT_QUOTES, 'UTF-8'); ?>"
                                                             data-article-title="<?= htmlspecialchars($article['title']) ?>"
                                                             data-article-source="<?= htmlspecialchars($article['source_slug']) ?>"
-                                                            data-article-image="<?= htmlspecialchars($article['media_url']) ?>"
+                                                            data-article-image="<?= htmlspecialchars($article['image_url']) ?>"
                                                             data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
                                                             data-article-kind="external"
                                                         >
@@ -684,7 +684,7 @@ footer .btn {
                                                             data-article-url="newsroom.php?<?= htmlspecialchars($qs) ?>"
                                                             data-article-title="<?= htmlspecialchars($article['title']) ?>"
                                                             data-article-source="<?= htmlspecialchars($article['source_slug']) ?>"
-                                                            data-article-image="<?= htmlspecialchars($article['media_url']) ?>"
+                                                            data-article-image="<?= htmlspecialchars($article['image_url']) ?>"
                                                             data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
                                                             data-article-kind="analyze"
                                                             data-loading
