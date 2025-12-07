@@ -490,6 +490,24 @@ if (!$pdo) {
                                         $readUrl  = $row['url']         ?? '#';
                                         $pubHuman = sn_format_pub_date($row['pub_date'] ?? null);
 
+                                        $pubRaw = $article['pub_date'] ?? null;
+
+                                        $pubIso = '';
+                                        $pub_ts = null;
+
+                                        if (is_numeric($pubRaw)) {
+                                            // DB stored as unix timestamp (e.g. INT)
+                                            $pub_ts = (int) $pubRaw;
+                                            $pubIso = gmdate(DATE_ATOM, $pub_ts);
+                                        } elseif (is_string($pubRaw) && $pubRaw !== '') {
+                                            // DB stored as a datetime string (e.g. "2025-12-07 15:45:00")
+                                            $tmp = strtotime($pubRaw);
+                                            if ($tmp !== false) {
+                                                $pub_ts = $tmp;
+                                                $pubIso = gmdate(DATE_ATOM, $pub_ts);
+                                            }
+                                        }
+
                                         // In NLP mode, every row IS an analyzed article
                                         $hasNlp = true;
 
@@ -711,6 +729,12 @@ if (!$pdo) {
                                                     class="btn btn-outline-secondary"
                                                     target="_blank"
                                                     rel="noopener"
+                                                    data-article-url="<?php echo htmlspecialchars($readUrl, ENT_QUOTES, 'UTF-8'); ?>"
+                                                    data-article-title="<?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?>"
+                                                    data-article-source="<?= htmlspecialchars(strtolower($feedName ?? ''), ENT_QUOTES, 'UTF-8') ?>"
+                                                    data-article-image="<?= htmlspecialchars($row['media_url'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                                    data-article-pub-date="<?= htmlspecialchars($pubIso ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                                    data-article-kind="external"
                                                 >
                                                     Read story
                                                 </a>
@@ -770,6 +794,8 @@ if (!$pdo) {
         <script src="assets/mail/contact_me.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+
+        <script src="js/sn_history.js"></script>
 
         <script>
             (function(){

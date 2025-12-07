@@ -532,6 +532,8 @@ if (!empty($url)) {
         <!--<script src="js/newsroom/api_unified.js" defer></script>-->
         <script src="js/newsroom/init.js" defer></script>
 
+        <script src="js/sn_history.js"></script>
+
         <script>
 
             $(document).ready(function() {
@@ -914,6 +916,53 @@ if (!empty($url)) {
               style.textContent = '.btn-spinner{display:inline-block;width:1em;height:1em;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .6s linear infinite;vertical-align:-0.125em}';
               document.head.appendChild(style);
             })();
+        </script>
+
+        <script>
+          window.addEventListener('DOMContentLoaded', function () {
+            var metaEl = document.getElementById('history-meta');
+            if (!metaEl) return;
+
+            var historyItem = {
+              url: metaEl.dataset.articleUrl || window.location.href,
+              title: metaEl.dataset.articleTitle || document.title,
+              source: metaEl.dataset.articleSource || '',
+              image: metaEl.dataset.articleImage || '',
+              // ISO8601 date string, matches existing records
+              pub_date: metaEl.dataset.articlePubDate || null,
+              // kind should match your existing "external" / "analyze" values
+              kind: metaEl.dataset.articleKind || 'external',
+              // same key name as existing records
+              clicked_at: new Date().toISOString()
+            };
+
+            // Don't write totally empty junk
+            if (!historyItem.url) return;
+
+            var STORAGE_KEY = 'sn_article_history';
+
+            try {
+              var existing = localStorage.getItem(STORAGE_KEY);
+              var list = existing ? JSON.parse(existing) : [];
+
+              // De-dupe by URL
+              list = list.filter(function (item) {
+                return item.url !== historyItem.url;
+              });
+
+              // Add to front
+              list.unshift(historyItem);
+
+              // Optional: cap length
+              list = list.slice(0, 200);
+
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+            } catch (e) {
+              if (console && console.warn) {
+                console.warn('history save failed', e);
+              }
+            }
+          });
         </script>
 
     </body>
