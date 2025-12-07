@@ -622,12 +622,6 @@ foreach ($items as $item) {
                                                 <div class="article-actions">
                                                     <a class="btn btn-outline-primary btn-analyze article-link"
                                                        href="<?php echo $analyzeUrl; ?>"
-                                                       data-article-url="<?= htmlspecialchars($analyzeUrl) ?>"
-                                                       data-article-title="<?= htmlspecialchars($title) ?>"
-                                                       data-article-source="<?= htmlspecialchars(strtolower($category)) ?>"
-                                                       data-article-image="<?= htmlspecialchars($mediaUrl) ?>"
-                                                       data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
-                                                       data-article-kind="analyze"
                                                        data-loading
                                                        >
                                                         Analyze

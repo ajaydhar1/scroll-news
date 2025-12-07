@@ -619,12 +619,6 @@ footer .btn {
                                                 <li class="intel-article-item mb-2">
                                                     <a href="newsroom.php?<?= htmlspecialchars($qs) ?>"
                                                        class="text-decoration-none d-block"
-                                                       data-article-url="newsroom.php?<?= htmlspecialchars($qs) ?>"
-                                                       data-article-title="<?= htmlspecialchars($article['title']) ?>"
-                                                       data-article-source="<?= htmlspecialchars($article['source_slug']) ?>"
-                                                       data-article-image="<?= htmlspecialchars($article['image_url']) ?>"
-                                                       data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
-                                                       data-article-kind="analyze"
                                                        data-loading>
                                                         <?php if ($sentEmoji): ?>
                                                             <span class="sentiment-emoji me-1"><?= htmlspecialchars($sentEmoji) ?></span>
@@ -681,12 +675,6 @@ footer .btn {
                                                         <a
                                                             href="newsroom.php?<?= htmlspecialchars($qs) ?>"
                                                             class="btn btn-green btn-gray-border"
-                                                            data-article-url="newsroom.php?<?= htmlspecialchars($qs) ?>"
-                                                            data-article-title="<?= htmlspecialchars($article['title']) ?>"
-                                                            data-article-source="<?= htmlspecialchars($article['source_slug']) ?>"
-                                                            data-article-image="<?= htmlspecialchars($article['image_url']) ?>"
-                                                            data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
-                                                            data-article-kind="analyze"
                                                             data-loading
                                                         >
                                                             Analyze
