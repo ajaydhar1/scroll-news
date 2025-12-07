@@ -451,7 +451,7 @@ foreach ($items as $item) {
         <!-- Daily Scroll Archive -->
         <section class="page-section" id="services" style="padding: 4rem 0;">
             <div class="container-fluid px-3 px-md-4">
-                <div class="row justify-content-center sn-archive-header">
+                <div class="row justify-content-center sn-archive-header mb-3">
                     <div class="col-md-8 text-center">
                         <h2 class="section-heading text-uppercase">Daily Scroll Archive</h2>
                         <p class="section-subheading">
