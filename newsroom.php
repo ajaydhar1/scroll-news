@@ -487,8 +487,9 @@ if (!empty($url)) {
             data-article-url="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>"
             data-article-title="<?= htmlspecialchars($title) ?>"
             data-article-source="<?= htmlspecialchars($historySource) ?>"
-            data-article-image="<?= htmlspecialchars($image ?? '') ?>"
-            data-article-pub-date="<?= htmlspecialchars($pubIso) ?>">
+            data-article-image="<?= htmlspecialchars($img ?? '') ?>"
+            data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
+            data-article-kind="analyze">
         </span>
 
 
