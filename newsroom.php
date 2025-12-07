@@ -271,7 +271,7 @@ if (!empty($url)) {
                     ?>
                     <a class="btn btn-outline-secondary btn-lg btn-rectangle js-scroll-trigger d-block d-md-inline-block btn-width-mobile-75 w-md-auto mx-auto mb-3" target='_blank' href="<?php echo $url; ?>" style="color: white; border-color: transparent;"
                         data-article-url="<?= htmlspecialchars($url) ?>"
-                        data-article-title="<?= htmlspecialchars($title) ?>"
+                        data-article-title="<?= htmlspecialchars(clean_headline($title)) ?>"
                         data-article-source="<?= htmlspecialchars($historySource) ?>"
                         data-article-image="<?= htmlspecialchars($img ?? '') ?>"
                         data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
@@ -489,7 +489,7 @@ if (!empty($url)) {
         <span id="history-meta"
             class="d-none"
             data-article-url="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>"
-            data-article-title="<?= htmlspecialchars($title) ?>"
+            data-article-title="<?= htmlspecialchars(clean_headline($title)) ?>"
             data-article-source="<?= htmlspecialchars($historySource) ?>"
             data-article-image="<?= htmlspecialchars($img ?? '') ?>"
             data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
