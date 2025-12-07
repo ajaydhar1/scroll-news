@@ -79,41 +79,46 @@ class OpenGraph implements Iterator
    * @return OpenGraph
    */
 	static private function _parse($HTML) {
-		$old_libxml_error = libxml_use_internal_errors(true);
+    $old_libxml_error = libxml_use_internal_errors(true);
 
-		$doc = new DOMDocument();
-		$doc->loadHTML($HTML);
-		
-		libxml_use_internal_errors($old_libxml_error);
+    // Force UTF-8 handling so curly quotes and other multibyte chars don't get mangled
+    // Trick 1: prepend an XML encoding declaration
+    $htmlWithEncoding = '<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head><body>'
+        . $HTML
+        . '</body></html>';
 
-		$tags = $doc->getElementsByTagName('meta');
-		if (!$tags || $tags->length === 0) {
-			return false;
-		}
+    $doc = new DOMDocument('1.0', 'UTF-8');
+    $doc->loadHTML($htmlWithEncoding);
 
-		$page = new self();
+    libxml_use_internal_errors($old_libxml_error);
 
-		$nonOgDescription = null;
-		
-		foreach ($tags AS $tag) {
-			if ($tag->hasAttribute('property') &&
-			    strpos($tag->getAttribute('property'), 'og:') === 0) {
-				$key = strtr(substr($tag->getAttribute('property'), 3), '-', '_');
-				$page->_values[$key] = $tag->getAttribute('content');
-			}
-			
-			//Added this if loop to retrieve description values from sites like the New York Times who have malformed it. 
-			if ($tag ->hasAttribute('value') && $tag->hasAttribute('property') &&
-			    strpos($tag->getAttribute('property'), 'og:') === 0) {
-				$key = strtr(substr($tag->getAttribute('property'), 3), '-', '_');
-				$page->_values[$key] = $tag->getAttribute('value');
-			}
-			//Based on modifications at https://github.com/bashofmann/opengraph/blob/master/src/OpenGraph/OpenGraph.php
-			if ($tag->hasAttribute('name') && $tag->getAttribute('name') === 'description') {
-                $nonOgDescription = $tag->getAttribute('content');
-            }
-			
-		}
+    $tags = $doc->getElementsByTagName('meta');
+    if (!$tags || $tags->length === 0) {
+        return false;
+    }
+
+    $page = new self();
+    $nonOgDescription = null;
+
+    foreach ($tags as $tag) {
+        if ($tag->hasAttribute('property') &&
+            strpos($tag->getAttribute('property'), 'og:') === 0) {
+            $key   = strtr(substr($tag->getAttribute('property'), 3), '-', '_');
+            $value = $tag->getAttribute('content');
+            $page->_values[$key] = $value;
+        }
+
+        if ($tag->hasAttribute('value') && $tag->hasAttribute('property') &&
+            strpos($tag->getAttribute('property'), 'og:') === 0) {
+            $key   = strtr(substr($tag->getAttribute('property'), 3), '-', '_');
+            $value = $tag->getAttribute('value');
+            $page->_values[$key] = $value;
+        }
+
+        if ($tag->hasAttribute('name') && $tag->getAttribute('name') === 'description') {
+            $nonOgDescription = $tag->getAttribute('content');
+        }
+    }
 		//Based on modifications at https://github.com/bashofmann/opengraph/blob/master/src/OpenGraph/OpenGraph.php
 		if (!isset($page->_values['title'])) {
             $titles = $doc->getElementsByTagName('title');

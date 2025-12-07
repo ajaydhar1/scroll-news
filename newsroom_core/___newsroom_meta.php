@@ -28,9 +28,10 @@ function newsroom_extract_meta(string $url): array {
       if ($img) $meta['image'] = $img;
     } elseif ($k === 'title' && !empty($v)) {
       // Clean odd bytes you were stripping
-      $t = str_replace(["â","","�"], ["'","",""], $v);
-      $meta['title'] = $t;
-      $meta['youtube_search'] = $t;
+      //$t = str_replace(["â","","�"], ["'","",""], $v);
+      //$meta['title'] = $t;
+      $meta['title'] = $v;
+      $meta['youtube_search'] = $v;
     } elseif ($k === 'site_name' && !empty($v)) {
       // Prefer OG site_name as publisher if present
       $meta['publisher'] = $v;
@@ -62,15 +63,17 @@ function build_meta_from_db_article(string $url, array $article): array
 
     // Clean up the title a bit
     $rawTitle   = $article['title'] ?? '';
+    /*
     $cleanTitle = str_replace(
         ["â", "", "�"],
         ["'",   "",   ""],
         $rawTitle
     );
+    */
 
     // Build $meta from DB row
     return [
-        'title'           => $cleanTitle,
+        'title'           => $article['title'] ?? '',
         'description'     => $article['description']   ?? '',
         'image'           => $article['media_url']     ?? '',
         'publisher'       => $domain,

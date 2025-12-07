@@ -64,7 +64,6 @@ $pub            = $meta['publisher']      ?? '';
 $pub_link       = $meta['publisher_link'] ?? '';
 $youtube_search = $meta['youtube_search'] ?? $title;
 
-
 // Derive domain from the readUrl
 $domain = '';
 $favicon_url = null;
@@ -93,20 +92,20 @@ if (!empty($url)) {
         <meta name="description" content="Browse the Scroll News Newsroom to see AI-analyzed U.S. headlines, scroll through article screenshots, and quickly understand what’s happening right now." />
         <meta name="author" content="Scroll News" />
 
-        <title><?= clean_headline($title) ?></title>
+        <title><?= htmlspecialchars($title) ?></title>
 
         <!-- Favicon-->
         <link rel="icon" type="image/png" href="assets/img/play-green.png" />
 
         <!-- Twitter card and Open Graph-->
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Scroll News: [<?php echo $pub; ?> - <?= clean_headline($title) ?>]" />
-        <meta name="twitter:description" content="<?= clean_headline($title) ?>" />
+        <meta name="twitter:title" content="Scroll News: [<?php echo $pub; ?> - <?= htmlspecialchars($title) ?>]" />
+        <meta name="twitter:description" content="<?= htmlspecialchars($title) ?>" />
         <meta name="twitter:image" content="<?php echo $img; ?>" />
     
         <meta property="og:url" content="https://scrollnews.io" />
-        <meta property="og:title" content="Scroll News: [<?php echo $pub; ?> - <?= clean_headline($title) ?>]" />
-        <meta property="og:description" content="<?= clean_headline($title) ?>" />
+        <meta property="og:title" content="Scroll News: [<?php echo $pub; ?> - <?= htmlspecialchars($title) ?>]" />
+        <meta property="og:description" content="<?= htmlspecialchars($title) ?>" />
         <meta property="og:image" content="<?php echo $img; ?>" />    
         <meta property="og:site_name" content="Scroll News" />
 
@@ -224,7 +223,7 @@ if (!empty($url)) {
                 <?php endif; ?>
                 <div class="masthead-subheading mb-1"><a href="<?= $pub_link ?>" target="_blank" class="bright-link-hover"><?php echo $pub; ?></a></div>
                 <div class="mb-2 text-muted" style="font-size: 1.25rem;"><strong><?php if (isset($_GET['pub_date'])) { echo format_news_date($_GET["pub_date"]); } ?></strong></div>
-                <div class="masthead-heading text-uppercase"><?php echo clean_headline($title); ?></div>
+                <div class="masthead-heading text-uppercase"><?php echo htmlspecialchars($title); ?></div>
                 <div class="text-center">
                     <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black d-block d-md-inline-block btn-width-mobile-75 w-md-auto mx-auto mb-3 mr-md-2" href="#">Analytics</a>
                     <?php
@@ -271,7 +270,7 @@ if (!empty($url)) {
                     ?>
                     <a class="btn btn-outline-secondary btn-lg btn-rectangle js-scroll-trigger d-block d-md-inline-block btn-width-mobile-75 w-md-auto mx-auto mb-3" target='_blank' href="<?php echo $url; ?>" style="color: white; border-color: transparent;"
                         data-article-url="<?= htmlspecialchars($url) ?>"
-                        data-article-title="<?= htmlspecialchars(clean_headline($title)) ?>"
+                        data-article-title="<?= htmlspecialchars($title) ?>"
                         data-article-source="<?= htmlspecialchars($historySource) ?>"
                         data-article-image="<?= htmlspecialchars($img ?? '') ?>"
                         data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
@@ -489,7 +488,7 @@ if (!empty($url)) {
         <span id="history-meta"
             class="d-none"
             data-article-url="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>"
-            data-article-title="<?= htmlspecialchars(clean_headline($title)) ?>"
+            data-article-title="<?= htmlspecialchars($title) ?>"
             data-article-source="<?= htmlspecialchars($historySource) ?>"
             data-article-image="<?= htmlspecialchars($img ?? '') ?>"
             data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
