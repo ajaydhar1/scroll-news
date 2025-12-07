@@ -461,7 +461,6 @@ foreach ($items as $item) {
                 </div>
 
                 <p class="small text-muted text-center mb-3">
-                    This is the global Scroll History of all cached articles.
                     Want to see only what <em>you’ve</em> read?
                     <a href="history.php">View your reading history →</a>
                 </p>
