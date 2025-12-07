@@ -227,7 +227,56 @@ if (!empty($url)) {
                 <div class="masthead-heading text-uppercase"><?php echo clean_headline($title); ?></div>
                 <div class="text-center">
                     <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black d-block d-md-inline-block btn-width-mobile-75 w-md-auto mx-auto mb-3 mr-md-2" href="#">Analytics</a>
-                    <a class="btn btn-outline-secondary btn-lg btn-rectangle js-scroll-trigger d-block d-md-inline-block btn-width-mobile-75 w-md-auto mx-auto mb-3" target='_blank' href="<?php echo $url; ?>" style="color: white; border-color: transparent;">Go to Story</a>
+                    <?php
+                        // 1) Category from query string
+                        $category = isset($_GET['category']) ? trim($_GET['category']) : '';
+
+                        // 2) Normalize the source
+                        $historySource = '';
+
+                        // If category is present and not a tech flag like "db"
+                        if ($category !== '' && strtolower($category) !== 'db') {
+                            $historySource = strtolower($category);
+                        } elseif (!empty($source_slug)) {
+                            // fallback 2: DB/source slug if available
+                            $historySource = strtolower($source_slug);
+                        } elseif (!empty($url)) {
+                            // fallback 3: derive from article URL host
+                            $host = parse_url($url, PHP_URL_HOST) ?: '';
+                            if ($host) {
+                                $historySource = preg_replace('/^www\./i', '', strtolower($host));
+                            }
+                        }
+
+
+                        $pubDateParam = $_GET['pub_date'] ?? null;
+
+                        $pubIso   = '';
+                        $pub_ts   = null; // keep around if you want it for anything else later
+
+                        if (is_numeric($pubDateParam)) {
+                            // Expected case: unix timestamp from links
+                            $pub_ts = (int) $pubDateParam;
+                            if ($pub_ts > 0) {
+                                $pubIso = gmdate(DATE_ATOM, $pub_ts);
+                            }
+                        } elseif (is_string($pubDateParam) && $pubDateParam !== '') {
+                            // Just in case some link passes a date string instead
+                            $tmp = strtotime($pubDateParam);
+                            if ($tmp !== false) {
+                                $pub_ts = $tmp;
+                                $pubIso = gmdate(DATE_ATOM, $pub_ts);
+                            }
+                        }
+                    ?>
+                    <a class="btn btn-outline-secondary btn-lg btn-rectangle js-scroll-trigger d-block d-md-inline-block btn-width-mobile-75 w-md-auto mx-auto mb-3" target='_blank' href="<?php echo $url; ?>" style="color: white; border-color: transparent;"
+                        data-article-url="<?= htmlspecialchars($url) ?>"
+                        data-article-title="<?= htmlspecialchars($title) ?>"
+                        data-article-source="<?= htmlspecialchars($historySource) ?>"
+                        data-article-image="<?= htmlspecialchars($img ?? '') ?>"
+                        data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
+                        data-article-kind="external"
+                      >Go to Story</a>
                 </div>
             </div>
         </header>
@@ -436,51 +485,6 @@ if (!empty($url)) {
                 </div>
             </footer>
         </div>
-
-
-        <?php
-            // 1) Category from query string
-            $category = isset($_GET['category']) ? trim($_GET['category']) : '';
-
-            // 2) Normalize the source
-            $historySource = '';
-
-            // If category is present and not a tech flag like "db"
-            if ($category !== '' && strtolower($category) !== 'db') {
-                $historySource = strtolower($category);
-            } elseif (!empty($source_slug)) {
-                // fallback 2: DB/source slug if available
-                $historySource = strtolower($source_slug);
-            } elseif (!empty($url)) {
-                // fallback 3: derive from article URL host
-                $host = parse_url($url, PHP_URL_HOST) ?: '';
-                if ($host) {
-                    $historySource = preg_replace('/^www\./i', '', strtolower($host));
-                }
-            }
-
-
-            $pubDateParam = $_GET['pub_date'] ?? null;
-
-            $pubIso   = '';
-            $pub_ts   = null; // keep around if you want it for anything else later
-
-            if (is_numeric($pubDateParam)) {
-                // Expected case: unix timestamp from links
-                $pub_ts = (int) $pubDateParam;
-                if ($pub_ts > 0) {
-                    $pubIso = gmdate(DATE_ATOM, $pub_ts);
-                }
-            } elseif (is_string($pubDateParam) && $pubDateParam !== '') {
-                // Just in case some link passes a date string instead
-                $tmp = strtotime($pubDateParam);
-                if ($tmp !== false) {
-                    $pub_ts = $tmp;
-                    $pubIso = gmdate(DATE_ATOM, $pub_ts);
-                }
-            }
-        ?>
-
 
         <span id="history-meta"
             class="d-none"
