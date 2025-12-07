@@ -597,6 +597,9 @@
         <script type="text/javascript" src="js/intro.js"></script>
 
         <script type="text/javascript" src="js/lightbox.js"></script>
+
+        <script src="js/sn_history.js"></script>
+
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
