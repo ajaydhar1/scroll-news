@@ -307,7 +307,7 @@ span#hash-icons {
 
 
 .scroll-history-card {
-    position: relative;
+    /* position: relative; */
     /* your existing card styles */
 }
 
@@ -336,13 +336,13 @@ span#hash-icons {
 
 /* Make THIS one really visible */
 .scroll-badge-high-signal-publisher {
-    position: absolute;
+    /* position: absolute; */
     top: 0.5rem;
     right: 0.6rem;
 
-    background: rgba(0, 200, 255, 0.12);       /* soft fill */
+    background: rgb(0 200 255);                /* soft fill */
     border: 1px solid rgba(0, 200, 255, 0.9);  /* strong edge */
-    color: rgba(220, 245, 255, 0.95);
+    color: rgb(220 245 255);
     font-weight: 600;
 
     display: inline-flex;
