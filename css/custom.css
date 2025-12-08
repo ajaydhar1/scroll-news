@@ -274,3 +274,31 @@ span#hash-icons {
         0 0 18px rgba(25, 135, 84, 0.85) !important;  /* inner glow */
     /* animation: introPlayPulse 1.5s ease-in-out infinite; */
 }
+
+
+.scroll-article-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.scroll-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.15rem 0.45rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    /* or use your brand accent color lightly */
+}
+
+/* Specific flavors if you want subtle differences */
+.scroll-badge-deep-dive {
+    /* maybe slightly stronger border or background */
+}
+
+.scroll-badge-high-signal-publisher {
+    /* maybe a little icon via ::before later */
+}

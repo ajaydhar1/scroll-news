@@ -498,6 +498,8 @@ foreach ($items as $item) {
                         </div>
                     </div>
 
+                    <?php require_once 'config_interest.php'; ?>
+
                     <?php $rowIndex = 0; ?>
                     <?php foreach ($days as $dateKey => $articles): ?>
                         <?php
@@ -573,6 +575,9 @@ foreach ($items as $item) {
                                                     $domain = $host;
                                                 }
                                             }
+
+                                            // $article is your article row
+                                            $badges = scroll_get_article_badges($item);
                                         ?>
                                         <article
                                             class="article-card sn-history-item"
@@ -616,6 +621,16 @@ foreach ($items as $item) {
                                                 <h4 class="article-title mb-0">
                                                     <?php echo htmlspecialchars($title); ?>
                                                 </h4>
+
+                                                <?php if (!empty($badges)) : ?>
+                                                    <div class="scroll-article-badges">
+                                                        <?php foreach ($badges as $badge): ?>
+                                                            <span class="scroll-badge scroll-badge-<?php echo htmlspecialchars($badge['slug']); ?>">
+                                                                <?php echo htmlspecialchars($badge['label']); ?>
+                                                            </span>
+                                                        <?php endforeach; ?>
+                                                    </div>
+                                                <?php endif; ?>
                                                 <div class="article-meta">
                                                     <?php echo $pubTime; ?>
                                                 </div>
