@@ -23,6 +23,9 @@ $emotion         = $_GET['emotion']    ?? null;              // e.g. 'Sad', 'Lov
 $sentiment       = $_GET['sentiment']  ?? null;              // e.g. 'positive', 'negative'
 $range           = $_GET['range']      ?? 'all';             // '24h', 'older', 'all'
 
+$deepDiveActive    = !empty($_GET['deep_dive']);
+$highSignalActive  = !empty($_GET['high_signal']);
+
 // Decide if *any* filters are active (even without q)
 $hasFilters =
     ($q !== '') ||
@@ -236,6 +239,12 @@ if (!$pdo) {
                 gap: 0;
             }
 
+            .scroll-badge-active {
+                filter: brightness(1.05);
+                box-shadow: 0 0 0 1px rgba(0,0,0,0.12);
+            }
+
+
         </style>
     </head>
     <body id="page-top" class="bg-dark">
@@ -388,6 +397,32 @@ if (!$pdo) {
                                         Search
                                     </button>
 
+                                    <div class="scroll-article-badges">
+                                        <button
+                                            type="button"
+                                            class="scroll-badge scroll-badge-deep-dive <?php echo $deepDiveActive ? 'scroll-badge-active' : ''; ?>"
+                                            onclick="
+                                                const input = document.getElementById('deep-dive-input');
+                                                input.value = (input.value === '1') ? '' : '1';
+                                                this.form.submit();
+                                            "
+                                        >
+                                            DEEP DIVE
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            class="scroll-badge scroll-badge-high-signal-publisher <?php echo $highSignalActive ? 'scroll-badge-active' : ''; ?>"
+                                            onclick="
+                                                const input = document.getElementById('high-signal-input');
+                                                input.value = (input.value === '1') ? '' : '1';
+                                                this.form.submit();
+                                            "
+                                        >
+                                            HIGH-SIGNAL PUBLISHER
+                                        </button>
+                                    </div>
+
                                     <!-- Hidden mode value (single source of truth) -->
                                     <input
                                         type="hidden"
@@ -396,14 +431,8 @@ if (!$pdo) {
                                         value="<?php echo htmlspecialchars($mode, ENT_QUOTES, 'UTF-8'); ?>"
                                     >
 
-                                    <div class="scroll-article-badges">
-                                        <a class="scroll-badge scroll-badge-deep-dive" href="/search.php?deep_dive=1" title="Articles with rich entity density (detailed topics).">
-                                            Deep dive
-                                        </a>
-                                        <a class="scroll-badge scroll-badge-high-signal-publisher" href="/search.php?high_signal=1" title="Top-tier outlets with high editorial signal.">
-                                            High-Signal Publisher
-                                        </a>
-                                    </div>
+                                    <input type="hidden" name="deep_dive"   id="deep-dive-input"   value="<?php echo $deepDiveActive ? '1' : ''; ?>">
+                                    <input type="hidden" name="high_signal" id="high-signal-input" value="<?php echo $highSignalActive ? '1' : ''; ?>">
 
                                 </div>
                             </div>
