@@ -397,10 +397,10 @@ if (!$pdo) {
                                     >
 
                                     <div class="scroll-article-badges">
-                                        <a class="scroll-badge scroll-badge-deep-dive" href="/search.php?deep_dive=1">
+                                        <a class="scroll-badge scroll-badge-deep-dive" href="/search.php?deep_dive=1" title="Articles with rich entity density (detailed topics).">
                                             Deep dive
                                         </a>
-                                        <a class="scroll-badge scroll-badge-high-signal-publisher" href="/search.php?high_signal=1">
+                                        <a class="scroll-badge scroll-badge-high-signal-publisher" href="/search.php?high_signal=1" title="Top-tier outlets with high editorial signal.">
                                             High-Signal Publisher
                                         </a>
                                     </div>
@@ -728,7 +728,7 @@ if (!$pdo) {
                                                             }
                                                         ?>
                                                         <a class="scroll-badge scroll-badge-<?php echo htmlspecialchars($slug); ?>"
-                                                           href="<?php echo htmlspecialchars($badgeHref); ?>">
+                                                           href="<?php echo htmlspecialchars($badgeHref); ?>" title="<?php echo htmlspecialchars($badge['tooltip']); ?>">
                                                             <?php echo htmlspecialchars($badge['label']); ?>
                                                         </a>
                                                     <?php endforeach; ?>

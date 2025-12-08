@@ -631,12 +631,30 @@ foreach ($items as $item) {
                                                 <?php if (!empty($badges)) : ?>
                                                     <div class="scroll-article-badges">
                                                         <?php foreach ($badges as $badge): ?>
-                                                            <a class="scroll-badge scroll-badge-<?php echo htmlspecialchars($badge['slug']); ?>" href="<?php echo htmlspecialchars($highSignalSearchUrl); ?>">
+                                                            <?php
+                                                                $slug = $badge['slug'] ?? '';
+
+                                                                // Default links (you can define these earlier in the file too)
+                                                                $highSignalSearchUrl = '/search.php?high_signal=1'; // maybe add &mode=nlp later
+                                                                $deepDiveSearchUrl   = '/search.php?deep_dive=1';
+
+                                                                // Decide href per badge
+                                                                $badgeHref = $highSignalSearchUrl; // sensible default
+
+                                                                if ($slug === 'deep-dive') {
+                                                                    $badgeHref = $deepDiveSearchUrl;
+                                                                } elseif ($slug === 'high-signal-publisher') {
+                                                                    $badgeHref = $highSignalSearchUrl;
+                                                                }
+                                                            ?>
+                                                            <a class="scroll-badge scroll-badge-<?php echo htmlspecialchars($slug); ?>"
+                                                               href="<?php echo htmlspecialchars($badgeHref); ?>" title="<?php echo htmlspecialchars($badge['tooltip']); ?>">
                                                                 <?php echo htmlspecialchars($badge['label']); ?>
                                                             </a>
                                                         <?php endforeach; ?>
                                                     </div>
                                                 <?php endif; ?>
+
                                                 <div class="article-meta">
                                                     <?php echo $pubTime; ?>
                                                 </div>

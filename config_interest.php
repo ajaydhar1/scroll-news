@@ -100,6 +100,7 @@ function scroll_get_article_badges(array $article): array {
         $badges[] = [
             'slug'  => 'deep-dive',
             'label' => 'Deep dive',
+            'tooltip' => 'Articles with rich entity density (detailed topics).',
         ];
     }
 
@@ -107,6 +108,7 @@ function scroll_get_article_badges(array $article): array {
         $badges[] = [
             'slug'  => 'high-signal-publisher',
             'label' => 'High-Signal Publisher',
+            'tooltip' => 'Top-tier outlets with high editorial signal.',
         ];
     }
 
