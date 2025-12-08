@@ -74,11 +74,7 @@ function scroll_is_high_signal_publisher(array $article): bool {
 
     $domain = null;
 
-    if (!empty($article['domain'])) {
-        $domain = strtolower(preg_replace('/^www\./i', '', $article['domain']));
-    } elseif (!empty($article['source_slug'])) {
-        $domain = strtolower(preg_replace('/^www\./i', '', $article['source_slug']));
-    } elseif (!empty($article['url'])) {
+    if (!empty($article['url'])) {
         $domain = scroll_normalize_domain($article['url']);
     } elseif (!empty($article['link'])) { // <--- add this
         $domain = scroll_normalize_domain($article['link']);
