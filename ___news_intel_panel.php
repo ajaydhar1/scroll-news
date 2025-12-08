@@ -2,6 +2,8 @@
 // ___news_intel_panel.php
 // News Intelligence Panel: trending entities / places / topics for last 24h
 
+require_once 'config_interest.php';
+
 if (!function_exists('_pdo_or_null')) {
     require_once __DIR__ . '/___modules.php';
 }
@@ -615,6 +617,20 @@ footer .btn {
                                                     'pub_date' => $pub_ts,
                                                     'db'       => 1,
                                                 ]);
+
+                                                // $article is your article row
+                                                $badges = scroll_get_article_badges($article);
+
+                                                $card_classes = ' scroll-history-card';
+
+                                                if (scroll_is_high_signal_publisher($article)) {
+                                                    $card_classes .= ' scroll-card-high-signal';
+                                                }
+
+                                                if (scroll_is_deep_dive($article)) {
+                                                    $card_classes .= ' scroll-card-deep-dive';
+                                                }
+
                                                 ?>
                                                 <li class="intel-article-item mb-2">
                                                     <a href="newsroom.php?<?= htmlspecialchars($qs) ?>"
@@ -630,6 +646,33 @@ footer .btn {
                                                             <span class="text-muted"> · <?= htmlspecialchars($article['source_slug']) ?></span>
                                                         <?php endif; ?>
                                                     </a>
+
+                                                    <?php if (!empty($badges)) : ?>
+                                                        <div class="scroll-article-badges">
+                                                            <?php foreach ($badges as $badge): ?>
+                                                                <?php
+                                                                    $slug = $badge['slug'] ?? '';
+
+                                                                    // Default links (you can define these earlier in the file too)
+                                                                    $highSignalSearchUrl = '/search.php?high_signal=1'; // maybe add &mode=nlp later
+                                                                    $deepDiveSearchUrl   = '/search.php?deep_dive=1';
+
+                                                                    // Decide href per badge
+                                                                    $badgeHref = $highSignalSearchUrl; // sensible default
+
+                                                                    if ($slug === 'deep-dive') {
+                                                                        $badgeHref = $deepDiveSearchUrl;
+                                                                    } elseif ($slug === 'high-signal-publisher') {
+                                                                        $badgeHref = $highSignalSearchUrl;
+                                                                    }
+                                                                ?>
+                                                                <a class="scroll-badge scroll-badge-<?php echo htmlspecialchars($slug); ?>"
+                                                                   href="<?php echo htmlspecialchars($badgeHref); ?>" title="<?php echo htmlspecialchars($badge['tooltip']); ?>">
+                                                                    <?php echo htmlspecialchars($badge['label']); ?>
+                                                                </a>
+                                                            <?php endforeach; ?>
+                                                        </div>
+                                                    <?php endif; ?>
 
                                                     <?php if ($entityChips || $topicChips): ?>
                                                         <div class="nlp-chip-row mt-1">
