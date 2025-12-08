@@ -231,6 +231,11 @@ if (!$pdo) {
                 height: 3rem;
             }
 
+
+            .scroll-article-badges {
+                gap: 0;
+            }
+
         </style>
     </head>
     <body id="page-top" class="bg-dark">
