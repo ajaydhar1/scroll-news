@@ -578,9 +578,15 @@ foreach ($items as $item) {
 
                                             // $article is your article row
                                             $badges = scroll_get_article_badges($item);
+
+                                            $card_classes = ' scroll-history-card';
+
+                                            if (scroll_is_high_signal_publisher($item)) {
+                                                $card_classes .= ' scroll-card-high-signal';
+                                            }
                                         ?>
                                         <article
-                                            class="article-card sn-history-item"
+                                            class="article-card sn-history-item<?php echo $card_classes; ?>"
                                             data-title="<?php echo htmlspecialchars($title); ?>"
                                             data-domain="<?php echo htmlspecialchars($domain); ?>"
                                             data-timestamp="<?php echo $ts ? (int)$ts : ''; ?>"

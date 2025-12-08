@@ -276,6 +276,8 @@ span#hash-icons {
 }
 
 
+
+
 .scroll-article-badges {
     display: flex;
     flex-wrap: wrap;
@@ -301,4 +303,55 @@ span#hash-icons {
 
 .scroll-badge-high-signal-publisher {
     /* maybe a little icon via ::before later */
+}
+
+
+.scroll-history-card {
+    position: relative;
+    /* your existing card styles */
+}
+
+.scroll-card-high-signal {
+    border: 1px solid rgba(0, 200, 255, 0.7);  /* use your accent color */
+    box-shadow: 0 0 0 1px rgba(0, 200, 255, 0.3);
+}
+
+/* Badge container */
+.scroll-article-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-bottom: 0.35rem;
+}
+
+/* Base badge */
+.scroll-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+}
+
+/* Make THIS one really visible */
+.scroll-badge-high-signal-publisher {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.6rem;
+
+    background: rgba(0, 200, 255, 0.12);       /* soft fill */
+    border: 1px solid rgba(0, 200, 255, 0.9);  /* strong edge */
+    color: rgba(220, 245, 255, 0.95);
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* Little icon to catch the eye */
+.scroll-badge-high-signal-publisher::before {
+    content: "★";
+    font-size: 0.8rem;
+    line-height: 1;
 }
