@@ -1,5 +1,7 @@
 <?php
 
+require_once 'config_interest.php';
+
 date_default_timezone_set('America/New_York');
 
 $filter_out = array("usatoday", "independent.co.uk", "nytimes", "9to5google", "tomsguide", "thehockeynews", "cbssports", "businessinsider", "abc7chicago", "livescience", "wlns", "myedmondsnews", "reuters", "sportingnews", "bloomberg", "wane.com", "politico", "wvpublic", "cnbc", "mercurynews", "utahstories", "imdb", "9to5mac", "mashable", "stpetecatalyst", "kark", "journalism.cuny.edu", "yahoo.com", "startribune", "wgntv", "msnbc", "kosu.org", "wpri.com", "theberkshireedge.com", "kron4.com", "nymag.com");
@@ -1666,21 +1668,23 @@ function search_nlp(PDO $db, string $q, array $opts = []): array
         $params[':emotion'] = $emotion;
     }
 
-    // --- High-signal publishers filter ---
+        // --- High-signal publishers filter (by URL substring) ---
     if ($highSignal && !empty($SCROLL_HIGH_SIGNAL_PUBLISHERS)) {
         $domains      = array_keys($SCROLL_HIGH_SIGNAL_PUBLISHERS);
-        $placeholders = [];
+        $domainConds  = [];
 
         foreach ($domains as $i => $domain) {
             // normalize: strip www and lowercase
             $domain = strtolower(preg_replace('/^www\./i', '', $domain));
             $ph = ":hs{$i}";
-            $placeholders[]   = $ph;
-            $params[$ph]      = $domain;
+            // match domain as substring of the URL
+            $domainConds[] = "LOWER(url) LIKE $ph";
+            $params[$ph]   = '%' . $domain . '%';
         }
 
-        // source_slug is assumed to be domain-like (cnn.com, nbcnews.com, etc.)
-        $conds[] = "LOWER(REGEXP_REPLACE(source_slug, '^www\\.', '')) IN (" . implode(',', $placeholders) . ")";
+        if (!empty($domainConds)) {
+            $conds[] = '(' . implode(' OR ', $domainConds) . ')';
+        }
     }
 
     // --- Text / topic / keyword / entity search ---
@@ -1740,7 +1744,7 @@ function search_classic(PDO $db, string $q, array $opts = []): array
     $conds  = [];
     $params = [];
 
-    // Text condition (same as your current query)
+    // Text condition
     if ($q !== '') {
         $conds[] = "(
             ri.title ILIKE :q
@@ -1756,25 +1760,24 @@ function search_classic(PDO $db, string $q, array $opts = []): array
         $conds[] = "ri.pub_date < NOW() - INTERVAL '24 hours'";
     }
 
-    // High-signal publishers filter (based on articles.source_slug)
+    // High-signal publishers filter (based on ri.link URL substring)
     if ($highSignal && !empty($SCROLL_HIGH_SIGNAL_PUBLISHERS)) {
         $domains      = array_keys($SCROLL_HIGH_SIGNAL_PUBLISHERS);
-        $placeholders = [];
+        $domainConds  = [];
 
         foreach ($domains as $i => $domain) {
             // normalize: strip www and lowercase
             $domain = strtolower(preg_replace('/^www\./i', '', $domain));
             $ph = ":hs{$i}";
-            $placeholders[]   = $ph;
-            $params[$ph]      = $domain;
+            $domainConds[] = "LOWER(ri.link) LIKE $ph";
+            $params[$ph]   = '%' . $domain . '%';
         }
 
-        // Filter by the joined article's source_slug.
-        // Rows without a matching article/source_slug won't be high-signal.
-        $conds[] = "LOWER(REGEXP_REPLACE(a.source_slug, '^www\\.', '')) IN (" . implode(',', $placeholders) . ")";
+        if (!empty($domainConds)) {
+            $conds[] = '(' . implode(' OR ', $domainConds) . ')';
+        }
     }
 
-    // We know at this point we have at least text or high-signal or range
     $where = $conds ? ('WHERE ' . implode(' AND ', $conds)) : '';
 
     $sql = "
@@ -1786,8 +1789,7 @@ function search_classic(PDO $db, string $q, array $opts = []): array
             ri.media_url,
             f.name AS feed_name,
             a.id  AS article_id,
-            a.nlp,
-            a.source_slug
+            a.nlp
         FROM rss_items ri
         JOIN feeds f
           ON f.id = ri.feed_id
