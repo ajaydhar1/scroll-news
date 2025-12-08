@@ -11,6 +11,7 @@ $SCROLL_HIGH_SIGNAL_PUBLISHERS = [
 ];
 
 $highSignalSearchUrl = '/search.php?high_signal=1';
+$deepDiveSearchUrl = '/search.php?deep_dive=1';
 
 /**
  * Normalize a URL to a bare domain (no scheme, no www).
@@ -32,15 +33,33 @@ function scroll_normalize_domain(?string $url): ?string {
  * @param array $article  Article row with either 'entity_count'
  *                        or 'entities_json' you can derive from.
  */
-function scroll_is_deep_dive(array $article): bool {
-    // Prefer precomputed entity_count if you have it
+function scroll_is_deep_dive(array $article): bool
+{
+    // 1) If you *ever* add a denormalized entity_count column, this still works.
     if (isset($article['entity_count'])) {
         $count = (int)$article['entity_count'];
-    } elseif (!empty($article['entities_json'])) {
-        // example fallback: decode and count all entities
+    }
+    // 2) Primary path: decode $article['nlp'] and sum entity "count" values
+    elseif (!empty($article['nlp'])) {
+        $count = 0;
+
+        $nlp = json_decode($article['nlp'], true);
+
+        if (is_array($nlp) && !empty($nlp['entities']) && is_array($nlp['entities'])) {
+            foreach ($nlp['entities'] as $ent) {
+                // each entity entry looks like:
+                // { "text": "...", "count": 2, "label": "PERSON", ... }
+                $entCount = isset($ent['count']) ? (int)$ent['count'] : 1;
+                $count += max($entCount, 0);
+            }
+        }
+    }
+    // 3) Optional legacy fallback if you ever have a flat entities_json
+    elseif (!empty($article['entities_json'])) {
         $entities = json_decode($article['entities_json'], true);
-        $count = is_array($entities) ? count($entities) : 0;
-    } else {
+        $count    = is_array($entities) ? count($entities) : 0;
+    }
+    else {
         $count = 0;
     }
 

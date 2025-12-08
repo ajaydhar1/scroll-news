@@ -401,6 +401,8 @@ if (!$pdo) {
                     </div>
                 </div>
 
+                <?php require_once 'config_interest.php'; ?>
+
                 <?php if ($errorMsg): ?>
                     <div class="row">
                         <div class="col-md-8 mx-auto">
@@ -562,6 +564,19 @@ if (!$pdo) {
                                         }
                                     }
 
+                                    // $article is your article row
+                                    $badges = scroll_get_article_badges($row);
+
+                                    $card_classes = ' scroll-history-card';
+
+                                    if (scroll_is_high_signal_publisher($row)) {
+                                        $card_classes .= ' scroll-card-high-signal';
+                                    }
+
+                                    if (scroll_is_deep_dive($item)) {
+                                        $card_classes .= ' scroll-card-deep-dive';
+                                    }
+
                                     /*
                                      *
                                      *  Prepare NLP data for analyzed articles
@@ -646,7 +661,7 @@ if (!$pdo) {
 
                                     ?>
 
-                                    <div class="card mb-3 shadow-sm border-0 sn-search-card">
+                                    <div class="card mb-3 shadow-sm border-0 sn-search-card<?php echo $card_classes; ?>">
                                         <div class="card-body">
                                             <h5 class="card-title mb-1">
                                                 <?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?>
@@ -677,6 +692,33 @@ if (!$pdo) {
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
+
+                                            <?php if (!empty($badges)) : ?>
+                                                <div class="scroll-article-badges">
+                                                    <?php foreach ($badges as $badge): ?>
+                                                        <?php
+                                                            $slug = $badge['slug'] ?? '';
+
+                                                            // Default links (you can define these earlier in the file too)
+                                                            $highSignalSearchUrl = '/search.php?high_signal=1'; // maybe add &mode=nlp later
+                                                            $deepDiveSearchUrl   = '/search.php?deep_dive=1';
+
+                                                            // Decide href per badge
+                                                            $badgeHref = $highSignalSearchUrl; // sensible default
+
+                                                            if ($slug === 'deep-dive') {
+                                                                $badgeHref = $deepDiveSearchUrl;
+                                                            } elseif ($slug === 'high-signal-publisher') {
+                                                                $badgeHref = $highSignalSearchUrl;
+                                                            }
+                                                        ?>
+                                                        <a class="scroll-badge scroll-badge-<?php echo htmlspecialchars($slug); ?>"
+                                                           href="<?php echo htmlspecialchars($badgeHref); ?>">
+                                                            <?php echo htmlspecialchars($badge['label']); ?>
+                                                        </a>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            <?php endif; ?>
 
                                             <?php if (!empty($hashtags)): ?>
                                                 <div class="sn-hashtags mt-1">

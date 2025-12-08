@@ -353,3 +353,19 @@ span#hash-icons {
 a.scroll-badge-high-signal-publisher:hover {
     color: rgb(220 245 255);
 }
+
+/* Deep Dive badge – inline, more analytical vibe */
+.scroll-badge-deep-dive {
+    background: rgba(120, 80, 255, 0.1);          /* soft indigo wash */
+    border: 1px solid rgba(120, 80, 255, 0.7);    /* defined edge */
+    color: rgb(45, 30, 120);                      /* readable text */
+    font-weight: 600;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+a.scroll-badge-deep-dive:hover {
+    color: rgb(30, 15, 100);
+}
