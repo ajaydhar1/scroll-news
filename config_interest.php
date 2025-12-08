@@ -35,15 +35,24 @@ function scroll_normalize_domain(?string $url): ?string {
  */
 function scroll_is_deep_dive(array $article): bool
 {
-    // 1) If you *ever* add a denormalized entity_count column, this still works.
+    // 1) If you ever add a denormalized entity_count column, prefer that
     if (isset($article['entity_count'])) {
         $count = (int)$article['entity_count'];
     }
-    // 2) Primary path: decode $article['nlp'] and sum entity "count" values
+    // 2) Primary path: use $article['nlp'], which might be JSON or an array
     elseif (!empty($article['nlp'])) {
         $count = 0;
 
-        $nlp = json_decode($article['nlp'], true);
+        // Handle both string JSON and already-decoded array
+        $rawNlp = $article['nlp'];
+
+        if (is_string($rawNlp)) {
+            $nlp = json_decode($rawNlp, true);
+        } elseif (is_array($rawNlp)) {
+            $nlp = $rawNlp;
+        } else {
+            $nlp = null;
+        }
 
         if (is_array($nlp) && !empty($nlp['entities']) && is_array($nlp['entities'])) {
             foreach ($nlp['entities'] as $ent) {
@@ -58,13 +67,13 @@ function scroll_is_deep_dive(array $article): bool
     elseif (!empty($article['entities_json'])) {
         $entities = json_decode($article['entities_json'], true);
         $count    = is_array($entities) ? count($entities) : 0;
-    }
-    else {
+    } else {
         $count = 0;
     }
 
     return $count >= SCROLL_INTEREST_ENTITY_THRESHOLD;
 }
+
 
 /**
  * Is this article from a configured high-signal publisher?
