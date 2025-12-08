@@ -307,7 +307,7 @@ span#hash-icons {
 
 
 .scroll-history-card {
-    position: relative;
+    /* position: relative; */
     /* your existing card styles */
 }
 
@@ -347,11 +347,4 @@ span#hash-icons {
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-}
-
-/* Little icon to catch the eye */
-.scroll-badge-high-signal-publisher::before {
-    content: "★";
-    font-size: 0.8rem;
-    line-height: 1;
 }
