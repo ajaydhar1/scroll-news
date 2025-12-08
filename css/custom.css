@@ -356,9 +356,9 @@ a.scroll-badge-high-signal-publisher:hover {
 
 /* Deep Dive badge – inline, more analytical vibe */
 .scroll-badge-deep-dive {
-    background: rgba(120, 80, 255, 0.1);          /* soft indigo wash */
+    background: rgba(120, 80, 255, 0.8);          /* soft indigo wash */
     border: 1px solid rgba(120, 80, 255, 0.7);    /* defined edge */
-    color: rgb(45, 30, 120);                      /* readable text */
+    color: rgb(255, 255, 255);                      /* readable text */
     font-weight: 600;
 
     display: inline-flex;
@@ -367,5 +367,5 @@ a.scroll-badge-high-signal-publisher:hover {
 }
 
 a.scroll-badge-deep-dive:hover {
-    color: rgb(93 79 160);
+    color: rgb(220 245 255);
 }
