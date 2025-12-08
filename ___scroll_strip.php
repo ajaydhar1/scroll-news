@@ -47,6 +47,13 @@ try {
                 $nlp = [];
             }
 
+            // 🔹 Build an article-like array for badge helpers
+            $articleForBadges = $row;
+            $articleForBadges['nlp'] = $nlp;
+
+            // Use your existing helper: returns array of ['slug', 'label', 'tooltip']
+            $badges = scroll_get_article_badges($articleForBadges);
+
             // 1) Hashtags from keywords (first 3)
             $keywords = $nlp['keywords'] ?? [];
             $hashtagsRaw = [];
@@ -92,6 +99,7 @@ try {
                 'sentiment_label' => $sentimentLabel,
                 'sentiment_score' => $sentimentScore,
                 'emotions'        => $emotions,
+                'badges'          => $badges,   // 🔹 NEW: send badges to JS
             ];
         }
 
@@ -222,6 +230,14 @@ try {
     .sn-section { --card-w: 240px; }
     .sn-header h2 { font-size:1rem; }
   }
+
+
+  .sn-badges {
+    margin-top: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
 </style>
 
 <script>
@@ -320,6 +336,9 @@ try {
       const sentimentScore = a.sentiment_score;
       const emotions = Array.isArray(a.emotions) ? a.emotions : [];
 
+      // 🔹 Badges (deep dive / high-signal)
+      const badges = Array.isArray(a.badges) ? a.badges : [];
+
       // Sentiment emoji
       let sentimentEmoji = "";
       if (sentimentLabel === "positive") sentimentEmoji = "😊";
@@ -361,6 +380,25 @@ try {
         `;
       }
 
+       // 🔹 Badge pills (non-clickable; whole card is already an <a>)
+      let badgesHtml = "";
+      if (badges.length) {
+        badgesHtml = `
+          <div class="sn-badges scroll-article-badges">
+            ${badges.map(badge => {
+              const slug = badge.slug || "";
+              const label = badge.label || "";
+              const tooltip = badge.tooltip || "";
+              return `
+                <span class="scroll-badge scroll-badge-${slug}" title="${tooltip}">
+                  ${label}
+                </span>
+              `;
+            }).join("")}
+          </div>
+        `;
+      }
+
       return `
         <a class="sn-card" role="listitem" href="${newsroomLink}" rel="noopener noreferrer" aria-label="Open article: ${safeTitle}" data-loading>
           <div class="sn-media">
@@ -378,6 +416,7 @@ try {
               <span class="sn-dot" aria-hidden="true"></span>
               <time datetime="${pubDate}">${timeAgo(pubDate)}</time>
             </div>
+            ${badgesHtml}     <!-- 🔹 NEW -->
             ${hashtagsHtml}
             ${emotionsHtml}
           </div>
