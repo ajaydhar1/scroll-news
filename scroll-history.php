@@ -631,9 +631,9 @@ foreach ($items as $item) {
                                                 <?php if (!empty($badges)) : ?>
                                                     <div class="scroll-article-badges">
                                                         <?php foreach ($badges as $badge): ?>
-                                                            <span class="scroll-badge scroll-badge-<?php echo htmlspecialchars($badge['slug']); ?>">
+                                                            <a class="scroll-badge scroll-badge-<?php echo htmlspecialchars($badge['slug']); ?>" href="<?php echo htmlspecialchars($highSignalSearchUrl); ?>">
                                                                 <?php echo htmlspecialchars($badge['label']); ?>
-                                                            </span>
+                                                            </a>
                                                         <?php endforeach; ?>
                                                     </div>
                                                 <?php endif; ?>

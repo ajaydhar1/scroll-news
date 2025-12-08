@@ -10,6 +10,8 @@ $SCROLL_HIGH_SIGNAL_PUBLISHERS = [
     'nbcnews.com' => true,
 ];
 
+$highSignalSearchUrl = '/search.php?high_signal=1';
+
 /**
  * Normalize a URL to a bare domain (no scheme, no www).
  */
@@ -90,4 +92,39 @@ function scroll_get_article_badges(array $article): array {
     }
 
     return $badges;
+}
+
+
+
+/**
+ * Build a single search query string for all high-signal publishers.
+ * Example: "cnn.com OR nbcnews.com"
+ */
+function scroll_high_signal_search_query(): string {
+    global $SCROLL_HIGH_SIGNAL_PUBLISHERS;
+
+    $parts = [];
+    foreach (array_keys($SCROLL_HIGH_SIGNAL_PUBLISHERS) as $domain) {
+        // strip www just in case
+        $domain = preg_replace('/^www\./i', '', $domain);
+        $parts[] = $domain;
+    }
+
+    if (empty($parts)) {
+        return '';
+    }
+
+    return implode(' OR ', $parts);
+}
+
+/**
+ * Build the URL to your search page for high-signal publishers.
+ */
+function scroll_high_signal_search_url(): string {
+    $q = scroll_high_signal_search_query();
+    if ($q === '') {
+        return '/search.php';
+    }
+
+    return '/search.php?q=' . urlencode($q);
 }

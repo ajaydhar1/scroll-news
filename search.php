@@ -7,6 +7,7 @@
 //   - articles has a URL column matching rss_items.link (adjust if needed)
 
 require_once "___modules.php"; // adjust if needed
+require_once 'config_interest.php';
 
 $pdo        = _pdo_or_null();
 $results    = [];
@@ -14,37 +15,41 @@ $errorMsg   = null;
 $hasFilters = false;
 
 // Read query params
-$rawMode   = $_GET['mode']      ?? 'classic';
-$mode      = ($rawMode === 'nlp') ? 'nlp' : 'classic';  // sanitize
-$q         = trim($_GET['q']     ?? '');
-$emotion   = $_GET['emotion']   ?? null;   // e.g. 'Sad', 'Love', 'Wow'
-$sentiment = $_GET['sentiment'] ?? null;   // e.g. 'positive', 'negative'
-$range     = $_GET['range']     ?? 'all';  // '24h', 'older', 'all'
+$rawMode         = $_GET['mode']       ?? 'classic';
+$mode            = ($rawMode === 'nlp') ? 'nlp' : 'classic';  // sanitize
+$q               = trim($_GET['q']     ?? '');
+$highSignalOnly  = !empty($_GET['high_signal']);             // <-- NEW
+$emotion         = $_GET['emotion']    ?? null;              // e.g. 'Sad', 'Love', 'Wow'
+$sentiment       = $_GET['sentiment']  ?? null;              // e.g. 'positive', 'negative'
+$range           = $_GET['range']      ?? 'all';             // '24h', 'older', 'all'
 
 // Decide if *any* filters are active (even without q)
 $hasFilters =
     ($q !== '') ||
     !empty($emotion) ||
     !empty($sentiment) ||
-    ($range !== 'all');
+    ($range !== 'all') ||
+    $highSignalOnly;                                         // <-- NEW
 
 if (!$pdo) {
     $errorMsg = "Database connection not available.";
 } else {
     try {
         if ($hasFilters) {
+            // shared options
+            $options = [
+                'emotion'      => $emotion,
+                'sentiment'    => $sentiment,
+                'range'        => $range,
+                'high_signal'  => $highSignalOnly,           // <-- NEW
+            ];
+
             if ($mode === 'nlp') {
                 // NLP search on articles table
-                $results = search_nlp($pdo, $q, [
-                    'emotion'   => $emotion,
-                    'sentiment' => $sentiment,
-                    'range'     => $range,
-                ]);
+                $results = search_nlp($pdo, $q, $options);
             } else {
                 // Classic search on rss_items + feeds + articles
-                $results = search_classic($pdo, $q, [
-                    'range' => $range,
-                ]);
+                $results = search_classic($pdo, $q, $options);
             }
         } else {
             $results = [];

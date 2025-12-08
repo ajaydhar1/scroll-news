@@ -1620,15 +1620,19 @@ function endsWith($haystack, $needle) {
  * NLP-powered search over the articles table.
  *
  * $opts:
- *   - 'emotion'   => e.g. 'Sad', 'Love', 'Wow'
- *   - 'sentiment' => e.g. 'positive', 'negative', 'neutral'
- *   - 'range'     => '24h', 'older', 'all'
+ *   - 'emotion'     => e.g. 'Sad', 'Love', 'Wow'
+ *   - 'sentiment'   => e.g. 'positive', 'negative', 'neutral'
+ *   - 'range'       => '24h', 'older', 'all'
+ *   - 'high_signal' => bool, limit to high-signal publishers (cnn, nbc, ...)
  */
 function search_nlp(PDO $db, string $q, array $opts = []): array
 {
-    $emotion   = $opts['emotion']   ?? null;
-    $sentiment = $opts['sentiment'] ?? null;
-    $range     = $opts['range']     ?? 'all';
+    global $SCROLL_HIGH_SIGNAL_PUBLISHERS;
+
+    $emotion      = $opts['emotion']     ?? null;
+    $sentiment    = $opts['sentiment']   ?? null;
+    $range        = $opts['range']       ?? 'all';
+    $highSignal   = !empty($opts['high_signal']);
 
     $conds  = [];
     $params = [];
@@ -1660,6 +1664,23 @@ function search_nlp(PDO $db, string $q, array $opts = []): array
         // Look up that key; if it exists, ->> returns a value instead of NULL
         $conds[] = "(nlp->'emotional_reaction'->>:emotion) IS NOT NULL";
         $params[':emotion'] = $emotion;
+    }
+
+    // --- High-signal publishers filter ---
+    if ($highSignal && !empty($SCROLL_HIGH_SIGNAL_PUBLISHERS)) {
+        $domains      = array_keys($SCROLL_HIGH_SIGNAL_PUBLISHERS);
+        $placeholders = [];
+
+        foreach ($domains as $i => $domain) {
+            // normalize: strip www and lowercase
+            $domain = strtolower(preg_replace('/^www\./i', '', $domain));
+            $ph = ":hs{$i}";
+            $placeholders[]   = $ph;
+            $params[$ph]      = $domain;
+        }
+
+        // source_slug is assumed to be domain-like (cnn.com, nbcnews.com, etc.)
+        $conds[] = "LOWER(REGEXP_REPLACE(source_slug, '^www\\.', '')) IN (" . implode(',', $placeholders) . ")";
     }
 
     // --- Text / topic / keyword / entity search ---
@@ -1701,13 +1722,18 @@ function search_nlp(PDO $db, string $q, array $opts = []): array
  * Classic keyword search over rss_items, joined to feeds + articles.
  *
  * $opts:
- *   - 'range' => '24h', 'older', 'all'
+ *   - 'range'       => '24h', 'older', 'all'
+ *   - 'high_signal' => bool, limit to high-signal publishers
  */
 function search_classic(PDO $db, string $q, array $opts = []): array
 {
-    $range  = $opts['range'] ?? 'all';
+    global $SCROLL_HIGH_SIGNAL_PUBLISHERS;
 
-    if ($q === '') {
+    $range      = $opts['range']       ?? 'all';
+    $highSignal = !empty($opts['high_signal']);
+
+    // If no query AND not filtering by high-signal, nothing to search
+    if ($q === '' && !$highSignal) {
         return [];
     }
 
@@ -1715,11 +1741,13 @@ function search_classic(PDO $db, string $q, array $opts = []): array
     $params = [];
 
     // Text condition (same as your current query)
-    $conds[] = "(
-        ri.title ILIKE :q
-        OR ri.description ILIKE :q
-    )";
-    $params[':q'] = '%' . $q . '%';
+    if ($q !== '') {
+        $conds[] = "(
+            ri.title ILIKE :q
+            OR ri.description ILIKE :q
+        )";
+        $params[':q'] = '%' . $q . '%';
+    }
 
     // Optional time range filter on rss_items.pub_date
     if ($range === '24h') {
@@ -1728,7 +1756,26 @@ function search_classic(PDO $db, string $q, array $opts = []): array
         $conds[] = "ri.pub_date < NOW() - INTERVAL '24 hours'";
     }
 
-    $where = 'WHERE ' . implode(' AND ', $conds);
+    // High-signal publishers filter (based on articles.source_slug)
+    if ($highSignal && !empty($SCROLL_HIGH_SIGNAL_PUBLISHERS)) {
+        $domains      = array_keys($SCROLL_HIGH_SIGNAL_PUBLISHERS);
+        $placeholders = [];
+
+        foreach ($domains as $i => $domain) {
+            // normalize: strip www and lowercase
+            $domain = strtolower(preg_replace('/^www\./i', '', $domain));
+            $ph = ":hs{$i}";
+            $placeholders[]   = $ph;
+            $params[$ph]      = $domain;
+        }
+
+        // Filter by the joined article's source_slug.
+        // Rows without a matching article/source_slug won't be high-signal.
+        $conds[] = "LOWER(REGEXP_REPLACE(a.source_slug, '^www\\.', '')) IN (" . implode(',', $placeholders) . ")";
+    }
+
+    // We know at this point we have at least text or high-signal or range
+    $where = $conds ? ('WHERE ' . implode(' AND ', $conds)) : '';
 
     $sql = "
         SELECT
@@ -1739,7 +1786,8 @@ function search_classic(PDO $db, string $q, array $opts = []): array
             ri.media_url,
             f.name AS feed_name,
             a.id  AS article_id,
-            a.nlp
+            a.nlp,
+            a.source_slug
         FROM rss_items ri
         JOIN feeds f
           ON f.id = ri.feed_id
@@ -1757,6 +1805,7 @@ function search_classic(PDO $db, string $q, array $opts = []): array
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 
 
 function sn_intel_sentiment_counts(PDO $db): array
