@@ -244,6 +244,60 @@ if (!$pdo) {
                 box-shadow: 0 0 0 1px rgba(0,0,0,0.12);
             }
 
+            /* Base badge (already have something like this) */
+            .scroll-badge {
+                font-size: 0.7rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+                padding: 0.15rem 0.5rem;
+                border-radius: 999px;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.25rem;
+            }
+
+            /* Deep Dive – idle (outline) */
+            .scroll-badge-deep-dive {
+                background: rgba(120, 80, 255, 0.06);
+                border: 1px solid rgba(120, 80, 255, 0.6);
+                color: rgb(60, 40, 150);
+            }
+
+            /* High-Signal Publisher – idle (outline-ish) */
+            .scroll-badge-high-signal-publisher {
+                background: rgba(0, 200, 255, 0.06);
+                border: 1px solid rgba(0, 200, 255, 0.6);
+                color: rgb(0, 120, 165);
+            }
+
+            /* 🔘 ACTIVE state applied to either badge */
+            .scroll-badge-active {
+                position: relative;
+                box-shadow: 0 0 0 1px rgba(0,0,0,0.12);
+            }
+
+            /* Active Deep Dive: solid purple pill */
+            .scroll-badge-deep-dive.scroll-badge-active {
+                background: rgb(120, 80, 255);
+                border-color: rgb(120, 80, 255);
+                color: #fff;
+            }
+
+            /* Active High-Signal: solid cyan pill */
+            .scroll-badge-high-signal-publisher.scroll-badge-active {
+                background: rgb(0, 200, 255);
+                border-color: rgb(0, 200, 255);
+                color: #fff;
+            }
+
+            /* Add a tiny checkmark when active */
+            .scroll-badge-active::before {
+                content: "✓";
+                font-size: 0.65rem;
+                opacity: 0.95;
+            }
+
 
         </style>
     </head>
