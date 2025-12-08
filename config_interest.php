@@ -85,7 +85,7 @@ function scroll_get_article_badges(array $article): array {
     if (scroll_is_high_signal_publisher($article)) {
         $badges[] = [
             'slug'  => 'high-signal-publisher',
-            'label' => '★ High-Signal Publisher',
+            'label' => 'High-Signal Publisher',
         ];
     }
 

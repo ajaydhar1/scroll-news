@@ -307,7 +307,7 @@ span#hash-icons {
 
 
 .scroll-history-card {
-    /* position: relative; */
+    position: relative;
     /* your existing card styles */
 }
 
@@ -343,6 +343,7 @@ span#hash-icons {
     background: rgba(0, 200, 255, 0.12);       /* soft fill */
     border: 1px solid rgba(0, 200, 255, 0.9);  /* strong edge */
     color: rgba(220, 245, 255, 0.95);
+    font-weight: 600;
 
     display: inline-flex;
     align-items: center;
