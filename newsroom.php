@@ -6,6 +6,7 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 ini_set('log_errors', '1');
 
 require_once('___session_results.php');
+require_once 'config_interest.php';
 require_once('___modules.php');
 
 require_once __DIR__ . '/newsroom_core/___request_resolution_layer.php';
@@ -224,6 +225,38 @@ if (!empty($url)) {
                 <div class="masthead-subheading mb-1"><a href="<?= $pub_link ?>" target="_blank" class="bright-link-hover"><?php echo $pub; ?></a></div>
                 <div class="mb-2 text-muted" style="font-size: 1.25rem;"><strong><?php if (isset($_GET['pub_date'])) { echo format_news_date($_GET["pub_date"]); } ?></strong></div>
                 <div class="masthead-heading text-uppercase"><?php echo htmlspecialchars($title); ?></div>
+                <?php
+                    if ($fromDb) {
+                        // $article is your article row
+                        $badges = scroll_get_article_badges($article);
+                    }
+                ?>
+                <?php if (!empty($badges)) : ?>
+                    <div class="scroll-article-badges text-center">
+                        <?php foreach ($badges as $badge): ?>
+                            <?php
+                                $slug = $badge['slug'] ?? '';
+
+                                // Default links (you can define these earlier in the file too)
+                                $highSignalSearchUrl = '/search.php?high_signal=1'; // maybe add &mode=nlp later
+                                $deepDiveSearchUrl   = '/search.php?deep_dive=1';
+
+                                // Decide href per badge
+                                $badgeHref = $highSignalSearchUrl; // sensible default
+
+                                if ($slug === 'deep-dive') {
+                                    $badgeHref = $deepDiveSearchUrl;
+                                } elseif ($slug === 'high-signal-publisher') {
+                                    $badgeHref = $highSignalSearchUrl;
+                                }
+                            ?>
+                            <a class="scroll-badge scroll-badge-<?php echo htmlspecialchars($slug); ?>"
+                               href="<?php echo htmlspecialchars($badgeHref); ?>" title="<?php echo htmlspecialchars($badge['tooltip']); ?>">
+                                <?php echo htmlspecialchars($badge['label']); ?>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
                 <div class="text-center">
                     <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black d-block d-md-inline-block btn-width-mobile-75 w-md-auto mx-auto mb-3 mr-md-2" href="#">Analytics</a>
                     <?php
