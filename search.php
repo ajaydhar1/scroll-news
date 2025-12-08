@@ -292,23 +292,13 @@ if (!$pdo) {
             }
 
             /* Add a tiny checkmark when active */
+            /*
             .scroll-badge-active::before {
                 content: "✓";
                 font-size: 0.65rem;
                 opacity: 0.95;
             }
-
-            .scroll-search-badge-toggles {
-                display: inline-flex;      /* sit nicely under the search controls */
-                align-items: center;       /* 🔑 vertically center both badges */
-                gap: 0.4rem;               /* space between them */
-            }
-
-            /* small safety tweaks */
-            .scroll-search-badge-toggles .scroll-badge {
-                margin: 0;
-                line-height: 1;
-            }
+            */
 
 
         </style>
@@ -463,7 +453,7 @@ if (!$pdo) {
                                         Search
                                     </button>
 
-                                    <div class="scroll-search-badge-toggles">
+                                    <div class="scroll-article-badges">
                                         <button
                                             type="button"
                                             class="scroll-badge scroll-badge-deep-dive <?php echo $deepDiveActive ? 'scroll-badge-active' : ''; ?>"
