@@ -225,6 +225,7 @@ if (!empty($url)) {
                 <div class="masthead-subheading mb-1"><a href="<?= $pub_link ?>" target="_blank" class="bright-link-hover"><?php echo $pub; ?></a></div>
                 <div class="mb-2 text-muted" style="font-size: 1.25rem;"><strong><?php if (isset($_GET['pub_date'])) { echo format_news_date($_GET["pub_date"]); } ?></strong></div>
                 <div class="masthead-heading text-uppercase"><?php echo htmlspecialchars($title); ?></div>
+                <!-- DEBUG: MASTHEAD BADGE BLOCK SHOULD BE HERE -->
                 <?php
                     $badges = [];
 
