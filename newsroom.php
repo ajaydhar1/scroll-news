@@ -123,9 +123,10 @@ if (!empty($url)) {
         <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter&display=swap" rel="stylesheet">
 
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-        <link href="css/custom.css" rel="stylesheet" />
-        <link href="css/newsroom.css" rel="stylesheet" />
+        <link href="css/styles.css?v=<?php echo filemtime(__DIR__ . '/css/styles.css'); ?>" rel="stylesheet" />
+        <link href="css/custom.css?v=<?php echo filemtime(__DIR__ . '/css/custom.css'); ?>" rel="stylesheet" />
+        <link href="css/newsroom.css?v=<?php echo filemtime(__DIR__ . '/css/newsroom.css'); ?>" rel="stylesheet" />
+
 
         <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
         <script src="https://www.amcharts.com/lib/3/serial.js"></script>
