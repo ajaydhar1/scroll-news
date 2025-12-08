@@ -390,6 +390,16 @@ if (!$pdo) {
                                         id="mode-input"
                                         value="<?php echo htmlspecialchars($mode, ENT_QUOTES, 'UTF-8'); ?>"
                                     >
+
+                                    <div class="scroll-article-badges">
+                                        <a class="scroll-badge scroll-badge-deep-dive" href="/search.php?deep_dive=1">
+                                            Deep dive
+                                        </a>
+                                        <a class="scroll-badge scroll-badge-high-signal-publisher" href="/search.php?high_signal=1">
+                                            High-Signal Publisher
+                                        </a>
+                                    </div>
+
                                 </div>
                             </div>
                         </form>
