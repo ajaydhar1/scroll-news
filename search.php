@@ -292,13 +292,11 @@ if (!$pdo) {
             }
 
             /* Add a tiny checkmark when active */
-            /*
             .scroll-badge-active::before {
                 content: "✓";
                 font-size: 0.65rem;
                 opacity: 0.95;
             }
-            */
 
 
         </style>
