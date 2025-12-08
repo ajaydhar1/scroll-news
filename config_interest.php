@@ -2,7 +2,7 @@
 // config_interest.php
 
 // Minimum total entities to count as a "Deep dive" article
-define('SCROLL_INTEREST_ENTITY_THRESHOLD', 12);
+define('SCROLL_INTEREST_ENTITY_THRESHOLD', 32);
 
 // Domains considered "high-signal publishers"
 $SCROLL_HIGH_SIGNAL_PUBLISHERS = [
