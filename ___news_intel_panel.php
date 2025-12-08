@@ -648,7 +648,7 @@ footer .btn {
                                                     </a>
 
                                                     <?php if (!empty($badges)) : ?>
-                                                        <div class="scroll-article-badges">
+                                                        <div class="scroll-article-badges mt-1">
                                                             <?php foreach ($badges as $badge): ?>
                                                                 <?php
                                                                     $slug = $badge['slug'] ?? '';
