@@ -573,7 +573,7 @@ if (!$pdo) {
                                         $card_classes .= ' scroll-card-high-signal';
                                     }
 
-                                    if (scroll_is_deep_dive($item)) {
+                                    if (scroll_is_deep_dive($row)) {
                                         $card_classes .= ' scroll-card-deep-dive';
                                     }
 
