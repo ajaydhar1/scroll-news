@@ -226,10 +226,18 @@ if (!empty($url)) {
                 <div class="mb-2 text-muted" style="font-size: 1.25rem;"><strong><?php if (isset($_GET['pub_date'])) { echo format_news_date($_GET["pub_date"]); } ?></strong></div>
                 <div class="masthead-heading text-uppercase"><?php echo htmlspecialchars($title); ?></div>
                 <?php
+                    $badges = [];
+
                     if ($fromDb) {
                         // $article is your article row
                         $badges = scroll_get_article_badges($article);
                     }
+
+                    // TEMP DEBUG
+                    echo '<pre>';
+                    var_dump($fromDb, $article, $badges);
+                    echo '</pre>';
+                    ///exit;
                 ?>
                 <?php if (!empty($badges)) : ?>
                     <div class="scroll-article-badges text-center">

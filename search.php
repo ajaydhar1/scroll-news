@@ -235,7 +235,7 @@ if (!$pdo) {
             }
 
 
-            .scroll-article-badges {
+            #sn-search-form .scroll-article-badges {
                 gap: 0;
             }
 
