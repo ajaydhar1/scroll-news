@@ -1627,7 +1627,7 @@ function endsWith($haystack, $needle) {
  *   - 'range'       => '24h', 'older', 'all'
  *   - 'high_signal' => bool, limit to high-signal publishers (cnn, nbc, ...)
  */
-function search_nlp(PDO $db, string $q, array $opts = []): array
+function search_nlp(PDO $db, ?string $q = '', array $opts = []): array
 {
     global $SCROLL_HIGH_SIGNAL_PUBLISHERS;
 

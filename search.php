@@ -17,7 +17,8 @@ $hasFilters = false;
 // Read query params
 $rawMode         = $_GET['mode']       ?? 'classic';
 $mode            = ($rawMode === 'nlp') ? 'nlp' : 'classic';  // sanitize
-$q               = trim($_GET['q']     ?? '');
+$q               = $_GET['q'] ?? '';
+$q               = trim((string)$q);  // make sure it's a string
 $highSignalOnly  = !empty($_GET['high_signal']);             // <-- NEW
 $deepDive        = isset($_GET['deep_dive']) && $_GET['deep_dive'] === '1';
 $emotion         = $_GET['emotion']    ?? null;              // e.g. 'Sad', 'Love', 'Wow'
