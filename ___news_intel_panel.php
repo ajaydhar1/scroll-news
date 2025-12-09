@@ -655,7 +655,7 @@ footer .btn {
 
                                                                     // Default links (you can define these earlier in the file too)
                                                                     $highSignalSearchUrl = '/search.php?high_signal=1'; // maybe add &mode=nlp later
-                                                                    $deepDiveSearchUrl   = '/search.php?deep_dive=1';
+                                                                    $deepDiveSearchUrl   = '/search.php?mode=nlp&deep_dive=1';
 
                                                                     // Decide href per badge
                                                                     $badgeHref = $highSignalSearchUrl; // sensible default
