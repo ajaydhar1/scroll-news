@@ -11,7 +11,7 @@ $SCROLL_HIGH_SIGNAL_PUBLISHERS = [
 ];
 
 $highSignalSearchUrl = '/search.php?high_signal=1';
-$deepDiveSearchUrl = '/search.php?deep_dive=1';
+$deepDiveSearchUrl = '/search.php?mode=nlp&deep_dive=1';
 
 /**
  * Normalize a URL to a bare domain (no scheme, no www).

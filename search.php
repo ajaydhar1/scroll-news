@@ -28,6 +28,10 @@ $range           = $_GET['range']      ?? 'all';             // '24h', 'older', 
 $deepDiveActive    = !empty($_GET['deep_dive']);
 $highSignalActive  = !empty($_GET['high_signal']);
 
+// ignore deep_dive when not in NLP mode
+$deepDive       = ($mode === 'nlp') ? $deepDive : false;
+$deepDiveActive = $deepDive;
+
 // Decide if *any* filters are active (even without q)
 $hasFilters =
     ($q !== '') ||
@@ -395,6 +399,11 @@ if (!$pdo) {
                                             class="btn <?php echo ($mode === 'classic') ? 'btn-primary' : 'btn-outline-secondary'; ?>"
                                             onclick="
                                                 document.getElementById('mode-input').value='classic';
+
+                                                // turn off Deep Dive when switching away from NLP
+                                                const dd = document.getElementById('deep-dive-input');
+                                                if (dd) dd.value = '';
+
                                                 this.form.submit();
                                             "
                                         >
@@ -456,17 +465,19 @@ if (!$pdo) {
                                     </button>
 
                                     <div class="scroll-article-badges">
-                                        <button
-                                            type="button"
-                                            class="scroll-badge scroll-badge-deep-dive <?php echo $deepDiveActive ? 'scroll-badge-active' : ''; ?>"
-                                            onclick="
-                                                const input = document.getElementById('deep-dive-input');
-                                                input.value = (input.value === '1') ? '' : '1';
-                                                this.form.submit();
-                                            "
-                                        >
-                                            DEEP DIVE
-                                        </button>
+                                        <?php if ($mode === 'nlp'): ?>
+                                            <button
+                                                type="button"
+                                                class="scroll-badge scroll-badge-deep-dive <?php echo $deepDiveActive ? 'scroll-badge-active' : ''; ?>"
+                                                onclick="
+                                                    const input = document.getElementById('deep-dive-input');
+                                                    input.value = (input.value === '1') ? '' : '1';
+                                                    this.form.submit();
+                                                "
+                                            >
+                                                DEEP DIVE
+                                            </button>
+                                        <?php endif; ?>
 
                                         <button
                                             type="button"
@@ -551,6 +562,17 @@ if (!$pdo) {
 
                                 if (!empty($emotion)) {
                                     $filterChips[] = 'Emotion: ' . $emotion;
+                                }
+
+                                // NEW: High-signal publishers
+                                if (!empty($highSignalOnly)) {
+                                    $filterChips[] = 'High-signal publishers';
+                                }
+
+                                // NEW: Deep dive (entity-dense)
+                                if (!empty($deepDive) && $mode === 'nlp') {
+                                    $filterChips[] = 'Deep Dive (entity-dense)';
+                                    // or shorter: 'Deep Dive'
                                 }
                             ?>
 
