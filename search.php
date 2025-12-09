@@ -34,7 +34,8 @@ $hasFilters =
     !empty($emotion) ||
     !empty($sentiment) ||
     ($range !== 'all') ||
-    $highSignalOnly;                                         // <-- NEW
+    $highSignalOnly ||                                       // <-- NEW
+    $deepDive;
 
 if (!$pdo) {
     $errorMsg = "Database connection not available.";
