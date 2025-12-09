@@ -1635,6 +1635,7 @@ function search_nlp(PDO $db, string $q, array $opts = []): array
     $sentiment    = $opts['sentiment']   ?? null;
     $range        = $opts['range']       ?? 'all';
     $highSignal   = !empty($opts['high_signal']);
+    $deepDive     = !empty($opts['deep_dive']);
 
     $conds  = [];
     $params = [];
@@ -1685,6 +1686,12 @@ function search_nlp(PDO $db, string $q, array $opts = []): array
         if (!empty($domainConds)) {
             $conds[] = '(' . implode(' OR ', $domainConds) . ')';
         }
+    }
+
+        // --- Deep dive filter ---
+    if ($deepDive && defined('SCROLL_INTEREST_ENTITY_THRESHOLD') && (SCROLL_INTEREST_ENTITY_THRESHOLD >= 1)) {
+        $conds[] = "jsonb_array_length((nlp->'entities')::jsonb) >= :min_entity_count";
+        $params[':min_entity_count'] = SCROLL_INTEREST_ENTITY_THRESHOLD;
     }
 
     // --- Text / topic / keyword / entity search ---

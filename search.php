@@ -19,6 +19,7 @@ $rawMode         = $_GET['mode']       ?? 'classic';
 $mode            = ($rawMode === 'nlp') ? 'nlp' : 'classic';  // sanitize
 $q               = trim($_GET['q']     ?? '');
 $highSignalOnly  = !empty($_GET['high_signal']);             // <-- NEW
+$deepDive        = isset($_GET['deep_dive']) && $_GET['deep_dive'] === '1';
 $emotion         = $_GET['emotion']    ?? null;              // e.g. 'Sad', 'Love', 'Wow'
 $sentiment       = $_GET['sentiment']  ?? null;              // e.g. 'positive', 'negative'
 $range           = $_GET['range']      ?? 'all';             // '24h', 'older', 'all'
@@ -45,6 +46,7 @@ if (!$pdo) {
                 'sentiment'    => $sentiment,
                 'range'        => $range,
                 'high_signal'  => $highSignalOnly,           // <-- NEW
+                'deep_dive'    => $deepDive,
             ];
 
             if ($mode === 'nlp') {
