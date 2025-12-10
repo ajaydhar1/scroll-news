@@ -317,7 +317,7 @@ if (!empty($url)) {
                                 }
                             ?>
                             <a class="scroll-badge scroll-badge-<?php echo htmlspecialchars($slug); ?>"
-                               href="<?php echo htmlspecialchars($badgeHref); ?>" title="<?php echo htmlspecialchars($badge['tooltip']); ?>">
+                               href="<?php echo htmlspecialchars($badgeHref); ?>" title="<?php echo htmlspecialchars($badge['tooltip']); ?>" data-loading>
                                 <?php echo htmlspecialchars($badge['label']); ?>
                             </a>
                         <?php endforeach; ?>
