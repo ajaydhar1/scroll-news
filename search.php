@@ -456,8 +456,10 @@ if (!$pdo) {
                                             onchange="this.form.submit()"
                                         >
                                             <option value="" <?php if (empty($emotion)) echo 'selected'; ?>>Any emotion</option>
-                                            <option value="Wow"  <?php if ($emotion === 'Wow')  echo 'selected'; ?>>Wow</option>
                                             <option value="Love" <?php if ($emotion === 'Love') echo 'selected'; ?>>Love</option>
+                                            <option value="Angry" <?php if ($emotion === 'Angry') echo 'selected'; ?>>Angry</option>
+                                            <option value="Ahah" <?php if ($emotion === 'Ahah') echo 'selected'; ?>>Ahah</option>
+                                            <option value="Wow"  <?php if ($emotion === 'Wow')  echo 'selected'; ?>>Wow</option>
                                             <option value="Sad"  <?php if ($emotion === 'Sad')  echo 'selected'; ?>>Sad</option>
                                             <!-- Add more if you have them -->
                                         </select>
