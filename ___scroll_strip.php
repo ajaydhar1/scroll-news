@@ -113,7 +113,7 @@ try {
 ?>
 
 <!-- ========== Article Strip (HTML + CSS + JS) ========== -->
-<section class="sn-section">
+<section class="sn-section bg-light">
   <div class="container-fluid">
     <div class="text-center">
         <h2 class="section-heading text-uppercase">Top Stories</h2>

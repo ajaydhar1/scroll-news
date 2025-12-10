@@ -268,11 +268,8 @@
             </div>
         </header>
 
-        <!-- News Intelligence Panel-->
-        <?php require_once __DIR__ . '/___news_intel_panel.php'; ?>
-
         <!-- Reading Modes-->
-        <section class="reading-modes-section py-5">
+        <section class="reading-modes-section page-section pt-5 pb-2">
           <div class="container">
             <div class="row mb-4">
               <div class="col-12 text-center">
@@ -328,6 +325,9 @@
             </div>
           </div>
         </section>
+
+        <!-- News Intelligence Panel-->
+        <?php require_once __DIR__ . '/___news_intel_panel.php'; ?>
 
         <!-- Services-->
         <section class="page-section" id="services">
