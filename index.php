@@ -269,7 +269,7 @@
         </header>
 
         <!-- Reading Modes-->
-        <section class="reading-modes-section page-section pt-5 pb-2">
+        <section class="reading-modes-section page-section pt-5 pb-0">
           <div class="container">
             <div class="row mb-4">
               <div class="col-12 text-center">
