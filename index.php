@@ -142,12 +142,6 @@
                 box-shadow: 0 0 0 0.14rem var(--brand-color) !important;
             }
 
-            .blue-hover:hover,
-            .btn-outline-secondary:hover {
-              background-color: #3F51B5 !important;
-              color: white !important;
-            }
-
             #portfolio .portfolio-item .portfolio-link .portfolio-hover {
                 background: transparent;
             }
