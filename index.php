@@ -193,6 +193,19 @@
                 background-size: cover;
             }
 
+            .reading-modes-section {
+              background: #f8f9fa; /* or whatever your light panel bg is */
+            }
+
+            .reading-mode-card {
+              border-radius: 0.75rem;
+            }
+
+            .reading-mode-icon {
+              font-size: 1.4rem;
+            }
+
+
         </style>
 
     </head>
@@ -257,6 +270,64 @@
 
         <!-- News Intelligence Panel-->
         <?php require_once __DIR__ . '/___news_intel_panel.php'; ?>
+
+        <!-- Reading Modes-->
+        <section class="reading-modes-section py-5">
+          <div class="container">
+            <div class="row mb-4">
+              <div class="col-12 text-center">
+                <h2 class="mb-2">Reading Modes</h2>
+                <p class="text-muted mb-0">
+                  Choose how you want to read today – slow and deep, or quick and high-signal.
+                </p>
+              </div>
+            </div>
+
+            <div class="row g-4">
+              <!-- Deep Dive -->
+              <div class="col-md-6">
+                <div class="card h-100 shadow-sm reading-mode-card">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                      <span class="reading-mode-icon me-2">🔎</span>
+                      <h3 class="h5 mb-0">Deep Dive</h3>
+                    </div>
+                    <p class="text-muted mb-2">
+                      Longer, higher-context coverage with more analysis and fewer hot takes.
+                    </p>
+                    <p class="small text-muted mb-4">
+                      Best when you have a bit more time and want to really understand a story.
+                    </p>
+                    <a href="/search.php?mode=nlp&deep_dive=1" class="btn btn-sm btn-green">
+                      Browse Deep Dives
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- High-Signal Publishers -->
+              <div class="col-md-6">
+                <div class="card h-100 shadow-sm reading-mode-card">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                      <span class="reading-mode-icon me-2">📡</span>
+                      <h3 class="h5 mb-0">High-Signal Publishers</h3>
+                    </div>
+                    <p class="text-muted mb-2">
+                      A curated feed of outlets with strong signal-to-noise and minimal outrage bait.
+                    </p>
+                    <p class="small text-muted mb-4">
+                      Perfect for quick catch-ups where almost every article is worth opening.
+                    </p>
+                    <a href="/search.php?high_signal=1" class="btn btn-sm btn-outline-secondary">
+                      View High-Signal Feed
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <!-- Services-->
         <section class="page-section" id="services">
