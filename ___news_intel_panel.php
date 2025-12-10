@@ -405,8 +405,10 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
 }
 
 .news-intel-panel .intel-chip:hover {
+    /*
     transform: translateY(-1px);
     box-shadow: 0 0.35rem 0.9rem rgba(0,0,0,0.12);
+    */
 }
 
 .news-intel-panel .intel-article-list .intel-article-item a {
