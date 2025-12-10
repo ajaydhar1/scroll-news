@@ -267,16 +267,20 @@ if (!$pdo) {
 
             /* Deep Dive – idle (outline) */
             .scroll-badge-deep-dive {
+                /*
                 background: rgba(120, 80, 255, 0.06);
                 border: 1px solid rgba(120, 80, 255, 0.6);
                 color: rgb(60, 40, 150);
+                */
             }
 
             /* High-Signal Publisher – idle (outline-ish) */
             .scroll-badge-high-signal-publisher {
+                /*
                 background: rgba(0, 200, 255, 0.06);
                 border: 1px solid rgba(0, 200, 255, 0.6);
                 color: rgb(0, 120, 165);
+                */
             }
 
             /* 🔘 ACTIVE state applied to either badge */
