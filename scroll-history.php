@@ -531,9 +531,9 @@ if (!$pdo) {
 
                     <?php require_once 'config_interest.php'; ?>
 
-                    <div id="history-no-results" class="row mt-3">
+                    <div id="history-no-results" class="row mt-3 d-none">
                         <div class="col-md-6">
-                            <div class="alert alert-info d-none" role="alert">
+                            <div class="alert alert-info" role="alert">
                               No articles found. Try adjusting your filters or clearing them.
                             </div>
                         </div>
