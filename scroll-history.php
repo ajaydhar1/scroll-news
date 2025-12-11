@@ -29,7 +29,7 @@ $sql = "
     ORDER BY ri.pub_date DESC, ri.id DESC
 ";
 
-$stmt  = $pdo->query($sql);
+$stmt  = $pdo->prepare($sql);
 $stmt->execute([':cutoff_date' => $cutoffDate]);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
