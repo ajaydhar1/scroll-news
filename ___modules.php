@@ -1669,7 +1669,7 @@ function search_nlp(PDO $db, ?string $q = '', array $opts = []): array
         $params[':emotion'] = $emotion;
     }
 
-        // --- High-signal publishers filter (by URL substring) ---
+    // --- High-signal publishers filter (by URL substring) ---
     if ($highSignal && !empty($SCROLL_HIGH_SIGNAL_PUBLISHERS)) {
         $domains      = array_keys($SCROLL_HIGH_SIGNAL_PUBLISHERS);
         $domainConds  = [];
@@ -1688,9 +1688,13 @@ function search_nlp(PDO $db, ?string $q = '', array $opts = []): array
         }
     }
 
-        // --- Deep dive filter ---
+    // --- Deep dive filter ---
     if ($deepDive && defined('SCROLL_INTEREST_ENTITY_THRESHOLD') && (SCROLL_INTEREST_ENTITY_THRESHOLD >= 1)) {
-        $conds[] = "jsonb_array_length((nlp->'entities')::jsonb) >= :min_entity_count";
+        $conds[] = "(
+            SELECT COALESCE(SUM((ent->>'count')::int), 0)
+            FROM jsonb_array_elements((nlp->'entities')::jsonb) AS ent
+        ) >= :min_entity_count";
+
         $params[':min_entity_count'] = SCROLL_INTEREST_ENTITY_THRESHOLD;
     }
 
