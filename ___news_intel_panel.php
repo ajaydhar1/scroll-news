@@ -259,7 +259,7 @@ try {
             $type = is_array($ent) ? ($ent['label'] ?? null) : null;
 
             // People → trending entities
-            if ($type === "PERSON") {
+            if ($type === "PERSON" || $type === "ORG") {
                 // Normalize Trump variants etc.
                 $norm  = normalize_entity_name($name);
                 $key   = $norm['key'];   // e.g. 'donald-trump'
