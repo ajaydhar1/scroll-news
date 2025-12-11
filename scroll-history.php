@@ -6,6 +6,13 @@ require_once('___modules.php');
 $pdo = _pdo_or_null();
 
 // Fetch all RSS items ordered by pub_date DESC
+$DAYS_TO_SHOW = 5;
+
+// Compute cutoff date: today minus (DAYS_TO_SHOW - 1) days
+$cutoffDate = (new DateTimeImmutable('today'))
+    ->sub(new DateInterval('P' . ($DAYS_TO_SHOW - 1) . 'D'))
+    ->format('Y-m-d');
+
 $sql = "
     SELECT 
         ri.id,
@@ -16,10 +23,14 @@ $sql = "
         f.name AS feed_name
     FROM rss_items ri
     JOIN feeds f ON f.id = ri.feed_id
-    WHERE ri.pub_date IS NOT NULL
+    WHERE 
+        ri.pub_date IS NOT NULL
+        AND ri.pub_date::date >= :cutoff_date
     ORDER BY ri.pub_date DESC, ri.id DESC
 ";
+
 $stmt  = $pdo->query($sql);
+$stmt->execute([':cutoff_date' => $cutoffDate]);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Group items by local date (Y-m-d) based on pub_date, using same offset logic as format_news_date()
@@ -455,7 +466,7 @@ foreach ($items as $item) {
                     <div class="col-md-8 text-center">
                         <h2 class="section-heading text-uppercase">Daily Scroll Archive</h2>
                         <p class="section-subheading">
-                            Flip through every article Scroll News has captured—one horizontal row of cards for each day.
+                            Flip through every article Scroll News has captured in the last <?= $DAYS_TO_SHOW ?> days—one horizontal row of cards for each day.
                         </p>
                     </div>
                 </div>
