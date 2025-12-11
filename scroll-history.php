@@ -3,88 +3,100 @@
 
 require_once('___modules.php');
 
-$pdo = _pdo_or_null();
-
 // Fetch all RSS items ordered by pub_date DESC
 $DAYS_TO_SHOW = 5;
+$errorMsg   = null;
 
-// Compute cutoff date: today minus (DAYS_TO_SHOW - 1) days
-$cutoffDate = (new DateTimeImmutable('today'))
-    ->sub(new DateInterval('P' . ($DAYS_TO_SHOW - 1) . 'D'))
-    ->format('Y-m-d');
+$pdo = _pdo_or_null();
 
-$sql = "
-    SELECT 
-        ri.id,
-        ri.title,
-        ri.link,
-        ri.pub_date,
-        ri.media_url,
-        f.name AS feed_name
-    FROM rss_items ri
-    JOIN feeds f ON f.id = ri.feed_id
-    WHERE 
-        ri.pub_date IS NOT NULL
-        AND ri.pub_date::date >= :cutoff_date
-    ORDER BY ri.pub_date DESC, ri.id DESC
-";
+if (!$pdo) {
+    $errorMsg = "Database connection not available.";
+} else {
+    try {
 
-$stmt  = $pdo->prepare($sql);
-$stmt->execute([':cutoff_date' => $cutoffDate]);
-$items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Compute cutoff date: today minus (DAYS_TO_SHOW - 1) days
+        $cutoffDate = (new DateTimeImmutable('today'))
+            ->sub(new DateInterval('P' . ($DAYS_TO_SHOW - 1) . 'D'))
+            ->format('Y-m-d');
 
-// Group items by local date (Y-m-d) based on pub_date, using same offset logic as format_news_date()
-$days = [];
+        $sql = "
+            SELECT 
+                ri.id,
+                ri.title,
+                ri.link,
+                ri.pub_date,
+                ri.media_url,
+                f.name AS feed_name
+            FROM rss_items ri
+            JOIN feeds f ON f.id = ri.feed_id
+            WHERE 
+                ri.pub_date IS NOT NULL
+                AND ri.pub_date::date >= :cutoff_date
+            ORDER BY ri.pub_date DESC, ri.id DESC
+        ";
 
-$tzId = 'America/New_York';
-$tz   = new DateTimeZone($tzId);
+        $stmt  = $pdo->prepare($sql);
+        $stmt->execute([':cutoff_date' => $cutoffDate]);
+        $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-foreach ($items as $item) {
-    if (empty($item['pub_date'])) {
-        continue; // nothing to group
-    }
+        // Group items by local date (Y-m-d) based on pub_date, using same offset logic as format_news_date()
+        $days = [];
 
-    $raw = $item['pub_date'];
+        $tzId = 'America/New_York';
+        $tz   = new DateTimeZone($tzId);
 
-    // Allow either a Unix timestamp-ish value or a datetime string from the DB
-    $ts = null;
-
-    if (is_numeric($raw)) {
-        // Normalize digits and guard against ms
-        $digits = preg_replace('/\D/', '', (string)$raw);
-        if ($digits !== '') {
-            $ts = (int)$digits;
-            if ($ts > 1000000000000) { // looks like ms
-                $ts = (int)round($ts / 1000);
+        foreach ($items as $item) {
+            if (empty($item['pub_date'])) {
+                continue; // nothing to group
             }
+
+            $raw = $item['pub_date'];
+
+            // Allow either a Unix timestamp-ish value or a datetime string from the DB
+            $ts = null;
+
+            if (is_numeric($raw)) {
+                // Normalize digits and guard against ms
+                $digits = preg_replace('/\D/', '', (string)$raw);
+                if ($digits !== '') {
+                    $ts = (int)$digits;
+                    if ($ts > 1000000000000) { // looks like ms
+                        $ts = (int)round($ts / 1000);
+                    }
+                }
+            } else {
+                // Treat as TIMESTAMPTZ string like "2025-12-01 18:15:00+00"
+                $tmp = strtotime($raw);
+                if ($tmp !== false) {
+                    $ts = $tmp;
+                }
+            }
+
+            if ($ts === null) {
+                continue; // can't parse, skip
+            }
+
+            // Apply same offset logic as the masthead: start from UTC and shift to America/New_York
+            $dt = (new DateTimeImmutable('@' . $ts))->setTimezone($tz);
+
+            // Store for later display (you can reuse this with format_news_date if you want)
+            $item['_dt']       = $dt;
+            $item['_ts']       = $ts;               // raw Unix seconds for filters
+            $item['_date_key'] = $dt->format('Y-m-d');
+
+            // Group by local calendar date
+            $dateKey = $item['_date_key'];
+
+            if (!isset($days[$dateKey])) {
+                $days[$dateKey] = [];
+            }
+            $days[$dateKey][] = $item;
         }
-    } else {
-        // Treat as TIMESTAMPTZ string like "2025-12-01 18:15:00+00"
-        $tmp = strtotime($raw);
-        if ($tmp !== false) {
-            $ts = $tmp;
-        }
+    } catch (Throwable $e) {
+        $errorMsg = 'There was a problem loading your scroll history.';
+        $rows     = [];
+        // Optional: error_log($e->getMessage());
     }
-
-    if ($ts === null) {
-        continue; // can't parse, skip
-    }
-
-    // Apply same offset logic as the masthead: start from UTC and shift to America/New_York
-    $dt = (new DateTimeImmutable('@' . $ts))->setTimezone($tz);
-
-    // Store for later display (you can reuse this with format_news_date if you want)
-    $item['_dt']       = $dt;
-    $item['_ts']       = $ts;               // raw Unix seconds for filters
-    $item['_date_key'] = $dt->format('Y-m-d');
-
-    // Group by local calendar date
-    $dateKey = $item['_date_key'];
-
-    if (!isset($days[$dateKey])) {
-        $days[$dateKey] = [];
-    }
-    $days[$dateKey][] = $item;
 }
 ?>
 <!DOCTYPE html>
@@ -476,7 +488,15 @@ foreach ($items as $item) {
                     <a href="history.php">View your reading history →</a>
                 </p>
 
-                <?php if (empty($days)): ?>
+                <?php if ($errorMsg): ?>
+                    <div class="row">
+                        <div class="col-md-8 mx-auto">
+                            <div class="alert alert-danger">
+                                <?php echo htmlspecialchars($errorMsg, ENT_QUOTES, 'UTF-8'); ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php elseif (empty($days)): ?>
                     <div class="row justify-content-center">
                         <div class="col-md-8 text-center">
                             <p class="text-muted">No articles found in the archive yet.</p>
@@ -510,6 +530,10 @@ foreach ($items as $item) {
                     </div>
 
                     <?php require_once 'config_interest.php'; ?>
+
+                    <div id="history-no-results" class="alert alert-info d-none" role="alert">
+                      No articles found. Try adjusting your filters or clearing them.
+                    </div>
 
                     <?php $rowIndex = 0; ?>
                     <?php foreach ($days as $dateKey => $articles): ?>
@@ -893,8 +917,24 @@ foreach ($items as $item) {
                 keywordInput.addEventListener('input', applyFilters);
                 domainInput.addEventListener('input', applyFilters);
                 timeSelect.addEventListener('change', applyFilters);
+                updateHistoryNoResultsMessage();
             }
         });
+
+        function updateHistoryNoResultsMessage() {
+          const items = Array.from(document.querySelectorAll('.sn-history-item'));
+          if (!items.length) return; // nothing to do if there are no items at all
+
+          const anyVisible = items.some(el => !el.classList.contains('d-none'));
+          const alertBox = document.getElementById('history-no-results');
+          if (!alertBox) return;
+
+          if (!anyVisible) {
+            alertBox.classList.remove('d-none');
+          } else {
+            alertBox.classList.add('d-none');
+          }
+        }
         </script>
 
     </body>
