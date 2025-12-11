@@ -289,7 +289,7 @@
                     <p class="small text-muted mb-4">
                       Best when you have a bit more time and want to really understand a story.
                     </p>
-                    <a href="/search.php?mode=nlp&deep_dive=1" class="btn btn-sm btn-green">
+                    <a href="/search.php?mode=nlp&deep_dive=1" class="btn btn-sm btn-green" data-loading>
                       Browse Deep Dives
                     </a>
                   </div>
@@ -310,7 +310,7 @@
                     <p class="small text-muted mb-4">
                       Perfect for quick catch-ups where almost every article is worth opening.
                     </p>
-                    <a href="/search.php?high_signal=1" class="btn btn-sm btn-outline-secondary">
+                    <a href="/search.php?high_signal=1" class="btn btn-sm btn-outline-secondary" data-loading>
                       View High-Signal Feed
                     </a>
                   </div>
