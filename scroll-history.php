@@ -485,18 +485,18 @@ foreach ($items as $item) {
                 <?php else: ?>
 
                     <!-- Filter bar -->
-                    <div class="sn-history-filters mt-5 mb-3">
+                    <div class="sn-history-filters mt-5 mb-0">
                         <div class="container-fluid px-0 px-md-1">
-                            <div class="row align-items-end">
-                                <div class="col-md-4 mb-2">
+                            <div class="row justify-content-center">
+                                <div class="col-md-4 col-lg-2 mb-2">
                                     <label for="historyFilterKeyword">Filter by keyword</label>
                                     <input id="historyFilterKeyword" type="text" class="form-control form-control-sm" placeholder="headline, topic, etc.">
                                 </div>
-                                <div class="col-md-4 mb-2">
+                                <div class="col-md-4 col-lg-2 mb-2">
                                     <label for="historyFilterDomain">Filter by domain</label>
                                     <input id="historyFilterDomain" type="text" class="form-control form-control-sm" placeholder="e.g. nytimes.com">
                                 </div>
-                                <div class="col-md-4 mb-2">
+                                <div class="col-md-4 col-lg-2 mb-2">
                                     <label for="historyFilterTime">Time window</label>
                                     <select id="historyFilterTime" class="form-control form-control-sm">
                                         <option value="all">All time</option>
