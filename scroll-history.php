@@ -490,7 +490,7 @@ if (!$pdo) {
 
                 <?php if ($errorMsg): ?>
                     <div class="row">
-                        <div class="col-md-8 mx-auto">
+                        <div class="col-md-6 mx-auto">
                             <div class="alert alert-danger">
                                 <?php echo htmlspecialchars($errorMsg, ENT_QUOTES, 'UTF-8'); ?>
                             </div>
@@ -531,8 +531,12 @@ if (!$pdo) {
 
                     <?php require_once 'config_interest.php'; ?>
 
-                    <div id="history-no-results" class="alert alert-info d-none" role="alert">
-                      No articles found. Try adjusting your filters or clearing them.
+                    <div id="history-no-results" class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="alert alert-info d-none" role="alert">
+                              No articles found. Try adjusting your filters or clearing them.
+                            </div>
+                        </div>
                     </div>
 
                     <?php $rowIndex = 0; ?>
