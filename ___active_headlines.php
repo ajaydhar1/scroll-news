@@ -240,7 +240,7 @@ $activeHeadlines = scrollnews_fetch_active_headlines();
 
 </style>
 
-<div class="sn-card-active-headlines mb-3">
+<div class="sn-card-active-headlines mb-4">
     <div class="sn-card-header sn-card-header-inline">
         <div class="sn-card-header-left">
             <h2 class="sn-card-title">
