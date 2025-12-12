@@ -229,7 +229,7 @@ $activeHeadlines = scrollnews_fetch_active_headlines();
 .sn-headline-meta {
     font-size: 0.72rem;
     opacity: 0.7;
-    margin-top: 0.14rem;
+    margin-top: 0.1rem;
 }
 
 .sn-headline-source {
