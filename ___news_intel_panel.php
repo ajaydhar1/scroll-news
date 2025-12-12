@@ -539,14 +539,14 @@ footer .btn {
             ?>
                 <div class="col-12 col-lg-4 mb-3">
 
-                <?php if ($key === 'entities'): ?>
-                    <!-- Active Headlines card goes at the top of the first column -->
-                    <?php include __DIR__ . '/___active_headlines.php'; ?>
-                <?php endif; ?>
-
                 <?php if ($items): ?>
                     <div class="card h-100 intel-card mt-3 mt-lg-3">
                         <div class="card-body">
+                            <?php if ($key === 'entities'): ?>
+                                <!-- Active Headlines card goes at the top of the first column -->
+                                <?php include __DIR__ . '/___active_headlines.php'; ?>
+                            <?php endif; ?>
+                            
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <h3 class="h6 mb-3">
                                     <?= htmlspecialchars($meta['icon'] . ' ' . $meta['title']) ?>
