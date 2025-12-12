@@ -522,19 +522,30 @@ footer .btn {
         </div>
 
         <div class="intel-sections row g-3">
-            <?php
-            $sections = [
-                'entities' => ['title' => 'Trending Entities', 'icon' => '👤'],
-                'places'   => ['title' => 'Trending Places',   'icon' => '🗺️'],
-                'topics'   => ['title' => 'Trending Topics',   'icon' => '🧵'],
-            ];
+        <?php
+        $sections = [
+            'entities' => ['title' => 'Trending Entities', 'icon' => '👤'],
+            'places'   => ['title' => 'Trending Places',   'icon' => '🗺️'],
+            'topics'   => ['title' => 'Trending Topics',   'icon' => '🧵'],
+        ];
 
-            foreach ($sections as $key => $meta):
-                $items = $intel_panel[$key] ?? [];
-                if (!$items) continue;
-            ?>
-                <div class="col-12 col-lg-4 mb-3">
-                    <div class="card h-100 intel-card">
+        foreach ($sections as $key => $meta):
+            $items = $intel_panel[$key] ?? [];
+
+            // For non-entities, if there are no items, skip the column entirely
+            if ($key !== 'entities' && !$items) {
+                continue;
+            }
+        ?>
+            <div class="col-12 col-lg-4 mb-3">
+
+                <?php if ($key === 'entities'): ?>
+                    <!-- Active Headlines card goes at the top of the first column -->
+                    <?php include __DIR__ . '/___active_headlines.php'; ?>
+                <?php endif; ?>
+
+                <?php if ($items): ?>
+                    <div class="card h-100 intel-card mt-3 mt-lg-3">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <h3 class="h6 mb-3">
@@ -557,7 +568,6 @@ footer .btn {
                                                 <?php
                                                 // Decode NLP for this article
                                                 $nlp = json_decode($article['nlp'] ?? '{}', true) ?: [];
-
                                                 // Sentiment
                                                 $sentLabel = $nlp['sentiment']['label'] ?? null;
                                                 $sentEmoji = nlp_sentiment_emoji($sentLabel);
