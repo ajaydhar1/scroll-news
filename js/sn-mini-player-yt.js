@@ -48,6 +48,9 @@
   // Storage: bump version if schema changes
   const STORAGE_KEY = 'sn_hud_player_yt_v1';
 
+  const NEWS_RESET_HOURS = 6;
+  const NEWS_RESET_MS = NEWS_RESET_HOURS * 60 * 60 * 1000;
+
   // ----------------- Utilities -----------------
   const $  = (sel, ctx=document)=>ctx.querySelector(sel);
   const $$ = (sel, ctx=document)=>Array.from(ctx.querySelectorAll(sel));
@@ -178,6 +181,32 @@
     });
   }
 
+  function maybeResetForFreshNews(){
+    const now = Date.now();
+    const s = getState();
+
+    const last = s?.ui?.lastNewsResetTs || 0;
+    const due  = !last || (now - last) > NEWS_RESET_MS;
+    if (!due) return;
+
+    const firstPlaylist = PLAYLISTS[0]?.id || s.active;
+    if (!firstPlaylist) return;
+
+    // Reset to first playlist + first video + start time
+    s.active = firstPlaylist;
+    if (!s.playlists) s.playlists = {};
+    s.playlists[firstPlaylist] = { index: 0, seconds: 0, ts: now };
+
+    // Mark the reset time (store in ui so it’s stable with your schema)
+    if (!s.ui) s.ui = {};
+    s.ui.lastNewsResetTs = now;
+
+    // Optional: make sure it actually plays after reset
+    s.playing = true;
+
+    putState(s);
+  }
+
   // --------------- Persistent state (schema) ---------------
   //
   // {
@@ -238,6 +267,29 @@
   padding:.5rem .75rem;
   background:linear-gradient(to right, rgba(5,7,20,.95), rgba(17,20,45,.92));
   border-bottom:1px solid rgba(255,255,255,.06);
+}
+.hud-close{
+  appearance:none;
+  border:0;
+  background:transparent;
+  color:rgba(249,251,255,.85);
+  cursor:pointer;
+  font-size:18px;
+  line-height:1;
+  width:28px;
+  height:28px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-left:auto;
+}
+.hud-close:hover{
+  background:rgba(255,255,255,.08);
+  color:#fff;
+}
+.hud-close:active{
+  transform:scale(.96);
 }
 .hud-dot{
   width:8px;
@@ -373,6 +425,10 @@
           <select class="hud-select" id="hudPlaylist"></select>
         </div>
         <div class="hud-title">Loading YouTube…</div>
+
+        <!-- ✅ Close button -->
+        <button class="hud-close" type="button" aria-label="Close media player" title="Close">×</button>
+
         <button class="hud-collapse" title="Collapse/Expand">▾</button>
       </div>
       <div class="hud-subbar">
@@ -654,6 +710,7 @@
   document.addEventListener('DOMContentLoaded', async ()=>{
     document.body.appendChild(root);
     titleEl().textContent = 'Loading YouTube…';
+    maybeResetForFreshNews();
     initPlaylistSelect();
 
     const s0 = getState();
@@ -720,6 +777,17 @@
 
   document.addEventListener('click', (e)=>{
     if (!root.contains(e.target)) return;
+
+    const closeBtn = e.target.closest('.hud-close');
+    if (closeBtn) {
+      // Do EXACTLY what the widget does (collapse/expand)
+      shell().classList.remove('hud-hidden');
+      shell().classList.toggle('hud-collapsed');
+      saveUICollapsed(shell().classList.contains('hud-collapsed'));
+      syncWidget();
+      return;
+    }
+
     const btn = e.target.closest('.hud-btn');
     const isCollapse = e.target.closest('.hud-collapse');
     if (isCollapse){
