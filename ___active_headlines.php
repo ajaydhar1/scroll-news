@@ -36,9 +36,13 @@ function scrollnews_fetch_active_headlines(): array
 
         $age = $now - @filemtime($cacheFile);
         if ($cachedData && $age >= 0 && $age < $cacheTtl) {
-            // Fresh enough, just return cached headlines
+            error_log("[ActiveHeadlines] Using fresh cache ({$age}s old) from {$cacheFile}");
             return $cachedData;
+        } else {
+            error_log("[ActiveHeadlines] Cache present but expired ({$age}s old) at {$cacheFile}");
         }
+    } else {
+        error_log("[ActiveHeadlines] No cache file yet at {$cacheFile}");
     }
 
     // 2) Cache is missing or expired -> fetch live
@@ -58,11 +62,13 @@ function scrollnews_fetch_active_headlines(): array
 
         $xmlString = @file_get_contents($feedUrl, false, $httpContext);
         if (!$xmlString) {
+            error_log("[ActiveHeadlines] Failed to fetch feed: {$feedUrl}");
             continue;
         }
 
         $xml = @simplexml_load_string($xmlString, 'SimpleXMLElement', LIBXML_NOCDATA);
         if (!$xml || !isset($xml->channel->item)) {
+            error_log("[ActiveHeadlines] Invalid XML or no <item> for feed: {$feedUrl}");
             continue;
         }
 
@@ -102,23 +108,23 @@ function scrollnews_fetch_active_headlines(): array
         }
     }
 
-    // 3) If we successfully fetched *anything*, write cache and return it
     if (!empty($items)) {
         $dir = dirname($cacheFile);
         if (!is_dir($dir)) {
             @mkdir($dir, 0775, true);
         }
         @file_put_contents($cacheFile, json_encode($items), LOCK_EX);
+        error_log("[ActiveHeadlines] Wrote cache with " . count($items) . " items to {$cacheFile}");
 
         return $items;
     }
 
-    // 4) Live fetch failed. If we have any cached data, return that as fallback.
     if ($cachedData) {
+        error_log("[ActiveHeadlines] Live fetch failed, falling back to stale cache from {$cacheFile}");
         return $cachedData;
     }
 
-    // 5) No cache, no live data.
+    error_log("[ActiveHeadlines] No headlines available (no live, no cache)");
     return [];
 }
 
