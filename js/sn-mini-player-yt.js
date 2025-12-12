@@ -201,10 +201,21 @@
     if (!s.ui) s.ui = {};
     s.ui.lastNewsResetTs = now;
 
+    s.active = firstPlaylist;          // ✅ must update active
+
     // Optional: make sure it actually plays after reset
     s.playing = true;
 
     putState(s);
+  }
+
+  function syncPlaylistSelectFromState(){
+    try {
+      const s = getState();
+      const el = selPL();
+      if (!el) return;
+      if (el.value !== s.active) el.value = s.active;
+    } catch {}
   }
 
   // --------------- Persistent state (schema) ---------------
@@ -712,6 +723,7 @@
     titleEl().textContent = 'Loading YouTube…';
     maybeResetForFreshNews();
     initPlaylistSelect();
+    syncPlaylistSelectFromState();
 
     const s0 = getState();
     if (typeof s0.ui.collapsed === 'boolean'){
@@ -748,7 +760,9 @@
             syncWidget();
 
             // ✅ cue + autoplay on load
+            syncPlaylistSelectFromState();
             await cueActivePlaylist({ autoPlay: true, nonce: _switchNonce });
+            syncPlaylistSelectFromState();
 
             // optional: keep shuffle tweak but DON'T force pause
             await ensureShuffleAppliedWithoutAutoplay();
