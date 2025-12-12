@@ -5,11 +5,44 @@ const ACTIVE_HEADLINES_LIMIT = 6;
 const ACTIVE_HEADLINES_FEEDS = [
     'https://feeds.nbcnews.com/nbcnews/public/news',
 ];
+const ACTIVE_HEADLINES_CACHE_TTL    = 300; // seconds = 5 minutes
+const ACTIVE_HEADLINES_CACHE_FILE   = __DIR__ . '/cache/active_headlines_nbc.json';
 
+/**
+ * Fetch active headlines with a small file cache.
+ *
+ * Cache behavior:
+ * - If cache exists and is younger than TTL -> use cache.
+ * - If cache is expired -> try live fetch; on success, overwrite cache.
+ * - If live fetch fails but we have *any* cached data -> return cached
+ *   even if it's old, so the card doesn't go empty.
+ */
 function scrollnews_fetch_active_headlines(): array
 {
-    $items = [];
+    $cacheFile  = ACTIVE_HEADLINES_CACHE_FILE;
+    $cacheTtl   = ACTIVE_HEADLINES_CACHE_TTL;
+    $now        = time();
+    $cachedData = null;
 
+    // 1) Try to load any existing cache (even if it may be expired)
+    if (is_readable($cacheFile)) {
+        $json = @file_get_contents($cacheFile);
+        if ($json !== false) {
+            $decoded = json_decode($json, true);
+            if (is_array($decoded)) {
+                $cachedData = $decoded;
+            }
+        }
+
+        $age = $now - @filemtime($cacheFile);
+        if ($cachedData && $age >= 0 && $age < $cacheTtl) {
+            // Fresh enough, just return cached headlines
+            return $cachedData;
+        }
+    }
+
+    // 2) Cache is missing or expired -> fetch live
+    $items = [];
     $httpContext = stream_context_create([
         'http' => ['timeout' => 4],
         'ssl'  => [
@@ -69,7 +102,24 @@ function scrollnews_fetch_active_headlines(): array
         }
     }
 
-    return $items;
+    // 3) If we successfully fetched *anything*, write cache and return it
+    if (!empty($items)) {
+        $dir = dirname($cacheFile);
+        if (!is_dir($dir)) {
+            @mkdir($dir, 0775, true);
+        }
+        @file_put_contents($cacheFile, json_encode($items), LOCK_EX);
+
+        return $items;
+    }
+
+    // 4) Live fetch failed. If we have any cached data, return that as fallback.
+    if ($cachedData) {
+        return $cachedData;
+    }
+
+    // 5) No cache, no live data.
+    return [];
 }
 
 $activeHeadlines = scrollnews_fetch_active_headlines();
@@ -184,13 +234,13 @@ $activeHeadlines = scrollnews_fetch_active_headlines();
 
 </style>
 
-<div class="sn-card-active-headlines mb-5">
+<div class="sn-card sn-card-active-headlines mb-3">
     <div class="sn-card-header sn-card-header-inline">
         <div class="sn-card-header-left">
             <h2 class="sn-card-title">
                 Active Headlines
             </h2>
-            <span class="sn-card-subtitle">Live feed from NBC News</span>
+            <span class="sn-card-subtitle">Live from NBC News (cached ~5 min)</span>
         </div>
         <div class="sn-card-header-right">
             <span class="sn-live-pill">
