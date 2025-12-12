@@ -48,7 +48,7 @@
   // Storage: bump version if schema changes
   const STORAGE_KEY = 'sn_hud_player_yt_v1';
 
-  const NEWS_RESET_HOURS = 6;
+  const NEWS_RESET_HOURS = 1.5;
   const NEWS_RESET_MS = NEWS_RESET_HOURS * 60 * 60 * 1000;
 
   // ----------------- Utilities -----------------
