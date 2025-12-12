@@ -6,8 +6,12 @@ define('SCROLL_INTEREST_ENTITY_THRESHOLD', 32);
 
 // Domains considered "high-signal publishers"
 $SCROLL_HIGH_SIGNAL_PUBLISHERS = [
-    'cnn.com'     => true,
     'nbcnews.com' => true,
+    'cbsnews.com' => true,
+    'abcnews.go.com' => true,
+    'npr.org' => true,
+    'axios.com' => true,
+    'apnews.com' => true
 ];
 
 $highSignalSearchUrl = '/search.php?high_signal=1';
