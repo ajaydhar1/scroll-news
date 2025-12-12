@@ -215,11 +215,11 @@
 
   // ----------------- Inject CSS/HTML -----------------
   const css = `
-  .hud-mini-player{
+.hud-mini-player{
   position:fixed;
   right:16px;
   bottom:69px;
-  z-index:9999;
+  z-index:600;
   width:320px;
   color:#f9fbff;
   font:500 14px/1.4 system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
@@ -312,7 +312,7 @@
   position:fixed;
   right:16px;
   bottom:16px;
-  z-index:10000;
+  z-index:610;
   width:46px;
   height:46px;
   border-radius:999px;
