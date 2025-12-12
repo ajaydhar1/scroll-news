@@ -528,7 +528,7 @@
                         <option value="PLn3nHXu50t5wkud7Iv0LFazfV8dja6dc3">ESPN (First Take)</option>
                         <option value="PLn3nHXu50t5xU9FvI2M2km5a4GgfqfKlY">ESPN (Get Up)</option>
                         <option value="PLGmceqLQ0UeYSzvsA6agwpkdoCMySiLA6">Fox News (Trump Administration)</option>
-                        <option value="PLDIVi-vBsOExM37bFPYowCBBiohZCV1iC">MSNBC (The Latest)</option>
+                        <option value="PLDIVi-vBsOExM37bFPYowCBBiohZCV1iC">MS NOW (MSNBC)</option>
                         <!-- Paste more playlist URLs or IDs as options; ID or full URL both work -->
                         <!-- <option value="https://www.youtube.com/playlist?list=PLxxxx">World</option> -->
                         <!-- <option value="PLyyyy">Technology</option> -->
@@ -664,6 +664,8 @@
         <script type="text/javascript" src="js/lightbox.js"></script>
 
         <script src="js/sn_history.js"></script>
+
+        <script src="js/sn-mini-player-yt.js?v=<?= filemtime(__DIR__.'/js/sn-mini-player-yt.js') ?>" defer></script>
 
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->

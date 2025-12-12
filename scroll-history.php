@@ -768,6 +768,8 @@ if (!$pdo) {
 
         <script src="js/sn_history.js"></script>
 
+        <script src="js/sn-mini-player-yt.js?v=<?= filemtime(__DIR__.'/js/sn-mini-player-yt.js') ?>" defer></script>
+
         <script>
             function goToAnalytics() {
                 if (!isMobile()) {
