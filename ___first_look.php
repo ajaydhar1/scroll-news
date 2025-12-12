@@ -90,7 +90,7 @@ function fl_fetch_rss_top_items(string $rssUrl, int $maxItems = 2): array {
       if ($title === '' || $link === '') continue;
       $ts = $date ? strtotime($date) : 0;
 
-      $items[] = ['title'=>$title, 'url'=>$link, 'ts'=>$ts ?: 0];
+      $items[] = ['title'=>$title, 'url'=>$link, 'ts'=>$ts ?: 0, 'emo'=>fl_headline_emoji($title)];
       if (count($items) >= $maxItems) break;
     }
   } elseif (isset($feed->entry)) {
@@ -110,7 +110,7 @@ function fl_fetch_rss_top_items(string $rssUrl, int $maxItems = 2): array {
       if ($title === '' || $link === '') continue;
       $ts = $date ? strtotime($date) : 0;
 
-      $items[] = ['title'=>$title, 'url'=>$link, 'ts'=>$ts ?: 0];
+      $items[] = ['title'=>$title, 'url'=>$link, 'ts'=>$ts ?: 0, 'emo'=>fl_headline_emoji($title)];
       if (count($items) >= $maxItems) break;
     }
   }
@@ -175,6 +175,37 @@ function fl_trigger_background_refresh(string $cachePath, array $feeds, int $per
   }
 }
 
+function fl_headline_emoji(string $title): string {
+  $t = mb_strtolower($title);
+
+  // urgency / breaking
+  if (preg_match('/\b(breaking|urgent|alert|live|explosion|shooting|killed|dead|war|attack)\b/u', $t)) return "🔥";
+
+  // conflict / politics / law
+  if (preg_match('/\b(trump|biden|election|vote|democrat|republican|congress|senate|court|judge|lawsuit|indict|probe)\b/u', $t)) return "⚖️";
+
+  // money / markets
+  if (preg_match('/\b(stocks|market|dow|nasdaq|s&p|fed|rates|inflation|jobs report|earnings|crypto|bitcoin|oil)\b/u', $t)) return "💰";
+
+  // crime / danger (but not “breaking”)
+  if (preg_match('/\b(crime|arrest|charged|suspect|police|gun|fraud|scam)\b/u', $t)) return "🚨";
+
+  // health / science
+  if (preg_match('/\b(covid|virus|flu|health|cdc|vaccine|cancer|study|research|ai|robot|space|nasa)\b/u', $t)) return "🧪";
+
+  // weather / disasters
+  if (preg_match('/\b(storm|hurricane|tornado|flood|earthquake|wildfire|snow)\b/u', $t)) return "🌪️";
+
+  // entertainment / culture
+  if (preg_match('/\b(movie|film|music|celebrity|hollywood|oscars|grammys|tv|show)\b/u', $t)) return "🎭";
+
+  // global / geopolitics
+  if (preg_match('/\b(ukraine|russia|china|israel|gaza|iran|north korea|eu|un)\b/u', $t)) return "🌍";
+
+  // default mood
+  return "📰";
+}
+
 // ----------------- Cache read + refresh decision -----------------
 
 $cachePath = fl_cache_path();
@@ -216,7 +247,7 @@ if (!$hasCache) {
         <div class="firstlook-title">First Look</div>
         <div class="firstlook-sub">Warming up…</div>
       </div>
-      <a class="firstlook-more" href="/first-look.php">See more →</a>
+      <?php // <a class="firstlook-more" href="/first-look.php">See more →</a> ?>
     </div>
     <div style="color:rgba(255,255,255,.6);font-size:12px;padding:0 4px 6px;">
       First Look is building its cache. Refresh in a moment.
@@ -366,7 +397,7 @@ if (!is_array($feedsData) || count($feedsData) === 0) {
           <?php foreach (($f['items'] ?? []) as $it): ?>
             <div class="firstlook-item">
               <a href="<?php echo htmlspecialchars($it['url']); ?>" target="_blank" rel="noopener">
-                <?php echo htmlspecialchars($it['title']); ?>
+                <?php echo htmlspecialchars(($it['emo'] ?? '📰') . ' ' . ($it['title'] ?? '')); ?>
               </a>
               <?php if (!empty($it['ts'])): ?>
                 <div class="firstlook-time"><?php echo date('g:ia', (int)$it['ts']); ?></div>

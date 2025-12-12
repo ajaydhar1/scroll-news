@@ -1,35 +1,21 @@
 {
-    "fetched_at": 1765568347,
+    "fetched_at": 1765579118,
     "feeds": [
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Amazon Prime Video scraps AI-powered TV show recaps after 'Fallout' fallout",
-                    "url": "https://www.businessinsider.com/fallout-amazon-tv-show-ai-video-recaps-errors-2025-12",
-                    "ts": 1765568032
-                },
-                {
-                    "title": "This 'shopping basket' Chanel bag just sold for a record-breaking amount",
-                    "url": "https://www.businessinsider.com/chanel-shopping-basket-bag-sets-auction-record-resale-luxury-investing-2025-12",
-                    "ts": 1765567503
-                }
-            ]
-        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Thailand, Cambodian leaders agree to renew truce after days of deadly clashes, Trump says",
-                    "url": "https://nypost.com/2025/12/12/world-news/thailand-cambodian-leaders-agree-to-renew-truce-after-days-of-deadly-clashes-trump-says/",
-                    "ts": 1765568004
+                    "title": "Longtime Utah football coach Kyle Whittingham stepping down",
+                    "url": "https://nypost.com/2025/12/12/sports/longtime-utah-football-coach-kyle-whittingham-stepping-down/",
+                    "ts": 1765579087,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Elite NYC school plagued by untraceable bomb threats ‘almost every day’ as panicked parents demand answers",
-                    "url": "https://nypost.com/2025/12/12/us-news/elite-nyc-high-school-plagued-by-repeated-untraceable-bomb-threats/",
-                    "ts": 1765567721
+                    "title": "Killer who slashed woman’s throat in unprovoked attack on LA train is put away for life",
+                    "url": "https://nypost.com/2025/12/12/us-news/elliot-tramel-nowden-sentenced-to-life-for-fatally-stabbing-woman-at-la-metro-station/",
+                    "ts": 1765579070,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -38,78 +24,16 @@
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Disney+ is accused of spreading 'anti-Jewish propaganda' after pro-Palestine symbol appeared on teenage girl's laptop in its Christmas advert",
-                    "url": "https://www.dailymail.co.uk/news/article-15378599/Disney-accused-spreading-anti-Jewish-propaganda-pro-Palestine-symbol-appeared-teenage-girls-laptop.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1765567908
+                    "title": "Naked photo of Epstein emerges in fresh files dump as pedophile smiles menacingly at camera",
+                    "url": "https://www.dailymail.co.uk/news/article-15379805/Naked-photo-Epstein-emerges-fresh-files-dump-pedophile-smiles-menacingly-camera.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1765578882,
+                    "emo": "📰"
                 },
                 {
-                    "title": "'I may be off to the House of Lords but I can't afford to heat my home after being cancelled because of my views', Olympic swimming champion and campaigner Sharron Davies reveals",
-                    "url": "https://www.dailymail.co.uk/news/article-15379291/House-Lords-afford-heat-home-cancelled-Olympic-swimming-champion-Sharron-Davies.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1765567879
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "Melania Trump's longtime makeup artist says she was canceled for working with first family",
-                    "url": "https://www.foxnews.com/media/melania-trumps-longtime-makeup-artist-says-she-canceled-working-first-family",
-                    "ts": 1765567827
-                },
-                {
-                    "title": "White House slams House Dems releasing Epstein photos showing Trump, Clinton, Woody Allen",
-                    "url": "https://www.foxnews.com/politics/white-house-slams-house-dems-releasing-epstein-photos-showing-trump-clinton-woody-allen",
-                    "ts": 1765567589
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Trump expected to sign executive order to reclassify marijuana as soon as Monday, source tells CNBC; pot stocks surge",
-                    "url": "https://www.cnbc.com/2025/12/12/cannabis-stocks-trump-regulations.html",
-                    "ts": 1765567382
-                },
-                {
-                    "title": "Broadcom tumbles 11% despite blockbuster earnings as 'AI angst' weighs on Oracle, Nvidia",
-                    "url": "https://www.cnbc.com/2025/12/12/broadcom-tumbles-10percent-after-earnings-as-ai-trade-sells-off-.html",
-                    "ts": 1765561933
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "EU backs indefinite freeze on Russia's frozen cash ahead of loan plan for Ukraine",
-                    "url": "https://www.bbc.com/news/articles/c98nnd01g91o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1765566891
-                },
-                {
-                    "title": "Robert Rhodes plotted and killed his wife - years later, his child's evidence convicted him",
-                    "url": "https://www.bbc.com/news/articles/cgl6ewdr2nyo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1765553875
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "More home buyers are turning to this type of mortgage in an unaffordable market — but sometimes it works against them",
-                    "url": "https://www.marketwatch.com/story/more-home-buyers-are-turning-to-this-type-of-mortgage-in-an-unaffordable-market-but-sometimes-it-works-against-them-c88ceb7d?mod=mw_rss_topstories",
-                    "ts": 1765566480
-                },
-                {
-                    "title": "My Taiwanese immigrant friend started working in Walmart for minimum wage and retired with $2 million. What was her secret?",
-                    "url": "https://www.marketwatch.com/story/my-taiwanese-immigrant-friend-worked-in-walmart-for-minimum-wage-and-retired-at-87-with-2-million-what-was-her-secret-0bf583d6?mod=mw_rss_topstories",
-                    "ts": 1765566480
+                    "title": "Graham Linehan calls Father Ted star Ardal O'Halnon 'a coward' in transgender row - as comedy writer announces he is appealing over his conviction for throwing a trans activist's phone",
+                    "url": "https://www.dailymail.co.uk/news/article-15378613/Graham-Linehan-calls-Father-Ted-star-Ardal-OHalnon-coward-transgender-row-comedy-writer-announces-appealing-conviction-throwing-trans-activists-phone.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1765578640,
+                    "emo": "📰"
                 }
             ]
         },
@@ -119,13 +43,69 @@
             "items": [
                 {
                     "title": "POLL: 'TIS THE SEASON FOR... INFLATION",
-                    "url": "https://apnews.com/article/poll-economy-inflation-groceries-costs-trump-affordability-d27635d279b27e5e2c19700c006ebb1d",
-                    "ts": 1765566096
+                    "url": "https://apnews.com/d27635d279b27e5e2c19700c006ebb1d",
+                    "ts": 1765578696,
+                    "emo": "💰"
                 },
                 {
                     "title": "Big Winner in Trade War: The Grinch!",
                     "url": "https://www.wsj.com/opinion/big-winner-in-trumps-trade-war-the-grinch-d8a13809",
-                    "ts": 1765566096
+                    "ts": 1765578696,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "These stocks could land big profits from filling Big Tech’s critical water needs",
+                    "url": "https://www.marketwatch.com/story/these-stocks-could-land-big-profits-from-filling-big-techs-critical-water-needs-2e0e214b?mod=mw_rss_topstories",
+                    "ts": 1765578540,
+                    "emo": "💰"
+                },
+                {
+                    "title": "Tilray’s stock takes off on hope that cannabis will soon be treated more like steroids than heroin",
+                    "url": "https://www.marketwatch.com/story/tilrays-stock-takes-off-on-hope-that-cannabis-will-soon-be-seen-as-more-like-steroids-than-heroin-f160575c?mod=mw_rss_topstories",
+                    "ts": 1765578120,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Michigan football recruits decommit from program amid Sherrone Moore scandal",
+                    "url": "https://www.foxnews.com/sports/michigan-football-recruits-decommit-from-program-amid-sherrone-moore-scandal",
+                    "ts": 1765578413,
+                    "emo": "📰"
+                },
+                {
+                    "title": "House GOP unveils healthcare plan ahead of vote next week as cost hike looms for millions",
+                    "url": "https://www.foxnews.com/politics/house-gop-unveils-healthcare-plan-ahead-vote-next-week-cost-hike-looms-millions",
+                    "ts": 1765577199,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "As a skeptical health writer, I tested a depuffing wand on my face every day for a month &mdash; and was surprised to see actual results",
+                    "url": "https://www.businessinsider.com/guides/beauty/theraface-depuffing-wand-review",
+                    "ts": 1765577672,
+                    "emo": "🧪"
+                },
+                {
+                    "title": "TWICE expands 2025-2026 This Is For Tour to North America and Europe: Dates and tickets",
+                    "url": "https://www.businessinsider.com/guides/tickets/how-to-get-twice-tickets-concert-tour",
+                    "ts": 1765576895,
+                    "emo": "📰"
                 }
             ]
         },
@@ -134,14 +114,34 @@
             "home": "https://thehill.com",
             "items": [
                 {
-                    "title": "Live updates: ObamaCare vote may hit House floor; Dems release new Epstein estate photos",
-                    "url": "https://thehill.com/homenews/administration/5643951-live-updates-trump-republicans-indiana-venezuela/",
-                    "ts": 1765566095
+                    "title": "Park gift shops directed to review merch for DEI",
+                    "url": "https://thehill.com/homenews/5646948-park-gift-shops-directed-to-review-merch-for-dei/",
+                    "ts": 1765577614,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Trump targets Maduro's financial lifeline with oil tanker seizure",
-                    "url": "https://thehill.com/policy/defense/5645778-trump-seizes-venezuelan-oil-tanker/",
-                    "ts": 1765566000
+                    "title": "Two baby products sold on Amazon recalled over 'risk of serious injury or death'",
+                    "url": "https://thehill.com/homenews/nexstar_media_wire/5646850-two-baby-products-sold-on-amazon-recalled-over-risk-of-serious-injury-or-death/",
+                    "ts": 1765575267,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Trump says Kevin Warsh is at top of Fed chair candidate list, president should be consulted on rates",
+                    "url": "https://www.cnbc.com/2025/12/12/trump-kevin-warsh-fed-chair-rates.html",
+                    "ts": 1765577415,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Trump expected to sign executive order to reclassify marijuana as soon as Monday, source tells CNBC; pot stocks surge",
+                    "url": "https://www.cnbc.com/2025/12/12/cannabis-stocks-trump-regulations.html",
+                    "ts": 1765574522,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -150,14 +150,52 @@
             "home": "https://www.nytimes.com",
             "items": [
                 {
-                    "title": "Businesses Are Cashing In on Trump’s Tax Cuts",
-                    "url": "https://www.nytimes.com/2025/12/12/us/politics/trumps-corporate-tax-cuts-economy.html",
-                    "ts": 1765559314
+                    "title": "T.S.A. Is Providing Air Passenger Data to Immigration Agents for Deportation Effort",
+                    "url": "https://www.nytimes.com/2025/12/12/us/politics/immigration-tsa-passenger-data.html",
+                    "ts": 1765575947,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Behind the Supreme Court’s Push to Expand Presidential Power",
-                    "url": "https://www.nytimes.com/video/us/100000010574596/behind-the-supreme-courts-push-to-expand-presidential-power.html",
-                    "ts": 1765533709
+                    "title": "Transportation Dept. Threatens to Withhold Funds From N.Y. Over Noncitizen Licenses",
+                    "url": "https://www.nytimes.com/2025/12/12/us/politics/transportation-dept-threatens-to-withhold-funds-from-ny-over-noncitizen-licenses.html",
+                    "ts": 1765578925,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "King says he can 'share the good news' his cancer treatment will be reduced",
+                    "url": "https://www.bbc.com/news/articles/c14vvv8pnpmo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1765573856,
+                    "emo": "🧪"
+                },
+                {
+                    "title": "EU backs indefinite freeze on Russia's frozen cash ahead of loan plan for Ukraine",
+                    "url": "https://www.bbc.com/news/articles/c98nnd01g91o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1765566891,
+                    "emo": "🌍"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "'We can't be bullied': How Trump and the GOP's redistricting push in Indiana backfired",
+                    "url": "https://www.nbcnews.com/politics/elections/trump-gop-redistricting-push-indiana-backfired-rcna247832",
+                    "ts": 1765566042,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Democrats release photos of Trump, Clinton, Bannon and more from Epstein's estate",
+                    "url": "https://www.nbcnews.com/politics/politics-news/new-epstein-photos-show-trump-clinton-bill-gates-woody-allen-steve-ban-rcna248819",
+                    "ts": 1765552167,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -168,28 +206,14 @@
                 {
                     "title": "UK politics: Trump talks ‘complete nonsense’ about crime in London, says Met police commissioner – as it happened",
                     "url": "https://www.theguardian.com/politics/live/2025/dec/12/rachel-reeves-economy-budget-gdp-nhs-flu-streeting-assisted-dying-latest-news-updates",
-                    "ts": 1765557007
+                    "ts": 1765557007,
+                    "emo": "⚖️"
                 },
                 {
                     "title": "December cut to UK interest rates ‘nailed on’ after economy shrinks unexpectedly by 0.1% in October – as it happened",
                     "url": "https://www.theguardian.com/business/live/2025/dec/12/uk-gdp-growth-october-economy-budget-jlr-stock-markets-pound-bonds-business-live-news-updates",
-                    "ts": 1765552625
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Democrats release photos of Trump, Clinton, Bannon and more from Epstein's estate",
-                    "url": "https://www.nbcnews.com/politics/politics-news/new-epstein-photos-show-trump-clinton-bill-gates-woody-allen-steve-ban-rcna248819",
-                    "ts": 1765552167
-                },
-                {
-                    "title": "Fired Michigan football coach Sherrone Moore appears in court",
-                    "url": "https://www.nbcnews.com/now/video/fired-michigan-football-coach-sherrone-moore-appears-in-court-254314053794",
-                    "ts": 1765564888
+                    "ts": 1765552625,
+                    "emo": "💰"
                 }
             ]
         }
