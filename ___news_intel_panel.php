@@ -522,22 +522,22 @@ footer .btn {
         </div>
 
         <div class="intel-sections row g-3">
-        <?php
-        $sections = [
-            'entities' => ['title' => 'Trending Entities', 'icon' => '👤'],
-            'places'   => ['title' => 'Trending Places',   'icon' => '🗺️'],
-            'topics'   => ['title' => 'Trending Topics',   'icon' => '🧵'],
-        ];
+            <?php
+            $sections = [
+                'entities' => ['title' => 'Trending Entities', 'icon' => '👤'],
+                'places'   => ['title' => 'Trending Places',   'icon' => '🗺️'],
+                'topics'   => ['title' => 'Trending Topics',   'icon' => '🧵'],
+            ];
 
-        foreach ($sections as $key => $meta):
-            $items = $intel_panel[$key] ?? [];
+            foreach ($sections as $key => $meta):
+                $items = $intel_panel[$key] ?? [];
 
-            // For non-entities, if there are no items, skip the column entirely
-            if ($key !== 'entities' && !$items) {
-                continue;
-            }
-        ?>
-            <div class="col-12 col-lg-4 mb-3">
+                // For non-entities, if there are no items, skip the column entirely
+                if ($key !== 'entities' && !$items) {
+                    continue;
+                }
+            ?>
+                <div class="col-12 col-lg-4 mb-3">
 
                 <?php if ($key === 'entities'): ?>
                     <!-- Active Headlines card goes at the top of the first column -->
@@ -568,6 +568,7 @@ footer .btn {
                                                 <?php
                                                 // Decode NLP for this article
                                                 $nlp = json_decode($article['nlp'] ?? '{}', true) ?: [];
+
                                                 // Sentiment
                                                 $sentLabel = $nlp['sentiment']['label'] ?? null;
                                                 $sentEmoji = nlp_sentiment_emoji($sentLabel);
@@ -743,6 +744,7 @@ footer .btn {
                             </div>
                         </div>
                     </div>
+                    <?php endif; ?>
                 </div>
             <?php endforeach; ?>
         </div>
