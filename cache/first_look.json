@@ -1,21 +1,21 @@
 {
-    "fetched_at": 1765579118,
+    "fetched_at": 1765591050,
     "feeds": [
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Longtime Utah football coach Kyle Whittingham stepping down",
-                    "url": "https://nypost.com/2025/12/12/sports/longtime-utah-football-coach-kyle-whittingham-stepping-down/",
-                    "ts": 1765579087,
+                    "title": "Joe Schoen is the enigma at the center of the Giants’ latest coaching search",
+                    "url": "https://nypost.com/2025/12/12/sports/joe-schoen-an-enigma-at-the-center-of-giants-coaching-search/",
+                    "ts": 1765590950,
                     "emo": "📰"
                 },
                 {
-                    "title": "Killer who slashed woman’s throat in unprovoked attack on LA train is put away for life",
-                    "url": "https://nypost.com/2025/12/12/us-news/elliot-tramel-nowden-sentenced-to-life-for-fatally-stabbing-woman-at-la-metro-station/",
-                    "ts": 1765579070,
-                    "emo": "🔥"
+                    "title": "Wild acquire Quinn Hughes in blockbuster trade with Canucks",
+                    "url": "https://nypost.com/2025/12/12/sports/wild-acquire-quinn-hughes-in-blockbuster-trade-with-canucks/",
+                    "ts": 1765590924,
+                    "emo": "📰"
                 }
             ]
         },
@@ -24,15 +24,15 @@
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Naked photo of Epstein emerges in fresh files dump as pedophile smiles menacingly at camera",
-                    "url": "https://www.dailymail.co.uk/news/article-15379805/Naked-photo-Epstein-emerges-fresh-files-dump-pedophile-smiles-menacingly-camera.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1765578882,
+                    "title": "Final chapter in the Bonnie Blue saga as the adult star is deported from Bali - and she can't resist taking a final swipe at immigration authorities",
+                    "url": "https://www.dailymail.co.uk/news/article-15379823/Bonnie-Blue-Bangbus-Bali-deportation.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1765590854,
                     "emo": "📰"
                 },
                 {
-                    "title": "Graham Linehan calls Father Ted star Ardal O'Halnon 'a coward' in transgender row - as comedy writer announces he is appealing over his conviction for throwing a trans activist's phone",
-                    "url": "https://www.dailymail.co.uk/news/article-15378613/Graham-Linehan-calls-Father-Ted-star-Ardal-OHalnon-coward-transgender-row-comedy-writer-announces-appealing-conviction-throwing-trans-activists-phone.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1765578640,
+                    "title": "Reform is now the UK's biggest party as it overtakes Labour and hails 'huge milestone'",
+                    "url": "https://www.dailymail.co.uk/news/article-15379795/Reform-UKs-overtakes-Labour-hails-milestone.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1765590848,
                     "emo": "📰"
                 }
             ]
@@ -44,31 +44,31 @@
                 {
                     "title": "POLL: 'TIS THE SEASON FOR... INFLATION",
                     "url": "https://apnews.com/d27635d279b27e5e2c19700c006ebb1d",
-                    "ts": 1765578696,
+                    "ts": 1765590767,
                     "emo": "💰"
                 },
                 {
                     "title": "Big Winner in Trade War: The Grinch!",
                     "url": "https://www.wsj.com/opinion/big-winner-in-trumps-trade-war-the-grinch-d8a13809",
-                    "ts": 1765578696,
+                    "ts": 1765590767,
                     "emo": "🔥"
                 }
             ]
         },
         {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
+            "name": "The Hill",
+            "home": "https://thehill.com",
             "items": [
                 {
-                    "title": "These stocks could land big profits from filling Big Tech’s critical water needs",
-                    "url": "https://www.marketwatch.com/story/these-stocks-could-land-big-profits-from-filling-big-techs-critical-water-needs-2e0e214b?mod=mw_rss_topstories",
-                    "ts": 1765578540,
-                    "emo": "💰"
+                    "title": "Harris, Martin talk affordability at DNC meeting: 'S--- is too expensive'",
+                    "url": "https://thehill.com/homenews/campaign/5647234-harris-ken-martin-dnc-affordability/",
+                    "ts": 1765590744,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Tilray’s stock takes off on hope that cannabis will soon be treated more like steroids than heroin",
-                    "url": "https://www.marketwatch.com/story/tilrays-stock-takes-off-on-hope-that-cannabis-will-soon-be-seen-as-more-like-steroids-than-heroin-f160575c?mod=mw_rss_topstories",
-                    "ts": 1765578120,
+                    "title": "DHS changing immigration enforcement tactics amid negative polling",
+                    "url": "https://thehill.com/policy/national-security/5647146-immigration-enforcement-tactics-change/",
+                    "ts": 1765588053,
                     "emo": "📰"
                 }
             ]
@@ -78,16 +78,16 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Michigan football recruits decommit from program amid Sherrone Moore scandal",
-                    "url": "https://www.foxnews.com/sports/michigan-football-recruits-decommit-from-program-amid-sherrone-moore-scandal",
-                    "ts": 1765578413,
-                    "emo": "📰"
+                    "title": "Trump honors 'Miracle on Ice' team; Mike Eruzione, Jim Craig praise president in return",
+                    "url": "https://www.foxnews.com/sports/trump-honors-miracle-ice-team-mike-eruzione-jim-craig-praise-president-return",
+                    "ts": 1765588250,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "House GOP unveils healthcare plan ahead of vote next week as cost hike looms for millions",
-                    "url": "https://www.foxnews.com/politics/house-gop-unveils-healthcare-plan-ahead-vote-next-week-cost-hike-looms-millions",
-                    "ts": 1765577199,
-                    "emo": "⚖️"
+                    "title": "Former Michigan coach Jim Harbaugh reacts to Sherrone Moore's firing and charges",
+                    "url": "https://www.foxnews.com/sports/former-michigan-coach-jim-harbaugh-reacts-sherrone-moores-firing-criminal-charges",
+                    "ts": 1765588068,
+                    "emo": "📰"
                 }
             ]
         },
@@ -96,34 +96,52 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "As a skeptical health writer, I tested a depuffing wand on my face every day for a month &mdash; and was surprised to see actual results",
-                    "url": "https://www.businessinsider.com/guides/beauty/theraface-depuffing-wand-review",
-                    "ts": 1765577672,
-                    "emo": "🧪"
+                    "title": "Amtrak's unionized workers are getting $900 holiday bonuses after their managers gave up half of theirs",
+                    "url": "https://www.businessinsider.com/amtrak-workers-holiday-bonuses-executives-give-up-half-2025-12",
+                    "ts": 1765586176,
+                    "emo": "📰"
                 },
                 {
-                    "title": "TWICE expands 2025-2026 This Is For Tour to North America and Europe: Dates and tickets",
-                    "url": "https://www.businessinsider.com/guides/tickets/how-to-get-twice-tickets-concert-tour",
-                    "ts": 1765576895,
+                    "title": "The rise and fall of Hooters",
+                    "url": "https://www.businessinsider.com/the-rise-and-fall-of-hooters-2025-12",
+                    "ts": 1765583199,
                     "emo": "📰"
                 }
             ]
         },
         {
-            "name": "The Hill",
-            "home": "https://thehill.com",
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
             "items": [
                 {
-                    "title": "Park gift shops directed to review merch for DEI",
-                    "url": "https://thehill.com/homenews/5646948-park-gift-shops-directed-to-review-merch-for-dei/",
-                    "ts": 1765577614,
+                    "title": "‘This seems absolutely insane’: Our children pay rent on our investment properties. Our lawyer says they should still buy us out.",
+                    "url": "https://www.marketwatch.com/story/this-seems-absolutely-insane-our-children-pay-rent-on-our-investment-properties-our-lawyer-says-they-should-still-buy-us-out-49d2707d?mod=mw_rss_topstories",
+                    "ts": 1765585800,
                     "emo": "📰"
                 },
                 {
-                    "title": "Two baby products sold on Amazon recalled over 'risk of serious injury or death'",
-                    "url": "https://thehill.com/homenews/nexstar_media_wire/5646850-two-baby-products-sold-on-amazon-recalled-over-risk-of-serious-injury-or-death/",
-                    "ts": 1765575267,
+                    "title": "‘Where are we vulnerable?’ My husband and I are in our 50s. Our $450K mortgage is paid off. We have $500K in IRAs.",
+                    "url": "https://www.marketwatch.com/story/where-are-we-vulnerable-my-husband-and-i-are-in-our-50s-our-450k-mortgage-is-paid-off-we-have-500k-in-iras-5b5741a6?mod=mw_rss_topstories",
+                    "ts": 1765584060,
                     "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Noem & Lewandowski ‘pointing fingers’ amid pressure to ramp up immigration enforcement",
+                    "url": "https://www.nbcnews.com/meet-the-press/video/noem-lewandowski-pointing-fingers-amid-pressure-to-ramp-up-immigration-enforcement-254334021660",
+                    "ts": 1765577536,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Kilmar Abrego Garcia will remain free from ICE custody following judge's order",
+                    "url": "https://www.nbcnews.com/news/us-news/kilmar-abrego-garcia-released-ice-custody-judge-xinis-rcna237431",
+                    "ts": 1765469467,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -174,28 +192,10 @@
                     "emo": "🧪"
                 },
                 {
-                    "title": "EU backs indefinite freeze on Russia's frozen cash ahead of loan plan for Ukraine",
-                    "url": "https://www.bbc.com/news/articles/c98nnd01g91o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1765566891,
-                    "emo": "🌍"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "'We can't be bullied': How Trump and the GOP's redistricting push in Indiana backfired",
-                    "url": "https://www.nbcnews.com/politics/elections/trump-gop-redistricting-push-indiana-backfired-rcna247832",
-                    "ts": 1765566042,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Democrats release photos of Trump, Clinton, Bannon and more from Epstein's estate",
-                    "url": "https://www.nbcnews.com/politics/politics-news/new-epstein-photos-show-trump-clinton-bill-gates-woody-allen-steve-ban-rcna248819",
-                    "ts": 1765552167,
-                    "emo": "⚖️"
+                    "title": "Ukraine's health supplies hit in series of Russian strikes on medical warehouses",
+                    "url": "https://www.bbc.com/news/articles/cqlkk9qk7vyo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1765584321,
+                    "emo": "🧪"
                 }
             ]
         },

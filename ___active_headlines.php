@@ -1,6 +1,8 @@
 <?php
 // ___active_headlines.php
 
+require_once __DIR__ . '/___emoji_headlines.php';
+
 const ACTIVE_HEADLINES_LIMIT = 6;
 const ACTIVE_HEADLINES_FEEDS = [
     'https://feeds.nbcnews.com/nbcnews/public/news',
@@ -273,7 +275,11 @@ $activeHeadlines = scrollnews_fetch_active_headlines();
                             target="_blank"
                             rel="noopener"
                         >
-                            <?php echo htmlspecialchars($headline['title'], ENT_QUOTES, 'UTF-8'); ?>
+                            <?php
+                                $titleRaw = (string)($headline['title'] ?? '');
+                                $titleUi  = headline_with_emojis($titleRaw, 1);
+                                echo htmlspecialchars($titleUi, ENT_QUOTES, 'UTF-8');
+                            ?>
                         </a>
 
                         <?php if (!empty($headline['pub_human'])): ?>
