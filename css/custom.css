@@ -4,6 +4,17 @@
     --line-height-unit: 1;
 }
 
+::selection{
+  background: rgba(0, 191, 166, 0.28); /* your #00bfa6 but softened */
+  color: #0a0a0a;
+  text-shadow: none;
+}
+::-moz-selection{
+  background: rgba(0, 191, 166, 0.28);
+  color: #0a0a0a;
+  text-shadow: none;
+}
+
 .text-green {
   color: var(--brand-color);
 }
