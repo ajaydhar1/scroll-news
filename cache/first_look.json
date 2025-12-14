@@ -1,38 +1,38 @@
 {
-    "fetched_at": 1765591050,
+    "fetched_at": 1765724813,
     "feeds": [
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "Joe Schoen is the enigma at the center of the Giants’ latest coaching search",
-                    "url": "https://nypost.com/2025/12/12/sports/joe-schoen-an-enigma-at-the-center-of-giants-coaching-search/",
-                    "ts": 1765590950,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Wild acquire Quinn Hughes in blockbuster trade with Canucks",
-                    "url": "https://nypost.com/2025/12/12/sports/wild-acquire-quinn-hughes-in-blockbuster-trade-with-canucks/",
-                    "ts": 1765590924,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Final chapter in the Bonnie Blue saga as the adult star is deported from Bali - and she can't resist taking a final swipe at immigration authorities",
-                    "url": "https://www.dailymail.co.uk/news/article-15379823/Bonnie-Blue-Bangbus-Bali-deportation.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1765590854,
+                    "title": "I'm a 35-year-old virgin and have never even been on date... but I'm not ashamed of being a late bloomer",
+                    "url": "https://www.dailymail.co.uk/lifestyle/love-sex/article-15382745/virgin-35-never-dated-sex.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1765724723,
                     "emo": "📰"
                 },
                 {
-                    "title": "Reform is now the UK's biggest party as it overtakes Labour and hails 'huge milestone'",
-                    "url": "https://www.dailymail.co.uk/news/article-15379795/Reform-UKs-overtakes-Labour-hails-milestone.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1765590848,
+                    "title": "Julian Clary admits he was 'engulfed in melancholy' when he delivered his career-ending Norman Lamont joke at The Comedy Awards as he reveals he'd 'taken a Valium backstage' before making the jibe",
+                    "url": "https://www.dailymail.co.uk/tvshowbiz/article-15382315/Julian-Clary-career-ending-Norman-Lamont-joke-Comedy-Awards.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1765724613,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "Budget-conscious Gen Z say ‘showing up is the gift’ this holiday season",
+                    "url": "https://nypost.com/2025/12/14/lifestyle/gen-z-plans-to-spend-34-less-on-gifts-this-year/",
+                    "ts": 1765724552,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Nets’ continued reliance on Michael Porter Jr. could prove more costly",
+                    "url": "https://nypost.com/2025/12/14/sports/nets-reliance-on-michael-porter-jr-could-prove-more-costly/",
+                    "ts": 1765724526,
                     "emo": "📰"
                 }
             ]
@@ -42,141 +42,15 @@
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "POLL: 'TIS THE SEASON FOR... INFLATION",
-                    "url": "https://apnews.com/d27635d279b27e5e2c19700c006ebb1d",
-                    "ts": 1765590767,
-                    "emo": "💰"
-                },
-                {
-                    "title": "Big Winner in Trade War: The Grinch!",
-                    "url": "https://www.wsj.com/opinion/big-winner-in-trumps-trade-war-the-grinch-d8a13809",
-                    "ts": 1765590767,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Harris, Martin talk affordability at DNC meeting: 'S--- is too expensive'",
-                    "url": "https://thehill.com/homenews/campaign/5647234-harris-ken-martin-dnc-affordability/",
-                    "ts": 1765590744,
+                    "title": "Hero tackles shooter in insane footage after Sydney rocked by terror...",
+                    "url": "https://www.express.co.uk/news/2146033",
+                    "ts": 1765724317,
                     "emo": "📰"
                 },
                 {
-                    "title": "DHS changing immigration enforcement tactics amid negative polling",
-                    "url": "https://thehill.com/policy/national-security/5647146-immigration-enforcement-tactics-change/",
-                    "ts": 1765588053,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "Trump honors 'Miracle on Ice' team; Mike Eruzione, Jim Craig praise president in return",
-                    "url": "https://www.foxnews.com/sports/trump-honors-miracle-ice-team-mike-eruzione-jim-craig-praise-president-return",
-                    "ts": 1765588250,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Former Michigan coach Jim Harbaugh reacts to Sherrone Moore's firing and charges",
-                    "url": "https://www.foxnews.com/sports/former-michigan-coach-jim-harbaugh-reacts-sherrone-moores-firing-criminal-charges",
-                    "ts": 1765588068,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Amtrak's unionized workers are getting $900 holiday bonuses after their managers gave up half of theirs",
-                    "url": "https://www.businessinsider.com/amtrak-workers-holiday-bonuses-executives-give-up-half-2025-12",
-                    "ts": 1765586176,
-                    "emo": "📰"
-                },
-                {
-                    "title": "The rise and fall of Hooters",
-                    "url": "https://www.businessinsider.com/the-rise-and-fall-of-hooters-2025-12",
-                    "ts": 1765583199,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "‘This seems absolutely insane’: Our children pay rent on our investment properties. Our lawyer says they should still buy us out.",
-                    "url": "https://www.marketwatch.com/story/this-seems-absolutely-insane-our-children-pay-rent-on-our-investment-properties-our-lawyer-says-they-should-still-buy-us-out-49d2707d?mod=mw_rss_topstories",
-                    "ts": 1765585800,
-                    "emo": "📰"
-                },
-                {
-                    "title": "‘Where are we vulnerable?’ My husband and I are in our 50s. Our $450K mortgage is paid off. We have $500K in IRAs.",
-                    "url": "https://www.marketwatch.com/story/where-are-we-vulnerable-my-husband-and-i-are-in-our-50s-our-450k-mortgage-is-paid-off-we-have-500k-in-iras-5b5741a6?mod=mw_rss_topstories",
-                    "ts": 1765584060,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Noem & Lewandowski ‘pointing fingers’ amid pressure to ramp up immigration enforcement",
-                    "url": "https://www.nbcnews.com/meet-the-press/video/noem-lewandowski-pointing-fingers-amid-pressure-to-ramp-up-immigration-enforcement-254334021660",
-                    "ts": 1765577536,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Kilmar Abrego Garcia will remain free from ICE custody following judge's order",
-                    "url": "https://www.nbcnews.com/news/us-news/kilmar-abrego-garcia-released-ice-custody-judge-xinis-rcna237431",
-                    "ts": 1765469467,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Trump says Kevin Warsh is at top of Fed chair candidate list, president should be consulted on rates",
-                    "url": "https://www.cnbc.com/2025/12/12/trump-kevin-warsh-fed-chair-rates.html",
-                    "ts": 1765577415,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Trump expected to sign executive order to reclassify marijuana as soon as Monday, source tells CNBC; pot stocks surge",
-                    "url": "https://www.cnbc.com/2025/12/12/cannabis-stocks-trump-regulations.html",
-                    "ts": 1765574522,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "T.S.A. Is Providing Air Passenger Data to Immigration Agents for Deportation Effort",
-                    "url": "https://www.nytimes.com/2025/12/12/us/politics/immigration-tsa-passenger-data.html",
-                    "ts": 1765575947,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Transportation Dept. Threatens to Withhold Funds From N.Y. Over Noncitizen Licenses",
-                    "url": "https://www.nytimes.com/2025/12/12/us/politics/transportation-dept-threatens-to-withhold-funds-from-ny-over-noncitizen-licenses.html",
-                    "ts": 1765578925,
+                    "title": "IEDs found in car near scene...",
+                    "url": "https://www.smh.com.au/national/nsw/bondi-shooting-live-updates-multiple-casualties-at-sydney-beach-dozens-of-shots-fired-20251214-p5nnkw.html",
+                    "ts": 1765724317,
                     "emo": "📰"
                 }
             ]
@@ -186,16 +60,142 @@
             "home": "https://www.bbc.com/news",
             "items": [
                 {
-                    "title": "King says he can 'share the good news' his cancer treatment will be reduced",
-                    "url": "https://www.bbc.com/news/articles/c14vvv8pnpmo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1765573856,
+                    "title": "'It was pandemonium': Jewish community targeted in Australia's deadliest shooting in decades",
+                    "url": "https://www.bbc.com/news/articles/c3r711lnr8zo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1765724254,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Eyewitness captures moment man tackles and disarms shooter",
+                    "url": "https://www.bbc.com/news/videos/c62l00q1v88o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1765711461,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Trump wants the U.S. shipbuilding industry to be great again. Here's what it will take, and what's at stake",
+                    "url": "https://www.cnbc.com/2025/12/14/trump-america-shipbuilding-china-competition.html",
+                    "ts": 1765723307,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "End of 'The Berkshire Way'? Combs' departure isn't only big change as Buffett transition nears",
+                    "url": "https://www.cnbc.com/2025/12/13/end-of-the-berkshire-way-combs-departure-isnt-only-big-change-as-buffett-transition-nears-.html",
+                    "ts": 1765650276,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "A squash game saved this famous trader’s life. How prevalent is male breast cancer?",
+                    "url": "https://www.marketwatch.com/story/a-squash-game-saved-this-famous-traders-life-heres-how-he-learned-he-had-breast-cancer-dea96d84?mod=mw_rss_topstories",
+                    "ts": 1765723140,
                     "emo": "🧪"
                 },
                 {
-                    "title": "Ukraine's health supplies hit in series of Russian strikes on medical warehouses",
-                    "url": "https://www.bbc.com/news/articles/cqlkk9qk7vyo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1765584321,
-                    "emo": "🧪"
+                    "title": "‘This feels like an opportunity’: I’m 55, earn $78,000 and have no kids. My mother gave me $10,000. What should I do?",
+                    "url": "https://www.marketwatch.com/story/this-feels-like-an-opportunity-im-55-earn-78-000-and-have-no-kids-my-mother-gave-me-10-000-what-should-i-do-45767f26?mod=mw_rss_topstories",
+                    "ts": 1765723080,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Current, former ESPN pundits hint that potential Black coaches could be affected by Sherrone Moore's firing",
+                    "url": "https://www.foxnews.com/sports/current-former-espn-pundits-hint-potential-black-coaches-could-affected-sherrone-moores-firing",
+                    "ts": 1765722523,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Ex-SJSU volleyball coach defends female player from trans athlete's disputed claims",
+                    "url": "https://www.foxnews.com/sports/ex-sjsu-volleyball-coach-defends-female-player-from-trans-athletes-disputed-claims",
+                    "ts": 1765722027,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "My kids went to an outdoor elementary school with no art, music, or library. They loved it, but adjusting to public school was hard.",
+                    "url": "https://www.businessinsider.com/kids-loved-private-outdoor-school-struggled-adjusting-public-school-2025-12",
+                    "ts": 1765721221,
+                    "emo": "🎭"
+                },
+                {
+                    "title": "My mother is spending the holidays with me for the first time in years. I'm struggling with the added costs and to-dos.",
+                    "url": "https://www.businessinsider.com/hosting-mom-for-christmas-struggling-extra-costs-2025-12",
+                    "ts": 1765718221,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "What the right gets wrong about Nick Fuentes (and why it matters)",
+                    "url": "https://thehill.com/opinion/campaign/5647317-trump-failed-promises-maga/",
+                    "ts": 1765720800,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Map: Minimum wage on the rise in these states in 2026",
+                    "url": "https://thehill.com/homenews/nexstar_media_wire/5632058-minimum-wage-increase-2026/",
+                    "ts": 1765720800,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Special Report: Officials confirm suspect in custody in Brown University shooting",
+                    "url": "https://www.nbcnews.com/video/special-report-officials-confirm-suspect-in-custody-in-brown-university-shooting-254384709748",
+                    "ts": 1765716794,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Suspect in Custody in Brown University Shooting: What We Know",
+                    "url": "https://www.today.com/video/suspect-in-custody-in-brown-university-shooting-what-we-know-254387269527",
+                    "ts": 1765717883,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "The S.E.C. Was Tough on Crypto. It Pulled Back After Trump Returned to Office.",
+                    "url": "https://www.nytimes.com/2025/12/14/us/politics/sec-crypto-firms-trump-investigation.html",
+                    "ts": 1765706525,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "How The Times Analyzed the S.E.C.’s Cryptocurrency Enforcement",
+                    "url": "https://www.nytimes.com/2025/12/14/us/politics/times-sec-cryptocurrency-analysis.html",
+                    "ts": 1765706527,
+                    "emo": "📰"
                 }
             ]
         },
@@ -204,16 +204,16 @@
             "home": "https://www.theguardian.com",
             "items": [
                 {
-                    "title": "UK politics: Trump talks ‘complete nonsense’ about crime in London, says Met police commissioner – as it happened",
-                    "url": "https://www.theguardian.com/politics/live/2025/dec/12/rachel-reeves-economy-budget-gdp-nhs-flu-streeting-assisted-dying-latest-news-updates",
-                    "ts": 1765557007,
-                    "emo": "⚖️"
+                    "title": "Labour is procrastinating over policy as UK’s economy goes backwards | Phillip Inman",
+                    "url": "https://www.theguardian.com/business/2025/dec/13/labour-policy-uk-economy-business-rates-pubs-hotels",
+                    "ts": 1765641636,
+                    "emo": "📰"
                 },
                 {
-                    "title": "December cut to UK interest rates ‘nailed on’ after economy shrinks unexpectedly by 0.1% in October – as it happened",
-                    "url": "https://www.theguardian.com/business/live/2025/dec/12/uk-gdp-growth-october-economy-budget-jlr-stock-markets-pound-bonds-business-live-news-updates",
-                    "ts": 1765552625,
-                    "emo": "💰"
+                    "title": "How many more times will the Bank of England rescue Rachel Reeves? | Richard Partington",
+                    "url": "https://www.theguardian.com/business/2025/dec/14/how-many-more-times-will-the-bank-of-england-rescue-rachel-reeves",
+                    "ts": 1765713534,
+                    "emo": "📰"
                 }
             ]
         }

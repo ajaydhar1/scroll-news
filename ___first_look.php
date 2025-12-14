@@ -369,7 +369,33 @@ if (!is_array($feedsData) || count($feedsData) === 0) {
   text-decoration:none;
   font-weight: 700;
 }
-.firstlook-more:hover{ text-decoration: underline; }
+.firstlook-more:hover{ text-decoration: underline; color: rgba(23, 213, 255, .8); }
+</style>
+
+<style>
+
+.firstlook-save-btn{
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.06);
+  border-radius: 10px;
+  /* padding: 6px 10px; */
+  cursor: pointer;
+  font-size: .85rem;
+  /* margin-left: 10px; */
+  white-space: nowrap;
+}
+.firstlook-save-btn:hover{ background: rgba(255,255,255,.10); }
+.firstlook-save-btn.is-saved{
+  background: rgba(255,255,255,.14);
+}
+.firstlook-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.firstlook-link{ flex: 1; min-width: 0; }
+
 </style>
 
 <div class="toy-box firstlook-box">
@@ -380,7 +406,7 @@ if (!is_array($feedsData) || count($feedsData) === 0) {
         Front page of front pages<?php if ($ageSec !== null) echo " • updated " . (int)round($ageSec/60) . "m ago"; ?>
       </div>
     </div>
-    <span class="firstlook-more" style="opacity:.45; cursor:not-allowed;">More soon</span>
+    <a href="saved_headlines.php" class="firstlook-more" style="">Saved Headlines</a>
   </div>
 
   <div class="firstlook-grid">
@@ -395,10 +421,26 @@ if (!is_array($feedsData) || count($feedsData) === 0) {
 
         <div class="firstlook-list">
           <?php foreach (($f['items'] ?? []) as $it): ?>
+            <?php
+              // Example variables you likely have:
+              $url   = $it['url'] ?? '';
+              $title = $it['title'] ?? '';
+              $src   = $f['name'] ?? '';
+              $pub   = $it['s'] ?? '';
+            ?>
             <div class="firstlook-item">
               <a href="<?php echo htmlspecialchars($it['url']); ?>" target="_blank" rel="noopener">
                 <?php echo htmlspecialchars(($it['emo'] ?? '📰') . ' ' . ($it['title'] ?? '')); ?>
               </a>
+              <button
+                type="button"
+                class="firstlook-save-btn"
+                data-url="<?= htmlspecialchars($url) ?>"
+                data-title="<?= htmlspecialchars($title) ?>"
+                data-source="<?= htmlspecialchars($src) ?>"
+                data-pub="<?= htmlspecialchars($pub) ?>"
+                aria-label="Save headline"
+              >Save</button>
               <?php if (!empty($it['ts'])): ?>
                 <div class="firstlook-time"><?php echo date('g:ia', (int)$it['ts']); ?></div>
               <?php endif; ?>
@@ -414,3 +456,99 @@ if (!is_array($feedsData) || count($feedsData) === 0) {
     <div></div>
   </div>
 </div>
+
+<script>
+(function () {
+  const KEY = 'scrollnews:saved_firstlook:v1';
+
+  function safeParse(json, fallback) {
+    try { return JSON.parse(json); } catch { return fallback; }
+  }
+  function getSaved() {
+    return safeParse(localStorage.getItem(KEY) || '[]', []);
+  }
+  function setSaved(list) {
+    localStorage.setItem(KEY, JSON.stringify(list));
+  }
+
+  // Stable ID so "same headline" toggles properly
+  function makeId(url, title) {
+    const s = (url || '') + '|' + (title || '');
+    // light hash
+    let h = 0;
+    for (let i=0; i<s.length; i++) h = ((h<<5) - h) + s.charCodeAt(i) | 0;
+    return 'h' + Math.abs(h);
+  }
+
+  function isSaved(id) {
+    return getSaved().some(x => x && x.id === id);
+  }
+
+  function save(item) {
+    const list = getSaved();
+    if (!list.some(x => x && x.id === item.id)) {
+      list.push(item);
+      setSaved(list);
+    }
+  }
+
+  function unsave(id) {
+    const list = getSaved().filter(x => x && x.id !== id);
+    setSaved(list);
+  }
+
+  function setBtnState(btn, saved) {
+    btn.textContent = saved ? 'Unsave' : 'Save';
+    btn.classList.toggle('is-saved', saved);
+    btn.setAttribute('aria-label', saved ? 'Unsave headline' : 'Save headline');
+  }
+
+  function initButtons() {
+    document.querySelectorAll('.firstlook-save-btn').forEach(btn => {
+      const url   = btn.getAttribute('data-url') || '';
+      const title = btn.getAttribute('data-title') || '';
+      const src   = btn.getAttribute('data-source') || '';
+      const pub   = btn.getAttribute('data-pub') || '';
+
+      const id = makeId(url, title);
+      btn.dataset.id = id;
+
+      setBtnState(btn, isSaved(id));
+
+      btn.addEventListener('click', () => {
+        const savedNow = isSaved(id);
+
+        if (savedNow) {
+          unsave(id);
+          setBtnState(btn, false);
+        } else {
+          save({
+            id,
+            url,
+            title,
+            source_slug: src,
+            pub_date: pub,
+            saved_at: Date.now()
+          });
+          setBtnState(btn, true);
+        }
+
+        // update across tabs/pages
+        window.dispatchEvent(new StorageEvent('storage', { key: KEY }));
+      });
+    });
+  }
+
+  // Update button states if Saved page or another tab changes localStorage
+  window.addEventListener('storage', (e) => {
+    if (e.key !== KEY) return;
+    document.querySelectorAll('.firstlook-save-btn').forEach(btn => {
+      const id = btn.dataset.id;
+      if (!id) return;
+      setBtnState(btn, isSaved(id));
+    });
+  });
+
+  initButtons();
+})();
+</script>
