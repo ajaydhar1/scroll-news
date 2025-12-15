@@ -147,7 +147,7 @@ try {
     grid-auto-flow:column;
     grid-auto-columns:minmax(var(--card-w), calc(var(--card-w) + 40px));
     gap:var(--gap);
-    overflow-x:auto; overflow-y:hidden;
+    /* overflow-x:auto; overflow-y:hidden; */
     scroll-snap-type:x mandatory;
     -webkit-overflow-scrolling:touch;
     padding:6px 2px 10px;

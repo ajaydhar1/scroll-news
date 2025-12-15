@@ -1,21 +1,21 @@
 {
-    "fetched_at": 1765764479,
+    "fetched_at": 1765767545,
     "feeds": [
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Mourners come together in London to pay tribute to victims of Bondi Beach terrorist attack that left 16 dead",
-                    "url": "https://www.dailymail.co.uk/news/article-15383343/Mourners-come-London-pay-tribute-victims-Bondi-Beach-terrorist-attack-left-16-dead.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1765764220,
+                    "title": "Man, 78, and woman, 68, are found dead in mansion owned by legendary filmmaker Rob Reiner as police launch homicide investigation",
+                    "url": "https://www.dailymail.co.uk/tvshowbiz/article-15383905/Man-woman-dead-mansion-Rob-Reiner.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1765767400,
                     "emo": "🔥"
                 },
                 {
-                    "title": "Woman, 25, is dead and man in his 60s is fighting for his life after a house fire",
-                    "url": "https://www.dailymail.co.uk/news/article-15383395/Woman-25-dead-man-60s-fighting-life-house-fire.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1765764214,
-                    "emo": "🔥"
+                    "title": "Police commissioner hints alleged Bondi Beach terrorist may SURVIVE after being shot during capture - as police give major update",
+                    "url": "https://www.dailymail.co.uk/news/article-15383151/Bondi-Beach-shooting-LIVE-updates-Young-schoolgirl-12-dies-hospital-death-toll-climbs-beach-closed-public.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1765766830,
+                    "emo": "🚨"
                 }
             ]
         },
@@ -24,16 +24,16 @@
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Patrick Mahomes left devastated by torn ACL to end his Chiefs season: ‘Don’t know why this had to happen’",
-                    "url": "https://nypost.com/2025/12/14/sports/chiefs-patrick-mahomes-left-devastated-by-torn-acl-to-end-his-season/",
-                    "ts": 1765764127,
+                    "title": "Major win for ultra-conservative gives Chile its most right-wing president in decades",
+                    "url": "https://nypost.com/2025/12/14/world-news/major-win-for-ultra-conservative-gives-chile-its-most-right-wing-president-in-decades/",
+                    "ts": 1765766880,
                     "emo": "📰"
                 },
                 {
-                    "title": "Nets tie franchise record with 45-point rout of Giannis Antetokounmpo-less Buck",
-                    "url": "https://nypost.com/2025/12/14/sports/nets-tie-record-with-45-point-rout-of-giannis-antetokounmpo-less-bucks/",
-                    "ts": 1765763596,
-                    "emo": "📰"
+                    "title": "Two people found dead at director Rob Reiner’s LA home",
+                    "url": "https://pagesix.com/2025/12/14/celebrity-news/two-found-dead-at-director-rob-reiners-home-confirmed-by-los-angeles-police/",
+                    "ts": 1765766397,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -42,16 +42,34 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Newsom comms director slams Nicki Minaj as 'stupid hoe' after rapper called out governor's trans agenda",
-                    "url": "https://www.foxnews.com/media/newsom-comms-director-slams-nicki-minaj-stupid-hoe-after-rapper-attacked-governors-trans-agenda",
-                    "ts": 1765764038,
+                    "title": "NFL Week 15 scores: Broncos, Rams clinch playoff berths",
+                    "url": "https://www.foxnews.com/sports/nfl-week-15-scores-broncos-rams-clinch-playoff-berths",
+                    "ts": 1765766460,
                     "emo": "📰"
                 },
                 {
-                    "title": "DoorDash driver charged with felony food tampering after alleged pepper spray incident goes viral",
-                    "url": "https://www.foxnews.com/us/doordash-driver-charged-felony-food-tampering-after-alleged-pepper-spray-incident-goes-viral",
-                    "ts": 1765763257,
-                    "emo": "🚨"
+                    "title": "Rams' clutch touchdown in win over Lions sparks frenzied debate on social media",
+                    "url": "https://www.foxnews.com/sports/rams-clutch-touchdown-win-over-lions-sparks-frenzied-debate-social-media",
+                    "ts": 1765764402,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "China's retail sales growth sharply misses estimates in November, deepening consumption worries",
+                    "url": "https://www.cnbc.com/2025/12/15/chinas-november-retail-sales-industrial-production-fixed-asset-investment.html",
+                    "ts": 1765766423,
+                    "emo": "🌍"
+                },
+                {
+                    "title": "Hong Kong court finds pro-democracy activist Jimmy Lai guilty of collusion with foreign forces",
+                    "url": "https://www.cnbc.com/2025/12/15/hong-kong-court-finds-pro-democracy-activist-jimmy-lai-guilty-of-collusion-with-foreign-forces.html",
+                    "ts": 1765767259,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -62,7 +80,7 @@
                 {
                     "title": "U.S. stock futures rise ahead of year’s last full week of trading",
                     "url": "https://www.marketwatch.com/story/u-s-stock-futures-little-changed-ahead-of-years-last-full-week-of-trading-58783137?mod=mw_rss_topstories",
-                    "ts": 1765763400,
+                    "ts": 1765766340,
                     "emo": "📰"
                 },
                 {
@@ -178,24 +196,6 @@
                     "url": "https://www.nbcnews.com/news/us-news/two-brown-university-students-school-shooting-was-not-first-rcna249080",
                     "ts": 1765698726,
                     "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Trump wants the U.S. shipbuilding industry to be great again. Here's what it will take, and what's at stake",
-                    "url": "https://www.cnbc.com/2025/12/14/trump-america-shipbuilding-china-competition.html",
-                    "ts": 1765723307,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "South Korea stocks lead losses in Asia-Pacific ahead of key data from China",
-                    "url": "https://www.cnbc.com/2025/12/15/asia-markets-live-nikkei-kospi-hang-seng.html",
-                    "ts": 1765762933,
-                    "emo": "💰"
                 }
             ]
         },
