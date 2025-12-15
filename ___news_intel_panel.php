@@ -412,9 +412,19 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
 }
 
 .news-intel-panel .intel-article-list .intel-article-item a {
-    font-weight: 500;
+    /* font-weight: 500; */
 }
 
+.news-intel-panel .intel-article-list .intel-article-item a.headline-link,
+.sn-card-active-headlines a.headline-link {
+    color: black;
+    font-weight: 700;
+}
+
+.news-intel-panel .intel-article-list .intel-article-item a.headline-link:hover,
+.sn-card-active-headlines a.headline-link:hover {
+    color: #2cae86;
+}
 
 
 .news-intel-panel .sentiment-emoji {
@@ -647,7 +657,7 @@ footer .btn {
                                                 ?>
                                                 <li class="intel-article-item mb-2">
                                                     <a href="newsroom.php?<?= htmlspecialchars($qs) ?>"
-                                                       class="text-decoration-none d-block"
+                                                       class="text-decoration-none d-block headline-link"
                                                        data-loading>
                                                         <?php if ($sentEmoji): ?>
                                                             <span class="sentiment-emoji me-1"><?= htmlspecialchars($sentEmoji) ?></span>

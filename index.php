@@ -203,11 +203,6 @@
                 font-size: 18px;
             }
 
-            .news-intel-panel .intel-article-list .intel-article-item a {
-                color: black;
-                font-weight: 700;
-            }
-
         </style>
 
     </head>
