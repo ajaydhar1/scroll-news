@@ -241,11 +241,11 @@
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
                         <a data-step="1" data-intro="Start here" class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" onclick="" data-loading><i class="fas fa-play"></i></a>
-                        <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.html"><i class="fas fa-dashboard"></i></a>
+                        <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
                     </div>
                     <div class="col-lg-4 d-flex text-lg-right" style="">
                         <div class="ml-auto">
-                            <a href="about.html" class="mr-3">About</a>
+                            <a href="about.php" class="mr-3">About</a>
                             <a class="search-button" href="search.php" title="Search" aria-label="Search">🔍</a>
                         </div>
                     </div>
@@ -645,15 +645,15 @@
                             <a class="btn btn-black btn-social mx-2" title="X profile" href="https://x.com/scrollnewsio" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
                             <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
                             <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" data-loading><i class="fas fa-play"></i></a>
-                            <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.html"><i class="fas fa-dashboard"></i></a>
+                            <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
                             <a class="btn btn-black btn-social mx-2" title="IG profile" href="https://www.instagram.com/scrollnewsio/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                         </div>
                         <div class="col-lg-4 text-lg-right font-weight-bold">
                             <a href="index.php" data-loading>scroll news</a>
                             <br>
-                            <a href="about.html" class="text-muted small mr-3">About</a>
-                            <a href="terms.html" class="text-muted small mr-3">Terms</a>
-                            <a href="privacy.html" class="text-muted small">Privacy</a>
+                            <a href="about.php" class="text-muted small mr-3">About</a>
+                            <a href="terms.php" class="text-muted small mr-3">Terms</a>
+                            <a href="privacy.php" class="text-muted small">Privacy</a>
                         </div>
                     </div>
                 </div>

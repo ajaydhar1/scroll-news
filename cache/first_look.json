@@ -1,20 +1,20 @@
 {
-    "fetched_at": 1765763864,
+    "fetched_at": 1765764479,
     "feeds": [
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Faces of the lost: Victims of the Bondi Beach attack begin to be identified - including 10-year-old girl",
-                    "url": "https://www.dailymail.co.uk/news/article-15383345/bondi-beach-shooting-victims-identified.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1765763759,
+                    "title": "Mourners come together in London to pay tribute to victims of Bondi Beach terrorist attack that left 16 dead",
+                    "url": "https://www.dailymail.co.uk/news/article-15383343/Mourners-come-London-pay-tribute-victims-Bondi-Beach-terrorist-attack-left-16-dead.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1765764220,
                     "emo": "🔥"
                 },
                 {
-                    "title": "Heartwarming moment CNN reporter hugs his son who was trapped in Brown University lockdown during mass shooting",
-                    "url": "https://www.dailymail.co.uk/news/article-15383135/Brown-Shooting-CNN-Anchor-Son-Embrace.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1765763707,
+                    "title": "Woman, 25, is dead and man in his 60s is fighting for his life after a house fire",
+                    "url": "https://www.dailymail.co.uk/news/article-15383395/Woman-25-dead-man-60s-fighting-life-house-fire.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1765764214,
                     "emo": "🔥"
                 }
             ]
@@ -24,16 +24,34 @@
             "home": "https://nypost.com",
             "items": [
                 {
+                    "title": "Patrick Mahomes left devastated by torn ACL to end his Chiefs season: ‘Don’t know why this had to happen’",
+                    "url": "https://nypost.com/2025/12/14/sports/chiefs-patrick-mahomes-left-devastated-by-torn-acl-to-end-his-season/",
+                    "ts": 1765764127,
+                    "emo": "📰"
+                },
+                {
                     "title": "Nets tie franchise record with 45-point rout of Giannis Antetokounmpo-less Buck",
                     "url": "https://nypost.com/2025/12/14/sports/nets-tie-record-with-45-point-rout-of-giannis-antetokounmpo-less-bucks/",
                     "ts": 1765763596,
                     "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Newsom comms director slams Nicki Minaj as 'stupid hoe' after rapper called out governor's trans agenda",
+                    "url": "https://www.foxnews.com/media/newsom-comms-director-slams-nicki-minaj-stupid-hoe-after-rapper-attacked-governors-trans-agenda",
+                    "ts": 1765764038,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Mom says viral video shows her being booted from Georgia restaurant for breastfeeding her baby",
-                    "url": "https://nypost.com/2025/12/14/us-news/mom-says-viral-video-shows-her-being-booted-from-georgia-restaurant-for-breastfeeding-her-baby/",
-                    "ts": 1765763505,
-                    "emo": "📰"
+                    "title": "DoorDash driver charged with felony food tampering after alleged pepper spray incident goes viral",
+                    "url": "https://www.foxnews.com/us/doordash-driver-charged-felony-food-tampering-after-alleged-pepper-spray-incident-goes-viral",
+                    "ts": 1765763257,
+                    "emo": "🚨"
                 }
             ]
         },
@@ -51,24 +69,6 @@
                     "title": "Roomba maker iRobot files for bankruptcy, will go private",
                     "url": "https://www.marketwatch.com/story/roomba-maker-irobot-files-for-bankruptcy-will-go-private-aa2277df?mod=mw_rss_topstories",
                     "ts": 1765761660,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "DoorDash driver charged with felony food tampering after alleged pepper spray incident goes viral",
-                    "url": "https://www.foxnews.com/us/doordash-driver-charged-felony-food-tampering-after-alleged-pepper-spray-incident-goes-viral",
-                    "ts": 1765763257,
-                    "emo": "🚨"
-                },
-                {
-                    "title": "Vanderbilt quarterback Diego Pavia drops F-bomb on Heisman voters after losing trophy to Fernando Mendoza",
-                    "url": "https://www.foxnews.com/sports/vanderbilt-quarterback-diego-pavia-drops-f-bomb-heisman-voters-after-losing-trophy-fernando-mendoza",
-                    "ts": 1765762423,
                     "emo": "📰"
                 }
             ]

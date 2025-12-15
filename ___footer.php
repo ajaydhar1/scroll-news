@@ -17,13 +17,13 @@ $random_article = getRandomArticle();
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
                         <a class="btn btn-green btn-social mx-2" href="newsroom.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>" data-loading><i class="fas fa-play"></i></a>
-                        <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.html"><i class="fas fa-dashboard"></i></a>
+                        <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-right font-weight-bold">
                         <a href="newsroom.php?url=<?= urlencode($random_article['link']) ?>&category=<?= $random_article['category'] ?>">scroll news</a>
                         <br>
-                        <a href="terms.html" class="text-muted small mr-3">Terms</a>
-                        <a href="privacy.html" class="text-muted small">Privacy</a>
+                        <a href="terms.php" class="text-muted small mr-3">Terms</a>
+                        <a href="privacy.php" class="text-muted small">Privacy</a>
                     </div>
                 </div>
             </div>

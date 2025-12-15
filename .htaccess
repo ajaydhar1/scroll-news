@@ -14,7 +14,7 @@ RewriteRule ^ - [L]
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?]
 RewriteRule ^ %1 [R=301,L]
 
-#    /about.html -> /about
+#    /about.php -> /about
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?]
 RewriteRule ^ %1 [R=301,L]
 
@@ -30,7 +30,7 @@ RewriteRule ^(.+?)/?$ $1.html [L]
 # RewriteRule ^ index.php [L]
 
 # Use custom error pages
-ErrorDocument 404 /404.html
+ErrorDocument 404 /404.php
 ErrorDocument 500 /500.html
 
 # (Optional but often helpful)
