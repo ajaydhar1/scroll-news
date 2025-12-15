@@ -426,6 +426,10 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
     color: #2cae86;
 }
 
+.source-slug {
+    font-weight: 500;
+}
+
 
 .news-intel-panel .sentiment-emoji {
     font-size: 0.9rem;
@@ -666,7 +670,7 @@ footer .btn {
                                                             <?= htmlspecialchars($article['title']) ?>
                                                         </span>
                                                         <?php if (!empty($article['source_slug'])): ?>
-                                                            <span class="text-muted"> · <?= htmlspecialchars($article['source_slug']) ?></span>
+                                                            <span class="source-slug text-muted"> · <?= htmlspecialchars($article['source_slug']) ?></span>
                                                         <?php endif; ?>
                                                     </a>
 

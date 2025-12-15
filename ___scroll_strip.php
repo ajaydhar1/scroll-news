@@ -174,7 +174,7 @@ try {
     display:flex; align-items:center; gap:6px;
   }
   .sn-body { padding:12px 14px 14px; display:grid; gap:6px; }
-  .sn-title { font-size:.98rem; line-height:1.25; font-weight:600; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+  .sn-title { font-size:18px; line-height:1.25; font-weight:700; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
   .sn-meta { font-size:.8rem; color:#666; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
   .sn-dot { width:4px; height:4px; background:#bbb; border-radius:50%; display:inline-block; }
   .sn-favicon { width:14px; height:14px; border-radius:4px; }

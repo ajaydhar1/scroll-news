@@ -289,7 +289,7 @@
                     <p class="text-muted mb-2">
                       Longer, higher-context coverage with more analysis and fewer hot takes.
                     </p>
-                    <p class="small text-muted mb-4">
+                    <p class="text-muted mb-4">
                       Best when you have a bit more time and want to really understand a story.
                     </p>
                     <a href="/search.php?mode=nlp&deep_dive=1" class="btn btn-sm btn-green" data-loading>
@@ -310,7 +310,7 @@
                     <p class="text-muted mb-2">
                       A curated feed of outlets with strong signal-to-noise and minimal outrage bait.
                     </p>
-                    <p class="small text-muted mb-4">
+                    <p class="text-muted mb-4">
                       Perfect for quick catch-ups where almost every article is worth opening.
                     </p>
                     <a href="/search.php?high_signal=1" class="btn btn-sm btn-outline-secondary" data-loading>
