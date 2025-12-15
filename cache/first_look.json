@@ -1,21 +1,21 @@
 {
-    "fetched_at": 1765724813,
+    "fetched_at": 1765763864,
     "feeds": [
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "I'm a 35-year-old virgin and have never even been on date... but I'm not ashamed of being a late bloomer",
-                    "url": "https://www.dailymail.co.uk/lifestyle/love-sex/article-15382745/virgin-35-never-dated-sex.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1765724723,
-                    "emo": "📰"
+                    "title": "Faces of the lost: Victims of the Bondi Beach attack begin to be identified - including 10-year-old girl",
+                    "url": "https://www.dailymail.co.uk/news/article-15383345/bondi-beach-shooting-victims-identified.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1765763759,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "Julian Clary admits he was 'engulfed in melancholy' when he delivered his career-ending Norman Lamont joke at The Comedy Awards as he reveals he'd 'taken a Valium backstage' before making the jibe",
-                    "url": "https://www.dailymail.co.uk/tvshowbiz/article-15382315/Julian-Clary-career-ending-Norman-Lamont-joke-Comedy-Awards.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1765724613,
-                    "emo": "📰"
+                    "title": "Heartwarming moment CNN reporter hugs his son who was trapped in Brown University lockdown during mass shooting",
+                    "url": "https://www.dailymail.co.uk/news/article-15383135/Brown-Shooting-CNN-Anchor-Son-Embrace.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1765763707,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -24,15 +24,51 @@
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Budget-conscious Gen Z say ‘showing up is the gift’ this holiday season",
-                    "url": "https://nypost.com/2025/12/14/lifestyle/gen-z-plans-to-spend-34-less-on-gifts-this-year/",
-                    "ts": 1765724552,
+                    "title": "Nets tie franchise record with 45-point rout of Giannis Antetokounmpo-less Buck",
+                    "url": "https://nypost.com/2025/12/14/sports/nets-tie-record-with-45-point-rout-of-giannis-antetokounmpo-less-bucks/",
+                    "ts": 1765763596,
                     "emo": "📰"
                 },
                 {
-                    "title": "Nets’ continued reliance on Michael Porter Jr. could prove more costly",
-                    "url": "https://nypost.com/2025/12/14/sports/nets-reliance-on-michael-porter-jr-could-prove-more-costly/",
-                    "ts": 1765724526,
+                    "title": "Mom says viral video shows her being booted from Georgia restaurant for breastfeeding her baby",
+                    "url": "https://nypost.com/2025/12/14/us-news/mom-says-viral-video-shows-her-being-booted-from-georgia-restaurant-for-breastfeeding-her-baby/",
+                    "ts": 1765763505,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "U.S. stock futures rise ahead of year’s last full week of trading",
+                    "url": "https://www.marketwatch.com/story/u-s-stock-futures-little-changed-ahead-of-years-last-full-week-of-trading-58783137?mod=mw_rss_topstories",
+                    "ts": 1765763400,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Roomba maker iRobot files for bankruptcy, will go private",
+                    "url": "https://www.marketwatch.com/story/roomba-maker-irobot-files-for-bankruptcy-will-go-private-aa2277df?mod=mw_rss_topstories",
+                    "ts": 1765761660,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "DoorDash driver charged with felony food tampering after alleged pepper spray incident goes viral",
+                    "url": "https://www.foxnews.com/us/doordash-driver-charged-felony-food-tampering-after-alleged-pepper-spray-incident-goes-viral",
+                    "ts": 1765763257,
+                    "emo": "🚨"
+                },
+                {
+                    "title": "Vanderbilt quarterback Diego Pavia drops F-bomb on Heisman voters after losing trophy to Fernando Mendoza",
+                    "url": "https://www.foxnews.com/sports/vanderbilt-quarterback-diego-pavia-drops-f-bomb-heisman-voters-after-losing-trophy-fernando-mendoza",
+                    "ts": 1765762423,
                     "emo": "📰"
                 }
             ]
@@ -42,15 +78,33 @@
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "Hero tackles shooter in insane footage after Sydney rocked by terror...",
+                    "title": "Hero tackles shooter after Sydney rocked by terror...",
                     "url": "https://www.express.co.uk/news/2146033",
-                    "ts": 1765724317,
+                    "ts": 1765762658,
                     "emo": "📰"
                 },
                 {
-                    "title": "IEDs found in car near scene...",
-                    "url": "https://www.smh.com.au/national/nsw/bondi-shooting-live-updates-multiple-casualties-at-sydney-beach-dozens-of-shots-fired-20251214-p5nnkw.html",
-                    "ts": 1765724317,
+                    "title": "Attack Lasted 20 Minutes...",
+                    "url": "https://www.theyeshivaworld.com/news/liveblogs/live-blog/2485866/eyewitness-report-sydney-terror-attack-lasted-20-minutes-police-did-not-return-fire.html",
+                    "ts": 1765762658,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Reddit is arguing it's a 'collection of public fora' and not a social media company. Here's why.",
+                    "url": "https://www.businessinsider.com/reddit-legal-challenge-australia-social-media-law-children-2025-12",
+                    "ts": 1765760704,
+                    "emo": "📰"
+                },
+                {
+                    "title": "I'm an empty nester and spent 6 months on my own in 3 countries. It helped me figure out what I wanted next.",
+                    "url": "https://www.businessinsider.com/single-mom-empty-nester-travel-solo-europe-next-steps-2025-12",
+                    "ts": 1765757641,
                     "emo": "📰"
                 }
             ]
@@ -60,16 +114,70 @@
             "home": "https://www.bbc.com/news",
             "items": [
                 {
-                    "title": "'It was pandemonium': Jewish community targeted in Australia's deadliest shooting in decades",
-                    "url": "https://www.bbc.com/news/articles/c3r711lnr8zo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1765724254,
+                    "title": "'Hero' who wrestled gun from Bondi shooter named as Ahmed al Ahmed",
+                    "url": "https://www.bbc.com/news/articles/ce3wkey5p33o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1765759541,
+                    "emo": "🚨"
+                },
+                {
+                    "title": "How Bondi Beach shooting unfolded minute by minute",
+                    "url": "https://www.bbc.com/news/videos/cy8jpzdg1y3o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1765756973,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Cassidy says 'I don't care who gets the credit' on ACA subsidies extension",
+                    "url": "https://thehill.com/homenews/5648831-cassidy-calls-aca-subsidies/",
+                    "ts": 1765758228,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Schumer says 'sickening events have become far too normal' after weekend shootings",
+                    "url": "https://thehill.com/homenews/senate/5648807-schumer-condemns-antisemitic-violence/",
+                    "ts": 1765756630,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Man Tackled and Disarmed One of the Bondi Beach Gunmen, Video Shows",
+                    "url": "https://www.nytimes.com/2025/12/14/world/australia/bondi-beach-gunman-tackled-video.html",
+                    "ts": 1765750627,
+                    "emo": "📰"
+                },
+                {
+                    "title": "What We Know About the Bondi Beach Shooting in Australia",
+                    "url": "https://www.nytimes.com/2025/12/14/world/australia/what-we-know-bondi-shooting.html",
+                    "ts": 1765752399,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Officials hope to bring forth charges in Brown University shooting soon",
+                    "url": "https://www.nbcnews.com/video/officials-hope-to-bring-forth-charges-in-brown-university-shooting-soon-254400069693",
+                    "ts": 1765739147,
                     "emo": "🔥"
                 },
                 {
-                    "title": "Eyewitness captures moment man tackles and disarms shooter",
-                    "url": "https://www.bbc.com/news/videos/c62l00q1v88o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1765711461,
-                    "emo": "📰"
+                    "title": "For two Brown University students, school shooting wasn't their first",
+                    "url": "https://www.nbcnews.com/news/us-news/two-brown-university-students-school-shooting-was-not-first-rcna249080",
+                    "ts": 1765698726,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -84,118 +192,10 @@
                     "emo": "⚖️"
                 },
                 {
-                    "title": "End of 'The Berkshire Way'? Combs' departure isn't only big change as Buffett transition nears",
-                    "url": "https://www.cnbc.com/2025/12/13/end-of-the-berkshire-way-combs-departure-isnt-only-big-change-as-buffett-transition-nears-.html",
-                    "ts": 1765650276,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "A squash game saved this famous trader’s life. How prevalent is male breast cancer?",
-                    "url": "https://www.marketwatch.com/story/a-squash-game-saved-this-famous-traders-life-heres-how-he-learned-he-had-breast-cancer-dea96d84?mod=mw_rss_topstories",
-                    "ts": 1765723140,
-                    "emo": "🧪"
-                },
-                {
-                    "title": "‘This feels like an opportunity’: I’m 55, earn $78,000 and have no kids. My mother gave me $10,000. What should I do?",
-                    "url": "https://www.marketwatch.com/story/this-feels-like-an-opportunity-im-55-earn-78-000-and-have-no-kids-my-mother-gave-me-10-000-what-should-i-do-45767f26?mod=mw_rss_topstories",
-                    "ts": 1765723080,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "Current, former ESPN pundits hint that potential Black coaches could be affected by Sherrone Moore's firing",
-                    "url": "https://www.foxnews.com/sports/current-former-espn-pundits-hint-potential-black-coaches-could-affected-sherrone-moores-firing",
-                    "ts": 1765722523,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Ex-SJSU volleyball coach defends female player from trans athlete's disputed claims",
-                    "url": "https://www.foxnews.com/sports/ex-sjsu-volleyball-coach-defends-female-player-from-trans-athletes-disputed-claims",
-                    "ts": 1765722027,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "My kids went to an outdoor elementary school with no art, music, or library. They loved it, but adjusting to public school was hard.",
-                    "url": "https://www.businessinsider.com/kids-loved-private-outdoor-school-struggled-adjusting-public-school-2025-12",
-                    "ts": 1765721221,
-                    "emo": "🎭"
-                },
-                {
-                    "title": "My mother is spending the holidays with me for the first time in years. I'm struggling with the added costs and to-dos.",
-                    "url": "https://www.businessinsider.com/hosting-mom-for-christmas-struggling-extra-costs-2025-12",
-                    "ts": 1765718221,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "What the right gets wrong about Nick Fuentes (and why it matters)",
-                    "url": "https://thehill.com/opinion/campaign/5647317-trump-failed-promises-maga/",
-                    "ts": 1765720800,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Map: Minimum wage on the rise in these states in 2026",
-                    "url": "https://thehill.com/homenews/nexstar_media_wire/5632058-minimum-wage-increase-2026/",
-                    "ts": 1765720800,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Special Report: Officials confirm suspect in custody in Brown University shooting",
-                    "url": "https://www.nbcnews.com/video/special-report-officials-confirm-suspect-in-custody-in-brown-university-shooting-254384709748",
-                    "ts": 1765716794,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Suspect in Custody in Brown University Shooting: What We Know",
-                    "url": "https://www.today.com/video/suspect-in-custody-in-brown-university-shooting-what-we-know-254387269527",
-                    "ts": 1765717883,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "The S.E.C. Was Tough on Crypto. It Pulled Back After Trump Returned to Office.",
-                    "url": "https://www.nytimes.com/2025/12/14/us/politics/sec-crypto-firms-trump-investigation.html",
-                    "ts": 1765706525,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "How The Times Analyzed the S.E.C.’s Cryptocurrency Enforcement",
-                    "url": "https://www.nytimes.com/2025/12/14/us/politics/times-sec-cryptocurrency-analysis.html",
-                    "ts": 1765706527,
-                    "emo": "📰"
+                    "title": "South Korea stocks lead losses in Asia-Pacific ahead of key data from China",
+                    "url": "https://www.cnbc.com/2025/12/15/asia-markets-live-nikkei-kospi-hang-seng.html",
+                    "ts": 1765762933,
+                    "emo": "💰"
                 }
             ]
         },
@@ -204,15 +204,15 @@
             "home": "https://www.theguardian.com",
             "items": [
                 {
-                    "title": "Labour is procrastinating over policy as UK’s economy goes backwards | Phillip Inman",
-                    "url": "https://www.theguardian.com/business/2025/dec/13/labour-policy-uk-economy-business-rates-pubs-hotels",
-                    "ts": 1765641636,
-                    "emo": "📰"
-                },
-                {
                     "title": "How many more times will the Bank of England rescue Rachel Reeves? | Richard Partington",
                     "url": "https://www.theguardian.com/business/2025/dec/14/how-many-more-times-will-the-bank-of-england-rescue-rachel-reeves",
                     "ts": 1765713534,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Labour is procrastinating over policy as UK’s economy goes backwards | Phillip Inman",
+                    "url": "https://www.theguardian.com/business/2025/dec/13/labour-policy-uk-economy-business-rates-pubs-hotels",
+                    "ts": 1765641636,
                     "emo": "📰"
                 }
             ]

@@ -380,3 +380,11 @@ a.scroll-badge-high-signal-publisher:hover {
 a.scroll-badge-deep-dive:hover {
     color: rgb(220 245 255);
 }
+
+.italic {
+    font-style: italic;
+}
+
+.btn-outline-secondary {
+    border-color: transparent;
+}
