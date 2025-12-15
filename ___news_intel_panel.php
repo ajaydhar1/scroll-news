@@ -509,12 +509,12 @@ footer .btn {
                 <h2 class="h5 mb-1">
                     🧠 News Intelligence
                 </h2>
-                <p class="text-muted small mb-0">
+                <p class="text-muted mb-0">
                     Trending entities, places, and topics from the last 24 hours.
                 </p>
             </div>
             <?php if (!empty($intel_panel['stats'])): ?>
-                <div class="small text-muted mt-3">
+                <div class="text-muted mt-3">
                     <div><?= (int)$intel_panel['stats']['article_count_24h'] ?> articles</div>
                     <div><?= (int)$intel_panel['stats']['unique_entities'] ?> entities · <?= (int)$intel_panel['stats']['unique_places'] ?> places · <?= (int)$intel_panel['stats']['unique_topics'] ?> topics</div>
                 </div>
@@ -546,7 +546,7 @@ footer .btn {
                                 <!-- Active Headlines card goes at the top of the first column -->
                                 <?php include __DIR__ . '/___active_headlines.php'; ?>
                             <?php endif; ?>
-                            
+
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <h3 class="h6 mb-3">
                                     <?= htmlspecialchars($meta['icon'] . ' ' . $meta['title']) ?>
@@ -556,14 +556,14 @@ footer .btn {
                                 <?php foreach ($items as $item): ?>
                                     <div class="intel-chip mb-3 pb-2 border-bottom">
                                         <div class="d-flex justify-content-between align-items-center mb-1">
-                                            <div class="fw-semibold small">
+                                            <div class="fw-semibold">
                                                 <?= htmlspecialchars($item['label']) ?>
                                             </div>
                                             <span class="badge rounded-pill bg-secondary-subtle text-body-secondary small">
                                                 <?= (int)$item['count'] ?> articles
                                             </span>
                                         </div>
-                                        <ul class="list-unstyled mb-0 small intel-article-list">
+                                        <ul class="list-unstyled mb-0 medium intel-article-list">
                                             <?php foreach ($item['articles'] as $article): ?>
                                                 <?php
                                                 // Decode NLP for this article
@@ -704,7 +704,7 @@ footer .btn {
                                                     <?php endif; ?>
 
                                                     <?php if ($emotionDetail): ?>
-                                                        <div class="nlp-emotion-line small text-muted mt-1">
+                                                        <div class="nlp-emotion-line medium text-muted mt-1">
                                                             Emotions:
                                                             <?php foreach ($emotionDetail as $idx => $emo): ?>
                                                                 <?= $idx > 0 ? ' · ' : '' ?>

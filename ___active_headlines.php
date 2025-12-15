@@ -218,8 +218,8 @@ $activeHeadlines = scrollnews_fetch_active_headlines();
 
 .sn-headline-link {
     text-decoration: none;
-    font-weight: 500;
-    font-size: 0.82rem;
+    font-weight: 700;
+    font-size: 16px;
     line-height: 1.4;
     display: inline-block;
 }
