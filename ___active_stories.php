@@ -6,7 +6,7 @@ if (!function_exists('_pdo_or_null')) {
     require_once __DIR__ . '/___modules.php';
 }
 
-$ACTIVE_STORIES_DEBUG = false; // set true temporarily while testing
+$ACTIVE_STORIES_DEBUG = true; // set true temporarily while testing
 
 $activeStoriesFail = function(string $msg, ?Throwable $e = null) use ($ACTIVE_STORIES_DEBUG) {
     // Always log to server logs
