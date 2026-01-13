@@ -1996,7 +1996,6 @@ function sn_format_pub_date(?string $raw): string {
 }
 
 
-<?php
 function _fragment_cache_dir(): string {
     $dir = __DIR__ . '/_cache_fragments';
     if (!is_dir($dir)) @mkdir($dir, 0775, true);
