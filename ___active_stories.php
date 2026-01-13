@@ -267,6 +267,13 @@ try {
     }
 
     // Helpers
+    $build_synopsis_url = function(string $q): string {
+        return 'https://www.google.com/search?' . http_build_query([
+            'q'   => "what's happening with " . $q,
+            'udm' => 50
+        ]);
+    };
+
     $build_search_url = function(string $q, string $mode = 'nlp'): string {
         return 'https://scrollnews.io/search.php?' . http_build_query([
             'q'          => $q,
@@ -479,6 +486,7 @@ try {
                 $label  = $row['display_label'] ?? $entity ?? 'Entity';
 
                 $q = $build_query_for_row($row);
+                $synopsis = $build_synopsis_url($q);
                 $scrollKeyword = $build_search_url($q, 'nlp');
                 $google = $build_google_url($q);
                 $yt = $build_youtube_url($q);
@@ -487,7 +495,8 @@ try {
                 <span class="entity-name"><?= htmlspecialchars($label) ?></span>
 
                 <div class="btn-row" style="margin-top:0;">
-                  <a class="btn btn-green btn-gray-border btn-xs" href="<?= htmlspecialchars($scrollKeyword) ?>" data-loading>
+                  <a class="btn btn-green btn-gray-border btn-xs" href="<?= htmlspecialchars($synopsis) ?>" target="_blank" rel="noopener" title="AI summary via Google">Synopsis</a>
+                  <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($scrollKeyword) ?>" data-loading>
                     Scroll News
                   </a>
                   <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($google) ?>" target="_blank" rel="noopener">Google</a>
@@ -509,6 +518,7 @@ try {
                 $label = $row['display_label'] ?? $row['entity'] ?? 'Story';
 
                 $q = $build_query_for_row($row);
+                $synopsis = $build_synopsis_url($q);
                 $scrollClassic = $build_search_url($q, 'classic');
                 $scrollNlp = $build_search_url($q, 'nlp');
                 $google = $build_google_url($q);
@@ -538,7 +548,8 @@ try {
                 </div>
 
                 <div class="btn-row">
-                  <a class="btn btn-green btn-gray-border btn-xs" href="<?= htmlspecialchars($scrollClassic) ?>" data-loading>Scroll (Classic)</a>
+                  <a class="btn btn-green btn-gray-border btn-xs" href="<?= htmlspecialchars($synopsis) ?>" target="_blank" rel="noopener" title="AI summary via Google">Synopsis</a>
+                  <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($scrollClassic) ?>" data-loading>Scroll (Classic)</a>
                   <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($scrollNlp) ?>" data-loading>Scroll (NLP)</a>
                   <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($google) ?>" target="_blank" rel="noopener">Google</a>
                   <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($yt) ?>" target="_blank" rel="noopener">YouTube</a>
