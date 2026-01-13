@@ -398,62 +398,64 @@ if (!is_array($feedsData) || count($feedsData) === 0) {
 
 </style>
 
-<div class="toy-box firstlook-box">
-  <div class="firstlook-head">
-    <div>
-      <div class="firstlook-title">First Look</div>
-      <div class="firstlook-sub">
-        Front page of front pages<?php if ($ageSec !== null) echo " • updated " . (int)round($ageSec/60) . "m ago"; ?>
+<div class="container-fluid">
+  <div class="toy-box firstlook-box">
+    <div class="firstlook-head">
+      <div>
+        <div class="firstlook-title">First Look</div>
+        <div class="firstlook-sub">
+          Front page of front pages<?php if ($ageSec !== null) echo " • updated " . (int)round($ageSec/60) . "m ago"; ?>
+        </div>
       </div>
+      <a href="saved_headlines.php" class="firstlook-more" style="">Saved Headlines</a>
     </div>
-    <a href="saved_headlines.php" class="firstlook-more" style="">Saved Headlines</a>
-  </div>
 
-  <div class="firstlook-grid">
-    <?php foreach ($feedsData as $f): ?>
-      <div class="firstlook-col">
-        <div class="firstlook-colhead">
-          <a class="firstlook-pill" href="<?php echo htmlspecialchars($f['home']); ?>" target="_blank" rel="noopener">
-            <?php echo htmlspecialchars($f['name']); ?>
-          </a>
-          <div class="firstlook-count"><?php echo count($f['items'] ?? []); ?></div>
+    <div class="firstlook-grid">
+      <?php foreach ($feedsData as $f): ?>
+        <div class="firstlook-col">
+          <div class="firstlook-colhead">
+            <a class="firstlook-pill" href="<?php echo htmlspecialchars($f['home']); ?>" target="_blank" rel="noopener">
+              <?php echo htmlspecialchars($f['name']); ?>
+            </a>
+            <div class="firstlook-count"><?php echo count($f['items'] ?? []); ?></div>
+          </div>
+
+          <div class="firstlook-list">
+            <?php foreach (($f['items'] ?? []) as $it): ?>
+              <?php
+                // Example variables you likely have:
+                $url   = $it['url'] ?? '';
+                $title = $it['title'] ?? '';
+                $src   = $f['name'] ?? '';
+                $pub   = $it['s'] ?? '';
+              ?>
+              <div class="firstlook-item">
+                <a href="<?php echo htmlspecialchars($it['url']); ?>" target="_blank" rel="noopener">
+                  <?php echo htmlspecialchars(($it['emo'] ?? '📰') . ' ' . ($it['title'] ?? '')); ?>
+                </a>
+                <button
+                  type="button"
+                  class="firstlook-save-btn"
+                  data-url="<?= htmlspecialchars($url) ?>"
+                  data-title="<?= htmlspecialchars($title) ?>"
+                  data-source="<?= htmlspecialchars($src) ?>"
+                  data-pub="<?= htmlspecialchars($pub) ?>"
+                  aria-label="Save headline"
+                >Save</button>
+                <?php if (!empty($it['ts'])): ?>
+                  <div class="firstlook-time"><?php echo date('g:ia', (int)$it['ts']); ?></div>
+                <?php endif; ?>
+              </div>
+            <?php endforeach; ?>
+          </div>
         </div>
+      <?php endforeach; ?>
+    </div>
 
-        <div class="firstlook-list">
-          <?php foreach (($f['items'] ?? []) as $it): ?>
-            <?php
-              // Example variables you likely have:
-              $url   = $it['url'] ?? '';
-              $title = $it['title'] ?? '';
-              $src   = $f['name'] ?? '';
-              $pub   = $it['s'] ?? '';
-            ?>
-            <div class="firstlook-item">
-              <a href="<?php echo htmlspecialchars($it['url']); ?>" target="_blank" rel="noopener">
-                <?php echo htmlspecialchars(($it['emo'] ?? '📰') . ' ' . ($it['title'] ?? '')); ?>
-              </a>
-              <button
-                type="button"
-                class="firstlook-save-btn"
-                data-url="<?= htmlspecialchars($url) ?>"
-                data-title="<?= htmlspecialchars($title) ?>"
-                data-source="<?= htmlspecialchars($src) ?>"
-                data-pub="<?= htmlspecialchars($pub) ?>"
-                aria-label="Save headline"
-              >Save</button>
-              <?php if (!empty($it['ts'])): ?>
-                <div class="firstlook-time"><?php echo date('g:ia', (int)$it['ts']); ?></div>
-              <?php endif; ?>
-            </div>
-          <?php endforeach; ?>
-        </div>
-      </div>
-    <?php endforeach; ?>
-  </div>
-
-  <div class="firstlook-foot">
-    <div>One–two headlines per source • cached</div>
-    <div></div>
+    <div class="firstlook-foot">
+      <div>One–two headlines per source • cached</div>
+      <div></div>
+    </div>
   </div>
 </div>
 

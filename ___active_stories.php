@@ -9,30 +9,20 @@ if (!function_exists('_pdo_or_null')) {
 $ACTIVE_STORIES_DEBUG = true; // set true temporarily while testing
 
 $activeStoriesFail = function(string $msg, ?Throwable $e = null) use ($ACTIVE_STORIES_DEBUG) {
-    // Always log to server logs
     error_log('[ActiveStories] ' . $msg . ($e ? (' | ' . $e->getMessage()) : ''));
-
-    // Only show on page when debugging
     if ($ACTIVE_STORIES_DEBUG) {
         echo '<div class="alert alert-warning small" style="margin:10px 0;">';
         echo '<strong>Active Stories error:</strong> ' . htmlspecialchars($msg);
-        if ($e) {
-            echo '<br><code>' . htmlspecialchars($e->getMessage()) . '</code>';
-        }
+        if ($e) echo '<br><code>' . htmlspecialchars($e->getMessage()) . '</code>';
         echo '</div>';
     }
 };
 
 try {
     $db = _pdo_or_null();
+    if (!$db) throw new Exception("DB handle not available");
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    if (!$db) throw new Exception("DB handle not available");
-
-    // NOTE: paste your final SQL here (the one that returns:
-    // item_type, entity, label, total_count, co_entities, display_label, previews(json))
-
-    /* PASTE YOUR FINAL ACTIVE STORIES SQL HERE */
     $sql = <<<SQL
       WITH params AS (
         SELECT
@@ -265,29 +255,11 @@ try {
       ORDER BY
         CASE WHEN pr.item_type = 'power_center' THEN 0 ELSE 1 END,
         pr.total_count DESC;
-      SQL;
+    SQL;
 
-
-    try {
-        $stmt = $db->prepare($sql);
-    } catch (Throwable $e) {
-        $activeStoriesFail('SQL prepare failed', $e);
-        return;
-    }
-
-    try {
-        $stmt->execute();
-    } catch (Throwable $e) {
-        $activeStoriesFail('SQL execute failed', $e);
-        return;
-    }
-
-    try {
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (Throwable $e) {
-        $activeStoriesFail('SQL fetch failed', $e);
-        return;
-    }
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if (!$rows) {
         $activeStoriesFail('Query returned 0 rows (nothing to render).');
@@ -296,7 +268,6 @@ try {
 
     // Helpers
     $build_search_url = function(string $q, string $mode = 'nlp'): string {
-        // $mode: 'classic' or 'nlp'
         return 'https://scrollnews.io/search.php?' . http_build_query([
             'q'          => $q,
             'range'      => 'all',
@@ -314,6 +285,36 @@ try {
         return 'https://www.youtube.com/results?' . http_build_query(['search_query' => $q]);
     };
 
+    $decode_previews = function($json) {
+        if (!$json) return [];
+        if (is_array($json)) return $json;
+        $arr = json_decode($json, true);
+        return is_array($arr) ? $arr : [];
+    };
+
+    $normalize_co_entities = function($cos): array {
+        if (is_string($cos)) {
+            $cos = trim($cos, "{}");
+            if ($cos === '') return [];
+            return array_map(function($x){
+                return trim($x, "\" ");
+            }, explode(",", $cos));
+        }
+        return is_array($cos) ? $cos : [];
+    };
+
+    $build_query_for_row = function(array $row) use ($normalize_co_entities): string {
+        $entity = $row['entity'] ?? '';
+        $cos = $normalize_co_entities($row['co_entities'] ?? []);
+
+        if (($row['item_type'] ?? '') === 'power_center') return $entity;
+
+        // story clusters: entity + top 2 co-entities
+        $top = array_slice($cos, 0, 2);
+        $parts = array_filter(array_merge([$entity], $top));
+        return trim(implode(' ', $parts));
+    };
+
     // Group rows
     $power = [];
     $stories = [];
@@ -324,166 +325,256 @@ try {
         if ($type === 'story_cluster') $stories[] = $r;
     }
 
-    // Render helpers
-    $decode_previews = function($json) {
-        if (!$json) return [];
-        if (is_array($json)) return $json;
-        $arr = json_decode($json, true);
-        return is_array($arr) ? $arr : [];
-    };
-
-    $build_query_for_row = function(array $row): string {
-        $entity = $row['entity'] ?? '';
-        $cos = $row['co_entities'] ?? [];
-
-        // co_entities comes back as PG array sometimes; normalize
-        if (is_string($cos)) {
-            // e.g. {"a","b","c"} -> rough parse
-            $cos = trim($cos, "{}");
-            $cos = $cos === '' ? [] : array_map(function($x){
-                return trim($x, "\" ");
-            }, explode(",", $cos));
-        } elseif (!is_array($cos)) {
-            $cos = [];
-        }
-
-        if (($row['item_type'] ?? '') === 'power_center') {
-            return $entity;
-        }
-
-        // story clusters: entity + top 2 co-entities (keeps query concise)
-        $top = array_slice($cos, 0, 2);
-        $parts = array_filter(array_merge([$entity], $top));
-        return trim(implode(' ', $parts));
-    };
+    // Iteration 2: keep only top 2 persistent stories
+    $stories = array_slice($stories, 0, 2);
 
 } catch (Throwable $e) {
     $activeStoriesFail('Unexpected error in Active Stories widget', $e);
     return;
 }
-
 ?>
 
 <style>
+/* Iteration 2 polish */
+.sn-card-active-stories .panel-title {
+  font-weight: 800;
+  color: #111;
+  letter-spacing: -0.1px;
+}
+.sn-card-active-stories .panel-subtitle {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+.sn-card-active-stories .section-label {
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: 8px;
+}
+
+.sn-card-active-stories .power-centers {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.sn-card-active-stories .power-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 10px;
+  background: rgba(0,0,0,0.01);
+}
+
+.sn-card-active-stories .entity-name {
+  font-weight: 600;
+  color: #111;
+}
+
+.sn-card-active-stories .story-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 992px) {
+  .sn-card-active-stories .story-grid {
+    grid-template-columns: 1fr 1fr; /* left/right split */
+  }
+}
+
+.sn-card-active-stories .story-card {
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 12px;
+  padding: 12px;
+  background: #fff;
+}
+
 .sn-card-active-stories .story-title {
   font-weight: 800;
-  color: #000;
+  color: #111;
+  text-decoration: none;
+  line-height: 1.25;
 }
 .sn-card-active-stories .story-title:hover {
   color: #2cae86;
 }
-.sn-card-active-stories .mini-meta {
-  font-size: 12px;
-  color: #666;
+
+.sn-card-active-stories .story-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 6px;
 }
+
+.sn-card-active-stories .cooccurrence-label {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.sn-card-active-stories .story-weight {
+  font-size: 12px;
+  color: #6b7280;
+  white-space: nowrap;
+}
+.sn-card-active-stories .story-weight .window {
+  font-weight: 700;
+  color: #9ca3af;
+}
+.sn-card-active-stories .story-weight .dot {
+  margin: 0 6px;
+  color: #d1d5db;
+}
+
 .sn-card-active-stories .btn-row {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  margin-top: 10px;
 }
-.sn-card-active-stories .story-block {
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-  padding-bottom: 12px;
-  margin-bottom: 12px;
+
+.sn-card-active-stories .mini-meta {
+  font-size: 12px;
+  color: #6b7280;
 }
-.sn-card-active-stories .story-block:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0;
+
+.sn-card-active-stories .headline-link {
+  color: #111;
+  text-decoration: none;
+}
+.sn-card-active-stories .headline-link:hover {
+  color: #2cae86;
 }
 </style>
 
-<div class="card h-100 intel-card mt-3 mt-lg-3 sn-card-active-stories">
-  <div class="card-body">
+<div class="container-fluid mb-5">
 
-    <div class="d-flex justify-content-between align-items-center mb-2">
-      <h3 class="h6 mb-0">🔥 Active Stories</h3>
-      <span class="text-muted small">last 3 weeks</span>
-    </div>
+  <div class="card h-100 intel-card sn-card-active-stories">
+    <div class="card-body">
 
-    <?php if (!empty($power)): ?>
-      <div class="mb-3">
-        <div class="text-muted small mb-2">Power Centers</div>
-        <div class="btn-row">
-          <?php foreach ($power as $row): ?>
-            <?php
-              $q = $build_query_for_row($row);
-              $scrollNlp = $build_search_url($q, 'nlp');
-              $google = $build_google_url($q);
-              $yt = $build_youtube_url($q);
-              $label = $row['display_label'] ?? $row['entity'] ?? 'Item';
-            ?>
-            <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($scrollNlp) ?>" data-loading>
-              <?= htmlspecialchars($label) ?>
-            </a>
-            <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($google) ?>" target="_blank" rel="noopener">Google</a>
-            <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($yt) ?>" target="_blank" rel="noopener">YouTube</a>
-          <?php endforeach; ?>
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <div>
+          <h3 class="h6 mb-0 panel-title">🧭 Persistent News Story Hub</h3>
+          <div class="panel-subtitle">Ongoing narratives with sustained momentum</div>
         </div>
+        <span class="text-muted small">last 3 weeks</span>
       </div>
-    <?php endif; ?>
 
-    <?php if (!empty($stories)): ?>
-      <div>
-        <div class="text-muted small mb-2">Active Stories</div>
+      <?php if (!empty($power)): ?>
+        <div class="mb-3">
+          <div class="section-label">Power Centers</div>
 
-        <?php foreach ($stories as $row): ?>
-          <?php
-            $label = $row['display_label'] ?? $row['entity'] ?? 'Story';
-            $q = $build_query_for_row($row);
-            $scrollClassic = $build_search_url($q, 'classic');
-            $scrollNlp = $build_search_url($q, 'nlp');
-            $google = $build_google_url($q);
-            $yt = $build_youtube_url($q);
+          <div class="power-centers">
+            <?php foreach ($power as $row): ?>
+              <?php
+                $entity = $row['entity'] ?? '';
+                $label  = $row['display_label'] ?? $entity ?? 'Entity';
 
-            $previews = $decode_previews($row['previews'] ?? null);
-          ?>
+                $q = $build_query_for_row($row);
+                $scrollKeyword = $build_search_url($q, 'nlp');
+                $google = $build_google_url($q);
+                $yt = $build_youtube_url($q);
+              ?>
+              <div class="power-center">
+                <span class="entity-name"><?= htmlspecialchars($label) ?></span>
 
-          <div class="story-block">
-            <div class="d-flex justify-content-between align-items-start gap-2">
-              <a class="text-decoration-none story-title" href="<?= htmlspecialchars($scrollNlp) ?>" data-loading>
-                <?= htmlspecialchars($label) ?>
-              </a>
-              <span class="badge rounded-pill bg-secondary-subtle text-body-secondary small">
-                <?= (int)($row['total_count'] ?? 0) ?>
-              </span>
-            </div>
-
-            <div class="btn-row mt-2">
-              <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($scrollNlp) ?>" data-loading>Scroll (NLP)</a>
-              <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($scrollClassic) ?>" data-loading>Scroll (Classic)</a>
-              <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($google) ?>" target="_blank" rel="noopener">Google</a>
-              <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($yt) ?>" target="_blank" rel="noopener">YouTube</a>
-            </div>
-
-            <?php if (!empty($previews)): ?>
-              <ul class="list-unstyled mb-0 mt-2">
-                <?php foreach ($previews as $p): ?>
-                  <?php
-                    $pUrl = $p['url'] ?? '#';
-                    $pTitle = $p['title'] ?? '(untitled)';
-                    $pSource = $p['source'] ?? '';
-                    $pDate = $p['pub_date'] ?? '';
-                  ?>
-                  <li class="mb-1">
-                    <a class="headline-link text-decoration-none" href="<?= htmlspecialchars($pUrl) ?>" target="_blank" rel="noopener">
-                      <?= htmlspecialchars($pTitle) ?>
-                    </a>
-                    <div class="mini-meta">
-                      <?= htmlspecialchars($pSource) ?>
-                      <?php if ($pDate): ?> · <?= htmlspecialchars($pDate) ?><?php endif; ?>
-                    </div>
-                  </li>
-                <?php endforeach; ?>
-              </ul>
-            <?php else: ?>
-              <div class="mini-meta mt-2">No recent articles.</div>
-            <?php endif; ?>
+                <div class="btn-row" style="margin-top:0;">
+                  <a class="btn btn-green btn-gray-border btn-xs" href="<?= htmlspecialchars($scrollKeyword) ?>" data-loading>
+                    Scroll News
+                  </a>
+                  <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($google) ?>" target="_blank" rel="noopener">Google</a>
+                  <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($yt) ?>" target="_blank" rel="noopener">YouTube</a>
+                </div>
+              </div>
+            <?php endforeach; ?>
           </div>
-        <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
 
-      </div>
-    <?php endif; ?>
+      <?php if (!empty($stories)): ?>
+        <div>
+          <div class="section-label">Persistent Stories</div>
 
+          <div class="story-grid">
+            <?php foreach ($stories as $row): ?>
+              <?php
+                $label = $row['display_label'] ?? $row['entity'] ?? 'Story';
+
+                $q = $build_query_for_row($row);
+                $scrollClassic = $build_search_url($q, 'classic');
+                $scrollNlp = $build_search_url($q, 'nlp');
+                $google = $build_google_url($q);
+                $yt = $build_youtube_url($q);
+
+                $previews = $decode_previews($row['previews'] ?? null);
+
+                $co = $normalize_co_entities($row['co_entities'] ?? []);
+                $coCount = count($co);
+
+                $total = (int)($row['total_count'] ?? 0);
+              ?>
+
+              <div class="story-card">
+                <a class="story-title" href="<?= htmlspecialchars($scrollClassic) ?>" data-loading>
+                  <?= htmlspecialchars($label) ?>
+                </a>
+
+                <div class="story-meta">
+                  <div class="cooccurrence-label">
+                    (co-occurrence cluster<?= $coCount ? ': ' . $coCount . ' co-entities' : '' ?>)
+                  </div>
+
+                  <div class="story-weight" title="Signals in window">
+                    <span class="window">w3</span><span class="dot">·</span><span class="count"><?= $total ?> signals</span>
+                  </div>
+                </div>
+
+                <div class="btn-row">
+                  <a class="btn btn-green btn-gray-border btn-xs" href="<?= htmlspecialchars($scrollClassic) ?>" data-loading>Scroll (Classic)</a>
+                  <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($scrollNlp) ?>" data-loading>Scroll (NLP)</a>
+                  <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($google) ?>" target="_blank" rel="noopener">Google</a>
+                  <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($yt) ?>" target="_blank" rel="noopener">YouTube</a>
+                </div>
+
+                <?php if (!empty($previews)): ?>
+                  <ul class="list-unstyled mb-0 mt-2">
+                    <?php foreach ($previews as $p): ?>
+                      <?php
+                        $pUrl = $p['url'] ?? '#';
+                        $pTitle = $p['title'] ?? '(untitled)';
+                        $pSource = $p['source'] ?? '';
+                        $pDate = $p['pub_date'] ?? '';
+                      ?>
+                      <li class="mb-2">
+                        <a class="headline-link" href="<?= htmlspecialchars($pUrl) ?>" target="_blank" rel="noopener">
+                          <?= htmlspecialchars($pTitle) ?>
+                        </a>
+                        <div class="mini-meta">
+                          <?= htmlspecialchars($pSource) ?>
+                          <?php if ($pDate): ?> · <?= htmlspecialchars($pDate) ?><?php endif; ?>
+                        </div>
+                      </li>
+                    <?php endforeach; ?>
+                  </ul>
+                <?php else: ?>
+                  <div class="mini-meta mt-2">No recent articles.</div>
+                <?php endif; ?>
+              </div>
+
+            <?php endforeach; ?>
+          </div>
+
+        </div>
+      <?php endif; ?>
+
+    </div>
   </div>
 </div>
