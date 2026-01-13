@@ -495,7 +495,7 @@ try {
                 <span class="entity-name"><?= htmlspecialchars($label) ?></span>
 
                 <div class="btn-row" style="margin-top:0;">
-                  <a class="btn btn-green btn-gray-border btn-xs" href="<?= htmlspecialchars($synopsis) ?>" target="_blank" rel="noopener" title="AI summary via Google">Synopsis</a>
+                  <a class="btn btn-green btn-gray-border btn-xs" href="<?= htmlspecialchars($synopsis) ?>" target="_blank" rel="noopener" title="AI overview of recent developments">Latest Happenings</a>
                   <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($scrollKeyword) ?>" data-loading>
                     Scroll News
                   </a>
@@ -548,7 +548,7 @@ try {
                 </div>
 
                 <div class="btn-row">
-                  <a class="btn btn-green btn-gray-border btn-xs" href="<?= htmlspecialchars($synopsis) ?>" target="_blank" rel="noopener" title="AI summary via Google">Synopsis</a>
+                  <a class="btn btn-green btn-gray-border btn-xs" href="<?= htmlspecialchars($synopsis) ?>" target="_blank" rel="noopener" title="AI summary of this ongoing story">Synopsis</a>
                   <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($scrollClassic) ?>" data-loading>Scroll (Classic)</a>
                   <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($scrollNlp) ?>" data-loading>Scroll (NLP)</a>
                   <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($google) ?>" target="_blank" rel="noopener">Google</a>
