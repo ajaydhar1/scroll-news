@@ -12,6 +12,8 @@ try {
 
     // NOTE: paste your final SQL here (the one that returns:
     // item_type, entity, label, total_count, co_entities, display_label, previews(json))
+
+    /* PASTE YOUR FINAL ACTIVE STORIES SQL HERE */
     $sql = "
         WITH params AS (
           SELECT
@@ -271,8 +273,6 @@ try {
           CASE WHEN pr.item_type = 'power_center' THEN 0 ELSE 1 END,
           pr.total_count DESC;
     ";
-    /* PASTE YOUR FINAL ACTIVE STORIES SQL HERE */
-SQL;
 
     $stmt = $db->prepare($sql);
     $stmt->execute();
