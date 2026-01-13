@@ -496,7 +496,7 @@ try {
                 <span class="entity-name"><?= htmlspecialchars($label) ?></span>
 
                 <div class="btn-row" style="margin-top:0;">
-                  <a class="btn btn-green btn-gray-border btn-xs" href="<?= htmlspecialchars($synopsis) ?>" target="_blank" rel="noopener" title="AI overview of recent developments">What’s New</a>
+                  <a class="btn btn-green btn-gray-border btn-xs" href="<?= htmlspecialchars($synopsis) ?>" target="_blank" rel="noopener" title="AI overview of recent developments">Synopsis</a>
                   <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($scrollClassic) ?>" data-loading>
                     Scroll (Classic)
                   </a>
