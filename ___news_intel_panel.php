@@ -381,8 +381,14 @@ try {
         'unique_topics'     => count($uniqueTopicKeys),
     ];
 } catch (Throwable $e) {
-    // If anything fails, just don’t render the panel
+    error_log('[IntelPanel] ' . $e->getMessage());
     $intel_panel = null;
+
+    if (!empty($_GET['debug_intel'])) {
+        echo '<div class="alert alert-warning small" style="margin:10px 0;">';
+        echo '<strong>Intel Panel error:</strong> ' . htmlspecialchars($e->getMessage());
+        echo '</div>';
+    }
 }
 
 if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['places'] === [] && $intel_panel['topics'] === []) {
