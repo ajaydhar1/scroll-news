@@ -52,7 +52,8 @@ try {
     }
 
     // Compute cutoff for last 24h in PHP so it works on both SQLite + Postgres
-    $cutoff = (new DateTimeImmutable('-24 hours'))->format('Y-m-d H:i:s');
+    $tz = new DateTimeZone('UTC'); // match DB storage timezone if you store UTC
+    $cutoff = (new DateTimeImmutable('now', $tz))->modify('-24 hours')->format('Y-m-d H:i:s');
 
     $sql = "
         SELECT
@@ -69,6 +70,8 @@ try {
           AND url IS NOT NULL
           AND title IS NOT NULL
           AND LOWER(source_slug) != 'sports'
+          AND nlp IS NOT NULL
+          AND nlp != ''
         ORDER BY pub_date DESC
         LIMIT 2000
     ";
@@ -243,7 +246,7 @@ try {
 
         // Normalize entities and places (can be array of strings or array of objects)
 
-        // Only include entities that appear at least 3 times
+        // Only include entities that appear at least >= 2 times
         $ENTITY_MIN_COUNT = 2;
 
         foreach ($entities_object as $ent) {

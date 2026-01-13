@@ -323,11 +323,25 @@
           </div>
         </section>
 
+        <?php $bust = isset($_GET['nocache']) && $_GET['nocache'] == '1'; ?>
+
+        <?php
+            $CACHE_VER = 'v1'; // bump to v2 when you change markup
+        ?>
+
         <!-- News Intelligence Panel-->
-        <?php require_once __DIR__ . '/___news_intel_panel.php'; ?>
+        <?php
+            fragment_cache_swr("news_intel_panel_$CACHE_VER", 120, 600, function () {
+                include __DIR__ . '/___news_intel_panel.php';
+            }, $bust);
+        ?>
 
         <!-- Active Stories Panel-->
-        <?php require_once __DIR__ . '/___active_stories.php'; ?>
+        <?php
+            fragment_cache_swr("active_stories_$CACHE_VER", 60, 300, function () {
+                include __DIR__ . '/___active_stories.php';
+            }, $bust);
+        ?>
 
         <!-- Brief Me Bar-->
         <?php require_once __DIR__ . '/___brief_me.php'; ?>

@@ -1995,4 +1995,72 @@ function sn_format_pub_date(?string $raw): string {
     return date('M j, Y • g:i A', $ts);
 }
 
+
+<?php
+function _fragment_cache_dir(): string {
+    $dir = __DIR__ . '/_cache_fragments';
+    if (!is_dir($dir)) @mkdir($dir, 0775, true);
+    return $dir;
+}
+
+function _fragment_cache_path(string $key): string {
+    $safe = preg_replace('/[^a-zA-Z0-9_\-\.]/', '_', $key);
+    return _fragment_cache_dir() . '/' . $safe . '.html';
+}
+
+function fragment_cache_swr(string $key, int $ttl, int $staleTtl, callable $renderFn, bool $bust = false): void {
+    $path = _fragment_cache_path($key);
+    $lock = $path . '.lock';
+    $now  = time();
+
+    // If we have cache and we're not busting...
+    if (!$bust && is_file($path)) {
+        $age = $now - filemtime($path);
+
+        // Fresh
+        if ($age <= $ttl) {
+            readfile($path);
+            return;
+        }
+
+        // Stale-but-allowed: serve stale immediately and refresh once
+        if ($age <= ($ttl + $staleTtl)) {
+            readfile($path);
+
+            // Try to revalidate (single flight)
+            if (!file_exists($lock)) {
+                // create lock
+                @file_put_contents($lock, (string)$now, LOCK_EX);
+
+                // finish response to user, then do work
+                if (function_exists('fastcgi_finish_request')) {
+                    fastcgi_finish_request();
+                }
+
+                ob_start();
+                try {
+                    $renderFn();
+                    $html = ob_get_clean();
+                    file_put_contents($path, $html, LOCK_EX);
+                } catch (Throwable $e) {
+                    ob_end_clean();
+                }
+
+                @unlink($lock);
+            }
+            return;
+        }
+
+        // Too old: fall through to blocking refresh
+    }
+
+    // No cache or too old or bust: blocking render
+    ob_start();
+    $renderFn();
+    $html = ob_get_clean();
+    file_put_contents($path, $html, LOCK_EX);
+    echo $html;
+}
+
+
 ?>
