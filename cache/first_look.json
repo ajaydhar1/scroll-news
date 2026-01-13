@@ -1,57 +1,21 @@
 {
-    "fetched_at": 1766088068,
+    "fetched_at": 1768316311,
     "feeds": [
         {
-            "name": "NY Post",
-            "home": "https://nypost.com",
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
             "items": [
                 {
-                    "title": "‘Survivor 49’ runner-up Sophi Balerdi reveals shocking intel she got from the jury after final tribal",
-                    "url": "https://nypost.com/2025/12/18/entertainment/survivor-49s-sophi-balerdi-on-jury-info-she-got-after-final-tribal/",
-                    "ts": 1766088041,
+                    "title": "December core consumer prices rose at a 2.6% annual rate, less than expected",
+                    "url": "https://www.cnbc.com/2026/01/13/cpi-inflation-report-december-2026.html",
+                    "ts": 1768316212,
                     "emo": "📰"
                 },
                 {
-                    "title": "Never pay for a Microsoft Office subscription again — get all your apps for 77% off",
-                    "url": "https://nypost.com/2025/12/18/shopping/never-pay-for-a-microsoft-office-subscription-again-get-all-your-apps-for-77-off/",
-                    "ts": 1766088000,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Rory McIlroy gets emotional during BBC Sports Personality of the Year interview over 'inspirational' fathers of victims of Southport killings",
-                    "url": "https://www.dailymail.co.uk/sport/golf/article-15397185/Rory-McIlroy-gets-emotional-BBC-Sports-Personality-Year-interview-inspirational-fathers-victims-Southport-killings.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1766088013,
-                    "emo": "📰"
-                },
-                {
-                    "title": "BBC Sports Personality of the Year LIVE: Rory McIlroy favourite to take home the award after Masters and Ryder Cup glory with F1 champ Lando Norris and Lionesses star Chloe Kelly also in contention",
-                    "url": "https://www.dailymail.co.uk/sport/othersports/article-15395661/BBC-Sports-Personality-Year-2025-LIVE-Result.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1766088010,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Wall Street is raving about Micron earnings as one of the biggest-ever surprises for a chipmaker",
-                    "url": "https://www.businessinsider.com/micron-earnings-mu-stock-ai-chip-stocks-wall-street-reactions-2025-12",
-                    "ts": 1766087752,
-                    "emo": "💰"
-                },
-                {
-                    "title": "Mango Outlet's sale has deals on winter staples for less than $5",
-                    "url": "https://www.businessinsider.com/guides/deals/mango-outlet-sale-deals-2025-12",
-                    "ts": 1766087292,
-                    "emo": "📰"
+                    "title": "JPMorgan Chase says banks could fight Trump credit card rate cap: 'Everything's on the table'",
+                    "url": "https://www.cnbc.com/2026/01/13/trump-credit-card-rate-cap-jpmorgan-chase-banks-fight.html",
+                    "ts": 1768314252,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -60,51 +24,51 @@
             "home": "https://www.marketwatch.com",
             "items": [
                 {
-                    "title": "Cannabis stocks trade mixed as Trump signs executive order to reclassify the drug",
-                    "url": "https://www.marketwatch.com/story/marijuana-stocks-jump-with-trump-set-to-sign-executive-order-that-would-reclassify-the-drug-3d741133?mod=mw_rss_topstories",
-                    "ts": 1766087580,
+                    "title": "The Fed’s failures set the stage for the Trump-Powell turmoil. Here’s one solution.",
+                    "url": "https://www.marketwatch.com/story/how-trumps-attacks-on-powell-and-the-fed-could-actually-bring-more-inflation-16e1e839?mod=mw_rss_topstories",
+                    "ts": 1768316100,
                     "emo": "⚖️"
                 },
                 {
-                    "title": "Bonds are having their best year since 2020. But don’t expect the same returns next year.",
-                    "url": "https://www.marketwatch.com/story/bonds-are-having-their-best-year-since-2020-but-dont-expect-the-same-returns-next-year-6ac795bd?mod=mw_rss_topstories",
-                    "ts": 1766086560,
-                    "emo": "📰"
+                    "title": "American stocks underperformed last year. Deutsche Bank says it could happen again.",
+                    "url": "https://www.marketwatch.com/story/american-stocks-underperformed-last-year-deutsche-bank-says-it-could-happen-again-dfe0705b?mod=mw_rss_topstories",
+                    "ts": 1768315620,
+                    "emo": "💰"
                 }
             ]
         },
         {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "China warns of rising war risk after historic US arms sale to Taiwan",
-                    "url": "https://www.foxnews.com/politics/china-warns-rising-war-risk-after-historic-us-arms-sale-taiwan",
-                    "ts": 1766087555,
+                    "title": "Iran's UK ambassador summoned for dressing down over bloody regime clampdown on pro-democracy protests",
+                    "url": "https://www.dailymail.co.uk/news/article-15459921/Irans-UK-ambassador-summoned-dressing-bloody-regime-clampdown-pro-democracy-protests.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1768316098,
+                    "emo": "🌍"
+                },
+                {
+                    "title": "The abandoned celebrity mansions left to rot after being plagued by legal issues and financial burdens",
+                    "url": "https://www.dailymail.co.uk/lifestyle/homes/article-15450663/abandoned-celebrity-mansions-rot.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1768316090,
+                    "emo": "🎭"
+                }
+            ]
+        },
+        {
+            "name": "The Guardian",
+            "home": "https://www.theguardian.com",
+            "items": [
+                {
+                    "title": "Twelve top central bankers defend Fed’s Jerome Powell over DoJ investigation; oil hits two-month high as Trump threatens Iran’s trading partners – business live",
+                    "url": "https://www.theguardian.com/business/live/2026/jan/13/oil-price-trump-iran-trading-partners-tariffs-supreme-court-business-live-news-updates",
+                    "ts": 1768315869,
                     "emo": "🔥"
                 },
                 {
-                    "title": "Magnitude ‘cannot be overstated’: Feds say Minnesota fraud may be more than $9B",
-                    "url": "https://www.foxnews.com/politics/magnitude-cannot-overstated-feds-say-minnesota-fraud-may-more-than-9b",
-                    "ts": 1766087336,
-                    "emo": "🚨"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Trust these numbers? Economists see a lot of flaws in delayed CPI report showing downward inflation",
-                    "url": "https://www.cnbc.com/2025/12/18/trust-these-numbers-economists-see-a-lot-of-flaws-in-delayed-cpi-report-showing-downward-inflation.html",
-                    "ts": 1766087414,
-                    "emo": "💰"
-                },
-                {
-                    "title": "Friday could be a wild day of trading on Wall Street. Here's why",
-                    "url": "https://www.cnbc.com/2025/12/18/friday-could-be-a-wild-day-of-trading-on-wall-street-heres-why.html",
-                    "ts": 1766087484,
+                    "title": "Quarter of developing countries poorer than in 2019, World Bank finds",
+                    "url": "https://www.theguardian.com/business/2026/jan/13/developing-countries-poorer-world-bank-report",
+                    "ts": 1768314604,
                     "emo": "📰"
                 }
             ]
@@ -114,16 +78,16 @@
             "home": "https://thehill.com",
             "items": [
                 {
-                    "title": "US sanctions Iran-linked vessels",
-                    "url": "https://thehill.com/policy/international/5655443-treasury-sanctions-iran-vessels/",
-                    "ts": 1766086253,
-                    "emo": "🌍"
+                    "title": "Live updates: Supreme Court weighs transgender sports ban; Trump ups pressure on Iran",
+                    "url": "https://thehill.com/homenews/administration/5684987-live-updates-donald-trump-detroit-jerome-powell-minnesota/",
+                    "ts": 1768315841,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "Trump's 'warrior dividends' will use funding for military housing subsidies",
-                    "url": "https://thehill.com/policy/defense/5655433-trump-warrior-dividends-military/",
-                    "ts": 1766085493,
-                    "emo": "⚖️"
+                    "title": "Watch live: House Republicans give remarks as government shutdown looms",
+                    "url": "https://thehill.com/video-clips/5686027-watch-live-house-republicans-shutdown-deadline-press-conference/",
+                    "ts": 1768314738,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -132,16 +96,52 @@
             "home": "https://www.nytimes.com",
             "items": [
                 {
-                    "title": "Trump Moves to End Gender-Related Care for Minors, Threatening Hospitals That Offer It",
-                    "url": "https://www.nytimes.com/2025/12/18/health/trump-gender-affirming-care-funding.html",
-                    "ts": 1766085774,
-                    "emo": "⚖️"
+                    "title": "CPI Report Shows Food Prices Rose Sharply in December",
+                    "url": "https://www.nytimes.com/2026/01/13/business/economy/inflation-cpi-report-food-prices.html",
+                    "ts": 1768315515,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Once Again, Health Care Proves to Be a Bitter Political Pill for G.O.P.",
-                    "url": "https://www.nytimes.com/2025/12/18/us/politics/health-care-gop.html",
-                    "ts": 1766080502,
-                    "emo": "🧪"
+                    "title": "Minnesota Sues to Stop Federal ‘Invasion,’ and Iranians Describe a ‘Blood Bath’",
+                    "url": "https://www.nytimes.com/2026/01/13/podcasts/the-headlines/minnesota-trump-lawsuit-iran-protests.html",
+                    "ts": 1768304007,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "Brian Daboll to interview for Titans coaching opening after Giants firing",
+                    "url": "https://nypost.com/2026/01/13/sports/brian-daboll-to-interview-for-titans-coaching-opening-after-giants-firing/",
+                    "ts": 1768315486,
+                    "emo": "📰"
+                },
+                {
+                    "title": "NBC pulls ‘Law & Order: SVU’ episode featuring Timothy Busfield after child sex abuse charges",
+                    "url": "https://nypost.com/2026/01/13/entertainment/nbc-pulls-law-amp-order-svu-episode-featuring-timothy-busfield/",
+                    "ts": 1768315400,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "US Marshals seek Timothy Busfield after child sex abuse allegations",
+                    "url": "https://www.foxnews.com/entertainment/us-marshals-seek-timothy-busfield-after-child-sex-abuse-allegations",
+                    "ts": 1768315384,
+                    "emo": "📰"
+                },
+                {
+                    "title": "BBC to seek dismissal of Trump’s $10 billion lawsuit over documentary editing his Jan 6 remarks",
+                    "url": "https://www.foxnews.com/media/bbc-seek-dismissal-trumps-10-billion-lawsuit-over-documentary-editing-his-jan-6-remarks",
+                    "ts": 1768314731,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -150,52 +150,34 @@
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "HEGSETH NOW TARGETING RELIGION...",
-                    "url": "https://thehill.com/policy/defense/5653054-defense-secretary-overhauls-chaplain-corps/",
-                    "ts": 1766085764,
+                    "title": "BONDI ON THE CHOP?",
+                    "url": "https://www.wsj.com/politics/policy/trump-has-complained-about-pam-bondi-repeatedly-to-aides-fd424df3",
+                    "ts": 1768313976,
                     "emo": "📰"
                 },
                 {
-                    "title": "Overhauling chaplain corps, eliminating 'new age' concepts...",
-                    "url": "https://thehill.com/policy/defense/5653054-defense-secretary-overhauls-chaplain-corps/",
-                    "ts": 1766085764,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "The Guardian",
-            "home": "https://www.theguardian.com",
-            "items": [
-                {
-                    "title": "Trump announces $1,776 payment for military workers amid tariff uncertainty",
-                    "url": "https://www.theguardian.com/business/2025/dec/18/trump-1776-military-checks",
-                    "ts": 1766083367,
+                    "title": "TRUMP CALLS HER 'WEAK AND INEFFECTIVE'...",
+                    "url": "https://www.wsj.com/politics/policy/trump-has-complained-about-pam-bondi-repeatedly-to-aides-fd424df3",
+                    "ts": 1768313976,
                     "emo": "⚖️"
-                },
-                {
-                    "title": "More UK interest rate cuts expected in 2026 after Bank of England lowers borrowing costs to near three-year low – as it happened",
-                    "url": "https://www.theguardian.com/business/live/2025/dec/18/bank-of-england-interest-rates-cut-inflation-economy-stock-markets-business-live-news-updates",
-                    "ts": 1766075620,
-                    "emo": "📰"
                 }
             ]
         },
         {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Zelensky gives stark warning as EU leaders decide on Russia's frozen assets",
-                    "url": "https://www.bbc.com/news/articles/c9vjlj1ezpgo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1766076382,
-                    "emo": "🌍"
+                    "title": "What investors should be looking out for as the 'Sell America' trade loses steam",
+                    "url": "https://www.businessinsider.com/sell-america-trade-trump-stocks-treasury-bonds-dollar-powell-reaction-2026-1",
+                    "ts": 1768312204,
+                    "emo": "📰"
                 },
                 {
-                    "title": "UK names Christian Turner as US ambassador, replacing Peter Mandelson",
-                    "url": "https://www.bbc.com/news/articles/ckgmpnr4ex2o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1766084960,
-                    "emo": "📰"
+                    "title": "I visited 29 states last year. If I had to pick a new place to live, it would be this stunning coastal destination.",
+                    "url": "https://www.businessinsider.com/maine-state-would-choose-move-to-frequent-traveler-2026-1",
+                    "ts": 1768312021,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -204,16 +186,34 @@
             "home": "https://www.nbcnews.com",
             "items": [
                 {
-                    "title": "HHS moves to slash funding and access to care for transgender minors",
-                    "url": "https://www.nbcnews.com/health/health-news/hhs-slash-funding-prohibit-access-trans-care-minors-rcna249874",
-                    "ts": 1766073799,
+                    "title": "Minnesota Sues to Block Federal Surge of Immigration Agents",
+                    "url": "https://www.today.com/video/minnesota-sues-to-block-surge-of-agents-as-clashes-intensify-255854661818",
+                    "ts": 1768306414,
                     "emo": "📰"
                 },
                 {
-                    "title": "Trump's hand-picked Kennedy Center board votes to rename it the 'Trump-Kennedy Center'",
-                    "url": "https://www.nbcnews.com/politics/donald-trump/trump-kennedy-center-board-votes-rename-kennedy-center-rcna249948",
-                    "ts": 1766083982,
+                    "title": "Supreme Court weighs state ban on transgender student-athletes",
+                    "url": "https://www.nbcnews.com/politics/supreme-court/supreme-court-transgender-athletes-girls-sports-state-bans-argument-rcna252377",
+                    "ts": 1768298441,
                     "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "Decision time for Trump on Iran but what does he ultimately want?",
+                    "url": "https://www.bbc.com/news/articles/cj6wr4kew08o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1768280687,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "New Birmingham-Manchester rail link to be proposed",
+                    "url": "https://www.bbc.com/news/articles/c75xrwlw5n2o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1768314102,
+                    "emo": "📰"
                 }
             ]
         }
