@@ -6,280 +6,291 @@ if (!function_exists('_pdo_or_null')) {
     require_once __DIR__ . '/___modules.php';
 }
 
+$ACTIVE_STORIES_DEBUG = false; // set true temporarily while testing
+
+$activeStoriesFail = function(string $msg, ?Throwable $e = null) use ($ACTIVE_STORIES_DEBUG) {
+    // Always log to server logs
+    error_log('[ActiveStories] ' . $msg . ($e ? (' | ' . $e->getMessage()) : ''));
+
+    // Only show on page when debugging
+    if ($ACTIVE_STORIES_DEBUG) {
+        echo '<div class="alert alert-warning small" style="margin:10px 0;">';
+        echo '<strong>Active Stories error:</strong> ' . htmlspecialchars($msg);
+        if ($e) {
+            echo '<br><code>' . htmlspecialchars($e->getMessage()) . '</code>';
+        }
+        echo '</div>';
+    }
+};
+
 try {
     $db = _pdo_or_null();
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     if (!$db) throw new Exception("DB handle not available");
 
     // NOTE: paste your final SQL here (the one that returns:
     // item_type, entity, label, total_count, co_entities, display_label, previews(json))
 
     /* PASTE YOUR FINAL ACTIVE STORIES SQL HERE */
-    $sql = "
-        WITH params AS (
-          SELECT
-            NOW() - INTERVAL '3 weeks' AS since_3w,
-            NOW() - INTERVAL '3 days'  AS since_3d
-        ),
+    $sql = <<<SQL
+      WITH params AS (
+        SELECT
+          NOW() - INTERVAL '3 weeks' AS since_3w,
+          NOW() - INTERVAL '3 days'  AS since_3d
+      ),
+      sports_terms AS (
+        SELECT UNNEST(ARRAY[
+          'goal',
+          'nfl','nba','mlb','nhl',
+          'afc','nfc',
+          'afc north','afc south','afc east','afc west',
+          'nfc north','nfc south','nfc east','nfc west',
+          'mls','nascar',
+          'playoffs','wild card','super bowl',
+          'tom brady','colin cowherd','fox sports',
+          'cfp','college football playoff'
+        ]) AS term
+      ),
+      media_terms AS (
+        SELECT UNNEST(ARRAY[
+          'cnn','fox news','msnbc','cbs news','abc news','nbc news','reuters',
+          'associated press','ap news','the guardian','new york times','washington post',
+          'usa today','npr','bbc','al jazeera','bloomberg'
+        ]) AS term
+      ),
+      ents_raw AS (
+        SELECT
+          a.id AS article_id,
+          a.pub_date,
+          a.created_at,
+          a.title,
+          a.description,
+          a.url,
+          a.source_slug,
+          LOWER(TRIM(e->>'text')) AS entity,
+          e->>'label'             AS label,
+          COALESCE((e->>'count')::int, 1) AS cnt
+        FROM articles a
+        CROSS JOIN LATERAL jsonb_array_elements(a.nlp->'entities') e
+        JOIN params p ON TRUE
+        WHERE a.created_at >= p.since_3w
+          AND (a.nlp ? 'entities')
+          AND COALESCE(e->>'text','') <> ''
+          AND LENGTH(TRIM(e->>'text')) >= 3
+      ),
+      ents AS (
+        SELECT
+          article_id, pub_date, created_at, title, description, url, source_slug,
+          CASE WHEN entity = 'trump' THEN 'donald trump' ELSE entity END AS entity,
+          CASE WHEN entity = 'trump' THEN 'PERSON'       ELSE label  END AS label,
+          cnt
+        FROM ents_raw
+      ),
+      ents_storygrade AS (
+        SELECT e.*
+        FROM ents e
+        WHERE e.label IN ('PERSON','ORG','GPE')
+          AND e.entity NOT IN (SELECT term FROM sports_terms)
+          AND e.entity NOT IN (SELECT term FROM media_terms)
+          AND e.entity NOT IN ('steelers','lakers','warriors','yankees','dodgers','red sox','patriots','cowboys','packers')
+      ),
+      entity_totals AS (
+        SELECT entity, label, SUM(cnt) AS total_count
+        FROM ents_storygrade
+        GROUP BY entity, label
+      ),
+      top_entities AS (
+        SELECT *
+        FROM entity_totals
+        ORDER BY total_count DESC
+        LIMIT 120
+      ),
+      pairs AS (
+        SELECT
+          e1.entity AS entity,
+          e1.label  AS label,
+          e2.entity AS co_entity,
+          e2.label  AS co_label,
+          COUNT(DISTINCT e1.article_id) AS shared_articles
+        FROM ents_storygrade e1
+        JOIN ents_storygrade e2
+          ON e1.article_id = e2.article_id
+         AND e1.entity <> e2.entity
+        JOIN top_entities t
+          ON t.entity = e1.entity AND t.label = e1.label
+        WHERE e2.entity NOT IN (SELECT term FROM sports_terms)
+          AND e2.entity NOT IN (SELECT term FROM media_terms)
+        GROUP BY e1.entity, e1.label, e2.entity, e2.label
+      ),
+      ranked_pairs AS (
+        SELECT
+          p.*,
+          ROW_NUMBER() OVER (
+            PARTITION BY p.entity, p.label
+            ORDER BY p.shared_articles DESC
+          ) AS rn
+        FROM pairs p
+      ),
+      co_entities AS (
+        SELECT
+          entity,
+          label,
+          ARRAY_AGG(co_entity ORDER BY shared_articles DESC) FILTER (WHERE rn <= 4) AS co_entity_arr
+        FROM ranked_pairs
+        GROUP BY entity, label
+      ),
+      power_centers AS (
+        SELECT * FROM (VALUES
+          ('donald trump','PERSON'),
+          ('u.s','GPE'),
+          ('us','GPE'),
+          ('washington','GPE'),
+          ('congress','ORG'),
+          ('house','ORG'),
+          ('senate','ORG'),
+          ('white house','ORG')
+        ) AS t(entity, label)
+      ),
+      story_stop_entities AS (
+        SELECT UNNEST(ARRAY[
+          'one','american','state'
+        ]) AS entity
+      ),
+      panel_candidates AS (
+        SELECT
+          'power_center'::text AS item_type,
+          t.entity,
+          t.label,
+          t.total_count,
+          COALESCE(c.co_entity_arr, ARRAY[]::text[]) AS co_entities
+        FROM top_entities t
+        JOIN power_centers pc
+          ON pc.entity = t.entity AND pc.label = t.label
+        LEFT JOIN co_entities c
+          ON c.entity = t.entity AND c.label = t.label
 
-        sports_terms AS (
-          SELECT UNNEST(ARRAY[
-            'goal',
-            'nfl','nba','mlb','nhl',
-            'afc','nfc',
-            'afc north','afc south','afc east','afc west',
-            'nfc north','nfc south','nfc east','nfc west',
-            'mls','nascar',
-            'playoffs','wild card','super bowl',
-            'tom brady','colin cowherd','fox sports',
-            'cfp','college football playoff'
-          ]) AS term
-        ),
-
-        -- Media outlets that shouldn’t become “story tiles”
-        media_terms AS (
-          SELECT UNNEST(ARRAY[
-            'cnn','fox news','msnbc','cbs news','abc news','nbc news','reuters',
-            'associated press','ap news','the guardian','new york times','washington post',
-            'usa today','npr','bbc','al jazeera','bloomberg'
-          ]) AS term
-        ),
-
-        ents_raw AS (
-          SELECT
-            a.id AS article_id,
-            a.pub_date,
-            a.created_at,
-            a.title,
-            a.description,
-            a.url,
-            a.source_slug,
-            LOWER(TRIM(e->>'text')) AS entity,
-            e->>'label'             AS label,
-            COALESCE((e->>'count')::int, 1) AS cnt
-          FROM articles a
-          CROSS JOIN LATERAL jsonb_array_elements(a.nlp->'entities') e
-          JOIN params p ON TRUE
-          WHERE a.created_at >= p.since_3w
-            AND (a.nlp ? 'entities')
-            AND COALESCE(e->>'text','') <> ''
-            AND LENGTH(TRIM(e->>'text')) >= 3
-        ),
-
-        -- Canonicalize Trump so it never appears twice
-        ents AS (
-          SELECT
-            article_id, pub_date, created_at, title, description, url, source_slug,
-            CASE WHEN entity = 'trump' THEN 'donald trump' ELSE entity END AS entity,
-            CASE WHEN entity = 'trump' THEN 'PERSON'       ELSE label  END AS label,
-            cnt
-          FROM ents_raw
-        ),
-
-        -- story-grade + remove league terms + remove media entities + remove obvious sports
-        ents_storygrade AS (
-          SELECT e.*
-          FROM ents e
-          WHERE e.label IN ('PERSON','ORG','GPE')
-            AND e.entity NOT IN (SELECT term FROM sports_terms)
-            AND e.entity NOT IN (SELECT term FROM media_terms)
-            -- lightweight sports-team filter (v1): catches “steelers”, “lakers”, etc.
-            AND e.entity NOT IN ('steelers','lakers','warriors','yankees','dodgers','red sox','patriots','cowboys','packers')
-        ),
-
-        entity_totals AS (
-          SELECT entity, label, SUM(cnt) AS total_count
-          FROM ents_storygrade
-          GROUP BY entity, label
-        ),
-
-        top_entities AS (
-          SELECT *
-          FROM entity_totals
-          ORDER BY total_count DESC
-          LIMIT 120
-        ),
-
-        pairs AS (
-          SELECT
-            e1.entity AS entity,
-            e1.label  AS label,
-            e2.entity AS co_entity,
-            e2.label  AS co_label,
-            COUNT(DISTINCT e1.article_id) AS shared_articles
-          FROM ents_storygrade e1
-          JOIN ents_storygrade e2
-            ON e1.article_id = e2.article_id
-           AND e1.entity <> e2.entity
-          JOIN top_entities t
-            ON t.entity = e1.entity AND t.label = e1.label
-          WHERE e2.entity NOT IN (SELECT term FROM sports_terms)
-            AND e2.entity NOT IN (SELECT term FROM media_terms)
-          GROUP BY e1.entity, e1.label, e2.entity, e2.label
-        ),
-
-        ranked_pairs AS (
-          SELECT
-            p.*,
-            ROW_NUMBER() OVER (
-              PARTITION BY p.entity, p.label
-              ORDER BY p.shared_articles DESC
-            ) AS rn
-          FROM pairs p
-        ),
-
-        co_entities AS (
-          SELECT
-            entity,
-            label,
-            ARRAY_AGG(co_entity ORDER BY shared_articles DESC) FILTER (WHERE rn <= 4) AS co_entity_arr
-          FROM ranked_pairs
-          GROUP BY entity, label
-        ),
-
-        power_centers AS (
-          SELECT * FROM (VALUES
-            ('donald trump','PERSON'),
-            ('u.s','GPE'),
-            ('us','GPE'),
-            ('washington','GPE'),
-            ('congress','ORG'),
-            ('house','ORG'),
-            ('senate','ORG'),
-            ('white house','ORG')
-          ) AS t(entity, label)
-        ),
-
-        story_stop_entities AS (
-          SELECT UNNEST(ARRAY[
-            'one','american','state'
-          ]) AS entity
-        ),
-
-        panel_candidates AS (
-          -- Power centers
-          SELECT
-            'power_center'::text AS item_type,
-            t.entity,
-            t.label,
-            t.total_count,
-            COALESCE(c.co_entity_arr, ARRAY[]::text[]) AS co_entities
-          FROM top_entities t
-          JOIN power_centers pc
-            ON pc.entity = t.entity AND pc.label = t.label
-          LEFT JOIN co_entities c
-            ON c.entity = t.entity AND c.label = t.label
-
-          UNION ALL
-
-          -- Story clusters
-          SELECT
-            'story_cluster'::text AS item_type,
-            t.entity,
-            t.label,
-            t.total_count,
-            COALESCE(c.co_entity_arr, ARRAY[]::text[]) AS co_entities
-          FROM top_entities t
-          JOIN co_entities c
-            ON c.entity = t.entity AND c.label = t.label
-          LEFT JOIN power_centers pc
-            ON pc.entity = t.entity AND pc.label = t.label
-          WHERE pc.entity IS NULL
-            AND t.entity NOT IN (SELECT entity FROM story_stop_entities)
-            AND CARDINALITY(c.co_entity_arr) >= 3
-            AND t.entity <> 'donald trump'
-        ),
-
-        panel_labeled AS (
-          SELECT
-            pc.*,
-            CASE
-              WHEN pc.item_type = 'power_center' THEN INITCAP(pc.entity)
-              ELSE INITCAP(pc.entity) || ' — ' || array_to_string(pc.co_entities[1:4], ' / ')
-            END AS display_label
-          FROM panel_candidates pc
-        ),
-
-        -- Rank Power Centers and Story Clusters separately
-        power_ranked AS (
-          SELECT *
-          FROM panel_labeled
-          WHERE item_type = 'power_center'
-          ORDER BY total_count DESC
-        ),
-        story_ranked AS (
-          SELECT *
-          FROM panel_labeled
-          WHERE item_type = 'story_cluster'
-          ORDER BY total_count DESC
-          LIMIT 10
-        ),
-        panel_ranked AS (
-          SELECT * FROM power_ranked
-          UNION ALL
-          SELECT * FROM story_ranked
-        )
+        UNION ALL
 
         SELECT
-          pr.item_type,
-          pr.entity,
-          pr.label,
-          pr.total_count,
-          pr.co_entities,
-          pr.display_label,
-          COALESCE(prev.previews, '[]'::jsonb) AS previews
-        FROM panel_ranked pr
-
-        LEFT JOIN LATERAL (
-          SELECT jsonb_agg(
-                   jsonb_build_object(
-                     'title', x.title,
-                     'source', x.source_slug,
-                     'pub_date', x.pub_date,
-                     'url', x.url
-                   )
-                   ORDER BY x.pub_date DESC NULLS LAST
-                 ) AS previews
-          FROM (
-            SELECT a.title, a.source_slug, a.pub_date, a.url
-            FROM articles a
-            JOIN params p ON TRUE
-            WHERE a.created_at >= p.since_3d
-              AND a.source_slug <> 'sports'
-              AND NOT (pr.label = 'GPE' AND a.source_slug = 'entertainment')
-              AND (
-                a.title ILIKE ('%' || pr.entity || '%')
-                OR a.description ILIKE ('%' || pr.entity || '%')
+          'story_cluster'::text AS item_type,
+          t.entity,
+          t.label,
+          t.total_count,
+          COALESCE(c.co_entity_arr, ARRAY[]::text[]) AS co_entities
+        FROM top_entities t
+        JOIN co_entities c
+          ON c.entity = t.entity AND c.label = t.label
+        LEFT JOIN power_centers pc
+          ON pc.entity = t.entity AND pc.label = t.label
+        WHERE pc.entity IS NULL
+          AND t.entity NOT IN (SELECT entity FROM story_stop_entities)
+          AND CARDINALITY(c.co_entity_arr) >= 3
+          AND t.entity <> 'donald trump'
+      ),
+      panel_labeled AS (
+        SELECT
+          pc.*,
+          CASE
+            WHEN pc.item_type = 'power_center' THEN INITCAP(pc.entity)
+            ELSE INITCAP(pc.entity) || ' — ' || array_to_string(pc.co_entities[1:4], ' / ')
+          END AS display_label
+        FROM panel_candidates pc
+      ),
+      power_ranked AS (
+        SELECT *
+        FROM panel_labeled
+        WHERE item_type = 'power_center'
+        ORDER BY total_count DESC
+      ),
+      story_ranked AS (
+        SELECT *
+        FROM panel_labeled
+        WHERE item_type = 'story_cluster'
+        ORDER BY total_count DESC
+        LIMIT 10
+      ),
+      panel_ranked AS (
+        SELECT * FROM power_ranked
+        UNION ALL
+        SELECT * FROM story_ranked
+      )
+      SELECT
+        pr.item_type,
+        pr.entity,
+        pr.label,
+        pr.total_count,
+        pr.co_entities,
+        pr.display_label,
+        COALESCE(prev.previews, '[]'::jsonb) AS previews
+      FROM panel_ranked pr
+      LEFT JOIN LATERAL (
+        SELECT jsonb_agg(
+                 jsonb_build_object(
+                   'title', x.title,
+                   'source', x.source_slug,
+                   'pub_date', x.pub_date,
+                   'url', x.url
+                 )
+                 ORDER BY x.pub_date DESC NULLS LAST
+               ) AS previews
+        FROM (
+          SELECT a.title, a.source_slug, a.pub_date, a.url
+          FROM articles a
+          JOIN params p ON TRUE
+          WHERE a.created_at >= p.since_3d
+            AND a.source_slug <> 'sports'
+            AND NOT (pr.label = 'GPE' AND a.source_slug = 'entertainment')
+            AND (
+              a.title ILIKE ('%' || pr.entity || '%')
+              OR a.description ILIKE ('%' || pr.entity || '%')
+            )
+            AND (
+              pr.item_type = 'power_center'
+              OR pr.label = 'GPE'
+              OR EXISTS (
+                SELECT 1
+                FROM UNNEST(pr.co_entities[1:4]) ce
+                WHERE a.title ILIKE ('%' || ce || '%')
+                   OR a.description ILIKE ('%' || ce || '%')
               )
-              AND (
-                pr.item_type = 'power_center'
-                OR pr.label = 'GPE'
-                OR EXISTS (
-                  SELECT 1
-                  FROM UNNEST(pr.co_entities[1:4]) ce
-                  WHERE a.title ILIKE ('%' || ce || '%')
-                     OR a.description ILIKE ('%' || ce || '%')
-                )
-              )
-            ORDER BY a.pub_date DESC NULLS LAST
-            LIMIT 3
-          ) x
-        ) prev ON TRUE
+            )
+          ORDER BY a.pub_date DESC NULLS LAST
+          LIMIT 3
+        ) x
+      ) prev ON TRUE
+      WHERE pr.item_type = 'power_center'
+         OR jsonb_array_length(COALESCE(prev.previews, '[]'::jsonb)) >= 2
+      ORDER BY
+        CASE WHEN pr.item_type = 'power_center' THEN 0 ELSE 1 END,
+        pr.total_count DESC;
+      SQL;
 
-        -- Require story clusters to have at least one preview article
-        WHERE pr.item_type = 'power_center'
-           OR jsonb_array_length(COALESCE(prev.previews, '[]'::jsonb)) >= 2
 
-        ORDER BY
-          CASE WHEN pr.item_type = 'power_center' THEN 0 ELSE 1 END,
-          pr.total_count DESC;
-    ";
+    try {
+        $stmt = $db->prepare($sql);
+    } catch (Throwable $e) {
+        $activeStoriesFail('SQL prepare failed', $e);
+        return;
+    }
 
-    $stmt = $db->prepare($sql);
-    $stmt->execute();
-    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    try {
+        $stmt->execute();
+    } catch (Throwable $e) {
+        $activeStoriesFail('SQL execute failed', $e);
+        return;
+    }
+
+    try {
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Throwable $e) {
+        $activeStoriesFail('SQL fetch failed', $e);
+        return;
+    }
 
     if (!$rows) {
-        return; // nothing to show
+        $activeStoriesFail('Query returned 0 rows (nothing to render).');
+        return;
     }
 
     // Helpers
@@ -346,8 +357,10 @@ try {
     };
 
 } catch (Throwable $e) {
-    return; // fail closed; don't render the widget
+    $activeStoriesFail('Unexpected error in Active Stories widget', $e);
+    return;
 }
+
 ?>
 
 <style>
