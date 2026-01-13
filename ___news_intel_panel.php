@@ -71,7 +71,7 @@ try {
           AND title IS NOT NULL
           AND LOWER(source_slug) != 'sports'
           AND nlp IS NOT NULL
-          AND nlp != ''
+          AND nlp <> '{}'::jsonb
         ORDER BY pub_date DESC
         LIMIT 2000
     ";
