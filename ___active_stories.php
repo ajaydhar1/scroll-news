@@ -487,7 +487,8 @@ try {
 
                 $q = $build_query_for_row($row);
                 $synopsis = $build_synopsis_url($q);
-                $scrollKeyword = $build_search_url($q, 'nlp');
+                $scrollClassic = $build_search_url($q, 'classic');
+                $scrollNlp = $build_search_url($q, 'nlp');
                 $google = $build_google_url($q);
                 $yt = $build_youtube_url($q);
               ?>
@@ -496,8 +497,11 @@ try {
 
                 <div class="btn-row" style="margin-top:0;">
                   <a class="btn btn-green btn-gray-border btn-xs" href="<?= htmlspecialchars($synopsis) ?>" target="_blank" rel="noopener" title="AI overview of recent developments">What’s New</a>
-                  <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($scrollKeyword) ?>" data-loading>
-                    Scroll News
+                  <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($scrollClassic) ?>" data-loading>
+                    Scroll (Classic)
+                  </a>
+                  <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($scrollNlp) ?>" data-loading>
+                    Scroll (NLP)
                   </a>
                   <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($google) ?>" target="_blank" rel="noopener">Google</a>
                   <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($yt) ?>" target="_blank" rel="noopener">YouTube</a>
@@ -519,8 +523,6 @@ try {
 
                 $q = $build_query_for_row($row);
                 $synopsis = $build_synopsis_url($q);
-                $scrollClassic = $build_search_url($q, 'classic');
-                $scrollNlp = $build_search_url($q, 'nlp');
                 $google = $build_google_url($q);
                 $yt = $build_youtube_url($q);
 
@@ -549,8 +551,6 @@ try {
 
                 <div class="btn-row">
                   <a class="btn btn-green btn-gray-border btn-xs" href="<?= htmlspecialchars($synopsis) ?>" target="_blank" rel="noopener" title="AI summary of this ongoing story">Synopsis</a>
-                  <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($scrollClassic) ?>" data-loading>Scroll (Classic)</a>
-                  <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($scrollNlp) ?>" data-loading>Scroll (NLP)</a>
                   <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($google) ?>" target="_blank" rel="noopener">Google</a>
                   <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($yt) ?>" target="_blank" rel="noopener">YouTube</a>
                 </div>
