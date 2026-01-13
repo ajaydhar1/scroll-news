@@ -75,7 +75,8 @@ try {
         CROSS JOIN LATERAL jsonb_array_elements(a.nlp->'entities') e
         JOIN params p ON TRUE
         WHERE a.created_at >= p.since_3w
-          AND (a.nlp ? 'entities')
+          AND jsonb_exists(a.nlp, 'entities')
+          AND jsonb_typeof(a.nlp->'entities') = 'array'
           AND COALESCE(e->>'text','') <> ''
           AND LENGTH(TRIM(e->>'text')) >= 3
       ),
