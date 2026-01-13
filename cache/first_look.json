@@ -1,39 +1,21 @@
 {
-    "fetched_at": 1768316311,
+    "fetched_at": 1768321356,
     "feeds": [
         {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
+            "name": "NY Post",
+            "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "December core consumer prices rose at a 2.6% annual rate, less than expected",
-                    "url": "https://www.cnbc.com/2026/01/13/cpi-inflation-report-december-2026.html",
-                    "ts": 1768316212,
-                    "emo": "📰"
+                    "title": "5 tools you need at your desk for energy, focus and musculoskeletal health — it’ll help your company, too",
+                    "url": "https://nypost.com/2026/01/13/health/5-tools-you-need-at-your-desk-for-energy-focus-and-health/",
+                    "ts": 1768321300,
+                    "emo": "🧪"
                 },
                 {
-                    "title": "JPMorgan Chase says banks could fight Trump credit card rate cap: 'Everything's on the table'",
-                    "url": "https://www.cnbc.com/2026/01/13/trump-credit-card-rate-cap-jpmorgan-chase-banks-fight.html",
-                    "ts": 1768314252,
+                    "title": "The BBC seeking to have Trump’s $10B defamation lawsuit thrown out",
+                    "url": "https://nypost.com/2026/01/13/world-news/bbc-seeks-to-dismiss-trumps-10b-defamation-lawsuit/",
+                    "ts": 1768321042,
                     "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "The Fed’s failures set the stage for the Trump-Powell turmoil. Here’s one solution.",
-                    "url": "https://www.marketwatch.com/story/how-trumps-attacks-on-powell-and-the-fed-could-actually-bring-more-inflation-16e1e839?mod=mw_rss_topstories",
-                    "ts": 1768316100,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "American stocks underperformed last year. Deutsche Bank says it could happen again.",
-                    "url": "https://www.marketwatch.com/story/american-stocks-underperformed-last-year-deutsche-bank-says-it-could-happen-again-dfe0705b?mod=mw_rss_topstories",
-                    "ts": 1768315620,
-                    "emo": "💰"
                 }
             ]
         },
@@ -42,52 +24,70 @@
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Iran's UK ambassador summoned for dressing down over bloody regime clampdown on pro-democracy protests",
-                    "url": "https://www.dailymail.co.uk/news/article-15459921/Irans-UK-ambassador-summoned-dressing-bloody-regime-clampdown-pro-democracy-protests.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1768316098,
-                    "emo": "🌍"
+                    "title": "Revealed: Mutant flu hotspots as hospitals declare 'critical incidents' amid 10 per cent rise in severe cases",
+                    "url": "https://www.dailymail.co.uk/health/article-15458699/Four-NHS-hospital-trusts-critical-incident-flu-norovirus.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1768321251,
+                    "emo": "🧪"
                 },
                 {
-                    "title": "The abandoned celebrity mansions left to rot after being plagued by legal issues and financial burdens",
-                    "url": "https://www.dailymail.co.uk/lifestyle/homes/article-15450663/abandoned-celebrity-mansions-rot.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1768316090,
-                    "emo": "🎭"
+                    "title": "'He'll be out of prison in EIGHT years': Husband's fury over lenient sentence for cowboy roofer who mowed down and killed his 'inspirational' wife in 70mph police chase as they played golf",
+                    "url": "https://www.dailymail.co.uk/news/article-15460031/Hell-prison-EIGHT-years-Husbands-fury-lenient-sentence-cowboy-roofer-mowed-killed-inspirational-wife-70mph-police-chase-played-golf.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1768321228,
+                    "emo": "🔥"
                 }
             ]
         },
         {
-            "name": "The Guardian",
-            "home": "https://www.theguardian.com",
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
             "items": [
                 {
-                    "title": "Twelve top central bankers defend Fed’s Jerome Powell over DoJ investigation; oil hits two-month high as Trump threatens Iran’s trading partners – business live",
-                    "url": "https://www.theguardian.com/business/live/2026/jan/13/oil-price-trump-iran-trading-partners-tariffs-supreme-court-business-live-news-updates",
-                    "ts": 1768315869,
-                    "emo": "🔥"
+                    "title": "New Birmingham-Manchester rail link to be proposed",
+                    "url": "https://www.bbc.com/news/articles/c75xrwlw5n2o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1768320863,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Quarter of developing countries poorer than in 2019, World Bank finds",
-                    "url": "https://www.theguardian.com/business/2026/jan/13/developing-countries-poorer-world-bank-report",
-                    "ts": 1768314604,
+                    "title": "Stop saying we can't make things work, Streeting urges Labour colleagues",
+                    "url": "https://www.bbc.com/news/articles/c89qel4d4lno?at_medium=RSS&at_campaign=rss",
+                    "ts": 1768307992,
                     "emo": "📰"
                 }
             ]
         },
         {
-            "name": "The Hill",
-            "home": "https://thehill.com",
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Live updates: Supreme Court weighs transgender sports ban; Trump ups pressure on Iran",
-                    "url": "https://thehill.com/homenews/administration/5684987-live-updates-donald-trump-detroit-jerome-powell-minnesota/",
-                    "ts": 1768315841,
+                    "title": "Trump admin labels Muslim Brotherhood branches as terrorist organizations",
+                    "url": "https://www.foxnews.com/world/trump-admin-labels-muslim-brotherhood-branches-terrorist-organizations",
+                    "ts": 1768320817,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "US opens new air defense operations cell at Qatar base that Iran targeted in retaliatory attack",
+                    "url": "https://www.foxnews.com/world/us-opens-new-air-defense-operations-cell-qatar-base-iran-targeted-retaliatory-attack",
+                    "ts": 1768320142,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "Trump’s War Department invests $1 billion to get pre-IPO shares of this rocket-motor maker",
+                    "url": "https://www.marketwatch.com/story/trumps-war-department-invests-1-billion-to-get-pre-ipo-shares-of-this-rocket-motor-maker-9d06fd7f?mod=mw_rss_topstories",
+                    "ts": 1768320780,
                     "emo": "🔥"
                 },
                 {
-                    "title": "Watch live: House Republicans give remarks as government shutdown looms",
-                    "url": "https://thehill.com/video-clips/5686027-watch-live-house-republicans-shutdown-deadline-press-conference/",
-                    "ts": 1768314738,
-                    "emo": "🔥"
+                    "title": "‘I have an economics degree from a fantastic university’: I’m 71 with $3 million and earn $250K. Is it time to retire?",
+                    "url": "https://www.marketwatch.com/story/i-have-an-economics-degree-from-a-fantastic-university-im-71-with-3-million-and-earn-250k-is-it-time-to-retire-05a9aa37?mod=mw_rss_topstories",
+                    "ts": 1768320000,
+                    "emo": "📰"
                 }
             ]
         },
@@ -98,7 +98,7 @@
                 {
                     "title": "CPI Report Shows Food Prices Rose Sharply in December",
                     "url": "https://www.nytimes.com/2026/01/13/business/economy/inflation-cpi-report-food-prices.html",
-                    "ts": 1768315515,
+                    "ts": 1768320076,
                     "emo": "📰"
                 },
                 {
@@ -110,37 +110,55 @@
             ]
         },
         {
-            "name": "NY Post",
-            "home": "https://nypost.com",
+            "name": "The Hill",
+            "home": "https://thehill.com",
             "items": [
                 {
-                    "title": "Brian Daboll to interview for Titans coaching opening after Giants firing",
-                    "url": "https://nypost.com/2026/01/13/sports/brian-daboll-to-interview-for-titans-coaching-opening-after-giants-firing/",
-                    "ts": 1768315486,
-                    "emo": "📰"
+                    "title": "Watch live: House Democrats speak amid immigration, health care battle",
+                    "url": "https://thehill.com/video-clips/5686067-watch-live-house-democrats-press-conference-immigration-health-care-shutdown/",
+                    "ts": 1768319569,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "NBC pulls ‘Law & Order: SVU’ episode featuring Timothy Busfield after child sex abuse charges",
-                    "url": "https://nypost.com/2026/01/13/entertainment/nbc-pulls-law-amp-order-svu-episode-featuring-timothy-busfield/",
-                    "ts": 1768315400,
-                    "emo": "📰"
+                    "title": "Senate liberals tell colleagues to pivot to economic populism",
+                    "url": "https://thehill.com/homenews/senate/5686316-populism-vs-corporate-power/",
+                    "ts": 1768319325,
+                    "emo": "⚖️"
                 }
             ]
         },
         {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
             "items": [
                 {
-                    "title": "US Marshals seek Timothy Busfield after child sex abuse allegations",
-                    "url": "https://www.foxnews.com/entertainment/us-marshals-seek-timothy-busfield-after-child-sex-abuse-allegations",
-                    "ts": 1768315384,
-                    "emo": "📰"
+                    "title": "Here’s the inflation breakdown for December 2025 — in one chart",
+                    "url": "https://www.cnbc.com/2026/01/13/cpi-inflation-december-2025-breakdown.html",
+                    "ts": 1768319518,
+                    "emo": "💰"
                 },
                 {
-                    "title": "BBC to seek dismissal of Trump’s $10 billion lawsuit over documentary editing his Jan 6 remarks",
-                    "url": "https://www.foxnews.com/media/bbc-seek-dismissal-trumps-10-billion-lawsuit-over-documentary-editing-his-jan-6-remarks",
-                    "ts": 1768314731,
+                    "title": "Trump attacks Powell again amid Fed independence fears: 'Incompetent' or 'crooked'",
+                    "url": "https://www.cnbc.com/2026/01/13/trump-powell-fed-dimon-pirro-doj.html",
+                    "ts": 1768321185,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "The Guardian",
+            "home": "https://www.theguardian.com",
+            "items": [
+                {
+                    "title": "Twelve top central bankers defend Fed’s Jerome Powell over DoJ investigation; oil hits two-month high as Trump threatens Iran’s trading partners – as it happened",
+                    "url": "https://www.theguardian.com/business/live/2026/jan/13/oil-price-trump-iran-trading-partners-tariffs-supreme-court-business-live-news-updates",
+                    "ts": 1768317380,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "US inflation held firm in December amid pressure on Trump over cost of living",
+                    "url": "https://www.theguardian.com/business/2026/jan/13/us-inflation-trump",
+                    "ts": 1768316293,
                     "emo": "⚖️"
                 }
             ]
@@ -152,13 +170,13 @@
                 {
                     "title": "BONDI ON THE CHOP?",
                     "url": "https://www.wsj.com/politics/policy/trump-has-complained-about-pam-bondi-repeatedly-to-aides-fd424df3",
-                    "ts": 1768313976,
+                    "ts": 1768317216,
                     "emo": "📰"
                 },
                 {
                     "title": "TRUMP CALLS HER 'WEAK AND INEFFECTIVE'...",
                     "url": "https://www.wsj.com/politics/policy/trump-has-complained-about-pam-bondi-repeatedly-to-aides-fd424df3",
-                    "ts": 1768313976,
+                    "ts": 1768317216,
                     "emo": "⚖️"
                 }
             ]
@@ -168,16 +186,16 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "What investors should be looking out for as the 'Sell America' trade loses steam",
-                    "url": "https://www.businessinsider.com/sell-america-trade-trump-stocks-treasury-bonds-dollar-powell-reaction-2026-1",
-                    "ts": 1768312204,
+                    "title": "10 high-paying jobs where job seekers can 'get hired and thrive'",
+                    "url": "https://www.businessinsider.com/high-paying-growing-demand-jobs-healthcare-nurse-therapist-job-security-2026-1",
+                    "ts": 1768316995,
                     "emo": "📰"
                 },
                 {
-                    "title": "I visited 29 states last year. If I had to pick a new place to live, it would be this stunning coastal destination.",
-                    "url": "https://www.businessinsider.com/maine-state-would-choose-move-to-frequent-traveler-2026-1",
-                    "ts": 1768312021,
-                    "emo": "🔥"
+                    "title": "BofA details its top 3 stock picks in the red-hot metals sector",
+                    "url": "https://www.businessinsider.com/top-metal-and-mining-stocks-gold-copper-aem-ccj-fcx-2026-1",
+                    "ts": 1768316188,
+                    "emo": "📰"
                 }
             ]
         },
@@ -186,33 +204,15 @@
             "home": "https://www.nbcnews.com",
             "items": [
                 {
-                    "title": "Minnesota Sues to Block Federal Surge of Immigration Agents",
-                    "url": "https://www.today.com/video/minnesota-sues-to-block-surge-of-agents-as-clashes-intensify-255854661818",
-                    "ts": 1768306414,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Supreme Court weighs state ban on transgender student-athletes",
-                    "url": "https://www.nbcnews.com/politics/supreme-court/supreme-court-transgender-athletes-girls-sports-state-bans-argument-rcna252377",
-                    "ts": 1768298441,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "Decision time for Trump on Iran but what does he ultimately want?",
-                    "url": "https://www.bbc.com/news/articles/cj6wr4kew08o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1768280687,
+                    "title": "Supreme Court hears arguments over restrictions on transgender athletes",
+                    "url": "https://www.nbcnews.com/video/listen-live-supreme-court-hears-arguments-over-restrictions-on-transgender-athletes-255858245758",
+                    "ts": 1768311693,
                     "emo": "⚖️"
                 },
                 {
-                    "title": "New Birmingham-Manchester rail link to be proposed",
-                    "url": "https://www.bbc.com/news/articles/c75xrwlw5n2o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1768314102,
+                    "title": "House GOP seeks to hold Bill Clinton in contempt for skipping Epstein deposition",
+                    "url": "https://www.nbcnews.com/politics/congress/house-gop-seeks-hold-clinton-contempt-skipping-epstein-deposition-rcna253780",
+                    "ts": 1768318085,
                     "emo": "📰"
                 }
             ]

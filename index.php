@@ -287,10 +287,10 @@
                       <h3 class="h5 mb-0">Deep Dive</h3>
                     </div>
                     <p class="text-muted mb-2">
-                      Longer, higher-context coverage with more analysis and fewer hot takes.
+                      Thoughtful, high-context reporting that goes beyond headlines and reactions.
                     </p>
                     <p class="text-muted italic mb-4">
-                      Best when you have a bit more time and want to really understand a story.
+                      These are the pieces you sit with — fewer articles, more understanding.
                     </p>
                     <a href="/search.php?mode=nlp&deep_dive=1" class="btn btn-sm btn-green" data-loading>
                       Browse Deep Dives
@@ -308,10 +308,10 @@
                       <h3 class="h5 mb-0">High-Signal Publishers</h3>
                     </div>
                     <p class="text-muted mb-2">
-                      A curated feed of outlets with strong signal-to-noise and minimal outrage bait.
+                      A curated stream of outlets that consistently publish smart, readable reporting.
                     </p>
                     <p class="text-muted italic mb-4">
-                      Perfect for quick catch-ups where almost every article is worth opening.
+                      Ideal when you want to browse without worrying if an article will be worth your time.
                     </p>
                     <a href="/search.php?high_signal=1" class="btn btn-sm btn-outline-secondary" data-loading>
                       View High-Signal Feed
