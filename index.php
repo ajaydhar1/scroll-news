@@ -326,6 +326,9 @@
         <!-- News Intelligence Panel-->
         <?php require_once __DIR__ . '/___news_intel_panel.php'; ?>
 
+        <!-- Active Stories Panel-->
+        <?php require_once __DIR__ . '/___active_stories.php'; ?>
+
         <!-- First Look-->
         <?php require_once __DIR__ . '/___first_look.php'; ?>
 

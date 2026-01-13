@@ -1,110 +1,38 @@
 {
-    "fetched_at": 1765767545,
+    "fetched_at": 1766088068,
     "feeds": [
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Man, 78, and woman, 68, are found dead in mansion owned by legendary filmmaker Rob Reiner as police launch homicide investigation",
-                    "url": "https://www.dailymail.co.uk/tvshowbiz/article-15383905/Man-woman-dead-mansion-Rob-Reiner.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1765767400,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Police commissioner hints alleged Bondi Beach terrorist may SURVIVE after being shot during capture - as police give major update",
-                    "url": "https://www.dailymail.co.uk/news/article-15383151/Bondi-Beach-shooting-LIVE-updates-Young-schoolgirl-12-dies-hospital-death-toll-climbs-beach-closed-public.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1765766830,
-                    "emo": "🚨"
-                }
-            ]
-        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Major win for ultra-conservative gives Chile its most right-wing president in decades",
-                    "url": "https://nypost.com/2025/12/14/world-news/major-win-for-ultra-conservative-gives-chile-its-most-right-wing-president-in-decades/",
-                    "ts": 1765766880,
+                    "title": "‘Survivor 49’ runner-up Sophi Balerdi reveals shocking intel she got from the jury after final tribal",
+                    "url": "https://nypost.com/2025/12/18/entertainment/survivor-49s-sophi-balerdi-on-jury-info-she-got-after-final-tribal/",
+                    "ts": 1766088041,
                     "emo": "📰"
                 },
                 {
-                    "title": "Two people found dead at director Rob Reiner’s LA home",
-                    "url": "https://pagesix.com/2025/12/14/celebrity-news/two-found-dead-at-director-rob-reiners-home-confirmed-by-los-angeles-police/",
-                    "ts": 1765766397,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "NFL Week 15 scores: Broncos, Rams clinch playoff berths",
-                    "url": "https://www.foxnews.com/sports/nfl-week-15-scores-broncos-rams-clinch-playoff-berths",
-                    "ts": 1765766460,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Rams' clutch touchdown in win over Lions sparks frenzied debate on social media",
-                    "url": "https://www.foxnews.com/sports/rams-clutch-touchdown-win-over-lions-sparks-frenzied-debate-social-media",
-                    "ts": 1765764402,
+                    "title": "Never pay for a Microsoft Office subscription again — get all your apps for 77% off",
+                    "url": "https://nypost.com/2025/12/18/shopping/never-pay-for-a-microsoft-office-subscription-again-get-all-your-apps-for-77-off/",
+                    "ts": 1766088000,
                     "emo": "📰"
                 }
             ]
         },
         {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "China's retail sales growth sharply misses estimates in November, deepening consumption worries",
-                    "url": "https://www.cnbc.com/2025/12/15/chinas-november-retail-sales-industrial-production-fixed-asset-investment.html",
-                    "ts": 1765766423,
-                    "emo": "🌍"
-                },
-                {
-                    "title": "Hong Kong court finds pro-democracy activist Jimmy Lai guilty of collusion with foreign forces",
-                    "url": "https://www.cnbc.com/2025/12/15/hong-kong-court-finds-pro-democracy-activist-jimmy-lai-guilty-of-collusion-with-foreign-forces.html",
-                    "ts": 1765767259,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "U.S. stock futures rise ahead of year’s last full week of trading",
-                    "url": "https://www.marketwatch.com/story/u-s-stock-futures-little-changed-ahead-of-years-last-full-week-of-trading-58783137?mod=mw_rss_topstories",
-                    "ts": 1765766340,
+                    "title": "Rory McIlroy gets emotional during BBC Sports Personality of the Year interview over 'inspirational' fathers of victims of Southport killings",
+                    "url": "https://www.dailymail.co.uk/sport/golf/article-15397185/Rory-McIlroy-gets-emotional-BBC-Sports-Personality-Year-interview-inspirational-fathers-victims-Southport-killings.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1766088013,
                     "emo": "📰"
                 },
                 {
-                    "title": "Roomba maker iRobot files for bankruptcy, will go private",
-                    "url": "https://www.marketwatch.com/story/roomba-maker-irobot-files-for-bankruptcy-will-go-private-aa2277df?mod=mw_rss_topstories",
-                    "ts": 1765761660,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "Hero tackles shooter after Sydney rocked by terror...",
-                    "url": "https://www.express.co.uk/news/2146033",
-                    "ts": 1765762658,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Attack Lasted 20 Minutes...",
-                    "url": "https://www.theyeshivaworld.com/news/liveblogs/live-blog/2485866/eyewitness-report-sydney-terror-attack-lasted-20-minutes-police-did-not-return-fire.html",
-                    "ts": 1765762658,
+                    "title": "BBC Sports Personality of the Year LIVE: Rory McIlroy favourite to take home the award after Masters and Ryder Cup glory with F1 champ Lando Norris and Lionesses star Chloe Kelly also in contention",
+                    "url": "https://www.dailymail.co.uk/sport/othersports/article-15395661/BBC-Sports-Personality-Year-2025-LIVE-Result.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1766088010,
                     "emo": "🔥"
                 }
             ]
@@ -114,15 +42,141 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Reddit is arguing it's a 'collection of public fora' and not a social media company. Here's why.",
-                    "url": "https://www.businessinsider.com/reddit-legal-challenge-australia-social-media-law-children-2025-12",
-                    "ts": 1765760704,
+                    "title": "Wall Street is raving about Micron earnings as one of the biggest-ever surprises for a chipmaker",
+                    "url": "https://www.businessinsider.com/micron-earnings-mu-stock-ai-chip-stocks-wall-street-reactions-2025-12",
+                    "ts": 1766087752,
+                    "emo": "💰"
+                },
+                {
+                    "title": "Mango Outlet's sale has deals on winter staples for less than $5",
+                    "url": "https://www.businessinsider.com/guides/deals/mango-outlet-sale-deals-2025-12",
+                    "ts": 1766087292,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "Cannabis stocks trade mixed as Trump signs executive order to reclassify the drug",
+                    "url": "https://www.marketwatch.com/story/marijuana-stocks-jump-with-trump-set-to-sign-executive-order-that-would-reclassify-the-drug-3d741133?mod=mw_rss_topstories",
+                    "ts": 1766087580,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Bonds are having their best year since 2020. But don’t expect the same returns next year.",
+                    "url": "https://www.marketwatch.com/story/bonds-are-having-their-best-year-since-2020-but-dont-expect-the-same-returns-next-year-6ac795bd?mod=mw_rss_topstories",
+                    "ts": 1766086560,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "China warns of rising war risk after historic US arms sale to Taiwan",
+                    "url": "https://www.foxnews.com/politics/china-warns-rising-war-risk-after-historic-us-arms-sale-taiwan",
+                    "ts": 1766087555,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Magnitude ‘cannot be overstated’: Feds say Minnesota fraud may be more than $9B",
+                    "url": "https://www.foxnews.com/politics/magnitude-cannot-overstated-feds-say-minnesota-fraud-may-more-than-9b",
+                    "ts": 1766087336,
+                    "emo": "🚨"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Trust these numbers? Economists see a lot of flaws in delayed CPI report showing downward inflation",
+                    "url": "https://www.cnbc.com/2025/12/18/trust-these-numbers-economists-see-a-lot-of-flaws-in-delayed-cpi-report-showing-downward-inflation.html",
+                    "ts": 1766087414,
+                    "emo": "💰"
+                },
+                {
+                    "title": "Friday could be a wild day of trading on Wall Street. Here's why",
+                    "url": "https://www.cnbc.com/2025/12/18/friday-could-be-a-wild-day-of-trading-on-wall-street-heres-why.html",
+                    "ts": 1766087484,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "US sanctions Iran-linked vessels",
+                    "url": "https://thehill.com/policy/international/5655443-treasury-sanctions-iran-vessels/",
+                    "ts": 1766086253,
+                    "emo": "🌍"
+                },
+                {
+                    "title": "Trump's 'warrior dividends' will use funding for military housing subsidies",
+                    "url": "https://thehill.com/policy/defense/5655433-trump-warrior-dividends-military/",
+                    "ts": 1766085493,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Trump Moves to End Gender-Related Care for Minors, Threatening Hospitals That Offer It",
+                    "url": "https://www.nytimes.com/2025/12/18/health/trump-gender-affirming-care-funding.html",
+                    "ts": 1766085774,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Once Again, Health Care Proves to Be a Bitter Political Pill for G.O.P.",
+                    "url": "https://www.nytimes.com/2025/12/18/us/politics/health-care-gop.html",
+                    "ts": 1766080502,
+                    "emo": "🧪"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "HEGSETH NOW TARGETING RELIGION...",
+                    "url": "https://thehill.com/policy/defense/5653054-defense-secretary-overhauls-chaplain-corps/",
+                    "ts": 1766085764,
                     "emo": "📰"
                 },
                 {
-                    "title": "I'm an empty nester and spent 6 months on my own in 3 countries. It helped me figure out what I wanted next.",
-                    "url": "https://www.businessinsider.com/single-mom-empty-nester-travel-solo-europe-next-steps-2025-12",
-                    "ts": 1765757641,
+                    "title": "Overhauling chaplain corps, eliminating 'new age' concepts...",
+                    "url": "https://thehill.com/policy/defense/5653054-defense-secretary-overhauls-chaplain-corps/",
+                    "ts": 1766085764,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Guardian",
+            "home": "https://www.theguardian.com",
+            "items": [
+                {
+                    "title": "Trump announces $1,776 payment for military workers amid tariff uncertainty",
+                    "url": "https://www.theguardian.com/business/2025/dec/18/trump-1776-military-checks",
+                    "ts": 1766083367,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "More UK interest rate cuts expected in 2026 after Bank of England lowers borrowing costs to near three-year low – as it happened",
+                    "url": "https://www.theguardian.com/business/live/2025/dec/18/bank-of-england-interest-rates-cut-inflation-economy-stock-markets-business-live-news-updates",
+                    "ts": 1766075620,
                     "emo": "📰"
                 }
             ]
@@ -132,52 +186,16 @@
             "home": "https://www.bbc.com/news",
             "items": [
                 {
-                    "title": "'Hero' who wrestled gun from Bondi shooter named as Ahmed al Ahmed",
-                    "url": "https://www.bbc.com/news/articles/ce3wkey5p33o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1765759541,
-                    "emo": "🚨"
+                    "title": "Zelensky gives stark warning as EU leaders decide on Russia's frozen assets",
+                    "url": "https://www.bbc.com/news/articles/c9vjlj1ezpgo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1766076382,
+                    "emo": "🌍"
                 },
                 {
-                    "title": "How Bondi Beach shooting unfolded minute by minute",
-                    "url": "https://www.bbc.com/news/videos/cy8jpzdg1y3o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1765756973,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Cassidy says 'I don't care who gets the credit' on ACA subsidies extension",
-                    "url": "https://thehill.com/homenews/5648831-cassidy-calls-aca-subsidies/",
-                    "ts": 1765758228,
+                    "title": "UK names Christian Turner as US ambassador, replacing Peter Mandelson",
+                    "url": "https://www.bbc.com/news/articles/ckgmpnr4ex2o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1766084960,
                     "emo": "📰"
-                },
-                {
-                    "title": "Schumer says 'sickening events have become far too normal' after weekend shootings",
-                    "url": "https://thehill.com/homenews/senate/5648807-schumer-condemns-antisemitic-violence/",
-                    "ts": 1765756630,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Man Tackled and Disarmed One of the Bondi Beach Gunmen, Video Shows",
-                    "url": "https://www.nytimes.com/2025/12/14/world/australia/bondi-beach-gunman-tackled-video.html",
-                    "ts": 1765750627,
-                    "emo": "📰"
-                },
-                {
-                    "title": "What We Know About the Bondi Beach Shooting in Australia",
-                    "url": "https://www.nytimes.com/2025/12/14/world/australia/what-we-know-bondi-shooting.html",
-                    "ts": 1765752399,
-                    "emo": "🔥"
                 }
             ]
         },
@@ -186,34 +204,16 @@
             "home": "https://www.nbcnews.com",
             "items": [
                 {
-                    "title": "Officials hope to bring forth charges in Brown University shooting soon",
-                    "url": "https://www.nbcnews.com/video/officials-hope-to-bring-forth-charges-in-brown-university-shooting-soon-254400069693",
-                    "ts": 1765739147,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "For two Brown University students, school shooting wasn't their first",
-                    "url": "https://www.nbcnews.com/news/us-news/two-brown-university-students-school-shooting-was-not-first-rcna249080",
-                    "ts": 1765698726,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "The Guardian",
-            "home": "https://www.theguardian.com",
-            "items": [
-                {
-                    "title": "How many more times will the Bank of England rescue Rachel Reeves? | Richard Partington",
-                    "url": "https://www.theguardian.com/business/2025/dec/14/how-many-more-times-will-the-bank-of-england-rescue-rachel-reeves",
-                    "ts": 1765713534,
+                    "title": "HHS moves to slash funding and access to care for transgender minors",
+                    "url": "https://www.nbcnews.com/health/health-news/hhs-slash-funding-prohibit-access-trans-care-minors-rcna249874",
+                    "ts": 1766073799,
                     "emo": "📰"
                 },
                 {
-                    "title": "Labour is procrastinating over policy as UK’s economy goes backwards | Phillip Inman",
-                    "url": "https://www.theguardian.com/business/2025/dec/13/labour-policy-uk-economy-business-rates-pubs-hotels",
-                    "ts": 1765641636,
-                    "emo": "📰"
+                    "title": "Trump's hand-picked Kennedy Center board votes to rename it the 'Trump-Kennedy Center'",
+                    "url": "https://www.nbcnews.com/politics/donald-trump/trump-kennedy-center-board-votes-rename-kennedy-center-rcna249948",
+                    "ts": 1766083982,
+                    "emo": "⚖️"
                 }
             ]
         }
