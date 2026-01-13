@@ -460,11 +460,17 @@ try {
 
 /* Buttons: always start at same x-position and wrap cleanly */
 .sn-card-active-stories .power-center .btn-row {
-  margin-top: 0;           /* override global .btn-row */
+  margin-top: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  justify-content: flex-start;
+  justify-content: flex-start; /* mobile default */
+}
+
+@media (min-width: 768px) {
+  .sn-card-active-stories .power-center .btn-row {
+    justify-content: flex-end;
+  }
 }
 
 .sn-card-active-stories .mini-meta {

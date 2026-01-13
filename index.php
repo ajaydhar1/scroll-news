@@ -327,7 +327,7 @@
             require_once __DIR__ . '/___modules.php';
 
             $bust = isset($_GET['nocache']) && $_GET['nocache'] == '1';
-            $CACHE_VER = 'v3'; // bump to v2 when you change markup
+            $CACHE_VER = 'v4'; // bump to v2 when you change markup
         ?>
 
         <!-- News Intelligence Panel-->
