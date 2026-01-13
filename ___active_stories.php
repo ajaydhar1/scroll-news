@@ -332,8 +332,8 @@ try {
         if ($type === 'story_cluster') $stories[] = $r;
     }
 
-    // Iteration 2: keep only top 2 persistent stories
-    $stories = array_slice($stories, 0, 2);
+    // Iteration 2: keep only top 4 persistent stories
+    $stories = array_slice($stories, 0, 4);
 
 } catch (Throwable $e) {
     $activeStoriesFail('Unexpected error in Active Stories widget', $e);
