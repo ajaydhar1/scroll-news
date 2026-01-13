@@ -369,20 +369,30 @@ try {
   margin-bottom: 14px;
 }
 
+/* Power Centers: consistent alignment on mobile */
 .sn-card-active-stories .power-center {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 120px 1fr; /* fixed label column */
   gap: 10px;
+
   padding: 8px 10px;
   border: 1px solid rgba(0,0,0,0.06);
   border-radius: 10px;
   background: rgba(0,0,0,0.01);
+
+  align-items: start; /* better when buttons wrap */
 }
 
 .sn-card-active-stories .entity-name {
   font-weight: 600;
   color: #111;
+}
+
+.sn-card-active-stories .power-center .entity-name {
+  font-weight: 600;
+  color: #111;
+  line-height: 1.2;
+  margin: 0;
 }
 
 .sn-card-active-stories .story-grid {
@@ -448,6 +458,15 @@ try {
   margin-top: 10px;
 }
 
+/* Buttons: always start at same x-position and wrap cleanly */
+.sn-card-active-stories .power-center .btn-row {
+  margin-top: 0;           /* override global .btn-row */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-start;
+}
+
 .sn-card-active-stories .mini-meta {
   font-size: 12px;
   color: #6b7280;
@@ -460,7 +479,18 @@ try {
 .sn-card-active-stories .headline-link:hover {
   color: #2cae86;
 }
+
+
+/* Mobile tweak: slightly smaller label column */
+@media (max-width: 420px) {
+  .sn-card-active-stories .power-center {
+    grid-template-columns: 110px 1fr;
+  }
+}
+
+
 </style>
+
 
 <div class="container-fluid mb-5">
 
