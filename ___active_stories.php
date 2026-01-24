@@ -508,12 +508,13 @@ try {
 }
 
 .story-thumb{
-  width:44px;
-  height:44px;
-  border-radius:8px;
-  object-fit:cover;
-  flex:0 0 44px;
-  background:#f3f3f3;
+  width: 96px;
+  height: 64px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex: 0 0 44px;
+  background: #f3f3f3;
+  filter: saturate(0.85) contrast(0.95);
 }
 
 .story-thumb--placeholder{
