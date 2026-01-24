@@ -1,183 +1,21 @@
 {
-    "fetched_at": 1768321356,
+    "fetched_at": 1768465824,
     "feeds": [
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "5 tools you need at your desk for energy, focus and musculoskeletal health — it’ll help your company, too",
-                    "url": "https://nypost.com/2026/01/13/health/5-tools-you-need-at-your-desk-for-energy-focus-and-health/",
-                    "ts": 1768321300,
-                    "emo": "🧪"
-                },
-                {
-                    "title": "The BBC seeking to have Trump’s $10B defamation lawsuit thrown out",
-                    "url": "https://nypost.com/2026/01/13/world-news/bbc-seeks-to-dismiss-trumps-10b-defamation-lawsuit/",
-                    "ts": 1768321042,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Revealed: Mutant flu hotspots as hospitals declare 'critical incidents' amid 10 per cent rise in severe cases",
-                    "url": "https://www.dailymail.co.uk/health/article-15458699/Four-NHS-hospital-trusts-critical-incident-flu-norovirus.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1768321251,
-                    "emo": "🧪"
-                },
-                {
-                    "title": "'He'll be out of prison in EIGHT years': Husband's fury over lenient sentence for cowboy roofer who mowed down and killed his 'inspirational' wife in 70mph police chase as they played golf",
-                    "url": "https://www.dailymail.co.uk/news/article-15460031/Hell-prison-EIGHT-years-Husbands-fury-lenient-sentence-cowboy-roofer-mowed-killed-inspirational-wife-70mph-police-chase-played-golf.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1768321228,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "New Birmingham-Manchester rail link to be proposed",
-                    "url": "https://www.bbc.com/news/articles/c75xrwlw5n2o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1768320863,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Stop saying we can't make things work, Streeting urges Labour colleagues",
-                    "url": "https://www.bbc.com/news/articles/c89qel4d4lno?at_medium=RSS&at_campaign=rss",
-                    "ts": 1768307992,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "Trump admin labels Muslim Brotherhood branches as terrorist organizations",
-                    "url": "https://www.foxnews.com/world/trump-admin-labels-muslim-brotherhood-branches-terrorist-organizations",
-                    "ts": 1768320817,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "US opens new air defense operations cell at Qatar base that Iran targeted in retaliatory attack",
-                    "url": "https://www.foxnews.com/world/us-opens-new-air-defense-operations-cell-qatar-base-iran-targeted-retaliatory-attack",
-                    "ts": 1768320142,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "Trump’s War Department invests $1 billion to get pre-IPO shares of this rocket-motor maker",
-                    "url": "https://www.marketwatch.com/story/trumps-war-department-invests-1-billion-to-get-pre-ipo-shares-of-this-rocket-motor-maker-9d06fd7f?mod=mw_rss_topstories",
-                    "ts": 1768320780,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "‘I have an economics degree from a fantastic university’: I’m 71 with $3 million and earn $250K. Is it time to retire?",
-                    "url": "https://www.marketwatch.com/story/i-have-an-economics-degree-from-a-fantastic-university-im-71-with-3-million-and-earn-250k-is-it-time-to-retire-05a9aa37?mod=mw_rss_topstories",
-                    "ts": 1768320000,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "CPI Report Shows Food Prices Rose Sharply in December",
-                    "url": "https://www.nytimes.com/2026/01/13/business/economy/inflation-cpi-report-food-prices.html",
-                    "ts": 1768320076,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Minnesota Sues to Stop Federal ‘Invasion,’ and Iranians Describe a ‘Blood Bath’",
-                    "url": "https://www.nytimes.com/2026/01/13/podcasts/the-headlines/minnesota-trump-lawsuit-iran-protests.html",
-                    "ts": 1768304007,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Watch live: House Democrats speak amid immigration, health care battle",
-                    "url": "https://thehill.com/video-clips/5686067-watch-live-house-democrats-press-conference-immigration-health-care-shutdown/",
-                    "ts": 1768319569,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Senate liberals tell colleagues to pivot to economic populism",
-                    "url": "https://thehill.com/homenews/senate/5686316-populism-vs-corporate-power/",
-                    "ts": 1768319325,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Here’s the inflation breakdown for December 2025 — in one chart",
-                    "url": "https://www.cnbc.com/2026/01/13/cpi-inflation-december-2025-breakdown.html",
-                    "ts": 1768319518,
-                    "emo": "💰"
-                },
-                {
-                    "title": "Trump attacks Powell again amid Fed independence fears: 'Incompetent' or 'crooked'",
-                    "url": "https://www.cnbc.com/2026/01/13/trump-powell-fed-dimon-pirro-doj.html",
-                    "ts": 1768321185,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "The Guardian",
-            "home": "https://www.theguardian.com",
-            "items": [
-                {
-                    "title": "Twelve top central bankers defend Fed’s Jerome Powell over DoJ investigation; oil hits two-month high as Trump threatens Iran’s trading partners – as it happened",
-                    "url": "https://www.theguardian.com/business/live/2026/jan/13/oil-price-trump-iran-trading-partners-tariffs-supreme-court-business-live-news-updates",
-                    "ts": 1768317380,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "US inflation held firm in December amid pressure on Trump over cost of living",
-                    "url": "https://www.theguardian.com/business/2026/jan/13/us-inflation-trump",
-                    "ts": 1768316293,
-                    "emo": "⚖️"
-                }
-            ]
-        },
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "BONDI ON THE CHOP?",
-                    "url": "https://www.wsj.com/politics/policy/trump-has-complained-about-pam-bondi-repeatedly-to-aides-fd424df3",
-                    "ts": 1768317216,
+                    "title": "VERIZON MYSTERIOUSLY GOES DOWN... DEVELOPING...",
+                    "url": "https://www.wsj.com/business/telecom/verizon-users-experience-outages-nationwide-f2d7ee31",
+                    "ts": 1768463556,
                     "emo": "📰"
                 },
                 {
-                    "title": "TRUMP CALLS HER 'WEAK AND INEFFECTIVE'...",
-                    "url": "https://www.wsj.com/politics/policy/trump-has-complained-about-pam-bondi-repeatedly-to-aides-fd424df3",
-                    "ts": 1768317216,
-                    "emo": "⚖️"
+                    "title": "Emergency Alerts in Washington, NYC...",
+                    "url": "https://www.today.com/news/rcna254064",
+                    "ts": 1768463556,
+                    "emo": "📰"
                 }
             ]
         },
@@ -186,33 +24,15 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "10 high-paying jobs where job seekers can 'get hired and thrive'",
-                    "url": "https://www.businessinsider.com/high-paying-growing-demand-jobs-healthcare-nurse-therapist-job-security-2026-1",
-                    "ts": 1768316995,
-                    "emo": "📰"
+                    "title": "Marc Benioff says a documentary about Character.AI's effects on children was 'the worst thing I've ever seen in my life'",
+                    "url": "https://www.businessinsider.com/marc-benioff-documentary-on-characterai-suicides-worst-thing-he-saw-2026-1",
+                    "ts": 1768460184,
+                    "emo": "🧪"
                 },
                 {
-                    "title": "BofA details its top 3 stock picks in the red-hot metals sector",
-                    "url": "https://www.businessinsider.com/top-metal-and-mining-stocks-gold-copper-aem-ccj-fcx-2026-1",
-                    "ts": 1768316188,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Supreme Court hears arguments over restrictions on transgender athletes",
-                    "url": "https://www.nbcnews.com/video/listen-live-supreme-court-hears-arguments-over-restrictions-on-transgender-athletes-255858245758",
-                    "ts": 1768311693,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "House GOP seeks to hold Bill Clinton in contempt for skipping Epstein deposition",
-                    "url": "https://www.nbcnews.com/politics/congress/house-gop-seeks-hold-clinton-contempt-skipping-epstein-deposition-rcna253780",
-                    "ts": 1768318085,
+                    "title": "McDonald's CEO says these 3 food trends will define 2026",
+                    "url": "https://www.businessinsider.com/mcdonalds-2026-big-food-trends-fiber-drinks-sweet-spicy-2026-1",
+                    "ts": 1768456851,
                     "emo": "📰"
                 }
             ]

@@ -217,16 +217,22 @@ try {
       FROM panel_ranked pr
       LEFT JOIN LATERAL (
         SELECT jsonb_agg(
-                 jsonb_build_object(
-                   'title', x.title,
-                   'source', x.source_slug,
-                   'pub_date', x.pub_date,
-                   'url', x.url
-                 )
-                 ORDER BY x.pub_date DESC NULLS LAST
-               ) AS previews
+          jsonb_build_object(
+            'title', x.title,
+            'source', x.source_slug,
+            'pub_date', x.pub_date,
+            'url', x.url,
+            'image_url', x.image_url
+          )
+          ORDER BY x.pub_date DESC NULLS LAST
+        ) AS previews
         FROM (
-          SELECT a.title, a.source_slug, a.pub_date, a.url
+          SELECT
+            a.title,
+            a.source_slug,
+            a.pub_date,
+            a.url,
+            COALESCE(a.media_url, '') AS image_url
           FROM articles a
           JOIN params p ON TRUE
           WHERE a.created_at >= p.since_3d
@@ -495,6 +501,43 @@ try {
 }
 
 
+.story-preview-item{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+}
+
+.story-thumb{
+  width:44px;
+  height:44px;
+  border-radius:8px;
+  object-fit:cover;
+  flex:0 0 44px;
+  background:#f3f3f3;
+}
+
+.story-thumb--placeholder{
+  background:#f1f1f1;
+}
+
+.story-thumb-link{
+  display:inline-block;
+  line-height:0;
+}
+
+.story-preview-text{
+  min-width:0; /* enables truncation */
+}
+
+.story-preview-text .headline-link{
+  display:block;
+}
+
+.story-preview-text .mini-meta{
+  margin-top:2px;
+}
+
+
 </style>
 
 
@@ -595,22 +638,43 @@ try {
                   <ul class="list-unstyled mb-0 mt-2">
                     <?php foreach ($previews as $p): ?>
                       <?php
-                        $pUrl = $p['url'] ?? '#';
+                        $pUrl   = $p['url'] ?? '#';
                         $pTitle = $p['title'] ?? '(untitled)';
-                        $pSource = $p['source'] ?? '';
-                        $pDate = $p['pub_date'] ?? '';
+                        $pSource= $p['source'] ?? '';
+                        $pDate  = $p['pub_date'] ?? '';
+
+                        // whatever name you choose in SQL — keep a couple aliases for safety
+                        $pImg = $p['image_url'] ?? $p['image'] ?? $p['img'] ?? '';
                       ?>
-                      <li class="mb-2">
-                        <a class="headline-link" href="<?= htmlspecialchars($pUrl) ?>" target="_blank" rel="noopener">
-                          <?= htmlspecialchars($pTitle) ?>
-                        </a>
-                        <div class="mini-meta">
-                          <?= htmlspecialchars($pSource) ?>
-                          <?php if ($pDate): ?> · <?= htmlspecialchars($pDate) ?><?php endif; ?>
+                      <li class="story-preview-item mb-2">
+                        <?php if (!empty($pImg)): ?>
+                          <a class="story-thumb-link" href="<?= htmlspecialchars($pUrl) ?>" target="_blank" rel="noopener">
+                            <img
+                              class="story-thumb"
+                              src="<?= htmlspecialchars($pImg) ?>"
+                              alt=""
+                              loading="lazy"
+                              referrerpolicy="no-referrer"
+                              onerror="this.style.display='none';"
+                            />
+                          </a>
+                        <?php else: ?>
+                          <div class="story-thumb story-thumb--placeholder" aria-hidden="true"></div>
+                        <?php endif; ?>
+
+                        <div class="story-preview-text">
+                          <a class="headline-link" href="<?= htmlspecialchars($pUrl) ?>" target="_blank" rel="noopener">
+                            <?= htmlspecialchars($pTitle) ?>
+                          </a>
+                          <div class="mini-meta">
+                            <?= htmlspecialchars($pSource) ?>
+                            <?php if ($pDate): ?> · <?= htmlspecialchars($pDate) ?><?php endif; ?>
+                          </div>
                         </div>
                       </li>
                     <?php endforeach; ?>
                   </ul>
+
                 <?php else: ?>
                   <div class="mini-meta mt-2">No recent articles.</div>
                 <?php endif; ?>
