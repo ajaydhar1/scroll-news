@@ -286,6 +286,11 @@
                       <span class="reading-mode-icon me-2">🔎</span>
                       <h3 class="h5 mb-0">Deep Dive</h3>
                     </div>
+                    <div class="scroll-article-badges">
+                        <a class="scroll-badge scroll-badge-deep-dive" href="/search.php?mode=nlp&amp;deep_dive=1" title="Articles with rich entity density (detailed topics)." data-loading="">
+                            Deep dive
+                        </a>
+                    </div>
                     <p class="text-muted mb-2">
                       Thoughtful, high-context reporting that goes beyond headlines and reactions.
                     </p>
@@ -306,6 +311,11 @@
                     <div class="d-flex align-items-center mb-2">
                       <span class="reading-mode-icon me-2">📡</span>
                       <h3 class="h5 mb-0">High-Signal Publishers</h3>
+                    </div>
+                    <div class="scroll-article-badges mb-2">
+                        <a class="scroll-badge scroll-badge-high-signal-publisher" href="/search.php?high_signal=1" title="Top-tier outlets with high editorial signal." data-loading="">
+                            High-Signal Publisher
+                        </a>
                     </div>
                     <p class="text-muted mb-2">
                       A curated stream of outlets that consistently publish smart, readable reporting.

@@ -1,38 +1,38 @@
 {
-    "fetched_at": 1768465824,
+    "fetched_at": 1769556537,
     "feeds": [
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "VERIZON MYSTERIOUSLY GOES DOWN... DEVELOPING...",
-                    "url": "https://www.wsj.com/business/telecom/verizon-users-experience-outages-nationwide-f2d7ee31",
-                    "ts": 1768463556,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Emergency Alerts in Washington, NYC...",
-                    "url": "https://www.today.com/news/rcna254064",
-                    "ts": 1768463556,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "BusinessInsider",
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Marc Benioff says a documentary about Character.AI's effects on children was 'the worst thing I've ever seen in my life'",
-                    "url": "https://www.businessinsider.com/marc-benioff-documentary-on-characterai-suicides-worst-thing-he-saw-2026-1",
-                    "ts": 1768460184,
-                    "emo": "🧪"
+                    "title": "Where to buy tickets for the sold-out BTS 2026-2027 world tour: Full schedule and prices",
+                    "url": "https://www.businessinsider.com/guides/tickets/how-to-buy-bts-tickets-concert-tour",
+                    "ts": 1769554508,
+                    "emo": "📰"
                 },
                 {
-                    "title": "McDonald's CEO says these 3 food trends will define 2026",
-                    "url": "https://www.businessinsider.com/mcdonalds-2026-big-food-trends-fiber-drinks-sweet-spicy-2026-1",
-                    "ts": 1768456851,
+                    "title": "Alexander bros' trial: The most striking revelations from day 1 of the criminal case",
+                    "url": "https://www.businessinsider.com/alexander-brothers-manhattan-sex-trafficking-trial-biggest-revelations",
+                    "ts": 1769554177,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "ON THIN ICE...",
+                    "url": "https://www.nytimes.com/2026/01/26/us/noem-trump-meeting-minneapolis-ice.html?unlocked_article_code=1.HlA.Z1iM.N3_H2tvdYvxz&smid=url-share",
+                    "ts": 1769552196,
+                    "emo": "📰"
+                },
+                {
+                    "title": "IMMIGRATION OFFICERS UNLOAD...",
+                    "url": "https://www.kenklippenstein.com/p/ice-unloads",
+                    "ts": 1769552196,
                     "emo": "📰"
                 }
             ]
