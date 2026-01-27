@@ -358,7 +358,11 @@
         <?php require_once __DIR__ . '/___brief_me.php'; ?>
 
         <!-- First Look-->
-        <?php require_once __DIR__ . '/___first_look.php'; ?>
+        <?php
+            fragment_cache_swr("first_look_$CACHE_VER", 60, 300, function () {
+                include __DIR__ . '/___first_look.php';
+            }, $bust);
+        ?>
 
         <!-- Services-->
         <section class="page-section" id="services">
@@ -544,7 +548,11 @@
         </section>
 
 
-        <?php require_once("___scroll_strip.php"); ?>
+        <?php
+            fragment_cache_swr("scroll_strip_$CACHE_VER", 120, 600, function () {
+                include __DIR__ . '/___scroll_strip.php';
+            }, $bust);
+        ?>
 
 
         <section id="playlists" class="pt-4 pb-5 pt-sm-5">
