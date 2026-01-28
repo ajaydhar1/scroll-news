@@ -1,7 +1,7 @@
 /* All pages */
 
 html {
-    background-image: url(../assets/img/mind-pour.gif);
+    background-image: url(../assets/img/mind-pour_00.jpg);
     background-size: contain;
 }
 
@@ -28,13 +28,13 @@ body {
 
 @-moz-document url-prefix() {
   html {
-    background-image: url(../assets/img/mind-pour-blurred-bg.jpg);
+    background-image: url(../assets/img/mind-pour-00.jpg);
   }
 }
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   html {
-    background-image: url(../assets/img/mind-pour-blurred-bg.jpg);
+    background-image: url(../assets/img/mind-pour-00.jpg);
   }
 }
 
