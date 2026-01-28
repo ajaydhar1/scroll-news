@@ -344,14 +344,14 @@
         <?php
             fragment_cache_swr("news_intel_panel_$CACHE_VER", 60, 600, function () {
                 include __DIR__ . '/___news_intel_panel.php';
-            }, $bust);
+            }, $bust, false, false);
         ?>
 
         <!-- Active Stories Panel-->
         <?php
             fragment_cache_swr("active_stories_$CACHE_VER", 30, 300, function () {
                 include __DIR__ . '/___active_stories.php';
-            }, $bust);
+            }, $bust, false, false);
         ?>
 
         <!-- Brief Me Bar-->
@@ -361,7 +361,7 @@
         <?php
             fragment_cache_swr("first_look_$CACHE_VER", 30, 300, function () {
                 include __DIR__ . '/___first_look.php';
-            }, $bust);
+            }, $bust, false, false);
         ?>
 
         <!-- Services-->
@@ -551,7 +551,7 @@
         <?php
             fragment_cache_swr("scroll_strip_$CACHE_VER", 60, 600, function () {
                 include __DIR__ . '/___scroll_strip.php';
-            }, $bust);
+            }, $bust, false, false);
         ?>
 
 

@@ -2015,7 +2015,8 @@ function fragment_cache_swr(
     int $staleTtl,          // kept for signature; not required anymore but fine
     callable $renderFn,
     bool $bust = false,
-    bool $silent = false
+    bool $silent = false,
+    bool $revalidate = true
 ): void {
     $path = _fragment_cache_path($key);
     $lock = $path . '.lock';
@@ -2044,7 +2045,7 @@ function fragment_cache_swr(
         if (!$silent) readfile($path);
 
         // If stale, revalidate (single-flight)
-        if ($age > $ttl) {
+        if ($revalidate && $age > $ttl) {
             $breakLockIfStale();
 
             $lockHandle = @fopen($lock, 'x');
