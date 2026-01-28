@@ -1,0 +1,308 @@
+
+<style>
+.firstlook-box{
+  margin-top: 14px;
+  padding: 14px 14px 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(10,12,20,.55);
+  backdrop-filter: blur(10px);
+}
+.firstlook-head{
+  display:flex; align-items:flex-end; gap:10px; justify-content:space-between;
+  padding: 2px 4px 10px;
+}
+.firstlook-title{
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+.firstlook-sub{
+  color: rgba(255,255,255,.65);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.firstlook-grid{
+  display:grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (min-width: 901px){
+  .firstlook-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 1201px){
+  .firstlook-grid{ grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+.firstlook-col{
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  overflow:hidden;
+  background: rgba(5,7,20,.55);
+}
+.firstlook-colhead{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding: 10px 10px 8px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.firstlook-pill{
+  display:inline-flex; align-items:center; gap:8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(23,213,255,.12);
+  border: 1px solid rgba(23,213,255,.25);
+  color: rgba(255,255,255,.92);
+  font-weight: 750;
+  font-size: 12px;
+  text-decoration:none;
+}
+.firstlook-count{
+  color: rgba(255,255,255,.45);
+  font-size: 12px;
+}
+.firstlook-list{
+  padding: 10px 12px 12px;
+  display:flex; flex-direction:column; gap:10px;
+}
+.firstlook-item a{
+  color: rgba(255,255,255,.92);
+  text-decoration:none;
+  font-weight: 650;
+  line-height: 1.25;
+}
+.firstlook-item a:hover{ text-decoration: underline; }
+.firstlook-time{
+  margin-top: 4px;
+  color: rgba(255,255,255,.50);
+  font-size: 11px;
+}
+.firstlook-foot{
+  display:flex; justify-content:space-between; align-items:center;
+  padding: 10px 4px 0;
+  color: rgba(255,255,255,.55);
+  font-size: 12px;
+}
+.firstlook-more{
+  color: rgba(23,213,255,.95);
+  text-decoration:none;
+  font-weight: 700;
+}
+.firstlook-more:hover{ text-decoration: underline; color: rgba(23, 213, 255, .8); }
+</style>
+
+<style>
+
+.firstlook-save-btn{
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.06);
+  border-radius: 10px;
+  /* padding: 6px 10px; */
+  cursor: pointer;
+  font-size: .85rem;
+  /* margin-left: 10px; */
+  white-space: nowrap;
+}
+.firstlook-save-btn:hover{ background: rgba(255,255,255,.10); }
+.firstlook-save-btn.is-saved{
+  background: rgba(255,255,255,.14);
+}
+.firstlook-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.firstlook-link{ flex: 1; min-width: 0; }
+
+</style>
+
+<div class="container-fluid">
+  <div class="toy-box firstlook-box">
+    <div class="firstlook-head">
+      <div>
+        <div class="firstlook-title">First Look</div>
+        <div class="firstlook-sub">
+          Front page of front pages • updated 329m ago        </div>
+      </div>
+      <a href="saved_headlines.php" class="firstlook-more" style="">Saved Headlines</a>
+    </div>
+
+    <div class="firstlook-grid">
+              <div class="firstlook-col">
+          <div class="firstlook-colhead">
+            <a class="firstlook-pill" href="https://www.businessinsider.com" target="_blank" rel="noopener">
+              BusinessInsider            </a>
+            <div class="firstlook-count">2</div>
+          </div>
+
+          <div class="firstlook-list">
+                                        <div class="firstlook-item">
+                <a href="https://www.businessinsider.com/guides/tickets/how-to-buy-bts-tickets-concert-tour" target="_blank" rel="noopener">
+                  📰 Where to buy tickets for the sold-out BTS 2026-2027 world tour: Full schedule and prices                </a>
+                <button
+                  type="button"
+                  class="firstlook-save-btn"
+                  data-url="https://www.businessinsider.com/guides/tickets/how-to-buy-bts-tickets-concert-tour"
+                  data-title="Where to buy tickets for the sold-out BTS 2026-2027 world tour: Full schedule and prices"
+                  data-source="BusinessInsider"
+                  data-pub=""
+                  aria-label="Save headline"
+                >Save</button>
+                                  <div class="firstlook-time">5:55pm</div>
+                              </div>
+                                        <div class="firstlook-item">
+                <a href="https://www.businessinsider.com/alexander-brothers-manhattan-sex-trafficking-trial-biggest-revelations" target="_blank" rel="noopener">
+                  📰 Alexander bros&#039; trial: The most striking revelations from day 1 of the criminal case                </a>
+                <button
+                  type="button"
+                  class="firstlook-save-btn"
+                  data-url="https://www.businessinsider.com/alexander-brothers-manhattan-sex-trafficking-trial-biggest-revelations"
+                  data-title="Alexander bros&#039; trial: The most striking revelations from day 1 of the criminal case"
+                  data-source="BusinessInsider"
+                  data-pub=""
+                  aria-label="Save headline"
+                >Save</button>
+                                  <div class="firstlook-time">5:49pm</div>
+                              </div>
+                      </div>
+        </div>
+              <div class="firstlook-col">
+          <div class="firstlook-colhead">
+            <a class="firstlook-pill" href="https://drudgereport.com" target="_blank" rel="noopener">
+              Drudge            </a>
+            <div class="firstlook-count">2</div>
+          </div>
+
+          <div class="firstlook-list">
+                                        <div class="firstlook-item">
+                <a href="https://www.nytimes.com/2026/01/26/us/noem-trump-meeting-minneapolis-ice.html?unlocked_article_code=1.HlA.Z1iM.N3_H2tvdYvxz&amp;smid=url-share" target="_blank" rel="noopener">
+                  📰 ON THIN ICE...                </a>
+                <button
+                  type="button"
+                  class="firstlook-save-btn"
+                  data-url="https://www.nytimes.com/2026/01/26/us/noem-trump-meeting-minneapolis-ice.html?unlocked_article_code=1.HlA.Z1iM.N3_H2tvdYvxz&amp;smid=url-share"
+                  data-title="ON THIN ICE..."
+                  data-source="Drudge"
+                  data-pub=""
+                  aria-label="Save headline"
+                >Save</button>
+                                  <div class="firstlook-time">5:16pm</div>
+                              </div>
+                                        <div class="firstlook-item">
+                <a href="https://www.kenklippenstein.com/p/ice-unloads" target="_blank" rel="noopener">
+                  📰 IMMIGRATION OFFICERS UNLOAD...                </a>
+                <button
+                  type="button"
+                  class="firstlook-save-btn"
+                  data-url="https://www.kenklippenstein.com/p/ice-unloads"
+                  data-title="IMMIGRATION OFFICERS UNLOAD..."
+                  data-source="Drudge"
+                  data-pub=""
+                  aria-label="Save headline"
+                >Save</button>
+                                  <div class="firstlook-time">5:16pm</div>
+                              </div>
+                      </div>
+        </div>
+          </div>
+
+    <div class="firstlook-foot">
+      <div>One–two headlines per source • cached</div>
+      <div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const KEY = 'scrollnews:saved_firstlook:v1';
+
+  function safeParse(json, fallback) {
+    try { return JSON.parse(json); } catch { return fallback; }
+  }
+  function getSaved() {
+    return safeParse(localStorage.getItem(KEY) || '[]', []);
+  }
+  function setSaved(list) {
+    localStorage.setItem(KEY, JSON.stringify(list));
+  }
+
+  // Stable ID so "same headline" toggles properly
+  function makeId(url, title) {
+    const s = (url || '') + '|' + (title || '');
+    // light hash
+    let h = 0;
+    for (let i=0; i<s.length; i++) h = ((h<<5) - h) + s.charCodeAt(i) | 0;
+    return 'h' + Math.abs(h);
+  }
+
+  function isSaved(id) {
+    return getSaved().some(x => x && x.id === id);
+  }
+
+  function save(item) {
+    const list = getSaved();
+    if (!list.some(x => x && x.id === item.id)) {
+      list.push(item);
+      setSaved(list);
+    }
+  }
+
+  function unsave(id) {
+    const list = getSaved().filter(x => x && x.id !== id);
+    setSaved(list);
+  }
+
+  function setBtnState(btn, saved) {
+    btn.textContent = saved ? 'Unsave' : 'Save';
+    btn.classList.toggle('is-saved', saved);
+    btn.setAttribute('aria-label', saved ? 'Unsave headline' : 'Save headline');
+  }
+
+  function initButtons() {
+    document.querySelectorAll('.firstlook-save-btn').forEach(btn => {
+      const url   = btn.getAttribute('data-url') || '';
+      const title = btn.getAttribute('data-title') || '';
+      const src   = btn.getAttribute('data-source') || '';
+      const pub   = btn.getAttribute('data-pub') || '';
+
+      const id = makeId(url, title);
+      btn.dataset.id = id;
+
+      setBtnState(btn, isSaved(id));
+
+      btn.addEventListener('click', () => {
+        const savedNow = isSaved(id);
+
+        if (savedNow) {
+          unsave(id);
+          setBtnState(btn, false);
+        } else {
+          save({
+            id,
+            url,
+            title,
+            source_slug: src,
+            pub_date: pub,
+            saved_at: Date.now()
+          });
+          setBtnState(btn, true);
+        }
+
+        // update across tabs/pages
+        window.dispatchEvent(new StorageEvent('storage', { key: KEY }));
+      });
+    });
+  }
+
+  // Update button states if Saved page or another tab changes localStorage
+  window.addEventListener('storage', (e) => {
+    if (e.key !== KEY) return;
+    document.querySelectorAll('.firstlook-save-btn').forEach(btn => {
+      const id = btn.dataset.id;
+      if (!id) return;
+      setBtnState(btn, isSaved(id));
+    });
+  });
+
+  initButtons();
+})();
+</script>

@@ -1,0 +1,69 @@
+/* All pages */
+
+html {
+    background-image: url(../assets/img/mind-pour.gif);
+    background-size: contain;
+}
+
+body {
+    backdrop-filter: blur(80px);
+    -webkit-backdrop-filter: blur(80px);
+    background-color: transparent;
+    color: white;
+}
+
+@-moz-document url-prefix() {
+  html {
+    background-image: url(../assets/img/mind-pour-blurred-bg.jpg);
+  }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  html {
+    background-image: url(../assets/img/mind-pour-blurred-bg.jpg);
+  }
+}
+
+footer {
+    color: #212529;
+}
+
+footer .text-muted {
+    color: #6c757d !important;
+}
+
+.text-muted {
+    color: #f1f1f1f1 !important;
+}
+
+.bg-light {
+    background-color: rgba(0, 0, 0, .3) !important;
+}
+
+.card {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+
+/* Homepage */
+
+header.masthead {
+    color: white !important;
+}
+
+.reading-modes-section {
+    background: rgba(0, 0, 0, .3) !important
+}
+
+#portfolio .portfolio-item .portfolio-caption {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.sn-card {
+    background: rgba(0, 0, 0, .5) !important;
+}
+
+section.py-5 h3 {
+    color: white !important;
+}
+
