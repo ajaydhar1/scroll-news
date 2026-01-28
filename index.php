@@ -232,7 +232,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4 d-flex text-lg-left text-bolder">
                         <h5 class="mb-2 mb-sm-0">
-                            <a href="index.php" data-loading>
+                            <a href="index.php">
                                 <img src="assets/img/play-green.png" alt="Logo play button" style="height: 24px; width: auto; vertical-align: middle; margin-right: 5px; margin-bottom: 5px;">
                                 Scroll News
                             </a>
@@ -342,14 +342,14 @@
 
         <!-- News Intelligence Panel-->
         <?php
-            fragment_cache_swr("news_intel_panel_$CACHE_VER", 120, 600, function () {
+            fragment_cache_swr("news_intel_panel_$CACHE_VER", 60, 600, function () {
                 include __DIR__ . '/___news_intel_panel.php';
             }, $bust);
         ?>
 
         <!-- Active Stories Panel-->
         <?php
-            fragment_cache_swr("active_stories_$CACHE_VER", 60, 300, function () {
+            fragment_cache_swr("active_stories_$CACHE_VER", 30, 300, function () {
                 include __DIR__ . '/___active_stories.php';
             }, $bust);
         ?>
@@ -359,7 +359,7 @@
 
         <!-- First Look-->
         <?php
-            fragment_cache_swr("first_look_$CACHE_VER", 60, 300, function () {
+            fragment_cache_swr("first_look_$CACHE_VER", 30, 300, function () {
                 include __DIR__ . '/___first_look.php';
             }, $bust);
         ?>
@@ -549,7 +549,7 @@
 
 
         <?php
-            fragment_cache_swr("scroll_strip_$CACHE_VER", 120, 600, function () {
+            fragment_cache_swr("scroll_strip_$CACHE_VER", 60, 600, function () {
                 include __DIR__ . '/___scroll_strip.php';
             }, $bust);
         ?>
@@ -688,7 +688,7 @@
                             <a class="btn btn-black btn-social mx-2" title="IG profile" href="https://www.instagram.com/scrollnewsio/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                         </div>
                         <div class="col-lg-4 text-lg-right font-weight-bold">
-                            <a href="index.php" data-loading>scroll news</a>
+                            <a href="index.php">scroll news</a>
                             <br>
                             <a href="about.php" class="text-muted small mr-3">About</a>
                             <a href="terms.php" class="text-muted small mr-3">Terms</a>

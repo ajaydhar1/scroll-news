@@ -2007,31 +2007,47 @@ function _fragment_cache_path(string $key): string {
     return _fragment_cache_dir() . '/' . $safe . '.html';
 }
 
-function fragment_cache_swr(string $key, int $ttl, int $staleTtl, callable $renderFn, bool $bust = false): void {
+function fragment_cache_swr(
+    string $key,
+    int $ttl,
+    int $staleTtl,          // kept for signature; not required anymore but fine
+    callable $renderFn,
+    bool $bust = false
+): void {
     $path = _fragment_cache_path($key);
     $lock = $path . '.lock';
     $now  = time();
 
-    // If we have cache and we're not busting...
+    $lockMaxAge = 30; // seconds; prevents stuck locks
+
+    $lockIsFresh = function() use ($lock, $now, $lockMaxAge): bool {
+        if (!is_file($lock)) return false;
+        $lockTs = (int)@file_get_contents($lock);
+        if ($lockTs <= 0) $lockTs = filemtime($lock) ?: $now;
+        return ($now - $lockTs) <= $lockMaxAge;
+    };
+
+    $breakLockIfStale = function() use ($lock, $lockIsFresh) {
+        if (is_file($lock) && !$lockIsFresh()) {
+            @unlink($lock);
+        }
+    };
+
+    // If cache exists and we're not busting: always serve it immediately
     if (!$bust && is_file($path)) {
         $age = $now - filemtime($path);
 
-        // Fresh
-        if ($age <= $ttl) {
-            readfile($path);
-            return;
-        }
+        // Serve cached HTML immediately (fast path)
+        readfile($path);
 
-        // Stale-but-allowed: serve stale immediately and refresh once
-        if ($age <= ($ttl + $staleTtl)) {
-            readfile($path);
+        // If stale, revalidate (single-flight)
+        if ($age > $ttl) {
+            $breakLockIfStale();
 
-            // Try to revalidate (single flight)
-            if (!file_exists($lock)) {
-                // create lock
+            if (!is_file($lock)) {
                 @file_put_contents($lock, (string)$now, LOCK_EX);
 
-                // finish response to user, then do work
+                // Finish response to user, then refresh cache
                 if (function_exists('fastcgi_finish_request')) {
                     fastcgi_finish_request();
                 }
@@ -2040,20 +2056,20 @@ function fragment_cache_swr(string $key, int $ttl, int $staleTtl, callable $rend
                 try {
                     $renderFn();
                     $html = ob_get_clean();
-                    file_put_contents($path, $html, LOCK_EX);
+                    if ($html !== null && $html !== '') {
+                        file_put_contents($path, $html, LOCK_EX);
+                    }
                 } catch (Throwable $e) {
-                    ob_end_clean();
+                    if (ob_get_level()) ob_end_clean();
                 }
 
                 @unlink($lock);
             }
-            return;
         }
-
-        // Too old: fall through to blocking refresh
+        return;
     }
 
-    // No cache or too old or bust: blocking render
+    // No cache or bust: blocking render (cache warm path)
     ob_start();
     $renderFn();
     $html = ob_get_clean();
