@@ -24,12 +24,12 @@
       <input
         id="aiNewsLookupInput"
         type="text"
-        class="form-control form-control-sm mr-2 mb-2 mb-sm-0"
+        class="form-control form-control-sm mr-1 mb-2 mb-sm-0"
         placeholder="Enter a news topic..."
         style="width: min(420px, 70vw);"
       />
 
-      <button type="button" class="btn btn-sm btn-dark" style="box-shadow: none !important;" id="aiNewsLookupBtn">
+      <button type="button" class="btn btn-sm btn-light" style="box-shadow: none !important;" id="aiNewsLookupBtn">
         Come up to speed
       </button>
     </form>
