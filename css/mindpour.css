@@ -81,6 +81,15 @@ header.masthead {
     color: white !important;
 }
 
+.sn-card-active-stories .panel-subtitle {
+    color: #b9b9b9 !important;
+}
+
+.sn-card-active-stories .section-label
+ {
+    color: #f1f1f1f1;
+}
+
 .sn-card-active-stories .power-center .entity-name {
     color: #fbfbfb !important;
 }
