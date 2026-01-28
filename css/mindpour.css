@@ -6,10 +6,24 @@ html {
 }
 
 body {
-    backdrop-filter: blur(80px);
-    -webkit-backdrop-filter: blur(80px);
     background-color: transparent;
     color: white;
+}
+
+/* Blur layer */
+.blur-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  backdrop-filter: blur(80px);
+  -webkit-backdrop-filter: blur(80px);
+  z-index: 1; /* behind content but above background */
+}
+
+/* Your page content sits above */
+.page {
+  position: relative;
+  z-index: 2;
 }
 
 @-moz-document url-prefix() {

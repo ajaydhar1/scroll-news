@@ -1,5 +1,5 @@
 {
-    "fetched_at": 1769576309,
+    "fetched_at": 1769580894,
     "feeds": [
         {
             "name": "Drudge",
@@ -8,13 +8,13 @@
                 {
                     "title": "ON THIN ICE...",
                     "url": "https://www.politico.com/news/2026/01/27/trump-keeps-defending-noem-allies-see-a-warning-sign-00751024",
-                    "ts": 1769574156,
+                    "ts": 1769578296,
                     "emo": "📰"
                 },
                 {
                     "title": "IMMIGRATION OFFICERS UNLOAD...",
                     "url": "https://www.kenklippenstein.com/p/ice-unloads",
-                    "ts": 1769574156,
+                    "ts": 1769578296,
                     "emo": "📰"
                 }
             ]
@@ -24,15 +24,15 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Some Amazon employees get 'Project Dawn' calendar invitation discussing upcoming job cuts",
-                    "url": "https://www.businessinsider.com/amazon-staff-calendar-invitation-upcoming-job-cuts-project-dawn-2026-1",
-                    "ts": 1769562626,
+                    "title": "Tiffany & Co. is setting its sights on the gold girlies",
+                    "url": "https://www.businessinsider.com/tiffany-lvmh-gold-high-jewelry-pulling-back-silver-2026-1",
+                    "ts": 1769576420,
                     "emo": "📰"
                 },
                 {
-                    "title": "Paramount+ got about 1 million new subscribers the day of its first UFC event, an exec told staffers",
-                    "url": "https://www.businessinsider.com/ufc-paramount-plus-million-new-subscribers-leaked-subscriber-figures-2026-1",
-                    "ts": 1769558029,
+                    "title": "Some Amazon employees get 'Project Dawn' calendar invitation discussing upcoming job cuts",
+                    "url": "https://www.businessinsider.com/amazon-staff-calendar-invitation-upcoming-job-cuts-project-dawn-2026-1",
+                    "ts": 1769562626,
                     "emo": "📰"
                 }
             ]
