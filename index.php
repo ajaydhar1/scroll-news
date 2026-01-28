@@ -232,7 +232,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4 d-flex text-lg-left text-bolder">
                         <h5 class="mb-2 mb-sm-0">
-                            <a href="index.php">
+                            <a href="index.php" data-loading>
                                 <img src="assets/img/play-green.png" alt="Logo play button" style="height: 24px; width: auto; vertical-align: middle; margin-right: 5px; margin-bottom: 5px;">
                                 Scroll News
                             </a>
@@ -337,7 +337,7 @@
             require_once __DIR__ . '/___modules.php';
 
             $bust = isset($_GET['nocache']) && $_GET['nocache'] == '1';
-            $CACHE_VER = 'v6'; // bump to v2 when you change markup
+            // bump $CACHE_VER in ___modules.php to v2 when you change markup in cached includes
         ?>
 
         <!-- News Intelligence Panel-->
@@ -688,7 +688,7 @@
                             <a class="btn btn-black btn-social mx-2" title="IG profile" href="https://www.instagram.com/scrollnewsio/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                         </div>
                         <div class="col-lg-4 text-lg-right font-weight-bold">
-                            <a href="index.php">scroll news</a>
+                            <a href="index.php" data-loading>scroll news</a>
                             <br>
                             <a href="about.php" class="text-muted small mr-3">About</a>
                             <a href="terms.php" class="text-muted small mr-3">Terms</a>

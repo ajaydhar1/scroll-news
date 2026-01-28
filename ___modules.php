@@ -2007,12 +2007,15 @@ function _fragment_cache_path(string $key): string {
     return _fragment_cache_dir() . '/' . $safe . '.html';
 }
 
+$CACHE_VER = 'v6';
+
 function fragment_cache_swr(
     string $key,
     int $ttl,
     int $staleTtl,          // kept for signature; not required anymore but fine
     callable $renderFn,
-    bool $bust = false
+    bool $bust = false,
+    bool $silent = false
 ): void {
     $path = _fragment_cache_path($key);
     $lock = $path . '.lock';
@@ -2038,32 +2041,33 @@ function fragment_cache_swr(
         $age = $now - filemtime($path);
 
         // Serve cached HTML immediately (fast path)
-        readfile($path);
+        if (!$silent) readfile($path);
 
         // If stale, revalidate (single-flight)
         if ($age > $ttl) {
             $breakLockIfStale();
 
-            if (!is_file($lock)) {
-                @file_put_contents($lock, (string)$now, LOCK_EX);
+            $lockHandle = @fopen($lock, 'x');
+            if ($lockHandle) {
+                fwrite($lockHandle, (string)$now);
+                fclose($lockHandle);
 
-                // Finish response to user, then refresh cache
-                if (function_exists('fastcgi_finish_request')) {
+                if (!$silent && function_exists('fastcgi_finish_request')) {
                     fastcgi_finish_request();
                 }
 
-                ob_start();
                 try {
+                    ob_start();
                     $renderFn();
                     $html = ob_get_clean();
-                    if ($html !== null && $html !== '') {
+                    if ($html !== '') {
                         file_put_contents($path, $html, LOCK_EX);
                     }
                 } catch (Throwable $e) {
                     if (ob_get_level()) ob_end_clean();
+                } finally {
+                    @unlink($lock);
                 }
-
-                @unlink($lock);
             }
         }
         return;
@@ -2074,7 +2078,7 @@ function fragment_cache_swr(
     $renderFn();
     $html = ob_get_clean();
     file_put_contents($path, $html, LOCK_EX);
-    echo $html;
+    if (!$silent) echo $html;
 }
 
 
