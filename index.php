@@ -260,7 +260,7 @@
             </footer>
 
             <!-- Masthead-->
-            <header class="masthead bg-light">
+            <header class="masthead bg-light-2">
                 <div class="container">
                     <div class="masthead-subheading">Welcome To Scroll News!</div>
                     <div class="masthead-heading text-uppercase">AI-Driven News Summaries</div>
@@ -272,7 +272,7 @@
             </header>
 
             <!-- Reading Modes-->
-            <section class="reading-modes-section page-section pt-5 pb-0">
+            <section class="reading-modes-section page-section bg-light-2 pt-5 pb-0">
             <div class="container">
                 <div class="row mb-4">
                 <div class="col-12 text-center">
