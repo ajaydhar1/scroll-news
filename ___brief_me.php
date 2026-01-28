@@ -15,7 +15,7 @@
 
 <!-- AI Mode News Lookup Strip (place between Persistent Card + First Look card) -->
 <div class="container-fluid px-0 my-2" id="aiNewsLookupStrip">
-  <div class="bg-light border rounded-3 px-3 py-2 d-flex flex-wrap align-items-center justify-content-center gap-2 text-center">
+  <div class="bg-light border-top border-bottom rounded-3 px-3 py-2 d-flex flex-wrap align-items-center justify-content-center gap-2 text-center">
     <span class="text-muted mr-2 mb-1 mb-sm-0">
       What is happening in the news with respect to
     </span>
