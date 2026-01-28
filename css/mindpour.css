@@ -28,13 +28,13 @@ body {
 
 @-moz-document url-prefix() {
   html {
-    background-image: url(../assets/img/mind-pour-00.jpg);
+    background-image: url(../assets/img/mind-pour_00_blur_35.jpg);
   }
 }
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   html {
-    background-image: url(../assets/img/mind-pour-00.jpg);
+    background-image: url(../assets/img/mind-pour_00_blur_35.jpg);
   }
 }
 
