@@ -25,7 +25,7 @@ body {
 }
 
 footer {
-    color: #212529;
+    color: #212529 !important;
 }
 
 footer .text-muted {
@@ -40,8 +40,12 @@ footer .text-muted {
     background-color: rgba(0, 0, 0, .3) !important;
 }
 
+.bg-dark {
+    background-color: rgba(0, 0, 0, .7) !important;
+}
+
 .card {
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .5) !important;
 }
 
 
@@ -56,11 +60,45 @@ header.masthead {
 }
 
 #portfolio .portfolio-item .portfolio-caption {
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .5) !important;
+}
+
+.news-intel-panel .intel-article-list .intel-article-item a.headline-link, .sn-card-active-headlines a.headline-link {
+    color: var(--brand-color) !important;
+}
+
+.news-intel-panel .nlp-chip {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+}
+
+.news-intel-panel .nlp-chip-topic {
+    background: rgba(0, 200, 140, 0.3) !important;
+    color: #00ffbb !important;
+}
+
+.sn-card-active-stories .panel-title {
+    color: white !important;
+}
+
+.sn-card-active-stories .power-center .entity-name {
+    color: #fbfbfb !important;
+}
+
+.sn-card-active-stories .power-center {
+    background: rgba(0, 0, 0, 0.3) !important;
+}
+
+button.firstlook-save-btn {
+    color: #00ffbb !important;
 }
 
 .sn-card {
     background: rgba(0, 0, 0, .5) !important;
+}
+
+.sn-meta, .sn-emobar-label, .sn-emobar-value {
+    color: #b9b9b9 !important;
 }
 
 section.py-5 h3 {
