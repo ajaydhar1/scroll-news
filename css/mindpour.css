@@ -67,6 +67,10 @@ header.masthead {
     color: var(--brand-color) !important;
 }
 
+.news-intel-panel .intel-article-list .intel-article-item a.headline-link:hover, .sn-card-active-headlines a.headline-link:hover {
+    color: #2cae86 !important;
+}
+
 .news-intel-panel .nlp-chip {
     background: rgba(255, 255, 255, 0.1) !important;
     color: white !important;
@@ -87,7 +91,7 @@ header.masthead {
 
 .sn-card-active-stories .section-label
  {
-    color: #f1f1f1f1;
+    color: #f1f1f1f1 !important;
 }
 
 .sn-card-active-stories .power-center .entity-name {
