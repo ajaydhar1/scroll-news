@@ -525,7 +525,7 @@ footer .btn {
 
 </style>
 
-<section class="page-section news-intel-panel bg-light">
+<section class="page-section news-intel-panel bg-light-2">
     <div class="container-fluid">
         <div class="align-items-center text-center mb-3">
             <div>
