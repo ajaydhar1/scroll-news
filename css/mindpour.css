@@ -10,6 +10,10 @@ body {
     color: white;
 }
 
+a:hover {
+    color: var(--brand-hover-color);
+}
+
 /* Blur layer */
 .blur-layer {
   position: fixed;
@@ -86,7 +90,7 @@ header.masthead {
 }
 
 .news-intel-panel .intel-article-list .intel-article-item a.headline-link:hover, .sn-card-active-headlines a.headline-link:hover {
-    color: #2cae86 !important;
+    color: var(--brand-hover-color) !important;
 }
 
 .news-intel-panel .nlp-chip {
