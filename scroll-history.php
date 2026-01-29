@@ -4,7 +4,7 @@
 require_once('___modules.php');
 
 // Fetch all RSS items ordered by pub_date DESC
-$DAYS_TO_SHOW = 5;
+$DAYS_TO_SHOW = 4;
 $errorMsg   = null;
 
 $pdo = _pdo_or_null();
