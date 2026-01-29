@@ -54,6 +54,14 @@ footer .text-muted {
     color: #f1f1f1f1 !important;
 }
 
+.bg-light-4 {
+    background-color: rgba(0, 0, 0, .1) !important;
+}
+
+.bg-light-3 {
+    background-color: rgba(0, 0, 0, .2) !important;
+}
+
 .bg-light-2 {
     background-color: rgba(0, 0, 0, .3) !important;
 }

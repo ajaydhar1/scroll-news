@@ -438,7 +438,7 @@ if (!$pdo) {
         </style>
 
     </head>
-    <body id="page-top" class="bg-light">
+    <body id="page-top" class="bg-light-3">
 
         <!-- Blurred overlay -->
         <div class="blur-layer"></div>
