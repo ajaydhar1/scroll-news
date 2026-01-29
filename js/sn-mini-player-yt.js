@@ -59,6 +59,22 @@
   function formatTime(s){ s = Math.max(0, Math.round(s||0)); const m = Math.floor(s/60); const r = s%60; return `${m}:${r.toString().padStart(2,'0')}`; }
   function isMobileish(){ return window.matchMedia('(max-width: 640px), (pointer:coarse)').matches; }
 
+  // ----------------- Mount helpers (Newsroom / IntroJS-safe) -----------------
+  function getHudMountEl(){
+    return (
+      document.getElementById('sn-mini-player-mount') ||
+      document.querySelector('.page') ||
+      document.body
+    );
+  }
+
+  function mount(node){
+    if (!node) return;
+    const target = getHudMountEl();
+    if (node.parentElement !== target) target.appendChild(node);
+  }
+
+
   // SVG icons (currentColor-aware)
   const ICONS = {
     prev:  `<span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 5v14M19 6l-9 6 9 6V6z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>`,
@@ -428,7 +444,7 @@
   const root = document.createElement('div');
   root.className = 'hud-mini-player';
   root.innerHTML = `
-    <div class="hud-shell hud-hidden ${START_COLLAPSED ? 'hud-collapsed' : ''}" data-step="3" data-intro="Music media player">
+    <div class="hud-shell hud-hidden ${START_COLLAPSED ? 'hud-collapsed' : ''}" data-step="3" data-intro="News media player">
       <div class="hud-header">
         <div class="hud-dot" title="connected"></div>
         <div class="hud-select-wrap">
@@ -464,7 +480,6 @@
       </div>
     </div>
   `;
-  document.addEventListener('DOMContentLoaded', ()=> document.body.appendChild(root));
 
   function applyIconSet(){
     ['prev','play','next','shuffle','repeat','mute'].forEach(a=>{
@@ -482,17 +497,25 @@
   }
   document.addEventListener('DOMContentLoaded', applyIconSet);
 
-  // Floating widget button
+    // Floating widget button
   widget = document.createElement('button');
   widget.className = 'hud-widget';
   widget.type = 'button';
   widget.setAttribute('aria-label','Toggle media player');
   widget.setAttribute('aria-pressed','false'); // true when HUD expanded
   widget.innerHTML = ICONS.widgetClosed;
+
   document.addEventListener('DOMContentLoaded', () => {
-    document.body.appendChild(widget);
-    widget.classList.remove('hud-hidden'); // ensure visible
-    syncWidget(); // right icon on first paint
+    mount(widget);
+    widget.classList.remove('hud-hidden');
+    syncWidget();
+  });
+
+  widget.addEventListener('click', ()=>{
+    shell().classList.remove('hud-hidden');
+    shell().classList.toggle('hud-collapsed');
+    saveUICollapsed(shell().classList.contains('hud-collapsed'));
+    syncWidget();
   });
 
   function isCollapsed(){ return shell().classList.contains('hud-collapsed'); }
@@ -719,7 +742,7 @@
 
   // ----------------- Boot -----------------
   document.addEventListener('DOMContentLoaded', async ()=>{
-    document.body.appendChild(root);
+    mount(root);
     titleEl().textContent = 'Loading YouTube…';
     maybeResetForFreshNews();
     initPlaylistSelect();

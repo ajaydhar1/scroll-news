@@ -271,7 +271,8 @@
         <script>
             var chart = AmCharts.makeChart( "chartdiv", {
               "type": "serial",
-              "theme": "light",
+              "theme": "dark",
+              "color": "#b9b9b9",
               "dataProvider": [ {
                 "country": "love",
                 "visits": <?= $reaction['love'] ?>,
@@ -303,7 +304,7 @@
 
               "valueAxes": [ {
                 "gridColor": "#FFFFFF",
-                "gridAlpha": 0.2,
+                "gridAlpha": 0.4,
                 "dashLength": 0
               } ],
               "gridAboveGraphs": true,

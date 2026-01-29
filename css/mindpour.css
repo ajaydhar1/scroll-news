@@ -140,3 +140,35 @@ section.py-5 h3 {
     color: white !important;
 }
 
+
+/* Newsroom */
+
+h5.m-0.font-weight-bold {
+    color: #212529 !important;
+}
+
+.modal-title {
+    color: #212529 !important;
+}
+
+.modal-body label {
+    color: #212529 !important;
+}
+
+.modal .card {
+    background-image: url(../assets/img/mind-pour_00.jpg);
+    background-size: cover;
+}
+
+.modal .card-body {
+    backdrop-filter: blur(80px);
+    -webkit-backdrop-filter: blur(80px);
+}
+
+.page.introjs-fixParent {
+    z-index: 2 !important;
+}
+
+.introjs-tooltip {
+    color: #212529 !important;
+}
