@@ -484,7 +484,7 @@ if (!$pdo) {
                         <div class="col-md-8 text-center">
                             <h2 class="section-heading text-uppercase">Daily Scroll Archive</h2>
                             <p class="section-subheading">
-                                Flip through every article Scroll News has captured in the last <?= $DAYS_TO_SHOW ?> days—one horizontal row of cards for each day.
+                                Flip through every article Scroll News has captured over the last <?= $DAYS_TO_SHOW + 1 ?> days, with one horizontal row of cards for each day.
                             </p>
                         </div>
                     </div>
