@@ -438,7 +438,7 @@ if (!$pdo) {
         </style>
 
     </head>
-    <body id="page-top" class="bg-dark">
+    <body id="page-top" class="bg-light">
 
         <!-- Blurred overlay -->
         <div class="blur-layer"></div>
@@ -478,7 +478,7 @@ if (!$pdo) {
             </footer>
 
             <!-- Daily Scroll Archive -->
-            <section class="page-section" id="services" style="padding: 4rem 0;">
+            <section class="page-section" id="" style="padding: 4rem 0;">
                 <div class="container-fluid px-3 px-md-4">
                     <div class="row justify-content-center sn-archive-header mb-3">
                         <div class="col-md-8 text-center">

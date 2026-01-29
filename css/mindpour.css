@@ -172,3 +172,26 @@ h5.m-0.font-weight-bold {
 .introjs-tooltip {
     color: #212529 !important;
 }
+
+
+/* Scroll History */
+
+.sn-archive-header p {
+    color: #b9b9b9 !important;
+}
+
+.sn-history-filters label {
+    color: #b9b9b9 !important;
+}
+
+.article-card {
+    background: rgba(0, 0, 0, .35) !important;
+}
+
+.article-meta {
+    color: #b9b9b9 !important;
+}
+
+a.btn.btn-outline-primary.btn-analyze.article-link {
+    color: white !important;
+}
