@@ -140,6 +140,7 @@ if (!$pdo) {
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css?v=<?php echo filemtime(__DIR__ . '/css/styles.css'); ?>" rel="stylesheet" />
         <link href="css/custom.css?v=<?php echo filemtime(__DIR__ . '/css/custom.css'); ?>" rel="stylesheet" />
+        <link href="css/mindpour.css?v=<?php echo filemtime(__DIR__ . '/css/mindpour.css'); ?>" rel="stylesheet" />
 
         <style>
             .content {
@@ -439,320 +440,326 @@ if (!$pdo) {
     </head>
     <body id="page-top" class="bg-dark">
 
+        <!-- Blurred overlay -->
+        <div class="blur-layer"></div>
+
         <!-- Loading overlay -->
         <div id="loadingOverlay" class="loading-overlay" aria-live="polite" aria-busy="true" hidden>
           <div class="loading-spinner" role="status" aria-label="Loading"></div>
         </div>
 
-        <!-- topnav-->
-        <footer class="footer py-4 bg-white sticky-top sn-top-nav">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 d-flex text-lg-left text-bolder">
-                        <h5 class="mb-2 mb-sm-0">
-                            <a href="index.php" data-loading>
-                                <img src="assets/img/play-green.png" alt="Logo play button" style="height: 24px; width: auto; vertical-align: middle; margin-right: 5px; margin-bottom: 5px;">
-                                Scroll News
-                            </a>
-                        </h5>
-                    </div>
-                    <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
-                        <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" onclick="" data-loading><i class="fas fa-play"></i></a>
-                        <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
-                    </div>
-                    <div class="col-lg-4 d-flex text-lg-right" style="">
-                        <div class="ml-auto">
-                            <a href="about.php" class="mr-3">About</a>
-                            <a class="search-button" href="search.php" title="Search" aria-label="Search">🔍</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <div class="page">
 
-        <!-- Daily Scroll Archive -->
-        <section class="page-section" id="services" style="padding: 4rem 0;">
-            <div class="container-fluid px-3 px-md-4">
-                <div class="row justify-content-center sn-archive-header mb-3">
-                    <div class="col-md-8 text-center">
-                        <h2 class="section-heading text-uppercase">Daily Scroll Archive</h2>
-                        <p class="section-subheading">
-                            Flip through every article Scroll News has captured in the last <?= $DAYS_TO_SHOW ?> days—one horizontal row of cards for each day.
-                        </p>
-                    </div>
-                </div>
-
-                <p class="small text-muted text-center mb-3">
-                    Want to see only what <em>you’ve</em> read?
-                    <a href="history.php">View your reading history →</a>
-                </p>
-
-                <?php if ($errorMsg): ?>
-                    <div class="row">
-                        <div class="col-md-6 mx-auto">
-                            <div class="alert alert-danger">
-                                <?php echo htmlspecialchars($errorMsg, ENT_QUOTES, 'UTF-8'); ?>
-                            </div>
-                        </div>
-                    </div>
-                <?php elseif (empty($days)): ?>
-                    <div class="row justify-content-center">
-                        <div class="col-md-8 text-center">
-                            <p class="text-muted">No articles found in the archive yet.</p>
-                        </div>
-                    </div>
-                <?php else: ?>
-
-                    <!-- Filter bar -->
-                    <div class="sn-history-filters mt-5 mb-0">
-                        <div class="container-fluid px-0 px-md-1">
-                            <div class="row justify-content-center">
-                                <div class="col-md-4 col-lg-2 mb-2">
-                                    <label for="historyFilterKeyword">Filter by keyword</label>
-                                    <input id="historyFilterKeyword" type="text" class="form-control form-control-sm" placeholder="headline, topic, etc.">
-                                </div>
-                                <div class="col-md-4 col-lg-2 mb-2">
-                                    <label for="historyFilterDomain">Filter by domain</label>
-                                    <input id="historyFilterDomain" type="text" class="form-control form-control-sm" placeholder="e.g. nytimes.com">
-                                </div>
-                                <div class="col-md-4 col-lg-2 mb-2">
-                                    <label for="historyFilterTime">Time window</label>
-                                    <select id="historyFilterTime" class="form-control form-control-sm">
-                                        <option value="all">All time</option>
-                                        <option value="1d">Last 24 hours</option>
-                                        <option value="7d">Last 7 days</option>
-                                        <option value="30d">Last 30 days</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <?php require_once 'config_interest.php'; ?>
-
-                    <div id="history-no-results" class="row justify-content-center mt-3 d-none">
-                        <div class="col-md-6">
-                            <div class="alert alert-info" role="alert">
-                              No articles found. Try adjusting your filters or clearing them.
-                            </div>
-                        </div>
-                    </div>
-
-                    <?php $rowIndex = 0; ?>
-                    <?php foreach ($days as $dateKey => $articles): ?>
-                        <?php
-                            $rowIndex++;
-                            $trackId = 'articles-track-' . $rowIndex;
-                            $dt = DateTime::createFromFormat('Y-m-d', $dateKey);
-                            $friendlyDate = $dt ? $dt->format('F j, Y') : htmlspecialchars($dateKey);
-                            $count = count($articles);
-                        ?>
-                        <section class="day-row sn-history-day">
-                            <div class="row gx-2 gx-sm-3 mb-2">
-                                <div class="col-12 d-flex justify-content-between align-items-baseline">
-                                    <h3 class="day-title mb-0"><?php echo $friendlyDate; ?></h3>
-                                    <div class="day-meta">
-                                        <?php echo $count; ?> article<?php echo $count !== 1 ? 's' : ''; ?>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="articles-track-wrapper">
-                                <!-- Scroll buttons -->
-                                <button class="scroll-btn scroll-btn-left"
-                                        type="button"
-                                        data-track="<?php echo $trackId; ?>"
-                                        data-direction="left">
-                                    ‹
-                                </button>
-                                <button class="scroll-btn scroll-btn-right"
-                                        type="button"
-                                        data-direction="right"
-                                        data-track="<?php echo $trackId; ?>">
-                                    ›
-                                </button>
-
-                                <!-- Horizontal track -->
-                                <div class="articles-track" id="<?php echo $trackId; ?>">
-                                    <?php foreach ($articles as $item): ?>
-                                        <?php
-                                            $title    = $item['title'] ?? '';
-                                            $url      = $item['link'] ?? '#';
-                                            $mediaUrl = $item['media_url'] ?? '';
-                                            $pubDt    = $item['_dt'] ?? null;
-                                            $ts       = $item['_ts'] ?? null;
-                                            $pubTime  = $pubDt ? $pubDt->format('g:i A') : '';
-                                            // New: full datetime for data- attribute (ISO 8601)
-                                            $pubIso = '';
-                                            if ($pubDt instanceof DateTimeInterface) {
-                                                $pubIso = $pubDt->format(DATE_ATOM); // e.g. 2025-12-07T15:45:00+00:00
-                                            } elseif (!empty($ts)) {
-                                                $pubIso = gmdate(DATE_ATOM, (int)$ts);
-                                            }
-                                            $category = $item['feed_name'] ?? '';
-
-                                            $analyzeUrl = 'newsroom.php?url=' . urlencode($url)
-                                                . '&category=' . urlencode($category)
-                                                . '&pub_date=' . urlencode($ts);
-
-                                            // Publisher favicon (update key name if different)
-                                            $faviconUrl = 'https://t0.gstatic.com/faviconV2'
-                                                . '?client=SOCIAL&type=FAVICON'
-                                                . '&fallback_opts=TYPE,SIZE,URL'
-                                                . '&url=' . rawurlencode($url)
-                                                . '&size=64';
-
-                                            // Extract domain for chip + filter
-                                            $domain = '';
-                                            if (!empty($url) && $url !== '#') {
-                                                $host = parse_url($url, PHP_URL_HOST);
-                                                if ($host) {
-                                                    if (strpos($host, 'www.') === 0) {
-                                                        $host = substr($host, 4);
-                                                    }
-                                                    $domain = $host;
-                                                }
-                                            }
-
-                                            // $article is your article row
-                                            $badges = scroll_get_article_badges($item);
-
-                                            $card_classes = ' scroll-history-card';
-
-                                            if (scroll_is_high_signal_publisher($item)) {
-                                                $card_classes .= ' scroll-card-high-signal';
-                                            }
-                                        ?>
-                                        <article
-                                            class="article-card sn-history-item<?php echo $card_classes; ?>"
-                                            data-title="<?php echo htmlspecialchars($title); ?>"
-                                            data-domain="<?php echo htmlspecialchars($domain); ?>"
-                                            data-timestamp="<?php echo $ts ? (int)$ts : ''; ?>"
-                                        >
-                                            <div class="article-image-wrap">
-                                                <?php if (!empty($mediaUrl)): ?>
-                                                    <img
-                                                        src="<?php echo htmlspecialchars($mediaUrl); ?>"
-                                                        alt=""
-                                                        loading="lazy"
-                                                        decoding="async"
-                                                        onerror="this.onerror=null;this.src='assets/img/news-placeholder.jpg';"
-                                                    />
-                                                <?php else: ?>
-                                                    <img
-                                                        src="assets/img/news-placeholder.jpg"
-                                                        alt=""
-                                                        loading="lazy"
-                                                        decoding="async"
-                                                    />
-                                                <?php endif; ?>
-
-                                                <?php if (!empty($domain)): ?>
-                                                    <div class="domain-chip">
-                                                        <?php if (!empty($faviconUrl)): ?>
-                                                            <img
-                                                                class="pub-favicon"
-                                                                src="<?php echo htmlspecialchars($faviconUrl); ?>"
-                                                                alt=""
-                                                                onerror="this.style.display='none';"
-                                                            />
-                                                        <?php endif; ?>
-                                                        <?php echo htmlspecialchars($domain); ?>
-                                                    </div>
-                                                <?php endif; ?>
-                                            </div>
-                                            <div class="article-body">
-                                                <h4 class="article-title mb-0">
-                                                    <?php echo htmlspecialchars($title); ?>
-                                                </h4>
-
-                                                <?php if (!empty($badges)) : ?>
-                                                    <div class="scroll-article-badges">
-                                                        <?php foreach ($badges as $badge): ?>
-                                                            <?php
-                                                                $slug = $badge['slug'] ?? '';
-
-                                                                // Default links (you can define these earlier in the file too)
-                                                                $highSignalSearchUrl = '/search.php?high_signal=1'; // maybe add &mode=nlp later
-                                                                $deepDiveSearchUrl   = '/search.php?mode=nlp&deep_dive=1';
-
-                                                                // Decide href per badge
-                                                                $badgeHref = $highSignalSearchUrl; // sensible default
-
-                                                                if ($slug === 'deep-dive') {
-                                                                    $badgeHref = $deepDiveSearchUrl;
-                                                                } elseif ($slug === 'high-signal-publisher') {
-                                                                    $badgeHref = $highSignalSearchUrl;
-                                                                }
-                                                            ?>
-                                                            <a class="scroll-badge scroll-badge-<?php echo htmlspecialchars($slug); ?>"
-                                                               href="<?php echo htmlspecialchars($badgeHref); ?>" title="<?php echo htmlspecialchars($badge['tooltip']); ?>" data-loading>
-                                                                <?php echo htmlspecialchars($badge['label']); ?>
-                                                            </a>
-                                                        <?php endforeach; ?>
-                                                    </div>
-                                                <?php endif; ?>
-
-                                                <div class="article-meta">
-                                                    <?php echo $pubTime; ?>
-                                                </div>
-                                                <div class="article-actions">
-                                                    <a class="btn btn-outline-primary btn-analyze article-link"
-                                                       href="<?php echo $analyzeUrl; ?>"
-                                                       data-loading
-                                                       >
-                                                        Analyze
-                                                    </a>
-                                                    <a class="link-read article-link"
-                                                       href="<?php echo htmlspecialchars($url); ?>"
-                                                       target="_blank"
-                                                       rel="noopener noreferrer"
-                                                       data-article-url="<?= htmlspecialchars($url) ?>"
-                                                       data-article-title="<?= htmlspecialchars($title) ?>"
-                                                       data-article-source="<?= htmlspecialchars(strtolower($category)) ?>"
-                                                       data-article-image="<?= htmlspecialchars($mediaUrl) ?>"
-                                                       data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
-                                                       data-article-kind="external"
-                                                       >
-                                                        <span>Read story</span>
-                                                        <span class="icon">↗</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
-                        </section>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
-        </section>
-
-        <!-- Footer-->
-        <div class="bg-dark" style="height: 338px;">
-            <footer class="footer footer-bottom bg-white py-4">
+            <!-- topnav-->
+            <footer class="footer py-4 bg-white sticky-top sn-top-nav">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-lg-4 text-lg-left">Copyright © Scroll News 2025</div>
-                        <div class="col-lg-4 my-3 my-lg-0">
-                            <a class="btn btn-black btn-social mx-2" title="X profile" href="https://x.com/scrollnewsio" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                            <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
-                            <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" data-loading><i class="fas fa-play"></i></a>
-                            <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
-                            <a class="btn btn-black btn-social mx-2" title="IG profile" href="https://www.instagram.com/scrollnewsio/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <div class="col-lg-4 d-flex text-lg-left text-bolder">
+                            <h5 class="mb-2 mb-sm-0">
+                                <a href="index.php" data-loading>
+                                    <img src="assets/img/play-green.png" alt="Logo play button" style="height: 24px; width: auto; vertical-align: middle; margin-right: 5px; margin-bottom: 5px;">
+                                    Scroll News
+                                </a>
+                            </h5>
                         </div>
-                        <div class="col-lg-4 text-lg-right font-weight-bold">
-                            <a href="index.php" data-loading>scroll news</a>
-                            <br>
-                            <a href="about.php" class="text-muted small mr-3">About</a>
-                            <a href="terms.php" class="text-muted small mr-3">Terms</a>
-                            <a href="privacy.php" class="text-muted small">Privacy</a>
+                        <div class="col-lg-4 my-3 my-lg-0">
+                            <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
+                            <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" onclick="" data-loading><i class="fas fa-play"></i></a>
+                            <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
+                        </div>
+                        <div class="col-lg-4 d-flex text-lg-right" style="">
+                            <div class="ml-auto">
+                                <a href="about.php" class="mr-3">About</a>
+                                <a class="search-button" href="search.php" title="Search" aria-label="Search">🔍</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </footer>
+
+            <!-- Daily Scroll Archive -->
+            <section class="page-section" id="services" style="padding: 4rem 0;">
+                <div class="container-fluid px-3 px-md-4">
+                    <div class="row justify-content-center sn-archive-header mb-3">
+                        <div class="col-md-8 text-center">
+                            <h2 class="section-heading text-uppercase">Daily Scroll Archive</h2>
+                            <p class="section-subheading">
+                                Flip through every article Scroll News has captured in the last <?= $DAYS_TO_SHOW ?> days—one horizontal row of cards for each day.
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="small text-muted text-center mb-3">
+                        Want to see only what <em>you’ve</em> read?
+                        <a href="history.php">View your reading history →</a>
+                    </p>
+
+                    <?php if ($errorMsg): ?>
+                        <div class="row">
+                            <div class="col-md-6 mx-auto">
+                                <div class="alert alert-danger">
+                                    <?php echo htmlspecialchars($errorMsg, ENT_QUOTES, 'UTF-8'); ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php elseif (empty($days)): ?>
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 text-center">
+                                <p class="text-muted">No articles found in the archive yet.</p>
+                            </div>
+                        </div>
+                    <?php else: ?>
+
+                        <!-- Filter bar -->
+                        <div class="sn-history-filters mt-5 mb-0">
+                            <div class="container-fluid px-0 px-md-1">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-4 col-lg-2 mb-2">
+                                        <label for="historyFilterKeyword">Filter by keyword</label>
+                                        <input id="historyFilterKeyword" type="text" class="form-control form-control-sm" placeholder="headline, topic, etc.">
+                                    </div>
+                                    <div class="col-md-4 col-lg-2 mb-2">
+                                        <label for="historyFilterDomain">Filter by domain</label>
+                                        <input id="historyFilterDomain" type="text" class="form-control form-control-sm" placeholder="e.g. nytimes.com">
+                                    </div>
+                                    <div class="col-md-4 col-lg-2 mb-2">
+                                        <label for="historyFilterTime">Time window</label>
+                                        <select id="historyFilterTime" class="form-control form-control-sm">
+                                            <option value="all">All time</option>
+                                            <option value="1d">Last 24 hours</option>
+                                            <option value="7d">Last 7 days</option>
+                                            <option value="30d">Last 30 days</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <?php require_once 'config_interest.php'; ?>
+
+                        <div id="history-no-results" class="row justify-content-center mt-3 d-none">
+                            <div class="col-md-6">
+                                <div class="alert alert-info" role="alert">
+                                No articles found. Try adjusting your filters or clearing them.
+                                </div>
+                            </div>
+                        </div>
+
+                        <?php $rowIndex = 0; ?>
+                        <?php foreach ($days as $dateKey => $articles): ?>
+                            <?php
+                                $rowIndex++;
+                                $trackId = 'articles-track-' . $rowIndex;
+                                $dt = DateTime::createFromFormat('Y-m-d', $dateKey);
+                                $friendlyDate = $dt ? $dt->format('F j, Y') : htmlspecialchars($dateKey);
+                                $count = count($articles);
+                            ?>
+                            <section class="day-row sn-history-day">
+                                <div class="row gx-2 gx-sm-3 mb-2">
+                                    <div class="col-12 d-flex justify-content-between align-items-baseline">
+                                        <h3 class="day-title mb-0"><?php echo $friendlyDate; ?></h3>
+                                        <div class="day-meta">
+                                            <?php echo $count; ?> article<?php echo $count !== 1 ? 's' : ''; ?>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="articles-track-wrapper">
+                                    <!-- Scroll buttons -->
+                                    <button class="scroll-btn scroll-btn-left"
+                                            type="button"
+                                            data-track="<?php echo $trackId; ?>"
+                                            data-direction="left">
+                                        ‹
+                                    </button>
+                                    <button class="scroll-btn scroll-btn-right"
+                                            type="button"
+                                            data-direction="right"
+                                            data-track="<?php echo $trackId; ?>">
+                                        ›
+                                    </button>
+
+                                    <!-- Horizontal track -->
+                                    <div class="articles-track" id="<?php echo $trackId; ?>">
+                                        <?php foreach ($articles as $item): ?>
+                                            <?php
+                                                $title    = $item['title'] ?? '';
+                                                $url      = $item['link'] ?? '#';
+                                                $mediaUrl = $item['media_url'] ?? '';
+                                                $pubDt    = $item['_dt'] ?? null;
+                                                $ts       = $item['_ts'] ?? null;
+                                                $pubTime  = $pubDt ? $pubDt->format('g:i A') : '';
+                                                // New: full datetime for data- attribute (ISO 8601)
+                                                $pubIso = '';
+                                                if ($pubDt instanceof DateTimeInterface) {
+                                                    $pubIso = $pubDt->format(DATE_ATOM); // e.g. 2025-12-07T15:45:00+00:00
+                                                } elseif (!empty($ts)) {
+                                                    $pubIso = gmdate(DATE_ATOM, (int)$ts);
+                                                }
+                                                $category = $item['feed_name'] ?? '';
+
+                                                $analyzeUrl = 'newsroom.php?url=' . urlencode($url)
+                                                    . '&category=' . urlencode($category)
+                                                    . '&pub_date=' . urlencode($ts);
+
+                                                // Publisher favicon (update key name if different)
+                                                $faviconUrl = 'https://t0.gstatic.com/faviconV2'
+                                                    . '?client=SOCIAL&type=FAVICON'
+                                                    . '&fallback_opts=TYPE,SIZE,URL'
+                                                    . '&url=' . rawurlencode($url)
+                                                    . '&size=64';
+
+                                                // Extract domain for chip + filter
+                                                $domain = '';
+                                                if (!empty($url) && $url !== '#') {
+                                                    $host = parse_url($url, PHP_URL_HOST);
+                                                    if ($host) {
+                                                        if (strpos($host, 'www.') === 0) {
+                                                            $host = substr($host, 4);
+                                                        }
+                                                        $domain = $host;
+                                                    }
+                                                }
+
+                                                // $article is your article row
+                                                $badges = scroll_get_article_badges($item);
+
+                                                $card_classes = ' scroll-history-card';
+
+                                                if (scroll_is_high_signal_publisher($item)) {
+                                                    $card_classes .= ' scroll-card-high-signal';
+                                                }
+                                            ?>
+                                            <article
+                                                class="article-card sn-history-item<?php echo $card_classes; ?>"
+                                                data-title="<?php echo htmlspecialchars($title); ?>"
+                                                data-domain="<?php echo htmlspecialchars($domain); ?>"
+                                                data-timestamp="<?php echo $ts ? (int)$ts : ''; ?>"
+                                            >
+                                                <div class="article-image-wrap">
+                                                    <?php if (!empty($mediaUrl)): ?>
+                                                        <img
+                                                            src="<?php echo htmlspecialchars($mediaUrl); ?>"
+                                                            alt=""
+                                                            loading="lazy"
+                                                            decoding="async"
+                                                            onerror="this.onerror=null;this.src='assets/img/news-placeholder.jpg';"
+                                                        />
+                                                    <?php else: ?>
+                                                        <img
+                                                            src="assets/img/news-placeholder.jpg"
+                                                            alt=""
+                                                            loading="lazy"
+                                                            decoding="async"
+                                                        />
+                                                    <?php endif; ?>
+
+                                                    <?php if (!empty($domain)): ?>
+                                                        <div class="domain-chip">
+                                                            <?php if (!empty($faviconUrl)): ?>
+                                                                <img
+                                                                    class="pub-favicon"
+                                                                    src="<?php echo htmlspecialchars($faviconUrl); ?>"
+                                                                    alt=""
+                                                                    onerror="this.style.display='none';"
+                                                                />
+                                                            <?php endif; ?>
+                                                            <?php echo htmlspecialchars($domain); ?>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
+                                                <div class="article-body">
+                                                    <h4 class="article-title mb-0">
+                                                        <?php echo htmlspecialchars($title); ?>
+                                                    </h4>
+
+                                                    <?php if (!empty($badges)) : ?>
+                                                        <div class="scroll-article-badges">
+                                                            <?php foreach ($badges as $badge): ?>
+                                                                <?php
+                                                                    $slug = $badge['slug'] ?? '';
+
+                                                                    // Default links (you can define these earlier in the file too)
+                                                                    $highSignalSearchUrl = '/search.php?high_signal=1'; // maybe add &mode=nlp later
+                                                                    $deepDiveSearchUrl   = '/search.php?mode=nlp&deep_dive=1';
+
+                                                                    // Decide href per badge
+                                                                    $badgeHref = $highSignalSearchUrl; // sensible default
+
+                                                                    if ($slug === 'deep-dive') {
+                                                                        $badgeHref = $deepDiveSearchUrl;
+                                                                    } elseif ($slug === 'high-signal-publisher') {
+                                                                        $badgeHref = $highSignalSearchUrl;
+                                                                    }
+                                                                ?>
+                                                                <a class="scroll-badge scroll-badge-<?php echo htmlspecialchars($slug); ?>"
+                                                                href="<?php echo htmlspecialchars($badgeHref); ?>" title="<?php echo htmlspecialchars($badge['tooltip']); ?>" data-loading>
+                                                                    <?php echo htmlspecialchars($badge['label']); ?>
+                                                                </a>
+                                                            <?php endforeach; ?>
+                                                        </div>
+                                                    <?php endif; ?>
+
+                                                    <div class="article-meta">
+                                                        <?php echo $pubTime; ?>
+                                                    </div>
+                                                    <div class="article-actions">
+                                                        <a class="btn btn-outline-primary btn-analyze article-link"
+                                                        href="<?php echo $analyzeUrl; ?>"
+                                                        data-loading
+                                                        >
+                                                            Analyze
+                                                        </a>
+                                                        <a class="link-read article-link"
+                                                        href="<?php echo htmlspecialchars($url); ?>"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        data-article-url="<?= htmlspecialchars($url) ?>"
+                                                        data-article-title="<?= htmlspecialchars($title) ?>"
+                                                        data-article-source="<?= htmlspecialchars(strtolower($category)) ?>"
+                                                        data-article-image="<?= htmlspecialchars($mediaUrl) ?>"
+                                                        data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
+                                                        data-article-kind="external"
+                                                        >
+                                                            <span>Read story</span>
+                                                            <span class="icon">↗</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </section>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+            </section>
+
+            <!-- Footer-->
+            <div class="bg-dark" style="height: 338px;">
+                <footer class="footer footer-bottom bg-white py-4">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-4 text-lg-left">Copyright © Scroll News 2025</div>
+                            <div class="col-lg-4 my-3 my-lg-0">
+                                <a class="btn btn-black btn-social mx-2" title="X profile" href="https://x.com/scrollnewsio" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                                <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
+                                <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" data-loading><i class="fas fa-play"></i></a>
+                                <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
+                                <a class="btn btn-black btn-social mx-2" title="IG profile" href="https://www.instagram.com/scrollnewsio/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                            </div>
+                            <div class="col-lg-4 text-lg-right font-weight-bold">
+                                <a href="index.php" data-loading>scroll news</a>
+                                <br>
+                                <a href="about.php" class="text-muted small mr-3">About</a>
+                                <a href="terms.php" class="text-muted small mr-3">Terms</a>
+                                <a href="privacy.php" class="text-muted small">Privacy</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
         </div>
 
         <!-- Bootstrap core JS-->
