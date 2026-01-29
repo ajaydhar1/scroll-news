@@ -78,6 +78,14 @@ footer .text-muted {
     background-color: rgba(0, 0, 0, .5) !important;
 }
 
+::selection{
+  background: rgba(0, 191, 166, 0.76) !important; /* your #00bfa6 but softened */
+  color: white !important;
+}
+::-moz-selection{
+  background: rgba(0, 191, 166, 0.76) !important; /* your #00bfa6 but softened */
+  color: white !important;
+}
 
 /* Homepage */
 
