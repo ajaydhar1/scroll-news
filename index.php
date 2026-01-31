@@ -283,7 +283,7 @@
                 <div class="col-12 text-center">
                     <h2 class="mb-2">Reading Modes</h2>
                     <p class="text-muted mb-0">
-                    Choose how you want to read today – slow and deep, or quick and high-signal.
+                    Two ways to reach the reporting you love — choose how you get there.
                     </p>
                 </div>
                 </div>
@@ -303,7 +303,7 @@
                             </a>
                         </div>
                         <p class="text-muted mb-2">
-                        Thoughtful, high-context reporting that goes beyond headlines and reactions.
+                        Thoughtful, entity-aware reporting that goes beyond headlines and reactions.
                         </p>
                         <p class="text-muted italic mb-4">
                         These are the pieces you sit with — fewer articles, more understanding.
@@ -329,7 +329,7 @@
                             </a>
                         </div>
                         <p class="text-muted mb-2">
-                        A curated stream of outlets that consistently publish smart, readable reporting.
+                        A curated stream of outlets that consistently publish smart, compelling reporting.
                         </p>
                         <p class="text-muted italic mb-4">
                         Ideal when you want to browse without worrying if an article will be worth your time.
