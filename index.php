@@ -285,7 +285,7 @@
 
                 <div class="row g-4">
                 <!-- Deep Dive -->
-                <div class="col-md-6">
+                <div class="col-md-6 mb-3">
                     <div class="card h-100 shadow-sm reading-mode-card">
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-2">
@@ -311,7 +311,7 @@
                 </div>
 
                 <!-- High-Signal Publishers -->
-                <div class="col-md-6">
+                <div class="col-md-6 mb-3">
                     <div class="card h-100 shadow-sm reading-mode-card">
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-2">

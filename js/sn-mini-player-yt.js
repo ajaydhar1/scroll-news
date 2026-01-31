@@ -38,7 +38,7 @@
 
   // ----------------- Config -----------------
   const PLAYLISTS = [
-    { name: 'MS NOW (MSNBC)', id: 'PLDIVi-vBsOExM37bFPYowCBBiohZCV1iC' },
+    { name: 'MS NOW (MSNBC)', id: 'PLDIVi-vBsOEy7nK-gNvoU8TS_BDOqBOxE' },
     { name: 'Fox News (Trump Administration)', id: 'PLGmceqLQ0UeYSzvsA6agwpkdoCMySiLA6' },
     { name: 'Bloomberg',  id: 'PLGaYlBJIOoa9DV4I6sC8R8bX4L0Jq16XZ' },
     { name: 'ABC News',  id: 'PLQOa26lW-uI8H1WxYPbSEqQJYoTRq2h5n' },
