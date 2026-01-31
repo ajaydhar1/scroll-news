@@ -156,7 +156,7 @@ section.py-5 h3 {
     color: white !important;
 }
 
-.btn-social {
+.team-member .btn.btn-social {
     box-shadow: 0 0 0 0.14rem var(--brand-color) !important;
 }
 
