@@ -2007,7 +2007,7 @@ function _fragment_cache_path(string $key): string {
     return _fragment_cache_dir() . '/' . $safe . '.html';
 }
 
-$CACHE_VER = 'v7';
+$CACHE_VER = 'v8';
 
 function fragment_cache_swr(
     string $key,

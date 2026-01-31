@@ -1,38 +1,38 @@
 {
-    "fetched_at": 1769580894,
+    "fetched_at": 1769840230,
     "feeds": [
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "ON THIN ICE...",
-                    "url": "https://www.politico.com/news/2026/01/27/trump-keeps-defending-noem-allies-see-a-warning-sign-00751024",
-                    "ts": 1769578296,
-                    "emo": "📰"
-                },
-                {
-                    "title": "IMMIGRATION OFFICERS UNLOAD...",
-                    "url": "https://www.kenklippenstein.com/p/ice-unloads",
-                    "ts": 1769578296,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "BusinessInsider",
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Tiffany & Co. is setting its sights on the gold girlies",
-                    "url": "https://www.businessinsider.com/tiffany-lvmh-gold-high-jewelry-pulling-back-silver-2026-1",
-                    "ts": 1769576420,
-                    "emo": "📰"
+                    "title": "Trump taps a longtime agency economist as the next Bureau of Labor Statistics commissioner",
+                    "url": "https://www.businessinsider.com/trump-taps-longtime-agency-economist-next-bls-commissioner-brett-matsumoto-2026-1",
+                    "ts": 1769831804,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "Some Amazon employees get 'Project Dawn' calendar invitation discussing upcoming job cuts",
-                    "url": "https://www.businessinsider.com/amazon-staff-calendar-invitation-upcoming-job-cuts-project-dawn-2026-1",
-                    "ts": 1769562626,
+                    "title": "Kathy Ruemmler, now Goldman Sachs' top lawyer, thanked 'Uncle Jeffrey' Epstein for gifts, emails show",
+                    "url": "https://www.businessinsider.com/epstein-emails-kathy-ruemmler-thanked-uncle-jeffrey-for-gifts-2026-1",
+                    "ts": 1769825710,
+                    "emo": "🎭"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "FEDS ARREST LEMON",
+                    "url": "https://www.nytimes.com/2026/01/30/us/don-lemon-arrest-minnesota-church-protest.html?unlocked_article_code=1.IVA.qddu.bKtB9yDqbaVP&smid=url-share",
+                    "ts": 1769791597,
+                    "emo": "🚨"
+                },
+                {
+                    "title": "DON VS. DON",
+                    "url": "https://deadline.com/2026/01/don-lemon-arrested-ice-protest-trump-1236703300/",
+                    "ts": 1769791597,
                     "emo": "📰"
                 }
             ]
