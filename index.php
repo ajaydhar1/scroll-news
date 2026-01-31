@@ -389,7 +389,7 @@
                                 <i class="fas fa-circle fa-stack-2x text-green"></i>
                                 <i class="fas fa-wand-magic-sparkles fa-stack-1x fa-inverse"></i>
                             </span>
-                            <h4 class="my-3">AI-powered Summaries</h4>
+                            <h4 class="my-3">AI-powered Discovery</h4>
                             <!--<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
                         </div>
                         <div class="col-md-4">
