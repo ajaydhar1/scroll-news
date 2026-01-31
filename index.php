@@ -123,6 +123,11 @@
                 }
             }
 
+            header.masthead .masthead-subheading {
+                font-style: normal;
+                font-size: 1.5rem;
+            }
+
             a {
                 color: var(--brand-color);
             }
@@ -262,8 +267,8 @@
             <!-- Masthead-->
             <header class="masthead bg-light-2">
                 <div class="container">
-                    <div class="masthead-subheading">Welcome To Scroll News!</div>
-                    <div class="masthead-heading text-uppercase">AI-Driven News Summaries</div>
+                    <div class="masthead-subheading">An intelligence layer between you and the news.</div>
+                    <div class="masthead-heading text-uppercase">AI-Driven News<br><span>Insights</span></div>
                     <div class="cta-group text-center">
                         <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black d-block d-md-inline-block btn-width-mobile-75 mx-auto mb-3 mb-sm-0 mr-md-2" href="newsroom.php" data-loading>Launch Newsroom</a>
                         <a class="btn btn-dark btn-lg btn-rectangle js-scroll-trigger d-block d-md-inline-block btn-width-mobile-75 w-md-auto mx-auto" href="#playlists" style="color: white; border-color: transparent;">Watch Video</a>
@@ -567,7 +572,7 @@
                     <div style="max-width:880px;margin:auto">
                         <label for="ytTab" style="display:block;margin:0 0 8px">News playlists</label>
                         <select id="ytTab" style="width:100%;padding:8px">
-                            <option value="PLQOa26lW-uI8H1WxYPbSEqQJYoTRq2h5n">ABC News (Daily News Updates)</option>
+                            <option value="PLQOa26lW-uI97KzKsYCRtDthILEXUeoWn">ABC News (Daily News Updates)</option>
                             <option value="PL0tDb4jw6kPz6KY3KYoZ5bRLdMAEzpSbb">NBC News (Top News)</option>
                             <option value="PLEb3ThbkPrFazUgt4b5WwVCj9QpaflUbl">CBS News (Top News)</option>
                             <option value="PLGaYlBJIOoa9DV4I6sC8R8bX4L0Jq16XZ">Bloomberg (Stock Market News and Analysis)</option>
