@@ -580,7 +580,7 @@
                             <option value="PLn3nHXu50t5wkud7Iv0LFazfV8dja6dc3">ESPN (First Take)</option>
                             <option value="PLn3nHXu50t5xU9FvI2M2km5a4GgfqfKlY">ESPN (Get Up)</option>
                             <option value="PLGmceqLQ0UeYSzvsA6agwpkdoCMySiLA6">Fox News (Trump Administration)</option>
-                            <option value="PLDIVi-vBsOExM37bFPYowCBBiohZCV1iC">MS NOW (MSNBC)</option>
+                            <option value="PLDIVi-vBsOEy7nK-gNvoU8TS_BDOqBOxE">MS NOW (MSNBC)</option>
                             <!-- Paste more playlist URLs or IDs as options; ID or full URL both work -->
                             <!-- <option value="https://www.youtube.com/playlist?list=PLxxxx">World</option> -->
                             <!-- <option value="PLyyyy">Technology</option> -->
