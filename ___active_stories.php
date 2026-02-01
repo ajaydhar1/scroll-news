@@ -27,7 +27,7 @@ try {
       WITH params AS (
         SELECT
           NOW() - INTERVAL '3 weeks' AS since_3w,
-          NOW() - INTERVAL '7 days' AS since_7d
+          NOW() - INTERVAL '10 days' AS since_10d
       ),
       sports_terms AS (
         SELECT UNNEST(ARRAY[
@@ -235,7 +235,7 @@ try {
             COALESCE(a.media_url, '') AS image_url
           FROM articles a
           JOIN params p ON TRUE
-          WHERE a.created_at >= p.since_7d
+          WHERE a.created_at >= p.since_10d
             AND a.source_slug <> 'sports'
             AND NOT (pr.label = 'GPE' AND a.source_slug = 'entertainment')
 
