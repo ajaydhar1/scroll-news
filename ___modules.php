@@ -1692,21 +1692,26 @@ function search_nlp(PDO $db, ?string $q = '', array $opts = []): array
     if ($deepDive && defined('SCROLL_INTEREST_ENTITY_THRESHOLD') && (SCROLL_INTEREST_ENTITY_THRESHOLD >= 1)) {
         $conds[] = "(
             SELECT COALESCE(SUM((ent->>'count')::int), 0)
-            FROM jsonb_array_elements((nlp->'entities')::jsonb) AS ent
+            FROM jsonb_array_elements(
+                CASE
+                    WHEN jsonb_typeof(nlp->'entities') = 'array' THEN nlp->'entities'
+                    ELSE '[]'::jsonb
+                END
+            ) AS ent
         ) >= :min_entity_count";
 
         $params[':min_entity_count'] = SCROLL_INTEREST_ENTITY_THRESHOLD;
     }
 
     // --- Text / topic / keyword / entity search (ALL terms must match somewhere) ---
-    if (trim((string)$q) !== '') {
+    $q = trim((string)$q);
+    if ($q !== '') {
         $conds[] = "NOT EXISTS (
             SELECT 1
             FROM unnest(
                 regexp_split_to_array(
-                    -- normalize punctuation to spaces, then split on whitespace
-                    regexp_replace(trim(:q), '[^[:alnum:] ]+', ' ', 'g'),
-                    '\\s+'
+                    regexp_replace(:q, '[^[:alnum:] ]+', ' ', 'g'),
+                    E'\\\\s+'
                 )
             ) AS t(term)
             WHERE term <> ''
@@ -1714,24 +1719,39 @@ function search_nlp(PDO $db, ?string $q = '', array $opts = []): array
                 -- Title
                 title ILIKE '%' || term || '%'
 
-                -- Topics: object keys
+                -- Topics: object keys (safe even if topics missing)
                 OR EXISTS (
                     SELECT 1
-                    FROM jsonb_object_keys(COALESCE((nlp->'topics')::jsonb, '{}'::jsonb)) AS k(key)
+                    FROM jsonb_object_keys(
+                        CASE
+                            WHEN jsonb_typeof(nlp->'topics') = 'object' THEN nlp->'topics'
+                            ELSE '{}'::jsonb
+                        END
+                    ) AS k(key)
                     WHERE key ILIKE '%' || term || '%'
                 )
 
-                -- Keywords: array of strings
+                -- Keywords: only if it's actually an array
                 OR EXISTS (
                     SELECT 1
-                    FROM jsonb_array_elements_text(COALESCE((nlp->'keywords')::jsonb, '[]'::jsonb)) AS kw(val)
+                    FROM jsonb_array_elements_text(
+                        CASE
+                            WHEN jsonb_typeof(nlp->'keywords') = 'array' THEN nlp->'keywords'
+                            ELSE '[]'::jsonb
+                        END
+                    ) AS kw(val)
                     WHERE val ILIKE '%' || term || '%'
                 )
 
-                -- Entities: array of objects; match obj->>'text'
+                -- Entities: only if it's actually an array; match ent->>'text'
                 OR EXISTS (
                     SELECT 1
-                    FROM jsonb_array_elements(COALESCE((nlp->'entities')::jsonb, '[]'::jsonb)) AS ent(obj)
+                    FROM jsonb_array_elements(
+                        CASE
+                            WHEN jsonb_typeof(nlp->'entities') = 'array' THEN nlp->'entities'
+                            ELSE '[]'::jsonb
+                        END
+                    ) AS ent(obj)
                     WHERE COALESCE(ent.obj->>'text', '') ILIKE '%' || term || '%'
                 )
             )
@@ -1757,15 +1777,25 @@ function search_nlp(PDO $db, ?string $q = '', array $opts = []): array
         LIMIT 100
     ";
 
+    /*
     $stmt = $db->prepare($sql);
     $stmt->execute($params);
 
-    if (!$stmt->execute($params)) {
-        error_log('search_nlp error: ' . print_r($stmt->errorInfo(), true));
-        return [];
-    }
-
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    */
+
+    try {
+        $stmt = $db->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Throwable $e) {
+        http_response_code(500);
+        echo "search_nlp failed: " . htmlspecialchars($e->getMessage());
+        echo "\n\nSQL:\n" . htmlspecialchars($sql);
+        echo "\n\nPARAMS:\n" . htmlspecialchars(json_encode($params));
+        exit;
+    }
 }
 
 
