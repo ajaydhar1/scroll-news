@@ -1698,15 +1698,59 @@ function search_nlp(PDO $db, ?string $q = '', array $opts = []): array
         $params[':min_entity_count'] = SCROLL_INTEREST_ENTITY_THRESHOLD;
     }
 
-    // --- Text / topic / keyword / entity search ---
+
+    // Normalize query into individual terms (AND semantics across terms)
+    $q = trim((string)$q);
+    $terms = [];
+
     if ($q !== '') {
-        $conds[] = "(
-            title ILIKE :q
-            OR COALESCE((nlp->'topics')::text, '')    ILIKE :q  -- topics map
-            OR COALESCE((nlp->'keywords')::text, '')  ILIKE :q  -- keywords array
-            OR COALESCE((nlp->'entities')::text, '')  ILIKE :q  -- entities array
+        // Split on whitespace
+        $raw = preg_split('/\s+/', $q);
+
+        // Optional: de-dupe + drop tiny terms
+        $raw = array_values(array_unique(array_filter($raw, fn($t) => $t !== '')));
+
+        // Build %term% patterns for ILIKE ANY()
+        $terms = array_map(fn($t) => '%' . $t . '%', $raw);
+    }
+
+    // --- Text / topic / keyword / entity search (ALL terms must match somewhere) ---
+    if (!empty($terms)) {
+        $conds[] = "NOT EXISTS (
+            SELECT 1
+            FROM unnest(:terms::text[]) AS t(term)
+            WHERE NOT (
+                -- Title
+                title ILIKE term
+
+                -- Topics: object keys
+                OR EXISTS (
+                    SELECT 1
+                    FROM jsonb_object_keys(COALESCE(nlp->'topics', '{}'::jsonb)) AS k(key)
+                    WHERE key ILIKE term
+                )
+
+                -- Keywords: array of strings
+                OR EXISTS (
+                    SELECT 1
+                    FROM jsonb_array_elements_text(COALESCE(nlp->'keywords', '[]'::jsonb)) AS kw(val)
+                    WHERE val ILIKE term
+                )
+
+                -- Entities: array of objects; match ent->>'text'
+                OR EXISTS (
+                    SELECT 1
+                    FROM jsonb_array_elements(COALESCE(nlp->'entities', '[]'::jsonb)) AS ent(obj)
+                    WHERE COALESCE(ent.obj->>'text', '') ILIKE term
+                )
+            )
         )";
-        $params[':q'] = '%' . $q . '%';
+
+        // Bind as a Postgres array literal
+        $params[':terms'] = '{' . implode(',', array_map(
+            fn($t) => '"' . str_replace('"', '\"', $t) . '"',
+            $terms
+        )) . '}';
     }
 
     $where = $conds ? ('WHERE ' . implode(' AND ', $conds)) : '';
