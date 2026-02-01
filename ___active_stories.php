@@ -27,7 +27,7 @@ try {
       WITH params AS (
         SELECT
           NOW() - INTERVAL '3 weeks' AS since_3w,
-          NOW() - INTERVAL '10 days' AS since_10d
+          NOW() - INTERVAL '10 days' AS since_7d
       ),
       sports_terms AS (
         SELECT UNNEST(ARRAY[
@@ -235,8 +235,9 @@ try {
             COALESCE(a.media_url, '') AS image_url
           FROM articles a
           JOIN params p ON TRUE
-          WHERE a.created_at >= p.since_10d
+          WHERE a.created_at >= p.since_7d
             AND a.source_slug <> 'sports'
+            AND a.nlp IS NOT NULL
             AND NOT (pr.label = 'GPE' AND a.source_slug = 'entertainment')
 
             -- MAIN TERM MUST BE VISIBLE TO USERS
@@ -245,59 +246,53 @@ try {
               OR a.description ILIKE ('%' || pr.entity || '%')
             )
 
-            -- ALL TERMS MUST MATCH SOMEWHERE (NLP-style AND)
-            AND NOT EXISTS (
-              SELECT 1
-              FROM unnest(
-                CASE
-                  WHEN pr.item_type = 'power_center'
-                    THEN ARRAY[pr.entity]
-                  ELSE
-                    ARRAY[pr.entity] || pr.co_entities[1:4]
-                END
-              ) AS t(term)
-              WHERE COALESCE(term, '') <> ''
-                AND NOT (
-                  -- Title / description
-                  a.title ILIKE ('%' || term || '%')
-                  OR a.description ILIKE ('%' || term || '%')
+            AND (
+              pr.item_type = 'power_center'
+              OR (
+                SELECT COUNT(*)
+                FROM (
+                  SELECT DISTINCT term
+                  FROM unnest(pr.co_entities[1:4]) AS u(term)
+                ) AS ce
+                WHERE COALESCE(ce.term, '') <> ''
+                  AND (
+                    a.title ILIKE ('%' || ce.term || '%')
+                    OR a.description ILIKE ('%' || ce.term || '%')
 
-                  -- Topics (object keys)
-                  OR EXISTS (
-                    SELECT 1
-                    FROM jsonb_object_keys(
-                      CASE
-                        WHEN jsonb_typeof(a.nlp->'topics') = 'object' THEN a.nlp->'topics'
-                        ELSE '{}'::jsonb
-                      END
-                    ) AS k(key)
-                    WHERE key ILIKE ('%' || term || '%')
-                  )
+                    OR EXISTS (
+                      SELECT 1
+                      FROM jsonb_object_keys(
+                        CASE
+                          WHEN jsonb_typeof(a.nlp->'topics') = 'object' THEN a.nlp->'topics'
+                          ELSE '{}'::jsonb
+                        END
+                      ) AS k(key)
+                      WHERE key ILIKE ('%' || ce.term || '%')
+                    )
 
-                  -- Keywords
-                  OR EXISTS (
-                    SELECT 1
-                    FROM jsonb_array_elements_text(
-                      CASE
-                        WHEN jsonb_typeof(a.nlp->'keywords') = 'array' THEN a.nlp->'keywords'
-                        ELSE '[]'::jsonb
-                      END
-                    ) AS kw(val)
-                    WHERE val ILIKE ('%' || term || '%')
-                  )
+                    OR EXISTS (
+                      SELECT 1
+                      FROM jsonb_array_elements_text(
+                        CASE
+                          WHEN jsonb_typeof(a.nlp->'keywords') = 'array' THEN a.nlp->'keywords'
+                          ELSE '[]'::jsonb
+                        END
+                      ) AS kw(val)
+                      WHERE val ILIKE ('%' || ce.term || '%')
+                    )
 
-                  -- Entities
-                  OR EXISTS (
-                    SELECT 1
-                    FROM jsonb_array_elements(
-                      CASE
-                        WHEN jsonb_typeof(a.nlp->'entities') = 'array' THEN a.nlp->'entities'
-                        ELSE '[]'::jsonb
-                      END
-                    ) AS ent(obj)
-                    WHERE COALESCE(ent.obj->>'text', '') ILIKE ('%' || term || '%')
+                    OR EXISTS (
+                      SELECT 1
+                      FROM jsonb_array_elements(
+                        CASE
+                          WHEN jsonb_typeof(a.nlp->'entities') = 'array' THEN a.nlp->'entities'
+                          ELSE '[]'::jsonb
+                        END
+                      ) AS ent(obj)
+                      WHERE COALESCE(ent.obj->>'text', '') ILIKE ('%' || ce.term || '%')
+                    )
                   )
-                )
+              ) >= 2
             )
 
           ORDER BY a.pub_date DESC NULLS LAST
