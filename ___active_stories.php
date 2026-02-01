@@ -601,6 +601,9 @@ try {
               <?php
                 $label = $row['display_label'] ?? $row['entity'] ?? 'Story';
 
+                $topic = trim(explode('—', $label)[0]);
+                $classic_search = $build_search_url($topic, 'classic');
+
                 $q = $build_query_for_row($row);
                 $synopsis = $build_synopsis_url($q);
                 $google = $build_google_url($q);
@@ -615,7 +618,7 @@ try {
               ?>
 
               <div class="story-card">
-                <a class="story-title" href="<?= htmlspecialchars($scrollClassic) ?>" data-loading>
+                <a class="story-title" href="<?= htmlspecialchars($classic_search) ?>" data-loading>
                   <?= htmlspecialchars($label) ?>
                 </a>
 
