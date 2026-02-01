@@ -552,7 +552,7 @@ try {
 
 .story-thumb{
   width: 96px;
-  height: 64px;
+  height: 87px;
   border-radius: 6px;
   object-fit: cover;
   flex: 0 0 44px;
@@ -697,6 +697,15 @@ try {
 
                         // whatever name you choose in SQL — keep a couple aliases for safety
                         $pImg = $p['image_url'] ?? $p['image'] ?? $p['img'] ?? '';
+
+                        $pub_ts = strtotime($pDate);
+                        $qs = http_build_query([
+                            'url'      => $pUrl,
+                            'category' => ucfirst($pSource ?? ''),
+                            'pub_date' => $pub_ts,
+                            'db'       => 1,
+                        ]);
+
                       ?>
                       <li class="story-preview-item mb-2">
                         <?php if (!empty($pImg)): ?>
@@ -722,6 +731,31 @@ try {
                             <?= htmlspecialchars($pSource) ?>
                             <?php if ($pDate): ?> · <?= htmlspecialchars($pDate) ?><?php endif; ?>
                           </div>
+
+                          <div class="btn-group btn-group-xs mt-2" role="group">
+                            <a
+                                href="<?php echo htmlspecialchars($pUrl, ENT_QUOTES, 'UTF-8'); ?>"
+                                class="btn btn-secondary"
+                                target="_blank"
+                                rel="noopener"
+                                data-article-url="<?php echo htmlspecialchars($pUrl, ENT_QUOTES, 'UTF-8'); ?>"
+                                data-article-title="<?= htmlspecialchars($pTitle) ?>"
+                                data-article-source="<?= htmlspecialchars($pSource) ?>"
+                                data-article-image="<?= htmlspecialchars($pImg) ?>"
+                                data-article-pub-date="<?= htmlspecialchars($pDate) ?>"
+                                data-article-kind="external"
+                            >
+                                Read story
+                            </a>
+                            <a
+                                href="newsroom.php?<?= htmlspecialchars($qs) ?>"
+                                class="btn btn-green btn-gray-border"
+                                data-loading
+                            >
+                                Analyze
+                            </a>
+                        </div>
+
                         </div>
                       </li>
                     <?php endforeach; ?>
