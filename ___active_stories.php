@@ -27,7 +27,7 @@ try {
       WITH params AS (
         SELECT
           NOW() - INTERVAL '3 weeks' AS since_3w,
-          NOW() - INTERVAL '3 days'  AS since_3d
+          NOW() - INTERVAL '7 days' AS since_7d
       ),
       sports_terms AS (
         SELECT UNNEST(ARRAY[
@@ -235,23 +235,58 @@ try {
             COALESCE(a.media_url, '') AS image_url
           FROM articles a
           JOIN params p ON TRUE
-          WHERE a.created_at >= p.since_3d
+          WHERE a.created_at >= p.since_7d
             AND a.source_slug <> 'sports'
             AND NOT (pr.label = 'GPE' AND a.source_slug = 'entertainment')
-            AND (
-              a.title ILIKE ('%' || pr.entity || '%')
-              OR a.description ILIKE ('%' || pr.entity || '%')
+
+            AND NOT EXISTS (
+              SELECT 1
+              FROM unnest(
+                CASE
+                  WHEN pr.item_type = 'power_center' THEN ARRAY[pr.entity]
+                  ELSE ARRAY[pr.entity] || pr.co_entities[1:4]
+                END
+              ) AS t(term)
+              WHERE COALESCE(term, '') <> ''
+                AND NOT (
+                  a.title          ILIKE ('%' || term || '%')
+                  OR a.description ILIKE ('%' || term || '%')
+
+                  OR EXISTS (
+                    SELECT 1
+                    FROM jsonb_object_keys(
+                      CASE
+                        WHEN jsonb_typeof(a.nlp->'topics') = 'object' THEN a.nlp->'topics'
+                        ELSE '{}'::jsonb
+                      END
+                    ) AS k(key)
+                    WHERE key ILIKE ('%' || term || '%')
+                  )
+
+                  OR EXISTS (
+                    SELECT 1
+                    FROM jsonb_array_elements_text(
+                      CASE
+                        WHEN jsonb_typeof(a.nlp->'keywords') = 'array' THEN a.nlp->'keywords'
+                        ELSE '[]'::jsonb
+                      END
+                    ) AS kw(val)
+                    WHERE val ILIKE ('%' || term || '%')
+                  )
+
+                  OR EXISTS (
+                    SELECT 1
+                    FROM jsonb_array_elements(
+                      CASE
+                        WHEN jsonb_typeof(a.nlp->'entities') = 'array' THEN a.nlp->'entities'
+                        ELSE '[]'::jsonb
+                      END
+                    ) AS ent(obj)
+                    WHERE COALESCE(ent.obj->>'text', '') ILIKE ('%' || term || '%')
+                  )
+                )
             )
-            AND (
-              pr.item_type = 'power_center'
-              OR pr.label = 'GPE'
-              OR EXISTS (
-                SELECT 1
-                FROM UNNEST(pr.co_entities[1:4]) ce
-                WHERE a.title ILIKE ('%' || ce || '%')
-                   OR a.description ILIKE ('%' || ce || '%')
-              )
-            )
+
           ORDER BY a.pub_date DESC NULLS LAST
           LIMIT 3
         ) x
@@ -601,8 +636,13 @@ try {
               <?php
                 $label = $row['display_label'] ?? $row['entity'] ?? 'Story';
 
-                $topic = trim(explode('—', $label)[0]);
-                $classic_search = $build_search_url($topic, 'classic');
+                // Replace em dash and slashes with spaces
+                $topics = preg_replace('/[—\/]/u', ' ', $label);
+
+                // Normalize whitespace
+                $topics = trim(preg_replace('/\s+/', ' ', $clean));
+
+                $smart_nlp_search = $build_search_url($topics, 'nlp');
 
                 $q = $build_query_for_row($row);
                 $synopsis = $build_synopsis_url($q);
@@ -618,7 +658,7 @@ try {
               ?>
 
               <div class="story-card">
-                <a class="story-title" href="<?= htmlspecialchars($classic_search) ?>" data-loading>
+                <a class="story-title" href="<?= htmlspecialchars($smart_nlp_search) ?>" data-loading>
                   <?= htmlspecialchars($label) ?>
                 </a>
 

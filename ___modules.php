@@ -1777,25 +1777,21 @@ function search_nlp(PDO $db, ?string $q = '', array $opts = []): array
         LIMIT 100
     ";
 
-    /*
-    $stmt = $db->prepare($sql);
-    $stmt->execute($params);
-
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    */
-
     try {
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     } catch (Throwable $e) {
-        http_response_code(500);
-        echo "search_nlp failed: " . htmlspecialchars($e->getMessage());
-        echo "\n\nSQL:\n" . htmlspecialchars($sql);
-        echo "\n\nPARAMS:\n" . htmlspecialchars(json_encode($params));
-        exit;
+        // Always log the real error server-side
+        error_log('search_nlp ERROR: ' . $e->getMessage());
+        error_log('search_nlp SQL: ' . $sql);
+        error_log('search_nlp PARAMS: ' . json_encode($params));
+
+        // Let the caller / controller decide how to respond
+        return [];
     }
+
 }
 
 
