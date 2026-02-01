@@ -1698,59 +1698,46 @@ function search_nlp(PDO $db, ?string $q = '', array $opts = []): array
         $params[':min_entity_count'] = SCROLL_INTEREST_ENTITY_THRESHOLD;
     }
 
-
-    // Normalize query into individual terms (AND semantics across terms)
-    $q = trim((string)$q);
-    $terms = [];
-
-    if ($q !== '') {
-        // Split on whitespace
-        $raw = preg_split('/\s+/', $q);
-
-        // Optional: de-dupe + drop tiny terms
-        $raw = array_values(array_unique(array_filter($raw, fn($t) => $t !== '')));
-
-        // Build %term% patterns for ILIKE ANY()
-        $terms = array_map(fn($t) => '%' . $t . '%', $raw);
-    }
-
     // --- Text / topic / keyword / entity search (ALL terms must match somewhere) ---
-    if (!empty($terms)) {
+    if (trim((string)$q) !== '') {
         $conds[] = "NOT EXISTS (
             SELECT 1
-            FROM unnest(:terms::text[]) AS t(term)
-            WHERE NOT (
+            FROM unnest(
+                regexp_split_to_array(
+                    -- normalize punctuation to spaces, then split on whitespace
+                    regexp_replace(trim(:q), '[^[:alnum:] ]+', ' ', 'g'),
+                    '\\s+'
+                )
+            ) AS t(term)
+            WHERE term <> ''
+            AND NOT (
                 -- Title
-                title ILIKE term
+                title ILIKE '%' || term || '%'
 
                 -- Topics: object keys
                 OR EXISTS (
                     SELECT 1
-                    FROM jsonb_object_keys(COALESCE(nlp->'topics', '{}'::jsonb)) AS k(key)
-                    WHERE key ILIKE term
+                    FROM jsonb_object_keys(COALESCE((nlp->'topics')::jsonb, '{}'::jsonb)) AS k(key)
+                    WHERE key ILIKE '%' || term || '%'
                 )
 
                 -- Keywords: array of strings
                 OR EXISTS (
                     SELECT 1
-                    FROM jsonb_array_elements_text(COALESCE(nlp->'keywords', '[]'::jsonb)) AS kw(val)
-                    WHERE val ILIKE term
+                    FROM jsonb_array_elements_text(COALESCE((nlp->'keywords')::jsonb, '[]'::jsonb)) AS kw(val)
+                    WHERE val ILIKE '%' || term || '%'
                 )
 
-                -- Entities: array of objects; match ent->>'text'
+                -- Entities: array of objects; match obj->>'text'
                 OR EXISTS (
                     SELECT 1
-                    FROM jsonb_array_elements(COALESCE(nlp->'entities', '[]'::jsonb)) AS ent(obj)
-                    WHERE COALESCE(ent.obj->>'text', '') ILIKE term
+                    FROM jsonb_array_elements(COALESCE((nlp->'entities')::jsonb, '[]'::jsonb)) AS ent(obj)
+                    WHERE COALESCE(ent.obj->>'text', '') ILIKE '%' || term || '%'
                 )
             )
         )";
 
-        // Bind as a Postgres array literal
-        $params[':terms'] = '{' . implode(',', array_map(
-            fn($t) => '"' . str_replace('"', '\"', $t) . '"',
-            $terms
-        )) . '}';
+        $params[':q'] = $q;
     }
 
     $where = $conds ? ('WHERE ' . implode(' AND ', $conds)) : '';
@@ -1772,6 +1759,11 @@ function search_nlp(PDO $db, ?string $q = '', array $opts = []): array
 
     $stmt = $db->prepare($sql);
     $stmt->execute($params);
+
+    if (!$stmt->execute($params)) {
+        error_log('search_nlp error: ' . print_r($stmt->errorInfo(), true));
+        return [];
+    }
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
