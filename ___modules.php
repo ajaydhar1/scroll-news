@@ -2144,5 +2144,35 @@ function fragment_cache_swr(
     if (!$silent) echo $html;
 }
 
+function fl_headline_emoji(string $title): string {
+    $t = mb_strtolower($title);
+
+    // urgency / breaking
+    if (preg_match('/\b(breaking|urgent|alert|live|explosion|shooting|killed|dead|war|attack)\b/u', $t)) return "🔥";
+
+    // conflict / politics / law
+    if (preg_match('/\b(trump|biden|election|vote|democrat|republican|congress|senate|court|judge|lawsuit|indict|probe)\b/u', $t)) return "⚖️";
+
+    // money / markets
+    if (preg_match('/\b(stocks|market|dow|nasdaq|s&p|fed|rates|inflation|jobs report|earnings|crypto|bitcoin|oil)\b/u', $t)) return "💰";
+
+    // crime / danger (but not “breaking”)
+    if (preg_match('/\b(crime|arrest|charged|suspect|police|gun|fraud|scam)\b/u', $t)) return "🚨";
+
+    // health / science
+    if (preg_match('/\b(covid|virus|flu|health|cdc|vaccine|cancer|study|research|ai|robot|space|nasa)\b/u', $t)) return "🧪";
+
+    // weather / disasters
+    if (preg_match('/\b(storm|hurricane|tornado|flood|earthquake|wildfire|snow)\b/u', $t)) return "🌪️";
+
+    // entertainment / culture
+    if (preg_match('/\b(movie|film|music|celebrity|hollywood|oscars|grammys|tv|show)\b/u', $t)) return "🎭";
+
+    // global / geopolitics
+    if (preg_match('/\b(ukraine|russia|china|israel|gaza|iran|north korea|eu|un)\b/u', $t)) return "🌍";
+
+    // default mood
+    return "📰";
+}
 
 ?>
