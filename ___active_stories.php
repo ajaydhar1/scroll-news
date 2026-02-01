@@ -756,7 +756,7 @@ try {
 
                         <div class="story-preview-text">
                           <a class="headline-link" href="<?= htmlspecialchars($pUrl) ?>" target="_blank" rel="noopener">
-                            <?= htmlspecialchars($pTitle) ?>
+                            <?= htmlspecialchars((fl_headline_emoji($pTitle) ?? '📰') . ' ' . $pTitle) ?>
                           </a>
                           <div class="mini-meta">
                             <?= htmlspecialchars($pSource) ?>
