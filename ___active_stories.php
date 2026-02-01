@@ -648,7 +648,7 @@ try {
                 $topics = preg_replace('/[—\/]/u', ' ', $label);
 
                 // Normalize whitespace
-                $topics = trim(preg_replace('/\s+/', ' ', $clean));
+                $topics = trim(preg_replace('/\s+/', ' ', $topics));
 
                 $smart_nlp_search = $build_search_url($topics, 'nlp');
 
