@@ -369,8 +369,8 @@ try {
         return $trending;
     };
 
-    $intel_panel['entities'] = $buildTrending($entityCounts, $entityArticles, 2, 2, 2, $entityLabelMap);
-    $intel_panel['places']   = $buildTrending($placeCounts,  $placeArticles,  4, 2, 2, $placeLabelMap);
+    $intel_panel['places']   = $buildTrending($placeCounts,  $placeArticles,  2, 2, 2, $placeLabelMap);
+    $intel_panel['entities'] = $buildTrending($entityCounts, $entityArticles, 4, 2, 2, $entityLabelMap);
     $intel_panel['topics']   = $buildTrending($topicCounts,  $topicArticles,  4, 2, 2);
 
 
@@ -547,8 +547,8 @@ footer .btn {
         <div class="intel-sections row g-3">
             <?php
             $sections = [
-                'entities' => ['title' => 'Trending Entities', 'icon' => '👤'],
                 'places'   => ['title' => 'Trending Places',   'icon' => '🗺️'],
+                'entities' => ['title' => 'Trending Entities', 'icon' => '👤'],
                 'topics'   => ['title' => 'Trending Topics',   'icon' => '🧵'],
             ];
 
@@ -565,7 +565,7 @@ footer .btn {
                 <?php if ($items): ?>
                     <div class="card h-100 intel-card mt-3 mt-lg-3">
                         <div class="card-body">
-                            <?php if ($key === 'entities'): ?>
+                            <?php if ($key === 'places'): ?>
                                 <!-- Active Headlines card goes at the top of the first column -->
                                 <?php include __DIR__ . '/___active_headlines.php'; ?>
                             <?php endif; ?>
