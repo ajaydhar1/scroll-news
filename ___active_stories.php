@@ -239,19 +239,30 @@ try {
             AND a.source_slug <> 'sports'
             AND NOT (pr.label = 'GPE' AND a.source_slug = 'entertainment')
 
+            -- MAIN TERM MUST BE VISIBLE TO USERS
+            AND (
+              a.title ILIKE ('%' || pr.entity || '%')
+              OR a.description ILIKE ('%' || pr.entity || '%')
+            )
+
+            -- ALL TERMS MUST MATCH SOMEWHERE (NLP-style AND)
             AND NOT EXISTS (
               SELECT 1
               FROM unnest(
                 CASE
-                  WHEN pr.item_type = 'power_center' THEN ARRAY[pr.entity]
-                  ELSE ARRAY[pr.entity] || pr.co_entities[1:4]
+                  WHEN pr.item_type = 'power_center'
+                    THEN ARRAY[pr.entity]
+                  ELSE
+                    ARRAY[pr.entity] || pr.co_entities[1:4]
                 END
               ) AS t(term)
               WHERE COALESCE(term, '') <> ''
                 AND NOT (
-                  a.title          ILIKE ('%' || term || '%')
+                  -- Title / description
+                  a.title ILIKE ('%' || term || '%')
                   OR a.description ILIKE ('%' || term || '%')
 
+                  -- Topics (object keys)
                   OR EXISTS (
                     SELECT 1
                     FROM jsonb_object_keys(
@@ -263,6 +274,7 @@ try {
                     WHERE key ILIKE ('%' || term || '%')
                   )
 
+                  -- Keywords
                   OR EXISTS (
                     SELECT 1
                     FROM jsonb_array_elements_text(
@@ -274,6 +286,7 @@ try {
                     WHERE val ILIKE ('%' || term || '%')
                   )
 
+                  -- Entities
                   OR EXISTS (
                     SELECT 1
                     FROM jsonb_array_elements(
