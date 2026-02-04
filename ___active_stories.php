@@ -592,6 +592,7 @@ try {
 
       <div class="d-flex justify-content-between align-items-start mb-2">
         <div>
+          <div class="sn-time-marker">OVER TIME</div>
           <h3 class="h6 mb-0 panel-title">🧭 Long-Running Story Hub</h3>
           <div class="panel-subtitle">Stories that unfold over time with a clear narrative arc</div>
         </div>

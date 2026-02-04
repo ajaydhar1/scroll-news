@@ -591,11 +591,14 @@ footer .btn {
                                 <?php include __DIR__ . '/___active_headlines.php'; ?>
                             <?php endif; ?>
 
-                            <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="mb-2">
                                 <div class="sn-time-marker">RECENT</div>
-                                <h3 class="h6 mb-3">
-                                    <?= htmlspecialchars($meta['icon'] . ' ' . $meta['title']) ?>
-                                </h3>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="h6 mb-0">
+                                        <?= htmlspecialchars($meta['icon'] . ' ' . $meta['title']) ?>
+                                    </h3>
+                                    <!-- optional right-side thing later -->
+                                </div>
                             </div>
                             <div class="intel-chip-list">
                                 <?php foreach ($items as $item): ?>
