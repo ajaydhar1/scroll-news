@@ -119,6 +119,7 @@ try {
         <h2 class="section-heading text-uppercase">Top Stories</h2>
     </div>
     <div class="sn-header">
+      <div class="sn-time-marker">LAST FEW HOURS</div>
       <h2>Scroll Strip</h2>
       <div class="sn-controls">
         <button class="sn-btn" data-dir="left" aria-label="Scroll left">←</button>
