@@ -638,7 +638,6 @@ try {
 
       <?php if (!empty($stories)): ?>
         <div>
-          <div class="sn-time-marker">OVER TIME</div>
           <div class="section-label">Long-Running Stories</div>
 
           <div class="story-grid">
