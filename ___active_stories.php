@@ -592,8 +592,8 @@ try {
 
       <div class="d-flex justify-content-between align-items-start mb-2">
         <div>
-          <h3 class="h6 mb-0 panel-title">🧭 Persistent News Story Hub</h3>
-          <div class="panel-subtitle">Ongoing narratives with sustained momentum</div>
+          <h3 class="h6 mb-0 panel-title">🧭 Long-Running Story Hub</h3>
+          <div class="panel-subtitle">Stories that unfold over time with a clear narrative arc</div>
         </div>
         <span class="text-muted small">last 3 weeks</span>
       </div>
@@ -637,7 +637,8 @@ try {
 
       <?php if (!empty($stories)): ?>
         <div>
-          <div class="section-label">Persistent Stories</div>
+          <div class="sn-time-marker">OVER TIME</div>
+          <div class="section-label">Long-Running Stories</div>
 
           <div class="story-grid">
             <?php foreach ($stories as $row): ?>

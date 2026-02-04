@@ -240,13 +240,25 @@ $activeHeadlines = scrollnews_fetch_active_headlines();
     font-weight: 500;
 }
 
+
+
+.sn-time-marker {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6c757d; /* muted gray */
+    margin-bottom: 0.15rem;
+}
+
 </style>
 
 <div class="sn-card-active-headlines mb-4">
     <div class="sn-card-header sn-card-header-inline">
         <div class="sn-card-header-left">
+            <div class="sn-time-marker">NOW</div>
             <h2 class="sn-card-title">
-                Active Headlines
+                Breaking News
             </h2>
             <span class="sn-card-subtitle">Live from NBC News (cached ~5 min)</span>
         </div>

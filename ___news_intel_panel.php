@@ -592,6 +592,7 @@ footer .btn {
                             <?php endif; ?>
 
                             <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div class="sn-time-marker">RECENT</div>
                                 <h3 class="h6 mb-3">
                                     <?= htmlspecialchars($meta['icon'] . ' ' . $meta['title']) ?>
                                 </h3>
