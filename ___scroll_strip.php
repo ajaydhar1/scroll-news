@@ -119,8 +119,11 @@ try {
         <h2 class="section-heading text-uppercase">Top Stories</h2>
     </div>
     <div class="sn-header">
-      <div class="sn-time-marker">LAST FEW HOURS</div>
-      <h2>Scroll Strip</h2>
+      <div class="sn-header-left">
+        <div class="sn-time-marker">LAST FEW HOURS</div>
+        <h2>Scroll Strip</h2>
+      </div>
+
       <div class="sn-controls">
         <button class="sn-btn" data-dir="left" aria-label="Scroll left">←</button>
         <button class="sn-btn" data-dir="right" aria-label="Scroll right">→</button>
@@ -141,6 +144,12 @@ try {
     }
   }
   .sn-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+
+  .sn-header-left {
+    display: flex;
+    flex-direction: column;
+  }
+
   .sn-header h2 { font-size:1.1rem; margin:0; letter-spacing:.2px; }
   .sn-controls { display:flex; gap:8px; }
   .sn-btn { border:1px solid rgba(0,0,0,.1); background:#fff; border-radius:999px; padding:8px 12px; cursor:pointer; }
