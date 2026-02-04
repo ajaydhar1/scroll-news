@@ -525,18 +525,25 @@ footer .btn {
 
 
 
-/* iPad-ish / md..lg range: 2-column layout; if there are 3 cards, center the last one */
+/* Tablet landscape: 2-column layout with centered wide last card */
 @media (min-width: 768px) and (max-width: 1199.98px) {
+
+  /* Force 2-column behavior */
   .news-intel-panel .intel-sections > [class*="col-"] {
-    max-width: 50%;
     flex: 0 0 50%;
+    max-width: 50%;
   }
 
-  .news-intel-panel .intel-sections > [class*="col-"]:nth-last-child(1):nth-child(odd) {
+  /* If there's an odd number of items, widen + center the last one */
+  .news-intel-panel .intel-sections
+    > [class*="col-"]:nth-last-child(1):nth-child(odd) {
+    flex: 0 0 70%;
+    max-width: 70%;
     margin-left: auto;
     margin-right: auto;
   }
 }
+
 </style>
 
 <section class="page-section news-intel-panel bg-light-2">
