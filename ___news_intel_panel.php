@@ -523,6 +523,20 @@ footer .btn {
     border: 2px solid #6c757d;
 }
 
+
+
+/* iPad-ish / md..lg range: 2-column layout; if there are 3 cards, center the last one */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .news-intel-panel .intel-sections > [class*="col-"] {
+    max-width: 50%;
+    flex: 0 0 50%;
+  }
+
+  .news-intel-panel .intel-sections > [class*="col-"]:nth-last-child(1):nth-child(odd) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 </style>
 
 <section class="page-section news-intel-panel bg-light-2">
@@ -560,7 +574,7 @@ footer .btn {
                     continue;
                 }
             ?>
-                <div class="col-12 col-lg-4 mb-3">
+                <div class="col-12 col-md-6 col-xl-4 mb-3">
 
                 <?php if ($items): ?>
                     <div class="card h-100 intel-card mt-3 mt-lg-3">
