@@ -373,6 +373,7 @@ if (!is_array($feedsData) || count($feedsData) === 0) {
   <div class="toy-box firstlook-box">
     <div class="firstlook-head">
       <div>
+        <div class="sn-time-marker">TODAY</div>
         <div class="firstlook-title">First Look</div>
         <div class="firstlook-sub">
           Front page of front pages<?php if ($ageSec !== null) echo " • updated " . (int)round($ageSec/60) . "m ago"; ?>

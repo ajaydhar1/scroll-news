@@ -2069,7 +2069,7 @@ function _fragment_cache_path(string $key): string {
     return _fragment_cache_dir() . '/' . $safe . '.html';
 }
 
-$CACHE_VER = 'v8';
+$CACHE_VER = 'v9';
 
 function fragment_cache_swr(
     string $key,
