@@ -326,6 +326,8 @@ try {
         // else: article has too many topics (7+), so we skip it entirely for trending topics
     }
 
+    $usedArticleKeys = []; // global “already displayed in the panel” tracker
+                    
     // Helper to build “trending” list from counts + article map
     $buildTrending = function (
         array $counts,
@@ -333,18 +335,17 @@ try {
         int $maxItems = 8,
         int $minCount = 2,
         int $maxArticlesPerItem = 4,
-        array $labelMap = []
+        array $labelMap = [],
+        array &$usedArticleKeys = []   // <-- add this
     ) {
         if (!$counts) return [];
 
-        arsort($counts); // highest first
+        arsort($counts);
 
         $trending = [];
 
         foreach ($counts as $key => $count) {
-            if ($count < $minCount) {
-                continue;
-            }
+            if ($count < $minCount) continue;
 
             $articles = $articleMap[$key] ?? [];
             if (!$articles) continue;
@@ -353,25 +354,48 @@ try {
                 return strcmp($b['pub_date'], $a['pub_date']);
             });
 
+            // Pick up to N articles that haven't been used anywhere else in the panel
+            $picked = [];
+            foreach ($articles as $row) {
+                if (count($picked) >= $maxArticlesPerItem) break;
+
+                $dedupeKey = null;
+                if (!empty($row['id'])) {
+                    $dedupeKey = 'id:' . $row['id'];
+                } elseif (!empty($row['url'])) {
+                    $dedupeKey = 'url:' . $row['url'];
+                }
+
+                if (!$dedupeKey) continue;
+
+                if (isset($usedArticleKeys[$dedupeKey])) {
+                    continue; // already shown elsewhere
+                }
+
+                $usedArticleKeys[$dedupeKey] = true;
+                $picked[] = $row;
+            }
+
+            // If we couldn't find anything unique, skip this trending item entirely
+            if (!$picked) continue;
+
             $label = $labelMap[$key] ?? ucwords(str_replace('-', ' ', $key));
 
             $trending[] = [
                 'label'    => $label,
                 'count'    => $count,
-                'articles' => array_slice($articles, 0, $maxArticlesPerItem),
+                'articles' => $picked,
             ];
 
-            if (count($trending) >= $maxItems) {
-                break;
-            }
+            if (count($trending) >= $maxItems) break;
         }
 
         return $trending;
     };
 
-    $intel_panel['places']   = $buildTrending($placeCounts,  $placeArticles,  2, 2, 2, $placeLabelMap);
-    $intel_panel['entities'] = $buildTrending($entityCounts, $entityArticles, 4, 2, 2, $entityLabelMap);
-    $intel_panel['topics']   = $buildTrending($topicCounts,  $topicArticles,  4, 2, 2);
+    $intel_panel['places']   = $buildTrending($placeCounts,  $placeArticles,  2, 2, 2, $placeLabelMap,  $usedArticleKeys);
+    $intel_panel['entities'] = $buildTrending($entityCounts, $entityArticles, 4, 2, 2, $entityLabelMap, $usedArticleKeys);
+    $intel_panel['topics']   = $buildTrending($topicCounts,  $topicArticles,  4, 2, 2, [],              $usedArticleKeys);
 
 
     $intel_panel['stats'] = [
