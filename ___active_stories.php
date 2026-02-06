@@ -29,6 +29,14 @@ try {
           NOW() - INTERVAL '3 weeks' AS since_3w,
           NOW() - INTERVAL '10 days' AS since_7d
       ),
+
+      excluded_publishers AS (
+        -- keep this list tiny + explicit; add more rows if needed
+        SELECT UNNEST(ARRAY[
+          'floridapolitics.com'
+        ]) AS host
+      ),
+
       sports_terms AS (
         SELECT UNNEST(ARRAY[
           'goal',
@@ -49,6 +57,7 @@ try {
           'usa today','npr','bbc','al jazeera','bloomberg'
         ]) AS term
       ),
+
       ents_raw AS (
         SELECT
           a.id AS article_id,
@@ -69,7 +78,15 @@ try {
           AND jsonb_typeof(a.nlp->'entities') = 'array'
           AND COALESCE(e->>'text','') <> ''
           AND LENGTH(TRIM(e->>'text')) >= 3
+
+          -- EXCLUDE PUBLISHERS (prevents ranking domination)
+          AND NOT EXISTS (
+            SELECT 1
+            FROM excluded_publishers ep
+            WHERE COALESCE(a.url,'') ILIKE ('%' || ep.host || '%')
+          )
       ),
+
       ents AS (
         SELECT
           article_id, pub_date, created_at, title, description, url, source_slug,
@@ -239,6 +256,13 @@ try {
             AND a.source_slug <> 'sports'
             AND a.nlp IS NOT NULL
             AND NOT (pr.label = 'GPE' AND a.source_slug = 'entertainment')
+
+            -- EXCLUDE PUBLISHERS (previews too)
+            AND NOT EXISTS (
+              SELECT 1
+              FROM excluded_publishers ep
+              WHERE COALESCE(a.url,'') ILIKE ('%' || ep.host || '%')
+            )
 
             -- MAIN TERM MUST BE VISIBLE TO USERS
             AND (
