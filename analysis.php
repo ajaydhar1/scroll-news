@@ -334,6 +334,60 @@ SQL);
         text-transform: uppercase;
         margin-bottom: 4px;
     }
+
+    .bar-table .bar-row{
+        position: relative;
+    }
+
+    .bar-table .bar-row::before{
+        content:"";
+        position:absolute;
+        left: 6px;
+        right: 6px;
+        top: 3px;
+        bottom: 3px;
+        width: calc(var(--bar) - 12px); /* keeps padding feeling consistent */
+        max-width: calc(100% - 12px);
+        background: rgba(0,0,0,0.06);
+        border-radius: 8px;
+        z-index: 0;
+    }
+
+    .bar-table .bar-row td{
+        position: relative;
+        z-index: 1;
+    }
+
+    .bar-table .bar-row:hover::before{
+        background: rgba(0,0,0,0.09);
+    }
+
+    .bar-cell{
+        position: relative;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .bar-cell::before{
+        content:"";
+        position:absolute;
+        left: 6px;
+        right: 6px;
+        top: 4px;
+        bottom: 4px;
+        width: calc(var(--bar));
+        max-width: calc(100% - 12px);
+        background: rgba(0,0,0,0.06);
+        border-radius: 8px;
+        z-index: 0;
+    }
+
+    .bar-cell > span{
+        position: relative;
+        z-index: 1;
+    }
+
+
   </style>
 </head>
 <body>
@@ -359,70 +413,212 @@ SQL);
   <div class="card" style="flex:1; min-width:320px;">
     <div class="card-eyebrow">Who’s being talked about</div>
     <h3>Top Entities</h3>
-    <table>
-      <thead><tr><th>Entity</th><th>Label</th><th>Articles</th></tr></thead>
-      <tbody>
-      <?php foreach ($entities as $r): ?>
+
+    <?php
+        // Canonicalize + dedupe common variants
+        $canon = function(string $s): string {
+            $s = strtolower(trim($s));
+
+            // normalize punctuation + whitespace
+            $s = preg_replace('/[^\p{L}\p{N}\s]+/u', '', $s); // remove punctuation like dots
+            $s = preg_replace('/\s+/', ' ', $s);
+
+            // common aliases
+            $map = [
+                'trump' => 'donald trump',
+                'donald j trump' => 'donald trump',
+                'president trump' => 'donald trump',
+
+                'us' => 'u.s.',
+                'usa' => 'u.s.',
+                'united states' => 'u.s.',
+                'united states of america' => 'u.s.',
+
+                'u s' => 'u.s.',
+
+                'republican' => 'republicans',
+                'democratic' => 'democrats',
+            ];
+
+            return $map[$s] ?? $s;
+        };
+
+        // Merge rows by canonical entity (sum articles; pick best label)
+        $entityMap = [];
+        foreach ($entities as $r) {
+            $raw = (string)($r['entity_text'] ?? '');
+            if ($raw === '') continue;
+
+            $key = $canon($raw);
+            $articles = (int)($r['articles'] ?? 0);
+            $label = (string)($r['entity_label'] ?? '');
+
+            if (!isset($entityMap[$key])) {
+                $entityMap[$key] = [
+                    'entity' => $key,
+                    'label' => $label,
+                    'articles' => $articles,
+                ];
+            } else {
+                $entityMap[$key]['articles'] += $articles;
+
+                // Prefer PERSON over other labels if mixed
+                if ($entityMap[$key]['label'] !== 'PERSON' && $label === 'PERSON') {
+                    $entityMap[$key]['label'] = 'PERSON';
+                } elseif ($entityMap[$key]['label'] === '' && $label !== '') {
+                    $entityMap[$key]['label'] = $label;
+                }
+            }
+        }
+
+        // Sort by articles desc
+        $entities_deduped = array_values($entityMap);
+        usort($entities_deduped, function($a, $b) {
+            return ($b['articles'] <=> $a['articles']) ?: strcmp($a['entity'], $b['entity']);
+        });
+
+        // Limit to 25 for nicer height balance (optional)
+        $entities_deduped = array_slice($entities_deduped, 0, 25);
+
+        // Max for bar scaling
+        $max_articles = 0;
+        foreach ($entities_deduped as $row) {
+            $max_articles = max($max_articles, (int)$row['articles']);
+        }
+
+        // Display casing helper (keep u.s. uppercase)
+        $pretty = function(string $s): string {
+            if ($s === 'u.s.') return 'U.S.';
+            return ucwords($s);
+        };
+    ?>
+
+    <table class="bar-table">
+        <thead>
         <tr>
-          <td><?= htmlspecialchars($r['entity_text'] ?? '') ?></td>
-          <td><?= htmlspecialchars($r['entity_label'] ?? '') ?></td>
-          <td><?= (int)($r['articles'] ?? 0) ?></td>
+            <th>Entity</th>
+            <th>Label</th>
+            <th style="text-align:right;">Articles</th>
         </tr>
-      <?php endforeach; ?>
-      </tbody>
+        </thead>
+        <tbody>
+        <?php foreach ($entities_deduped as $row):
+            $articles = (int)$row['articles'];
+            $pctBar = ($max_articles > 0) ? round(($articles / $max_articles) * 100, 2) : 0;
+        ?>
+        <tr class="bar-row" style="--bar: <?= $pctBar ?>%;">
+            <td><?= htmlspecialchars($pretty($row['entity'])) ?></td>
+            <td><?= htmlspecialchars($row['label'] ?: '—') ?></td>
+            <td style="text-align:right;"><?= $articles ?></td>
+        </tr>
+        <?php endforeach; ?>
+        </tbody>
     </table>
-  </div>
+    </div>
+
 
   <div class="card" style="flex:1; min-width:320px;">
     <div class="card-eyebrow">Who’s talking</div>
     <h3>Top Sources (Domains)</h3>
-    <table>
-      <thead><tr><th>Domain</th><th>Articles</th><th>%</th></tr></thead>
-      <tbody>
-      <?php foreach ($sources as $r): ?>
-        <tr>
-          <td><?= htmlspecialchars($r['domain'] ?? '') ?></td>
-          <td><?= (int)($r['articles'] ?? 0) ?></td>
-          <td><?= htmlspecialchars($r['pct'] ?? '') ?></td>
+
+    <?php
+        // Compute max for bar scaling
+        $max_articles = 0;
+        foreach ($sources as $r) {
+            $max_articles = max($max_articles, (int)($r['articles'] ?? 0));
+        }
+    ?>
+
+    <table class="bar-table">
+        <thead><tr><th>Domain</th><th style="text-align:right;">Articles</th><th style="text-align:right;">%</th></tr></thead>
+        <tbody>
+        <?php foreach ($sources as $r): 
+            $articles = (int)($r['articles'] ?? 0);
+            $pctBar = ($max_articles > 0) ? round(($articles / $max_articles) * 100, 2) : 0;
+        ?>
+        <tr class="bar-row" style="--bar: <?= $pctBar ?>%;">
+            <td><?= htmlspecialchars($r['domain'] ?? '') ?></td>
+            <td style="text-align:right;"><?= $articles ?></td>
+            <td style="text-align:right;"><?= htmlspecialchars($r['pct'] ?? '') ?></td>
         </tr>
-      <?php endforeach; ?>
-      </tbody>
+        <?php endforeach; ?>
+        </tbody>
     </table>
   </div>
+
 </div>
 
 <div class="row" style="margin-top:12px;">
   <div class="card" style="flex:1; min-width:320px;">
     <div class="card-eyebrow">What’s being discussed</div>
     <h3>Top Topics</h3>
+
+    <?php
+        // Max weight for bar scaling
+        $maxWeight = 0.0;
+        foreach ($topics_chart as $r) {
+            $maxWeight = max($maxWeight, (float)($r['weight_sum'] ?? 0));
+        }
+    ?>
+
     <table>
-      <thead><tr><th>Topic</th><th>Weight</th></tr></thead>
-      <tbody>
-      <?php foreach ($topics_chart as $r): ?>
+        <thead>
         <tr>
-          <td><?= htmlspecialchars($r['topic_bucket'] ?? '') ?></td>
-          <td><?= htmlspecialchars($r['weight_sum'] ?? '') ?></td>
+            <th>Topic</th>
+            <th style="text-align:right;">Weight</th>
         </tr>
-      <?php endforeach; ?>
-      </tbody>
+        </thead>
+        <tbody>
+        <?php foreach ($topics_chart as $r):
+            $w = (float)($r['weight_sum'] ?? 0);
+            $pctBar = ($maxWeight > 0) ? round(($w / $maxWeight) * 100, 2) : 0;
+        ?>
+        <tr>
+            <td><?= htmlspecialchars($r['topic_bucket'] ?? '') ?></td>
+            <td class="bar-cell" style="--bar: <?= $pctBar ?>%;">
+            <span><?= htmlspecialchars($r['weight_sum'] ?? '') ?></span>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+        </tbody>
     </table>
-  </div>
+    </div>
+
 
   <div class="card" style="flex:1; min-width:320px;">
     <div class="card-eyebrow">How it feels</div>
     <h3>Sentiment</h3>
+
+    <?php
+        // Max articles for bar scaling
+        $maxSent = 0;
+        foreach ($sentiment as $r) {
+            $maxSent = max($maxSent, (int)($r['articles'] ?? 0));
+        }
+    ?>
+
     <table>
-      <thead><tr><th>Label</th><th>Articles</th></tr></thead>
-      <tbody>
-      <?php foreach ($sentiment as $r): ?>
+        <thead>
         <tr>
-          <td><?= htmlspecialchars($r['sentiment_label'] ?? '') ?></td>
-          <td><?= (int)($r['articles'] ?? 0) ?></td>
+            <th>Label</th>
+            <th style="text-align:right;">Articles</th>
         </tr>
-      <?php endforeach; ?>
-      </tbody>
+        </thead>
+        <tbody>
+        <?php foreach ($sentiment as $r):
+            $v = (int)($r['articles'] ?? 0);
+            $pctBar = ($maxSent > 0) ? round(($v / $maxSent) * 100, 2) : 0;
+        ?>
+        <tr>
+            <td><?= htmlspecialchars($r['sentiment_label'] ?? '') ?></td>
+            <td class="bar-cell" style="--bar: <?= $pctBar ?>%;">
+            <span><?= $v ?></span>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+        </tbody>
     </table>
-  </div>
+    </div>
 </div>
 
 <div class="card" style="margin-top:12px;">
