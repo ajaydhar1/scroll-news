@@ -216,26 +216,31 @@ ORDER BY 1;
 SQL);
 
     $topics_chart = $run(<<<SQL
-WITH topic_sums AS (
-  SELECT topic, sum(weight) AS weight_sum
-  FROM topics
-  WHERE weight IS NOT NULL
-  GROUP BY 1
-),
-ranked AS (
-  SELECT
-    topic,
-    weight_sum,
-    row_number() OVER (ORDER BY weight_sum DESC, topic) AS rn
-  FROM topic_sums
-)
 SELECT
-  CASE WHEN rn <= 8 THEN topic ELSE 'Other' END AS topic_bucket,
+  topic_bucket,
   round(sum(weight_sum), 4) AS weight_sum
-FROM ranked
+FROM (
+  SELECT
+    CASE WHEN rn <= 8 THEN topic ELSE 'Other' END AS topic_bucket,
+    weight_sum
+  FROM (
+    SELECT
+      topic,
+      weight_sum,
+      row_number() OVER (ORDER BY weight_sum DESC, topic) AS rn
+    FROM (
+      SELECT
+        topic,
+        sum(weight) AS weight_sum
+      FROM topics
+      WHERE weight IS NOT NULL
+      GROUP BY 1
+    ) topic_sums
+  ) ranked
+) bucketed
 GROUP BY 1
 ORDER BY
-  CASE WHEN topic_bucket='Other' THEN 9999 ELSE 1 END,
+  CASE WHEN topic_bucket = 'Other' THEN 9999 ELSE 1 END,
   weight_sum DESC;
 SQL);
 
