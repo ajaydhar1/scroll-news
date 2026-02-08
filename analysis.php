@@ -321,7 +321,7 @@ SQL;
             // For sentiment-specific corpus, NLP must exist.
             $SCAFFOLD = <<<SQL
 WITH
-params (ctx, val, time_window, custom_from, custom_to, require_status_ok) AS (
+params (ctx, val, time_window, custom_from, custom_to, require_nlp_ok, require_status_ok) AS (
   VALUES (
     :context,
     :value,
@@ -425,7 +425,7 @@ SQL;
             // value = topic key in nlp->topics object
             $SCAFFOLD = <<<SQL
 WITH
-params (ctx, val, time_window, custom_from, custom_to, require_status_ok) AS (
+params (ctx, val, time_window, custom_from, custom_to, require_nlp_ok, require_status_ok) AS (
   VALUES (
     :context,
     :value,
