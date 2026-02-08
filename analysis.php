@@ -54,8 +54,8 @@ params (category_slug, time_window, custom_from, custom_to, require_nlp_ok, requ
     :time_window,
     CAST(:custom_from AS timestamptz),
     CAST(:custom_to   AS timestamptz),
-    :require_nlp_ok,
-    :require_status_ok
+    CAST(:require_nlp_ok AS int),
+    CAST(:require_status_ok AS int)
   )
 ),
 bounds AS (
