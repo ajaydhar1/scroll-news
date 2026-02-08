@@ -92,7 +92,7 @@ base_articles AS (
     AND (b.require_status_ok = 0 OR a.status = 'ok')
     AND (
       b.require_nlp_ok = 0
-      OR (a.nlp IS NOT NULL AND (a.nlp::jsonb ? 'entities'))
+      OR (a.nlp IS NOT NULL AND jsonb_exists(a.nlp::jsonb, 'entities'))
     )
 ),
 domainized AS (
