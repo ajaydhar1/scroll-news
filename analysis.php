@@ -473,7 +473,7 @@ base_articles AS (
     )
     AND a.nlp IS NOT NULL
     AND jsonb_typeof(a.nlp::jsonb->'topics') = 'object'
-    AND (a.nlp::jsonb->'topics') ? b.val
+    AND jsonb_exists(a.nlp::jsonb->'topics', b.val)
 ),
 domainized AS (
   SELECT
