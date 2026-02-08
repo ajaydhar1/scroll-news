@@ -515,6 +515,7 @@ SQL);
     Window:
     <?php
     $params = $_GET;
+    $params['w'] = '24h';
     ?>
     <a href="?<?= http_build_query($params) ?>" class="<?= $time_window === '24h' ? 'active' : '' ?>" data-loading>24h</a> ·
     <?php
