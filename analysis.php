@@ -636,6 +636,141 @@ SQL;
     // (You may want to tweak KPI labels from "category_slug" to "context/value" — optional.)
     // ... your existing $kpi = $run(...), etc.
 
+    $kpi = $run(<<<SQL
+SELECT
+  (SELECT category_slug FROM bounds) AS category_slug,
+  (SELECT time_window FROM bounds)   AS time_window,
+  (SELECT time_min FROM bounds)      AS time_min,
+  (SELECT time_max FROM bounds)      AS time_max,
+  (SELECT count(*) FROM base_articles) AS corpus_articles,
+  (SELECT min(pub_date) FROM base_articles) AS corpus_min_pub_date,
+  (SELECT max(pub_date) FROM base_articles) AS corpus_max_pub_date
+;
+SQL);
+
+    if (!$kpi) {
+        $analysisFail('KPI query returned 0 rows.');
+        return;
+    }
+
+    $corpus_count = (int)($kpi[0]['corpus_articles'] ?? 0);
+
+    // Optional: small-corpus fallback (auto widen to 7d)
+    if ($corpus_count < 10 && $time_window === '24h') {
+        $time_window = '7d';
+        $bind[':time_window'] = '7d';
+        $kpi = $run(<<<SQL
+SELECT
+  (SELECT category_slug FROM bounds) AS category_slug,
+  (SELECT time_window FROM bounds)   AS time_window,
+  (SELECT time_min FROM bounds)      AS time_min,
+  (SELECT time_max FROM bounds)      AS time_max,
+  (SELECT count(*) FROM base_articles) AS corpus_articles,
+  (SELECT min(pub_date) FROM base_articles) AS corpus_min_pub_date,
+  (SELECT max(pub_date) FROM base_articles) AS corpus_max_pub_date
+;
+SQL);
+        $corpus_count = (int)($kpi[0]['corpus_articles'] ?? 0);
+    }
+
+    $timeseries = $run(<<<SQL
+SELECT
+  CASE
+    WHEN (SELECT time_window FROM bounds) = '24h' THEN date_trunc('hour', pub_date)
+    ELSE date_trunc('day', pub_date)
+  END AS bucket,
+  count(*) AS articles
+FROM base_articles
+GROUP BY 1
+ORDER BY 1;
+SQL);
+
+    $topics_chart = $run(<<<SQL
+SELECT
+  topic_bucket,
+  round(sum(weight_sum), 4) AS weight_sum
+FROM (
+  SELECT
+    CASE WHEN rn <= 8 THEN topic ELSE 'Other' END AS topic_bucket,
+    weight_sum
+  FROM (
+    SELECT
+      topic,
+      weight_sum,
+      row_number() OVER (ORDER BY weight_sum DESC, topic) AS rn
+    FROM (
+      SELECT
+        topic,
+        sum(weight) AS weight_sum
+      FROM topics
+      WHERE weight IS NOT NULL
+      GROUP BY 1
+    ) topic_sums
+  ) ranked
+) bucketed
+GROUP BY 1
+ORDER BY
+  CASE WHEN topic_bucket = 'Other' THEN 9999 ELSE 1 END,
+  weight_sum DESC;
+SQL);
+
+    $topics_table = $run(<<<SQL
+SELECT
+  topic,
+  round(sum(weight), 4) AS weight_sum,
+  count(DISTINCT article_id) AS articles_contributing
+FROM topics
+WHERE weight IS NOT NULL
+GROUP BY 1
+ORDER BY weight_sum DESC
+LIMIT 25;
+SQL);
+
+    $sentiment = $run(<<<SQL
+SELECT
+  sentiment_label,
+  count(*) AS articles
+FROM domainized
+GROUP BY 1
+ORDER BY articles DESC;
+SQL);
+
+    $sources = $run(<<<SQL
+SELECT
+  domain,
+  count(*) AS articles,
+  round((count(*)::numeric / (SELECT count(*) FROM base_articles)) * 100, 2) AS pct
+FROM domainized
+WHERE domain IS NOT NULL AND domain <> ''
+GROUP BY 1
+ORDER BY articles DESC, domain
+LIMIT 25;
+SQL);
+
+    $entities = $run(<<<SQL
+SELECT
+  entity_text,
+  max(entity_label) AS entity_label,
+  count(DISTINCT article_id) AS articles
+FROM entities
+GROUP BY 1
+ORDER BY articles DESC, entity_text
+LIMIT 25;
+SQL);
+
+    $articles = $run(<<<SQL
+SELECT
+  pub_date,
+  domain,
+  title,
+  url,
+  author,
+  sentiment_label,
+  sentiment_score
+FROM domainized
+ORDER BY pub_date DESC;
+SQL);
+
 } catch (Throwable $e) {
     $analysisFail('Unexpected error in Analysis page', $e);
     return;
@@ -648,19 +783,43 @@ SQL;
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <?php
-    // Fallbacks
-    $analysis_subject = ucfirst($category ?? 'Current News');
-    $analysis_scope   = $time_window   ?? 'Overview';
-    $site_name        = 'Scroll News';
+  // Build a friendly, compact title for the browser tab / SEO
+  $ctxLabelMap = [
+    'entity'    => 'Entity',
+    'topic'     => 'Topic',
+    'pub'       => 'Publisher',
+    'sent'      => 'Sentiment',
+    'category'  => 'Category',
+  ];
 
-    $meta_title = "{$analysis_subject} — {$analysis_scope} Analysis | {$site_name}";
+  $ctxLabel = $ctxLabelMap[$context] ?? ucfirst((string)$context);
+
+  // Window label
+  $wLabelMap = ['24h' => '24h', '7d' => '7d', '30d' => '30d', 'custom' => 'Custom'];
+  $wLabel = $wLabelMap[$time_window] ?? (string)$time_window;
+
+  // Corpus count (optional)
+  $corpusCount = (int)($kpi[0]['corpus_articles'] ?? 0);
+
+  // Value formatting: keep title short, but still informative
+  $val = (string)$value;
+  $val = trim($val);
+  if ($val === '') $val = 'All';
+  if (mb_strlen($val) > 60) $val = mb_substr($val, 0, 57) . '…';
+
+  // Optional: make sentiment nicer
+  if ($context === 'sent') $val = ucfirst(strtolower($val));
+
+  // Final title
+  $pageTitle = "{$ctxLabel}: {$val} · {$wLabel} · {$corpusCount} articles · Text & Content Analysis";
   ?>
-  <title><?= htmlspecialchars($meta_title) ?></title>
+  <title><?= htmlspecialchars($pageTitle) ?></title>
 
   <?php
-    $meta_description = "In-depth analysis of {$analysis_subject}, breaking down dominant topics, sentiment trends, and media sources shaping the conversation.";
+  // Optional meta description (nice-to-have)
+  $metaDesc = "Analysis for {$ctxLabel} \"{$val}\" over {$wLabel}. Corpus size: {$corpusCount} articles.";
   ?>
-  <meta name="description" content="<?= htmlspecialchars($meta_description) ?>">
+  <meta name="description" content="<?= htmlspecialchars($metaDesc) ?>">
 
   <meta name="author" content="Scroll News" />
 
