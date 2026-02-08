@@ -450,17 +450,17 @@ SQL);
             if ($raw === '') continue;
 
             $key = $canon($raw);
-            $articles = (int)($r['articles'] ?? 0);
+            $article_count = (int)($r['articles'] ?? 0);
             $label = (string)($r['entity_label'] ?? '');
 
             if (!isset($entityMap[$key])) {
                 $entityMap[$key] = [
                     'entity' => $key,
                     'label' => $label,
-                    'articles' => $articles,
+                    'articles' => $article_count,
                 ];
             } else {
-                $entityMap[$key]['articles'] += $articles;
+                $entityMap[$key]['articles'] += $article_count;
 
                 // Prefer PERSON over other labels if mixed
                 if ($entityMap[$key]['label'] !== 'PERSON' && $label === 'PERSON') {
@@ -503,13 +503,13 @@ SQL);
         </thead>
         <tbody>
         <?php foreach ($entities_deduped as $row):
-            $articles = (int)$row['articles'];
-            $pctBar = ($max_articles > 0) ? round(($articles / $max_articles) * 100, 2) : 0;
+            $article_count = (int)$row['articles'];
+            $pctBar = ($max_articles > 0) ? round(($article_count / $max_articles) * 100, 2) : 0;
         ?>
         <tr class="bar-row" style="--bar: <?= $pctBar ?>%;">
             <td><?= htmlspecialchars($pretty($row['entity'])) ?></td>
             <td><?= htmlspecialchars($row['label'] ?: '—') ?></td>
-            <td style="text-align:right;"><?= $articles ?></td>
+            <td style="text-align:right;"><?= $article_count ?></td>
         </tr>
         <?php endforeach; ?>
         </tbody>
@@ -533,12 +533,12 @@ SQL);
         <thead><tr><th>Domain</th><th style="text-align:right;">Articles</th><th style="text-align:right;">%</th></tr></thead>
         <tbody>
         <?php foreach ($sources as $r): 
-            $articles = (int)($r['articles'] ?? 0);
-            $pctBar = ($max_articles > 0) ? round(($articles / $max_articles) * 100, 2) : 0;
+            $article_count = (int)($r['articles'] ?? 0);
+            $pctBar = ($max_articles > 0) ? round(($article_count / $max_articles) * 100, 2) : 0;
         ?>
         <tr class="bar-row" style="--bar: <?= $pctBar ?>%;">
             <td><?= htmlspecialchars($r['domain'] ?? '') ?></td>
-            <td style="text-align:right;"><?= $articles ?></td>
+            <td style="text-align:right;"><?= $article_count ?></td>
             <td style="text-align:right;"><?= htmlspecialchars($r['pct'] ?? '') ?></td>
         </tr>
         <?php endforeach; ?>
