@@ -638,11 +638,12 @@ SQL;
 
     $kpi = $run(<<<SQL
 SELECT
-  (SELECT category_slug FROM bounds) AS category_slug,
-  (SELECT time_window FROM bounds)   AS time_window,
-  (SELECT time_min FROM bounds)      AS time_min,
-  (SELECT time_max FROM bounds)      AS time_max,
-  (SELECT count(*) FROM base_articles) AS corpus_articles,
+  (SELECT ctx  FROM bounds) AS context,
+  (SELECT val  FROM bounds) AS value,
+  (SELECT time_window FROM bounds) AS time_window,
+  (SELECT time_min    FROM bounds) AS time_min,
+  (SELECT time_max    FROM bounds) AS time_max,
+  (SELECT count(*)    FROM base_articles) AS corpus_articles,
   (SELECT min(pub_date) FROM base_articles) AS corpus_min_pub_date,
   (SELECT max(pub_date) FROM base_articles) AS corpus_max_pub_date
 ;
@@ -661,11 +662,12 @@ SQL);
         $bind[':time_window'] = '7d';
         $kpi = $run(<<<SQL
 SELECT
-  (SELECT category_slug FROM bounds) AS category_slug,
-  (SELECT time_window FROM bounds)   AS time_window,
-  (SELECT time_min FROM bounds)      AS time_min,
-  (SELECT time_max FROM bounds)      AS time_max,
-  (SELECT count(*) FROM base_articles) AS corpus_articles,
+  (SELECT ctx  FROM bounds) AS context,
+  (SELECT val  FROM bounds) AS value,
+  (SELECT time_window FROM bounds) AS time_window,
+  (SELECT time_min    FROM bounds) AS time_min,
+  (SELECT time_max    FROM bounds) AS time_max,
+  (SELECT count(*)    FROM base_articles) AS corpus_articles,
   (SELECT min(pub_date) FROM base_articles) AS corpus_min_pub_date,
   (SELECT max(pub_date) FROM base_articles) AS corpus_max_pub_date
 ;
