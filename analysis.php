@@ -326,6 +326,14 @@ SQL);
     .kpi .label { font-size: 12px; color: #666; }
     .kpi .val { font-size: 18px; font-weight: 700; }
     .note { font-size: 12px; color: #666; }
+
+    .card-eyebrow{
+        font-size: 11px;
+        color: #666;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+    }
   </style>
 </head>
 <body>
@@ -349,6 +357,7 @@ SQL);
 
 <div class="row" style="margin-top:12px;">
   <div class="card" style="flex:1; min-width:320px;">
+    <div class="card-eyebrow">Who’s being talked about</div>
     <h3>Top Entities</h3>
     <table>
       <thead><tr><th>Entity</th><th>Label</th><th>Articles</th></tr></thead>
@@ -365,6 +374,7 @@ SQL);
   </div>
 
   <div class="card" style="flex:1; min-width:320px;">
+    <div class="card-eyebrow">Who’s talking</div>
     <h3>Top Sources (Domains)</h3>
     <table>
       <thead><tr><th>Domain</th><th>Articles</th><th>%</th></tr></thead>
@@ -383,6 +393,7 @@ SQL);
 
 <div class="row" style="margin-top:12px;">
   <div class="card" style="flex:1; min-width:320px;">
+    <div class="card-eyebrow">What’s being discussed</div>
     <h3>Top Topics</h3>
     <table>
       <thead><tr><th>Topic</th><th>Weight</th></tr></thead>
@@ -398,6 +409,7 @@ SQL);
   </div>
 
   <div class="card" style="flex:1; min-width:320px;">
+    <div class="card-eyebrow">How it feels</div>
     <h3>Sentiment</h3>
     <table>
       <thead><tr><th>Label</th><th>Articles</th></tr></thead>
