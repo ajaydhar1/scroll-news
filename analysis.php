@@ -446,7 +446,7 @@ SQL);
 
   </style>
 </head>
-<body>
+<body class="bg-light">
 
 <!-- Loading overlay -->
 <div id="loadingOverlay" class="loading-overlay" aria-live="polite" aria-busy="true" hidden>
@@ -495,7 +495,7 @@ SQL);
 
 <div class="container-fluid">
 
-    <h1 style="margin:0 0 6px 0;">Analysis</h1>
+    <h1 style="margin:0 0 6px 0;" class="mt-3">Analysis</h1>
     <div class="note">
     Category: <strong><?= htmlspecialchars($category) ?></strong> |
     Window: <strong><?= htmlspecialchars($time_window) ?></strong> |
@@ -596,8 +596,11 @@ SQL);
 
                 // Display casing helper (keep u.s. uppercase)
                 $pretty = function(string $s): string {
-                    if ($s === 'u.s.') return 'U.S.';
-                    return ucwords($s);
+                    //if ($s === 'u.s.') return 'U.S.';
+                    //return ucwords($s);
+                    
+                    // don't uppercase
+                    return $s;
                 };
             ?>
 
