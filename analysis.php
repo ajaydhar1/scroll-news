@@ -328,6 +328,7 @@ params (ctx, val, time_window, custom_from, custom_to, require_status_ok) AS (
     :time_window,
     CAST(:custom_from AS timestamptz),
     CAST(:custom_to   AS timestamptz),
+    CAST(:require_nlp_ok AS int),
     CAST(:require_status_ok AS int)
   )
 ),
@@ -362,6 +363,10 @@ base_articles AS (
   WHERE a.pub_date >= b.time_min
     AND a.pub_date <  b.time_max
     AND (b.require_status_ok = 0 OR a.status = 'ok')
+    AND (
+        b.require_nlp_ok = 0
+        OR (a.nlp IS NOT NULL)
+    )
     AND a.nlp IS NOT NULL
     AND lower(COALESCE(a.nlp::jsonb #>> '{sentiment,label}', 'unknown')) = b.val
 ),
@@ -427,6 +432,7 @@ params (ctx, val, time_window, custom_from, custom_to, require_status_ok) AS (
     :time_window,
     CAST(:custom_from AS timestamptz),
     CAST(:custom_to   AS timestamptz),
+    CAST(:require_nlp_ok AS int),
     CAST(:require_status_ok AS int)
   )
 ),
@@ -461,6 +467,10 @@ base_articles AS (
   WHERE a.pub_date >= b.time_min
     AND a.pub_date <  b.time_max
     AND (b.require_status_ok = 0 OR a.status = 'ok')
+    AND (
+      b.require_nlp_ok = 0
+      OR (a.nlp IS NOT NULL)
+    )
     AND a.nlp IS NOT NULL
     AND jsonb_typeof(a.nlp::jsonb->'topics') = 'object'
     AND (a.nlp::jsonb->'topics') ? b.val
@@ -520,13 +530,14 @@ SQL;
             // value = entity text match (case-insensitive) inside nlp->entities array
             $SCAFFOLD = <<<SQL
 WITH
-params (ctx, val, time_window, custom_from, custom_to, require_status_ok) AS (
+params (ctx, val, time_window, custom_from, custom_to, require_nlp_ok, require_status_ok) AS (
   VALUES (
     :context,
     :value,
     :time_window,
     CAST(:custom_from AS timestamptz),
     CAST(:custom_to   AS timestamptz),
+    CAST(:require_nlp_ok AS int),
     CAST(:require_status_ok AS int)
   )
 ),
@@ -561,6 +572,10 @@ base_articles AS (
   WHERE a.pub_date >= b.time_min
     AND a.pub_date <  b.time_max
     AND (b.require_status_ok = 0 OR a.status = 'ok')
+    AND (
+      b.require_nlp_ok = 0
+      OR (a.nlp IS NOT NULL)
+    )
     AND a.nlp IS NOT NULL
     AND jsonb_typeof(a.nlp::jsonb->'entities') = 'array'
     AND EXISTS (
