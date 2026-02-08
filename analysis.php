@@ -285,7 +285,7 @@ SELECT
 FROM entities
 GROUP BY 1
 ORDER BY articles DESC, entity_text
-LIMIT 50;
+LIMIT 25;
 SQL);
 
     $articles = $run(<<<SQL
@@ -349,14 +349,15 @@ SQL);
 
 <div class="row" style="margin-top:12px;">
   <div class="card" style="flex:1; min-width:320px;">
-    <h3>Top Topics</h3>
+    <h3>Top Entities</h3>
     <table>
-      <thead><tr><th>Topic</th><th>Weight</th></tr></thead>
+      <thead><tr><th>Entity</th><th>Label</th><th>Articles</th></tr></thead>
       <tbody>
-      <?php foreach ($topics_chart as $r): ?>
+      <?php foreach ($entities as $r): ?>
         <tr>
-          <td><?= htmlspecialchars($r['topic_bucket'] ?? '') ?></td>
-          <td><?= htmlspecialchars($r['weight_sum'] ?? '') ?></td>
+          <td><?= htmlspecialchars($r['entity_text'] ?? '') ?></td>
+          <td><?= htmlspecialchars($r['entity_label'] ?? '') ?></td>
+          <td><?= (int)($r['articles'] ?? 0) ?></td>
         </tr>
       <?php endforeach; ?>
       </tbody>
@@ -382,15 +383,14 @@ SQL);
 
 <div class="row" style="margin-top:12px;">
   <div class="card" style="flex:1; min-width:320px;">
-    <h3>Top Entities</h3>
+    <h3>Top Topics</h3>
     <table>
-      <thead><tr><th>Entity</th><th>Label</th><th>Articles</th></tr></thead>
+      <thead><tr><th>Topic</th><th>Weight</th></tr></thead>
       <tbody>
-      <?php foreach ($entities as $r): ?>
+      <?php foreach ($topics_chart as $r): ?>
         <tr>
-          <td><?= htmlspecialchars($r['entity_text'] ?? '') ?></td>
-          <td><?= htmlspecialchars($r['entity_label'] ?? '') ?></td>
-          <td><?= (int)($r['articles'] ?? 0) ?></td>
+          <td><?= htmlspecialchars($r['topic_bucket'] ?? '') ?></td>
+          <td><?= htmlspecialchars($r['weight_sum'] ?? '') ?></td>
         </tr>
       <?php endforeach; ?>
       </tbody>
