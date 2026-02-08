@@ -364,8 +364,24 @@ SQL);
     .kpi .label { font-size: 12px; color: #666; }
     .kpi .val { font-size: 18px; font-weight: 700; }
     .note { font-size: 12px; color: #666; }
+    
+    .corpus a { color: #0000ee; }
 
-    a { color: #0000ee; }
+    a {
+        color: var(--brand-color);
+    }
+
+    footer.footer {
+        background: white;
+    }
+
+    footer .text-lg-right a {
+        color: #00bfa6;
+    }
+
+    footer .text-lg-right a:hover {
+        color: black;
+    }
 
     .card-eyebrow{
         font-size: 11px;
@@ -717,7 +733,7 @@ SQL);
 
 <div class="row">
     <div class="col-12 col-lg-12">
-        <div class="card" style="margin-top:12px;">
+        <div class="card corpus" style="margin-top:12px;">
             <h3>Articles included</h3>
             <table>
                 <thead>
