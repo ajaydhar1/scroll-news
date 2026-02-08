@@ -225,7 +225,7 @@
             <footer class="footer footer-bottom bg-white py-4">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-lg-4 text-lg-left">Copyright © Scroll News 2025</div>
+                        <div class="col-lg-4 text-lg-left">Copyright © Scroll News 2026</div>
                         <div class="col-lg-4 my-3 my-lg-0">
                             <a class="btn btn-black btn-social mx-2" title="X profile" href="https://x.com/scrollnewsio" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
                             <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
