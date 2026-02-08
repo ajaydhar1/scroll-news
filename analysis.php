@@ -364,6 +364,16 @@ SQL);
     .kpi .label { font-size: 12px; color: #666; }
     .kpi .val { font-size: 18px; font-weight: 700; }
     .note { font-size: 12px; color: #666; }
+
+    .note .muted {
+        opacity: 0.65;
+        font-size: 0.9em;
+    }
+    .note a.active {
+        font-weight: 600;
+        text-decoration: underline;
+    }
+
     
     .corpus a { color: #0000ee; }
 
@@ -495,11 +505,30 @@ SQL);
 
 <div class="container-fluid">
 
-    <h1 style="margin:0 0 6px 0;" class="mt-3">Analysis</h1>
+    <h1 style="margin:0 0 6px 0;" class="mt-3">Text & Content Analysis</h1>
     <div class="note">
-    Category: <strong><?= htmlspecialchars($category) ?></strong> |
-    Window: <strong><?= htmlspecialchars($time_window) ?></strong> |
-    Corpus: <strong><?= (int)($kpi[0]['corpus_articles'] ?? 0) ?></strong> articles
+    Context:
+    <strong><?= htmlspecialchars("Category") ?></strong>
+    <span class="muted">(<?= htmlspecialchars($category) ?>)</span>
+    &nbsp;|&nbsp;
+
+    Window:
+    <?php
+    $params = $_GET;
+    ?>
+    <a href="?<?= http_build_query($params) ?>" class="<?= $time_window === '24h' ? 'active' : '' ?>" data-loading>24h</a> ·
+    <?php
+    $params['w'] = '7d';
+    ?>
+    <a href="?<?= http_build_query($params) ?>" class="<?= $time_window === '7d'  ? 'active' : '' ?>" data-loading>7d</a> ·
+    <?php
+    $params['w'] = '30d';
+    ?>
+    <a href="?<?= http_build_query($params) ?>" class="<?= $time_window === '30d' ? 'active' : '' ?>" data-loading>30d</a>
+    &nbsp;|&nbsp;
+
+    Corpus:
+    <strong><?= (int)($kpi[0]['corpus_articles'] ?? 0) ?></strong> articles
     </div>
 
     <div class="row">
