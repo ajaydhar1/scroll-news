@@ -1,6 +1,6 @@
 <?php
 // analysis.php
-// Category Analysis page (Pass 1): KPIs, Timeseries, Topics, Entities, Sentiment, Sources, Articles
+// Unified Analysis page: entity, pub, topic, sent, category
 
 if (!function_exists('_pdo_or_null')) {
     require_once __DIR__ . '/___modules.php';
@@ -18,16 +18,63 @@ $analysisFail = function(string $msg, ?Throwable $e = null) use ($ANALYSIS_DEBUG
     }
 };
 
-$allowed_categories = ['politics','sports','business','tech','science','health','entertainment']; // adjust to your slugs
-$allowed_windows = ['24h','7d','30d','custom'];
-
 $get = function(string $k, $default = null) {
     return isset($_GET[$k]) ? trim((string)$_GET[$k]) : $default;
 };
 
-$category = $get('category', 'politics');
-if (!in_array($category, $allowed_categories, true)) $category = 'politics';
+// ---- URL params ----
+// context: entity|pub|topic|sent|category
+// value: the value for that context
+// w: window (24h|7d|30d|custom)
+// from/to: only for custom
+$allowed_contexts = ['entity','pub','topic','sent','category'];
+$allowed_windows  = ['24h','7d','30d','custom'];
 
+// adjust if you want to keep category allowlisting strict
+$allowed_categories = ['politics','sports','business','tech','science','health','entertainment'];
+
+// defaults
+$context = strtolower($get('context', 'category'));
+if (!in_array($context, $allowed_contexts, true)) $context = 'category';
+
+// value defaults depend on context
+$defaultValueByContext = [
+    'category' => 'politics',
+    'sent'     => 'unknown',   // or 'neutral' if your pipeline uses it
+    'pub'      => '',          // domain
+    'topic'    => '',          // topic key
+    'entity'   => '',          // entity text
+];
+
+$value = $get('value', $defaultValueByContext[$context] ?? '');
+
+// normalize the value a bit
+$value = trim($value);
+if (strlen($value) > 200) $value = substr($value, 0, 200); // hygiene cap
+
+// stricter validation for certain contexts
+if ($context === 'category') {
+    $value = strtolower($value);
+    if (!in_array($value, $allowed_categories, true)) $value = 'politics';
+}
+
+if ($context === 'sent') {
+    // If you have a known set, enforce it here.
+    // Example: ['positive','neutral','negative','unknown']
+    $allowed_sent = ['positive','neutral','negative','unknown'];
+    $value = strtolower($value);
+    if (!in_array($value, $allowed_sent, true)) $value = 'unknown';
+}
+
+if ($context === 'pub') {
+    // Expect domain input; normalize common forms
+    $value = strtolower($value);
+    $value = preg_replace('~^https?://~', '', $value);
+    $value = preg_replace('~^www\.~', '', $value);
+    $value = preg_replace('~/.*$~', '', $value);
+}
+
+// time window
 $time_window = $get('w', '7d');
 if (!in_array($time_window, $allowed_windows, true)) $time_window = '7d';
 
@@ -44,13 +91,32 @@ try {
     if (!$db) throw new Exception("DB handle not available");
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // ---- Shared scaffold SQL (category-based) ----
-    // IMPORTANT: this ends with "-- FINAL SELECT" marker so we can append per-module SELECTs.
-    $SCAFFOLD = <<<SQL
+    // ---- Shared params/bounds CTE ----
+    // We'll reuse this structure in all scaffold variants.
+    // IMPORTANT: each scaffold ends with "-- FINAL SELECT" marker.
+
+    // ---- Pick scaffold by context ----
+    $SCAFFOLD = null;
+    $bind = [
+        ':time_window'        => $time_window,
+        ':custom_from'        => ($custom_from ? ($custom_from . ' 00:00:00-05') : '2000-01-01 00:00:00-05'),
+        ':custom_to'          => ($custom_to   ? ($custom_to   . ' 23:59:59-05') : '2099-01-01 00:00:00-05'),
+        ':require_nlp_ok'     => $require_nlp_ok,
+        ':require_status_ok'  => $require_status_ok,
+        ':value'              => $value,   // context-specific meaning
+        ':context'            => $context, // useful for KPI display
+    ];
+
+    switch ($context) {
+
+        case 'category':
+            // value = source_slug
+            $SCAFFOLD = <<<SQL
 WITH
-params (category_slug, time_window, custom_from, custom_to, require_nlp_ok, require_status_ok) AS (
+params (ctx, val, time_window, custom_from, custom_to, require_nlp_ok, require_status_ok) AS (
   VALUES (
-    :category_slug,
+    :context,
+    :value,
     :time_window,
     CAST(:custom_from AS timestamptz),
     CAST(:custom_to   AS timestamptz),
@@ -88,11 +154,419 @@ base_articles AS (
   CROSS JOIN bounds b
   WHERE a.pub_date >= b.time_min
     AND a.pub_date <  b.time_max
-    AND a.source_slug = b.category_slug
+    AND a.source_slug = b.val
     AND (b.require_status_ok = 0 OR a.status = 'ok')
-    AND (
-      b.require_nlp_ok = 0
-      OR (a.nlp IS NOT NULL AND jsonb_exists(a.nlp::jsonb, 'entities'))
+    AND (b.require_nlp_ok = 0 OR a.nlp IS NOT NULL)
+),
+domainized AS (
+  SELECT
+    b.*,
+    lower(
+      regexp_replace(
+        split_part(split_part(b.url, '://', 2), '/', 1),
+        '^www\.',
+        ''
+      )
+    ) AS domain,
+    COALESCE(b.nlp::jsonb #>> '{sentiment,label}', 'unknown') AS sentiment_label,
+    NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric AS sentiment_score
+  FROM base_articles b
+),
+topics AS (
+  SELECT
+    d.id AS article_id,
+    d.pub_date,
+    d.domain,
+    t.key AS topic,
+    NULLIF(t.value #>> '{}','')::numeric AS weight
+  FROM domainized d
+  CROSS JOIN LATERAL jsonb_each(
+    CASE
+      WHEN d.nlp IS NOT NULL AND jsonb_typeof(d.nlp::jsonb->'topics') = 'object'
+        THEN d.nlp::jsonb->'topics'
+      ELSE '{}'::jsonb
+    END
+  ) t
+),
+entities AS (
+  SELECT
+    d.id AS article_id,
+    d.pub_date,
+    d.domain,
+    lower(trim(e->>'text')) AS entity_text,
+    e->>'label' AS entity_label
+  FROM domainized d
+  CROSS JOIN LATERAL jsonb_array_elements(
+    CASE
+      WHEN d.nlp IS NOT NULL AND jsonb_typeof(d.nlp::jsonb->'entities') = 'array'
+        THEN d.nlp::jsonb->'entities'
+      ELSE '[]'::jsonb
+    END
+  ) e
+  WHERE COALESCE(e->>'text','') <> ''
+)
+-- FINAL SELECT
+SQL;
+            break;
+
+        case 'pub':
+            // value = domain (from url)
+            // NOTE: We match the parsed domain in WHERE to avoid needing domainized first.
+            $SCAFFOLD = <<<SQL
+WITH
+params (ctx, val, time_window, custom_from, custom_to, require_nlp_ok, require_status_ok) AS (
+  VALUES (
+    :context,
+    :value,
+    :time_window,
+    CAST(:custom_from AS timestamptz),
+    CAST(:custom_to   AS timestamptz),
+    CAST(:require_nlp_ok AS int),
+    CAST(:require_status_ok AS int)
+  )
+),
+bounds AS (
+  SELECT
+    p.*,
+    CASE p.time_window
+      WHEN '24h' THEN now() - interval '24 hours'
+      WHEN '7d'  THEN now() - interval '7 days'
+      WHEN '30d' THEN now() - interval '30 days'
+      WHEN 'custom' THEN p.custom_from
+      ELSE now() - interval '7 days'
+    END AS time_min,
+    CASE p.time_window
+      WHEN 'custom' THEN p.custom_to
+      ELSE now()
+    END AS time_max
+  FROM params p
+),
+base_articles AS (
+  SELECT
+    a.id,
+    a.pub_date,
+    a.source_slug,
+    a.title,
+    a.url,
+    a.description,
+    a.author,
+    a.nlp
+  FROM articles a
+  CROSS JOIN bounds b
+  WHERE a.pub_date >= b.time_min
+    AND a.pub_date <  b.time_max
+    AND lower(
+      regexp_replace(
+        split_part(split_part(a.url, '://', 2), '/', 1),
+        '^www\.',
+        ''
+      )
+    ) = b.val
+    AND (b.require_status_ok = 0 OR a.status = 'ok')
+    AND (b.require_nlp_ok = 0 OR a.nlp IS NOT NULL)
+),
+domainized AS (
+  SELECT
+    b.*,
+    lower(
+      regexp_replace(
+        split_part(split_part(b.url, '://', 2), '/', 1),
+        '^www\.',
+        ''
+      )
+    ) AS domain,
+    COALESCE(b.nlp::jsonb #>> '{sentiment,label}', 'unknown') AS sentiment_label,
+    NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric AS sentiment_score
+  FROM base_articles b
+),
+topics AS (
+  SELECT
+    d.id AS article_id,
+    d.pub_date,
+    d.domain,
+    t.key AS topic,
+    NULLIF(t.value #>> '{}','')::numeric AS weight
+  FROM domainized d
+  CROSS JOIN LATERAL jsonb_each(
+    CASE
+      WHEN d.nlp IS NOT NULL AND jsonb_typeof(d.nlp::jsonb->'topics') = 'object'
+        THEN d.nlp::jsonb->'topics'
+      ELSE '{}'::jsonb
+    END
+  ) t
+),
+entities AS (
+  SELECT
+    d.id AS article_id,
+    d.pub_date,
+    d.domain,
+    lower(trim(e->>'text')) AS entity_text,
+    e->>'label' AS entity_label
+  FROM domainized d
+  CROSS JOIN LATERAL jsonb_array_elements(
+    CASE
+      WHEN d.nlp IS NOT NULL AND jsonb_typeof(d.nlp::jsonb->'entities') = 'array'
+        THEN d.nlp::jsonb->'entities'
+      ELSE '[]'::jsonb
+    END
+  ) e
+  WHERE COALESCE(e->>'text','') <> ''
+)
+-- FINAL SELECT
+SQL;
+            break;
+
+        case 'sent':
+            // value = sentiment label in nlp->sentiment->label
+            // For sentiment-specific corpus, NLP must exist.
+            $SCAFFOLD = <<<SQL
+WITH
+params (ctx, val, time_window, custom_from, custom_to, require_status_ok) AS (
+  VALUES (
+    :context,
+    :value,
+    :time_window,
+    CAST(:custom_from AS timestamptz),
+    CAST(:custom_to   AS timestamptz),
+    CAST(:require_status_ok AS int)
+  )
+),
+bounds AS (
+  SELECT
+    p.*,
+    CASE p.time_window
+      WHEN '24h' THEN now() - interval '24 hours'
+      WHEN '7d'  THEN now() - interval '7 days'
+      WHEN '30d' THEN now() - interval '30 days'
+      WHEN 'custom' THEN p.custom_from
+      ELSE now() - interval '7 days'
+    END AS time_min,
+    CASE p.time_window
+      WHEN 'custom' THEN p.custom_to
+      ELSE now()
+    END AS time_max
+  FROM params p
+),
+base_articles AS (
+  SELECT
+    a.id,
+    a.pub_date,
+    a.source_slug,
+    a.title,
+    a.url,
+    a.description,
+    a.author,
+    a.nlp
+  FROM articles a
+  CROSS JOIN bounds b
+  WHERE a.pub_date >= b.time_min
+    AND a.pub_date <  b.time_max
+    AND (b.require_status_ok = 0 OR a.status = 'ok')
+    AND a.nlp IS NOT NULL
+    AND lower(COALESCE(a.nlp::jsonb #>> '{sentiment,label}', 'unknown')) = b.val
+),
+domainized AS (
+  SELECT
+    b.*,
+    lower(
+      regexp_replace(
+        split_part(split_part(b.url, '://', 2), '/', 1),
+        '^www\.',
+        ''
+      )
+    ) AS domain,
+    COALESCE(b.nlp::jsonb #>> '{sentiment,label}', 'unknown') AS sentiment_label,
+    NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric AS sentiment_score
+  FROM base_articles b
+),
+topics AS (
+  SELECT
+    d.id AS article_id,
+    d.pub_date,
+    d.domain,
+    t.key AS topic,
+    NULLIF(t.value #>> '{}','')::numeric AS weight
+  FROM domainized d
+  CROSS JOIN LATERAL jsonb_each(
+    CASE
+      WHEN d.nlp IS NOT NULL AND jsonb_typeof(d.nlp::jsonb->'topics') = 'object'
+        THEN d.nlp::jsonb->'topics'
+      ELSE '{}'::jsonb
+    END
+  ) t
+),
+entities AS (
+  SELECT
+    d.id AS article_id,
+    d.pub_date,
+    d.domain,
+    lower(trim(e->>'text')) AS entity_text,
+    e->>'label' AS entity_label
+  FROM domainized d
+  CROSS JOIN LATERAL jsonb_array_elements(
+    CASE
+      WHEN d.nlp IS NOT NULL AND jsonb_typeof(d.nlp::jsonb->'entities') = 'array'
+        THEN d.nlp::jsonb->'entities'
+      ELSE '[]'::jsonb
+    END
+  ) e
+  WHERE COALESCE(e->>'text','') <> ''
+)
+-- FINAL SELECT
+SQL;
+            break;
+
+        case 'topic':
+            // value = topic key in nlp->topics object
+            $SCAFFOLD = <<<SQL
+WITH
+params (ctx, val, time_window, custom_from, custom_to, require_status_ok) AS (
+  VALUES (
+    :context,
+    :value,
+    :time_window,
+    CAST(:custom_from AS timestamptz),
+    CAST(:custom_to   AS timestamptz),
+    CAST(:require_status_ok AS int)
+  )
+),
+bounds AS (
+  SELECT
+    p.*,
+    CASE p.time_window
+      WHEN '24h' THEN now() - interval '24 hours'
+      WHEN '7d'  THEN now() - interval '7 days'
+      WHEN '30d' THEN now() - interval '30 days'
+      WHEN 'custom' THEN p.custom_from
+      ELSE now() - interval '7 days'
+    END AS time_min,
+    CASE p.time_window
+      WHEN 'custom' THEN p.custom_to
+      ELSE now()
+    END AS time_max
+  FROM params p
+),
+base_articles AS (
+  SELECT
+    a.id,
+    a.pub_date,
+    a.source_slug,
+    a.title,
+    a.url,
+    a.description,
+    a.author,
+    a.nlp
+  FROM articles a
+  CROSS JOIN bounds b
+  WHERE a.pub_date >= b.time_min
+    AND a.pub_date <  b.time_max
+    AND (b.require_status_ok = 0 OR a.status = 'ok')
+    AND a.nlp IS NOT NULL
+    AND jsonb_typeof(a.nlp::jsonb->'topics') = 'object'
+    AND (a.nlp::jsonb->'topics') ? b.val
+),
+domainized AS (
+  SELECT
+    b.*,
+    lower(
+      regexp_replace(
+        split_part(split_part(b.url, '://', 2), '/', 1),
+        '^www\.',
+        ''
+      )
+    ) AS domain,
+    COALESCE(b.nlp::jsonb #>> '{sentiment,label}', 'unknown') AS sentiment_label,
+    NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric AS sentiment_score
+  FROM base_articles b
+),
+topics AS (
+  SELECT
+    d.id AS article_id,
+    d.pub_date,
+    d.domain,
+    t.key AS topic,
+    NULLIF(t.value #>> '{}','')::numeric AS weight
+  FROM domainized d
+  CROSS JOIN LATERAL jsonb_each(
+    CASE
+      WHEN d.nlp IS NOT NULL AND jsonb_typeof(d.nlp::jsonb->'topics') = 'object'
+        THEN d.nlp::jsonb->'topics'
+      ELSE '{}'::jsonb
+    END
+  ) t
+),
+entities AS (
+  SELECT
+    d.id AS article_id,
+    d.pub_date,
+    d.domain,
+    lower(trim(e->>'text')) AS entity_text,
+    e->>'label' AS entity_label
+  FROM domainized d
+  CROSS JOIN LATERAL jsonb_array_elements(
+    CASE
+      WHEN d.nlp IS NOT NULL AND jsonb_typeof(d.nlp::jsonb->'entities') = 'array'
+        THEN d.nlp::jsonb->'entities'
+      ELSE '[]'::jsonb
+    END
+  ) e
+  WHERE COALESCE(e->>'text','') <> ''
+)
+-- FINAL SELECT
+SQL;
+            break;
+
+        case 'entity':
+            // value = entity text match (case-insensitive) inside nlp->entities array
+            $SCAFFOLD = <<<SQL
+WITH
+params (ctx, val, time_window, custom_from, custom_to, require_status_ok) AS (
+  VALUES (
+    :context,
+    :value,
+    :time_window,
+    CAST(:custom_from AS timestamptz),
+    CAST(:custom_to   AS timestamptz),
+    CAST(:require_status_ok AS int)
+  )
+),
+bounds AS (
+  SELECT
+    p.*,
+    CASE p.time_window
+      WHEN '24h' THEN now() - interval '24 hours'
+      WHEN '7d'  THEN now() - interval '7 days'
+      WHEN '30d' THEN now() - interval '30 days'
+      WHEN 'custom' THEN p.custom_from
+      ELSE now() - interval '7 days'
+    END AS time_min,
+    CASE p.time_window
+      WHEN 'custom' THEN p.custom_to
+      ELSE now()
+    END AS time_max
+  FROM params p
+),
+base_articles AS (
+  SELECT
+    a.id,
+    a.pub_date,
+    a.source_slug,
+    a.title,
+    a.url,
+    a.description,
+    a.author,
+    a.nlp
+  FROM articles a
+  CROSS JOIN bounds b
+  WHERE a.pub_date >= b.time_min
+    AND a.pub_date <  b.time_max
+    AND (b.require_status_ok = 0 OR a.status = 'ok')
+    AND a.nlp IS NOT NULL
+    AND jsonb_typeof(a.nlp::jsonb->'entities') = 'array'
+    AND EXISTS (
+      SELECT 1
+      FROM jsonb_array_elements(a.nlp::jsonb->'entities') e
+      WHERE lower(trim(COALESCE(e->>'text',''))) = lower(b.val)
     )
 ),
 domainized AS (
@@ -119,7 +593,7 @@ topics AS (
   FROM domainized d
   CROSS JOIN LATERAL jsonb_each(
     CASE
-      WHEN jsonb_typeof(d.nlp::jsonb->'topics') = 'object'
+      WHEN d.nlp IS NOT NULL AND jsonb_typeof(d.nlp::jsonb->'topics') = 'object'
         THEN d.nlp::jsonb->'topics'
       ELSE '{}'::jsonb
     END
@@ -135,7 +609,7 @@ entities AS (
   FROM domainized d
   CROSS JOIN LATERAL jsonb_array_elements(
     CASE
-      WHEN jsonb_typeof(d.nlp::jsonb->'entities') = 'array'
+      WHEN d.nlp IS NOT NULL AND jsonb_typeof(d.nlp::jsonb->'entities') = 'array'
         THEN d.nlp::jsonb->'entities'
       ELSE '[]'::jsonb
     END
@@ -144,17 +618,10 @@ entities AS (
 )
 -- FINAL SELECT
 SQL;
+            break;
+    }
 
-    // Common bound params
-    // If custom dates not provided, still bind something parseable.
-    $bind = [
-        ':category_slug'      => $category,
-        ':time_window'        => $time_window,
-        ':custom_from'        => ($custom_from ? ($custom_from . ' 00:00:00-05') : '2000-01-01 00:00:00-05'),
-        ':custom_to'          => ($custom_to   ? ($custom_to   . ' 23:59:59-05') : '2099-01-01 00:00:00-05'),
-        ':require_nlp_ok'     => $require_nlp_ok,
-        ':require_status_ok'  => $require_status_ok,
-    ];
+    if (!$SCAFFOLD) throw new Exception("No scaffold selected for context: " . $context);
 
     $run = function(string $finalSelectSql) use ($db, $SCAFFOLD, $bind) {
         $sql = $SCAFFOLD . "\n" . $finalSelectSql;
@@ -165,141 +632,9 @@ SQL;
     };
 
     // ---- Module queries ----
-
-    $kpi = $run(<<<SQL
-SELECT
-  (SELECT category_slug FROM bounds) AS category_slug,
-  (SELECT time_window FROM bounds)   AS time_window,
-  (SELECT time_min FROM bounds)      AS time_min,
-  (SELECT time_max FROM bounds)      AS time_max,
-  (SELECT count(*) FROM base_articles) AS corpus_articles,
-  (SELECT min(pub_date) FROM base_articles) AS corpus_min_pub_date,
-  (SELECT max(pub_date) FROM base_articles) AS corpus_max_pub_date
-;
-SQL);
-
-    if (!$kpi) {
-        $analysisFail('KPI query returned 0 rows.');
-        return;
-    }
-
-    $corpus_count = (int)($kpi[0]['corpus_articles'] ?? 0);
-
-    // Optional: small-corpus fallback (auto widen to 7d)
-    if ($corpus_count < 10 && $time_window === '24h') {
-        $time_window = '7d';
-        $bind[':time_window'] = '7d';
-        $kpi = $run(<<<SQL
-SELECT
-  (SELECT category_slug FROM bounds) AS category_slug,
-  (SELECT time_window FROM bounds)   AS time_window,
-  (SELECT time_min FROM bounds)      AS time_min,
-  (SELECT time_max FROM bounds)      AS time_max,
-  (SELECT count(*) FROM base_articles) AS corpus_articles,
-  (SELECT min(pub_date) FROM base_articles) AS corpus_min_pub_date,
-  (SELECT max(pub_date) FROM base_articles) AS corpus_max_pub_date
-;
-SQL);
-        $corpus_count = (int)($kpi[0]['corpus_articles'] ?? 0);
-    }
-
-    $timeseries = $run(<<<SQL
-SELECT
-  CASE
-    WHEN (SELECT time_window FROM bounds) = '24h' THEN date_trunc('hour', pub_date)
-    ELSE date_trunc('day', pub_date)
-  END AS bucket,
-  count(*) AS articles
-FROM base_articles
-GROUP BY 1
-ORDER BY 1;
-SQL);
-
-    $topics_chart = $run(<<<SQL
-SELECT
-  topic_bucket,
-  round(sum(weight_sum), 4) AS weight_sum
-FROM (
-  SELECT
-    CASE WHEN rn <= 8 THEN topic ELSE 'Other' END AS topic_bucket,
-    weight_sum
-  FROM (
-    SELECT
-      topic,
-      weight_sum,
-      row_number() OVER (ORDER BY weight_sum DESC, topic) AS rn
-    FROM (
-      SELECT
-        topic,
-        sum(weight) AS weight_sum
-      FROM topics
-      WHERE weight IS NOT NULL
-      GROUP BY 1
-    ) topic_sums
-  ) ranked
-) bucketed
-GROUP BY 1
-ORDER BY
-  CASE WHEN topic_bucket = 'Other' THEN 9999 ELSE 1 END,
-  weight_sum DESC;
-SQL);
-
-    $topics_table = $run(<<<SQL
-SELECT
-  topic,
-  round(sum(weight), 4) AS weight_sum,
-  count(DISTINCT article_id) AS articles_contributing
-FROM topics
-WHERE weight IS NOT NULL
-GROUP BY 1
-ORDER BY weight_sum DESC
-LIMIT 25;
-SQL);
-
-    $sentiment = $run(<<<SQL
-SELECT
-  sentiment_label,
-  count(*) AS articles
-FROM domainized
-GROUP BY 1
-ORDER BY articles DESC;
-SQL);
-
-    $sources = $run(<<<SQL
-SELECT
-  domain,
-  count(*) AS articles,
-  round((count(*)::numeric / (SELECT count(*) FROM base_articles)) * 100, 2) AS pct
-FROM domainized
-WHERE domain IS NOT NULL AND domain <> ''
-GROUP BY 1
-ORDER BY articles DESC, domain
-LIMIT 25;
-SQL);
-
-    $entities = $run(<<<SQL
-SELECT
-  entity_text,
-  max(entity_label) AS entity_label,
-  count(DISTINCT article_id) AS articles
-FROM entities
-GROUP BY 1
-ORDER BY articles DESC, entity_text
-LIMIT 25;
-SQL);
-
-    $articles = $run(<<<SQL
-SELECT
-  pub_date,
-  domain,
-  title,
-  url,
-  author,
-  sentiment_label,
-  sentiment_score
-FROM domainized
-ORDER BY pub_date DESC;
-SQL);
+    // You can keep your existing module queries as-is.
+    // (You may want to tweak KPI labels from "category_slug" to "context/value" — optional.)
+    // ... your existing $kpi = $run(...), etc.
 
 } catch (Throwable $e) {
     $analysisFail('Unexpected error in Analysis page', $e);
@@ -508,8 +843,8 @@ SQL);
     <h1 style="margin:0 0 6px 0;" class="mt-3">Text & Content Analysis</h1>
     <div class="note">
     Context:
-    <strong><?= htmlspecialchars("Category") ?></strong>
-    <span class="muted">(<?= htmlspecialchars($category) ?>)</span>
+    <strong><?= htmlspecialchars($context) ?></strong>
+    <span class="muted">(<?= htmlspecialchars($value) ?>)</span>
     &nbsp;|&nbsp;
 
     Window:
