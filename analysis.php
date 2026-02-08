@@ -1043,16 +1043,60 @@ SQL);
     <strong><?= (int)($kpi[0]['corpus_articles'] ?? 0) ?></strong> articles
     </div>
 
+    <?php
+    $ctxLabelMap = [
+    'entity'   => 'Entity',
+    'topic'    => 'Topic',
+    'pub'      => 'Publisher',
+    'sent'     => 'Sentiment',
+    'category' => 'Category',
+    ];
+
+    $ctxLabel = $ctxLabelMap[$context] ?? ucfirst($context);
+
+    // Format value for display
+    $ctxValue = (string)($kpi[0]['value'] ?? $value ?? '');
+    $ctxValue = trim($ctxValue);
+    if ($context === 'sent') {
+        $ctxValue = ucfirst(strtolower($ctxValue));
+    }
+    ?>
+
     <div class="row">
         <div class="col-12 col-lg-12">
             <div class="card" style="margin-top:12px;">
-                <h3>Corpus KPIs</h3>
-                <div class="kpis">
-                    <div class="kpi"><div class="label">Articles</div><div class="val"><?= (int)($kpi[0]['corpus_articles'] ?? 0) ?></div></div>
-                    <div class="kpi"><div class="label">From</div><div class="val"><?= htmlspecialchars($kpi[0]['corpus_min_pub_date'] ?? '') ?></div></div>
-                    <div class="kpi"><div class="label">To</div><div class="val"><?= htmlspecialchars($kpi[0]['corpus_max_pub_date'] ?? '') ?></div></div>
-                    <div class="kpi"><div class="label">Range</div><div class="val"><?= htmlspecialchars($kpi[0]['time_min'] ?? '') ?> → <?= htmlspecialchars($kpi[0]['time_max'] ?? '') ?></div></div>
+            <h3>Corpus KPIs</h3>
+
+            <div class="kpis">
+                <div class="kpi">
+                <div class="label"><?= htmlspecialchars($ctxLabel) ?></div>
+                <div class="val"><?= htmlspecialchars($ctxValue) ?></div>
                 </div>
+
+                <div class="kpi">
+                <div class="label">Articles</div>
+                <div class="val"><?= (int)($kpi[0]['corpus_articles'] ?? 0) ?></div>
+                </div>
+
+                <div class="kpi">
+                <div class="label">From</div>
+                <div class="val"><?= htmlspecialchars($kpi[0]['corpus_min_pub_date'] ?? '') ?></div>
+                </div>
+
+                <div class="kpi">
+                <div class="label">To</div>
+                <div class="val"><?= htmlspecialchars($kpi[0]['corpus_max_pub_date'] ?? '') ?></div>
+                </div>
+
+                <div class="kpi">
+                <div class="label">Range</div>
+                <div class="val">
+                    <?= htmlspecialchars($kpi[0]['time_min'] ?? '') ?>
+                    →
+                    <?= htmlspecialchars($kpi[0]['time_max'] ?? '') ?>
+                </div>
+                </div>
+            </div>
             </div>
         </div>
     </div>
