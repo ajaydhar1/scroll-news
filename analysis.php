@@ -318,7 +318,7 @@ SQL);
     $analysis_scope   = $time_window   ?? 'Overview';
     $site_name        = 'Scroll News';
 
-    $meta_title = "{$category} — {$time_window} Analysis | {$site_name}";
+    $meta_title = "{$analysis_subject} — {$analysis_scope} Analysis | {$site_name}";
   ?>
   <title><?= htmlspecialchars($meta_title) ?></title>
 
