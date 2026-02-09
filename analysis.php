@@ -1187,25 +1187,49 @@ SQL);
                     // don't uppercase
                     return $s;
                 };
+
+                // Build links that preserve current query params, but override context/value.
+                // (Keeps w/from/to/etc automatically)
+                $analysisHref = function(string $ctx, string $val) use ($time_window) {
+                    $params = $_GET;
+                    $params['context'] = $ctx;
+                    $params['value']   = $val;
+                    // ensure window param is present and consistent
+                    if (!isset($params['w'])) $params['w'] = $time_window;
+                    return '?' . http_build_query($params);
+                };
             ?>
 
             <table class="bar-table">
                 <thead>
-                <tr>
+                    <tr>
                     <th>Entity</th>
                     <th>Label</th>
                     <th style="text-align:right;">Articles</th>
-                </tr>
+                    <th style="text-align:right;">Actions</th>
+                    </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($entities_deduped as $row):
                     $article_count = (int)$row['articles'];
                     $pctBar = ($max_articles > 0) ? round(($article_count / $max_articles) * 100, 2) : 0;
+
+                    $entityValue = (string)$row['entity']; // canonical value (good for URL)
+                    $analyzeUrl  = $analysisHref('entity', $entityValue);
                 ?>
                 <tr class="bar-row" style="--bar: <?= $pctBar ?>%;">
                     <td><?= htmlspecialchars($pretty($row['entity'])) ?></td>
                     <td><?= htmlspecialchars($row['label'] ?: '—') ?></td>
                     <td style="text-align:right;"><?= $article_count ?></td>
+                    <td style="text-align:right; white-space:nowrap;">
+                    <a class="sn-btn" href="<?= htmlspecialchars($analyzeUrl) ?>" title="Analyze entity" data-loading>
+                    🔎
+                    </a>
+                    <a class="sn-btn" href="#" title="Filter corpus (coming soon)" aria-disabled="true"
+                    onclick="return false;">
+                    🧲
+                    </a>
+                </td>
                 </tr>
                 <?php endforeach; ?>
                 </tbody>
