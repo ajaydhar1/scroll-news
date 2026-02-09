@@ -327,6 +327,20 @@ try {
     }
   }
 
+  function snAnalysisUrl(term, window = "24h", context = "entity", extra = {}) {
+    if (!term) return "analysis.php";
+
+    const params = new URLSearchParams({
+      context: context,
+      value: term,
+      w: window,
+      ...extra
+    });
+
+    return `analysis.php?${params.toString()}`;
+  }
+
+
   function renderNewsStrip(elId, articles) {
     const strip = document.getElementById(elId);
     if (!strip) return;
@@ -384,7 +398,17 @@ try {
       if (hashtags.length) {
         hashtagsHtml = `
           <div class="sn-tags">
-            ${hashtags.map(tag => `<span class="sn-tag">${tag}</span>`).join("")}
+            ${hashtags.map(tag => {
+              // Remove leading "#" before building URL
+              const clean = tag.replace(/^#\s*/, "").trim();
+              const href = snAnalysisUrl(clean, "24h", "entities");
+
+              return `
+                <a class="sn-tag" href="${href}">
+                  ${tag}
+                </a>
+              `;
+            }).join("")}
           </div>
         `;
       }

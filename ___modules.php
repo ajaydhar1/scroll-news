@@ -2175,4 +2175,37 @@ function fl_headline_emoji(string $title): string {
     return "📰";
 }
 
+
+/**
+ * Build a link to analysis.php with consistent query params.
+ *
+ * @param string $term     The entity/place/topic text (no leading #).
+ * @param string $window   Time window like "24h", "7d", "3w", etc.
+ * @param string $context  Context bucket like "entities", "places", "topics".
+ * @param array  $extra    Optional extra query params to merge in.
+ * @param string $path     Path to analysis page (default: "analysis.php").
+ *
+ * @return string Relative URL suitable for href.
+ */
+function sn_analysis_url(string $term, string $window = '24h', string $context = 'entity', array $extra = [], string $path = 'analysis.php'): string
+{
+    $term = trim($term);
+    if ($term === '') {
+        // Safe fallback; caller can decide to not render if they want.
+        return $path;
+    }
+
+    // Normalize inputs a bit (optional but helps avoid inconsistent URLs)
+    $window  = trim($window) ?: '24h';
+    $context = trim($context) ?: 'entity';
+
+    $params = array_merge([
+        'context' => $context,     // context bucket
+        'value' => $term,        // analysis target
+        'w' => $window,      // time window
+    ], $extra);
+
+    return $path . '?' . http_build_query($params, '', '&', PHP_QUERY_RFC3986);
+}
+
 ?>

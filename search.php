@@ -854,9 +854,23 @@ if (!$pdo) {
                                             <?php if (!empty($hashtags)): ?>
                                                 <div class="sn-hashtags mt-1">
                                                     <?php foreach ($hashtags as $tag): ?>
-                                                        <span class="sn-hashtag-chip">
-                                                            <?php echo htmlspecialchars($tag); ?>
-                                                        </span>
+                                                        <?php
+                                                            // hashtags likely come in like "#TaylorSwift" or "#Taylor Swift"
+                                                            $raw = (string)$tag;
+
+                                                            // Remove ONE leading "#", then trim whitespace
+                                                            $clean = ltrim($raw, "# \t\n\r\0\x0B");
+
+                                                            // If you want to be extra safe:
+                                                            $clean = trim($clean);
+
+                                                            // Build analysis URL (7d for search page)
+                                                            $href = sn_analysis_url($clean, '7d', 'entities');
+                                                        ?>
+                                                        <a class="sn-hashtag-chip"
+                                                        href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>">
+                                                            <?= htmlspecialchars($raw, ENT_QUOTES, 'UTF-8') ?>
+                                                        </a>
                                                     <?php endforeach; ?>
                                                 </div>
                                             <?php endif; ?>

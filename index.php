@@ -350,7 +350,7 @@
             'politics'      => 'Politics',
             'sports'        => 'Sports',
             'business'      => 'Business',
-            'tech'          => 'Technology',
+            'technology'    => 'Technology',
             'science'       => 'Science',
             'health'        => 'Health',
             'entertainment' => 'Entertainment',
