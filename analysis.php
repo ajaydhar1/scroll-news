@@ -1374,7 +1374,6 @@ SQL);
                         <th>Domain</th>
                         <th style="text-align:right;">Articles</th>
                         <th style="text-align:right;">%</th>
-                        <th style="text-align:right;">Articles</th>
                         <th style="text-align:right;">Actions</th>
                     </tr>
                 </thead>
