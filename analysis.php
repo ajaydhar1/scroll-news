@@ -953,72 +953,65 @@ SQL);
         margin-bottom: 4px;
     }
 
+    /* ========= Desktop / default: FULL-ROW bars ========= */
     .bar-table .bar-row{
-        position: relative;
+    position: relative;
     }
 
     .bar-table .bar-row::before{
-        content:"";
-        position:absolute;
-        left: 6px;
-        right: 6px;
-        top: 3px;
-        bottom: 3px;
-        width: calc(var(--bar) - 12px); /* keeps padding feeling consistent */
-        max-width: calc(100% - 12px);
-        background: rgba(0,0,0,0.06);
-        border-radius: 8px;
-        z-index: 0;
+    content:"";
+    position:absolute;
+    left: 6px;
+    right: 6px;
+    top: 3px;
+    bottom: 3px;
+
+    /* width based on --bar (keep your inset math consistent) */
+    width: calc(var(--bar) - 12px);
+    max-width: calc(100% - 12px);
+
+    background: rgba(0,0,0,0.06);
+    border-radius: 8px;
+    z-index: 0;
+    pointer-events: none; /* important: never intercept clicks */
     }
 
     .bar-table .bar-row td{
-        position: relative;
-        z-index: 1;
+    position: relative;
+    z-index: 1; /* text/icons above the bar */
     }
 
     .bar-table .bar-row:hover::before{
-        background: rgba(0,0,0,0.09);
+    background: rgba(0,0,0,0.09);
     }
 
-    .bar-cell{
-        position: relative;
-        font-variant-numeric: tabular-nums;
+    /* (optional) ensure domain cell layout is stable */
+    .sn-domain-cell{
+    display: flex;
+    align-items: center;
+    gap: 6px;
     }
 
-    .bar-cell::before{
-        content:"";
-        position:absolute;
-        left: 6px;
-        right: 6px;
-        top: 4px;
-        bottom: 4px;
-        width: calc(var(--bar));
-        max-width: calc(100% - 12px);
-        background: rgba(0,0,0,0.06);
-        border-radius: 8px;
-        z-index: 0;
-    }
+    /* ========= Remove this entirely (DON'T use cell pseudo bars) ========= */
+    /* .bar-cell::before { ... }  <-- DELETE */
+    /* .bar-cell > span { ... }   <-- DELETE */
 
-    .bar-cell > span{
-        position: relative;
-        z-index: 1;
-    }
 
-    /* Mobile: disable full-row overlay bar */
+    /* ========= Mobile: CELL bars only ========= */
     @media (max-width: 640px){
-    .bar-table .bar-row::before,
-    .bar-table .bar-cell::before{
+
+    /* turn OFF row overlay bars */
+    .bar-table .bar-row::before{
         display: none;
     }
-    }
 
-    @media (max-width: 640px){
+    /* the cell that will host the bar */
     .bar-table .bar-cell{
-        text-align: right;
         position: relative;
         overflow: hidden;
     }
 
+    /* actual bar element inside the cell */
     .bar-table .bar-cell .bar-fill{
         position: absolute;
         left: 0;
@@ -1032,6 +1025,7 @@ SQL);
         pointer-events: none;
     }
 
+    /* raise all real content above the bar (img, span, a, etc.) */
     .bar-table .bar-cell > *:not(.bar-fill){
         position: relative;
         z-index: 1;
@@ -1492,7 +1486,8 @@ SQL);
                 <tr>
                     <td><?= htmlspecialchars($r['topic_bucket'] ?? '') ?></td>
                     <td class="bar-cell" style="--bar: <?= $pctBar ?>%;">
-                    <span><?= htmlspecialchars($r['weight_sum'] ?? '') ?></span>
+                        <span class="bar-fill" aria-hidden="true"></span>
+                        <span><?= htmlspecialchars($r['weight_sum'] ?? '') ?></span>
                     </td>
                     <td style="text-align:right; white-space:nowrap;">
                         <?php if (!$isOther): ?>
@@ -1562,7 +1557,8 @@ SQL);
                         <?= htmlspecialchars($labelPretty) ?>
                     </td>
                     <td class="bar-cell" style="--bar: <?= $pctBar ?>%;">
-                    <span><?= $v ?></span>
+                        <span class="bar-fill" aria-hidden="true"></span>
+                        <span><?= $v ?></span>
                     </td>
                     <td style="text-align:right; white-space:nowrap;">
                         <?php if ($labelVal !== ''): ?>
