@@ -686,6 +686,7 @@ SQL);
     $corpus_count = (int)($kpi[0]['corpus_articles'] ?? 0);
 
     // Optional: small-corpus fallback (auto widen to 7d)
+/*
     if ($corpus_count < 10 && $time_window === '24h') {
         $time_window = '7d';
         $bind[':time_window'] = '7d';
@@ -703,6 +704,7 @@ SELECT
 SQL);
         $corpus_count = (int)($kpi[0]['corpus_articles'] ?? 0);
     }
+*/
 
     $timeseries = $run(<<<SQL
 SELECT
