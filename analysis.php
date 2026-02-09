@@ -1026,6 +1026,14 @@ SQL);
         text-align: center;
     }
 
+    .analysis-desc p {
+        max-width: 720px;
+        margin: 0 auto;
+        font-size: 0.92rem;
+        color: #666;
+        line-height: 1.4;
+    }
+
   </style>
 </head>
 <body class="bg-light">
@@ -1123,6 +1131,13 @@ SQL);
         $ctxValue = ucfirst(strtolower($ctxValue));
     }
     ?>
+
+    <div class="analysis-desc text-center mt-2">
+        <p>
+            This page analyzes how a selected entity or topic appears in recent news coverage within the specified time window.
+            Metrics and breakdowns are derived from the active article corpus.
+        </p>
+    </div>
 
     <div class="row">
         <div class="col-12 col-lg-12">
