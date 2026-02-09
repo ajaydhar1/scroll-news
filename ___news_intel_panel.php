@@ -629,16 +629,16 @@ footer .btn {
                                     <div class="intel-chip mb-3 pb-2 border-bottom">
                                         <div class="d-flex justify-content-between align-items-center mb-1">
                                             <?php
-                                            $label = (string)($item['label'] ?? '');
-                                            $value = strtolower(trim($label));
-                                            $value = preg_replace('/\s+/', ' ', $value); // normalize spaces
+                                            $entityLabel = (string)($item['label'] ?? '');
+                                            $entityValue = strtolower(trim($entityLabel)); // analysis expects lowercase canonical-ish
+                                            $entityValue = preg_replace('/\s+/', ' ', $entityValue); // normalize spaces
 
                                             // Decide analysis context based on panel key
                                             $analysisContext = ($key === 'topics') ? 'topic' : 'entity';
 
                                             $analysisUrl = '/analysis.php?' . http_build_query([
                                                 'context' => $analysisContext,
-                                                'value'   => $value,
+                                                'value'   => $entityValue,
                                                 'w'       => '24h',
                                             ]);
                                             ?>
@@ -781,22 +781,22 @@ footer .btn {
 
                                                             <?php foreach ($entityChips as $name): ?>
                                                                 <?php
-                                                                    $clean = trim($name); // entities do NOT include #
-                                                                    $href  = sn_analysis_url($clean, '24h', 'entities');
+                                                                    $clean = trim(strtolower($name)); // entities do NOT include #
+                                                                    $href  = sn_analysis_url($clean, '24h', 'entity');
                                                                 ?>
                                                                 <a class="nlp-chip nlp-chip-entity"
-                                                                href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>">
+                                                                href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>" data-loading>
                                                                     #<?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?>
                                                                 </a>
                                                             <?php endforeach; ?>
 
                                                             <?php foreach ($topicChips as $topicName): ?>
                                                                 <?php
-                                                                    $clean = trim($topicName);
-                                                                    $href  = sn_analysis_url($clean, '24h', 'topics');
+                                                                    $clean = trim(strtolower($topicName));
+                                                                    $href  = sn_analysis_url($clean, '24h', 'topic');
                                                                 ?>
                                                                 <a class="nlp-chip nlp-chip-topic"
-                                                                href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>">
+                                                                href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>" data-loading>
                                                                     <?= htmlspecialchars($topicName, ENT_QUOTES, 'UTF-8') ?>
                                                                 </a>
                                                             <?php endforeach; ?>
