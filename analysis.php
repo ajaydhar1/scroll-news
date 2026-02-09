@@ -1544,12 +1544,61 @@ SQL);
 
                     <tbody>
                     <?php foreach ($articles as $r):
-                        $cat = strtolower(trim((string)($r['source_slug'] ?? '')));
-                        $catLabel = $cat !== '' ? ucfirst($cat) : '—';
-                        $catUrl = ($cat !== '') ? $analysisHref('category', $cat) : null;
+
+                    // --- helpers for this row ---
+                    $safeStr = static fn($v) => trim((string)($v ?? ''));
+                    $lc      = static fn($s) => strtolower(trim((string)$s));
+
+                    // Category
+                    $cat      = $lc($r['source_slug'] ?? '');
+                    $catLabel = ($cat !== '') ? ucfirst($cat) : '—';
+                    $catUrl   = ($cat !== '') ? $analysisHref('category', $cat) : null;
+
+                    // Domain + favicon
+                    $domain     = $lc($r['domain'] ?? '');
+                    $faviconUrl = ($domain !== '') ? $faviconForDomain($domain) : null;
+
+                    // URL + title
+                    $url   = $safeStr($r['url'] ?? '');
+                    $title = $safeStr($r['title'] ?? '');
+
+                    // Author
+                    $author = $safeStr($r['author'] ?? '');
+
+                    // Sentiment
+                    $sentLabel = $lc($r['sentiment_label'] ?? '');
+                    $emoji     = $sentimentEmoji[$sentLabel] ?? '❓';
+                    $sentScore = $safeStr($r['sentiment_score'] ?? '');
+
+                    // Pub date normalize -> timestamp (or null)
+                    $pubRaw = $r['pub_date'] ?? null;
+                    $pub_ts = null;
+
+                    if (is_numeric($pubRaw)) {
+                        $pub_ts = (int)$pubRaw;
+                    } elseif (is_string($pubRaw) && trim($pubRaw) !== '') {
+                        $tmp = strtotime($pubRaw);
+                        if ($tmp !== false) $pub_ts = $tmp;
+                    }
+
+                    // Display pub date (keep your current display if already formatted)
+                    $pubDisplay = $safeStr($r['pub_date'] ?? '');
+                    // Optional: prettier display if you want
+                    // $pubDisplay = $pub_ts ? date('Y-m-d H:i', $pub_ts) : $safeStr($r['pub_date'] ?? '');
+
+                    // Build Analyze URL (filter out null/empty values)
+                    $params = array_filter([
+                        'url'      => $url ?: null,
+                        'category' => ($cat !== '') ? ucfirst($cat) : null,
+                        'pub_date' => $pub_ts,
+                        'db'       => 1,
+                    ], static fn($v) => $v !== null && $v !== '');
+
+                    $qs = http_build_query($params);
+
                     ?>
                     <tr>
-                        <td><?= htmlspecialchars($r['pub_date'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($pubDisplay) ?></td>
 
                         <td>
                         <?php if ($catUrl): ?>
@@ -1561,71 +1610,46 @@ SQL);
                         <?php endif; ?>
                         </td>
 
-                        <?php
-                        $domain = strtolower(trim((string)($r['domain'] ?? '')));
-                        $faviconUrl = $faviconForDomain($domain);
-                        ?>
                         <td class="sn-domain-cell">
-                            <?php if ($faviconUrl): ?>
-                                <img
-                                    src="<?= htmlspecialchars($faviconUrl) ?>"
-                                    alt=""
-                                    class="sn-favicon"
-                                    loading="lazy"
-                                >
-                            <?php endif; ?>
-                            <span><?= htmlspecialchars($domain) ?></span>
+                        <?php if ($faviconUrl): ?>
+                            <img
+                            src="<?= htmlspecialchars($faviconUrl) ?>"
+                            alt=""
+                            class="sn-favicon"
+                            loading="lazy"
+                            >
+                        <?php endif; ?>
+                        <span><?= htmlspecialchars($domain !== '' ? $domain : '—') ?></span>
                         </td>
 
                         <td>
-                        <a href="<?= htmlspecialchars($r['url'] ?? '') ?>" target="_blank" rel="noopener">
-                            <?= htmlspecialchars($r['title'] ?? '') ?>
-                        </a>
+                        <?php if ($url !== ''): ?>
+                            <a href="<?= htmlspecialchars($url) ?>" target="_blank" rel="noopener">
+                            <?= htmlspecialchars($title !== '' ? $title : $url) ?>
+                            </a>
+                        <?php else: ?>
+                            <span class="muted"><?= htmlspecialchars($title !== '' ? $title : '—') ?></span>
+                        <?php endif; ?>
                         </td>
 
-                        <?php
-                        $pubRaw = $article['pub_date'] ?? null;
-
-                        $pubIso = '';
-                        $pub_ts = null;
-
-                        if (is_numeric($pubRaw)) {
-                            // DB stored as unix timestamp (e.g. INT)
-                            $pub_ts = (int) $pubRaw;
-                            $pubIso = gmdate(DATE_ATOM, $pub_ts);
-                        } elseif (is_string($pubRaw) && $pubRaw !== '') {
-                            // DB stored as a datetime string (e.g. "2025-12-07 15:45:00")
-                            $tmp = strtotime($pubRaw);
-                            if ($tmp !== false) {
-                                $pub_ts = $tmp;
-                                $pubIso = gmdate(DATE_ATOM, $pub_ts);
-                            }
-                        }
-
-                        $qs = http_build_query([
-                            'url'      => $article['url'],
-                            'category' => ucfirst($article['source_slug'] ?? ''),
-                            'pub_date' => $pub_ts,
-                            'db'       => 1,
-                        ]);
-
-                        ?>
                         <td>
-                                <a href="newsroom.php?<?= htmlspecialchars($qs) ?>"
-                                                       class="btn btn-green"
-                                                       data-loading>Analyze</a>
+                        <?php if ($qs !== ''): ?>
+                            <a href="newsroom.php?<?= htmlspecialchars($qs) ?>"
+                            class="btn btn-sm btn-green"
+                            data-loading>Analyze</a>
+                        <?php else: ?>
+                            <span class="muted">—</span>
+                        <?php endif; ?>
                         </td>
 
-                        <td><?= htmlspecialchars($r['author'] ?? '') ?></td>
-                        
-                        <?php
-                        $emoji = $sentimentEmoji[$r['sentiment_label']] ?? '❓';
-                        ?>
+                        <td><?= htmlspecialchars($author) ?></td>
+
                         <td>
-                            <span class="sent-emoji"><?= $emoji ?></span>
-                            <?= htmlspecialchars($r['sentiment_label'] ?? '') ?>
+                        <span class="sent-emoji"><?= htmlspecialchars($emoji) ?></span>
+                        <?= htmlspecialchars($sentLabel !== '' ? $sentLabel : '—') ?>
                         </td>
-                        <td><?= htmlspecialchars($r['sentiment_score'] ?? '') ?></td>
+
+                        <td><?= htmlspecialchars($sentScore !== '' ? $sentScore : '—') ?></td>
                     </tr>
                     <?php endforeach; ?>
                     </tbody>
