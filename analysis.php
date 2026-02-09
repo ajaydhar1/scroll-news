@@ -1007,7 +1007,6 @@ SQL);
 
 
     .sn-domain-cell {
-        display: flex;
         align-items: center;
         gap: 6px;
     }
@@ -1032,6 +1031,11 @@ SQL);
         font-size: 0.92rem;
         color: #666;
         line-height: 1.4;
+    }
+
+    .btn-sm, .btn-group-sm > .btn {
+        padding: 0.15rem 0.25rem;
+        font-size: .675rem;
     }
 
   </style>
