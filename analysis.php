@@ -1380,11 +1380,11 @@ SQL);
                     <td><?= htmlspecialchars($row['label'] ?: '—') ?></td>
                     <td style="text-align:right;"><?= $article_count ?></td>
                     <td style="text-align:right; white-space:nowrap;">
-                    <a class="sn-btn" href="<?= htmlspecialchars($searchUrl) ?>" title="Search all articles" data-loading>
-                    🔍
-                    </a>
                     <a class="sn-btn" href="<?= htmlspecialchars($analyzeUrl) ?>" title="Analyze entity" data-loading>
                     📊
+                    </a>
+                    <a class="sn-btn" href="<?= htmlspecialchars($searchUrl) ?>" title="Search all articles" data-loading>
+                    🔍
                     </a>
                     <a class="sn-btn" href="#" title="Filter corpus (coming soon)" aria-disabled="true"
                     onclick="return false;">
@@ -1451,6 +1451,9 @@ SQL);
                     <td style="text-align:right; white-space:nowrap;">
                         <a class="sn-btn" href="<?= htmlspecialchars($analyzeUrl) ?>" title="Analyze publisher" data-loading>
                         📊
+                        </a>
+                        <a class="sn-btn" href="https://<?= $domain ?>" title="View publisher" target="_blank">
+                        📰
                         </a>
                         <a class="sn-btn" href="#" title="Filter corpus (coming soon)" aria-disabled="true"
                         onclick="return false;">
