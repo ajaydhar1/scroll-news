@@ -1583,6 +1583,14 @@ SQL);
                         </td>
 
                         <td><?= htmlspecialchars($r['author'] ?? '') ?></td>
+                        
+                        <?php
+                        $emoji = $sentimentEmoji[$labelPretty] ?? '❓';
+                        ?>
+                        <td>
+                            <span class="sent-emoji"><?= $emoji ?></span>
+                            <?= htmlspecialchars($labelPretty) ?>
+                        </td>
                         <td><?= htmlspecialchars($r['sentiment_label'] ?? '') ?></td>
                         <td><?= htmlspecialchars($r['sentiment_score'] ?? '') ?></td>
                     </tr>
