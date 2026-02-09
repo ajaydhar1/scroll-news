@@ -982,7 +982,6 @@ SQL);
 
     .bar-cell{
         position: relative;
-        text-align: right;
         font-variant-numeric: tabular-nums;
     }
 
@@ -1007,13 +1006,15 @@ SQL);
 
     /* Mobile: disable full-row overlay bar */
     @media (max-width: 640px){
-    .bar-table .bar-row::before{
+    .bar-table .bar-row::before,
+    .bar-table .bar-cell::before{
         display: none;
     }
     }
 
     @media (max-width: 640px){
     .bar-table .bar-cell{
+        text-align: right;
         position: relative;
         overflow: hidden;
     }
@@ -1036,7 +1037,7 @@ SQL);
         z-index: 1;
     }
     }
-    
+
 
     .sn-domain-cell {
         align-items: center;
