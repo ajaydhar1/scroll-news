@@ -388,3 +388,37 @@ a.scroll-badge-deep-dive:hover {
 .btn-outline-secondary {
     border-color: transparent;
 }
+
+.sn-categories-strip{
+  margin-top: 10px;
+}
+
+.sn-categories-title{
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.sn-categories-pills{
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sn-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 21px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-decoration: none;
+    line-height: 1;
+    font-size: 13px;
+}
+
+.sn-pill:hover{
+  border-color: rgba(255,255,255,0.3);
+}
+
+.sn-pill-active{
+  border-color: rgba(255,255,255,0.6);
+}

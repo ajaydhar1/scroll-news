@@ -257,6 +257,7 @@
                         <div class="col-lg-4 d-flex text-lg-right" style="">
                             <div class="ml-auto">
                                 <a href="about.php" class="mr-3">About</a>
+                                <a class="search-button mr-2" href="analysis.php?context=category&value=politics&w=7d" title="Analyze trends" aria-label="Analyze trends">📊</a>
                                 <a class="search-button" href="search.php" title="Search" aria-label="Search">🔍</a>
                             </div>
                         </div>
@@ -341,6 +342,52 @@
                     </div>
                 </div>
                 </div>
+            </div>
+            </section>
+
+            <?php
+            $categories = [
+            'politics'      => 'Politics',
+            'sports'        => 'Sports',
+            'business'      => 'Business',
+            'tech'          => 'Tech',
+            'science'       => 'Science',
+            'health'        => 'Health',
+            'entertainment' => 'Entertainment',
+            ];
+
+            // optional: highlight the active category if you're already on analysis pages
+            $currentCtx = isset($_GET['context']) ? strtolower(trim((string)$_GET['context'])) : '';
+            $currentVal = isset($_GET['value'])   ? strtolower(trim((string)$_GET['value']))   : '';
+            ?>
+            <section class="bg-light-2 py-3 text-center">
+            <div class="sn-categories-strip">
+            <div class="sn-categories-title">Analyze trends by category</div>
+
+            <div class="sn-categories-pills">
+                <?php foreach ($categories as $slug => $label):
+                $params = $_GET; // preserve existing params (optional)
+                $params['context'] = 'category';
+                $params['value']   = $slug;
+                $params['w']       = '7d';
+
+                // If you don't want to preserve homepage params, replace the 4 lines above with:
+                // $params = ['context' => 'category', 'value' => $slug, 'w' => '7d'];
+
+                $href = '/analysis.php?' . http_build_query($params);
+
+                $isActive = ($currentCtx === 'category' && $currentVal === $slug);
+                ?>
+                <a
+                    class="sn-pill bg-dark <?= $isActive ? 'sn-pill-active' : '' ?>"
+                    href="<?= htmlspecialchars($href) ?>"
+                    title="Analyze <?= htmlspecialchars($label) ?>"
+                    data-loading
+                >
+                    <?= htmlspecialchars($label) ?>
+                </a>
+                <?php endforeach; ?>
+            </div>
             </div>
             </section>
 

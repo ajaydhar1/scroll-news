@@ -628,8 +628,22 @@ footer .btn {
                                 <?php foreach ($items as $item): ?>
                                     <div class="intel-chip mb-3 pb-2 border-bottom">
                                         <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <?php
+                                            $entityLabel = (string)($item['label'] ?? '');
+                                            $entityValue = strtolower(trim($entityLabel)); // analysis expects lowercase canonical-ish
+                                            $entityValue = preg_replace('/\s+/', ' ', $entityValue); // normalize spaces
+
+                                            $analysisUrl = '/analysis.php?' . http_build_query([
+                                                'context' => 'entity',
+                                                'value'   => $entityValue,
+                                                'w'       => '24h',
+                                            ]);
+                                            ?>
                                             <div class="fw-semibold">
-                                                <?= htmlspecialchars($item['label']) ?>
+                                                <a href="<?= htmlspecialchars($analysisUrl) ?>" data-loading
+                                                title="Analyze entity: <?= htmlspecialchars($entityLabel) ?>">
+                                                    <?= htmlspecialchars($entityLabel) ?> 📊
+                                                </a>
                                             </div>
                                             <span class="badge rounded-pill bg-secondary-subtle text-body-secondary small">
                                                 <?= (int)$item['count'] ?> articles

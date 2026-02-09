@@ -1,39 +1,39 @@
 {
-    "fetched_at": 1769840230,
+    "fetched_at": 1770606086,
     "feeds": [
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Trump taps a longtime agency economist as the next Bureau of Labor Statistics commissioner",
-                    "url": "https://www.businessinsider.com/trump-taps-longtime-agency-economist-next-bls-commissioner-brett-matsumoto-2026-1",
-                    "ts": 1769831804,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Kathy Ruemmler, now Goldman Sachs' top lawyer, thanked 'Uncle Jeffrey' Epstein for gifts, emails show",
-                    "url": "https://www.businessinsider.com/epstein-emails-kathy-ruemmler-thanked-uncle-jeffrey-for-gifts-2026-1",
-                    "ts": 1769825710,
-                    "emo": "🎭"
-                }
-            ]
-        },
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "FEDS ARREST LEMON",
-                    "url": "https://www.nytimes.com/2026/01/30/us/don-lemon-arrest-minnesota-church-protest.html?unlocked_article_code=1.IVA.qddu.bKtB9yDqbaVP&smid=url-share",
-                    "ts": 1769791597,
-                    "emo": "🚨"
+                    "title": "Santa Clara most militarized place in USA...",
+                    "url": "https://www.sfgate.com/article/21331401.php",
+                    "ts": 1770601236,
+                    "emo": "📰"
                 },
                 {
-                    "title": "DON VS. DON",
-                    "url": "https://deadline.com/2026/01/don-lemon-arrested-ice-protest-trump-1236703300/",
-                    "ts": 1769791597,
-                    "emo": "📰"
+                    "title": "The Culture War Is Over. Bad Bunny Won...",
+                    "url": "https://www.nytimes.com/2026/02/06/opinion/bad-bunny-super-bowl.html?unlocked_article_code=1.KlA.yM-K.Ii0vvtWjT9r3&smid=url-share",
+                    "ts": 1770601236,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Bad Bunny's Super Bowl halftime show setlist: Every song",
+                    "url": "https://www.businessinsider.com/bad-bunny-super-bowl-halftime-show-setlist-songs-2026-2",
+                    "ts": 1770600241,
+                    "emo": "🎭"
+                },
+                {
+                    "title": "The Super Bowl AI ad showdown: Anthropic snarks, OpenAI goes earnest",
+                    "url": "https://www.businessinsider.com/super-bowl-ai-ads-anthropic-openai-chatgpt-claude-codex-2026-2",
+                    "ts": 1770597153,
+                    "emo": "🧪"
                 }
             ]
         }

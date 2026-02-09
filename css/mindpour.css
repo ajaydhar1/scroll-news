@@ -70,6 +70,10 @@ footer .text-muted {
     background-color: rgba(0, 0, 0, .4) !important;
 }
 
+a.bg-light:hover, a.bg-light:focus, button.bg-light:hover, button.bg-light:focus {
+    background-color: rgba(0, 0, 0, .7) !important;
+}
+
 .bg-dark {
     background-color: rgba(0, 0, 0, .7) !important;
 }
