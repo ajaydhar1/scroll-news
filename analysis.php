@@ -1197,9 +1197,9 @@ SQL);
         </div>
     </div>
 
-    <div class="row" style="margin-top:12px;">
+    <div class="row">
     <div class="col-12 col-lg-6">
-        <div class="card" style="flex:1; min-width:320px;">
+        <div class="card" style="flex:1; min-width:320px; margin-top:12px;">
             <div class="card-eyebrow">Who’s being talked about</div>
             <h3>Top Entities</h3>
 
@@ -1356,7 +1356,7 @@ SQL);
     </div>
 
     <div class="col-12 col-lg-6">
-        <div class="card" style="flex:1; min-width:320px;">
+        <div class="card" style="flex:1; min-width:320px; margin-top:12px;">
             <div class="card-eyebrow">Who’s talking</div>
             <h3>Top Sources (Domains)</h3>
 
@@ -1421,9 +1421,9 @@ SQL);
     </div>
     </div>
 
-    <div class="row" style="margin-top:12px;">
+    <div class="row">
     <div class="col-12 col-lg-6">
-        <div class="card" style="flex:1; min-width:320px;">
+        <div class="card" style="flex:1; min-width:320px; margin-top:12px;">
             <div class="card-eyebrow">What’s being discussed</div>
             <h3>Top Topics</h3>
 
@@ -1478,7 +1478,7 @@ SQL);
     </div>
 
     <div class="col-12 col-lg-6">
-        <div class="card" style="flex:1; min-width:320px;">
+        <div class="card" style="flex:1; min-width:320px; margin-top:12px;">
             <div class="card-eyebrow">How it feels</div>
             <h3>Sentiment</h3>
 
@@ -1550,7 +1550,7 @@ SQL);
 
     <div class="row">
         <div class="col-12 col-lg-12">
-            <div class="card corpus" style="margin-top:12px;">
+            <div class="card corpus table-responsive" style="margin-top:12px; margin-bottom:12px;">
                 <h3>Articles included</h3>
 
                 <table>
