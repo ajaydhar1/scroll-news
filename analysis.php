@@ -1535,6 +1535,7 @@ SQL);
                         <th>Category</th>
                         <th>Domain</th>
                         <th>Title</th>
+                        <th>Analyze</th>
                         <th>Author</th>
                         <th>Sent</th>
                         <th>Score</th>
@@ -1580,6 +1581,39 @@ SQL);
                         <a href="<?= htmlspecialchars($r['url'] ?? '') ?>" target="_blank" rel="noopener">
                             <?= htmlspecialchars($r['title'] ?? '') ?>
                         </a>
+                        </td>
+
+                        <?php
+                        $pubRaw = $article['pub_date'] ?? null;
+
+                        $pubIso = '';
+                        $pub_ts = null;
+
+                        if (is_numeric($pubRaw)) {
+                            // DB stored as unix timestamp (e.g. INT)
+                            $pub_ts = (int) $pubRaw;
+                            $pubIso = gmdate(DATE_ATOM, $pub_ts);
+                        } elseif (is_string($pubRaw) && $pubRaw !== '') {
+                            // DB stored as a datetime string (e.g. "2025-12-07 15:45:00")
+                            $tmp = strtotime($pubRaw);
+                            if ($tmp !== false) {
+                                $pub_ts = $tmp;
+                                $pubIso = gmdate(DATE_ATOM, $pub_ts);
+                            }
+                        }
+
+                        $qs = http_build_query([
+                            'url'      => $article['url'],
+                            'category' => ucfirst($article['source_slug'] ?? ''),
+                            'pub_date' => $pub_ts,
+                            'db'       => 1,
+                        ]);
+
+                        ?>
+                        <td>
+                                <a href="newsroom.php?<?= htmlspecialchars($qs) ?>"
+                                                       class="btn btn-green"
+                                                       data-loading>Analyze</a>
                         </td>
 
                         <td><?= htmlspecialchars($r['author'] ?? '') ?></td>
