@@ -1585,13 +1585,12 @@ SQL);
                         <td><?= htmlspecialchars($r['author'] ?? '') ?></td>
                         
                         <?php
-                        $emoji = $sentimentEmoji[$labelPretty] ?? '❓';
+                        $emoji = $sentimentEmoji[$r['sentiment_label']] ?? '❓';
                         ?>
                         <td>
                             <span class="sent-emoji"><?= $emoji ?></span>
-                            <?= htmlspecialchars($labelPretty) ?>
+                            <?= htmlspecialchars($r['sentiment_label'] ?? '') ?>
                         </td>
-                        <td><?= htmlspecialchars($r['sentiment_label'] ?? '') ?></td>
                         <td><?= htmlspecialchars($r['sentiment_score'] ?? '') ?></td>
                     </tr>
                     <?php endforeach; ?>
