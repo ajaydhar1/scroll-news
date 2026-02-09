@@ -220,7 +220,7 @@ if (!empty($url)) {
                             */ ?>
                             <div style="margin-top: 3px;">
                                 <a href="about.php" class="mr-3">About</a>
-                                <a class="search-button mr-2" href="analysis.php?context=category&value=politics&w=7d" title="Analyze trends" aria-label="Analyze trends">📊</a>
+                                <a class="search-button mr-2" href="analysis.php?context=category&value=politics&w=7d" title="Analyze trends" aria-label="Analyze trends" data-loading>📊</a>
                                 <a class="search-button" href="search.php" title="Search" aria-label="Search">🔍</a>
                             </div>
                         </div>

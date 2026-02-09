@@ -629,13 +629,16 @@ footer .btn {
                                     <div class="intel-chip mb-3 pb-2 border-bottom">
                                         <div class="d-flex justify-content-between align-items-center mb-1">
                                             <?php
-                                            $entityLabel = (string)($item['label'] ?? '');
-                                            $entityValue = strtolower(trim($entityLabel)); // analysis expects lowercase canonical-ish
-                                            $entityValue = preg_replace('/\s+/', ' ', $entityValue); // normalize spaces
+                                            $label = (string)($item['label'] ?? '');
+                                            $value = strtolower(trim($label));
+                                            $value = preg_replace('/\s+/', ' ', $value); // normalize spaces
+
+                                            // Decide analysis context based on panel key
+                                            $analysisContext = ($key === 'topics') ? 'topic' : 'entity';
 
                                             $analysisUrl = '/analysis.php?' . http_build_query([
-                                                'context' => 'entity',
-                                                'value'   => $entityValue,
+                                                'context' => $analysisContext,
+                                                'value'   => $value,
                                                 'w'       => '24h',
                                             ]);
                                             ?>

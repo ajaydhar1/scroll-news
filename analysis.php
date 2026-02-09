@@ -45,7 +45,7 @@ $allowed_contexts = ['entity','pub','topic','sent','category'];
 $allowed_windows  = ['24h','7d','30d','custom'];
 
 // adjust if you want to keep category allowlisting strict
-$allowed_categories = ['politics','sports','business','tech','science','health','entertainment'];
+$allowed_categories = ['politics','sports','business','technology','science','health','entertainment'];
 
 // defaults
 $context = strtolower($get('context', 'category'));
@@ -1066,7 +1066,7 @@ SQL);
             <div class="col-lg-4 d-flex text-lg-right" style="">
                 <div class="ml-auto">
                     <a href="about.php" class="mr-3">About</a>
-                    <a class="search-button mr-2" href="analysis.php?context=category&value=politics&w=7d" title="Analyze trends" aria-label="Analyze trends">📊</a>
+                    <a class="search-button mr-2" href="analysis.php?context=category&value=politics&w=7d" title="Analyze trends" aria-label="Analyze trends" data-loading>📊</a>
                     <a class="search-button" href="search.php" title="Search" aria-label="Search">🔍</a>
                 </div>
             </div>
