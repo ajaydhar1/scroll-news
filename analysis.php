@@ -1022,6 +1022,7 @@ SQL);
     .bar-table .bar-cell{
         position: relative;
         overflow: hidden;
+        text-align: right;
     }
     .bar-table .bar-cell .bar-fill{
         position: absolute;
@@ -1044,24 +1045,11 @@ SQL);
 
 
 
-    /* (optional) stable domain layout */
-    .sn-domain-cell{
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    }
-
     /* ========= Mobile: disable full-row overlay bars ========= */
     @media (max-width: 640px){
     .bar-table .bar-row::before{
         display: none;
     }
-    }
-
-
-    .sn-domain-cell {
-        align-items: center;
-        gap: 6px;
     }
 
     .sn-favicon {
@@ -1070,7 +1058,6 @@ SQL);
         border-radius: 3px;
         flex-shrink: 0;
     }  
-    
     
     .sent-emoji {
         display: inline-block;
