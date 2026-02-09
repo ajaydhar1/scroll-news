@@ -1005,6 +1005,38 @@ SQL);
         z-index: 1;
     }
 
+    /* Mobile: disable full-row overlay bar */
+    @media (max-width: 640px){
+    .bar-table .bar-row::before{
+        display: none;
+    }
+    }
+
+    @media (max-width: 640px){
+    .bar-table .bar-cell{
+        position: relative;
+        overflow: hidden;
+    }
+
+    .bar-table .bar-cell .bar-fill{
+        position: absolute;
+        left: 0;
+        top: 3px;
+        bottom: 3px;
+        width: var(--bar);
+        max-width: 100%;
+        background: rgba(0,0,0,0.06);
+        border-radius: 8px;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .bar-table .bar-cell > *:not(.bar-fill){
+        position: relative;
+        z-index: 1;
+    }
+    }
+    
 
     .sn-domain-cell {
         align-items: center;
@@ -1333,7 +1365,10 @@ SQL);
                     $searchUrl = $searchHref($entityValue);
                 ?>
                 <tr class="bar-row" style="--bar: <?= $pctBar ?>%;">
-                    <td><?= htmlspecialchars($pretty($row['entity'])) ?></td>
+                    <td class="bar-cell">
+                        <span class="bar-fill" aria-hidden="true"></span>
+                        <?= htmlspecialchars($pretty($row['entity'])) ?>
+                    </td>
                     <td><?= htmlspecialchars($row['label'] ?: '—') ?></td>
                     <td style="text-align:right;"><?= $article_count ?></td>
                     <td style="text-align:right; white-space:nowrap;">
@@ -1391,7 +1426,8 @@ SQL);
                     <?php
                     $faviconUrl = $faviconForDomain($domain);
                     ?>
-                    <td class="sn-domain-cell">
+                    <td class="sn-domain-cell bar-cell">
+                        <span class="bar-fill" aria-hidden="true"></span>
                         <?php if ($faviconUrl): ?>
                             <img
                                 src="<?= htmlspecialchars($faviconUrl) ?>"
