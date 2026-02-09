@@ -987,35 +987,62 @@ SQL);
     background: rgba(0,0,0,0.09);
     }
 
-    /* ========= Desktop + Mobile: CELL bars (bottom tables + mobile fallback) ========= */
-    .bar-table .bar-cell{
+    /* ========= CELL bars only for tables that opt-in ========= */
+    .bar-table.bar-cells .bar-cell{
     position: relative;
-    overflow: hidden;              /* prevent bar bleeding */
+    overflow: hidden;
     font-variant-numeric: tabular-nums;
     }
 
-    .bar-table .bar-cell .bar-fill{
+    .bar-table.bar-cells .bar-cell .bar-fill{
     position: absolute;
     left: 6px;
     right: 6px;
     top: 4px;
     bottom: 4px;
-
-    /* uses --bar set on the td */
     width: calc(var(--bar) - 12px);
     max-width: calc(100% - 12px);
-
     background: rgba(0,0,0,0.06);
     border-radius: 8px;
     z-index: 0;
     pointer-events: none;
     }
 
-    /* ensure ALL cell contents sit above the fill (img, span, a, etc.) */
-    .bar-table .bar-cell > *:not(.bar-fill){
+    .bar-table.bar-cells .bar-cell > *:not(.bar-fill){
     position: relative;
     z-index: 1;
     }
+
+    /* ========= Mobile: allow cell bars everywhere ========= */
+
+    @media (max-width: 640px){
+    .bar-table .bar-row::before{ display:none; }
+
+    /* mobile cell bars (works for any table that has bar-cell markup) */
+    .bar-table .bar-cell{
+        position: relative;
+        overflow: hidden;
+    }
+    .bar-table .bar-cell .bar-fill{
+        position: absolute;
+        left: 6px;
+        right: 6px;
+        top: 4px;
+        bottom: 4px;
+        width: calc(var(--bar) - 12px);
+        max-width: calc(100% - 12px);
+        background: rgba(0,0,0,0.06);
+        border-radius: 8px;
+        z-index: 0;
+        pointer-events: none;
+    }
+    .bar-table .bar-cell > *:not(.bar-fill){
+        position: relative;
+        z-index: 1;
+    }
+    }
+
+
 
     /* (optional) stable domain layout */
     .sn-domain-cell{
@@ -1465,7 +1492,7 @@ SQL);
                 }
             ?>
 
-            <table class="bar-table">
+            <table class="bar-table bar-cells">
                 <thead>
                 <tr>
                     <th>Topic</th>
@@ -1528,7 +1555,7 @@ SQL);
                 ];
             ?>
 
-            <table class="bar-table">
+            <table class="bar-table bar-cells">
                 <thead>
                 <tr>
                     <th>Label</th>
