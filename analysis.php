@@ -1010,7 +1010,14 @@ SQL);
         height: 16px;
         border-radius: 3px;
         flex-shrink: 0;
-    }   
+    }  
+    
+    
+    .sent-emoji {
+        display: inline-block;
+        width: 1.25em;
+        text-align: center;
+    }
 
   </style>
 </head>
@@ -1418,6 +1425,13 @@ SQL);
                 foreach ($sentiment as $r) {
                     $maxSent = max($maxSent, (int)($r['articles'] ?? 0));
                 }
+
+                $sentimentEmoji = [
+                    'positive' => '🙂',
+                    'negative' => '☹️',
+                    'neutral'  => '😐',
+                    'unknown'  => '🤷',
+                ];
             ?>
 
             <table>
@@ -1440,7 +1454,13 @@ SQL);
                     $analyzeUrl = ($labelVal !== '') ? $analysisHref('sent', $labelVal) : null;
                 ?>
                 <tr>
-                    <td><?= htmlspecialchars($r['sentiment_label'] ?? '') ?></td>
+                    <?php
+                    $emoji = $sentimentEmoji[$labelVal] ?? '❓';
+                    ?>
+                    <td>
+                        <span class="sent-emoji"><?= $emoji ?></span>
+                        <?= htmlspecialchars($labelPretty) ?>
+                    </td>
                     <td class="bar-cell" style="--bar: <?= $pctBar ?>%;">
                     <span><?= $v ?></span>
                     </td>
