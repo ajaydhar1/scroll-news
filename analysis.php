@@ -778,6 +778,7 @@ SQL);
     $articles = $run(<<<SQL
 SELECT
   pub_date,
+  source_slug,
   domain,
   title,
   url,
@@ -1251,16 +1252,38 @@ SQL);
             ?>
 
             <table class="bar-table">
-                <thead><tr><th>Domain</th><th style="text-align:right;">Articles</th><th style="text-align:right;">%</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Domain</th>
+                        <th style="text-align:right;">Articles</th>
+                        <th style="text-align:right;">%</th>
+                        <th style="text-align:right;">Articles</th>
+                        <th style="text-align:right;">Actions</th>
+                    </tr>
+                </thead>
                 <tbody>
                 <?php foreach ($sources as $r): 
                     $article_count = (int)($r['articles'] ?? 0);
                     $pctBar = ($max_articles > 0) ? round(($article_count / $max_articles) * 100, 2) : 0;
+
+                    $domain = strtolower(trim($r['domain'] ?? ''));
+                    if ($domain === '') continue;
+
+                    $analyzeUrl = $analysisHref('pub', $domain);
                 ?>
                 <tr class="bar-row" style="--bar: <?= $pctBar ?>%;">
                     <td><?= htmlspecialchars($r['domain'] ?? '') ?></td>
                     <td style="text-align:right;"><?= $article_count ?></td>
                     <td style="text-align:right;"><?= htmlspecialchars($r['pct'] ?? '') ?></td>
+                    <td style="text-align:right; white-space:nowrap;">
+                        <a class="sn-btn" href="<?= htmlspecialchars($analyzeUrl) ?>" title="Analyze publisher" data-loading>
+                        📊
+                        </a>
+                        <a class="sn-btn" href="#" title="Filter corpus (coming soon)" aria-disabled="true"
+                        onclick="return false;">
+                        🧲
+                        </a>
+                    </td>
                 </tr>
                 <?php endforeach; ?>
                 </tbody>
@@ -1288,17 +1311,35 @@ SQL);
                 <tr>
                     <th>Topic</th>
                     <th style="text-align:right;">Weight</th>
+                    <th style="text-align:right;">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($topics_chart as $r):
+                    $topic = (string)($r['topic_bucket'] ?? '');
                     $w = (float)($r['weight_sum'] ?? 0);
                     $pctBar = ($maxWeight > 0) ? round(($w / $maxWeight) * 100, 2) : 0;
+
+                    $isOther = ($topic === 'Other');
+                    $analyzeUrl = !$isOther ? $analysisHref('topic', $topic) : null;
                 ?>
                 <tr>
                     <td><?= htmlspecialchars($r['topic_bucket'] ?? '') ?></td>
                     <td class="bar-cell" style="--bar: <?= $pctBar ?>%;">
                     <span><?= htmlspecialchars($r['weight_sum'] ?? '') ?></span>
+                    </td>
+                    <td style="text-align:right; white-space:nowrap;">
+                        <?php if (!$isOther): ?>
+                        <a class="sn-btn" href="<?= htmlspecialchars($analyzeUrl) ?>" title="Analyze topic" data-loading>
+                            📊
+                        </a>
+                        <a class="sn-btn" href="#" title="Filter corpus (coming soon)"
+                            aria-disabled="true" onclick="return false;">
+                            🧲
+                        </a>
+                        <?php else: ?>
+                        <span class="muted">—</span>
+                        <?php endif; ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -1325,17 +1366,37 @@ SQL);
                 <tr>
                     <th>Label</th>
                     <th style="text-align:right;">Articles</th>
+                    <th style="text-align:right;">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($sentiment as $r):
+                    $labelRaw = (string)($r['sentiment_label'] ?? '');
+                    $labelVal = strtolower(trim($labelRaw));
+                    $labelPretty = $labelVal !== '' ? ucfirst($labelVal) : '—';
+
                     $v = (int)($r['articles'] ?? 0);
                     $pctBar = ($maxSent > 0) ? round(($v / $maxSent) * 100, 2) : 0;
+
+                    $analyzeUrl = ($labelVal !== '') ? $analysisHref('sent', $labelVal) : null;
                 ?>
                 <tr>
                     <td><?= htmlspecialchars($r['sentiment_label'] ?? '') ?></td>
                     <td class="bar-cell" style="--bar: <?= $pctBar ?>%;">
                     <span><?= $v ?></span>
+                    </td>
+                    <td style="text-align:right; white-space:nowrap;">
+                        <?php if ($labelVal !== ''): ?>
+                        <a class="sn-btn" href="<?= htmlspecialchars($analyzeUrl) ?>" title="Analyze sentiment" data-loading>
+                            📊
+                        </a>
+                        <a class="sn-btn" href="#" title="Filter corpus (coming soon)" aria-disabled="true"
+                            onclick="return false;">
+                            🧲
+                        </a>
+                        <?php else: ?>
+                        <span class="muted">—</span>
+                        <?php endif; ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -1349,22 +1410,47 @@ SQL);
         <div class="col-12 col-lg-12">
             <div class="card corpus" style="margin-top:12px;">
                 <h3>Articles included</h3>
+
                 <table>
                     <thead>
                     <tr>
-                        <th>Pub Date</th><th>Domain</th><th>Title</th><th>Author</th><th>Sent</th><th>Score</th>
+                        <th>Pub Date</th>
+                        <th>Category</th>
+                        <th>Domain</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Sent</th>
+                        <th>Score</th>
                     </tr>
                     </thead>
+
                     <tbody>
-                    <?php foreach ($articles as $r): ?>
+                    <?php foreach ($articles as $r):
+                        $cat = strtolower(trim((string)($r['source_slug'] ?? '')));
+                        $catLabel = $cat !== '' ? ucfirst($cat) : '—';
+                        $catUrl = ($cat !== '') ? $analysisHref('category', $cat) : null;
+                    ?>
                     <tr>
                         <td><?= htmlspecialchars($r['pub_date'] ?? '') ?></td>
+
+                        <td>
+                        <?php if ($catUrl): ?>
+                            <a href="<?= htmlspecialchars($catUrl) ?>" title="Analyze category" data-loading>
+                            <?= htmlspecialchars($catLabel) ?>
+                            </a>
+                        <?php else: ?>
+                            <span class="muted">—</span>
+                        <?php endif; ?>
+                        </td>
+
                         <td><?= htmlspecialchars($r['domain'] ?? '') ?></td>
+
                         <td>
                         <a href="<?= htmlspecialchars($r['url'] ?? '') ?>" target="_blank" rel="noopener">
                             <?= htmlspecialchars($r['title'] ?? '') ?>
                         </a>
                         </td>
+
                         <td><?= htmlspecialchars($r['author'] ?? '') ?></td>
                         <td><?= htmlspecialchars($r['sentiment_label'] ?? '') ?></td>
                         <td><?= htmlspecialchars($r['sentiment_score'] ?? '') ?></td>
