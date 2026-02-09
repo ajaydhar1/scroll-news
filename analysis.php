@@ -887,7 +887,7 @@ SQL);
     th { font-weight: 650; }
     .kpis {
         display: grid;
-        grid-template-columns: repeat(10, 1fr);
+        grid-template-columns: repeat(12, 1fr);
         gap: 12px;
     }
 
@@ -903,6 +903,11 @@ SQL);
         .kpi {
             grid-column: span 1;
         }
+    }
+
+    .kpi-meta .val {
+        font-size: 0.9em;
+        opacity: 0.85;
     }
 
     .kpi { border: 1px solid #eee; border-radius: 10px; padding: 10px; }
@@ -1125,6 +1130,21 @@ SQL);
                 <div class="kpi">
                 <div class="label"><?= htmlspecialchars($ctxLabel) ?></div>
                 <div class="val"><?= htmlspecialchars($ctxValue) ?></div>
+                </div>
+
+                <?php
+                $windowLabelMap = [
+                    '24h'    => 'Last 24h',
+                    '7d'     => 'Last 7 days',
+                    '30d'    => 'Last 30 days',
+                    'custom' => 'Custom range',
+                ];
+                $windowLabel = $windowLabelMap[$time_window] ?? $time_window;
+                ?>
+
+                <div class="kpi kpi-meta">
+                <div class="label">Window</div>
+                <div class="val"><?= htmlspecialchars($windowLabel) ?></div>
                 </div>
 
                 <div class="kpi">
