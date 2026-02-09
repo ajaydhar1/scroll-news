@@ -887,22 +887,25 @@ SQL);
     th { font-weight: 650; }
     .kpis {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(8, 1fr);
         gap: 12px;
     }
 
-    .kpi.kpi-half {
-        grid-column: span 2;
+    /* half = 1/8 of the row */
+    .kpi.kpi-half{
+    grid-column: span 1;
     }
-    @media (max-width: 768px) {
-        .kpis {
-            grid-template-columns: 1fr;
-        }
 
-        .kpi.kpi-half {
-            grid-column: span 1;
-        }
+    /* full = 2/8 (i.e., double the half) */
+    .kpi.kpi-full{
+    grid-column: span 2;
     }
+
+    @media (max-width: 900px){
+    .kpis{ grid-template-columns: repeat(2, 1fr); }
+    .kpi.kpi-half, .kpi.kpi-full{ grid-column: span 1; }
+    }
+    
     .kpi { border: 1px solid #eee; border-radius: 10px; padding: 10px; }
     .kpi .label { font-size: 12px; color: #666; }
     .kpi .val { font-size: 18px; font-weight: 700; }
@@ -1123,17 +1126,17 @@ SQL);
                 <div class="val"><?= (int)($kpi[0]['corpus_articles'] ?? 0) ?></div>
                 </div>
 
-                <div class="kpi">
+                <div class="kpi kpi-full">
                 <div class="label">From</div>
                 <div class="val"><?= htmlspecialchars($kpi[0]['corpus_min_pub_date'] ?? '') ?></div>
                 </div>
 
-                <div class="kpi">
+                <div class="kpi kpi-full">
                 <div class="label">To</div>
                 <div class="val"><?= htmlspecialchars($kpi[0]['corpus_max_pub_date'] ?? '') ?></div>
                 </div>
 
-                <div class="kpi">
+                <div class="kpi kpi-full">
                 <div class="label">Range</div>
                 <div class="val">
                     <?= htmlspecialchars($kpi[0]['time_min'] ?? '') ?>
