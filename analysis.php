@@ -1075,8 +1075,8 @@ SQL);
 
 <div class="container-fluid">
 
-    <h1 style="margin:0 0 6px 0;" class="mt-3">Text & Content Analysis</h1>
-    <div class="note">
+    <h1 style="margin:0 0 6px 0;" class="text-center mt-3">Text & Content Analysis</h1>
+    <div class="note text-center">
     Context:
     <strong><?= htmlspecialchars($context) ?></strong>
     <span class="muted">(<?= htmlspecialchars($value) ?>)</span>
