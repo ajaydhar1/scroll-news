@@ -1294,6 +1294,24 @@ SQL);
                     if (!isset($params['w'])) $params['w'] = $time_window;
                     return '?' . http_build_query($params);
                 };
+
+                // Build search links for entity quick-search (🔍 icon)
+                $searchHref = function(
+                    string $query,
+                    string $mode = 'classic',   // classic | nlp
+                    string $range = 'all'        // all | 24h | 7d | etc
+                ) {
+                    $params = [
+                        'q'           => $query,
+                        'range'       => $range,
+                        'mode'        => $mode,
+                        'deep_dive'   => '',
+                        'high_signal' => '',
+                    ];
+
+                    return '/search.php?' . http_build_query($params);
+                };
+
             ?>
 
             <table class="bar-table">
@@ -1312,12 +1330,16 @@ SQL);
 
                     $entityValue = (string)$row['entity']; // canonical value (good for URL)
                     $analyzeUrl  = $analysisHref('entity', $entityValue);
+                    $searchUrl = $searchHref($entityValue);
                 ?>
                 <tr class="bar-row" style="--bar: <?= $pctBar ?>%;">
                     <td><?= htmlspecialchars($pretty($row['entity'])) ?></td>
                     <td><?= htmlspecialchars($row['label'] ?: '—') ?></td>
                     <td style="text-align:right;"><?= $article_count ?></td>
                     <td style="text-align:right; white-space:nowrap;">
+                    <a class="sn-btn" href="<?= htmlspecialchars($searchUrl) ?>" title="Search all articles" data-loading>
+                    🔍
+                    </a>
                     <a class="sn-btn" href="<?= htmlspecialchars($analyzeUrl) ?>" title="Analyze entity" data-loading>
                     📊
                     </a>
