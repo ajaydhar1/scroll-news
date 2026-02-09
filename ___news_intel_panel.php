@@ -778,17 +778,29 @@ footer .btn {
 
                                                     <?php if ($entityChips || $topicChips): ?>
                                                         <div class="nlp-chip-row mt-1">
+
                                                             <?php foreach ($entityChips as $name): ?>
-                                                                <span class="nlp-chip nlp-chip-entity">
-                                                                    #<?= htmlspecialchars($name) ?>
-                                                                </span>
+                                                                <?php
+                                                                    $clean = trim($name); // entities do NOT include #
+                                                                    $href  = sn_analysis_url($clean, '24h', 'entities');
+                                                                ?>
+                                                                <a class="nlp-chip nlp-chip-entity"
+                                                                href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>">
+                                                                    #<?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?>
+                                                                </a>
                                                             <?php endforeach; ?>
 
                                                             <?php foreach ($topicChips as $topicName): ?>
-                                                                <span class="nlp-chip nlp-chip-topic">
-                                                                    <?= htmlspecialchars($topicName) ?>
-                                                                </span>
+                                                                <?php
+                                                                    $clean = trim($topicName);
+                                                                    $href  = sn_analysis_url($clean, '24h', 'topics');
+                                                                ?>
+                                                                <a class="nlp-chip nlp-chip-topic"
+                                                                href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>">
+                                                                    <?= htmlspecialchars($topicName, ENT_QUOTES, 'UTF-8') ?>
+                                                                </a>
                                                             <?php endforeach; ?>
+
                                                         </div>
                                                     <?php endif; ?>
 

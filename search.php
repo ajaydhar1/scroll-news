@@ -865,10 +865,10 @@ if (!$pdo) {
                                                             $clean = trim($clean);
 
                                                             // Build analysis URL (7d for search page)
-                                                            $href = sn_analysis_url($clean, '7d', 'entities');
+                                                            $href = sn_analysis_url($clean, '7d', 'entity');
                                                         ?>
                                                         <a class="sn-hashtag-chip"
-                                                        href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>">
+                                                        href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>" data-loading>
                                                             <?= htmlspecialchars($raw, ENT_QUOTES, 'UTF-8') ?>
                                                         </a>
                                                     <?php endforeach; ?>
