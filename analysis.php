@@ -1199,7 +1199,7 @@ SQL);
 
     <div class="row">
     <div class="col-12 col-lg-6">
-        <div class="card" style="flex:1; min-width:320px; margin-top:12px;">
+        <div class="card table-responsive" style="flex:1; min-width:320px; margin-top:12px;">
             <div class="card-eyebrow">Who’s being talked about</div>
             <h3>Top Entities</h3>
 
@@ -1356,7 +1356,7 @@ SQL);
     </div>
 
     <div class="col-12 col-lg-6">
-        <div class="card" style="flex:1; min-width:320px; margin-top:12px;">
+        <div class="card table-responsive" style="flex:1; min-width:320px; margin-top:12px;">
             <div class="card-eyebrow">Who’s talking</div>
             <h3>Top Sources (Domains)</h3>
 
