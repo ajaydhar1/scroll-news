@@ -953,7 +953,14 @@ SQL);
         margin-bottom: 4px;
     }
 
-    /* ========= Desktop / default: FULL-ROW bars ========= */
+    /* ========= Shared: keep content above any bar ========= */
+    .bar-table td,
+    .bar-table th{
+    position: relative;
+    z-index: 1;
+    }
+
+    /* ========= Desktop / default: FULL-ROW bars (top tables) ========= */
     .bar-table .bar-row{
     position: relative;
     }
@@ -966,69 +973,61 @@ SQL);
     top: 3px;
     bottom: 3px;
 
-    /* width based on --bar (keep your inset math consistent) */
+    /* width based on --bar (keeps inset consistent) */
     width: calc(var(--bar) - 12px);
     max-width: calc(100% - 12px);
 
     background: rgba(0,0,0,0.06);
     border-radius: 8px;
     z-index: 0;
-    pointer-events: none; /* important: never intercept clicks */
-    }
-
-    .bar-table .bar-row td{
-    position: relative;
-    z-index: 1; /* text/icons above the bar */
+    pointer-events: none;
     }
 
     .bar-table .bar-row:hover::before{
     background: rgba(0,0,0,0.09);
     }
 
-    /* (optional) ensure domain cell layout is stable */
+    /* ========= Desktop + Mobile: CELL bars (bottom tables + mobile fallback) ========= */
+    .bar-table .bar-cell{
+    position: relative;
+    overflow: hidden;              /* prevent bar bleeding */
+    font-variant-numeric: tabular-nums;
+    }
+
+    .bar-table .bar-cell .bar-fill{
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    top: 4px;
+    bottom: 4px;
+
+    /* uses --bar set on the td */
+    width: calc(var(--bar) - 12px);
+    max-width: calc(100% - 12px);
+
+    background: rgba(0,0,0,0.06);
+    border-radius: 8px;
+    z-index: 0;
+    pointer-events: none;
+    }
+
+    /* ensure ALL cell contents sit above the fill (img, span, a, etc.) */
+    .bar-table .bar-cell > *:not(.bar-fill){
+    position: relative;
+    z-index: 1;
+    }
+
+    /* (optional) stable domain layout */
     .sn-domain-cell{
     display: flex;
     align-items: center;
     gap: 6px;
     }
 
-    /* ========= Remove this entirely (DON'T use cell pseudo bars) ========= */
-    /* .bar-cell::before { ... }  <-- DELETE */
-    /* .bar-cell > span { ... }   <-- DELETE */
-
-
-    /* ========= Mobile: CELL bars only ========= */
+    /* ========= Mobile: disable full-row overlay bars ========= */
     @media (max-width: 640px){
-
-    /* turn OFF row overlay bars */
     .bar-table .bar-row::before{
         display: none;
-    }
-
-    /* the cell that will host the bar */
-    .bar-table .bar-cell{
-        position: relative;
-        overflow: hidden;
-    }
-
-    /* actual bar element inside the cell */
-    .bar-table .bar-cell .bar-fill{
-        position: absolute;
-        left: 0;
-        top: 3px;
-        bottom: 3px;
-        width: var(--bar);
-        max-width: 100%;
-        background: rgba(0,0,0,0.06);
-        border-radius: 8px;
-        z-index: 0;
-        pointer-events: none;
-    }
-
-    /* raise all real content above the bar (img, span, a, etc.) */
-    .bar-table .bar-cell > *:not(.bar-fill){
-        position: relative;
-        z-index: 1;
     }
     }
 
@@ -1466,7 +1465,7 @@ SQL);
                 }
             ?>
 
-            <table>
+            <table class="bar-table">
                 <thead>
                 <tr>
                     <th>Topic</th>
@@ -1529,7 +1528,7 @@ SQL);
                 ];
             ?>
 
-            <table>
+            <table class="bar-table">
                 <thead>
                 <tr>
                     <th>Label</th>
