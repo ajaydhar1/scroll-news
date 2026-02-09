@@ -422,3 +422,11 @@ a.scroll-badge-deep-dive:hover {
 .sn-pill-active{
   border-color: rgba(255,255,255,0.6);
 }
+
+a.nlp-chip.nlp-chip-entity:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+
+a.nlp-chip.nlp-chip-topic:hover {
+    background: rgba(0, 200, 140, 0.5) !important;
+}

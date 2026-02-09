@@ -2195,6 +2195,10 @@ function sn_analysis_url(string $term, string $window = '24h', string $context =
         return $path;
     }
 
+    if ($context === 'topic') {
+        $term = ucwords($term);
+    }
+
     // Normalize inputs a bit (optional but helps avoid inconsistent URLs)
     $window  = trim($window) ?: '24h';
     $context = trim($context) ?: 'entity';
