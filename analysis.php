@@ -18,6 +18,20 @@ $analysisFail = function(string $msg, ?Throwable $e = null) use ($ANALYSIS_DEBUG
     }
 };
 
+$faviconForDomain = function(string $domain): ?string {
+    $domain = trim(strtolower($domain));
+    if ($domain === '') return null;
+
+    // Use HTTPS canonical URL for favicon lookup
+    $url = 'https://' . $domain;
+
+    return 'https://t0.gstatic.com/faviconV2'
+        . '?client=SOCIAL&type=FAVICON'
+        . '&fallback_opts=TYPE,SIZE,URL'
+        . '&url=' . rawurlencode($url)
+        . '&size=32';
+};
+
 $get = function(string $k, $default = null) {
     return isset($_GET[$k]) ? trim((string)$_GET[$k]) : $default;
 };
@@ -871,7 +885,24 @@ SQL);
     table { border-collapse: collapse; width: 100%; }
     th, td { border-bottom: 1px solid #eee; padding: 6px 8px; text-align: left; font-size: 13px; }
     th { font-weight: 650; }
-    .kpis { display: grid; grid-template-columns: repeat(4, minmax(160px, 1fr)); gap: 10px; }
+    .kpis {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+    }
+
+    .kpi.kpi-half {
+        grid-column: span 2;
+    }
+    @media (max-width: 768px) {
+        .kpis {
+            grid-template-columns: 1fr;
+        }
+
+        .kpi.kpi-half {
+            grid-column: span 1;
+        }
+    }
     .kpi { border: 1px solid #eee; border-radius: 10px; padding: 10px; }
     .kpi .label { font-size: 12px; color: #666; }
     .kpi .val { font-size: 18px; font-weight: 700; }
@@ -965,6 +996,19 @@ SQL);
         z-index: 1;
     }
 
+
+    .sn-domain-cell {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .sn-favicon {
+        width: 16px;
+        height: 16px;
+        border-radius: 3px;
+        flex-shrink: 0;
+    }   
 
   </style>
 </head>
@@ -1069,12 +1113,12 @@ SQL);
             <h3>Corpus KPIs</h3>
 
             <div class="kpis">
-                <div class="kpi">
+                <div class="kpi kpi-half">
                 <div class="label"><?= htmlspecialchars($ctxLabel) ?></div>
                 <div class="val"><?= htmlspecialchars($ctxValue) ?></div>
                 </div>
 
-                <div class="kpi">
+                <div class="kpi kpi-half">
                 <div class="label">Articles</div>
                 <div class="val"><?= (int)($kpi[0]['corpus_articles'] ?? 0) ?></div>
                 </div>
@@ -1272,7 +1316,20 @@ SQL);
                     $analyzeUrl = $analysisHref('pub', $domain);
                 ?>
                 <tr class="bar-row" style="--bar: <?= $pctBar ?>%;">
-                    <td><?= htmlspecialchars($r['domain'] ?? '') ?></td>
+                    <?php
+                    $faviconUrl = $faviconForDomain($domain);
+                    ?>
+                    <td class="sn-domain-cell">
+                        <?php if ($faviconUrl): ?>
+                            <img
+                                src="<?= htmlspecialchars($faviconUrl) ?>"
+                                alt=""
+                                class="sn-favicon"
+                                loading="lazy"
+                            >
+                        <?php endif; ?>
+                        <span><?= htmlspecialchars($domain) ?></span>
+                    </td>
                     <td style="text-align:right;"><?= $article_count ?></td>
                     <td style="text-align:right;"><?= htmlspecialchars($r['pct'] ?? '') ?></td>
                     <td style="text-align:right; white-space:nowrap;">
@@ -1443,7 +1500,21 @@ SQL);
                         <?php endif; ?>
                         </td>
 
-                        <td><?= htmlspecialchars($r['domain'] ?? '') ?></td>
+                        <?php
+                        $domain = strtolower(trim((string)($r['domain'] ?? '')));
+                        $faviconUrl = $faviconForDomain($domain);
+                        ?>
+                        <td class="sn-domain-cell">
+                            <?php if ($faviconUrl): ?>
+                                <img
+                                    src="<?= htmlspecialchars($faviconUrl) ?>"
+                                    alt=""
+                                    class="sn-favicon"
+                                    loading="lazy"
+                                >
+                            <?php endif; ?>
+                            <span><?= htmlspecialchars($domain) ?></span>
+                        </td>
 
                         <td>
                         <a href="<?= htmlspecialchars($r['url'] ?? '') ?>" target="_blank" rel="noopener">
