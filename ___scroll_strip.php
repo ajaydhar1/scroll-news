@@ -443,7 +443,7 @@ try {
             </span>
           </div>
           <div class="sn-body">
-            <div class="sn-title">${safeTitle}</div>
+            <div class="sn-title">${safeTitle} ▶️</div>
             <div class="sn-meta">
               <span>${domainOrSource}</span>
               ${sentimentEmoji ? `<span class="sn-dot" aria-hidden="true"></span><span>${sentimentEmoji}</span>` : ""}

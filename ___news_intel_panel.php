@@ -725,7 +725,7 @@ footer .btn {
                                                             <span class="sentiment-emoji me-1"><?= htmlspecialchars($sentEmoji) ?></span>
                                                         <?php endif; ?>
                                                         <span class="intel-article-title">
-                                                            <?= htmlspecialchars($article['title']) ?>
+                                                            <?= htmlspecialchars($article['title']) ?> ▶️
                                                         </span>
                                                         <?php if (!empty($article['source_slug'])): ?>
                                                             <span class="source-slug text-muted"> · <?= htmlspecialchars($article['source_slug']) ?></span>

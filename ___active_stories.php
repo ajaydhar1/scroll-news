@@ -692,7 +692,7 @@ try {
 
               <div class="story-card">
                 <a class="story-title" href="<?= htmlspecialchars($smart_nlp_search) ?>" data-loading>
-                  <?= htmlspecialchars($label) ?>
+                  <?= htmlspecialchars($label) ?> 🔎 
                 </a>
 
                 <div class="story-meta">
