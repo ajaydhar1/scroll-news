@@ -319,6 +319,29 @@ if (!$pdo) {
                 text-decoration: underline;
             }
 
+            .sn-search-chips{
+                display:flex;
+                flex-wrap:wrap;
+                gap:8px;
+            }
+
+            .sn-chip{
+                display:inline-block;
+                padding:6px 10px;
+                border:1px solid rgba(0,0,0,.15);
+                border-radius:999px;
+                text-decoration:none;
+                font-size:13px;
+                line-height:1;
+                color:inherit;
+                background:#fff;
+            }
+
+            .sn-chip:hover{
+                border-color: rgba(0,0,0,.3);
+                text-decoration:none;
+            }
+
         </style>
     </head>
     <body id="page-top" class="bg-dark">
@@ -547,6 +570,51 @@ if (!$pdo) {
                             <p class="text-muted">
                                 Type a keyword above to search headlines from your feeds.
                             </p>
+
+                            <?php
+                                // Curated starter searches (ship-now)
+                                $searchChips = [
+                                    'AI regulation',
+                                    'Apple',
+                                    'Microsoft',
+                                    'Elon Musk',
+                                    'OpenAI',
+                                    'NVIDIA',
+                                    'Ukraine',
+                                    'Gaza',
+                                    'Supreme Court',
+                                    'Interest rates',
+                                    'Inflation',
+                                    'Climate',
+                                    'Taylor Swift',
+                                    'NFL',
+                                    'NBA',
+                                ];
+
+                                // build classic search urls
+                                $buildSearchUrl = function(string $q): string {
+                                    $params = [
+                                        'q' => $q,
+                                        'range' => 'all',
+                                        'mode' => 'classic',
+                                        'deep_dive' => '',
+                                        'high_signal' => '',
+                                    ];
+                                    return '/search.php?' . http_build_query($params);
+                                };
+                            ?>
+
+                            <div class="sn-search-chips mt-2">
+                                <?php foreach ($searchChips as $chip): ?>
+                                    <a class="sn-chip" href="<?= htmlspecialchars($buildSearchUrl($chip), ENT_QUOTES, 'UTF-8') ?>">
+                                        <?= htmlspecialchars($chip, ENT_QUOTES, 'UTF-8') ?>
+                                    </a>
+                                <?php endforeach; ?>
+                            </div>
+
+                            <div class="small text-muted mt-2">
+                                Tip: try names, companies, locations, or big topics.
+                            </div>
                         </div>
                     </div>
                 <?php else: ?>
