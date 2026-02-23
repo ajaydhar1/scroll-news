@@ -1079,6 +1079,45 @@ SQL);
         font-size: .675rem;
     }
 
+    /* Corpus filter chips */
+    .corpus-chip{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+
+      padding: 4px 10px;
+      border-radius: 999px;
+
+      border: 1px solid rgba(0,0,0,.12);
+      background: rgba(0,0,0,.03);
+      color: rgba(0,0,0,.75);
+
+      font-size: 12px;
+      line-height: 1.2;
+      cursor: pointer;
+      user-select: none;
+
+      /* kill weird outlines/shadows coming from global button styles */
+      box-shadow: none !important;
+      outline: none;
+    }
+
+    .corpus-chip:hover{
+      background: rgba(0,0,0,.06);
+    }
+
+    .corpus-chip:focus-visible{
+      outline: 2px solid rgba(0,0,0,.25);
+      outline-offset: 2px;
+    }
+
+    /* Active/selected chip */
+    .corpus-chip.is-active{
+      background: rgba(16,185,129,.14); /* soft green tint */
+      border-color: rgba(16,185,129,.45);
+      color: rgba(0,0,0,.82);
+    }
+
   </style>
 </head>
 <body class="bg-light">
@@ -1670,10 +1709,10 @@ SQL);
                       <label class="form-label small text-muted mb-1">Sentiment</label>
                       <select class="form-select form-select-sm" id="sentimentSelect">
                         <option value="">All</option>
-                        <option value="pos">Positive</option>
-                        <option value="neu">Neutral</option>
-                        <option value="neg">Negative</option>
-                        <option value="mixed">Mixed</option>
+                        <option value="positive">Positive</option>
+                        <option value="neutral">Neutral</option>
+                        <option value="negative">Negative</option>
+                        <option value="unknown">Unknown</option>
                       </select>
                     </div>
 
@@ -1740,6 +1779,19 @@ SQL);
                         }
                       }
                       return $out;
+                    }
+
+                    function nlpTopicKeys($topics): array {
+                      // topics is expected to be an associative array: ["Government"=>"0.7", ...]
+                      if (!is_array($topics)) return [];
+
+                      // If associative: use keys
+                      $keys = array_keys($topics);
+
+                      // Only keep strings
+                      $keys = array_values(array_filter($keys, fn($k) => is_string($k) && trim($k) !== ''));
+
+                      return $keys;
                     }
                     ?>
 
@@ -1819,10 +1871,18 @@ SQL);
                     elseif (isset($nlp['entity_list'])) $entities = nlpStrings($nlp['entity_list']);
                     elseif (isset($nlp['extracted_entities'])) $entities = nlpStrings($nlp['extracted_entities']);
 
-                    // topics might be under topics / topic_list / themes
-                    if (isset($nlp['topics'])) $topics = nlpStrings($nlp['topics']);
-                    elseif (isset($nlp['topic_list'])) $topics = nlpStrings($nlp['topic_list']);
-                    elseif (isset($nlp['themes'])) $topics = nlpStrings($nlp['themes']);
+                    // Topics: in your real JSON it's an object map: { "Government": "0.7", ... }
+                    if (isset($nlp['topics'])) {
+                      if (is_array($nlp['topics'])) {
+                        // If it's an associative map, use keys; if it's a list, fall back to nlpStrings
+                        $isAssoc = array_keys($nlp['topics']) !== range(0, count($nlp['topics']) - 1);
+                        $topics = $isAssoc ? nlpTopicKeys($nlp['topics']) : nlpStrings($nlp['topics']);
+                      }
+                    } elseif (isset($nlp['topic_list'])) {
+                      $topics = nlpStrings($nlp['topic_list']);
+                    } elseif (isset($nlp['themes'])) {
+                      $topics = nlpStrings($nlp['themes']);
+                    }
 
                     ?>
 
@@ -1831,7 +1891,7 @@ SQL);
                       data-source="<?= htmlspecialchars(norm($domain), ENT_QUOTES) ?>"
                       data-topic-list="<?= htmlspecialchars(pipeList($topics), ENT_QUOTES) ?>"
                       data-category="<?= htmlspecialchars(norm($cat), ENT_QUOTES) ?>"
-                      data-sentiment="<?= htmlspecialchars(norm($sentLabel), ENT_QUOTES) ?>"
+                      data-sentiment="<?= htmlspecialchars(norm($sentLabel ?: 'unknown'), ENT_QUOTES) ?>"
                       data-title="<?= htmlspecialchars(norm($title), ENT_QUOTES) ?>"
                     >
                         <td><?= htmlspecialchars($pubDisplay) ?></td>
@@ -2087,7 +2147,7 @@ SQL);
     const top = Array.from(countsMap.entries()).sort((a,b) => b[1]-a[1]).slice(0, n);
     container.innerHTML = top.map(([label, count]) => {
       return `
-        <button type="button" class="btn btn-sm btn-outline-primary corpus-chip" data-value="${escapeHtml(label)}">
+        <button type="button" class="corpus-chip" data-value="${escapeHtml(label)}">
           ${escapeHtml(label)} <span class="text-muted">(${count})</span>
         </button>
       `;
