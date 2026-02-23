@@ -216,7 +216,7 @@ if (!$pdo) {
 
             .day-meta {
                 font-size: 0.8rem;
-                color: #6b6b7a;
+                color: #f1f1f1f1;
             }
 
             .articles-track-wrapper {
@@ -656,28 +656,24 @@ if (!$pdo) {
                                                     <?php endif; ?>
 
                                                     <?php if (!empty($domain)): ?>
-
-                                                        <?php
-                                                            $domainValue = urlencode(strtolower($domain));
-                                                            $internalUrl = "/analysis.php?context=pub&value={$domainValue}&w=7d";
-                                                        ?>
-
                                                         <a 
-                                                            href="<?php echo htmlspecialchars($internalUrl, ENT_QUOTES, 'UTF-8'); ?>" 
-                                                            class="domain-chip domain-chip-link"
+                                                            href="https://<?php echo htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>"
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            class="domain-chip-link"
                                                         >
-                                                            <?php if (!empty($faviconUrl)): ?>
-                                                                <img
-                                                                    class="pub-favicon"
-                                                                    src="<?php echo htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8'); ?>"
-                                                                    alt=""
-                                                                    onerror="this.style.display='none';"
-                                                                />
-                                                            <?php endif; ?>
-
-                                                            <?php echo htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>
+                                                            <div class="domain-chip">
+                                                                <?php if (!empty($faviconUrl)): ?>
+                                                                    <img
+                                                                        class="pub-favicon"
+                                                                        src="<?php echo htmlspecialchars($faviconUrl); ?>"
+                                                                        alt=""
+                                                                        onerror="this.style.display='none';"
+                                                                    />
+                                                                <?php endif; ?>
+                                                                <?php echo htmlspecialchars($domain); ?>
+                                                            </div>
                                                         </a>
-
                                                     <?php endif; ?>
                                                 </div>
                                                 <div class="article-body">

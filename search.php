@@ -807,17 +807,11 @@ if (!$pdo) {
                                             </h5>
 
                                             <div class="sn-search-meta small text-muted mb-3 d-flex align-items-center">
-                                                <?php if (!empty($domain) && $faviconUrl): ?>
-
-                                                    <?php
-                                                        $domainValue = urlencode(strtolower($domain));
-                                                        $internalUrl = "/analysis.php?context=pub&value={$domainValue}&w=7d";
-                                                    ?>
-
+                                                <?php if ($faviconUrl): ?>
                                                     <a 
-                                                        href="<?php echo htmlspecialchars($internalUrl, ENT_QUOTES, 'UTF-8'); ?>"
-                                                        class="sn-domain-filter-link"
-                                                        title="View Scroll News analysis for <?php echo htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>"
+                                                        href="https://<?php echo htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>" 
+                                                        target="_blank" 
+                                                        rel="noopener noreferrer"
                                                     >
                                                         <img
                                                             src="<?php echo htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8'); ?>"
@@ -825,7 +819,6 @@ if (!$pdo) {
                                                             class="sn-favicon"
                                                         >
                                                     </a>
-
                                                 <?php endif; ?>
 
                                                 <div class="sn-meta-text">
@@ -850,22 +843,15 @@ if (!$pdo) {
                                                         </a>        
                                                     <?php endif; ?>
 
-                                                    <?php if (!empty($domain)): ?>
+                                                    <?php if ($domain): ?>
                                                         <?php if ($pubHuman || $feedName): ?> • <?php endif; ?>
-
-                                                        <?php
-                                                            $domainValue = urlencode(strtolower($domain));
-                                                            $internalUrl = "/analysis.php?context=pub&value={$domainValue}&w=7d";
-                                                        ?>
-
                                                         <a 
-                                                            href="<?php echo htmlspecialchars($internalUrl, ENT_QUOTES, 'UTF-8'); ?>"
-                                                            class="sn-domain-filter-link"
-                                                            title="View Scroll News analysis for <?php echo htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>"
+                                                            href="https://<?php echo htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>" 
+                                                            target="_blank" 
+                                                            rel="noopener noreferrer"
                                                         >
                                                             <?php echo htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>
                                                         </a>
-
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
