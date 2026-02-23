@@ -183,8 +183,8 @@
             </div>
 
             <!-- Keep your existing 3 cards, but tighten language slightly -->
-            <div class="row text-center">
-              <div class="col-md-4">
+            <div class="row justify-content-center text-center">
+              <div class="col-md-3">
                 <span class="fa-stack fa-4x">
                   <i class="fas fa-circle fa-stack-2x text-dark"></i>
                   <i class="fas fa-flag-usa fa-stack-1x fa-inverse"></i>
@@ -195,7 +195,7 @@
                 </p>
               </div>
 
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <span class="fa-stack fa-4x">
                   <i class="fas fa-circle fa-stack-2x text-pink"></i>
                   <i class="fas fa-newspaper fa-stack-1x fa-inverse"></i>
@@ -206,7 +206,7 @@
                 </p>
               </div>
 
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <span class="fa-stack fa-4x">
                   <i class="fas fa-circle fa-stack-2x" style="color: #00bfa6;"></i>
                   <i class="fas fa-chart-bar fa-stack-1x fa-inverse"></i>
