@@ -463,7 +463,7 @@ if (!$pdo) {
                             </h5>
                         </div>
                         <div class="col-lg-4 my-3 my-lg-0">
-                            <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
+                            <a class="btn btn-black btn-social mx-2" title="Scroll Archive" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
                             <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" onclick="" data-loading><i class="fas fa-play"></i></a>
                             <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
                         </div>
@@ -656,17 +656,24 @@ if (!$pdo) {
                                                     <?php endif; ?>
 
                                                     <?php if (!empty($domain)): ?>
-                                                        <div class="domain-chip">
-                                                            <?php if (!empty($faviconUrl)): ?>
-                                                                <img
-                                                                    class="pub-favicon"
-                                                                    src="<?php echo htmlspecialchars($faviconUrl); ?>"
-                                                                    alt=""
-                                                                    onerror="this.style.display='none';"
-                                                                />
-                                                            <?php endif; ?>
-                                                            <?php echo htmlspecialchars($domain); ?>
-                                                        </div>
+                                                        <a 
+                                                            href="<?php echo htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>"
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            class="domain-chip-link"
+                                                        >
+                                                            <div class="domain-chip">
+                                                                <?php if (!empty($faviconUrl)): ?>
+                                                                    <img
+                                                                        class="pub-favicon"
+                                                                        src="<?php echo htmlspecialchars($faviconUrl); ?>"
+                                                                        alt=""
+                                                                        onerror="this.style.display='none';"
+                                                                    />
+                                                                <?php endif; ?>
+                                                                <?php echo htmlspecialchars($domain); ?>
+                                                            </div>
+                                                        </a>
                                                     <?php endif; ?>
                                                 </div>
                                                 <div class="article-body">
@@ -745,7 +752,7 @@ if (!$pdo) {
                             <div class="col-lg-4 text-lg-left">Copyright © Scroll News 2026</div>
                             <div class="col-lg-4 my-3 my-lg-0">
                                 <a class="btn btn-black btn-social mx-2" title="X profile" href="https://x.com/scrollnewsio" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                                <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
+                                <a class="btn btn-black btn-social mx-2" title="Scroll Archive" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
                                 <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" data-loading><i class="fas fa-play"></i></a>
                                 <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
                                 <a class="btn btn-black btn-social mx-2" title="IG profile" href="https://www.instagram.com/scrollnewsio/" target="_blank"><i class="fa-brands fa-instagram"></i></a>

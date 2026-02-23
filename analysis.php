@@ -1113,7 +1113,7 @@ SQL);
                 </h5>
             </div>
             <div class="col-lg-4 my-3 my-lg-0">
-                <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
+                <a class="btn btn-black btn-social mx-2" title="Scroll Archive" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
                 <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" onclick="" data-loading><i class="fas fa-play"></i></a>
                 <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
             </div>
@@ -1436,15 +1436,32 @@ SQL);
                     ?>
                     <td class="sn-domain-cell bar-cell">
                         <span class="bar-fill" aria-hidden="true"></span>
-                        <?php if ($faviconUrl): ?>
-                            <img
-                                src="<?= htmlspecialchars($faviconUrl) ?>"
-                                alt=""
-                                class="sn-favicon"
-                                loading="lazy"
+
+                        <?php if (!empty($domain)): ?>
+                            <?php
+                                $href = preg_match('#^https?://#', $domain)
+                                    ? $domain
+                                    : 'https://' . $domain;
+                            ?>
+
+                            <a 
+                                href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="sn-domain-link"
                             >
+                                <?php if ($faviconUrl): ?>
+                                    <img
+                                        src="<?= htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8') ?>"
+                                        alt=""
+                                        class="sn-favicon"
+                                        loading="lazy"
+                                    >
+                                <?php endif; ?>
+
+                                <span><?= htmlspecialchars($domain, ENT_QUOTES, 'UTF-8') ?></span>
+                            </a>
                         <?php endif; ?>
-                        <span><?= htmlspecialchars($domain) ?></span>
                     </td>
                     <td style="text-align:right;"><?= $article_count ?></td>
                     <td style="text-align:right;"><?= htmlspecialchars($r['pct'] ?? '') ?></td>
@@ -1685,15 +1702,32 @@ SQL);
                         </td>
 
                         <td class="sn-domain-cell">
-                        <?php if ($faviconUrl): ?>
-                            <img
-                            src="<?= htmlspecialchars($faviconUrl) ?>"
-                            alt=""
-                            class="sn-favicon"
-                            loading="lazy"
+                        <?php if (!empty($domain)): ?>
+
+                            <?php
+                                $domainValue = urlencode(strtolower($domain));
+                                $internalUrl = "/analysis.php?context=pub&value={$domainValue}&w=7d";
+                            ?>
+
+                            <a 
+                                href="<?= htmlspecialchars($internalUrl, ENT_QUOTES, 'UTF-8') ?>"
+                                class="sn-domain-filter-link"
                             >
+                                <?php if ($faviconUrl): ?>
+                                    <img
+                                        src="<?= htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8') ?>"
+                                        alt=""
+                                        class="sn-favicon"
+                                        loading="lazy"
+                                    >
+                                <?php endif; ?>
+
+                                <span><?= htmlspecialchars($domain) ?></span>
+                            </a>
+
+                        <?php else: ?>
+                            <span>—</span>
                         <?php endif; ?>
-                        <span><?= htmlspecialchars($domain !== '' ? $domain : '—') ?></span>
                         </td>
 
                         <td>
@@ -1741,7 +1775,7 @@ SQL);
                 <div class="col-lg-4 text-lg-left">Copyright © Scroll News 2026</div>
                 <div class="col-lg-4 my-3 my-lg-0">
                     <a class="btn btn-black btn-social mx-2" title="X profile" href="https://x.com/scrollnewsio" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
+                    <a class="btn btn-black btn-social mx-2" title="Scroll Archive" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
                     <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" data-loading><i class="fas fa-play"></i></a>
                     <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
                     <a class="btn btn-black btn-social mx-2" title="IG profile" href="https://www.instagram.com/scrollnewsio/" target="_blank"><i class="fa-brands fa-instagram"></i></a>

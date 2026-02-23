@@ -257,6 +257,9 @@ button.nav-link.active {
     box-shadow: 0 0 0 0.2rem var(--brand-color);
 }
 
+.modal .card {
+    border: none;
+}
 
 /* #shot { opacity: 0; transition: opacity .25s ease; } */
 /* #shot[src*="screenshot?"] { opacity: 1; } */      /* once set */

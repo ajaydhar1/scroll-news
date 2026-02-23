@@ -123,7 +123,7 @@
                         </h5>
                     </div>
                     <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
+                        <a class="btn btn-black btn-social mx-2" title="Scroll Archive" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
                         <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" onclick="" data-loading><i class="fas fa-play"></i></a>
                         <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
                     </div>
@@ -229,7 +229,7 @@
                         <div class="col-lg-4 text-lg-left">Copyright © Scroll News 2026</div>
                         <div class="col-lg-4 my-3 my-lg-0">
                             <a class="btn btn-black btn-social mx-2" title="X profile" href="https://x.com/scrollnewsio" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                            <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
+                            <a class="btn btn-black btn-social mx-2" title="Scroll Archive" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
                             <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" data-loading><i class="fas fa-play"></i></a>
                             <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
                             <a class="btn btn-black btn-social mx-2" title="IG profile" href="https://www.instagram.com/scrollnewsio/" target="_blank"><i class="fa-brands fa-instagram"></i></a>

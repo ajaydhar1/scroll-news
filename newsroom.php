@@ -204,7 +204,7 @@ if (!empty($url)) {
                             </button>
                         </div>
                         <div class="col-lg-4 my-3 my-lg-0">
-                            <a data-step="2" data-intro="Click here for a feed of fresh articles analyzed and indexed by Scroll News." class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
+                            <a data-step="2" data-intro="Click here for a feed of fresh articles analyzed and indexed by Scroll News." class="btn btn-black btn-social mx-2" title="Scroll Archive" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
                             <a data-step="1" data-intro="Welcome to the Scroll News newsroom! Here we provide analytics for the latest news stories. Click this play button to stumble through trending articles." class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" onclick="" data-loading><i class="fas fa-play"></i></a>
                             <a data-step="3" data-intro="Click here to see our newsroom video trailer." class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
                         </div>
@@ -453,19 +453,33 @@ if (!empty($url)) {
 
                                         <div class="article-image-wrapper position-relative w-100 mb-3">
                                             <?php if ($domain): ?>
+
+                                                <?php
+                                                    $href = preg_match('#^https?://#', $domain)
+                                                        ? $domain
+                                                        : 'https://' . $domain;
+                                                ?>
+
                                                 <div class="position-absolute top-0 end-0 m-2">
-                                                    <span class="badge rounded-pill bg-light text-muted border small">
+                                                    <a 
+                                                        href="<?php echo htmlspecialchars($href, ENT_QUOTES, 'UTF-8'); ?>"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        class="badge rounded-pill bg-light text-muted border small d-inline-flex align-items-center gap-1 text-decoration-none"
+                                                    >
                                                         <?php if (!empty($favicon_url)): ?>
                                                             <img
                                                                 class="pub-favicon"
-                                                                src="<?php echo htmlspecialchars($favicon_url); ?>"
+                                                                src="<?php echo htmlspecialchars($favicon_url, ENT_QUOTES, 'UTF-8'); ?>"
                                                                 alt=""
                                                                 onerror="this.style.display='none';"
                                                             />
                                                         <?php endif; ?>
-                                                        <?php echo htmlspecialchars($domain, ENT_QUOTES); ?>
-                                                    </span>
+
+                                                        <?php echo htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>
+                                                    </a>
                                                 </div>
+
                                             <?php endif; ?>
 
                                             <img
@@ -521,7 +535,7 @@ if (!empty($url)) {
                             <div class="col-lg-4 text-lg-left">Copyright © Scroll News 2026</div>
                             <div class="col-lg-4 my-3 my-lg-0">
                                 <a class="btn btn-black btn-social mx-2" title="X profile" href="https://x.com/scrollnewsio" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                                <a class="btn btn-black btn-social mx-2" title="History" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
+                                <a class="btn btn-black btn-social mx-2" title="Scroll Archive" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
                                 <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" data-loading><i class="fas fa-play"></i></a>
                                 <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
                                 <a class="btn btn-black btn-social mx-2" title="IG profile" href="https://www.instagram.com/scrollnewsio/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
