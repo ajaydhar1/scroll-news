@@ -800,7 +800,8 @@ SELECT
   url,
   author,
   sentiment_label,
-  sentiment_score
+  sentiment_score,
+  nlp
 FROM domainized
 ORDER BY pub_date DESC;
 SQL);
@@ -1619,6 +1620,73 @@ SQL);
             <div class="card corpus table-responsive" style="margin-top:12px; margin-bottom:12px;">
                 <h3>Articles included</h3>
 
+                <div id="corpusFilters" class="mb-3">
+
+                  <!-- Active filters line -->
+                  <div class="d-flex align-items-center justify-content-between mb-2">
+                    <div id="corpusActiveFilters" class="d-flex flex-wrap gap-2"></div>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="text-muted small" id="corpusCountLine"></div>
+                      <button class="btn btn-sm btn-outline-secondary" id="corpusClearBtn" type="button">Clear</button>
+                    </div>
+                  </div>
+
+                  <!-- Top chips -->
+                  <div class="mb-2">
+                    <div class="text-muted small mb-1">Top entities</div>
+                    <div class="d-flex flex-wrap gap-2" id="topEntityChips"></div>
+                  </div>
+
+                  <div class="mb-2">
+                    <div class="text-muted small mb-1">Top sources</div>
+                    <div class="d-flex flex-wrap gap-2" id="topSourceChips"></div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="text-muted small mb-1">Top topics</div>
+                    <div class="d-flex flex-wrap gap-2" id="topTopicChips"></div>
+                  </div>
+
+                  <!-- Typeahead + search + dropdowns -->
+                  <div class="row g-2 align-items-end">
+                    <div class="col-md-3">
+                      <label class="form-label small text-muted mb-1">Filter entity…</label>
+                      <input class="form-control form-control-sm" id="entityInput" list="entityList" placeholder="Type an entity">
+                      <datalist id="entityList"></datalist>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="form-label small text-muted mb-1">Filter source…</label>
+                      <input class="form-control form-control-sm" id="sourceInput" list="sourceList" placeholder="Type a source">
+                      <datalist id="sourceList"></datalist>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="form-label small text-muted mb-1">Headline contains…</label>
+                      <input class="form-control form-control-sm" id="titleInput" placeholder="Search title/headline">
+                    </div>
+
+                    <div class="col-md-1">
+                      <label class="form-label small text-muted mb-1">Sentiment</label>
+                      <select class="form-select form-select-sm" id="sentimentSelect">
+                        <option value="">All</option>
+                        <option value="pos">Positive</option>
+                        <option value="neu">Neutral</option>
+                        <option value="neg">Negative</option>
+                        <option value="mixed">Mixed</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-2">
+                      <label class="form-label small text-muted mb-1">Category</label>
+                      <select class="form-select form-select-sm" id="categorySelect">
+                        <option value="">All</option>
+                        <!-- render categories server-side OR populate via JS -->
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
                 <table>
                     <thead>
                     <tr>
@@ -1632,6 +1700,48 @@ SQL);
                         <th>Score</th>
                     </tr>
                     </thead>
+
+                    <?php
+                    function norm($s) {
+                      $s = mb_strtolower(trim($s ?? ''));
+                      $s = preg_replace('/\s+/', ' ', $s);
+                      return $s;
+                    }
+
+                    function pipeList($arr) {
+                      $arr = array_map('norm', $arr ?? []);
+                      $arr = array_values(array_filter(array_unique($arr)));
+                      return implode('|', $arr);
+                    }
+
+                    /**
+                     * Pull strings out of NLP arrays that might contain strings OR objects.
+                     * Examples handled:
+                     *   ["Donald Trump", "Liz Cheney"]
+                     *   [{"text":"Donald Trump"},{"name":"Liz Cheney"}]
+                     */
+                    function nlpStrings($value): array {
+                      if (!is_array($value)) return [];
+
+                      $out = [];
+                      foreach ($value as $item) {
+                        if (is_string($item)) {
+                          $out[] = $item;
+                          continue;
+                        }
+                        if (is_array($item)) {
+                          // common keys we might see
+                          foreach (['text', 'name', 'value', 'label'] as $k) {
+                            if (isset($item[$k]) && is_string($item[$k])) {
+                              $out[] = $item[$k];
+                              break;
+                            }
+                          }
+                        }
+                      }
+                      return $out;
+                    }
+                    ?>
 
                     <tbody>
                     <?php foreach ($articles as $r):
@@ -1687,8 +1797,43 @@ SQL);
 
                     $qs = http_build_query($params);
 
+
+                    // Decode NLP JSON (if present)
+                    $nlpRaw = $r['nlp'] ?? '';
+                    $nlp = [];
+
+                    if (is_array($nlpRaw)) {
+                      // in case your DB layer already decodes JSON
+                      $nlp = $nlpRaw;
+                    } elseif (is_string($nlpRaw) && trim($nlpRaw) !== '') {
+                      $tmp = json_decode($nlpRaw, true);
+                      if (is_array($tmp)) $nlp = $tmp;
+                    }
+
+                    // Try a couple likely key names (adjust if your schema differs)
+                    $entities = [];
+                    $topics   = [];
+
+                    // entities might be under entities / entity_list / extracted_entities, etc.
+                    if (isset($nlp['entities'])) $entities = nlpStrings($nlp['entities']);
+                    elseif (isset($nlp['entity_list'])) $entities = nlpStrings($nlp['entity_list']);
+                    elseif (isset($nlp['extracted_entities'])) $entities = nlpStrings($nlp['extracted_entities']);
+
+                    // topics might be under topics / topic_list / themes
+                    if (isset($nlp['topics'])) $topics = nlpStrings($nlp['topics']);
+                    elseif (isset($nlp['topic_list'])) $topics = nlpStrings($nlp['topic_list']);
+                    elseif (isset($nlp['themes'])) $topics = nlpStrings($nlp['themes']);
+
                     ?>
-                    <tr>
+
+                    <tr class="corpus-row"
+                      data-entity-list="<?= htmlspecialchars(pipeList($entities), ENT_QUOTES) ?>"
+                      data-source="<?= htmlspecialchars(norm($domain), ENT_QUOTES) ?>"
+                      data-topic-list="<?= htmlspecialchars(pipeList($topics), ENT_QUOTES) ?>"
+                      data-category="<?= htmlspecialchars(norm($cat), ENT_QUOTES) ?>"
+                      data-sentiment="<?= htmlspecialchars(norm($sentLabel), ENT_QUOTES) ?>"
+                      data-title="<?= htmlspecialchars(norm($title), ENT_QUOTES) ?>"
+                    >
                         <td><?= htmlspecialchars($pubDisplay) ?></td>
 
                         <td>
@@ -1851,6 +1996,229 @@ SQL);
         style.textContent = '.btn-spinner{display:inline-block;width:1em;height:1em;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .6s linear infinite;vertical-align:-0.125em}';
         document.head.appendChild(style);
     })();
+</script>
+
+<script>
+(function () {
+  const rows = Array.from(document.querySelectorAll('.corpus-row'));
+
+  const state = {
+    entity: '',
+    source: '',
+    topic: '',
+    title: '',
+    sentiment: '',
+    category: ''
+  };
+
+  const el = {
+    topEntityChips: document.getElementById('topEntityChips'),
+    topSourceChips: document.getElementById('topSourceChips'),
+    topTopicChips: document.getElementById('topTopicChips'),
+    entityInput: document.getElementById('entityInput'),
+    sourceInput: document.getElementById('sourceInput'),
+    titleInput: document.getElementById('titleInput'),
+    sentimentSelect: document.getElementById('sentimentSelect'),
+    categorySelect: document.getElementById('categorySelect'),
+    active: document.getElementById('corpusActiveFilters'),
+    countLine: document.getElementById('corpusCountLine'),
+    clearBtn: document.getElementById('corpusClearBtn'),
+    entityList: document.getElementById('entityList'),
+    sourceList: document.getElementById('sourceList')
+  };
+
+  const norm = (s) => (s || '').toString().trim().toLowerCase().replace(/\s+/g, ' ');
+
+  function getPipeSet(str) {
+    const s = norm(str);
+    if (!s) return new Set();
+    return new Set(s.split('|').map(x => x.trim()).filter(Boolean));
+  }
+
+  // Build counts for "Top chips" + datalists by scanning rows (no extra SQL needed)
+  function buildStats() {
+    const entityCounts = new Map();
+    const sourceCounts = new Map();
+    const topicCounts = new Map();
+    const categoryCounts = new Map();
+
+    for (const r of rows) {
+      const entities = getPipeSet(r.dataset.entityList);
+      const topics = getPipeSet(r.dataset.topicList);
+      const src = norm(r.dataset.source);
+      const cat = norm(r.dataset.category);
+
+      for (const e of entities) entityCounts.set(e, (entityCounts.get(e) || 0) + 1);
+      for (const t of topics) topicCounts.set(t, (topicCounts.get(t) || 0) + 1);
+      if (src) sourceCounts.set(src, (sourceCounts.get(src) || 0) + 1);
+      if (cat) categoryCounts.set(cat, (categoryCounts.get(cat) || 0) + 1);
+    }
+
+    // Fill datalists
+    fillDatalist(el.entityList, entityCounts);
+    fillDatalist(el.sourceList, sourceCounts);
+
+    // Fill category dropdown (All + categories)
+    fillCategorySelect(categoryCounts);
+
+    // Render top chips
+    renderTopChips(el.topEntityChips, entityCounts, 10, (v) => { state.entity = v; el.entityInput.value = v; applyFilters(); });
+    renderTopChips(el.topSourceChips, sourceCounts, 10, (v) => { state.source = v; el.sourceInput.value = v; applyFilters(); });
+    renderTopChips(el.topTopicChips, topicCounts, 4,  (v) => { state.topic = v; applyFilters(); });
+  }
+
+  function fillDatalist(datalistEl, countsMap) {
+    const items = Array.from(countsMap.entries())
+      .sort((a,b) => b[1]-a[1])
+      .slice(0, 200) // keep it sane
+      .map(([k]) => k);
+
+    datalistEl.innerHTML = items.map(v => `<option value="${escapeHtml(v)}"></option>`).join('');
+  }
+
+  function fillCategorySelect(categoryCounts) {
+    const cats = Array.from(categoryCounts.entries()).sort((a,b) => b[1]-a[1]).map(([k]) => k);
+    // Preserve the "All" option
+    const keepFirst = el.categorySelect.querySelector('option[value=""]')?.outerHTML || '<option value="">All</option>';
+    el.categorySelect.innerHTML = keepFirst + cats.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(titleCase(c))}</option>`).join('');
+  }
+
+  function renderTopChips(container, countsMap, n, onClick) {
+    const top = Array.from(countsMap.entries()).sort((a,b) => b[1]-a[1]).slice(0, n);
+    container.innerHTML = top.map(([label, count]) => {
+      return `
+        <button type="button" class="btn btn-sm btn-outline-primary corpus-chip" data-value="${escapeHtml(label)}">
+          ${escapeHtml(label)} <span class="text-muted">(${count})</span>
+        </button>
+      `;
+    }).join('');
+
+    container.querySelectorAll('button.corpus-chip').forEach(btn => {
+      btn.addEventListener('click', () => onClick(btn.dataset.value));
+    });
+  }
+
+  function matchesRow(row) {
+    // Entity filter: row must contain that entity (exact match within entity list)
+    if (state.entity) {
+      const entities = getPipeSet(row.dataset.entityList);
+      if (!entities.has(state.entity)) return false;
+    }
+
+    // Source filter: exact match
+    if (state.source) {
+      if (norm(row.dataset.source) !== state.source) return false;
+    }
+
+    // Topic filter: exact match within topic list
+    if (state.topic) {
+      const topics = getPipeSet(row.dataset.topicList);
+      if (!topics.has(state.topic)) return false;
+    }
+
+    // Title filter: substring match
+    if (state.title) {
+      const t = norm(row.dataset.title);
+      if (!t.includes(state.title)) return false;
+    }
+
+    // Sentiment filter: exact match
+    if (state.sentiment) {
+      if (norm(row.dataset.sentiment) !== state.sentiment) return false;
+    }
+
+    // Category filter: exact match
+    if (state.category) {
+      if (norm(row.dataset.category) !== state.category) return false;
+    }
+
+    return true;
+  }
+
+  function applyFilters() {
+    const total = rows.length;
+    let shown = 0;
+
+    for (const r of rows) {
+      const ok = matchesRow(r);
+      r.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    }
+
+    renderActiveFilters();
+    el.countLine.textContent = `Showing ${shown} / ${total}`;
+  }
+
+  function renderActiveFilters() {
+    const chips = [];
+
+    if (state.entity) chips.push(makeActiveChip('Entity', state.entity, () => { state.entity=''; el.entityInput.value=''; applyFilters(); }));
+    if (state.source) chips.push(makeActiveChip('Source', state.source, () => { state.source=''; el.sourceInput.value=''; applyFilters(); }));
+    if (state.topic)  chips.push(makeActiveChip('Topic', state.topic,  () => { state.topic=''; applyFilters(); }));
+    if (state.title)  chips.push(makeActiveChip('Title', state.title,  () => { state.title=''; el.titleInput.value=''; applyFilters(); }));
+    if (state.sentiment) chips.push(makeActiveChip('Sentiment', state.sentiment, () => { state.sentiment=''; el.sentimentSelect.value=''; applyFilters(); }));
+    if (state.category)  chips.push(makeActiveChip('Category', state.category, () => { state.category=''; el.categorySelect.value=''; applyFilters(); }));
+
+    el.active.innerHTML = chips.length ? chips.join('') : `<span class="text-muted small">No active filters</span>`;
+  }
+
+  function makeActiveChip(label, value, onClear) {
+    const id = 'chip_' + Math.random().toString(16).slice(2);
+    // We attach the event after insertion
+    setTimeout(() => {
+      const btn = document.getElementById(id);
+      if (btn) btn.addEventListener('click', onClear);
+    }, 0);
+
+    return `
+      <span class="badge bg-light text-dark border">
+        ${escapeHtml(label)}: ${escapeHtml(value)}
+        <button type="button" class="btn btn-sm p-0 ms-1" id="${id}" style="line-height:1;">×</button>
+      </span>
+    `;
+  }
+
+  function clearAll() {
+    state.entity = '';
+    state.source = '';
+    state.topic = '';
+    state.title = '';
+    state.sentiment = '';
+    state.category = '';
+
+    el.entityInput.value = '';
+    el.sourceInput.value = '';
+    el.titleInput.value = '';
+    el.sentimentSelect.value = '';
+    el.categorySelect.value = '';
+
+    applyFilters();
+  }
+
+  // Basic helpers
+  function escapeHtml(str) {
+    return (str || '').replace(/[&<>"']/g, (m) => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
+    }[m]));
+  }
+
+  function titleCase(s) {
+    return (s || '').split(' ').map(w => w ? w[0].toUpperCase() + w.slice(1) : w).join(' ');
+  }
+
+  // Wire inputs
+  el.entityInput.addEventListener('input', () => { state.entity = norm(el.entityInput.value); applyFilters(); });
+  el.sourceInput.addEventListener('input', () => { state.source = norm(el.sourceInput.value); applyFilters(); });
+  el.titleInput.addEventListener('input', () => { state.title = norm(el.titleInput.value); applyFilters(); });
+  el.sentimentSelect.addEventListener('change', () => { state.sentiment = norm(el.sentimentSelect.value); applyFilters(); });
+  el.categorySelect.addEventListener('change', () => { state.category = norm(el.categorySelect.value); applyFilters(); });
+
+  el.clearBtn.addEventListener('click', clearAll);
+
+  // Init
+  buildStats();
+  applyFilters();
+})();
 </script>
 
 </body>
