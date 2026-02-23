@@ -1666,7 +1666,7 @@ SQL);
                     <div id="corpusActiveFilters" class="d-flex flex-wrap gap-2"></div>
                     <div class="d-flex align-items-center gap-2">
                       <div class="text-muted small" id="corpusCountLine"></div>
-                      <button class="btn btn-sm btn-outline-secondary" id="corpusClearBtn" type="button">Clear</button>
+                      <button class="corpus-chip" id="corpusClearBtn" type="button">Clear</button>
                     </div>
                   </div>
 
@@ -1793,6 +1793,61 @@ SQL);
 
                       return $keys;
                     }
+
+                    function canonEntity(string $s): string {
+                      $s = mb_strtolower(trim($s));
+
+                      // normalize punctuation + whitespace (match your Top Entities logic)
+                      $s = preg_replace('/[^\p{L}\p{N}\s]+/u', '', $s);
+                      $s = preg_replace('/\s+/', ' ', $s);
+
+                      $map = [
+                        'trump' => 'donald trump',
+                        'donald j trump' => 'donald trump',
+                        'president trump' => 'donald trump',
+
+                        'us' => 'u s',          // normalize first, then map u s -> u.s.
+                        'usa' => 'u s',
+                        'united states' => 'u s',
+                        'united states of america' => 'u s',
+
+                        'u s' => 'u.s.',
+
+                        'republican' => 'republicans',
+                        'democratic' => 'democrats',
+                      ];
+
+                      return $map[$s] ?? $s;
+                    }
+
+                    /**
+                     * Take NLP entities array (objects with text/count/label) and return
+                     * a canonical, deduped list of entity strings.
+                     */
+                    function canonEntityListFromNlp($nlpEntities): array {
+                      if (!is_array($nlpEntities)) return [];
+
+                      $out = [];
+                      foreach ($nlpEntities as $item) {
+                        $raw = '';
+
+                        if (is_string($item)) {
+                          $raw = $item;
+                        } elseif (is_array($item) && isset($item['text']) && is_string($item['text'])) {
+                          $raw = $item['text'];
+                        }
+
+                        $raw = trim($raw);
+                        if ($raw === '') continue;
+
+                        $out[] = canonEntity($raw);
+                      }
+
+                      // dedupe + remove empties
+                      $out = array_values(array_filter(array_unique($out), fn($v) => $v !== ''));
+
+                      return $out;
+                    }
                     ?>
 
                     <tbody>
@@ -1867,9 +1922,9 @@ SQL);
                     $topics   = [];
 
                     // entities might be under entities / entity_list / extracted_entities, etc.
-                    if (isset($nlp['entities'])) $entities = nlpStrings($nlp['entities']);
-                    elseif (isset($nlp['entity_list'])) $entities = nlpStrings($nlp['entity_list']);
-                    elseif (isset($nlp['extracted_entities'])) $entities = nlpStrings($nlp['extracted_entities']);
+                    if (isset($nlp['entities'])) $entities = canonEntityListFromNlp($nlp['entities']);
+                    elseif (isset($nlp['entity_list'])) $entities = canonEntityListFromNlp($nlp['entity_list']);
+                    elseif (isset($nlp['extracted_entities'])) $entities = canonEntityListFromNlp($nlp['extracted_entities']);
 
                     // Topics: in your real JSON it's an object map: { "Government": "0.7", ... }
                     if (isset($nlp['topics'])) {
