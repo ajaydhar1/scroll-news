@@ -2345,56 +2345,57 @@ SQL);
   // Init
   buildStats();
   applyFilters();
+
+  // Magnet buttons (Top Entities → Corpus filter)
+  document.querySelectorAll('.sn-corpus-magnet').forEach(btn => {
+    btn.addEventListener('click', function () {
+
+      const entity    = (this.dataset.entity || '').toLowerCase().trim();
+      const source    = (this.dataset.source || '').toLowerCase().trim();
+      const topic     = (this.dataset.topic || '').toLowerCase().trim();
+      const sentiment = (this.dataset.sentiment || '').toLowerCase().trim();
+
+      // Reset dimensions (v1 = single-dimension filter)
+      state.entity = '';
+      state.source = '';
+      state.topic = '';
+      state.sentiment = '';
+
+      if (entity) {
+        state.entity = entity;
+        if (el.entityInput) el.entityInput.value = entity;
+        if (el.sourceInput) el.sourceInput.value = '';
+      }
+
+      if (source) {
+        state.source = source;
+        if (el.sourceInput) el.sourceInput.value = source;
+        if (el.entityInput) el.entityInput.value = '';
+      }
+
+      if (topic) {
+        state.topic = topic;
+      }
+
+      if (sentiment) {
+        state.sentiment = sentiment;
+        if (el.sentimentSelect) el.sentimentSelect.value = sentiment;
+      }
+
+      applyFilters();
+
+      const corpusCard = document.querySelector('.card.corpus');
+      if (corpusCard) {
+        corpusCard.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
 })();
 
-
-// Magnet buttons (Top Entities → Corpus filter)
-document.querySelectorAll('.sn-corpus-magnet').forEach(btn => {
-  btn.addEventListener('click', function () {
-
-    const entity    = (this.dataset.entity || '').toLowerCase().trim();
-    const source    = (this.dataset.source || '').toLowerCase().trim();
-    const topic     = (this.dataset.topic || '').toLowerCase().trim();
-    const sentiment = (this.dataset.sentiment || '').toLowerCase().trim();
-
-    // Reset dimensions (v1 = single-dimension filter)
-    state.entity = '';
-    state.source = '';
-    state.topic = '';
-    state.sentiment = '';
-
-    if (entity) {
-      state.entity = entity;
-      if (el.entityInput) el.entityInput.value = entity;
-      if (el.sourceInput) el.sourceInput.value = '';
-    }
-
-    if (source) {
-      state.source = source;
-      if (el.sourceInput) el.sourceInput.value = source;
-      if (el.entityInput) el.entityInput.value = '';
-    }
-
-    if (topic) {
-      state.topic = topic;
-    }
-
-    if (sentiment) {
-      state.sentiment = sentiment;
-      if (el.sentimentSelect) el.sentimentSelect.value = sentiment;
-    }
-
-    applyFilters();
-
-    const corpusCard = document.querySelector('.card.corpus');
-    if (corpusCard) {
-      corpusCard.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  });
-});
 </script>
 
 </body>
