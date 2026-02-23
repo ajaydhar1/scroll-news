@@ -1575,8 +1575,8 @@ SQL);
                         </a>
                         <a class="sn-btn sn-corpus-magnet"
                           href="#"
-                          title="Filter corpus by <?= htmlspecialchars($topicValue) ?>"
-                          data-topic="<?= htmlspecialchars(norm($topicValue), ENT_QUOTES) ?>"
+                          title="Filter corpus by <?= htmlspecialchars($topic) ?>"
+                          data-topic="<?= htmlspecialchars(norm($topic), ENT_QUOTES) ?>"
                           onclick="return false;">
                           🧲
                         </a>
@@ -2386,9 +2386,12 @@ SQL);
 
       const corpusCard = document.querySelector('.card.corpus');
       if (corpusCard) {
-        corpusCard.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+        const offset = 80; // adjust to your header height
+        const top = corpusCard.getBoundingClientRect().top + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: top,
+          behavior: 'smooth'
         });
       }
     });
