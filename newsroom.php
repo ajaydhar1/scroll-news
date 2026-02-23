@@ -452,20 +452,18 @@ if (!empty($url)) {
                                 ?>
 
                                         <div class="article-image-wrapper position-relative w-100 mb-3">
-                                            <?php if ($domain): ?>
+                                            <?php if (!empty($domain)): ?>
 
                                                 <?php
-                                                    $href = preg_match('#^https?://#', $domain)
-                                                        ? $domain
-                                                        : 'https://' . $domain;
+                                                    $domainValue = urlencode(strtolower($domain));
+                                                    $internalUrl = "/analysis.php?context=pub&value={$domainValue}&w=7d";
                                                 ?>
 
                                                 <div class="position-absolute top-0 end-0 m-2">
                                                     <a 
-                                                        href="<?php echo htmlspecialchars($href, ENT_QUOTES, 'UTF-8'); ?>"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
+                                                        href="<?php echo htmlspecialchars($internalUrl, ENT_QUOTES, 'UTF-8'); ?>"
                                                         class="badge rounded-pill bg-light text-muted border small d-inline-flex align-items-center gap-1 text-decoration-none"
+                                                        title="View Scroll News analysis for <?php echo htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>"
                                                     >
                                                         <?php if (!empty($favicon_url)): ?>
                                                             <img

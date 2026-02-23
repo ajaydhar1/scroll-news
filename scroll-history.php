@@ -656,24 +656,28 @@ if (!$pdo) {
                                                     <?php endif; ?>
 
                                                     <?php if (!empty($domain)): ?>
+
+                                                        <?php
+                                                            $domainValue = urlencode(strtolower($domain));
+                                                            $internalUrl = "/analysis.php?context=pub&value={$domainValue}&w=7d";
+                                                        ?>
+
                                                         <a 
-                                                            href="<?php echo htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>"
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            class="domain-chip-link"
+                                                            href="<?php echo htmlspecialchars($internalUrl, ENT_QUOTES, 'UTF-8'); ?>" 
+                                                            class="domain-chip domain-chip-link"
                                                         >
-                                                            <div class="domain-chip">
-                                                                <?php if (!empty($faviconUrl)): ?>
-                                                                    <img
-                                                                        class="pub-favicon"
-                                                                        src="<?php echo htmlspecialchars($faviconUrl); ?>"
-                                                                        alt=""
-                                                                        onerror="this.style.display='none';"
-                                                                    />
-                                                                <?php endif; ?>
-                                                                <?php echo htmlspecialchars($domain); ?>
-                                                            </div>
+                                                            <?php if (!empty($faviconUrl)): ?>
+                                                                <img
+                                                                    class="pub-favicon"
+                                                                    src="<?php echo htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8'); ?>"
+                                                                    alt=""
+                                                                    onerror="this.style.display='none';"
+                                                                />
+                                                            <?php endif; ?>
+
+                                                            <?php echo htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>
                                                         </a>
+
                                                     <?php endif; ?>
                                                 </div>
                                                 <div class="article-body">

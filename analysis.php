@@ -1712,6 +1712,7 @@ SQL);
                             <a 
                                 href="<?= htmlspecialchars($internalUrl, ENT_QUOTES, 'UTF-8') ?>"
                                 class="sn-domain-filter-link"
+                                data-loading
                             >
                                 <?php if ($faviconUrl): ?>
                                     <img
