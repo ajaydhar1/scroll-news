@@ -663,7 +663,7 @@ footer .btn {
                                             ]);
                                             ?>
                                             <div class="fw-semibold">
-                                                <a href="<?= htmlspecialchars($analysisUrl) ?>" data-loading
+                                                <a href="<?= htmlspecialchars($analysisUrl) ?>" class="text-muted" data-loading
                                                 title="Analyze entity: <?= htmlspecialchars($entityLabel) ?>">
                                                     <?= htmlspecialchars($entityLabel) ?> 📊
                                                 </a>

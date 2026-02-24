@@ -258,6 +258,7 @@ $activeHeadlines = scrollnews_fetch_active_headlines();
 
 .sn-headline-favicon {
     border-radius: 3px;
+    margin-right: 1px;
 }
 
 </style>
