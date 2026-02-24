@@ -612,6 +612,7 @@ try {
 
 .story-meta-link img {
     transition: transform 0.15s ease;
+    margin-right: 2px;
 }
 
 .story-meta-link:hover img {
