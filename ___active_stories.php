@@ -606,6 +606,17 @@ try {
 }
 
 
+.story-meta-link:hover {
+    text-decoration: underline;
+}
+
+.story-meta-link img {
+    transition: transform 0.15s ease;
+}
+
+.story-meta-link:hover img {
+    transform: scale(1.1);
+}
 </style>
 
 
@@ -752,9 +763,63 @@ try {
                           <a class="headline-link" href="<?= htmlspecialchars($pUrl) ?>" target="_blank" rel="noopener">
                             <?= htmlspecialchars((fl_headline_emoji($pTitle) ?? '📰') . ' ' . $pTitle) ?>
                           </a>
-                          <div class="mini-meta">
-                            <?= htmlspecialchars($pSource) ?>
-                            <?php if ($pDate): ?> · <?= htmlspecialchars($pDate) ?><?php endif; ?>
+                          
+                          <?php
+                              $publisherDomain = '';
+                              $faviconUrl = '';
+                              $publisherAnalysisUrl = '';
+                              $categoryAnalysisUrl = '';
+
+                              if (!empty($pUrl)) {
+                                  $parsed = parse_url($pUrl);
+                                  $publisherDomain = $parsed['host'] ?? '';
+                                  $publisherDomain = preg_replace('/^www\./', '', $publisherDomain);
+
+                                  if ($publisherDomain) {
+                                      $faviconUrl = "https://www.google.com/s2/favicons?sz=64&domain={$publisherDomain}";
+                                      $publisherAnalysisUrl = "/analysis.php?context=pub&value=" . urlencode($publisherDomain) . "&w=30d";
+                                  }
+                              }
+
+                              if (!empty($pSource)) {
+                                  $categorySlug = strtolower(trim($pSource));
+                                  $categorySlug = preg_replace('/\s+/', '-', $categorySlug);
+                                  $categoryAnalysisUrl = "/analysis.php?context=category&value=" . urlencode($categorySlug) . "&w=30d";
+                              }
+                          ?>
+
+                          <div class="mini-meta d-flex align-items-center gap-1 flex-wrap text-muted small">
+
+                              <?php if ($publisherDomain && $publisherAnalysisUrl): ?>
+                                  <a href="<?= htmlspecialchars($publisherAnalysisUrl) ?>"
+                                    class="story-meta-link d-inline-flex align-items-center gap-1 text-decoration-none text-muted"
+                                    data-loading>
+                                    
+                                      <?php if ($faviconUrl): ?>
+                                          <img src="<?= htmlspecialchars($faviconUrl) ?>"
+                                              alt=""
+                                              width="14"
+                                              height="14"
+                                              class="story-favicon">
+                                      <?php endif; ?>
+
+                                      <span><?= htmlspecialchars($publisherDomain) ?></span>
+                                  </a>
+                                  ·
+                              <?php endif; ?>
+
+                              <?php if ($pSource && $categoryAnalysisUrl): ?>
+                                  <a href="<?= htmlspecialchars($categoryAnalysisUrl) ?>"
+                                    class="story-meta-link text-decoration-none text-muted"
+                                    data-loading>
+                                      <?= htmlspecialchars($pSource) ?>
+                                  </a>
+                              <?php endif; ?>
+
+                              <?php if ($pDate): ?>
+                                  · <span><?= htmlspecialchars($pDate) ?></span>
+                              <?php endif; ?>
+
                           </div>
 
                           <div class="btn-group btn-group-xs mt-2" role="group">
