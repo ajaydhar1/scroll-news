@@ -785,8 +785,8 @@ footer .btn {
                                                             }
                                                         }
 
-                                                        if (!empty($article['published_at'])) {
-                                                            $formattedDate = date('M j, Y', strtotime($article['published_at']));
+                                                        if (!empty($article['pub_date'])) {
+                                                            $formattedDate = date('M j, Y', strtotime($article['pub_date']));
                                                         }
                                                     ?>
 
@@ -795,7 +795,7 @@ footer .btn {
                                                             
                                                             <?php if ($publisherDomain): ?>
                                                                 <?php $publisherSearchUrl = "/analysis.php?context=pub&value=" . urlencode($publisherDomain) . "&w=7d"; ?>
-                                                                
+
                                                                 <a href="<?= htmlspecialchars($publisherSearchUrl); ?>"
                                                                 class="intel-publisher-link d-inline-flex align-items-center gap-1 text-decoration-none text-muted"
                                                                 data-loading>
