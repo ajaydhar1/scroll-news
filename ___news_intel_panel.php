@@ -568,6 +568,26 @@ footer .btn {
   }
 }
 
+
+.intel-article-meta {
+    line-height: 1.2;
+}
+
+.intel-favicon {
+    border-radius: 3px;
+}
+
+.intel-publisher-link:hover {
+    text-decoration: underline;
+}
+
+.intel-publisher-link img {
+    transition: transform 0.15s ease;
+}
+
+.intel-publisher-link:hover img {
+    transform: scale(1.1);
+}
 </style>
 
 <section class="page-section news-intel-panel bg-light-2">
@@ -748,6 +768,56 @@ footer .btn {
                                                             <span class="source-slug text-muted"> · <?= htmlspecialchars($article['source_slug']) ?></span>
                                                         <?php endif; ?>
                                                     </a>
+
+                                                    <?php
+                                                        $publisherDomain = '';
+                                                        $faviconUrl = '';
+                                                        $formattedDate = '';
+
+                                                        if (!empty($article['url'])) {
+                                                            $parsed = parse_url($article['url']);
+                                                            $publisherDomain = $parsed['host'] ?? '';
+                                                            $publisherDomain = preg_replace('/^www\./', '', $publisherDomain);
+
+                                                            if ($publisherDomain) {
+                                                                // Google favicon service (simple + reliable)
+                                                                $faviconUrl = "https://www.google.com/s2/favicons?sz=64&domain={$publisherDomain}";
+                                                            }
+                                                        }
+
+                                                        if (!empty($article['published_at'])) {
+                                                            $formattedDate = date('M j, Y', strtotime($article['published_at']));
+                                                        }
+                                                    ?>
+
+                                                    <?php if ($publisherDomain || $formattedDate): ?>
+                                                        <div class="intel-article-meta text-muted small mt-1 d-flex align-items-center gap-2 flex-wrap">
+                                                            
+                                                            <?php if ($publisherDomain): ?>
+                                                                <?php $publisherSearchUrl = "/analysis.php?context=pub&value=" . urlencode($publisherDomain) . "&w=7d"; ?>
+                                                                
+                                                                <a href="<?= htmlspecialchars($publisherSearchUrl); ?>"
+                                                                class="intel-publisher-link d-inline-flex align-items-center gap-1 text-decoration-none text-muted"
+                                                                data-loading>
+                                                                
+                                                                    <?php if ($faviconUrl): ?>
+                                                                        <img src="<?= htmlspecialchars($faviconUrl) ?>"
+                                                                            alt=""
+                                                                            width="14"
+                                                                            height="14"
+                                                                            class="intel-favicon">
+                                                                    <?php endif; ?>
+
+                                                                    <span><?= htmlspecialchars($publisherDomain) ?></span>
+                                                                </a>
+                                                            <?php endif; ?>
+
+                                                            <?php if ($formattedDate): ?>
+                                                                <span>· <?= htmlspecialchars($formattedDate) ?></span>
+                                                            <?php endif; ?>
+
+                                                        </div>
+                                                    <?php endif; ?>
 
                                                     <?php if (!empty($badges)) : ?>
                                                         <div class="scroll-article-badges mt-1">
