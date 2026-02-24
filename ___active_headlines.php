@@ -251,6 +251,15 @@ $activeHeadlines = scrollnews_fetch_active_headlines();
     margin-bottom: 0.15rem;
 }
 
+
+.sn-headline-meta {
+    line-height: 1.2;
+}
+
+.sn-headline-favicon {
+    border-radius: 3px;
+}
+
 </style>
 
 <div class="sn-card-active-headlines mb-4">
@@ -295,14 +304,25 @@ $activeHeadlines = scrollnews_fetch_active_headlines();
                         </a>
 
                         <?php if (!empty($headline['pub_human'])): ?>
-                            <div class="sn-headline-meta">
+                            <div class="sn-headline-meta d-flex align-items-center gap-1 flex-wrap">
+
+                                <!-- NBC Favicon -->
+                                <img src="https://www.google.com/s2/favicons?sz=64&domain=nbcnews.com"
+                                    alt="NBC News"
+                                    width="14"
+                                    height="14"
+                                    class="sn-headline-favicon">
+
                                 <span class="sn-headline-source">
                                     <?php echo htmlspecialchars($headline['source'], ENT_QUOTES, 'UTF-8'); ?>
                                 </span>
+
                                 ·
+
                                 <span class="sn-headline-time">
                                     <?php echo htmlspecialchars($headline['pub_human'], ENT_QUOTES, 'UTF-8'); ?>
                                 </span>
+
                             </div>
                         <?php endif; ?>
                     </li>
