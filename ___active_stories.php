@@ -788,11 +788,11 @@ try {
                               }
                           ?>
 
-                          <div class="mini-meta d-flex align-items-center gap-1 flex-wrap text-muted small">
+                          <div class="mini-meta d-flex align-items-center gap-1 flex-wrap small">
 
                               <?php if ($publisherDomain && $publisherAnalysisUrl): ?>
                                   <a href="<?= htmlspecialchars($publisherAnalysisUrl) ?>"
-                                    class="story-meta-link d-inline-flex align-items-center gap-1 text-decoration-none text-muted"
+                                    class="story-meta-link d-inline-flex align-items-center gap-1 text-decoration-none"
                                     data-loading>
                                     
                                       <?php if ($faviconUrl): ?>
@@ -810,7 +810,7 @@ try {
 
                               <?php if ($pSource && $categoryAnalysisUrl): ?>
                                   <a href="<?= htmlspecialchars($categoryAnalysisUrl) ?>"
-                                    class="story-meta-link text-decoration-none text-muted"
+                                    class="story-meta-link text-decoration-none"
                                     data-loading>
                                       <?= htmlspecialchars($pSource) ?>
                                   </a>
