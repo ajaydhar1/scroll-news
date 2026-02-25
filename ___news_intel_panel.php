@@ -543,7 +543,7 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
 
 .news-intel-panel .nlp-chip {
     display: inline-block;
-    padding: 4px 6px 0px 6px;
+    padding: 2px 6px;
     border-radius: 999px;
     font-size: 11px;
     background: rgba(0, 0, 0, 0.04);
@@ -734,59 +734,7 @@ footer .btn {
                                             </span>
                                         </div>
                                         <ul class="list-unstyled mb-0 medium intel-article-list">
-                                            <?php
-                                                // Make a local copy so we don't mutate $item unexpectedly elsewhere
-                                                $articles = $item['articles'] ?? [];
-
-                                                // Your "national publishers" list:
-                                                // Choose ONE strategy:
-                                                // (A) by domain (recommended — stable, matches your favicon logic)
-                                                // (B) by source_slug (works too if it's consistent)
-
-                                                // (A) Domains:
-                                                $nationalDomains = [
-                                                    'nytimes.com',
-                                                    'washingtonpost.com',
-                                                    'wsj.com',
-                                                    'bloomberg.com',
-                                                    'npr.org',
-                                                    'bbc.com',
-                                                    'theguardian.com',
-                                                    'cnn.com',
-                                                    'foxnews.com',
-                                                    'nbcnews.com',
-                                                    'cbsnews.com',
-                                                    'abcnews.go.com',
-                                                    'usatoday.com',
-                                                    'politico.com',
-                                                    'thehill.com',
-                                                ];
-
-                                                // Helper: get domain from URL
-                                                $domainOf = function($url) {
-                                                    if (!$url) return '';
-                                                    $host = parse_url($url, PHP_URL_HOST) ?: '';
-                                                    $host = preg_replace('/^www\./', '', strtolower($host));
-                                                    return $host;
-                                                };
-
-                                                usort($articles, function($a, $b) use ($nationalDomains, $domainOf) {
-                                                    $da = $domainOf($a['url'] ?? '');
-                                                    $db = $domainOf($b['url'] ?? '');
-
-                                                    $aNational = in_array($da, $nationalDomains, true) ? 1 : 0;
-                                                    $bNational = in_array($db, $nationalDomains, true) ? 1 : 0;
-
-                                                    // National first
-                                                    if ($aNational !== $bNational) return $bNational <=> $aNational;
-
-                                                    // Tie-breaker: newest first (best-effort)
-                                                    $ta = strtotime($a['pub_date'] ?? '') ?: 0;
-                                                    $tb = strtotime($b['pub_date'] ?? '') ?: 0;
-                                                    return $tb <=> $ta;
-                                                });
-                                            ?>
-                                            <?php foreach ($articles as $article): ?>
+                                            <?php foreach ($item['articles'] as $article): ?>
                                                 <?php
                                                 // Decode NLP for this article
                                                 $nlp = json_decode($article['nlp'] ?? '{}', true) ?: [];
