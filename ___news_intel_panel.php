@@ -350,12 +350,64 @@ try {
             $articles = $articleMap[$key] ?? [];
             if (!$articles) continue;
 
-            usort($articles, function ($a, $b) {
-                return strcmp($b['pub_date'], $a['pub_date']);
-            });
-
             // Pick up to N articles that haven't been used anywhere else in the panel
             $picked = [];
+
+            $nationalDomains = [
+                'reuters.com',
+                'apnews.com',
+                'nytimes.com',
+                'washingtonpost.com',
+                'wsj.com',
+                'bloomberg.com',
+                'npr.org',
+                'bbc.com',
+                'theguardian.com',
+                'cnn.com',
+                'foxnews.com',
+                'nbcnews.com',
+                'cbsnews.com',
+                'abcnews.go.com',
+                'usatoday.com',
+                'politico.com',
+                'thehill.com',
+            ];
+
+            $domainOf = function($url) {
+                $host = parse_url($url ?: '', PHP_URL_HOST) ?: '';
+                $host = strtolower(preg_replace('/^www\./', '', $host));
+                return $host;
+            };
+
+            $endsWithAny = function($host, $domains) {
+                foreach ($domains as $d) {
+                    $d = strtolower($d);
+                    if ($host === $d || (strlen($host) > strlen($d) && str_ends_with($host, '.' . $d))) {
+                        return true;
+                    }
+                }
+                return false;
+            };
+
+            // Rank articles: national first, then high-signal, then newest
+            usort($articles, function ($a, $b) use ($nationalDomains, $domainOf, $endsWithAny) {
+
+                $da = $domainOf($a['url'] ?? '');
+                $db = $domainOf($b['url'] ?? '');
+
+                $aNational = $endsWithAny($da, $nationalDomains) ? 1 : 0;
+                $bNational = $endsWithAny($db, $nationalDomains) ? 1 : 0;
+                if ($aNational !== $bNational) return $bNational <=> $aNational;
+
+                // If you want to use your existing “high signal publisher” logic here:
+                $aHigh = function_exists('scroll_is_high_signal_publisher') && scroll_is_high_signal_publisher($a) ? 1 : 0;
+                $bHigh = function_exists('scroll_is_high_signal_publisher') && scroll_is_high_signal_publisher($b) ? 1 : 0;
+                if ($aHigh !== $bHigh) return $bHigh <=> $aHigh;
+
+                // Newest first (safe even if pub_date is string)
+                return strcmp($b['pub_date'] ?? '', $a['pub_date'] ?? '');
+            });
+
             foreach ($articles as $row) {
                 if (count($picked) >= $maxArticlesPerItem) break;
 
@@ -393,8 +445,8 @@ try {
         return $trending;
     };
 
-    $intel_panel['places']   = $buildTrending($placeCounts,  $placeArticles,  2, 2, 2, $placeLabelMap,  $usedArticleKeys);
     $intel_panel['entities'] = $buildTrending($entityCounts, $entityArticles, 4, 2, 2, $entityLabelMap, $usedArticleKeys);
+    $intel_panel['places']   = $buildTrending($placeCounts,  $placeArticles,  2, 2, 2, $placeLabelMap,  $usedArticleKeys);
     $intel_panel['topics']   = $buildTrending($topicCounts,  $topicArticles,  4, 2, 2, [],              $usedArticleKeys);
 
 
@@ -481,12 +533,11 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
 
 .news-intel-panel .nlp-chip {
     display: inline-block;
-    padding: 2px 6px;
+    padding: 4px 6px 0px 6px;
     border-radius: 999px;
     font-size: 11px;
     background: rgba(0, 0, 0, 0.04);
     color: #555;
-    white-space: nowrap;
 }
 
 .news-intel-panel .nlp-chip-entity {
@@ -673,7 +724,59 @@ footer .btn {
                                             </span>
                                         </div>
                                         <ul class="list-unstyled mb-0 medium intel-article-list">
-                                            <?php foreach ($item['articles'] as $article): ?>
+                                            <?php
+                                                // Make a local copy so we don't mutate $item unexpectedly elsewhere
+                                                $articles = $item['articles'] ?? [];
+
+                                                // Your "national publishers" list:
+                                                // Choose ONE strategy:
+                                                // (A) by domain (recommended — stable, matches your favicon logic)
+                                                // (B) by source_slug (works too if it's consistent)
+
+                                                // (A) Domains:
+                                                $nationalDomains = [
+                                                    'nytimes.com',
+                                                    'washingtonpost.com',
+                                                    'wsj.com',
+                                                    'bloomberg.com',
+                                                    'npr.org',
+                                                    'bbc.com',
+                                                    'theguardian.com',
+                                                    'cnn.com',
+                                                    'foxnews.com',
+                                                    'nbcnews.com',
+                                                    'cbsnews.com',
+                                                    'abcnews.go.com',
+                                                    'usatoday.com',
+                                                    'politico.com',
+                                                    'thehill.com',
+                                                ];
+
+                                                // Helper: get domain from URL
+                                                $domainOf = function($url) {
+                                                    if (!$url) return '';
+                                                    $host = parse_url($url, PHP_URL_HOST) ?: '';
+                                                    $host = preg_replace('/^www\./', '', strtolower($host));
+                                                    return $host;
+                                                };
+
+                                                usort($articles, function($a, $b) use ($nationalDomains, $domainOf) {
+                                                    $da = $domainOf($a['url'] ?? '');
+                                                    $db = $domainOf($b['url'] ?? '');
+
+                                                    $aNational = in_array($da, $nationalDomains, true) ? 1 : 0;
+                                                    $bNational = in_array($db, $nationalDomains, true) ? 1 : 0;
+
+                                                    // National first
+                                                    if ($aNational !== $bNational) return $bNational <=> $aNational;
+
+                                                    // Tie-breaker: newest first (best-effort)
+                                                    $ta = strtotime($a['pub_date'] ?? '') ?: 0;
+                                                    $tb = strtotime($b['pub_date'] ?? '') ?: 0;
+                                                    return $tb <=> $ta;
+                                                });
+                                            ?>
+                                            <?php foreach ($articles as $article): ?>
                                                 <?php
                                                 // Decode NLP for this article
                                                 $nlp = json_decode($article['nlp'] ?? '{}', true) ?: [];

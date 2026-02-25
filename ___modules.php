@@ -2,6 +2,8 @@
 
 require_once 'config_interest.php';
 
+$CACHE_VER = 'v12';
+
 date_default_timezone_set('America/New_York');
 
 $filter_out = array("usatoday", "independent.co.uk", "nytimes", "9to5google", "tomsguide", "thehockeynews", "cbssports", "businessinsider", "abc7chicago", "livescience", "wlns", "myedmondsnews", "reuters", "sportingnews", "bloomberg", "wane.com", "politico", "wvpublic", "cnbc", "mercurynews", "utahstories", "imdb", "9to5mac", "mashable", "stpetecatalyst", "kark", "journalism.cuny.edu", "yahoo.com", "startribune", "wgntv", "msnbc", "kosu.org", "wpri.com", "theberkshireedge.com", "kron4.com", "nymag.com");
@@ -12,7 +14,7 @@ function getPdo(): PDO {
     static $pdo = null;
     if ($pdo) return $pdo;
 
-    $dbUrl = getenv('DATABASE_URL');
+    $dbUrl = getenv('DATABASE_URL') ?: 'postgres://u54p8tqv3cg377:pf57c19d9494bc3a1f56ab4eb97c53566f24c574235c261f7a8cfba7eb648034c@c18qegamsgjut6.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/despq103h47h7m';
     if ($dbUrl) {
         $parts = parse_url($dbUrl);
         $host  = $parts['host'] ?? '127.0.0.1';
@@ -50,6 +52,11 @@ function getPdoOrExplain(): ?PDO {
     ini_set('display_errors', '1');
     */
 
+    error_log("PHP_VERSION=" . PHP_VERSION);
+    error_log("php.ini=" . (php_ini_loaded_file() ?: 'NONE'));
+    error_log("extension_dir=" . ini_get('extension_dir'));
+    error_log("drivers=" . implode(',', class_exists('PDO') ? PDO::getAvailableDrivers() : []));
+
     // 1) Driver present?
     $drivers = class_exists('PDO') ? PDO::getAvailableDrivers() : [];
     if (!in_array('pgsql', $drivers, true)) {
@@ -58,7 +65,7 @@ function getPdoOrExplain(): ?PDO {
     }
 
     // 2) Build DSN from DATABASE_URL (Heroku/Render) or PG* envs
-    $dbUrl = getenv('DATABASE_URL') ?: '';
+    $dbUrl = getenv('DATABASE_URL') ?: 'postgres://u54p8tqv3cg377:pf57c19d9494bc3a1f56ab4eb97c53566f24c574235c261f7a8cfba7eb648034c@c18qegamsgjut6.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/despq103h47h7m';
     if ($dbUrl) {
         $p = parse_url($dbUrl);
         $host = $p['host'] ?? '';
@@ -2068,8 +2075,6 @@ function _fragment_cache_path(string $key): string {
     $safe = preg_replace('/[^a-zA-Z0-9_\-\.]/', '_', $key);
     return _fragment_cache_dir() . '/' . $safe . '.html';
 }
-
-$CACHE_VER = 'v10';
 
 function fragment_cache_swr(
     string $key,
