@@ -379,10 +379,20 @@ try {
                 return $host;
             };
 
-            $endsWithAny = function($host, $domains) {
+            $endsWith = function(string $haystack, string $needle): bool {
+                $len = strlen($needle);
+                if ($len === 0) return true;
+                return substr($haystack, -$len) === $needle;
+            };
+
+            $endsWithAny = function($host, $domains) use ($endsWith) {
                 foreach ($domains as $d) {
                     $d = strtolower($d);
-                    if ($host === $d || (strlen($host) > strlen($d) && str_ends_with($host, '.' . $d))) {
+
+                    if (
+                        $host === $d ||
+                        (strlen($host) > strlen($d) && $endsWith($host, '.' . $d))
+                    ) {
                         return true;
                     }
                 }
