@@ -360,7 +360,7 @@
             $currentCtx = isset($_GET['context']) ? strtolower(trim((string)$_GET['context'])) : '';
             $currentVal = isset($_GET['value'])   ? strtolower(trim((string)$_GET['value']))   : '';
             ?>
-            <section class="bg-light-2 py-3 text-center">
+            <section class="container-fluid bg-light-2 py-3 text-center">
             <div class="sn-categories-strip">
             <div class="sn-categories-title">Analyze trends by category</div>
 
