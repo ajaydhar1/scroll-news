@@ -119,230 +119,18 @@ if (!$pdo) {
         <link href="css/styles.css?v=<?php echo filemtime(__DIR__ . '/css/styles.css'); ?>" rel="stylesheet" />
         <link href="css/custom.css?v=<?php echo filemtime(__DIR__ . '/css/custom.css'); ?>" rel="stylesheet" />
 
-        <style>
-            section#services {
-                background: #eee;
-            }
-            p {
-                font-weight: 300;
-            }
-            .page-section h3.section-subheading {
-                font-weight: 700;
-            }
-            a {
-                color: var(--brand-color);
-            }
-            footer.footer {
-                background: white;
-            }
-            footer .text-lg-right a {
-                color: #00bfa6;
-            }
-            footer .text-lg-right a:hover {
-                color: black;
-            }
+        <link href="css/sn-search.css?v=<?php echo filemtime(__DIR__ . '/css/sn-search.css'); ?>" rel="stylesheet" />
 
-
-            a.btn.btn-outline-primary.btn-analyze:hover {
-                background: #00bfa6;
-                border: none;
-            }
-            .btn-outline-primary {
-                color: black;
-                border: none;
-            }
-            
-            .btn {
-                box-shadow: none !important;
-            }
-            .btn-gray-border {
-                border: 2px solid #6c757d;
-            }
-
-
-
-            .sn-hashtag-chip {
-              display: inline-block;
-              font-size: 0.75rem;
-              padding: 2px 6px;
-              border-radius: 999px;
-              background: #f3f4f6;
-              color: #374151;
-              margin-right: 4px;
-              margin-bottom: 2px;
-            }
-
-            .sn-sentiment {
-              font-size: 0.78rem;
-              color: #4b5563;
-            }
-            .sn-sentiment-label {
-              font-weight: 500;
-            }
-
-            .sn-emotions {
-              margin-top: 0.25rem;
-            }
-
-            .sn-emotion-bar {
-              display: flex;
-              align-items: center;
-              gap: 6px;
-              font-size: 0.75rem;
-              margin-top: 2px;
-            }
-
-            .sn-emotion-label {
-              min-width: 48px;
-              color: #4b5563;
-            }
-
-            .sn-emotion-bar-track {
-              flex: 1;
-              height: 6px;
-              border-radius: 999px;
-              background: #e5e7eb;
-              overflow: hidden;
-            }
-
-            .sn-emotion-bar-fill {
-              height: 100%;
-              border-radius: 999px;
-              background: #10b981; /* if you want, you can later vary this by label */
-            }
-
-            .sn-emotion-value {
-              color: #6b7280;
-              min-width: 32px;
-              text-align: right;
-            }
-
-
-
-            .sn-loading-overlay {
-                position: fixed;
-                inset: 0;
-                background: rgba(10, 10, 15, 0.35);
-                backdrop-filter: blur(4px);
-                -webkit-backdrop-filter: blur(4px);
-                display: none;
-                align-items: center;
-                justify-content: center;
-                z-index: 2000; /* above navbar/content */
-            }
-
-            .sn-loading-overlay.active {
-                display: flex;
-            }
-
-            .sn-loading-spinner .spinner-border {
-                width: 3rem;
-                height: 3rem;
-            }
-
-
-            #sn-search-form .scroll-article-badges {
-                gap: 0;
-            }
-
-            .scroll-badge-active {
-                filter: brightness(1.05);
-                box-shadow: 0 0 0 1px rgba(0,0,0,0.12);
-            }
-
-            /* Base badge (already have something like this) */
-            .scroll-badge {
-                font-size: 0.7rem;
-                font-weight: 600;
-                text-transform: uppercase;
-                letter-spacing: 0.06em;
-                padding: 0.15rem 0.5rem;
-                border-radius: 999px;
-                display: inline-flex;
-                align-items: center;
-                gap: 0.25rem;
-            }
-
-            /* Deep Dive – idle (outline) */
-            .scroll-badge-deep-dive {
-                /*
-                background: rgba(120, 80, 255, 0.06);
-                border: 1px solid rgba(120, 80, 255, 0.6);
-                color: rgb(60, 40, 150);
-                */
-            }
-
-            /* High-Signal Publisher – idle (outline-ish) */
-            .scroll-badge-high-signal-publisher {
-                /*
-                background: rgba(0, 200, 255, 0.06);
-                border: 1px solid rgba(0, 200, 255, 0.6);
-                color: rgb(0, 120, 165);
-                */
-            }
-
-            /* 🔘 ACTIVE state applied to either badge */
-            .scroll-badge-active {
-                position: relative;
-                box-shadow: 0 0 0 1px rgba(0,0,0,0.12);
-            }
-
-            /* Active Deep Dive: solid purple pill */
-            .scroll-badge-deep-dive.scroll-badge-active {
-                background: rgb(120, 80, 255);
-                border-color: rgb(120, 80, 255);
-                color: #fff;
-            }
-
-            /* Active High-Signal: solid cyan pill */
-            .scroll-badge-high-signal-publisher.scroll-badge-active {
-                background: rgb(0, 200, 255);
-                border-color: rgb(0, 200, 255);
-                color: #fff;
-            }
-
-            /* Add a tiny checkmark when active */
-            .scroll-badge-active::before {
-                content: "✓";
-                font-size: 0.65rem;
-                opacity: 0.95;
-            }
-
-            .sn-category-link {
-                text-decoration: none;
-                font-weight: 600;
-            }
-
-            .sn-category-link:hover {
-                text-decoration: underline;
-            }
-
-            .sn-search-chips{
-                display:flex;
-                flex-wrap:wrap;
-                gap:8px;
-            }
-
-            .sn-chip{
-                display:inline-block;
-                padding:6px 10px;
-                border:1px solid rgba(0,0,0,.15);
-                border-radius:999px;
-                text-decoration:none;
-                font-size:13px;
-                line-height:1;
-                color:inherit;
-                background:#fff;
-            }
-
-            .sn-chip:hover{
-                border-color: rgba(0,0,0,.3);
-                text-decoration:none;
-            }
-
-        </style>
     </head>
     <body id="page-top" class="bg-dark">
+
+        <div id="sn-search-loading" class="sn-loading-overlay" aria-hidden="true">
+            <div class="sn-loading-spinner">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading…</span>
+                </div>
+            </div>
+        </div>
 
         <!-- Top nav-->        
         <?php require_once __DIR__ . '/___topnav_full.php'; ?>
@@ -387,7 +175,7 @@ if (!$pdo) {
                                                 const dd = document.getElementById('deep-dive-input');
                                                 if (dd) dd.value = '';
 
-                                                this.form.submit();
+                                                this.form.requestSubmit();
                                             "
                                         >
                                             Keyword
@@ -397,7 +185,7 @@ if (!$pdo) {
                                             class="btn <?php echo ($mode === 'nlp') ? 'btn-primary' : 'btn-outline-secondary'; ?>"
                                             onclick="
                                                 document.getElementById('mode-input').value='nlp';
-                                                this.form.submit();
+                                                this.form.requestSubmit();
                                             "
                                         >
                                             Smart (NLP)
@@ -408,7 +196,7 @@ if (!$pdo) {
                                     <select
                                         name="range"
                                         class="form-select form-select-sm w-auto me-2"
-                                        onchange="this.form.submit()"
+                                        onchange="this.form.requestSubmit()"
                                     >
                                         <option value="all"   <?php if ($range === 'all')   echo 'selected'; ?>>All time</option>
                                         <option value="24h"   <?php if ($range === '24h')   echo 'selected'; ?>>Last 24 hours</option>
@@ -420,7 +208,7 @@ if (!$pdo) {
                                         <select
                                             name="sentiment"
                                             class="form-select form-select-sm w-auto me-2"
-                                            onchange="this.form.submit()"
+                                            onchange="this.form.requestSubmit()"
                                         >
                                             <option value="" <?php if (empty($sentiment)) echo 'selected'; ?>>Any sentiment</option>
                                             <option value="positive" <?php if ($sentiment === 'positive') echo 'selected'; ?>>Positive</option>
@@ -432,7 +220,7 @@ if (!$pdo) {
                                         <select
                                             name="emotion"
                                             class="form-select form-select-sm w-auto me-2"
-                                            onchange="this.form.submit()"
+                                            onchange="this.form.requestSubmit()"
                                         >
                                             <option value="" <?php if (empty($emotion)) echo 'selected'; ?>>Any emotion</option>
                                             <option value="Love" <?php if ($emotion === 'Love') echo 'selected'; ?>>Love</option>
@@ -457,7 +245,7 @@ if (!$pdo) {
                                                 onclick="
                                                     const input = document.getElementById('deep-dive-input');
                                                     input.value = (input.value === '1') ? '' : '1';
-                                                    this.form.submit();
+                                                    this.form.requestSubmit();
                                                 "
                                             >
                                                 DEEP DIVE
@@ -470,7 +258,7 @@ if (!$pdo) {
                                             onclick="
                                                 const input = document.getElementById('high-signal-input');
                                                 input.value = (input.value === '1') ? '' : '1';
-                                                this.form.submit();
+                                                this.form.requestSubmit();
                                             "
                                         >
                                             HIGH-SIGNAL PUBLISHER
@@ -498,8 +286,6 @@ if (!$pdo) {
                         </div>
                     </div>
                 </div>
-
-                <?php require_once 'config_interest.php'; ?>
 
                 <?php if ($errorMsg): ?>
                     <div class="row">
@@ -651,7 +437,7 @@ if (!$pdo) {
                                         $readUrl  = $row['url']         ?? '#';
                                         $pubHuman = sn_format_pub_date($row['pub_date'] ?? null);
 
-                                        $pubRaw = $article['pub_date'] ?? null;
+                                        $pubRaw = $row['pub_date'] ?? null;
 
                                         $pubIso = '';
                                         $pub_ts = null;

@@ -1,0 +1,179 @@
+/* Search chips */
+
+.sn-search-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.sn-chip{
+  display:inline-block;
+  padding:6px 10px;
+  border:1px solid rgba(0,0,0,.15);
+  border-radius:999px;
+  text-decoration:none;
+  font-size:13px;
+  line-height:1;
+  color:inherit;
+  background:#fff;
+}
+
+.sn-chip:hover{
+  border-color: rgba(0,0,0,.3);
+  text-decoration:none;
+}
+
+/* Hashtag chips + NLP display */
+
+.sn-hashtag-chip {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: #374151;
+  margin-right: 4px;
+  margin-bottom: 2px;
+}
+
+.sn-sentiment {
+  font-size: 0.78rem;
+  color: #4b5563;
+}
+.sn-sentiment-label {
+  font-weight: 500;
+}
+
+.sn-emotions {
+  margin-top: 0.25rem;
+}
+
+.sn-emotion-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  margin-top: 2px;
+}
+
+.sn-emotion-label {
+  min-width: 48px;
+  color: #4b5563;
+}
+
+.sn-emotion-bar-track {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  overflow: hidden;
+}
+
+.sn-emotion-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: #10b981;
+}
+
+.sn-emotion-value {
+  color: #6b7280;
+  min-width: 32px;
+  text-align: right;
+}
+
+/* Badge spacing inside search form */
+
+#sn-search-form .scroll-article-badges {
+  gap: 0;
+}
+
+/* Search filter badges */
+
+.scroll-badge-active {
+  filter: brightness(1.05);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.12);
+}
+
+/* Base badge (if it’s only here; otherwise move base to custom.css) */
+.scroll-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Active Deep Dive */
+.scroll-badge-deep-dive.scroll-badge-active {
+  background: rgb(120, 80, 255);
+  border-color: rgb(120, 80, 255);
+  color: #fff;
+}
+
+/* Active High-Signal */
+.scroll-badge-high-signal-publisher.scroll-badge-active {
+  background: rgb(0, 200, 255);
+  border-color: rgb(0, 200, 255);
+  color: #fff;
+}
+
+/* Checkmark */
+.scroll-badge-active::before {
+  content: "✓";
+  font-size: 0.65rem;
+  opacity: 0.95;
+}
+
+/* Category link styling */
+
+.sn-category-link {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.sn-category-link:hover {
+  text-decoration: underline;
+}
+
+/* Loading overlay */
+
+.sn-loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 15, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.sn-loading-overlay.active {
+  display: flex;
+}
+
+.sn-loading-spinner .spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Global typography weight for paragraphs */
+
+p {
+  font-weight: 300;
+}
+
+/* “Buttons should have no shadow” policy */
+
+.btn {
+  box-shadow: none !important;
+}
+
+.page-section h3.section-subheading { 
+    font-weight: 700; 
+}

@@ -69,6 +69,11 @@ header.masthead .masthead-subheading {
   font-family: 'Poppins', sans-serif;
 }
 
+/* Utility: gray border button (used elsewhere too) */
+.btn-gray-border {
+  border: 2px solid #6c757d;
+}
+
 #myVideo {
   position: fixed;
   right: 0;
@@ -115,10 +120,10 @@ header.masthead .masthead-subheading {
 }
 
 a {
-  color: deeppink;
+  color: var(--brand-color);
 }
 
-a, .text-pink {
+.text-pink {
   color: deeppink;
 }
 
@@ -483,3 +488,19 @@ a.nlp-chip.nlp-chip-topic:hover {
 footer .btn:not(.analyze-btn, .browse-btn) {
     box-shadow: 0 0 0 2px #00bfa6 !important;
 }
+
+/* Footer styling (global footer component) */
+
+footer.footer {
+  background: white;
+}
+
+footer .text-lg-right a {
+  color: #00bfa6;
+}
+
+footer .text-lg-right a:hover {
+  color: black;
+}
+
+section#services { background: #eee; }
