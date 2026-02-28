@@ -187,10 +187,11 @@ function analyzeNews(rssLink, pubDateForLink) {
     });
 }
 
-
+/*
 document.getElementById("newsSearchInput").addEventListener("keydown", function(event) {
 	if (event.key === "Enter") {
     	event.preventDefault(); // Prevent form submission if inside a form
         document.getElementById("searchNewsBtn").click(); // Simulate button click
     }
 });
+*/

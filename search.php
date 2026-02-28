@@ -165,30 +165,16 @@ if (!$pdo) {
 
                                     <!-- Mode pills (do NOT have name="mode"; they update the hidden input) -->
                                     <div class="btn-group btn-group-sm me-2" role="group" aria-label="Search mode">
-                                        <button
-                                            type="button"
-                                            class="btn <?php echo ($mode === 'classic') ? 'btn-primary' : 'btn-outline-secondary'; ?>"
-                                            onclick="
-                                                document.getElementById('mode-input').value='classic';
-
-                                                // turn off Deep Dive when switching away from NLP
-                                                const dd = document.getElementById('deep-dive-input');
-                                                if (dd) dd.value = '';
-
-                                                this.form.requestSubmit();
-                                            "
-                                        >
-                                            Keyword
+                                        <button type="button"
+                                                class="btn <?= ($mode === 'classic') ? 'btn-primary' : 'btn-outline-secondary'; ?>"
+                                                data-sn-mode="classic">
+                                        Keyword
                                         </button>
-                                        <button
-                                            type="button"
-                                            class="btn <?php echo ($mode === 'nlp') ? 'btn-primary' : 'btn-outline-secondary'; ?>"
-                                            onclick="
-                                                document.getElementById('mode-input').value='nlp';
-                                                this.form.requestSubmit();
-                                            "
-                                        >
-                                            Smart (NLP)
+
+                                        <button type="button"
+                                                class="btn <?= ($mode === 'nlp') ? 'btn-primary' : 'btn-outline-secondary'; ?>"
+                                                data-sn-mode="nlp">
+                                        Smart (NLP)
                                         </button>
                                     </div>
 
@@ -196,7 +182,7 @@ if (!$pdo) {
                                     <select
                                         name="range"
                                         class="form-select form-select-sm w-auto me-2"
-                                        onchange="this.form.requestSubmit()"
+                                        data-sn-autosubmit
                                     >
                                         <option value="all"   <?php if ($range === 'all')   echo 'selected'; ?>>All time</option>
                                         <option value="24h"   <?php if ($range === '24h')   echo 'selected'; ?>>Last 24 hours</option>
@@ -208,7 +194,7 @@ if (!$pdo) {
                                         <select
                                             name="sentiment"
                                             class="form-select form-select-sm w-auto me-2"
-                                            onchange="this.form.requestSubmit()"
+                                            data-sn-autosubmit
                                         >
                                             <option value="" <?php if (empty($sentiment)) echo 'selected'; ?>>Any sentiment</option>
                                             <option value="positive" <?php if ($sentiment === 'positive') echo 'selected'; ?>>Positive</option>
@@ -220,7 +206,7 @@ if (!$pdo) {
                                         <select
                                             name="emotion"
                                             class="form-select form-select-sm w-auto me-2"
-                                            onchange="this.form.requestSubmit()"
+                                            data-sn-autosubmit
                                         >
                                             <option value="" <?php if (empty($emotion)) echo 'selected'; ?>>Any emotion</option>
                                             <option value="Love" <?php if ($emotion === 'Love') echo 'selected'; ?>>Love</option>
@@ -239,29 +225,18 @@ if (!$pdo) {
 
                                     <div class="scroll-article-badges">
                                         <?php if ($mode === 'nlp'): ?>
-                                            <button
-                                                type="button"
-                                                class="scroll-badge scroll-badge-deep-dive <?php echo $deepDiveActive ? 'scroll-badge-active' : ''; ?>"
-                                                onclick="
-                                                    const input = document.getElementById('deep-dive-input');
-                                                    input.value = (input.value === '1') ? '' : '1';
-                                                    this.form.requestSubmit();
-                                                "
-                                            >
-                                                DEEP DIVE
+                                            <button type="button"
+                                                    class="scroll-badge scroll-badge-deep-dive <?= $deepDiveActive ? 'scroll-badge-active' : ''; ?>"
+                                                    data-sn-toggle="deep_dive"
+                                                    data-sn-only-when-mode="nlp">
+                                            DEEP DIVE
                                             </button>
                                         <?php endif; ?>
 
-                                        <button
-                                            type="button"
-                                            class="scroll-badge scroll-badge-high-signal-publisher <?php echo $highSignalActive ? 'scroll-badge-active' : ''; ?>"
-                                            onclick="
-                                                const input = document.getElementById('high-signal-input');
-                                                input.value = (input.value === '1') ? '' : '1';
-                                                this.form.requestSubmit();
-                                            "
-                                        >
-                                            HIGH-SIGNAL PUBLISHER
+                                        <button type="button"
+                                                class="scroll-badge scroll-badge-high-signal-publisher <?= $highSignalActive ? 'scroll-badge-active' : ''; ?>"
+                                                data-sn-toggle="high_signal">
+                                        HIGH-SIGNAL PUBLISHER
                                         </button>
                                     </div>
 
@@ -805,18 +780,7 @@ if (!$pdo) {
 
         <script src="js/sn-mini-player-yt.js?v=<?= filemtime(__DIR__.'/js/sn-mini-player-yt.js') ?>" defer></script>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var form    = document.getElementById('sn-search-form');
-                var overlay = document.getElementById('sn-search-loading');
-
-                if (!form || !overlay) return;
-
-                form.addEventListener('submit', function () {
-                    overlay.classList.add('active');
-                });
-            });
-        </script>
+        <script src="js/sn-search.js?v=<?= filemtime(__DIR__.'/js/sn-search.js') ?>" defer></script>
 
     </body>
 </html>
