@@ -16,7 +16,7 @@
 <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1 class="h3 mb-0">Your Reading History</h1>
-        <a href="scroll-history.php" class="btn btn-sm btn-outline-light">
+        <a href="scroll-archive.php" class="btn btn-sm btn-outline-light">
             ← Scroll History
         </a>
     </div>

@@ -55,9 +55,11 @@ header.masthead {
     text-align: center;
 }
 
+/*
 .btn {
     box-shadow: 0 0 0 0.14rem var(--brand-color) !important;
 }
+*/
 
 .btn.btn-rectangle {
     box-shadow: 0 0 0 0.14rem var(--brand-color) !important;
@@ -194,37 +196,7 @@ button.nav-link.active {
     line-height: calc(var(--line-height-unit) * 1.4) !important;
 }
 
-.analyze-btn {
-    box-shadow: 0 0 0 0.14rem var(--brand-color-break) !important;
-}
 
-.analyze-btn:hover {
-    background: #00bfa6;
-}
-
-
-.browse-btn {
-    color: var(--dark);
-    box-shadow: 0 0 0 0.14rem var(--brand-color-break) !important;
-}
-
-.browse-btn:hover {
-    color: white;
-}
-
-.analyze-btn,
-.browse-btn {
-    width: 150px;
-}
-
-#browseNewsModal p.card-text {
-    font-size: 14px;
-}
-
-.card-img-top.news-modal {
-    height: 230px;
-    object-fit: cover;
-}
 
 .nav-tabs .nav-link {
     border: 1px solid #cbcbcb;
@@ -257,9 +229,11 @@ button.nav-link.active {
     box-shadow: 0 0 0 0.2rem var(--brand-color);
 }
 
+/*
 .modal .card {
     border: none;
 }
+*/
 
 /* #shot { opacity: 0; transition: opacity .25s ease; } */
 /* #shot[src*="screenshot?"] { opacity: 1; } */      /* once set */
@@ -388,6 +362,8 @@ button.nav-link.active {
   .popover .gkp__source { color: #9ca3af; }
 }
 
+/*
 .sn-favicon {
     margin-right: 0.35rem;
 }
+*/

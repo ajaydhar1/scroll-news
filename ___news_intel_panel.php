@@ -598,9 +598,7 @@ a.btn.btn-outline-primary.btn-analyze:hover {
     color: black;
     border: none;
 }
-footer .btn {
-    box-shadow: 0 0 0 2px #00bfa6 !important;
-}
+
 .btn {
     box-shadow: none !important;
 }

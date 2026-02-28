@@ -1,20 +1,20 @@
 {
-    "fetched_at": 1772051147,
+    "fetched_at": 1772162210,
     "feeds": [
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "REVEALED: INSIDE EPSTEIN'S SECRET STORAGE LOCKER...",
-                    "url": "https://www.telegraph.co.uk/news/2026/02/25/revealed-the-contents-of-epsteins-secret-storage-lockers/",
-                    "ts": 1772050596,
+                    "title": "SHOPPING: ELLISONS BUY WARNER BROS...",
+                    "url": "https://deadline.com/2026/02/netflix-declines-to-raise-offer-for-warner-bros-1236738005/",
+                    "ts": 1772157516,
                     "emo": "📰"
                 },
                 {
-                    "title": "Computers, video tapes, sex-slave manuals...",
-                    "url": "https://www.telegraph.co.uk/news/2026/02/25/revealed-the-contents-of-epsteins-secret-storage-lockers/",
-                    "ts": 1772050596,
+                    "title": "WILL NOW RUN CBS AND CNN...",
+                    "url": "https://www.nytimes.com/2025/09/18/opinion/larry-ellison-paramount-cbs-tiktok.html?unlocked_article_code=1.PVA.LEGf.uRdLJe_Wl-cc&smid=url-share",
+                    "ts": 1772157516,
                     "emo": "📰"
                 }
             ]
@@ -24,16 +24,16 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Nvidia earnings updates: Chip titan to deliver results at a key crossroads for the AI trade",
-                    "url": "https://www.businessinsider.com/nvidia-q4-earnings-live-updates-ai-chips-rubin-jensen-huang-2026-2",
-                    "ts": 1772044955,
-                    "emo": "💰"
+                    "title": "Jack Dorsey just laid off 40% of staff. He said he's still hiring AI engineers.",
+                    "url": "https://www.businessinsider.com/jack-dorsey-block-hiring-senior-ai-talent-iafter-layoffs-2026-2",
+                    "ts": 1772155863,
+                    "emo": "🧪"
                 },
                 {
-                    "title": "Deutsche Bank makes the case for why Anthropic won't kill software stocks",
-                    "url": "https://www.businessinsider.com/anthropic-claude-software-stocks-deutsche-bank-ai-scare-trade-2026-2",
-                    "ts": 1772044180,
-                    "emo": "💰"
+                    "title": "It's easy to understand why Netflix walked away from WBD",
+                    "url": "https://www.businessinsider.com/why-netflix-walked-wbd-paramount-trump-sarandos-ellison-2026-2",
+                    "ts": 1772155615,
+                    "emo": "📰"
                 }
             ]
         }

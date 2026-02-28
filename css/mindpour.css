@@ -178,6 +178,7 @@ h5.m-0.font-weight-bold {
     color: #212529 !important;
 }
 
+/*
 .modal .card {
     background-image: url(../assets/img/mind-pour_00.jpg);
     background-size: cover;
@@ -186,6 +187,16 @@ h5.m-0.font-weight-bold {
 .modal .card-body {
     backdrop-filter: blur(80px);
     -webkit-backdrop-filter: blur(80px);
+}
+*/
+
+.modal .card {
+    color: #212529;
+    background: white !important;
+}
+
+.modal .card .text-muted {
+    color: #6c757d !important;
 }
 
 .page.introjs-fixParent {

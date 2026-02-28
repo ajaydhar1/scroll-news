@@ -1,5 +1,5 @@
 <?php
-// scroll-history.php — Daily Scroll Archive inside Scroll News template
+// scroll-archive.php — Daily Scroll Archive inside Scroll News template
 
 require_once('___modules.php');
 
@@ -110,18 +110,18 @@ if (!$pdo) {
 
         <!-- Favicon-->
         <link rel="icon" type="image/png" href="assets/img/play-green.png" />
-        <link rel="canonical" href="https://scrollnews.io/scroll-history.php">
+        <link rel="canonical" href="https://scrollnews.io/scroll-archive.php">
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://scrollnews.io/scroll-history.php" />
+        <meta property="og:url" content="https://scrollnews.io/scroll-archive.php" />
         <meta property="og:title" content="Daily Scroll Archive — Every Article in One Place" />
         <meta property="og:description" content="Flip through the full Scroll News archive like a book, with one horizontal row of cards for each day." />
         <meta property="og:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-history-1200x630.png" />
 
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://scrollnews.io/scroll-history.php" />
+        <meta name="twitter:url" content="https://scrollnews.io/scroll-archive.php" />
         <meta name="twitter:title" content="Daily Scroll Archive — Every Article in One Place" />
         <meta name="twitter:description" content="Flip through the full Scroll News archive like a book, with one horizontal row of cards for each day." />
         <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-history-1200x630.png" />
@@ -205,7 +205,7 @@ if (!$pdo) {
             }
 
             .day-row {
-                border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
                 padding: 1.5rem 0 2rem;
             }
 
@@ -397,10 +397,6 @@ if (!$pdo) {
                 border: none;
             }
 
-            .btn {
-                box-shadow: 0 0 0 2px #00bfa6 !important;
-            }
-
             .article-image-wrap {
                 position: relative;
             }
@@ -443,40 +439,10 @@ if (!$pdo) {
         <!-- Blurred overlay -->
         <div class="blur-layer"></div>
 
-        <!-- Loading overlay -->
-        <div id="loadingOverlay" class="loading-overlay" aria-live="polite" aria-busy="true" hidden>
-          <div class="loading-spinner" role="status" aria-label="Loading"></div>
-        </div>
-
         <div class="page">
 
-            <!-- topnav-->
-            <footer class="footer py-4 bg-white sticky-top sn-top-nav">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-4 d-flex text-lg-left text-bolder">
-                            <h5 class="mb-2 mb-sm-0">
-                                <a href="index.php" data-loading>
-                                    <img src="assets/img/play-green.png" alt="Logo play button" style="height: 24px; width: auto; vertical-align: middle; margin-right: 5px; margin-bottom: 5px;">
-                                    Scroll News
-                                </a>
-                            </h5>
-                        </div>
-                        <div class="col-lg-4 my-3 my-lg-0">
-                            <a class="btn btn-black btn-social mx-2" title="Scroll Archive" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
-                            <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" onclick="" data-loading><i class="fas fa-play"></i></a>
-                            <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
-                        </div>
-                        <div class="col-lg-4 d-flex text-lg-right" style="">
-                            <div class="ml-auto">
-                                <a href="about.php" class="mr-3">About</a>
-                                <a class="search-button mr-2" href="analysis.php?context=category&value=politics&w=7d" title="Analyze trends" aria-label="Analyze trends" data-loading>📊</a>
-                                <a class="search-button" href="search.php" title="Search" aria-label="Search">🔍</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <!-- Top nav-->        
+            <?php require_once __DIR__ . '/___topnav_full.php'; ?>
 
             <!-- Daily Scroll Archive -->
             <section class="page-section" id="" style="padding: 4rem 0;">
@@ -744,31 +710,13 @@ if (!$pdo) {
                 </div>
             </section>
 
-            <!-- Footer-->
-            <div class="bg-dark" style="height: 338px;">
-                <footer class="footer footer-bottom bg-white py-4">
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-lg-4 text-lg-left">Copyright © Scroll News 2026</div>
-                            <div class="col-lg-4 my-3 my-lg-0">
-                                <a class="btn btn-black btn-social mx-2" title="X profile" href="https://x.com/scrollnewsio" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                                <a class="btn btn-black btn-social mx-2" title="Scroll Archive" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
-                                <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" data-loading><i class="fas fa-play"></i></a>
-                                <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
-                                <a class="btn btn-black btn-social mx-2" title="IG profile" href="https://www.instagram.com/scrollnewsio/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                            </div>
-                            <div class="col-lg-4 text-lg-right font-weight-bold">
-                                <a href="index.php" data-loading>scroll news</a>
-                                <br>
-                                <a href="about.php" class="text-muted small mr-3">About</a>
-                                <a href="terms.php" class="text-muted small mr-3">Terms</a>
-                                <a href="privacy.php" class="text-muted small">Privacy</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
+            <!-- Footer-->        
+            <?php require_once __DIR__ . '/___footer.php'; ?>
+
         </div>
+
+        <!-- Modals-->        
+        <?php require_once __DIR__ . '/___modals.php'; ?>
 
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -782,49 +730,6 @@ if (!$pdo) {
         <script src="js/scripts.js"></script>
 
         <script src="js/sn_history.js"></script>
-
-        <script>
-            function goToAnalytics() {
-                if (!isMobile()) {
-                    $(".loader").fadeIn("slow");
-                }
-            }
-
-            function isMobile() {
-                return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            }
-        </script>
-
-        <script>
-            (function(){
-              const overlay = document.getElementById('loadingOverlay');
-              const show = () => overlay && (overlay.hidden = false);
-              const hide = () => overlay && (overlay.hidden = true);
-
-              // Hide when page is ready (covers BFCache too)
-              window.addEventListener('pageshow', hide);
-
-              // For specific buttons/links, add data-loading attribute
-              document.addEventListener('click', function(e){
-                const t = e.target.closest('[data-loading]');
-                if (t) show();
-              });
-
-              // Optional: inline button spinner (keeps overlay too)
-              document.addEventListener('click', function(e){
-                const btn = e.target.closest('[data-loading-btn]');
-                if (!btn) return;
-                btn.dataset.originalHtml = btn.innerHTML;
-                btn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span>&nbsp;Loading…';
-                btn.classList.add('disabled'); btn.setAttribute('aria-busy','true');
-              });
-
-              // Minimal CSS for inline button spinner:
-              const style = document.createElement('style');
-              style.textContent = '.btn-spinner{display:inline-block;width:1em;height:1em;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .6s linear infinite;vertical-align:-0.125em}';
-              document.head.appendChild(style);
-            })();
-        </script>
 
         <script>
             // Scroll buttons, keyboard navigation, and filters for Scroll History

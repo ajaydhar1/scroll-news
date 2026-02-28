@@ -430,3 +430,56 @@ a.nlp-chip.nlp-chip-entity:hover {
 a.nlp-chip.nlp-chip-topic:hover {
     background: rgba(0, 200, 140, 0.5) !important;
 }
+
+.loading-overlay{
+    position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,0.82); z-index:2000; backdrop-filter:saturate(120%) blur(2px);
+}
+
+.loading-spinner{
+    width:48px; height:48px; border:4px solid #e5e7eb; border-top-color:#0d6efd;
+    border-radius:50%; animation:spin 1s linear infinite;
+}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){ .loading-spinner{animation:none} }
+
+
+.btn {
+    box-shadow: 0 0 0 0.14rem var(--brand-color) !important;
+}
+
+.analyze-btn {
+    box-shadow: 0 0 0 0.14rem var(--brand-color-break) !important;
+}
+
+.analyze-btn:hover {
+    background: #00bfa6;
+}
+
+.browse-btn {
+    color: var(--dark);
+    box-shadow: 0 0 0 0.14rem var(--brand-color-break) !important;
+}
+
+.browse-btn:hover {
+    color: white;
+}
+
+.analyze-btn,
+.browse-btn {
+    width: 150px;
+}
+
+#browseNewsModal p.card-text {
+    font-size: 14px;
+}
+
+.card-img-top.news-modal {
+    height: 230px;
+    object-fit: cover;
+}
+
+footer .btn:not(.analyze-btn, .browse-btn) {
+    box-shadow: 0 0 0 2px #00bfa6 !important;
+}

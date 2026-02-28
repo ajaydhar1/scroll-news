@@ -1122,1284 +1122,1207 @@ SQL);
 </head>
 <body class="bg-light">
 
-<!-- Loading overlay -->
-<div id="loadingOverlay" class="loading-overlay" aria-live="polite" aria-busy="true" hidden>
-    <div class="loading-spinner" role="status" aria-label="Loading"></div>
-</div>
+  <!-- Top nav-->        
+  <?php require_once __DIR__ . '/___topnav_full.php'; ?>
 
-<style>
-    .loading-overlay{
-    position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
-    background:rgba(255,255,255,0.82); z-index:2000; backdrop-filter:saturate(120%) blur(2px);
-    }
-    .loading-spinner{
-    width:48px; height:48px; border:4px solid #e5e7eb; border-top-color:#0d6efd;
-    border-radius:50%; animation:spin 1s linear infinite;
-    }
-    @keyframes spin{to{transform:rotate(360deg)}}
-    @media (prefers-reduced-motion: reduce){ .loading-spinner{animation:none} }
-</style>
+  <div class="container-fluid">
 
-<!-- topnav-->
-<footer class="footer py-4 bg-white sticky-top sn-top-nav">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-4 d-flex text-lg-left text-bolder">
-                <h5 class="mb-2 mb-sm-0">
-                    <a href="index.php" data-loading>
-                        <img src="assets/img/play-green.png" alt="Logo play button" style="height: 24px; width: auto; vertical-align: middle; margin-right: 5px; margin-bottom: 5px;">
-                        Scroll News
-                    </a>
-                </h5>
-            </div>
-            <div class="col-lg-4 my-3 my-lg-0">
-                <a class="btn btn-black btn-social mx-2" title="Scroll Archive" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
-                <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" onclick="" data-loading><i class="fas fa-play"></i></a>
-                <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
-            </div>
-            <div class="col-lg-4 d-flex text-lg-right" style="">
-                <div class="ml-auto">
-                    <a href="about.php" class="mr-3">About</a>
-                    <a class="search-button mr-2" href="analysis.php?context=category&value=politics&w=7d" title="Analyze trends" aria-label="Analyze trends" data-loading>📊</a>
-                    <a class="search-button" href="search.php" title="Search" aria-label="Search">🔍</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+      <h1 style="margin:0 0 6px 0;" class="text-center mt-3">Text & Content Analysis</h1>
+      <div class="note text-center">
+      Context:
+      <strong><?= htmlspecialchars($context) ?></strong>
+      <span class="muted">(<?= htmlspecialchars($value) ?>)</span>
+      &nbsp;|&nbsp;
 
-<div class="container-fluid">
+      Window:
+      <?php
+      $params = $_GET;
+      $params['w'] = '24h';
+      ?>
+      <a href="?<?= http_build_query($params) ?>" class="<?= $time_window === '24h' ? 'active' : '' ?>" data-loading>24h</a> ·
+      <?php
+      $params['w'] = '7d';
+      ?>
+      <a href="?<?= http_build_query($params) ?>" class="<?= $time_window === '7d'  ? 'active' : '' ?>" data-loading>7d</a> ·
+      <?php
+      $params['w'] = '30d';
+      ?>
+      <a href="?<?= http_build_query($params) ?>" class="<?= $time_window === '30d' ? 'active' : '' ?>" data-loading>30d</a>
+      &nbsp;|&nbsp;
 
-    <h1 style="margin:0 0 6px 0;" class="text-center mt-3">Text & Content Analysis</h1>
-    <div class="note text-center">
-    Context:
-    <strong><?= htmlspecialchars($context) ?></strong>
-    <span class="muted">(<?= htmlspecialchars($value) ?>)</span>
-    &nbsp;|&nbsp;
+      Corpus:
+      <strong><?= (int)($kpi[0]['corpus_articles'] ?? 0) ?></strong> articles
+      </div>
 
-    Window:
-    <?php
-    $params = $_GET;
-    $params['w'] = '24h';
-    ?>
-    <a href="?<?= http_build_query($params) ?>" class="<?= $time_window === '24h' ? 'active' : '' ?>" data-loading>24h</a> ·
-    <?php
-    $params['w'] = '7d';
-    ?>
-    <a href="?<?= http_build_query($params) ?>" class="<?= $time_window === '7d'  ? 'active' : '' ?>" data-loading>7d</a> ·
-    <?php
-    $params['w'] = '30d';
-    ?>
-    <a href="?<?= http_build_query($params) ?>" class="<?= $time_window === '30d' ? 'active' : '' ?>" data-loading>30d</a>
-    &nbsp;|&nbsp;
+      <?php
+      $ctxLabelMap = [
+      'entity'   => 'Entity',
+      'topic'    => 'Topic',
+      'pub'      => 'Publisher',
+      'sent'     => 'Sentiment',
+      'category' => 'Category',
+      ];
 
-    Corpus:
-    <strong><?= (int)($kpi[0]['corpus_articles'] ?? 0) ?></strong> articles
-    </div>
+      $ctxLabel = $ctxLabelMap[$context] ?? ucfirst($context);
 
-    <?php
-    $ctxLabelMap = [
-    'entity'   => 'Entity',
-    'topic'    => 'Topic',
-    'pub'      => 'Publisher',
-    'sent'     => 'Sentiment',
-    'category' => 'Category',
-    ];
+      // Format value for display
+      $ctxValue = (string)($kpi[0]['value'] ?? $value ?? '');
+      $ctxValue = trim($ctxValue);
+      if ($context === 'sent') {
+          $ctxValue = ucfirst(strtolower($ctxValue));
+      }
+      ?>
 
-    $ctxLabel = $ctxLabelMap[$context] ?? ucfirst($context);
+      <div class="analysis-desc text-center mt-2">
+          <p>
+              This page analyzes how a selected entity or topic appears in recent news coverage within the specified time window.
+              Metrics and breakdowns are derived from the active article corpus.
+          </p>
+      </div>
 
-    // Format value for display
-    $ctxValue = (string)($kpi[0]['value'] ?? $value ?? '');
-    $ctxValue = trim($ctxValue);
-    if ($context === 'sent') {
-        $ctxValue = ucfirst(strtolower($ctxValue));
-    }
-    ?>
+      <div class="row">
+          <div class="col-12 col-lg-12">
+              <div class="card" style="margin-top:12px;">
+              <h3>Corpus KPIs</h3>
 
-    <div class="analysis-desc text-center mt-2">
-        <p>
-            This page analyzes how a selected entity or topic appears in recent news coverage within the specified time window.
-            Metrics and breakdowns are derived from the active article corpus.
-        </p>
-    </div>
-
-    <div class="row">
-        <div class="col-12 col-lg-12">
-            <div class="card" style="margin-top:12px;">
-            <h3>Corpus KPIs</h3>
-
-            <div class="kpis">
-                <div class="kpi">
-                <div class="label"><?= htmlspecialchars($ctxLabel) ?></div>
-                <div class="val"><?= htmlspecialchars($ctxValue) ?></div>
-                </div>
-
-                <?php
-                $windowLabelMap = [
-                    '24h'    => 'Last 24h',
-                    '7d'     => 'Last 7 days',
-                    '30d'    => 'Last 30 days',
-                    'custom' => 'Custom range',
-                ];
-                $windowLabel = $windowLabelMap[$time_window] ?? $time_window;
-                ?>
-
-                <div class="kpi kpi-meta">
-                <div class="label">Window</div>
-                <div class="val"><?= htmlspecialchars($windowLabel) ?></div>
-                </div>
-
-                <div class="kpi">
-                <div class="label">Articles</div>
-                <div class="val"><?= (int)($kpi[0]['corpus_articles'] ?? 0) ?></div>
-                </div>
-
-                <div class="kpi">
-                <div class="label">From</div>
-                <div class="val"><?= htmlspecialchars($kpi[0]['corpus_min_pub_date'] ?? '') ?></div>
-                </div>
-
-                <div class="kpi">
-                <div class="label">To</div>
-                <div class="val"><?= htmlspecialchars($kpi[0]['corpus_max_pub_date'] ?? '') ?></div>
-                </div>
-
-                <div class="kpi">
-                <div class="label">Range</div>
-                <div class="val">
-                    <?= htmlspecialchars($kpi[0]['time_min'] ?? '') ?>
-                    →
-                    <?= htmlspecialchars($kpi[0]['time_max'] ?? '') ?>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-    <div class="col-12 col-lg-6">
-        <div class="card table-responsive" style="flex:1; min-width:320px; margin-top:12px;">
-            <div class="card-eyebrow">Who’s being talked about</div>
-            <h3>Top Entities</h3>
-
-            <?php
-                // Canonicalize + dedupe common variants
-                $canon = function(string $s): string {
-                    $s = strtolower(trim($s));
-
-                    // normalize punctuation + whitespace
-                    $s = preg_replace('/[^\p{L}\p{N}\s]+/u', '', $s); // remove punctuation like dots
-                    $s = preg_replace('/\s+/', ' ', $s);
-
-                    // common aliases
-                    $map = [
-                        'trump' => 'donald trump',
-                        'donald j trump' => 'donald trump',
-                        'president trump' => 'donald trump',
-
-                        'us' => 'u.s.',
-                        'usa' => 'u.s.',
-                        'united states' => 'u.s.',
-                        'united states of america' => 'u.s.',
-
-                        'u s' => 'u.s.',
-
-                        'republican' => 'republicans',
-                        'democratic' => 'democrats',
-                    ];
-
-                    return $map[$s] ?? $s;
-                };
-
-                // Merge rows by canonical entity (sum articles; pick best label)
-                $entityMap = [];
-                foreach ($entities as $r) {
-                    $raw = (string)($r['entity_text'] ?? '');
-                    if ($raw === '') continue;
-
-                    $key = $canon($raw);
-                    $article_count = (int)($r['articles'] ?? 0);
-                    $label = (string)($r['entity_label'] ?? '');
-
-                    if (!isset($entityMap[$key])) {
-                        $entityMap[$key] = [
-                            'entity' => $key,
-                            'label' => $label,
-                            'articles' => $article_count,
-                        ];
-                    } else {
-                        $entityMap[$key]['articles'] += $article_count;
-
-                        // Prefer PERSON over other labels if mixed
-                        if ($entityMap[$key]['label'] !== 'PERSON' && $label === 'PERSON') {
-                            $entityMap[$key]['label'] = 'PERSON';
-                        } elseif ($entityMap[$key]['label'] === '' && $label !== '') {
-                            $entityMap[$key]['label'] = $label;
-                        }
-                    }
-                }
-
-                // Sort by articles desc
-                $entities_deduped = array_values($entityMap);
-                usort($entities_deduped, function($a, $b) {
-                    return ($b['articles'] <=> $a['articles']) ?: strcmp($a['entity'], $b['entity']);
-                });
-
-                // Limit to 25 for nicer height balance (optional)
-                $entities_deduped = array_slice($entities_deduped, 0, 25);
-
-                // Max for bar scaling
-                $max_articles = 0;
-                foreach ($entities_deduped as $row) {
-                    $max_articles = max($max_articles, (int)$row['articles']);
-                }
-
-                // Display casing helper (keep u.s. uppercase)
-                $pretty = function(string $s): string {
-                    //if ($s === 'u.s.') return 'U.S.';
-                    //return ucwords($s);
-                    
-                    // don't uppercase
-                    return $s;
-                };
-
-                // Build links that preserve current query params, but override context/value.
-                // (Keeps w/from/to/etc automatically)
-                $analysisHref = function(string $ctx, string $val) use ($time_window) {
-                    $params = $_GET;
-                    $params['context'] = $ctx;
-                    $params['value']   = $val;
-                    // ensure window param is present and consistent
-                    if (!isset($params['w'])) $params['w'] = $time_window;
-                    return '?' . http_build_query($params);
-                };
-
-                // Build search links for entity quick-search (🔍 icon)
-                $searchHref = function(
-                    string $query,
-                    string $mode = 'classic',   // classic | nlp
-                    string $range = 'all'        // all | 24h | 7d | etc
-                ) {
-                    $params = [
-                        'q'           => $query,
-                        'range'       => $range,
-                        'mode'        => $mode,
-                        'deep_dive'   => '',
-                        'high_signal' => '',
-                    ];
-
-                    return '/search.php?' . http_build_query($params);
-                };
-
-            ?>
-
-            <table class="bar-table">
-                <thead>
-                    <tr>
-                    <th>Entity</th>
-                    <th>Label</th>
-                    <th style="text-align:right;">Mentions</th>
-                    <th style="text-align:right;">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($entities_deduped as $row):
-                    $article_count = (int)$row['articles'];
-                    $pctBar = ($max_articles > 0) ? round(($article_count / $max_articles) * 100, 2) : 0;
-
-                    $entityValue = (string)$row['entity']; // canonical value (good for URL)
-                    $analyzeUrl  = $analysisHref('entity', $entityValue);
-                    $searchUrl = $searchHref($entityValue);
-                ?>
-                <tr class="bar-row" style="--bar: <?= $pctBar ?>%;">
-                    <td class="bar-cell">
-                        <span class="bar-fill" aria-hidden="true"></span>
-                        <?= htmlspecialchars($pretty($row['entity'])) ?>
-                    </td>
-                    <td><?= htmlspecialchars($row['label'] ?: '—') ?></td>
-                    <td style="text-align:right;"><?= $article_count ?></td>
-                    <td style="text-align:right; white-space:nowrap;">
-                    <a class="sn-btn" href="<?= htmlspecialchars($analyzeUrl) ?>" title="Analyze entity" data-loading>
-                    📊
-                    </a>
-                    <a class="sn-btn" href="<?= htmlspecialchars($searchUrl) ?>" title="Search all articles" data-loading>
-                    🔍
-                    </a>
-                    <a class="sn-btn sn-corpus-magnet"
-                      href="#"
-                      title="Filter corpus by this entity"
-                      data-entity="<?= htmlspecialchars($entityValue, ENT_QUOTES) ?>"
-                      onclick="return false;">
-                    🧲
-                    </a>
-                </td>
-                </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="col-12 col-lg-6">
-        <div class="card table-responsive" style="flex:1; min-width:320px; margin-top:12px;">
-            <div class="card-eyebrow">Who’s talking</div>
-            <h3>Top Sources (Domains)</h3>
-
-            <?php
-                // Compute max for bar scaling
-                $max_articles = 0;
-                foreach ($sources as $r) {
-                    $max_articles = max($max_articles, (int)($r['articles'] ?? 0));
-                }
-            ?>
-
-            <table class="bar-table">
-                <thead>
-                    <tr>
-                        <th>Domain</th>
-                        <th style="text-align:right;">Articles</th>
-                        <th style="text-align:right;">%</th>
-                        <th style="text-align:right;">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($sources as $r): 
-                    $article_count = (int)($r['articles'] ?? 0);
-                    $pctBar = ($max_articles > 0) ? round(($article_count / $max_articles) * 100, 2) : 0;
-
-                    $domain = strtolower(trim($r['domain'] ?? ''));
-                    if ($domain === '') continue;
-
-                    $analyzeUrl = $analysisHref('pub', $domain);
-                ?>
-                <tr class="bar-row" style="--bar: <?= $pctBar ?>%;">
-                    <?php
-                    $faviconUrl = $faviconForDomain($domain);
-                    ?>
-                    <td class="sn-domain-cell bar-cell">
-                        <span class="bar-fill" aria-hidden="true"></span>
-
-                        <?php if (!empty($domain)): ?>
-                            <?php
-                                $href = preg_match('#^https?://#', $domain)
-                                    ? $domain
-                                    : 'https://' . $domain;
-                            ?>
-
-                            <a 
-                                href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="sn-domain-link"
-                            >
-                                <?php if ($faviconUrl): ?>
-                                    <img
-                                        src="<?= htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8') ?>"
-                                        alt=""
-                                        class="sn-favicon"
-                                        loading="lazy"
-                                    >
-                                <?php endif; ?>
-
-                                <span><?= htmlspecialchars($domain, ENT_QUOTES, 'UTF-8') ?></span>
-                            </a>
-                        <?php endif; ?>
-                    </td>
-                    <td style="text-align:right;"><?= $article_count ?></td>
-                    <td style="text-align:right;"><?= htmlspecialchars($r['pct'] ?? '') ?></td>
-                    <td style="text-align:right; white-space:nowrap;">
-                        <a class="sn-btn" href="<?= htmlspecialchars($analyzeUrl) ?>" title="Analyze publisher" data-loading>
-                        📊
-                        </a>
-                        <a class="sn-btn" href="https://<?= $domain ?>" title="View publisher" target="_blank">
-                        📰
-                        </a>
-                        <a class="sn-btn sn-corpus-magnet"
-                          href="#"
-                          title="Filter corpus by this publisher"
-                          data-source="<?= htmlspecialchars(strtolower($domain), ENT_QUOTES) ?>"
-                          onclick="return false;">
-                        🧲
-                        </a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    </div>
-
-    <div class="row">
-    <div class="col-12 col-lg-6">
-        <div class="card" style="flex:1; min-width:320px; margin-top:12px;">
-            <div class="card-eyebrow">What’s being discussed</div>
-            <h3>Top Topics</h3>
-
-            <?php
-                // Max weight for bar scaling
-                $maxWeight = 0.0;
-                foreach ($topics_chart as $r) {
-                    $maxWeight = max($maxWeight, (float)($r['weight_sum'] ?? 0));
-                }
-            ?>
-
-            <table class="bar-table bar-cells">
-                <thead>
-                <tr>
-                    <th>Topic</th>
-                    <th style="text-align:right;">Weight</th>
-                    <th style="text-align:right;">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($topics_chart as $r):
-                    $topic = (string)($r['topic_bucket'] ?? '');
-                    $w = (float)($r['weight_sum'] ?? 0);
-                    $pctBar = ($maxWeight > 0) ? round(($w / $maxWeight) * 100, 2) : 0;
-
-                    $isOther = ($topic === 'Other');
-                    $analyzeUrl = !$isOther ? $analysisHref('topic', $topic) : null;
-                ?>
-                <tr>
-                    <td><?= htmlspecialchars($r['topic_bucket'] ?? '') ?></td>
-                    <td class="bar-cell" style="--bar: <?= $pctBar ?>%;">
-                        <span class="bar-fill" aria-hidden="true"></span>
-                        <span><?= htmlspecialchars($r['weight_sum'] ?? '') ?></span>
-                    </td>
-                    <td style="text-align:right; white-space:nowrap;">
-                        <?php if (!$isOther): ?>
-                        <a class="sn-btn" href="<?= htmlspecialchars($analyzeUrl) ?>" title="Analyze topic" data-loading>
-                            📊
-                        </a>
-                        <a class="sn-btn sn-corpus-magnet"
-                          href="#"
-                          title="Filter corpus by <?= htmlspecialchars($topic) ?>"
-                          data-topic="<?= htmlspecialchars(norm($topic), ENT_QUOTES) ?>"
-                          onclick="return false;">
-                          🧲
-                        </a>
-                        <?php else: ?>
-                        <span class="muted">—</span>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="col-12 col-lg-6">
-        <div class="card" style="flex:1; min-width:320px; margin-top:12px;">
-            <div class="card-eyebrow">How it feels</div>
-            <h3>Sentiment</h3>
-
-            <?php
-                // Max articles for bar scaling
-                $maxSent = 0;
-                foreach ($sentiment as $r) {
-                    $maxSent = max($maxSent, (int)($r['articles'] ?? 0));
-                }
-
-                $sentimentEmoji = [
-                    'positive' => '🙂',
-                    'negative' => '☹️',
-                    'neutral'  => '😐',
-                    'unknown'  => '🤷',
-                ];
-            ?>
-
-            <table class="bar-table bar-cells">
-                <thead>
-                <tr>
-                    <th>Label</th>
-                    <th style="text-align:right;">Articles</th>
-                    <th style="text-align:right;">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($sentiment as $r):
-                    $labelRaw = (string)($r['sentiment_label'] ?? '');
-                    $labelVal = strtolower(trim($labelRaw));
-                    $labelPretty = $labelVal !== '' ? ucfirst($labelVal) : '—';
-
-                    $v = (int)($r['articles'] ?? 0);
-                    $pctBar = ($maxSent > 0) ? round(($v / $maxSent) * 100, 2) : 0;
-
-                    $analyzeUrl = ($labelVal !== '') ? $analysisHref('sent', $labelVal) : null;
-                ?>
-                <tr>
-                    <?php
-                    $emoji = $sentimentEmoji[$labelVal] ?? '❓';
-                    ?>
-                    <td>
-                        <span class="sent-emoji"><?= $emoji ?></span>
-                        <?= htmlspecialchars($labelPretty) ?>
-                    </td>
-                    <td class="bar-cell" style="--bar: <?= $pctBar ?>%;">
-                        <span class="bar-fill" aria-hidden="true"></span>
-                        <span><?= $v ?></span>
-                    </td>
-                    <td style="text-align:right; white-space:nowrap;">
-                        <?php if ($labelVal !== ''): ?>
-                        <a class="sn-btn" href="<?= htmlspecialchars($analyzeUrl) ?>" title="Analyze sentiment" data-loading>
-                            📊
-                        </a>
-                        <a class="sn-btn sn-corpus-magnet"
-                          href="#"
-                          title="Filter corpus by <?= htmlspecialchars($labelVal) ?>"
-                          data-sentiment="<?= htmlspecialchars(strtolower($labelVal), ENT_QUOTES) ?>"
-                          onclick="return false;">
-                          🧲
-                        </a>
-                        <?php else: ?>
-                        <span class="muted">—</span>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12 col-lg-12">
-            <div class="card corpus table-responsive" style="margin-top:12px; margin-bottom:12px;">
-                <h3>Articles included</h3>
-
-                <div id="corpusFilters" class="mb-3">
-
-                  <!-- Active filters line -->
-                  <div class="d-flex align-items-center justify-content-between mb-2">
-                    <div id="corpusActiveFilters" class="d-flex flex-wrap gap-2"></div>
-                    <div class="d-flex align-items-center gap-2">
-                      <div class="text-muted small" id="corpusCountLine"></div>
-                      <button class="corpus-chip" id="corpusClearBtn" type="button">Clear</button>
-                    </div>
+              <div class="kpis">
+                  <div class="kpi">
+                  <div class="label"><?= htmlspecialchars($ctxLabel) ?></div>
+                  <div class="val"><?= htmlspecialchars($ctxValue) ?></div>
                   </div>
 
-                  <!-- Top chips -->
-                  <div class="mb-2">
-                    <div class="text-muted small mb-1">Top entities</div>
-                    <div class="d-flex flex-wrap gap-2" id="topEntityChips"></div>
+                  <?php
+                  $windowLabelMap = [
+                      '24h'    => 'Last 24h',
+                      '7d'     => 'Last 7 days',
+                      '30d'    => 'Last 30 days',
+                      'custom' => 'Custom range',
+                  ];
+                  $windowLabel = $windowLabelMap[$time_window] ?? $time_window;
+                  ?>
+
+                  <div class="kpi kpi-meta">
+                  <div class="label">Window</div>
+                  <div class="val"><?= htmlspecialchars($windowLabel) ?></div>
                   </div>
 
-                  <div class="mb-2">
-                    <div class="text-muted small mb-1">Top sources</div>
-                    <div class="d-flex flex-wrap gap-2" id="topSourceChips"></div>
+                  <div class="kpi">
+                  <div class="label">Articles</div>
+                  <div class="val"><?= (int)($kpi[0]['corpus_articles'] ?? 0) ?></div>
                   </div>
 
-                  <div class="mb-3">
-                    <div class="text-muted small mb-1">Top topics</div>
-                    <div class="d-flex flex-wrap gap-2" id="topTopicChips"></div>
+                  <div class="kpi">
+                  <div class="label">From</div>
+                  <div class="val"><?= htmlspecialchars($kpi[0]['corpus_min_pub_date'] ?? '') ?></div>
                   </div>
 
-                  <!-- Typeahead + search + dropdowns -->
-                  <div class="row g-2 align-items-end">
-                    <div class="col-md-3">
-                      <label class="form-label small text-muted mb-1">Filter entity…</label>
-                      <input class="form-control form-control-sm" id="entityInput" list="entityList" placeholder="Type an entity">
-                      <datalist id="entityList"></datalist>
-                    </div>
-
-                    <div class="col-md-3">
-                      <label class="form-label small text-muted mb-1">Filter source…</label>
-                      <input class="form-control form-control-sm" id="sourceInput" list="sourceList" placeholder="Type a source">
-                      <datalist id="sourceList"></datalist>
-                    </div>
-
-                    <div class="col-md-3">
-                      <label class="form-label small text-muted mb-1">Headline contains…</label>
-                      <input class="form-control form-control-sm" id="titleInput" placeholder="Search title/headline">
-                    </div>
-
-                    <div class="col-md-1">
-                      <label class="form-label small text-muted mb-1">Sentiment</label>
-                      <select class="form-select form-select-sm" id="sentimentSelect">
-                        <option value="">All</option>
-                        <option value="positive">Positive</option>
-                        <option value="neutral">Neutral</option>
-                        <option value="negative">Negative</option>
-                        <option value="unknown">Unknown</option>
-                      </select>
-                    </div>
-
-                    <div class="col-md-2">
-                      <label class="form-label small text-muted mb-1">Category</label>
-                      <select class="form-select form-select-sm" id="categorySelect">
-                        <option value="">All</option>
-                        <!-- render categories server-side OR populate via JS -->
-                      </select>
-                    </div>
+                  <div class="kpi">
+                  <div class="label">To</div>
+                  <div class="val"><?= htmlspecialchars($kpi[0]['corpus_max_pub_date'] ?? '') ?></div>
                   </div>
-                </div>
 
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Pub Date</th>
-                        <th>Category</th>
-                        <th>Domain</th>
-                        <th>Title</th>
-                        <th>Analyze</th>
-                        <th>Author</th>
-                        <th>Sent</th>
-                        <th>Score</th>
-                    </tr>
-                    </thead>
+                  <div class="kpi">
+                  <div class="label">Range</div>
+                  <div class="val">
+                      <?= htmlspecialchars($kpi[0]['time_min'] ?? '') ?>
+                      →
+                      <?= htmlspecialchars($kpi[0]['time_max'] ?? '') ?>
+                  </div>
+                  </div>
+              </div>
+              </div>
+          </div>
+      </div>
 
-                    <?php
-                    function norm($s) {
-                      $s = mb_strtolower(trim($s ?? ''));
-                      $s = preg_replace('/\s+/', ' ', $s);
-                      return $s;
-                    }
+      <div class="row">
+      <div class="col-12 col-lg-6">
+          <div class="card table-responsive" style="flex:1; min-width:320px; margin-top:12px;">
+              <div class="card-eyebrow">Who’s being talked about</div>
+              <h3>Top Entities</h3>
 
-                    function pipeList($arr) {
-                      $arr = array_map('norm', $arr ?? []);
-                      $arr = array_values(array_filter(array_unique($arr)));
-                      return implode('|', $arr);
-                    }
+              <?php
+                  // Canonicalize + dedupe common variants
+                  $canon = function(string $s): string {
+                      $s = strtolower(trim($s));
 
-                    /**
-                     * Pull strings out of NLP arrays that might contain strings OR objects.
-                     * Examples handled:
-                     *   ["Donald Trump", "Liz Cheney"]
-                     *   [{"text":"Donald Trump"},{"name":"Liz Cheney"}]
-                     */
-                    function nlpStrings($value): array {
-                      if (!is_array($value)) return [];
-
-                      $out = [];
-                      foreach ($value as $item) {
-                        if (is_string($item)) {
-                          $out[] = $item;
-                          continue;
-                        }
-                        if (is_array($item)) {
-                          // common keys we might see
-                          foreach (['text', 'name', 'value', 'label'] as $k) {
-                            if (isset($item[$k]) && is_string($item[$k])) {
-                              $out[] = $item[$k];
-                              break;
-                            }
-                          }
-                        }
-                      }
-                      return $out;
-                    }
-
-                    function nlpTopicKeys($topics): array {
-                      // topics is expected to be an associative array: ["Government"=>"0.7", ...]
-                      if (!is_array($topics)) return [];
-
-                      // If associative: use keys
-                      $keys = array_keys($topics);
-
-                      // Only keep strings
-                      $keys = array_values(array_filter($keys, fn($k) => is_string($k) && trim($k) !== ''));
-
-                      return $keys;
-                    }
-
-                    function canonEntity(string $s): string {
-                      $s = mb_strtolower(trim($s));
-
-                      // normalize punctuation + whitespace (match your Top Entities logic)
-                      $s = preg_replace('/[^\p{L}\p{N}\s]+/u', '', $s);
+                      // normalize punctuation + whitespace
+                      $s = preg_replace('/[^\p{L}\p{N}\s]+/u', '', $s); // remove punctuation like dots
                       $s = preg_replace('/\s+/', ' ', $s);
 
+                      // common aliases
                       $map = [
-                        'trump' => 'donald trump',
-                        'donald j trump' => 'donald trump',
-                        'president trump' => 'donald trump',
+                          'trump' => 'donald trump',
+                          'donald j trump' => 'donald trump',
+                          'president trump' => 'donald trump',
 
-                        'us' => 'u.s.',          // normalize first, then map u s -> u.s.
-                        'usa' => 'u.s.',
-                        'united states' => 'u.s.',
-                        'united states of america' => 'u.s.',
+                          'us' => 'u.s.',
+                          'usa' => 'u.s.',
+                          'united states' => 'u.s.',
+                          'united states of america' => 'u.s.',
 
-                        'u s' => 'u.s.',
+                          'u s' => 'u.s.',
 
-                        'republican' => 'republicans',
-                        'democratic' => 'democrats',
+                          'republican' => 'republicans',
+                          'democratic' => 'democrats',
                       ];
 
                       return $map[$s] ?? $s;
-                    }
+                  };
 
-                    /**
-                     * Take NLP entities array (objects with text/count/label) and return
-                     * a canonical, deduped list of entity strings.
-                     */
-                    function canonEntityListFromNlp($nlpEntities): array {
-                      if (!is_array($nlpEntities)) return [];
+                  // Merge rows by canonical entity (sum articles; pick best label)
+                  $entityMap = [];
+                  foreach ($entities as $r) {
+                      $raw = (string)($r['entity_text'] ?? '');
+                      if ($raw === '') continue;
 
-                      $out = [];
-                      foreach ($nlpEntities as $item) {
-                        $raw = '';
+                      $key = $canon($raw);
+                      $article_count = (int)($r['articles'] ?? 0);
+                      $label = (string)($r['entity_label'] ?? '');
 
-                        if (is_string($item)) {
-                          $raw = $item;
-                        } elseif (is_array($item) && isset($item['text']) && is_string($item['text'])) {
-                          $raw = $item['text'];
+                      if (!isset($entityMap[$key])) {
+                          $entityMap[$key] = [
+                              'entity' => $key,
+                              'label' => $label,
+                              'articles' => $article_count,
+                          ];
+                      } else {
+                          $entityMap[$key]['articles'] += $article_count;
+
+                          // Prefer PERSON over other labels if mixed
+                          if ($entityMap[$key]['label'] !== 'PERSON' && $label === 'PERSON') {
+                              $entityMap[$key]['label'] = 'PERSON';
+                          } elseif ($entityMap[$key]['label'] === '' && $label !== '') {
+                              $entityMap[$key]['label'] = $label;
+                          }
+                      }
+                  }
+
+                  // Sort by articles desc
+                  $entities_deduped = array_values($entityMap);
+                  usort($entities_deduped, function($a, $b) {
+                      return ($b['articles'] <=> $a['articles']) ?: strcmp($a['entity'], $b['entity']);
+                  });
+
+                  // Limit to 25 for nicer height balance (optional)
+                  $entities_deduped = array_slice($entities_deduped, 0, 25);
+
+                  // Max for bar scaling
+                  $max_articles = 0;
+                  foreach ($entities_deduped as $row) {
+                      $max_articles = max($max_articles, (int)$row['articles']);
+                  }
+
+                  // Display casing helper (keep u.s. uppercase)
+                  $pretty = function(string $s): string {
+                      //if ($s === 'u.s.') return 'U.S.';
+                      //return ucwords($s);
+                      
+                      // don't uppercase
+                      return $s;
+                  };
+
+                  // Build links that preserve current query params, but override context/value.
+                  // (Keeps w/from/to/etc automatically)
+                  $analysisHref = function(string $ctx, string $val) use ($time_window) {
+                      $params = $_GET;
+                      $params['context'] = $ctx;
+                      $params['value']   = $val;
+                      // ensure window param is present and consistent
+                      if (!isset($params['w'])) $params['w'] = $time_window;
+                      return '?' . http_build_query($params);
+                  };
+
+                  // Build search links for entity quick-search (🔍 icon)
+                  $searchHref = function(
+                      string $query,
+                      string $mode = 'classic',   // classic | nlp
+                      string $range = 'all'        // all | 24h | 7d | etc
+                  ) {
+                      $params = [
+                          'q'           => $query,
+                          'range'       => $range,
+                          'mode'        => $mode,
+                          'deep_dive'   => '',
+                          'high_signal' => '',
+                      ];
+
+                      return '/search.php?' . http_build_query($params);
+                  };
+
+              ?>
+
+              <table class="bar-table">
+                  <thead>
+                      <tr>
+                      <th>Entity</th>
+                      <th>Label</th>
+                      <th style="text-align:right;">Mentions</th>
+                      <th style="text-align:right;">Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  <?php foreach ($entities_deduped as $row):
+                      $article_count = (int)$row['articles'];
+                      $pctBar = ($max_articles > 0) ? round(($article_count / $max_articles) * 100, 2) : 0;
+
+                      $entityValue = (string)$row['entity']; // canonical value (good for URL)
+                      $analyzeUrl  = $analysisHref('entity', $entityValue);
+                      $searchUrl = $searchHref($entityValue);
+                  ?>
+                  <tr class="bar-row" style="--bar: <?= $pctBar ?>%;">
+                      <td class="bar-cell">
+                          <span class="bar-fill" aria-hidden="true"></span>
+                          <?= htmlspecialchars($pretty($row['entity'])) ?>
+                      </td>
+                      <td><?= htmlspecialchars($row['label'] ?: '—') ?></td>
+                      <td style="text-align:right;"><?= $article_count ?></td>
+                      <td style="text-align:right; white-space:nowrap;">
+                      <a class="sn-btn" href="<?= htmlspecialchars($analyzeUrl) ?>" title="Analyze entity" data-loading>
+                      📊
+                      </a>
+                      <a class="sn-btn" href="<?= htmlspecialchars($searchUrl) ?>" title="Search all articles" data-loading>
+                      🔍
+                      </a>
+                      <a class="sn-btn sn-corpus-magnet"
+                        href="#"
+                        title="Filter corpus by this entity"
+                        data-entity="<?= htmlspecialchars($entityValue, ENT_QUOTES) ?>"
+                        onclick="return false;">
+                      🧲
+                      </a>
+                  </td>
+                  </tr>
+                  <?php endforeach; ?>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
+      <div class="col-12 col-lg-6">
+          <div class="card table-responsive" style="flex:1; min-width:320px; margin-top:12px;">
+              <div class="card-eyebrow">Who’s talking</div>
+              <h3>Top Sources (Domains)</h3>
+
+              <?php
+                  // Compute max for bar scaling
+                  $max_articles = 0;
+                  foreach ($sources as $r) {
+                      $max_articles = max($max_articles, (int)($r['articles'] ?? 0));
+                  }
+              ?>
+
+              <table class="bar-table">
+                  <thead>
+                      <tr>
+                          <th>Domain</th>
+                          <th style="text-align:right;">Articles</th>
+                          <th style="text-align:right;">%</th>
+                          <th style="text-align:right;">Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  <?php foreach ($sources as $r): 
+                      $article_count = (int)($r['articles'] ?? 0);
+                      $pctBar = ($max_articles > 0) ? round(($article_count / $max_articles) * 100, 2) : 0;
+
+                      $domain = strtolower(trim($r['domain'] ?? ''));
+                      if ($domain === '') continue;
+
+                      $analyzeUrl = $analysisHref('pub', $domain);
+                  ?>
+                  <tr class="bar-row" style="--bar: <?= $pctBar ?>%;">
+                      <?php
+                      $faviconUrl = $faviconForDomain($domain);
+                      ?>
+                      <td class="sn-domain-cell bar-cell">
+                          <span class="bar-fill" aria-hidden="true"></span>
+
+                          <?php if (!empty($domain)): ?>
+                              <?php
+                                  $href = preg_match('#^https?://#', $domain)
+                                      ? $domain
+                                      : 'https://' . $domain;
+                              ?>
+
+                              <a 
+                                  href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="sn-domain-link"
+                              >
+                                  <?php if ($faviconUrl): ?>
+                                      <img
+                                          src="<?= htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8') ?>"
+                                          alt=""
+                                          class="sn-favicon"
+                                          loading="lazy"
+                                      >
+                                  <?php endif; ?>
+
+                                  <span><?= htmlspecialchars($domain, ENT_QUOTES, 'UTF-8') ?></span>
+                              </a>
+                          <?php endif; ?>
+                      </td>
+                      <td style="text-align:right;"><?= $article_count ?></td>
+                      <td style="text-align:right;"><?= htmlspecialchars($r['pct'] ?? '') ?></td>
+                      <td style="text-align:right; white-space:nowrap;">
+                          <a class="sn-btn" href="<?= htmlspecialchars($analyzeUrl) ?>" title="Analyze publisher" data-loading>
+                          📊
+                          </a>
+                          <a class="sn-btn" href="https://<?= $domain ?>" title="View publisher" target="_blank">
+                          📰
+                          </a>
+                          <a class="sn-btn sn-corpus-magnet"
+                            href="#"
+                            title="Filter corpus by this publisher"
+                            data-source="<?= htmlspecialchars(strtolower($domain), ENT_QUOTES) ?>"
+                            onclick="return false;">
+                          🧲
+                          </a>
+                      </td>
+                  </tr>
+                  <?php endforeach; ?>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="col-12 col-lg-6">
+          <div class="card" style="flex:1; min-width:320px; margin-top:12px;">
+              <div class="card-eyebrow">What’s being discussed</div>
+              <h3>Top Topics</h3>
+
+              <?php
+                  // Max weight for bar scaling
+                  $maxWeight = 0.0;
+                  foreach ($topics_chart as $r) {
+                      $maxWeight = max($maxWeight, (float)($r['weight_sum'] ?? 0));
+                  }
+              ?>
+
+              <table class="bar-table bar-cells">
+                  <thead>
+                  <tr>
+                      <th>Topic</th>
+                      <th style="text-align:right;">Weight</th>
+                      <th style="text-align:right;">Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <?php foreach ($topics_chart as $r):
+                      $topic = (string)($r['topic_bucket'] ?? '');
+                      $w = (float)($r['weight_sum'] ?? 0);
+                      $pctBar = ($maxWeight > 0) ? round(($w / $maxWeight) * 100, 2) : 0;
+
+                      $isOther = ($topic === 'Other');
+                      $analyzeUrl = !$isOther ? $analysisHref('topic', $topic) : null;
+                  ?>
+                  <tr>
+                      <td><?= htmlspecialchars($r['topic_bucket'] ?? '') ?></td>
+                      <td class="bar-cell" style="--bar: <?= $pctBar ?>%;">
+                          <span class="bar-fill" aria-hidden="true"></span>
+                          <span><?= htmlspecialchars($r['weight_sum'] ?? '') ?></span>
+                      </td>
+                      <td style="text-align:right; white-space:nowrap;">
+                          <?php if (!$isOther): ?>
+                          <a class="sn-btn" href="<?= htmlspecialchars($analyzeUrl) ?>" title="Analyze topic" data-loading>
+                              📊
+                          </a>
+                          <a class="sn-btn sn-corpus-magnet"
+                            href="#"
+                            title="Filter corpus by <?= htmlspecialchars($topic) ?>"
+                            data-topic="<?= htmlspecialchars(norm($topic), ENT_QUOTES) ?>"
+                            onclick="return false;">
+                            🧲
+                          </a>
+                          <?php else: ?>
+                          <span class="muted">—</span>
+                          <?php endif; ?>
+                      </td>
+                  </tr>
+                  <?php endforeach; ?>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
+      <div class="col-12 col-lg-6">
+          <div class="card" style="flex:1; min-width:320px; margin-top:12px;">
+              <div class="card-eyebrow">How it feels</div>
+              <h3>Sentiment</h3>
+
+              <?php
+                  // Max articles for bar scaling
+                  $maxSent = 0;
+                  foreach ($sentiment as $r) {
+                      $maxSent = max($maxSent, (int)($r['articles'] ?? 0));
+                  }
+
+                  $sentimentEmoji = [
+                      'positive' => '🙂',
+                      'negative' => '☹️',
+                      'neutral'  => '😐',
+                      'unknown'  => '🤷',
+                  ];
+              ?>
+
+              <table class="bar-table bar-cells">
+                  <thead>
+                  <tr>
+                      <th>Label</th>
+                      <th style="text-align:right;">Articles</th>
+                      <th style="text-align:right;">Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <?php foreach ($sentiment as $r):
+                      $labelRaw = (string)($r['sentiment_label'] ?? '');
+                      $labelVal = strtolower(trim($labelRaw));
+                      $labelPretty = $labelVal !== '' ? ucfirst($labelVal) : '—';
+
+                      $v = (int)($r['articles'] ?? 0);
+                      $pctBar = ($maxSent > 0) ? round(($v / $maxSent) * 100, 2) : 0;
+
+                      $analyzeUrl = ($labelVal !== '') ? $analysisHref('sent', $labelVal) : null;
+                  ?>
+                  <tr>
+                      <?php
+                      $emoji = $sentimentEmoji[$labelVal] ?? '❓';
+                      ?>
+                      <td>
+                          <span class="sent-emoji"><?= $emoji ?></span>
+                          <?= htmlspecialchars($labelPretty) ?>
+                      </td>
+                      <td class="bar-cell" style="--bar: <?= $pctBar ?>%;">
+                          <span class="bar-fill" aria-hidden="true"></span>
+                          <span><?= $v ?></span>
+                      </td>
+                      <td style="text-align:right; white-space:nowrap;">
+                          <?php if ($labelVal !== ''): ?>
+                          <a class="sn-btn" href="<?= htmlspecialchars($analyzeUrl) ?>" title="Analyze sentiment" data-loading>
+                              📊
+                          </a>
+                          <a class="sn-btn sn-corpus-magnet"
+                            href="#"
+                            title="Filter corpus by <?= htmlspecialchars($labelVal) ?>"
+                            data-sentiment="<?= htmlspecialchars(strtolower($labelVal), ENT_QUOTES) ?>"
+                            onclick="return false;">
+                            🧲
+                          </a>
+                          <?php else: ?>
+                          <span class="muted">—</span>
+                          <?php endif; ?>
+                      </td>
+                  </tr>
+                  <?php endforeach; ?>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+      </div>
+
+      <div class="row">
+          <div class="col-12 col-lg-12">
+              <div class="card corpus table-responsive" style="margin-top:12px; margin-bottom:12px;">
+                  <h3>Articles included</h3>
+
+                  <div id="corpusFilters" class="mb-3">
+
+                    <!-- Active filters line -->
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                      <div id="corpusActiveFilters" class="d-flex flex-wrap gap-2"></div>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="text-muted small" id="corpusCountLine"></div>
+                        <button class="corpus-chip" id="corpusClearBtn" type="button">Clear</button>
+                      </div>
+                    </div>
+
+                    <!-- Top chips -->
+                    <div class="mb-2">
+                      <div class="text-muted small mb-1">Top entities</div>
+                      <div class="d-flex flex-wrap gap-2" id="topEntityChips"></div>
+                    </div>
+
+                    <div class="mb-2">
+                      <div class="text-muted small mb-1">Top sources</div>
+                      <div class="d-flex flex-wrap gap-2" id="topSourceChips"></div>
+                    </div>
+
+                    <div class="mb-3">
+                      <div class="text-muted small mb-1">Top topics</div>
+                      <div class="d-flex flex-wrap gap-2" id="topTopicChips"></div>
+                    </div>
+
+                    <!-- Typeahead + search + dropdowns -->
+                    <div class="row g-2 align-items-end">
+                      <div class="col-md-3">
+                        <label class="form-label small text-muted mb-1">Filter entity…</label>
+                        <input class="form-control form-control-sm" id="entityInput" list="entityList" placeholder="Type an entity">
+                        <datalist id="entityList"></datalist>
+                      </div>
+
+                      <div class="col-md-3">
+                        <label class="form-label small text-muted mb-1">Filter source…</label>
+                        <input class="form-control form-control-sm" id="sourceInput" list="sourceList" placeholder="Type a source">
+                        <datalist id="sourceList"></datalist>
+                      </div>
+
+                      <div class="col-md-3">
+                        <label class="form-label small text-muted mb-1">Headline contains…</label>
+                        <input class="form-control form-control-sm" id="titleInput" placeholder="Search title/headline">
+                      </div>
+
+                      <div class="col-md-1">
+                        <label class="form-label small text-muted mb-1">Sentiment</label>
+                        <select class="form-select form-select-sm" id="sentimentSelect">
+                          <option value="">All</option>
+                          <option value="positive">Positive</option>
+                          <option value="neutral">Neutral</option>
+                          <option value="negative">Negative</option>
+                          <option value="unknown">Unknown</option>
+                        </select>
+                      </div>
+
+                      <div class="col-md-2">
+                        <label class="form-label small text-muted mb-1">Category</label>
+                        <select class="form-select form-select-sm" id="corpusCorpusCategorySelect">
+                          <option value="">All</option>
+                          <!-- render categories server-side OR populate via JS -->
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <table>
+                      <thead>
+                      <tr>
+                          <th>Pub Date</th>
+                          <th>Category</th>
+                          <th>Domain</th>
+                          <th>Title</th>
+                          <th>Analyze</th>
+                          <th>Author</th>
+                          <th>Sent</th>
+                          <th>Score</th>
+                      </tr>
+                      </thead>
+
+                      <?php
+                      function norm($s) {
+                        $s = mb_strtolower(trim($s ?? ''));
+                        $s = preg_replace('/\s+/', ' ', $s);
+                        return $s;
+                      }
+
+                      function pipeList($arr) {
+                        $arr = array_map('norm', $arr ?? []);
+                        $arr = array_values(array_filter(array_unique($arr)));
+                        return implode('|', $arr);
+                      }
+
+                      /**
+                       * Pull strings out of NLP arrays that might contain strings OR objects.
+                       * Examples handled:
+                       *   ["Donald Trump", "Liz Cheney"]
+                       *   [{"text":"Donald Trump"},{"name":"Liz Cheney"}]
+                       */
+                      function nlpStrings($value): array {
+                        if (!is_array($value)) return [];
+
+                        $out = [];
+                        foreach ($value as $item) {
+                          if (is_string($item)) {
+                            $out[] = $item;
+                            continue;
+                          }
+                          if (is_array($item)) {
+                            // common keys we might see
+                            foreach (['text', 'name', 'value', 'label'] as $k) {
+                              if (isset($item[$k]) && is_string($item[$k])) {
+                                $out[] = $item[$k];
+                                break;
+                              }
+                            }
+                          }
+                        }
+                        return $out;
+                      }
+
+                      function nlpTopicKeys($topics): array {
+                        // topics is expected to be an associative array: ["Government"=>"0.7", ...]
+                        if (!is_array($topics)) return [];
+
+                        // If associative: use keys
+                        $keys = array_keys($topics);
+
+                        // Only keep strings
+                        $keys = array_values(array_filter($keys, fn($k) => is_string($k) && trim($k) !== ''));
+
+                        return $keys;
+                      }
+
+                      function canonEntity(string $s): string {
+                        $s = mb_strtolower(trim($s));
+
+                        // normalize punctuation + whitespace (match your Top Entities logic)
+                        $s = preg_replace('/[^\p{L}\p{N}\s]+/u', '', $s);
+                        $s = preg_replace('/\s+/', ' ', $s);
+
+                        $map = [
+                          'trump' => 'donald trump',
+                          'donald j trump' => 'donald trump',
+                          'president trump' => 'donald trump',
+
+                          'us' => 'u.s.',          // normalize first, then map u s -> u.s.
+                          'usa' => 'u.s.',
+                          'united states' => 'u.s.',
+                          'united states of america' => 'u.s.',
+
+                          'u s' => 'u.s.',
+
+                          'republican' => 'republicans',
+                          'democratic' => 'democrats',
+                        ];
+
+                        return $map[$s] ?? $s;
+                      }
+
+                      /**
+                       * Take NLP entities array (objects with text/count/label) and return
+                       * a canonical, deduped list of entity strings.
+                       */
+                      function canonEntityListFromNlp($nlpEntities): array {
+                        if (!is_array($nlpEntities)) return [];
+
+                        $out = [];
+                        foreach ($nlpEntities as $item) {
+                          $raw = '';
+
+                          if (is_string($item)) {
+                            $raw = $item;
+                          } elseif (is_array($item) && isset($item['text']) && is_string($item['text'])) {
+                            $raw = $item['text'];
+                          }
+
+                          $raw = trim($raw);
+                          if ($raw === '') continue;
+
+                          $out[] = canonEntity($raw);
                         }
 
-                        $raw = trim($raw);
-                        if ($raw === '') continue;
+                        // dedupe + remove empties
+                        $out = array_values(array_filter(array_unique($out), fn($v) => $v !== ''));
 
-                        $out[] = canonEntity($raw);
+                        return $out;
+                      }
+                      ?>
+
+                      <tbody>
+                      <?php foreach ($articles as $r):
+
+                      // --- helpers for this row ---
+                      $safeStr = static fn($v) => trim((string)($v ?? ''));
+                      $lc      = static fn($s) => strtolower(trim((string)$s));
+
+                      // Category
+                      $cat      = $lc($r['source_slug'] ?? '');
+                      $catLabel = ($cat !== '') ? ucfirst($cat) : '—';
+                      $catUrl   = ($cat !== '') ? $analysisHref('category', $cat) : null;
+
+                      // Domain + favicon
+                      $domain     = $lc($r['domain'] ?? '');
+                      $faviconUrl = ($domain !== '') ? $faviconForDomain($domain) : null;
+
+                      // URL + title
+                      $url   = $safeStr($r['url'] ?? '');
+                      $title = $safeStr($r['title'] ?? '');
+
+                      // Author
+                      $author = $safeStr($r['author'] ?? '');
+
+                      // Sentiment
+                      $sentLabel = $lc($r['sentiment_label'] ?? '');
+                      $emoji     = $sentimentEmoji[$sentLabel] ?? '❓';
+                      $sentScore = $safeStr($r['sentiment_score'] ?? '');
+
+                      // Pub date normalize -> timestamp (or null)
+                      $pubRaw = $r['pub_date'] ?? null;
+                      $pub_ts = null;
+
+                      if (is_numeric($pubRaw)) {
+                          $pub_ts = (int)$pubRaw;
+                      } elseif (is_string($pubRaw) && trim($pubRaw) !== '') {
+                          $tmp = strtotime($pubRaw);
+                          if ($tmp !== false) $pub_ts = $tmp;
                       }
 
-                      // dedupe + remove empties
-                      $out = array_values(array_filter(array_unique($out), fn($v) => $v !== ''));
+                      // Display pub date (keep your current display if already formatted)
+                      $pubDisplay = $safeStr($r['pub_date'] ?? '');
+                      // Optional: prettier display if you want
+                      // $pubDisplay = $pub_ts ? date('Y-m-d H:i', $pub_ts) : $safeStr($r['pub_date'] ?? '');
 
-                      return $out;
-                    }
-                    ?>
+                      // Build Analyze URL (filter out null/empty values)
+                      $params = array_filter([
+                          'url'      => $url ?: null,
+                          'category' => ($cat !== '') ? ucfirst($cat) : null,
+                          'pub_date' => $pub_ts,
+                          'db'       => 1,
+                      ], static fn($v) => $v !== null && $v !== '');
 
-                    <tbody>
-                    <?php foreach ($articles as $r):
-
-                    // --- helpers for this row ---
-                    $safeStr = static fn($v) => trim((string)($v ?? ''));
-                    $lc      = static fn($s) => strtolower(trim((string)$s));
-
-                    // Category
-                    $cat      = $lc($r['source_slug'] ?? '');
-                    $catLabel = ($cat !== '') ? ucfirst($cat) : '—';
-                    $catUrl   = ($cat !== '') ? $analysisHref('category', $cat) : null;
-
-                    // Domain + favicon
-                    $domain     = $lc($r['domain'] ?? '');
-                    $faviconUrl = ($domain !== '') ? $faviconForDomain($domain) : null;
-
-                    // URL + title
-                    $url   = $safeStr($r['url'] ?? '');
-                    $title = $safeStr($r['title'] ?? '');
-
-                    // Author
-                    $author = $safeStr($r['author'] ?? '');
-
-                    // Sentiment
-                    $sentLabel = $lc($r['sentiment_label'] ?? '');
-                    $emoji     = $sentimentEmoji[$sentLabel] ?? '❓';
-                    $sentScore = $safeStr($r['sentiment_score'] ?? '');
-
-                    // Pub date normalize -> timestamp (or null)
-                    $pubRaw = $r['pub_date'] ?? null;
-                    $pub_ts = null;
-
-                    if (is_numeric($pubRaw)) {
-                        $pub_ts = (int)$pubRaw;
-                    } elseif (is_string($pubRaw) && trim($pubRaw) !== '') {
-                        $tmp = strtotime($pubRaw);
-                        if ($tmp !== false) $pub_ts = $tmp;
-                    }
-
-                    // Display pub date (keep your current display if already formatted)
-                    $pubDisplay = $safeStr($r['pub_date'] ?? '');
-                    // Optional: prettier display if you want
-                    // $pubDisplay = $pub_ts ? date('Y-m-d H:i', $pub_ts) : $safeStr($r['pub_date'] ?? '');
-
-                    // Build Analyze URL (filter out null/empty values)
-                    $params = array_filter([
-                        'url'      => $url ?: null,
-                        'category' => ($cat !== '') ? ucfirst($cat) : null,
-                        'pub_date' => $pub_ts,
-                        'db'       => 1,
-                    ], static fn($v) => $v !== null && $v !== '');
-
-                    $qs = http_build_query($params);
+                      $qs = http_build_query($params);
 
 
-                    // Decode NLP JSON (if present)
-                    $nlpRaw = $r['nlp'] ?? '';
-                    $nlp = [];
+                      // Decode NLP JSON (if present)
+                      $nlpRaw = $r['nlp'] ?? '';
+                      $nlp = [];
 
-                    if (is_array($nlpRaw)) {
-                      // in case your DB layer already decodes JSON
-                      $nlp = $nlpRaw;
-                    } elseif (is_string($nlpRaw) && trim($nlpRaw) !== '') {
-                      $tmp = json_decode($nlpRaw, true);
-                      if (is_array($tmp)) $nlp = $tmp;
-                    }
-
-                    // Try a couple likely key names (adjust if your schema differs)
-                    $entities = [];
-                    $topics   = [];
-
-                    // entities might be under entities / entity_list / extracted_entities, etc.
-                    if (isset($nlp['entities'])) $entities = canonEntityListFromNlp($nlp['entities']);
-                    elseif (isset($nlp['entity_list'])) $entities = canonEntityListFromNlp($nlp['entity_list']);
-                    elseif (isset($nlp['extracted_entities'])) $entities = canonEntityListFromNlp($nlp['extracted_entities']);
-
-                    // Topics: in your real JSON it's an object map: { "Government": "0.7", ... }
-                    if (isset($nlp['topics'])) {
-                      if (is_array($nlp['topics'])) {
-                        // If it's an associative map, use keys; if it's a list, fall back to nlpStrings
-                        $isAssoc = array_keys($nlp['topics']) !== range(0, count($nlp['topics']) - 1);
-                        $topics = $isAssoc ? nlpTopicKeys($nlp['topics']) : nlpStrings($nlp['topics']);
+                      if (is_array($nlpRaw)) {
+                        // in case your DB layer already decodes JSON
+                        $nlp = $nlpRaw;
+                      } elseif (is_string($nlpRaw) && trim($nlpRaw) !== '') {
+                        $tmp = json_decode($nlpRaw, true);
+                        if (is_array($tmp)) $nlp = $tmp;
                       }
-                    } elseif (isset($nlp['topic_list'])) {
-                      $topics = nlpStrings($nlp['topic_list']);
-                    } elseif (isset($nlp['themes'])) {
-                      $topics = nlpStrings($nlp['themes']);
-                    }
 
-                    ?>
+                      // Try a couple likely key names (adjust if your schema differs)
+                      $entities = [];
+                      $topics   = [];
 
-                    <tr class="corpus-row"
-                      data-entity-list="<?= htmlspecialchars(pipeList($entities), ENT_QUOTES) ?>"
-                      data-source="<?= htmlspecialchars(norm($domain), ENT_QUOTES) ?>"
-                      data-topic-list="<?= htmlspecialchars(pipeList($topics), ENT_QUOTES) ?>"
-                      data-category="<?= htmlspecialchars(norm($cat), ENT_QUOTES) ?>"
-                      data-sentiment="<?= htmlspecialchars(norm($sentLabel ?: 'unknown'), ENT_QUOTES) ?>"
-                      data-title="<?= htmlspecialchars(norm($title), ENT_QUOTES) ?>"
-                    >
-                        <td><?= htmlspecialchars($pubDisplay) ?></td>
+                      // entities might be under entities / entity_list / extracted_entities, etc.
+                      if (isset($nlp['entities'])) $entities = canonEntityListFromNlp($nlp['entities']);
+                      elseif (isset($nlp['entity_list'])) $entities = canonEntityListFromNlp($nlp['entity_list']);
+                      elseif (isset($nlp['extracted_entities'])) $entities = canonEntityListFromNlp($nlp['extracted_entities']);
 
-                        <td>
-                        <?php if ($catUrl): ?>
-                            <a href="<?= htmlspecialchars($catUrl) ?>" title="Analyze category" data-loading>
-                            <?= htmlspecialchars($catLabel) ?>
-                            </a>
-                        <?php else: ?>
-                            <span class="muted">—</span>
-                        <?php endif; ?>
-                        </td>
+                      // Topics: in your real JSON it's an object map: { "Government": "0.7", ... }
+                      if (isset($nlp['topics'])) {
+                        if (is_array($nlp['topics'])) {
+                          // If it's an associative map, use keys; if it's a list, fall back to nlpStrings
+                          $isAssoc = array_keys($nlp['topics']) !== range(0, count($nlp['topics']) - 1);
+                          $topics = $isAssoc ? nlpTopicKeys($nlp['topics']) : nlpStrings($nlp['topics']);
+                        }
+                      } elseif (isset($nlp['topic_list'])) {
+                        $topics = nlpStrings($nlp['topic_list']);
+                      } elseif (isset($nlp['themes'])) {
+                        $topics = nlpStrings($nlp['themes']);
+                      }
 
-                        <td class="sn-domain-cell">
-                        <?php if (!empty($domain)): ?>
+                      ?>
 
-                            <?php
-                                $domainValue = urlencode(strtolower($domain));
-                                $internalUrl = "/analysis.php?context=pub&value={$domainValue}&w=7d";
-                            ?>
+                      <tr class="corpus-row"
+                        data-entity-list="<?= htmlspecialchars(pipeList($entities), ENT_QUOTES) ?>"
+                        data-source="<?= htmlspecialchars(norm($domain), ENT_QUOTES) ?>"
+                        data-topic-list="<?= htmlspecialchars(pipeList($topics), ENT_QUOTES) ?>"
+                        data-category="<?= htmlspecialchars(norm($cat), ENT_QUOTES) ?>"
+                        data-sentiment="<?= htmlspecialchars(norm($sentLabel ?: 'unknown'), ENT_QUOTES) ?>"
+                        data-title="<?= htmlspecialchars(norm($title), ENT_QUOTES) ?>"
+                      >
+                          <td><?= htmlspecialchars($pubDisplay) ?></td>
 
-                            <a 
-                                href="<?= htmlspecialchars($internalUrl, ENT_QUOTES, 'UTF-8') ?>"
-                                class="sn-domain-filter-link"
-                                data-loading
-                            >
-                                <?php if ($faviconUrl): ?>
-                                    <img
-                                        src="<?= htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8') ?>"
-                                        alt=""
-                                        class="sn-favicon"
-                                        loading="lazy"
-                                    >
-                                <?php endif; ?>
+                          <td>
+                          <?php if ($catUrl): ?>
+                              <a href="<?= htmlspecialchars($catUrl) ?>" title="Analyze category" data-loading>
+                              <?= htmlspecialchars($catLabel) ?>
+                              </a>
+                          <?php else: ?>
+                              <span class="muted">—</span>
+                          <?php endif; ?>
+                          </td>
 
-                                <span><?= htmlspecialchars($domain) ?></span>
-                            </a>
+                          <td class="sn-domain-cell">
+                          <?php if (!empty($domain)): ?>
 
-                        <?php else: ?>
-                            <span>—</span>
-                        <?php endif; ?>
-                        </td>
+                              <?php
+                                  $domainValue = urlencode(strtolower($domain));
+                                  $internalUrl = "/analysis.php?context=pub&value={$domainValue}&w=7d";
+                              ?>
 
-                        <td>
-                        <?php if ($url !== ''): ?>
-                            <a href="<?= htmlspecialchars($url) ?>" target="_blank" rel="noopener">
-                            <?= htmlspecialchars($title !== '' ? $title : $url) ?>
-                            </a>
-                        <?php else: ?>
-                            <span class="muted"><?= htmlspecialchars($title !== '' ? $title : '—') ?></span>
-                        <?php endif; ?>
-                        </td>
+                              <a 
+                                  href="<?= htmlspecialchars($internalUrl, ENT_QUOTES, 'UTF-8') ?>"
+                                  class="sn-domain-filter-link"
+                                  data-loading
+                              >
+                                  <?php if ($faviconUrl): ?>
+                                      <img
+                                          src="<?= htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8') ?>"
+                                          alt=""
+                                          class="sn-favicon"
+                                          loading="lazy"
+                                      >
+                                  <?php endif; ?>
 
-                        <td>
-                        <?php if ($qs !== ''): ?>
-                            <a href="newsroom.php?<?= htmlspecialchars($qs) ?>"
-                            class="btn btn-sm btn-green"
-                            data-loading>Analyze</a>
-                        <?php else: ?>
-                            <span class="muted">—</span>
-                        <?php endif; ?>
-                        </td>
+                                  <span><?= htmlspecialchars($domain) ?></span>
+                              </a>
 
-                        <td><?= htmlspecialchars($author) ?></td>
+                          <?php else: ?>
+                              <span>—</span>
+                          <?php endif; ?>
+                          </td>
 
-                        <td>
-                        <span class="sent-emoji"><?= htmlspecialchars($emoji) ?></span>
-                        <?= htmlspecialchars($sentLabel !== '' ? $sentLabel : '—') ?>
-                        </td>
+                          <td>
+                          <?php if ($url !== ''): ?>
+                              <a href="<?= htmlspecialchars($url) ?>" target="_blank" rel="noopener">
+                              <?= htmlspecialchars($title !== '' ? $title : $url) ?>
+                              </a>
+                          <?php else: ?>
+                              <span class="muted"><?= htmlspecialchars($title !== '' ? $title : '—') ?></span>
+                          <?php endif; ?>
+                          </td>
 
-                        <td><?= htmlspecialchars($sentScore !== '' ? $sentScore : '—') ?></td>
-                    </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+                          <td>
+                          <?php if ($qs !== ''): ?>
+                              <a href="newsroom.php?<?= htmlspecialchars($qs) ?>"
+                              class="btn btn-sm btn-green"
+                              data-loading>Analyze</a>
+                          <?php else: ?>
+                              <span class="muted">—</span>
+                          <?php endif; ?>
+                          </td>
 
-<!-- Footer-->        
-<div class="bg-dark" style="height: 338px;">        
-    <footer class="footer footer-bottom bg-white py-4">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-4 text-lg-left">Copyright © Scroll News 2026</div>
-                <div class="col-lg-4 my-3 my-lg-0">
-                    <a class="btn btn-black btn-social mx-2" title="X profile" href="https://x.com/scrollnewsio" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a class="btn btn-black btn-social mx-2" title="Scroll Archive" href="scroll-history.php" data-loading><i class="fas fa-history"></i></a>
-                    <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" data-loading><i class="fas fa-play"></i></a>
-                    <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
-                    <a class="btn btn-black btn-social mx-2" title="IG profile" href="https://www.instagram.com/scrollnewsio/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                </div>
-                <div class="col-lg-4 text-lg-right font-weight-bold">
-                    <a href="index.php" data-loading>scroll news</a>
-                    <br>
-                    <a href="about.php" class="text-muted small mr-3">About</a>
-                    <a href="terms.php" class="text-muted small mr-3">Terms</a>
-                    <a href="privacy.php" class="text-muted small">Privacy</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-</div>
+                          <td><?= htmlspecialchars($author) ?></td>
 
-<!-- Bootstrap core JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-<!-- Third party plugin JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-<!-- Contact form JS-->
-<script src="assets/mail/jqBootstrapValidation.js"></script>
-<script src="assets/mail/contact_me.js"></script>
-<!-- Core theme JS-->
-<script src="js/scripts.js"></script>
+                          <td>
+                          <span class="sent-emoji"><?= htmlspecialchars($emoji) ?></span>
+                          <?= htmlspecialchars($sentLabel !== '' ? $sentLabel : '—') ?>
+                          </td>
 
-<script>
+                          <td><?= htmlspecialchars($sentScore !== '' ? $sentScore : '—') ?></td>
+                      </tr>
+                      <?php endforeach; ?>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
 
-    function goToAnalytics() {
-        if (!isMobile()) {
-        //place script you don't want to run on mobile here
-            $(".loader").fadeIn("slow");
-        }
+  <!-- Footer-->        
+  <?php require_once __DIR__ . '/___footer.php'; ?>
+  
+  <!-- Modals-->        
+  <?php require_once __DIR__ . '/___modals.php'; ?>
+
+  <!-- Bootstrap core JS-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+  <!-- Third party plugin JS-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+  <!-- Contact form JS-->
+  <script src="assets/mail/jqBootstrapValidation.js"></script>
+  <script src="assets/mail/contact_me.js"></script>
+  <!-- Core theme JS-->
+  <script src="js/scripts.js"></script>
+
+  <script>
+      (function(){
+          const overlay = document.getElementById('loadingOverlay');
+          const show = () => overlay && (overlay.hidden = false);
+          const hide = () => overlay && (overlay.hidden = true);
+
+          // Show spinner when navigating away (page links/forms)
+          //window.addEventListener('beforeunload', show);
+
+          // Hide when page is ready (covers BFCache too)
+          window.addEventListener('pageshow', hide);
+
+          // For specific buttons/links, add data-loading attribute
+          document.addEventListener('click', function(e){
+          const t = e.target.closest('[data-loading]');
+          if (t) show();
+          });
+
+          // Optional: inline button spinner (keeps overlay too)
+          document.addEventListener('click', function(e){
+          const btn = e.target.closest('[data-loading-btn]');
+          if (!btn) return;
+          btn.dataset.originalHtml = btn.innerHTML;
+          btn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span>&nbsp;Loading…';
+          btn.classList.add('disabled'); btn.setAttribute('aria-busy','true');
+          });
+
+          // Minimal CSS for inline button spinner:
+          const style = document.createElement('style');
+          style.textContent = '.btn-spinner{display:inline-block;width:1em;height:1em;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .6s linear infinite;vertical-align:-0.125em}';
+          document.head.appendChild(style);
+      })();
+  </script>
+
+  <script>
+  (function () {
+    const rows = Array.from(document.querySelectorAll('.corpus-row'));
+
+    const state = {
+      entity: '',
+      source: '',
+      topic: '',
+      title: '',
+      sentiment: '',
+      category: ''
+    };
+
+    const el = {
+      topEntityChips: document.getElementById('topEntityChips'),
+      topSourceChips: document.getElementById('topSourceChips'),
+      topTopicChips: document.getElementById('topTopicChips'),
+      entityInput: document.getElementById('entityInput'),
+      sourceInput: document.getElementById('sourceInput'),
+      titleInput: document.getElementById('titleInput'),
+      sentimentSelect: document.getElementById('sentimentSelect'),
+      corpusCorpusCategorySelect: document.getElementById('corpusCorpusCategorySelect'),
+      active: document.getElementById('corpusActiveFilters'),
+      countLine: document.getElementById('corpusCountLine'),
+      clearBtn: document.getElementById('corpusClearBtn'),
+      entityList: document.getElementById('entityList'),
+      sourceList: document.getElementById('sourceList')
+    };
+
+    const norm = (s) => (s || '').toString().trim().toLowerCase().replace(/\s+/g, ' ');
+
+    function getPipeSet(str) {
+      const s = norm(str);
+      if (!s) return new Set();
+      return new Set(s.split('|').map(x => x.trim()).filter(Boolean));
     }
 
-    function isMobile() {
-        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    // Build counts for "Top chips" + datalists by scanning rows (no extra SQL needed)
+    function buildStats() {
+      const entityCounts = new Map();
+      const sourceCounts = new Map();
+      const topicCounts = new Map();
+      const categoryCounts = new Map();
+
+      for (const r of rows) {
+        const entities = getPipeSet(r.dataset.entityList);
+        const topics = getPipeSet(r.dataset.topicList);
+        const src = norm(r.dataset.source);
+        const cat = norm(r.dataset.category);
+
+        for (const e of entities) entityCounts.set(e, (entityCounts.get(e) || 0) + 1);
+        for (const t of topics) topicCounts.set(t, (topicCounts.get(t) || 0) + 1);
+        if (src) sourceCounts.set(src, (sourceCounts.get(src) || 0) + 1);
+        if (cat) categoryCounts.set(cat, (categoryCounts.get(cat) || 0) + 1);
+      }
+
+      // Fill datalists
+      fillDatalist(el.entityList, entityCounts);
+      fillDatalist(el.sourceList, sourceCounts);
+
+      // Fill category dropdown (All + categories)
+      fillCorpusCategorySelect(categoryCounts);
+
+      // Render top chips
+      renderTopChips(el.topEntityChips, entityCounts, 10, (v) => { state.entity = v; el.entityInput.value = v; applyFilters(); });
+      renderTopChips(el.topSourceChips, sourceCounts, 10, (v) => { state.source = v; el.sourceInput.value = v; applyFilters(); });
+      renderTopChips(el.topTopicChips, topicCounts, 4,  (v) => { state.topic = v; applyFilters(); });
     }
 
-</script>
+    function fillDatalist(datalistEl, countsMap) {
+      const items = Array.from(countsMap.entries())
+        .sort((a,b) => b[1]-a[1])
+        .slice(0, 200) // keep it sane
+        .map(([k]) => k);
 
-<script>
-    (function(){
-        const overlay = document.getElementById('loadingOverlay');
-        const show = () => overlay && (overlay.hidden = false);
-        const hide = () => overlay && (overlay.hidden = true);
-
-        // Show spinner when navigating away (page links/forms)
-        //window.addEventListener('beforeunload', show);
-
-        // Hide when page is ready (covers BFCache too)
-        window.addEventListener('pageshow', hide);
-
-        // For specific buttons/links, add data-loading attribute
-        document.addEventListener('click', function(e){
-        const t = e.target.closest('[data-loading]');
-        if (t) show();
-        });
-
-        // Optional: inline button spinner (keeps overlay too)
-        document.addEventListener('click', function(e){
-        const btn = e.target.closest('[data-loading-btn]');
-        if (!btn) return;
-        btn.dataset.originalHtml = btn.innerHTML;
-        btn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span>&nbsp;Loading…';
-        btn.classList.add('disabled'); btn.setAttribute('aria-busy','true');
-        });
-
-        // Minimal CSS for inline button spinner:
-        const style = document.createElement('style');
-        style.textContent = '.btn-spinner{display:inline-block;width:1em;height:1em;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .6s linear infinite;vertical-align:-0.125em}';
-        document.head.appendChild(style);
-    })();
-</script>
-
-<script>
-(function () {
-  const rows = Array.from(document.querySelectorAll('.corpus-row'));
-
-  const state = {
-    entity: '',
-    source: '',
-    topic: '',
-    title: '',
-    sentiment: '',
-    category: ''
-  };
-
-  const el = {
-    topEntityChips: document.getElementById('topEntityChips'),
-    topSourceChips: document.getElementById('topSourceChips'),
-    topTopicChips: document.getElementById('topTopicChips'),
-    entityInput: document.getElementById('entityInput'),
-    sourceInput: document.getElementById('sourceInput'),
-    titleInput: document.getElementById('titleInput'),
-    sentimentSelect: document.getElementById('sentimentSelect'),
-    categorySelect: document.getElementById('categorySelect'),
-    active: document.getElementById('corpusActiveFilters'),
-    countLine: document.getElementById('corpusCountLine'),
-    clearBtn: document.getElementById('corpusClearBtn'),
-    entityList: document.getElementById('entityList'),
-    sourceList: document.getElementById('sourceList')
-  };
-
-  const norm = (s) => (s || '').toString().trim().toLowerCase().replace(/\s+/g, ' ');
-
-  function getPipeSet(str) {
-    const s = norm(str);
-    if (!s) return new Set();
-    return new Set(s.split('|').map(x => x.trim()).filter(Boolean));
-  }
-
-  // Build counts for "Top chips" + datalists by scanning rows (no extra SQL needed)
-  function buildStats() {
-    const entityCounts = new Map();
-    const sourceCounts = new Map();
-    const topicCounts = new Map();
-    const categoryCounts = new Map();
-
-    for (const r of rows) {
-      const entities = getPipeSet(r.dataset.entityList);
-      const topics = getPipeSet(r.dataset.topicList);
-      const src = norm(r.dataset.source);
-      const cat = norm(r.dataset.category);
-
-      for (const e of entities) entityCounts.set(e, (entityCounts.get(e) || 0) + 1);
-      for (const t of topics) topicCounts.set(t, (topicCounts.get(t) || 0) + 1);
-      if (src) sourceCounts.set(src, (sourceCounts.get(src) || 0) + 1);
-      if (cat) categoryCounts.set(cat, (categoryCounts.get(cat) || 0) + 1);
+      datalistEl.innerHTML = items.map(v => `<option value="${escapeHtml(v)}"></option>`).join('');
     }
 
-    // Fill datalists
-    fillDatalist(el.entityList, entityCounts);
-    fillDatalist(el.sourceList, sourceCounts);
+    function fillCorpusCategorySelect(categoryCounts) {
+      const cats = Array.from(categoryCounts.entries()).sort((a,b) => b[1]-a[1]).map(([k]) => k);
+      // Preserve the "All" option
+      const keepFirst = el.corpusCorpusCategorySelect.querySelector('option[value=""]')?.outerHTML || '<option value="">All</option>';
+      el.corpusCorpusCategorySelect.innerHTML = keepFirst + cats.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(titleCase(c))}</option>`).join('');
+    }
 
-    // Fill category dropdown (All + categories)
-    fillCategorySelect(categoryCounts);
+    function renderTopChips(container, countsMap, n, onClick) {
+      const top = Array.from(countsMap.entries()).sort((a,b) => b[1]-a[1]).slice(0, n);
+      container.innerHTML = top.map(([label, count]) => {
+        return `
+          <button type="button" class="corpus-chip" data-value="${escapeHtml(label)}">
+            ${escapeHtml(label)} <span class="text-muted">(${count})</span>
+          </button>
+        `;
+      }).join('');
 
-    // Render top chips
-    renderTopChips(el.topEntityChips, entityCounts, 10, (v) => { state.entity = v; el.entityInput.value = v; applyFilters(); });
-    renderTopChips(el.topSourceChips, sourceCounts, 10, (v) => { state.source = v; el.sourceInput.value = v; applyFilters(); });
-    renderTopChips(el.topTopicChips, topicCounts, 4,  (v) => { state.topic = v; applyFilters(); });
-  }
+      container.querySelectorAll('button.corpus-chip').forEach(btn => {
+        btn.addEventListener('click', () => onClick(btn.dataset.value));
+      });
+    }
 
-  function fillDatalist(datalistEl, countsMap) {
-    const items = Array.from(countsMap.entries())
-      .sort((a,b) => b[1]-a[1])
-      .slice(0, 200) // keep it sane
-      .map(([k]) => k);
+    function matchesRow(row) {
+      // Entity filter: row must contain that entity (exact match within entity list)
+      if (state.entity) {
+        const entities = getPipeSet(row.dataset.entityList);
+        if (!entities.has(state.entity)) return false;
+      }
 
-    datalistEl.innerHTML = items.map(v => `<option value="${escapeHtml(v)}"></option>`).join('');
-  }
+      // Source filter: exact match
+      if (state.source) {
+        if (norm(row.dataset.source) !== state.source) return false;
+      }
 
-  function fillCategorySelect(categoryCounts) {
-    const cats = Array.from(categoryCounts.entries()).sort((a,b) => b[1]-a[1]).map(([k]) => k);
-    // Preserve the "All" option
-    const keepFirst = el.categorySelect.querySelector('option[value=""]')?.outerHTML || '<option value="">All</option>';
-    el.categorySelect.innerHTML = keepFirst + cats.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(titleCase(c))}</option>`).join('');
-  }
+      // Topic filter: exact match within topic list
+      if (state.topic) {
+        const topics = getPipeSet(row.dataset.topicList);
+        if (!topics.has(state.topic)) return false;
+      }
 
-  function renderTopChips(container, countsMap, n, onClick) {
-    const top = Array.from(countsMap.entries()).sort((a,b) => b[1]-a[1]).slice(0, n);
-    container.innerHTML = top.map(([label, count]) => {
+      // Title filter: substring match
+      if (state.title) {
+        const t = norm(row.dataset.title);
+        if (!t.includes(state.title)) return false;
+      }
+
+      // Sentiment filter: exact match
+      if (state.sentiment) {
+        if (norm(row.dataset.sentiment) !== state.sentiment) return false;
+      }
+
+      // Category filter: exact match
+      if (state.category) {
+        if (norm(row.dataset.category) !== state.category) return false;
+      }
+
+      return true;
+    }
+
+    function applyFilters() {
+      const total = rows.length;
+      let shown = 0;
+
+      for (const r of rows) {
+        const ok = matchesRow(r);
+        r.style.display = ok ? '' : 'none';
+        if (ok) shown++;
+      }
+
+      renderActiveFilters();
+      el.countLine.textContent = `Showing ${shown} / ${total}`;
+    }
+
+    function renderActiveFilters() {
+      const chips = [];
+
+      if (state.entity) chips.push(makeActiveChip('Entity', state.entity, () => { state.entity=''; el.entityInput.value=''; applyFilters(); }));
+      if (state.source) chips.push(makeActiveChip('Source', state.source, () => { state.source=''; el.sourceInput.value=''; applyFilters(); }));
+      if (state.topic)  chips.push(makeActiveChip('Topic', state.topic,  () => { state.topic=''; applyFilters(); }));
+      if (state.title)  chips.push(makeActiveChip('Title', state.title,  () => { state.title=''; el.titleInput.value=''; applyFilters(); }));
+      if (state.sentiment) chips.push(makeActiveChip('Sentiment', state.sentiment, () => { state.sentiment=''; el.sentimentSelect.value=''; applyFilters(); }));
+      if (state.category)  chips.push(makeActiveChip('Category', state.category, () => { state.category=''; el.corpusCorpusCategorySelect.value=''; applyFilters(); }));
+
+      el.active.innerHTML = chips.length ? chips.join('') : `<span class="text-muted small">No active filters</span>`;
+    }
+
+    function makeActiveChip(label, value, onClear) {
+      const id = 'chip_' + Math.random().toString(16).slice(2);
+      // We attach the event after insertion
+      setTimeout(() => {
+        const btn = document.getElementById(id);
+        if (btn) btn.addEventListener('click', onClear);
+      }, 0);
+
       return `
-        <button type="button" class="corpus-chip" data-value="${escapeHtml(label)}">
-          ${escapeHtml(label)} <span class="text-muted">(${count})</span>
-        </button>
+        <span class="badge bg-light text-dark border">
+          ${escapeHtml(label)}: ${escapeHtml(value)}
+          <button type="button" class="btn btn-sm p-0 ms-1" id="${id}" style="line-height:1;">×</button>
+        </span>
       `;
-    }).join('');
-
-    container.querySelectorAll('button.corpus-chip').forEach(btn => {
-      btn.addEventListener('click', () => onClick(btn.dataset.value));
-    });
-  }
-
-  function matchesRow(row) {
-    // Entity filter: row must contain that entity (exact match within entity list)
-    if (state.entity) {
-      const entities = getPipeSet(row.dataset.entityList);
-      if (!entities.has(state.entity)) return false;
     }
 
-    // Source filter: exact match
-    if (state.source) {
-      if (norm(row.dataset.source) !== state.source) return false;
-    }
-
-    // Topic filter: exact match within topic list
-    if (state.topic) {
-      const topics = getPipeSet(row.dataset.topicList);
-      if (!topics.has(state.topic)) return false;
-    }
-
-    // Title filter: substring match
-    if (state.title) {
-      const t = norm(row.dataset.title);
-      if (!t.includes(state.title)) return false;
-    }
-
-    // Sentiment filter: exact match
-    if (state.sentiment) {
-      if (norm(row.dataset.sentiment) !== state.sentiment) return false;
-    }
-
-    // Category filter: exact match
-    if (state.category) {
-      if (norm(row.dataset.category) !== state.category) return false;
-    }
-
-    return true;
-  }
-
-  function applyFilters() {
-    const total = rows.length;
-    let shown = 0;
-
-    for (const r of rows) {
-      const ok = matchesRow(r);
-      r.style.display = ok ? '' : 'none';
-      if (ok) shown++;
-    }
-
-    renderActiveFilters();
-    el.countLine.textContent = `Showing ${shown} / ${total}`;
-  }
-
-  function renderActiveFilters() {
-    const chips = [];
-
-    if (state.entity) chips.push(makeActiveChip('Entity', state.entity, () => { state.entity=''; el.entityInput.value=''; applyFilters(); }));
-    if (state.source) chips.push(makeActiveChip('Source', state.source, () => { state.source=''; el.sourceInput.value=''; applyFilters(); }));
-    if (state.topic)  chips.push(makeActiveChip('Topic', state.topic,  () => { state.topic=''; applyFilters(); }));
-    if (state.title)  chips.push(makeActiveChip('Title', state.title,  () => { state.title=''; el.titleInput.value=''; applyFilters(); }));
-    if (state.sentiment) chips.push(makeActiveChip('Sentiment', state.sentiment, () => { state.sentiment=''; el.sentimentSelect.value=''; applyFilters(); }));
-    if (state.category)  chips.push(makeActiveChip('Category', state.category, () => { state.category=''; el.categorySelect.value=''; applyFilters(); }));
-
-    el.active.innerHTML = chips.length ? chips.join('') : `<span class="text-muted small">No active filters</span>`;
-  }
-
-  function makeActiveChip(label, value, onClear) {
-    const id = 'chip_' + Math.random().toString(16).slice(2);
-    // We attach the event after insertion
-    setTimeout(() => {
-      const btn = document.getElementById(id);
-      if (btn) btn.addEventListener('click', onClear);
-    }, 0);
-
-    return `
-      <span class="badge bg-light text-dark border">
-        ${escapeHtml(label)}: ${escapeHtml(value)}
-        <button type="button" class="btn btn-sm p-0 ms-1" id="${id}" style="line-height:1;">×</button>
-      </span>
-    `;
-  }
-
-  function clearAll() {
-    state.entity = '';
-    state.source = '';
-    state.topic = '';
-    state.title = '';
-    state.sentiment = '';
-    state.category = '';
-
-    el.entityInput.value = '';
-    el.sourceInput.value = '';
-    el.titleInput.value = '';
-    el.sentimentSelect.value = '';
-    el.categorySelect.value = '';
-
-    applyFilters();
-  }
-
-  // Basic helpers
-  function escapeHtml(str) {
-    return (str || '').replace(/[&<>"']/g, (m) => ({
-      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
-    }[m]));
-  }
-
-  function titleCase(s) {
-    return (s || '').split(' ').map(w => w ? w[0].toUpperCase() + w.slice(1) : w).join(' ');
-  }
-
-  // Wire inputs
-  el.entityInput.addEventListener('input', () => { state.entity = norm(el.entityInput.value); applyFilters(); });
-  el.sourceInput.addEventListener('input', () => { state.source = norm(el.sourceInput.value); applyFilters(); });
-  el.titleInput.addEventListener('input', () => { state.title = norm(el.titleInput.value); applyFilters(); });
-  el.sentimentSelect.addEventListener('change', () => { state.sentiment = norm(el.sentimentSelect.value); applyFilters(); });
-  el.categorySelect.addEventListener('change', () => { state.category = norm(el.categorySelect.value); applyFilters(); });
-
-  el.clearBtn.addEventListener('click', clearAll);
-
-  // Init
-  buildStats();
-  applyFilters();
-
-  // Magnet buttons (Top Entities → Corpus filter)
-  document.querySelectorAll('.sn-corpus-magnet').forEach(btn => {
-    btn.addEventListener('click', function () {
-
-      const entity    = (this.dataset.entity || '').toLowerCase().trim();
-      const source    = (this.dataset.source || '').toLowerCase().trim();
-      const topic     = (this.dataset.topic || '').toLowerCase().trim();
-      const sentiment = (this.dataset.sentiment || '').toLowerCase().trim();
-
-      // Reset dimensions (v1 = single-dimension filter)
+    function clearAll() {
       state.entity = '';
       state.source = '';
       state.topic = '';
+      state.title = '';
       state.sentiment = '';
+      state.category = '';
 
-      if (entity) {
-        state.entity = entity;
-        if (el.entityInput) el.entityInput.value = entity;
-        if (el.sourceInput) el.sourceInput.value = '';
-      }
-
-      if (source) {
-        state.source = source;
-        if (el.sourceInput) el.sourceInput.value = source;
-        if (el.entityInput) el.entityInput.value = '';
-      }
-
-      if (topic) {
-        state.topic = topic;
-      }
-
-      if (sentiment) {
-        state.sentiment = sentiment;
-        if (el.sentimentSelect) el.sentimentSelect.value = sentiment;
-      }
+      el.entityInput.value = '';
+      el.sourceInput.value = '';
+      el.titleInput.value = '';
+      el.sentimentSelect.value = '';
+      el.corpusCorpusCategorySelect.value = '';
 
       applyFilters();
+    }
 
-      const corpusCard = document.querySelector('.card.corpus');
-      if (corpusCard) {
-        const offset = 80; // adjust to your header height
-        const top = corpusCard.getBoundingClientRect().top + window.pageYOffset - offset;
+    // Basic helpers
+    function escapeHtml(str) {
+      return (str || '').replace(/[&<>"']/g, (m) => ({
+        '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
+      }[m]));
+    }
 
-        window.scrollTo({
-          top: top,
-          behavior: 'smooth'
-        });
-      }
+    function titleCase(s) {
+      return (s || '').split(' ').map(w => w ? w[0].toUpperCase() + w.slice(1) : w).join(' ');
+    }
+
+    // Wire inputs
+    el.entityInput.addEventListener('input', () => { state.entity = norm(el.entityInput.value); applyFilters(); });
+    el.sourceInput.addEventListener('input', () => { state.source = norm(el.sourceInput.value); applyFilters(); });
+    el.titleInput.addEventListener('input', () => { state.title = norm(el.titleInput.value); applyFilters(); });
+    el.sentimentSelect.addEventListener('change', () => { state.sentiment = norm(el.sentimentSelect.value); applyFilters(); });
+    el.corpusCorpusCategorySelect.addEventListener('change', () => { state.category = norm(el.corpusCorpusCategorySelect.value); applyFilters(); });
+
+    el.clearBtn.addEventListener('click', clearAll);
+
+    // Init
+    buildStats();
+    applyFilters();
+
+    // Magnet buttons (Top Entities → Corpus filter)
+    document.querySelectorAll('.sn-corpus-magnet').forEach(btn => {
+      btn.addEventListener('click', function () {
+
+        const entity    = (this.dataset.entity || '').toLowerCase().trim();
+        const source    = (this.dataset.source || '').toLowerCase().trim();
+        const topic     = (this.dataset.topic || '').toLowerCase().trim();
+        const sentiment = (this.dataset.sentiment || '').toLowerCase().trim();
+
+        // Reset dimensions (v1 = single-dimension filter)
+        state.entity = '';
+        state.source = '';
+        state.topic = '';
+        state.sentiment = '';
+
+        if (entity) {
+          state.entity = entity;
+          if (el.entityInput) el.entityInput.value = entity;
+          if (el.sourceInput) el.sourceInput.value = '';
+        }
+
+        if (source) {
+          state.source = source;
+          if (el.sourceInput) el.sourceInput.value = source;
+          if (el.entityInput) el.entityInput.value = '';
+        }
+
+        if (topic) {
+          state.topic = topic;
+        }
+
+        if (sentiment) {
+          state.sentiment = sentiment;
+          if (el.sentimentSelect) el.sentimentSelect.value = sentiment;
+        }
+
+        applyFilters();
+
+        const corpusCard = document.querySelector('.card.corpus');
+        if (corpusCard) {
+          const offset = 80; // adjust to your header height
+          const top = corpusCard.getBoundingClientRect().top + window.pageYOffset - offset;
+
+          window.scrollTo({
+            top: top,
+            behavior: 'smooth'
+          });
+        }
+      });
     });
-  });
 
-})();
+  })();
 
-</script>
+  </script>
 
 </body>
 </html>
