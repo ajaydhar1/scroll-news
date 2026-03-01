@@ -1,0 +1,59 @@
+:root {
+    --link-color: #00bfa6; /* Light Gray */
+    --light-text: gray;
+}
+
+.content {
+    position: relative;
+    color: #0a0a0a;
+    width: 100%;
+    text-align: center;
+
+    /* Make this section fill the screen and sit above the footer */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* pushes heading/footer toward bottom */
+
+    /* Leave room for the sticky nav at the top */
+    padding-top: 5rem; /* tweak if your nav is taller/shorter */
+}
+
+/* Give a little extra space on small screens where the nav wraps to multiple rows */
+@media (max-width: 768px) {
+    .content {
+        padding-top: 6.5rem;
+    }
+}
+
+a {
+    color: var(--link-color);
+}
+
+.light-text {
+    color: var(--light-text);
+}
+
+.brand-text {
+    color: var(--brand-color);
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.page-container {
+    min-height: 100vh; /* full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-bottom {
+    margin-top: auto; /* pushes footer down neatly */
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    line-height: calc(var(--line-height-unit) * 1.1) !important;
+}
