@@ -11,77 +11,7 @@ require_once('___modules.php');
 
 require_once __DIR__ . '/newsroom_core/___request_resolution_layer.php';
 require_once __DIR__ . '/newsroom_core/___newsroom_meta.php';
-
-// Resolve chosen article (redirects if none)
-$resolved = newsroom_resolve_article();
-$url      = $resolved['url'];
-$category = $resolved['category'] ?? '';
-$db = $resolved['db'] ?? '';
-
-$fromDb = $db == "1" || $category == "db";
-
-// Get meta data for article
-$meta           = [];
-$title          = '';
-$des            = '';
-$img            = '';
-$pub            = '';
-$pub_link       = '';
-$youtube_search = '';
-
-// If we're in "db mode", try to pull the article from the DB instead of scraping
-if (!empty($db)) {
-    $article = getArticleFromDBByUrl($url);
-
-    if (!empty($article) && is_array($article)) {
-        $dbMeta = build_meta_from_db_article($url, $article);
-        if (is_array($dbMeta)) {
-            $meta = $dbMeta;
-        }
-    }
-}
-
-// If we don't have an image yet (or $meta is still empty), fall back to scraping
-if (empty($meta['image'])) {
-    $scraped = newsroom_extract_meta($url);
-
-    if (is_array($scraped)) {
-        // Merge scraped meta in without nuking DB values that already exist
-        $meta = array_merge($meta, $scraped);
-        // If you want DB to win over scraped, flip the order:
-        // $meta = array_merge($meta, $scraped);
-
-        if (empty($meta['image'])) {
-            $meta['image'] = 'assets/img/news-placeholder.jpg';
-        }
-    }
-}
-
-// Finally, hydrate the individual vars safely
-$title          = $meta['title']          ?? '';
-$des            = $meta['description']    ?? '';
-$img            = $meta['image']          ?? '';
-$pub            = $meta['publisher']      ?? '';
-$pub_link       = $meta['publisher_link'] ?? '';
-$youtube_search = $meta['youtube_search'] ?? $title;
-
-// Derive domain from the readUrl
-$domain = '';
-$favicon_url = null;
-if (!empty($url)) {
-    $host = parse_url($url, PHP_URL_HOST);
-    if ($host) {
-        // Strip leading www.
-        $domain = preg_replace('/^www\./i', '', $host);
-
-        // Google favicon endpoint using the full URL (your working pattern)
-        $favicon_url = 'https://t0.gstatic.com/faviconV2'
-            . '?client=SOCIAL&type=FAVICON'
-            . '&fallback_opts=TYPE,SIZE,URL'
-            . '&url=' . rawurlencode($url)
-            . '&size=64';
-    }
-}
+require_once __DIR__ . '/newsroom_core/___newsroom_bootstrap.php';
 
 ?>
 <!DOCTYPE html>
@@ -112,22 +42,19 @@ if (!empty($url)) {
 
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         
-
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Lato&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter&display=swap" rel="stylesheet">
+        <!-- Google fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans&display=swap" rel="stylesheet" />
 
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css?v=<?php echo filemtime(__DIR__ . '/css/styles.css'); ?>" rel="stylesheet" />
         <link href="css/custom.css?v=<?php echo filemtime(__DIR__ . '/css/custom.css'); ?>" rel="stylesheet" />
         <link href="css/newsroom.css?v=<?php echo filemtime(__DIR__ . '/css/newsroom.css'); ?>" rel="stylesheet" />
         <link href="css/mindpour.css?v=<?php echo filemtime(__DIR__ . '/css/mindpour.css'); ?>" rel="stylesheet" />
-
 
         <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
         <script src="https://www.amcharts.com/lib/3/serial.js"></script>
@@ -137,7 +64,6 @@ if (!empty($url)) {
 
         <!-- Add IntroJs styles -->
         <link href="css/introjs.css" rel="stylesheet">
-        <?php //<link href="https://unpkg.com/intro.js/minified/introjs.min.css" rel="stylesheet"> ?>
 
         <link href="css/lightbox.css" rel="stylesheet" />
 
@@ -145,22 +71,6 @@ if (!empty($url)) {
             // Flip this to false to go back to your old 2-AJAX flow instantly.
             const USE_UNIFIED_NEWSROOM_API = true;
         </script>
-
-        <style>
-
-            .badge .pub-favicon {
-                width: 16px;
-                height: 16px;
-                border-radius: 4px;
-                object-fit: contain;
-            }
-
-            .scroll-badge {
-              font-size: .77rem;
-            }
-
-        </style>
-
 
     </head>
     <body id="page-top">
@@ -353,12 +263,10 @@ if (!empty($url)) {
                                 }
 
                                 else {
-
                                     echo '
                                         <div id="lottie" class="mb-4"></div>
                                         <!-- NLP results (injected from AJAX) will appear here -->
                                     ';
-                                
                                 }
 
                                 ?>
@@ -492,29 +400,13 @@ if (!empty($url)) {
         <!-- Modals-->        
         <?php require_once __DIR__ . '/___modals.php'; ?>
 
-        <!-- Bootstrap core JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-        <!-- Third party plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <!-- Contact form JS-->
-        <script src="assets/mail/jqBootstrapValidation.js"></script>
-        <script src="assets/mail/contact_me.js"></script>
-        <!-- Core theme JS-->
-        <!--<script src="js/scripts.js"></script>-->
+        <!-- Core JS (Bootstrap 4 requires jQuery first) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
         <script src="js/lottie.js" type="text/javascript"></script>
-
         <script type="text/javascript" src="js/intro.js"></script>
-        <?php //<script type="text/javascript" src="https://unpkg.com/intro.js/minified/intro.min.js"></script> ?>
-
         <script type="text/javascript" src="js/lightbox.js"></script>
-
-        <!-- DataTables CSS -->
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-        <!-- DataTables JS -->
-        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-          
 
         <script src="js/newsroom/handlers.js" defer></script>
         <!--<script src="js/newsroom/api_legacy.js" defer></script>-->
@@ -522,433 +414,19 @@ if (!empty($url)) {
         <script src="js/newsroom/init.js" defer></script>
 
         <script src="js/sn_history.js"></script>
-
         <script src="js/sn-mini-player-yt.js?v=<?= filemtime(__DIR__.'/js/sn-mini-player-yt.js') ?>" defer></script>
 
         <script>
-
-            $(document).ready(function() {
-
-                if ((<?=$_SESSION["resultViewed"]?> < 2) && ('<?=$_GET['siteSubmit']?>' != 'true')) {
-                    introJs().setOptions({
-                        highlightClass: 'custom-highlight',
-                        overlayOpacity: 0.5  // or 0 if you want no darkening at all
-                    }).start();
-                }
-
-            });
-
+            window.NEWSROOM = <?= json_encode([
+                'fromDb' => (bool)$vm['fromDb'],
+                'url' => $vm['url'],
+                'intro' => [
+                'shouldRun' => (($_SESSION['resultViewed'] ?? 999) < 2) && (($_GET['siteSubmit'] ?? '') !== 'true')
+                ],
+            ], JSON_UNESCAPED_SLASHES) ?>;
         </script>
 
-        <script>
-
-          function setupAnalyticsJS() {
-
-              $("#insta-link").click(function() {
-                  $("#sm-tags").text("Instagram");
-                  $("#twitter-tags").css("display", "none");
-                  $("#insta-tags").css("display", "block");
-                  $("#google-tags").css("display", "none");
-                  $("#youtube-tags").css("display", "none");
-                  $("#search-tags").css("display", "none");
-                  $("#twitter-icon").css("color", "#34495E");
-                  $("#insta-icon").css("color", "var(--brand-color)");
-                  $("#google-icon").css("color", "#34495E");
-                  $("#youtube-icon").css("color", "#34495E");
-                  $("#search-icon").css("color", "#34495E");  
-              });
-
-              $("#twitter-link").click(function() {
-                  $("#sm-tags").text("Twitter");
-                  $("#insta-tags").css("display", "none");
-                  $("#twitter-tags").css("display", "block");
-                  $("#google-tags").css("display", "none");
-                  $("#youtube-tags").css("display", "none");
-                  $("#search-tags").css("display", "none");
-                  $("#insta-icon").css("color", "#34495E");
-                  $("#twitter-icon").css("color", "var(--brand-color)");
-                  $("#google-icon").css("color", "#34495E");
-                  $("#youtube-icon").css("color", "#34495E");
-                  $("#search-icon").css("color", "#34495E");
-              });
-
-              $("#google-link").click(function() {
-                  $("#sm-tags").text("Google");
-                  $("#insta-tags").css("display", "none");
-                  $("#twitter-tags").css("display", "none");
-                  $("#google-tags").css("display", "block");
-                  $("#youtube-tags").css("display", "none");
-                  $("#search-tags").css("display", "none");
-                  $("#insta-icon").css("color", "#34495E");
-                  $("#twitter-icon").css("color", "#34495E");
-                  $("#google-icon").css("color", "var(--brand-color)");
-                  $("#youtube-icon").css("color", "#34495E");
-                  $("#search-icon").css("color", "#34495E");
-              });
-
-              $("#youtube-link").click(function() {
-                  $("#sm-tags").text("Youtube");
-                  $("#insta-tags").css("display", "none");
-                  $("#twitter-tags").css("display", "none");
-                  $("#google-tags").css("display", "none");
-                  $("#search-tags").css("display", "none");
-                  $("#youtube-tags").css("display", "block");
-                  $("#insta-icon").css("color", "#34495E");
-                  $("#twitter-icon").css("color", "#34495E");
-                  $("#google-icon").css("color", "#34495E");
-                  $("#youtube-icon").css("color", "var(--brand-color)");
-                  $("#search-icon").css("color", "#34495E");
-              });
-
-              $("#search-link").click(function() {
-                  $("#sm-tags").text("News Search");
-                  $("#insta-tags").css("display", "none");
-                  $("#twitter-tags").css("display", "none");
-                  $("#google-tags").css("display", "none");
-                  $("#search-tags").css("display", "block");
-                  $("#youtube-tags").css("display", "none");
-                  $("#insta-icon").css("color", "#34495E");
-                  $("#twitter-icon").css("color", "#34495E");
-                  $("#google-icon").css("color", "#34495E");
-                  $("#youtube-icon").css("color", "#34495E");
-                  $("#search-icon").css("color", "var(--brand-color)");
-              });
-
-              /*
-              $("a#gg").fancybox({
-                  type: 'iframe',
-                  fitToView: false,
-                  width: '90%',
-                  height: '90%',
-                  autoSize: false,
-                  closeClick: true,
-                  openEffect: 'none',
-                  closeEffect: 'none'
-
-              });
-              */
-
-              // $.getScript('js/functions.js');
-
-
-              // Setup ___get_definitions_js.php
-
-              var tapped = 0;
-
-              $(function() {
-
-                  $('body *').not("#wikipedia a").click(function() {
-                      $("#wikipedia a").popover('hide');
-                      tapped = 0;
-                  });
-
-                  $('body *').not(".hashtag a").click(function() {
-                      $(".hashtag a").popover('hide');
-                      tapped = 0;
-                  });
-
-
-
-                  $("#wikipedia a").each(function(i, obj) {
-                      $(this).attr("data-container", "body");
-                      $(this).attr("data-toggle", "popover");
-                      $(this).attr("data-placement", "bottom");
-                      $(this).attr("data-content", "temp");
-                      $(this).attr("data-html", "true");
-                  })
-
-                  $(".hashtag a").each(function(i, obj) {
-                      $(this).attr("data-container", "body");
-                      $(this).attr("data-toggle", "popover");
-                      $(this).attr("data-placement", "auto");
-                      $(this).attr("data-content", "temp");
-                      $(this).attr("data-html", "true");
-                  })
-
-
-
-
-                  if (!isMobile()) {
-                      $("#wikipedia a").mouseenter(function() {
-                          getDefinitions($(this), $(this).text());
-                      }).mouseleave(function() {
-                          $(this).popover('hide');
-                      });
-
-                      $(".hashtag a").mouseenter(function() {
-                          getDefinitions($(this), $(this).attr("data-hashtext"));
-                      }).mouseleave(function() {
-                          $(this).popover('hide');
-                      });
-                  }
-                  else {
-                      $("#wikipedia a").on("click", function(e) {
-                          // open popover
-                          if (tapped == 0) { // if no popover open
-                              // show popover
-                              getDefinitions($(this), $(this).text());
-                              tapped = 1; // change flag to popoever open
-
-                              // don't let link click through
-                              e.preventDefault();
-                              e.stopImmediatePropagation();
-
-                          }
-                          // click on link if same link clicked twice, or call all popovers
-                          else {
-                              // close all popovers
-                              $("#wikipedia a").popover('hide');
-                              tapped = 0;
-
-                              // if not the same linked that was clicked, prevent link, but show popover
-                              var attr = $(this).attr('aria-describedby');
-                              if (attr == false || typeof attr == 'undefined') {
-                                  e.preventDefault();
-                                  e.stopImmediatePropagation();
-
-                                  getDefinitions($(this), $(this).text());
-                                  tapped = 1;
-                              }
-                              //showLoader();
-                          }
-                      });
-
-
-                      $(".hashtag a").on("click", function(e) {
-                          // open popover
-                          if (tapped == 0) { // if no popover open
-                              // show popover
-                              getDefinitions($(this), $(this).attr("data-hashtext"));
-                              tapped = 1; // change flag to popoever open
-
-                              // don't let link click through
-                              e.preventDefault();
-                              e.stopImmediatePropagation();
-
-                          }
-                          // click on link if same link clicked twice, or call all popovers
-                          else {
-                              // close all popovers
-                              $(".hashtag a").popover('hide');
-                              tapped = 0;
-
-                              // if not the same linked that was clicked, prevent link, but show popover
-                              var attr = $(this).attr('aria-describedby');
-                              if (attr == false || typeof attr == 'undefined') {
-                                  e.preventDefault();
-                                  e.stopImmediatePropagation();
-
-                                  getDefinitions($(this), $(this).attr("data-hashtext"));
-                                  tapped = 1;
-                              }
-                              //showLoader();
-                          }
-                      });
-                  }
-
-              });
-
-
-              function getDefinitions(element, term) {
-                  $.ajax({
-                      url:"definitions.php?term=" + encodeURIComponent(term) + "&label=" + element.attr("data-label"),
-                      type:"GET",
-                      success:function(result) {
-                          def = '';
-                          if ((result !== '') && (result !== '<strong>. </strong> ')) {
-                              def = result;
-                          }
-                          else {
-                              def = 'No definition found.'
-                          }
-                          if (element.is(':hover')) {
-                              element.attr("data-content", def);
-
-
-                              $('[data-toggle="popover"]').popover({
-                                  boundary: 'window', // Set the boundary to the window
-                                  html: true // Enable HTML in popover content (if needed)
-                              });
-
-                              element.popover('show');
-                          }
-                      }
-                  });
-              }
-          }
-
-        </script>
-
-        <?php
-
-        if (!$fromDb) {
-
-        ?>
-        
-        <script>
-
-            $(document).ready(function() {
-
-                var ele = document.getElementById("lottie");
-
-                lottie.loadAnimation({
-                    container: ele, // the dom element that will contain the animation
-                    renderer: "svg",
-                    loop: true,
-                    autoplay: true,
-                    path: "assets/img/animation-w500-h500.json" // the path to the animation json
-                });
-
-                $.ajax({
-                    type:   "POST",
-                    url:    "analyze.php",
-                    data:   {url: "<?= $url ?>"},
-                    success: function(msg) {
-                    
-                        $("#analytics").html(msg);
-
-                        setupAnalyticsJS();
-                       
-                    }  
-                })
-
-            });
-
-        </script>
-
-        <?php
-
-        } 
-
-        else {
-
-        ?>
-
-        <script>
-
-          setupAnalyticsJS();
-
-        </script>
-
-
-        <?php
-
-        }
-
-        ?>
-
-        
-
-        <script>
-            async function reanalyzeAnalytics(url, container = '#analytics') {
-              const el = document.querySelector(container);
-              el.innerHTML = `
-                <div class="card shadow-sm border-0">
-                  <div class="card-body">
-                    <div class="placeholder-glow">
-                      <span class="placeholder col-7"></span>
-                      <span class="placeholder col-4"></span>
-                      <span class="placeholder col-6"></span>
-                    </div>
-                  </div>
-                </div>`;
-
-              const form = new URLSearchParams({ url, revalidate: '1' });
-              try {
-                const res = await fetch('analyze.php', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                  body: form
-                });
-                const html = await res.text();
-                el.innerHTML = html;
-              } catch (e) {
-                el.innerHTML = `<div class="alert alert-warning mb-0">Sorry—reanalysis failed.</div>`;
-              }
-            }
-        </script>
-
-
-        <script>
-            (function(){
-              const overlay = document.getElementById('loadingOverlay');
-              const show = () => overlay && (overlay.hidden = false);
-              const hide = () => overlay && (overlay.hidden = true);
-
-              // Show spinner when navigating away (page links/forms)
-              //window.addEventListener('beforeunload', show);
-
-              // Hide when page is ready (covers BFCache too)
-              window.addEventListener('pageshow', hide);
-
-              // For specific buttons/links, add data-loading attribute
-              document.addEventListener('click', function(e){
-                const t = e.target.closest('[data-loading]');
-                if (t) show();
-              });
-
-              // Optional: inline button spinner (keeps overlay too)
-              document.addEventListener('click', function(e){
-                const btn = e.target.closest('[data-loading-btn]');
-                if (!btn) return;
-                btn.dataset.originalHtml = btn.innerHTML;
-                btn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span>&nbsp;Loading…';
-                btn.classList.add('disabled'); btn.setAttribute('aria-busy','true');
-              });
-
-              // Minimal CSS for inline button spinner:
-              const style = document.createElement('style');
-              style.textContent = '.btn-spinner{display:inline-block;width:1em;height:1em;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .6s linear infinite;vertical-align:-0.125em}';
-              document.head.appendChild(style);
-            })();
-        </script>
-
-        <script>
-          window.addEventListener('DOMContentLoaded', function () {
-            var metaEl = document.getElementById('history-meta');
-            if (!metaEl) return;
-
-            var historyItem = {
-              url: metaEl.dataset.articleUrl || window.location.href,
-              title: metaEl.dataset.articleTitle || document.title,
-              source: metaEl.dataset.articleSource || '',
-              image: metaEl.dataset.articleImage || '',
-              // ISO8601 date string, matches existing records
-              pub_date: metaEl.dataset.articlePubDate || null,
-              // kind should match your existing "external" / "analyze" values
-              kind: metaEl.dataset.articleKind || 'external',
-              // same key name as existing records
-              clicked_at: new Date().toISOString()
-            };
-
-            // Don't write totally empty junk
-            if (!historyItem.url) return;
-
-            var STORAGE_KEY = 'sn_article_history';
-
-            try {
-              var existing = localStorage.getItem(STORAGE_KEY);
-              var list = existing ? JSON.parse(existing) : [];
-
-              // De-dupe by URL
-              list = list.filter(function (item) {
-                return item.url !== historyItem.url;
-              });
-
-              // Add to front
-              list.unshift(historyItem);
-
-              // Optional: cap length
-              list = list.slice(0, 200);
-
-              localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-            } catch (e) {
-              if (console && console.warn) {
-                console.warn('history save failed', e);
-              }
-            }
-          });
-        </script>
+        <script src="js/newsroom-page.js?v=<?= filemtime(__DIR__.'/js/newsroom-page.js') ?>" defer></script>
 
     </body>
 </html>

@@ -367,3 +367,14 @@ button.nav-link.active {
     margin-right: 0.35rem;
 }
 */
+
+.badge .pub-favicon {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    object-fit: contain;
+}
+
+.scroll-badge {
+    font-size: .77rem;
+}

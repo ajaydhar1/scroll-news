@@ -177,3 +177,5 @@ p {
 .page-section h3.section-subheading { 
     font-weight: 700; 
 }
+
+section#services { background: #eee; }

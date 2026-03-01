@@ -1,20 +1,20 @@
 {
-    "fetched_at": 1772162210,
+    "fetched_at": 1772390135,
     "feeds": [
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "SHOPPING: ELLISONS BUY WARNER BROS...",
-                    "url": "https://deadline.com/2026/02/netflix-declines-to-raise-offer-for-warner-bros-1236738005/",
-                    "ts": 1772157516,
-                    "emo": "📰"
+                    "title": "POPE SENDS WARNING TO TRUMP: DESTRUCTION AND DEATH...",
+                    "url": "https://www.express.co.uk/news/world/2176889/popes-message-trump-iran-war",
+                    "ts": 1772389356,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "WILL NOW RUN CBS AND CNN...",
-                    "url": "https://www.nytimes.com/2025/09/18/opinion/larry-ellison-paramount-cbs-tiktok.html?unlocked_article_code=1.PVA.LEGf.uRdLJe_Wl-cc&smid=url-share",
-                    "ts": 1772157516,
+                    "title": "HOW AYATOLLAH, HENCHMEN WERE OBLITERATED IN 'FIRST 30 SECONDS'...",
+                    "url": "https://www.thesun.co.uk/news/38372051",
+                    "ts": 1772389356,
                     "emo": "📰"
                 }
             ]
@@ -24,16 +24,16 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Jack Dorsey just laid off 40% of staff. He said he's still hiring AI engineers.",
-                    "url": "https://www.businessinsider.com/jack-dorsey-block-hiring-senior-ai-talent-iafter-layoffs-2026-2",
-                    "ts": 1772155863,
-                    "emo": "🧪"
+                    "title": "Khamenei's killing spurs outrage among Kalshi and Polymarket users over claims of rigged markets and insider trading",
+                    "url": "https://www.businessinsider.com/khamenei-prediction-markets-kalshi-polymarket-insider-trading-outrage-2026-3",
+                    "ts": 1772385826,
+                    "emo": "📰"
                 },
                 {
-                    "title": "It's easy to understand why Netflix walked away from WBD",
-                    "url": "https://www.businessinsider.com/why-netflix-walked-wbd-paramount-trump-sarandos-ellison-2026-2",
-                    "ts": 1772155615,
-                    "emo": "📰"
+                    "title": "Fighting with Iran has spread to tankers at sea. Ships are coming under fire around the busy Strait of Hormuz.",
+                    "url": "https://www.businessinsider.com/fight-iran-spread-oil-tankers-vessels-strait-of-hormuz-2026-3",
+                    "ts": 1772383134,
+                    "emo": "🌍"
                 }
             ]
         }
