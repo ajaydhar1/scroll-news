@@ -118,7 +118,6 @@ if (!$pdo) {
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css?v=<?php echo filemtime(__DIR__ . '/css/styles.css'); ?>" rel="stylesheet" />
         <link href="css/custom.css?v=<?php echo filemtime(__DIR__ . '/css/custom.css'); ?>" rel="stylesheet" />
-
         <link href="css/sn-search.css?v=<?php echo filemtime(__DIR__ . '/css/sn-search.css'); ?>" rel="stylesheet" />
 
     </head>
