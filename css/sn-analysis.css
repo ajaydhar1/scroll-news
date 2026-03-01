@@ -1,0 +1,237 @@
+/* minimal styling; swap for your site CSS */
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; }
+.row { display: flex; flex-wrap: wrap; }
+.card { border: 1px solid #ddd; border-radius: 10px; padding: 12px; background: #fff; }
+.card h3 { margin: 0 0 8px 0; font-size: 16px; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border-bottom: 1px solid #eee; padding: 6px 8px; text-align: left; font-size: 13px; }
+th { font-weight: 650; }
+.kpis {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 12px;
+}
+
+.kpi {
+    grid-column: span 2;
+}
+
+@media (max-width: 900px) {
+    .kpis {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .kpi {
+        grid-column: span 1;
+    }
+}
+
+.kpi-meta .val {
+    font-size: 0.9em;
+    opacity: 0.85;
+}
+
+.kpi { border: 1px solid #eee; border-radius: 10px; padding: 10px; }
+.kpi .label { font-size: 12px; color: #666; }
+.kpi .val { font-size: 18px; font-weight: 700; }
+.note { font-size: 12px; color: #666; }
+
+.note .muted {
+    opacity: 0.65;
+    font-size: 0.9em;
+}
+.note a.active {
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+
+.corpus a { color: #0000ee; }
+
+a {
+    color: var(--brand-color);
+}
+
+footer.footer {
+    background: white;
+}
+
+footer .text-lg-right a {
+    color: #00bfa6;
+}
+
+footer .text-lg-right a:hover {
+    color: black;
+}
+
+.card-eyebrow{
+    font-size: 11px;
+    color: #666;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+/* ========= Shared: keep content above any bar ========= */
+.bar-table td,
+.bar-table th{
+position: relative;
+z-index: 1;
+}
+
+/* ========= Desktop / default: FULL-ROW bars (top tables) ========= */
+.bar-table .bar-row{
+position: relative;
+}
+
+.bar-table .bar-row::before{
+content:"";
+position:absolute;
+left: 6px;
+right: 6px;
+top: 3px;
+bottom: 3px;
+
+/* width based on --bar (keeps inset consistent) */
+width: calc(var(--bar) - 12px);
+max-width: calc(100% - 12px);
+
+background: rgba(0,0,0,0.06);
+border-radius: 8px;
+z-index: 0;
+pointer-events: none;
+}
+
+.bar-table .bar-row:hover::before{
+background: rgba(0,0,0,0.09);
+}
+
+/* ========= CELL bars only for tables that opt-in ========= */
+.bar-table.bar-cells .bar-cell{
+position: relative;
+overflow: hidden;
+font-variant-numeric: tabular-nums;
+}
+
+.bar-table.bar-cells .bar-cell .bar-fill{
+position: absolute;
+left: 6px;
+right: 6px;
+top: 4px;
+bottom: 4px;
+width: calc(var(--bar) - 12px);
+max-width: calc(100% - 12px);
+background: rgba(0,0,0,0.06);
+border-radius: 8px;
+z-index: 0;
+pointer-events: none;
+}
+
+.bar-table.bar-cells .bar-cell > *:not(.bar-fill){
+position: relative;
+z-index: 1;
+}
+
+/* ========= Mobile: allow cell bars everywhere ========= */
+
+@media (max-width: 640px){
+.bar-table .bar-row::before{ display:none; }
+
+/* mobile cell bars (works for any table that has bar-cell markup) */
+.bar-table .bar-cell{
+    position: relative;
+    overflow: hidden;
+    text-align: right;
+}
+.bar-table .bar-cell .bar-fill{
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    top: 4px;
+    bottom: 4px;
+    width: calc(var(--bar) - 12px);
+    max-width: calc(100% - 12px);
+    background: rgba(0,0,0,0.06);
+    border-radius: 8px;
+    z-index: 0;
+    pointer-events: none;
+}
+.bar-table .bar-cell > *:not(.bar-fill){
+    position: relative;
+    z-index: 1;
+}
+}
+
+
+
+/* ========= Mobile: disable full-row overlay bars ========= */
+@media (max-width: 640px){
+.bar-table .bar-row::before{
+    display: none;
+}
+}
+
+.sn-favicon {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}  
+
+.sent-emoji {
+    display: inline-block;
+    width: 1.25em;
+    text-align: center;
+}
+
+.analysis-desc p {
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: 0.92rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+.btn-sm, .btn-group-sm > .btn {
+    padding: 0.15rem 0.25rem;
+    font-size: .675rem;
+}
+
+/* Corpus filter chips */
+.corpus-chip{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 4px 10px;
+    border-radius: 999px;
+
+    border: 1px solid rgba(0,0,0,.12);
+    background: rgba(0,0,0,.03);
+    color: rgba(0,0,0,.75);
+
+    font-size: 12px;
+    line-height: 1.2;
+    cursor: pointer;
+    user-select: none;
+
+    /* kill weird outlines/shadows coming from global button styles */
+    box-shadow: none !important;
+    outline: none;
+}
+
+.corpus-chip:hover{
+    background: rgba(0,0,0,.06);
+}
+
+.corpus-chip:focus-visible{
+    outline: 2px solid rgba(0,0,0,.25);
+    outline-offset: 2px;
+}
+
+/* Active/selected chip */
+.corpus-chip.is-active{
+    background: rgba(16,185,129,.14); /* soft green tint */
+    border-color: rgba(16,185,129,.45);
+    color: rgba(0,0,0,.82);
+}
