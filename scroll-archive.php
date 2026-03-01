@@ -547,159 +547,16 @@ if (!$pdo) {
 
                                     <!-- Horizontal track -->
                                     <div class="articles-track" id="<?php echo $trackId; ?>">
-                                        <?php foreach ($articles as $item): ?>
+                                        <?php foreach ($articles as $row): ?>
                                             <?php
-                                                $title    = $item['title'] ?? '';
-                                                $url      = $item['link'] ?? '#';
-                                                $mediaUrl = $item['media_url'] ?? '';
-                                                $pubDt    = $item['_dt'] ?? null;
-                                                $ts       = $item['_ts'] ?? null;
-                                                $pubTime  = $pubDt ? $pubDt->format('g:i A') : '';
-                                                // New: full datetime for data- attribute (ISO 8601)
-                                                $pubIso = '';
-                                                if ($pubDt instanceof DateTimeInterface) {
-                                                    $pubIso = $pubDt->format(DATE_ATOM); // e.g. 2025-12-07T15:45:00+00:00
-                                                } elseif (!empty($ts)) {
-                                                    $pubIso = gmdate(DATE_ATOM, (int)$ts);
-                                                }
-                                                $category = $item['feed_name'] ?? '';
+                                            $vm = sn_article_vm_from_row($row, [
+                                                'mode' => 'classic',
+                                                'analysis_window' => '30d',
+                                                'force_analyze' => true,   // ✅ bring Analyze back for archive rows
+                                            ]);
 
-                                                $analyzeUrl = 'newsroom.php?url=' . urlencode($url)
-                                                    . '&category=' . urlencode($category)
-                                                    . '&pub_date=' . urlencode($ts);
-
-                                                // Publisher favicon (update key name if different)
-                                                $faviconUrl = 'https://t0.gstatic.com/faviconV2'
-                                                    . '?client=SOCIAL&type=FAVICON'
-                                                    . '&fallback_opts=TYPE,SIZE,URL'
-                                                    . '&url=' . rawurlencode($url)
-                                                    . '&size=64';
-
-                                                // Extract domain for chip + filter
-                                                $domain = '';
-                                                if (!empty($url) && $url !== '#') {
-                                                    $host = parse_url($url, PHP_URL_HOST);
-                                                    if ($host) {
-                                                        if (strpos($host, 'www.') === 0) {
-                                                            $host = substr($host, 4);
-                                                        }
-                                                        $domain = $host;
-                                                    }
-                                                }
-
-                                                // $article is your article row
-                                                $badges = scroll_get_article_badges($item);
-
-                                                $card_classes = ' scroll-history-card';
-
-                                                if (scroll_is_high_signal_publisher($item)) {
-                                                    $card_classes .= ' scroll-card-high-signal';
-                                                }
+                                            sn_render_article_card_archive($vm, []);
                                             ?>
-                                            <article
-                                                class="article-card sn-history-item<?php echo $card_classes; ?>"
-                                                data-title="<?php echo htmlspecialchars($title); ?>"
-                                                data-domain="<?php echo htmlspecialchars($domain); ?>"
-                                                data-timestamp="<?php echo $ts ? (int)$ts : ''; ?>"
-                                            >
-                                                <div class="article-image-wrap">
-                                                    <?php if (!empty($mediaUrl)): ?>
-                                                        <img
-                                                            src="<?php echo htmlspecialchars($mediaUrl); ?>"
-                                                            alt=""
-                                                            loading="lazy"
-                                                            decoding="async"
-                                                            onerror="this.onerror=null;this.src='assets/img/news-placeholder.jpg';"
-                                                        />
-                                                    <?php else: ?>
-                                                        <img
-                                                            src="assets/img/news-placeholder.jpg"
-                                                            alt=""
-                                                            loading="lazy"
-                                                            decoding="async"
-                                                        />
-                                                    <?php endif; ?>
-
-                                                    <?php if (!empty($domain)): ?>
-                                                        <a 
-                                                            href="https://<?php echo htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>"
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            class="domain-chip-link"
-                                                        >
-                                                            <div class="domain-chip">
-                                                                <?php if (!empty($faviconUrl)): ?>
-                                                                    <img
-                                                                        class="pub-favicon"
-                                                                        src="<?php echo htmlspecialchars($faviconUrl); ?>"
-                                                                        alt=""
-                                                                        onerror="this.style.display='none';"
-                                                                    />
-                                                                <?php endif; ?>
-                                                                <?php echo htmlspecialchars($domain); ?>
-                                                            </div>
-                                                        </a>
-                                                    <?php endif; ?>
-                                                </div>
-                                                <div class="article-body">
-                                                    <h4 class="article-title mb-0">
-                                                        <?php echo htmlspecialchars($title); ?>
-                                                    </h4>
-
-                                                    <?php if (!empty($badges)) : ?>
-                                                        <div class="scroll-article-badges">
-                                                            <?php foreach ($badges as $badge): ?>
-                                                                <?php
-                                                                    $slug = $badge['slug'] ?? '';
-
-                                                                    // Default links (you can define these earlier in the file too)
-                                                                    $highSignalSearchUrl = '/search.php?high_signal=1'; // maybe add &mode=nlp later
-                                                                    $deepDiveSearchUrl   = '/search.php?mode=nlp&deep_dive=1';
-
-                                                                    // Decide href per badge
-                                                                    $badgeHref = $highSignalSearchUrl; // sensible default
-
-                                                                    if ($slug === 'deep-dive') {
-                                                                        $badgeHref = $deepDiveSearchUrl;
-                                                                    } elseif ($slug === 'high-signal-publisher') {
-                                                                        $badgeHref = $highSignalSearchUrl;
-                                                                    }
-                                                                ?>
-                                                                <a class="scroll-badge scroll-badge-<?php echo htmlspecialchars($slug); ?>"
-                                                                href="<?php echo htmlspecialchars($badgeHref); ?>" title="<?php echo htmlspecialchars($badge['tooltip']); ?>" data-loading>
-                                                                    <?php echo htmlspecialchars($badge['label']); ?>
-                                                                </a>
-                                                            <?php endforeach; ?>
-                                                        </div>
-                                                    <?php endif; ?>
-
-                                                    <div class="article-meta">
-                                                        <?php echo $pubTime; ?>
-                                                    </div>
-                                                    <div class="article-actions">
-                                                        <a class="btn btn-outline-primary btn-analyze article-link"
-                                                        href="<?php echo $analyzeUrl; ?>"
-                                                        data-loading
-                                                        >
-                                                            Analyze
-                                                        </a>
-                                                        <a class="link-read article-link"
-                                                        href="<?php echo htmlspecialchars($url); ?>"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        data-article-url="<?= htmlspecialchars($url) ?>"
-                                                        data-article-title="<?= htmlspecialchars($title) ?>"
-                                                        data-article-source="<?= htmlspecialchars(strtolower($category)) ?>"
-                                                        data-article-image="<?= htmlspecialchars($mediaUrl) ?>"
-                                                        data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
-                                                        data-article-kind="external"
-                                                        >
-                                                            <span>Read story</span>
-                                                            <span class="icon">↗</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </article>
                                         <?php endforeach; ?>
                                     </div>
                                 </div>
