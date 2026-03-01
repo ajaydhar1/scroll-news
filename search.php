@@ -211,7 +211,7 @@ if (!$pdo) {
 
                             <div class="sn-search-chips mt-2">
                                 <?php foreach ($searchChips as $chip): ?>
-                                    <a class="sn-chip" href="<?= htmlspecialchars($buildSearchUrl($chip), ENT_QUOTES, 'UTF-8') ?>" data-loading>
+                                    <a class="sn-chip" href="<?= htmlspecialchars($buildSearchUrl($chip), ENT_QUOTES, 'UTF-8') ?>" data-sn-loading>
                                         <?= htmlspecialchars($chip, ENT_QUOTES, 'UTF-8') ?>
                                     </a>
                                 <?php endforeach; ?>

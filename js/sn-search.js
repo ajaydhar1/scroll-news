@@ -102,12 +102,13 @@
       });
     });
 
-    // Optional: if you keep any links/buttons with [data-loading], show overlay on click
+    // Optional: if you keep any links/buttons with [data-sn-loading], show overlay on click
     // (This matches your pattern across the site.)
-    document.querySelectorAll('[data-loading]').forEach(function (el) {
-      el.addEventListener('click', function () {
-        showOverlay();
+    const scope = document.getElementById('services'); // your page-section id
+    if (scope) {
+      scope.querySelectorAll('[data-sn-loading]').forEach(el => {
+        el.addEventListener('click', () => showOverlay());
       });
-    });
+    }
   });
 })();
