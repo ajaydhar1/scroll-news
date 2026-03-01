@@ -1,0 +1,72 @@
+html {
+    scroll-behavior: smooth;
+}
+
+header.masthead {
+    background-image: none;
+    color: #212529;
+    padding-top: 5.5rem;
+    padding-bottom: 0rem;
+}
+
+@media (min-width: 768px) {
+    header.masthead .masthead-heading {
+        margin-bottom: calc(4rem + 20px);
+    }
+}
+
+header.masthead .masthead-subheading {
+    font-style: normal;
+    font-size: 1.5rem;
+}
+
+.timeline > li .timeline-image {
+    background-color: var(--brand-color);
+}
+
+.btn-lg, .btn-group-lg > .btn {
+    font-size: 1.2rem;
+}
+
+.btn.btn-rectangle {
+    box-shadow: 0 0 0 0.14rem var(--brand-color) !important;
+}
+
+#portfolio .portfolio-item .portfolio-link .portfolio-hover {
+    background: transparent;
+}
+
+section.py-5 h3 {
+    font-size: 1.4rem;
+    color: #444;
+    font-weight: 500;
+}
+
+section#contact {
+    background-image: url(../assets/img/laptop-sparkle.jpg);
+    background-size: cover;
+}
+
+section#playlists {
+    scroll-margin-top: 95px; /* Adjust the offset as needed */
+}
+
+.cta-group a.btn.btn-rectangle {
+    box-shadow: none !important;
+}
+
+.reading-modes-section {
+    background: #f8f9fa; /* or whatever your light panel bg is */
+}
+
+.reading-mode-card {
+    border-radius: 0.75rem;
+}
+
+.reading-mode-icon {
+    font-size: 1.4rem;
+}
+
+.medium {
+    font-size: 18px;
+}

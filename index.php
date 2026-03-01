@@ -81,13 +81,11 @@
         <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous"></script>
 
         <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-    
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Lato&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans&display=swap" rel="stylesheet" />
     
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -95,117 +93,11 @@
         <link href="css/styles.css?v=<?php echo filemtime(__DIR__ . '/css/styles.css'); ?>" rel="stylesheet" />
         <link href="css/custom.css?v=<?php echo filemtime(__DIR__ . '/css/custom.css'); ?>" rel="stylesheet" />
         <link href="css/mindpour.css?v=<?php echo filemtime(__DIR__ . '/css/mindpour.css'); ?>" rel="stylesheet" />
-
-        <!-- Add IntroJs styles -->
-        <link href="css/introjs.css" rel="stylesheet">
+        <link href="css/home.css?v=<?php echo filemtime(__DIR__ . '/css/home.css'); ?>" rel="stylesheet" />
 
         <link href="css/lightbox.css" rel="stylesheet" />
 
         <link rel="preload" as="image" href="assets/img/header-bg-3.jpg">
-
-        <style>
-
-            html {
-                scroll-behavior: smooth;
-            }
-
-            header.masthead {
-                /* background-image: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)), url(assets/img/header-bg-3.jpg); */
-                background-image: none;
-                color: #212529;
-                padding-top: 5.5rem;
-                padding-bottom: 0rem;
-            }
-
-            @media (min-width: 768px) {
-                header.masthead .masthead-heading {
-                    margin-bottom: calc(4rem + 20px);
-                }
-            }
-
-            header.masthead .masthead-subheading {
-                font-style: normal;
-                font-size: 1.5rem;
-            }
-
-            a {
-                color: var(--brand-color);
-            }
-
-            .timeline > li .timeline-image {
-                background-color: var(--brand-color);
-            }
-
-            .btn-lg, .btn-group-lg > .btn {
-                font-size: 1.2rem;
-            }
-
-            .btn.btn-rectangle {
-                box-shadow: 0 0 0 0.14rem var(--brand-color) !important;
-            }
-
-            #portfolio .portfolio-item .portfolio-link .portfolio-hover {
-                background: transparent;
-            }
-
-            section.py-5 h3 {
-                font-size: 1.4rem;
-                color: #444;
-                font-weight: 500;
-            }
-
-            section#contact {29;
-                background-image: url(assets/img/laptop-sparkle.jpg);
-            }
-
-            section#playlists {
-                scroll-margin-top: 95px; /* Adjust the offset as needed */
-            }
-
-            /* Pulse animation on the glow ONLY */
-            @keyframes introPlayPulse {
-                0% {
-                    box-shadow:
-                        0 0 0 9999px rgba(0, 0, 0, 0.65),
-                        0 0 12px rgba(25, 135, 84, 0.6);
-                }
-                50% {
-                    box-shadow:
-                        0 0 0 9999px rgba(0, 0, 0, 0.7),
-                        0 0 28px rgba(25, 135, 84, 1);
-                }
-                100% {
-                    box-shadow:
-                        0 0 0 9999px rgba(0, 0, 0, 0.65),
-                        0 0 12px rgba(25, 135, 84, 0.6);
-                }
-            }
-
-            .cta-group a.btn.btn-rectangle {
-                box-shadow: none !important;
-            }
-
-            section#contact {
-                background-size: cover;
-            }
-
-            .reading-modes-section {
-              background: #f8f9fa; /* or whatever your light panel bg is */
-            }
-
-            .reading-mode-card {
-              border-radius: 0.75rem;
-            }
-
-            .reading-mode-icon {
-              font-size: 1.4rem;
-            }
-
-            .medium {
-                font-size: 18px;
-            }
-
-        </style>
 
     </head>
     <body id="page-top">
@@ -298,7 +190,9 @@
             </div>
             </section>
 
+            <!-- Category pills for the analysis page -->
             <?php
+
             $categories = [
             'politics'      => 'Politics',
             'sports'        => 'Sports',
@@ -376,188 +270,10 @@
                 }, $bust, false, false);
             ?>
 
-            <!-- Services-->
-            <section class="page-section" id="services">
-                <div class="container">
-                    <div class="text-center">
-                        <h2 class="section-heading text-uppercase">Features</h2>
-                        <h3 class="section-subheading text-muted"> <!--Lorem ipsum dolor sit amet consectetur.--></h3>
-                    </div>
-                    <div class="row text-center">
-                        <div class="col-md-4">
-                            <span class="fa-stack fa-4x">
-                                <i class="fas fa-circle fa-stack-2x text-green"></i>
-                                <i class="fas fa-wand-magic-sparkles fa-stack-1x fa-inverse"></i>
-                            </span>
-                            <h4 class="my-3">AI-powered Discovery</h4>
-                            <!--<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
-                        </div>
-                        <div class="col-md-4">
-                            <span class="fa-stack fa-4x">
-                                <i class="fas fa-circle fa-stack-2x text-green"></i>
-                                <i class="fas fa-street-view fa-stack-1x fa-inverse"></i>
-                            </span>
-                            <h4 class="my-3">Effortless Scrolling</h4>
-                            <!--<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
-                        </div>
-                        <div class="col-md-4">
-                            <span class="fa-stack fa-4x">
-                                <i class="fas fa-circle fa-stack-2x text-green"></i>
-                                <i class="fas fa-mask fa-stack-1x fa-inverse"></i>
-                            </span>
-                            <h4 class="my-3">Tap-to-Play Articles</h4>
-                            <!--<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>-->
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Portfolio Grid-->
-            <section class="page-section bg-light" id="portfolio">
-                <div class="container">
-                    <div class="text-center">
-                        <h2 class="section-heading text-uppercase">Newsroom Modules</h2>
-                        <h3 class="section-subheading text-muted"> <!--Lorem ipsum dolor sit amet consectetur.--></h3>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col-lg-4 col-sm-6 mb-4">
-                            <!-- Portfolio item 1-->
-                            <div class="portfolio-item">
-                                <a class="portfolio-link" href="assets/img/portfolio/analyze-article.jpg" data-lightbox="modules">
-                                    <img class="img-fluid" src="assets/img/portfolio/analyze-article.jpg" alt="Screenshot of the Analyze Article tool with a URL input box" data-lightbox="1"/>
-                                </a>
-                                <div class="portfolio-caption">
-                                    <div class="portfolio-caption-heading">Analyze Article</div>
-                                    <!--<div class="portfolio-caption-subheading text-muted">Illustration</div>-->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-4">
-                            <!-- Portfolio item 2-->
-                            <div class="portfolio-item">
-                                <a class="portfolio-link" href="assets/img/portfolio/browse-news.jpg" data-lightbox="modules">
-                                    <img class="img-fluid" src="assets/img/portfolio/browse-news.jpg" alt="Screenshot of the article grid organized by topic in Scroll News" data-lightbox="2"/>
-                                </a>
-                                <div class="portfolio-caption">
-                                    <div class="portfolio-caption-heading">Browse News</div>
-                                    <!--<div class="portfolio-caption-subheading text-muted">Graphic Design</div>-->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                            <!-- Portfolio item 4-->
-                            <div class="portfolio-item">
-                                <a class="portfolio-link" href="assets/img/portfolio/nlp-dashboard.jpg" data-lightbox="modules">
-                                    <img class="img-fluid" src="assets/img/portfolio/nlp-dashboard.jpg" alt="Screenshot of the NLP dashboard with charts and article stats" data-lightbox="4"/>
-                                </a>
-                                <div class="portfolio-caption">
-                                    <div class="portfolio-caption-heading">NLP Dashboard</div>
-                                    <!--<div class="portfolio-caption-subheading text-muted">Branding</div>-->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-4">
-                            <!-- Portfolio item 3-->
-                            <div class="portfolio-item">
-                                <a class="portfolio-link" href="assets/img/portfolio/search-headlines.jpg" data-lightbox="modules">
-                                    <img class="img-fluid" src="assets/img/portfolio/search-headlines.jpg" alt="Screenshot of news search results in Scroll News" data-lightbox="3"/>
-                                </a>
-                                <div class="portfolio-caption">
-                                    <div class="portfolio-caption-heading">Search Headlines</div>
-                                    <!--<div class="portfolio-caption-subheading text-muted">Identity</div>-->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-                            <!-- Portfolio item 5-->
-                            <div class="portfolio-item">
-                                <a class="portfolio-link" href="assets/img/portfolio/scroll-history.jpg" data-lightbox="modules">
-                                    <img class="img-fluid" src="assets/img/portfolio/scroll-history.jpg" alt="Screenshot of a news article captured by Scroll News" data-lightbox="5"/>
-                                </a>
-                                <div class="portfolio-caption">
-                                    <div class="portfolio-caption-heading">Scroll History</div>
-                                    <!--<div class="portfolio-caption-subheading text-muted">Website Design</div>-->
-                                </div>
-                            </div>
-                        </div>
-                        <? /*
-                        <div class="col-lg-4 col-sm-6">
-                            <!-- Portfolio item 6-->
-                            <div class="portfolio-item">
-                                <a class="portfolio-link" href="assets/img/portfolio/depth-chart.jpg" data-lightbox="modules">
-                                    <img class="img-fluid" src="assets/img/portfolio/depth-chart.jpg" alt="..." data-lightbox="6"/>
-                                </a>
-                                <div class="portfolio-caption">
-                                    <div class="portfolio-caption-heading">Depth Chart</div>
-                                    <!--<div class="portfolio-caption-subheading text-muted">Photography</div>-->
-                                </div>
-                            </div>
-                        </div>
-                        */ ?>
-                    </div>
-                </div>
-            </section>
-            <!-- About-->
-            <section class="page-section" id="story">
-                <div class="container">
-                    <div class="text-center">
-                        <h2 class="section-heading text-uppercase">Our Story</h2>
-                        <h3 class="section-subheading text-muted"> <!--Lorem ipsum dolor sit amet consectetur.--></h3>
-                    </div>
-                    <ul class="timeline">
-                        <li>
-                            <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/nlp.jpg" alt="Team climbing a mountain, representing the early NLP news project" /></div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>October 2017</h4>
-                                    <h4 class="subheading">Our Humble Beginnings</h4>
-                                </div>
-                                <div class="timeline-body"><p class="text-muted">Looking to launch our first startup, we started developing our first cut at a news platform that performed NLP analyses of online news articles. It was an incredibly eye-opening project that taught us a lot about startups and technology!</p></div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted">
-                            <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/inflection.jpg" alt="Friends playing a board game, representing a turning point in our product" /></div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>March 2018</h4>
-                                    <h4 class="subheading">An Inflection Point</h4>
-                                </div>
-                                <div class="timeline-body"><p class="text-muted">Up until this time, we were paying a third-party vendor to use their NLP API for webpage and raw text analysis. Then, in an effort to save money and reduce dependencies, we decided to develop our own NLP API in-house!</p></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/tennis.jpg" alt="Man playing tennis, symbolizing opening the platform to new ideas" /></div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>Febuary 2020</h4>
-                                    <h4 class="subheading">Opening the Platform</h4>
-                                </div>
-                                <div class="timeline-body"><p class="text-muted">In 2020, we started exploring new ways of leveraging our NLP API. We wanted to create an echo chamber of news and media products that did NLP analyses of online content. We started by creating a website that analyzed sports articles using the StumbleUpon UX!</p></div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted">
-                            <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/creating-scroll-news.jpg" alt="Young man in a suit, representing the launch of Scroll News" /></div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>July 2025</h4>
-                                    <h4 class="subheading">Creation of Scroll News</h4>
-                                </div>
-                                <div class="timeline-body"><p class="text-muted">Due to the massive code bloat of our first news product, we decided to turn the project into a learning experience and develop a newer, more focused news platform called Scroll News, that simplifies and streamlines the news consumption process. Which brings us to today! Welcome to Scroll News!</p></div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted">
-                            <div class="timeline-image d-flex">
-                                <h4 class="my-0 mx-auto my-auto">
-                                    Be Part
-                                    <br />
-                                    Of Our
-                                    <br />
-                                    Story!
-                                </h4>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </section>
+
+            <?php include __DIR__ . '/___home_features.php'; ?>
+            <?php include __DIR__ . '/___home_modules.php'; ?>
+            <?php include __DIR__ . '/___home_story.php'; ?>
 
 
             <?php
@@ -567,107 +283,10 @@
             ?>
 
 
-            <section id="playlists" class="pt-4 pb-5 pt-sm-5">
-                <div class="container">
-                    <div style="max-width:880px;margin:auto">
-                        <label for="ytTab" style="display:block;margin:0 0 8px">News playlists</label>
-                        <select id="ytTab" style="width:100%;padding:8px">
-                            <option value="PLQOa26lW-uI97KzKsYCRtDthILEXUeoWn">ABC News (Daily News Updates)</option>
-                            <option value="PL0tDb4jw6kPz6KY3KYoZ5bRLdMAEzpSbb">NBC News (Top News)</option>
-                            <option value="PLEb3ThbkPrFazUgt4b5WwVCj9QpaflUbl">CBS News (Top News)</option>
-                            <option value="PLGaYlBJIOoa9DV4I6sC8R8bX4L0Jq16XZ">Bloomberg (Stock Market News and Analysis)</option>
-                            <option value="PLGaYlBJIOoa9aFYxidijF94vLKdDb04El">Bloomberg (Tech News)</option>
-                            <option value="PLVbP054jv0KrD7L2lIuW8WuQK9--rAAgx">CNBC (Squawk Box)</option>
-                            <option value="PLVbP054jv0KpzbW7Mh-JxOWaRs_PWNBS6">CNBC (Squawk On The Street)</option>
-                            <option value="PLJ8IrgLlRTdgCt-WeomGIddeL9IhfvoeH">CNBC International (Squawk Box Europe)</option>
-                            <option value="PLv1qHE0zuJL-EqaXwwo6Le34uycJnNCsB">Fox Business (Mornings with Maria)</option>
-                            <option value="PLv1qHE0zuJL_99FPlL25gsQ1FvbbAP3pX">Fox Business (The Big Money Show)</option>
-                            <option value="PLn3nHXu50t5wkud7Iv0LFazfV8dja6dc3">ESPN (First Take)</option>
-                            <option value="PLn3nHXu50t5xU9FvI2M2km5a4GgfqfKlY">ESPN (Get Up)</option>
-                            <option value="PLGmceqLQ0UeYSzvsA6agwpkdoCMySiLA6">Fox News (Trump Administration)</option>
-                            <option value="PLDIVi-vBsOEy7nK-gNvoU8TS_BDOqBOxE">MS NOW (MSNBC)</option>
-                            <!-- Paste more playlist URLs or IDs as options; ID or full URL both work -->
-                            <!-- <option value="https://www.youtube.com/playlist?list=PLxxxx">World</option> -->
-                            <!-- <option value="PLyyyy">Technology</option> -->
-                        </select>
+            
+            <?php include __DIR__ . '/___home_playlist.php'; ?>
 
-                        <div style="position:relative;padding-top:56.25%;margin-top:12px;border-radius:12px;overflow:hidden">
-                            <iframe id="ytFrame" allow="autoplay; encrypted-media" allowfullscreen
-                                style="position:absolute;inset:0;width:100%;height:100%;border:0"
-                                src="about:blank"></iframe>
-                        </div>
-                    </div>
-
-                    <script>
-                        const frame = document.getElementById('ytFrame');
-                        const sel   = document.getElementById('ytTab');
-
-                        const toPlaylistId = (val) => {
-                            // Accept raw IDs or full playlist URLs (?list=...)
-                            try { 
-                                const u = new URL(val);
-                                return u.searchParams.get('list') || val;
-                            } catch { return val; }
-                        };
-
-                        const embed = (plId) =>
-                        `https://www.youtube.com/embed/videoseries?list=${encodeURIComponent(plId)}&rel=0&modestbranding=1`;
-
-                        const load = () => (frame.src = embed(toPlaylistId(sel.value)));
-
-                        sel.addEventListener('change', load);
-                        load(); // init on first render
-                    </script>
-                </div>
-            </section>
-
-
-            <!-- Team-->
-            <section class="page-section bg-light" id="team">
-                <div class="container">
-                    <div class="text-center">
-                        <h2 class="section-heading text-uppercase">Meet The Team</h2>
-                        <!--<h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>-->
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="team-member">
-                                <img class="mx-auto rounded-circle" src="assets/img/team/parveen-anand.jpg" alt="Illustrated headshot of Parveen Anand, Lead Developer" />
-                                <h4>Parveen Anand</h4>
-                                <p class="text-muted">Lead Developer</p>
-                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="team-member">
-                                <img class="mx-auto rounded-circle" src="assets/img/team/matt-elsher.jpg" alt="Illustrated headshot of Matt Elsher, Product Manager" />
-                                <h4>Matt Elsher</h4>
-                                <p class="text-muted">Product Manager</p>
-                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="team-member">
-                                <img class="mx-auto rounded-circle" src="assets/img/team/diana-keri.jpg" alt="Illustrated headshot of Diana Keri, Lead Marketer" />
-                                <h4>Diana Keri</h4>
-                                <p class="text-muted">Lead Marketer</p>
-                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--
-                    <div class="row">
-                        <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
-                    </div>
-                    -->
-                </div>
-            </section>
+            <?php include __DIR__ . '/___home_team.php'; ?>
 
 
             <!-- Trusted by creators text section -->
@@ -695,22 +314,12 @@
         <!-- Modals-->        
         <?php require_once __DIR__ . '/___modals.php'; ?>
 
-        <!-- Bootstrap core JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-        
-        <!-- Third party plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        
-        <!-- Core theme JS-->
-        <?php //<script src="js/scripts.js"></script> ?>
-
-        <script type="text/javascript" src="js/intro.js"></script>
+        <!-- Core JS (Bootstrap 4 requires jQuery first) -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
         <script type="text/javascript" src="js/lightbox.js"></script>
 
         <script src="js/sn_history.js"></script>
-
         <script src="js/sn-mini-player-yt.js?v=<?= filemtime(__DIR__.'/js/sn-mini-player-yt.js') ?>" defer></script>
 
     </body>
