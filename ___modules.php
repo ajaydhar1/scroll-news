@@ -1,6 +1,7 @@
 <?php
 
 require_once 'config_interest.php';
+require_once '___render.php';
 
 $CACHE_VER = 'v12';
 
