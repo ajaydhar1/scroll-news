@@ -1,6 +1,24 @@
 {
-    "fetched_at": 1772467479,
+    "fetched_at": 1772469432,
     "feeds": [
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "What to do if you're an American in the Middle East right now",
+                    "url": "https://www.businessinsider.com/us-strikes-iran-what-to-do-american-middle-east-travel-2026-2",
+                    "ts": 1772468210,
+                    "emo": "📰"
+                },
+                {
+                    "title": "I've shopped at Dollar Tree for 20 years. Here are 12 products I swear by getting at the budget chain.",
+                    "url": "https://www.businessinsider.com/dollar-tree-best-things-to-buy-shopping-there-20-years-2026-3",
+                    "ts": 1772467441,
+                    "emo": "📰"
+                }
+            ]
+        },
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
@@ -16,24 +34,6 @@
                     "url": "https://metro.co.uk/2026/03/02/three-us-f-15-fighter-jets-shot-kuwait-friendly-fire-incident-27184276/",
                     "ts": 1772466036,
                     "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Intuit TurboTax has invested in AI for nearly a decade. In 2026, that plan includes store expansion.",
-                    "url": "https://www.businessinsider.com/intuit-turbotax-ai-transformation-strategy-timeline",
-                    "ts": 1772462398,
-                    "emo": "🧪"
-                },
-                {
-                    "title": "Global airline stocks are plunging after Iran attacks triggered widespread travel chaos",
-                    "url": "https://www.businessinsider.com/airline-stocks-plunge-as-iran-strikes-cause-mass-travel-disruption-2026-3",
-                    "ts": 1772462251,
-                    "emo": "💰"
                 }
             ]
         }

@@ -1,0 +1,134 @@
+.sn-section { --gap: 16px; --card-w: 280px; --radius: 16px; --shadow: 0 6px 20px rgba(0,0,0,.12); padding: 3rem 0; overflow-x: clip; }
+@media (max-width: 575.98px) {
+    .sn-section {
+        padding-bottom: 1.5rem;
+    }
+}
+.sn-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+
+.sn-header-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.sn-header h2 { font-size:1.1rem; margin:0; letter-spacing:.2px; }
+.sn-controls { display:flex; gap:8px; }
+.sn-btn { border:1px solid rgba(0,0,0,.1); background:#fff; border-radius:999px; padding:8px 12px; cursor:pointer; }
+.sn-btn:hover { background:#f7f7f7; }
+  
+.sn-strip-wrapper{
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;          /* clamps anything that tries to extend */
+}
+
+/* The actual horizontal scroller */
+.sn-strip{
+    display: flex;
+    gap: var(--gap);
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+
+    padding: 6px 2px 10px;
+
+    /* These help iOS + prevent layout weirdness */
+    min-width: 0;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;       /* important: lets the element own horizontal gestures */
+}
+
+.sn-strip::-webkit-scrollbar { height: 8px; }
+.sn-strip::-webkit-scrollbar-thumb { background: rgba(0,0,0,.15); border-radius: 999px; }
+
+/* Each card should NOT stretch / should behave like a carousel item */
+.sn-card{
+    flex: 0 0 auto;
+    width: var(--card-w);
+    max-width: 85vw;           /* keeps it sane on tiny screens */
+    scroll-snap-align: start;
+
+    /* keep your existing styles below */
+    border-radius: var(--radius);
+    background:#fff; box-shadow: var(--shadow);
+    text-decoration:none; color:inherit;
+    overflow:hidden; transform:translateZ(0);
+    transition:transform .15s ease, box-shadow .15s ease;
+}
+
+.sn-card:hover, .sn-card:focus-visible { transform:translateY(-2px); box-shadow:0 10px 28px rgba(0,0,0,.18); outline:none; }
+.sn-media { position:relative; aspect-ratio:16/9; background:#eee; overflow:hidden; }
+.sn-media img:not(.sn-favicon) { width:100%; height:100%; object-fit:cover; display:block; }
+.sn-badge {
+    position:absolute; left:10px; bottom:10px;
+    background:rgba(0,0,0,.7); color:#fff; font-size:.75rem;
+    padding:4px 8px; border-radius:999px; backdrop-filter:saturate(140%) blur(2px);
+    display:flex; align-items:center; gap:6px;
+}
+.sn-body { padding:12px 14px 14px; display:grid; gap:6px; }
+.sn-title { font-size:18px; line-height:1.25; font-weight:700; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.sn-meta { font-size:.8rem; color:#666; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.sn-dot { width:4px; height:4px; background:#bbb; border-radius:50%; display:inline-block; }
+.sn-favicon { width:14px; height:14px; border-radius:4px; }
+
+/* NLP chips + emotion bars */
+.sn-tags {
+    margin-top: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+.sn-tag {
+    padding: 2px 6px;
+    background: #f3f4f6;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    color: #374151;
+}
+
+.sn-emotions {
+    margin-top: 4px;
+}
+.sn-emobar-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    margin-top: 2px;
+}
+.sn-emobar-label {
+    color: #4b5563;
+    min-width: 48px;
+}
+.sn-emobar-track {
+    flex: 1;
+    height: 5px;
+    border-radius: 999px;
+    background: #e5e7eb;
+    overflow: hidden;
+}
+.sn-emobar-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: #10b981;
+}
+.sn-emobar-value {
+    color: #6b7280;
+    min-width: 32px;
+    text-align: right;
+}
+
+@media (max-width:480px) {
+    .sn-section { --card-w: 240px; }
+    .sn-header h2 { font-size:1rem; }
+}
+
+.sn-badges {
+    margin-top: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
