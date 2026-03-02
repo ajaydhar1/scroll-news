@@ -1,4 +1,7 @@
 <?php
+http_response_code(403);
+exit('Dev tool');
+
 header('Content-Type: text/plain');
 
 echo "URL request reached this file ✅\n\n";

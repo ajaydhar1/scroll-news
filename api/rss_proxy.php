@@ -4,7 +4,7 @@ error_reporting(E_ERROR | E_PARSE);
 define('BASE_PATH', dirname(__DIR__)); // /api -> project root
 require_once BASE_PATH . '/core/___modules.php';
 
-require_once BASE_PATH . '/Feed.php';
+require_once BASE_PATH . '/vendor/feed/Feed.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

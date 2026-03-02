@@ -1,4 +1,7 @@
 <?php
+http_response_code(410);
+exit('Deprecated');
+
 header('Content-Type: application/json; charset=UTF-8');
 
 $title = $_GET['title'] ?? 'Vladimir_Putin';

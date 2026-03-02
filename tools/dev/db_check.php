@@ -1,4 +1,7 @@
 <?php
+http_response_code(403);
+exit('Dev tool');
+
 header('Content-Type: text/plain');
 
 echo "PHP: " . PHP_VERSION . PHP_EOL;

@@ -1,7 +1,7 @@
 <?php
 // newsroom_core/request_resolution_layer.php
-require_once __DIR__ . '/../OpenGraph.php';
-require_once __DIR__ . '/../Feed.php';
+require_once BASE_PATH . '/vendor/opengraph/OpenGraph.php';
+require_once BASE_PATH . '/vendor/feed/Feed.php';
 
 function newsroom_resolve_article(): array {
     // If no URL, pick a random and redirect (preserves your current behavior)
