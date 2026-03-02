@@ -551,3 +551,296 @@ function sn_render_article_card_archive(array $vm, array $opts = []): void {
     </article>
     <?php
 }
+
+/**
+ * Render a single intel-panel <li> for an article.
+ *
+ * Expects $article fields:
+ * - url, title, source_slug, image_url/media_url, pub_date, nlp, id (optional)
+ *
+ * Options:
+ * - w: window string for analysis links (default '24h')
+ * - db: db selector int (default 1)
+ * - category: override category string in newsroom QS (default ucfirst(source_slug))
+ * - max_entity_chips: default 2
+ * - max_topic_chips: default 2
+ * - topic_min_score: default 0.2
+ * - emotion_min_pct: default 15.0
+ */
+function scroll_render_article_intel_item(array $article, array $opts = []): string
+{
+    $w              = (string)($opts['w'] ?? '24h');
+    $db             = (int)($opts['db'] ?? 1);
+    $category       = (string)($opts['category'] ?? ucfirst((string)($article['source_slug'] ?? '')));
+    $maxEntityChips = (int)($opts['max_entity_chips'] ?? 2);
+    $maxTopicChips  = (int)($opts['max_topic_chips'] ?? 2);
+    $topicMinScore  = (float)($opts['topic_min_score'] ?? 0.2);
+    $emotionMinPct  = (float)($opts['emotion_min_pct'] ?? 15.0);
+
+    // --- Helpers local to this function (safe + contained)
+    $sentimentEmoji = function (?string $label): string {
+        if (!$label) return '';
+        switch (strtolower($label)) {
+            case 'positive': return '🙂';
+            case 'negative': return '☹️';
+            case 'neutral':  return '😐';
+            case 'mixed':    return '😶';
+            default:         return '😐';
+        }
+    };
+
+    $topEmotions = function ($emotionalReaction, int $max = 2, float $minPercent = 10.0): array {
+        if (!is_array($emotionalReaction) || !$emotionalReaction) return [];
+        arsort($emotionalReaction);
+
+        $out = [];
+        foreach ($emotionalReaction as $name => $pct) {
+            if (count($out) >= $max) break;
+            $pct = (float)$pct;
+            if ($pct < $minPercent) continue;
+            $out[] = ['name' => (string)$name, 'pct' => $pct];
+        }
+        return $out;
+    };
+
+    $parsePub = function ($pubRaw): array {
+        // returns [$pub_ts, $pubIso, $formattedDate]
+        $pub_ts = null;
+
+        if (is_numeric($pubRaw)) {
+            $pub_ts = (int)$pubRaw;
+        } elseif (is_string($pubRaw) && $pubRaw !== '') {
+            $tmp = strtotime($pubRaw);
+            if ($tmp !== false) $pub_ts = $tmp;
+        }
+
+        $pubIso = $pub_ts ? gmdate(DATE_ATOM, $pub_ts) : '';
+        $formatted = $pub_ts ? date('M j, Y', $pub_ts) : '';
+
+        return [$pub_ts, $pubIso, $formatted];
+    };
+
+    // --- Decode NLP safely
+    $nlp = json_decode($article['nlp'] ?? '{}', true);
+    if (!is_array($nlp)) $nlp = [];
+
+    // Sentiment
+    $sentLabel = $nlp['sentiment']['label'] ?? null;
+    $sentEmoji = $sentimentEmoji(is_string($sentLabel) ? $sentLabel : null);
+
+    // Emotions
+    $emotionDetail = $topEmotions($nlp['emotional_reaction'] ?? [], 2, $emotionMinPct);
+
+    // Topics: top N by score
+    $topicChips = [];
+    $topicsRaw = $nlp['topics'] ?? [];
+    if (is_array($topicsRaw)) {
+        arsort($topicsRaw);
+        foreach ($topicsRaw as $tName => $score) {
+            if (count($topicChips) >= $maxTopicChips) break;
+            if (!$tName) continue;
+            if ((float)$score < $topicMinScore) continue;
+            $topicChips[] = (string)$tName;
+        }
+    }
+
+    // Entities: top N by count
+    $entityChips = [];
+    $entitiesRaw = $nlp['entities'] ?? [];
+    if (is_array($entitiesRaw)) {
+        usort($entitiesRaw, function ($a, $b) {
+            $ca = (int)($a['count'] ?? 0);
+            $cb = (int)($b['count'] ?? 0);
+            return $cb <=> $ca;
+        });
+        foreach ($entitiesRaw as $ent) {
+            if (count($entityChips) >= $maxEntityChips) break;
+            $name = is_array($ent) ? ($ent['text'] ?? $ent['name'] ?? null) : $ent;
+            if (!$name) continue;
+            $entityChips[] = (string)$name;
+        }
+    }
+
+    // Pub date formats
+    [$pub_ts, $pubIso, $formattedDate] = $parsePub($article['pub_date'] ?? null);
+
+    // Newsroom QS
+    $qs = http_build_query([
+        'url'      => $article['url'] ?? '',
+        'category' => $category,
+        'pub_date' => $pub_ts,
+        'db'       => $db,
+    ]);
+
+    // Badges
+    $badges = [];
+    if (function_exists('scroll_get_article_badges')) {
+        $badges = scroll_get_article_badges($article) ?: [];
+    }
+
+    // Publisher domain + favicon
+    $publisherDomain = '';
+    $faviconUrl = '';
+
+    $url = (string)($article['url'] ?? '');
+    if ($url !== '') {
+        $host = parse_url($url, PHP_URL_HOST) ?: '';
+        $publisherDomain = preg_replace('/^www\./', '', (string)$host);
+
+        if ($publisherDomain !== '') {
+            $faviconUrl = "https://www.google.com/s2/favicons?sz=64&domain={$publisherDomain}";
+        }
+    }
+
+    // Publisher analysis link
+    $publisherSearchUrl = '';
+    if ($publisherDomain !== '') {
+        $publisherSearchUrl = "/analysis.php?context=pub&value=" . urlencode($publisherDomain) . "&w=7d";
+    }
+
+    // Badge links
+    $highSignalSearchUrl = '/search.php?high_signal=1';
+    $deepDiveSearchUrl   = '/search.php?mode=nlp&deep_dive=1';
+
+    // Optional: keep classes for future use (you computed these before)
+    $cardClasses = 'scroll-history-card';
+    if (function_exists('scroll_is_high_signal_publisher') && scroll_is_high_signal_publisher($article)) {
+        $cardClasses .= ' scroll-card-high-signal';
+    }
+    if (function_exists('scroll_is_deep_dive') && scroll_is_deep_dive($article)) {
+        $cardClasses .= ' scroll-card-deep-dive';
+    }
+    // NOTE: $cardClasses isn't used in the <li> currently, but kept here intentionally.
+
+    // External “Read story” button dataset
+    $imageUrl = (string)($article['image_url'] ?? $article['media_url'] ?? '');
+
+    ob_start();
+    ?>
+    <li class="intel-article-item mb-2">
+        <a href="newsroom.php?<?= htmlspecialchars($qs, ENT_QUOTES, 'UTF-8') ?>"
+            class="text-decoration-none d-block headline-link"
+            data-loading>
+            <?php if ($sentEmoji): ?>
+                <span class="sentiment-emoji me-1"><?= htmlspecialchars($sentEmoji, ENT_QUOTES, 'UTF-8') ?></span>
+            <?php endif; ?>
+            <span class="intel-article-title">
+                <?= htmlspecialchars((string)($article['title'] ?? ''), ENT_QUOTES, 'UTF-8') ?> ▶️
+            </span>
+            <?php if (!empty($article['source_slug'])): ?>
+                <span class="source-slug text-muted"> · <?= htmlspecialchars((string)$article['source_slug'], ENT_QUOTES, 'UTF-8') ?></span>
+            <?php endif; ?>
+        </a>
+
+        <?php if ($publisherDomain || $formattedDate): ?>
+            <div class="intel-article-meta text-muted small mt-1 d-flex align-items-center gap-2 flex-wrap">
+                <?php if ($publisherDomain): ?>
+                    <a href="<?= htmlspecialchars($publisherSearchUrl, ENT_QUOTES, 'UTF-8') ?>"
+                        class="intel-publisher-link d-inline-flex align-items-center gap-1 text-decoration-none text-muted"
+                        data-loading>
+                        <?php if ($faviconUrl): ?>
+                            <img src="<?= htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8') ?>"
+                                    alt=""
+                                    width="14"
+                                    height="14"
+                                    class="intel-favicon">
+                        <?php endif; ?>
+                        <span><?= htmlspecialchars($publisherDomain, ENT_QUOTES, 'UTF-8') ?></span>
+                    </a>
+                <?php endif; ?>
+
+                <?php if ($formattedDate): ?>
+                    <span>· <?= htmlspecialchars($formattedDate, ENT_QUOTES, 'UTF-8') ?></span>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($badges)) : ?>
+            <div class="scroll-article-badges mt-1">
+                <?php foreach ($badges as $badge): ?>
+                    <?php
+                        $slug = (string)($badge['slug'] ?? '');
+                        $badgeHref = $highSignalSearchUrl;
+
+                        if ($slug === 'deep-dive') {
+                            $badgeHref = $deepDiveSearchUrl;
+                        } elseif ($slug === 'high-signal-publisher') {
+                            $badgeHref = $highSignalSearchUrl;
+                        }
+                    ?>
+                    <a class="scroll-badge scroll-badge-<?= htmlspecialchars($slug, ENT_QUOTES, 'UTF-8') ?>"
+                        href="<?= htmlspecialchars($badgeHref, ENT_QUOTES, 'UTF-8') ?>"
+                        title="<?= htmlspecialchars((string)($badge['tooltip'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"
+                        data-loading>
+                        <?= htmlspecialchars((string)($badge['label'] ?? ''), ENT_QUOTES, 'UTF-8') ?>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($entityChips || $topicChips): ?>
+            <div class="nlp-chip-row mt-1">
+                <?php foreach ($entityChips as $name): ?>
+                    <?php
+                        $clean = trim(strtolower($name));
+                        $href  = function_exists('sn_analysis_url')
+                            ? sn_analysis_url($clean, $w, 'entity')
+                            : ("/analysis.php?context=entity&value=" . urlencode($clean) . "&w=" . urlencode($w));
+                    ?>
+                    <a class="nlp-chip nlp-chip-entity"
+                        href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
+                        data-loading>
+                        #<?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?>
+                    </a>
+                <?php endforeach; ?>
+
+                <?php foreach ($topicChips as $topicName): ?>
+                    <?php
+                        $clean = trim(strtolower($topicName));
+                        $href  = function_exists('sn_analysis_url')
+                            ? sn_analysis_url($clean, $w, 'topic')
+                            : ("/analysis.php?context=topic&value=" . urlencode($clean) . "&w=" . urlencode($w));
+                    ?>
+                    <a class="nlp-chip nlp-chip-topic"
+                        href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
+                        data-loading>
+                        <?= htmlspecialchars($topicName, ENT_QUOTES, 'UTF-8') ?>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($emotionDetail)): ?>
+            <div class="nlp-emotion-line medium text-muted mt-1">
+                Emotions:
+                <?php foreach ($emotionDetail as $idx => $emo): ?>
+                    <?= $idx > 0 ? ' · ' : '' ?>
+                    <?= htmlspecialchars((string)$emo['name'], ENT_QUOTES, 'UTF-8') ?> <?= (int)round((float)$emo['pct']) ?>%
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+
+        <div class="btn-group btn-group-xs mt-2" role="group">
+            <a href="<?= htmlspecialchars($url, ENT_QUOTES, 'UTF-8') ?>"
+                class="btn btn-outline-secondary"
+                target="_blank"
+                rel="noopener"
+                data-article-url="<?= htmlspecialchars($url, ENT_QUOTES, 'UTF-8') ?>"
+                data-article-title="<?= htmlspecialchars((string)($article['title'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"
+                data-article-source="<?= htmlspecialchars((string)($article['source_slug'] ?? ''), ENT_QUOTES, 'UTF-8') ?>"
+                data-article-image="<?= htmlspecialchars($imageUrl, ENT_QUOTES, 'UTF-8') ?>"
+                data-article-pub-date="<?= htmlspecialchars($pubIso, ENT_QUOTES, 'UTF-8') ?>"
+                data-article-kind="external">
+                Read story
+            </a>
+
+            <a href="newsroom.php?<?= htmlspecialchars($qs, ENT_QUOTES, 'UTF-8') ?>"
+                class="btn btn-green btn-gray-border"
+                data-loading>
+                Analyze
+            </a>
+        </div>
+    </li>
+    <?php
+    return ob_get_clean();
+}

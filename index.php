@@ -94,6 +94,7 @@
         <link href="css/custom.css?v=<?php echo filemtime(__DIR__ . '/css/custom.css'); ?>" rel="stylesheet" />
         <link href="css/mindpour.css?v=<?php echo filemtime(__DIR__ . '/css/mindpour.css'); ?>" rel="stylesheet" />
         <link href="css/home.css?v=<?php echo filemtime(__DIR__ . '/css/home.css'); ?>" rel="stylesheet" />
+        <link href="css/news-intel-panel.css?v=<?php echo filemtime(__DIR__ . '/css/news-intel-panel.css'); ?>" rel="stylesheet" />
 
         <link href="css/lightbox.css" rel="stylesheet" />
 

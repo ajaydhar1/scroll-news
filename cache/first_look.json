@@ -1,20 +1,20 @@
 {
-    "fetched_at": 1772390135,
+    "fetched_at": 1772467479,
     "feeds": [
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "POPE SENDS WARNING TO TRUMP: DESTRUCTION AND DEATH...",
-                    "url": "https://www.express.co.uk/news/world/2176889/popes-message-trump-iran-war",
-                    "ts": 1772389356,
-                    "emo": "⚖️"
+                    "title": "THREE US FIGHTER JETS SHOT DOWN IN KUWAIT...",
+                    "url": "https://metro.co.uk/2026/03/02/three-us-f-15-fighter-jets-shot-kuwait-friendly-fire-incident-27184276/",
+                    "ts": 1772466036,
+                    "emo": "📰"
                 },
                 {
-                    "title": "HOW AYATOLLAH, HENCHMEN WERE OBLITERATED IN 'FIRST 30 SECONDS'...",
-                    "url": "https://www.thesun.co.uk/news/38372051",
-                    "ts": 1772389356,
+                    "title": "'FRIENDLY FIRE'...",
+                    "url": "https://metro.co.uk/2026/03/02/three-us-f-15-fighter-jets-shot-kuwait-friendly-fire-incident-27184276/",
+                    "ts": 1772466036,
                     "emo": "📰"
                 }
             ]
@@ -24,16 +24,16 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Khamenei's killing spurs outrage among Kalshi and Polymarket users over claims of rigged markets and insider trading",
-                    "url": "https://www.businessinsider.com/khamenei-prediction-markets-kalshi-polymarket-insider-trading-outrage-2026-3",
-                    "ts": 1772385826,
-                    "emo": "📰"
+                    "title": "Intuit TurboTax has invested in AI for nearly a decade. In 2026, that plan includes store expansion.",
+                    "url": "https://www.businessinsider.com/intuit-turbotax-ai-transformation-strategy-timeline",
+                    "ts": 1772462398,
+                    "emo": "🧪"
                 },
                 {
-                    "title": "Fighting with Iran has spread to tankers at sea. Ships are coming under fire around the busy Strait of Hormuz.",
-                    "url": "https://www.businessinsider.com/fight-iran-spread-oil-tankers-vessels-strait-of-hormuz-2026-3",
-                    "ts": 1772383134,
-                    "emo": "🌍"
+                    "title": "Global airline stocks are plunging after Iran attacks triggered widespread travel chaos",
+                    "url": "https://www.businessinsider.com/airline-stocks-plunge-as-iran-strikes-cause-mass-travel-disruption-2026-3",
+                    "ts": 1772462251,
+                    "emo": "💰"
                 }
             ]
         }

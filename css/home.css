@@ -70,3 +70,24 @@ section#playlists {
 .medium {
     font-size: 18px;
 }
+
+
+.btn-xs, .btn-group-xs > .btn {
+    padding: 0.2rem 0.45rem;
+    font-size: 0.87rem;
+}
+a.btn.btn-outline-primary.btn-analyze:hover {
+    background: #00bfa6;
+    border: none;
+}
+.btn-outline-primary {
+    color: black;
+    border: none;
+}
+
+.btn {
+    box-shadow: none !important;
+}
+.btn-gray-border {
+    border: 2px solid #6c757d;
+}
