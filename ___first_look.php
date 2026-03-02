@@ -7,8 +7,6 @@
  * Strategy: stale-while-revalidate (render cached immediately, refresh async if stale).
  */
 
-require_once __DIR__ . '/___modules.php';
-
 $FIRST_LOOK_TTL_SECONDS = 600; // 10 min
 $FIRST_LOOK_MAX_ITEMS_PER_FEED = 2;
 

@@ -2,8 +2,6 @@
           error_reporting(E_ERROR | E_PARSE);
 
           set_time_limit(300);
-  
-          require_once('___modules.php');
 
           $url = trim($_POST['url'] ?? $_GET['url'] ?? '');
 

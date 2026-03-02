@@ -2,12 +2,15 @@
 // analysis.php
 // Unified Analysis page: entity, pub, topic, sent, category
 
+define('BASE_PATH', __DIR__);
+require_once BASE_PATH . "/core/___modules.php";
+
 $ANALYSIS_DEBUG = true; // toggle while building
 
 // ---- includes (keep these super short so the file stays scannable) ----
-require_once __DIR__ . '/___analysis_helpers.php';
-require_once __DIR__ . '/___analysis_params.php';
-require_once __DIR__ . '/___analysis_scaffolds.php';
+require_once BASE_PATH . '/___analysis_helpers.php';
+require_once BASE_PATH . '/___analysis_params.php';
+require_once BASE_PATH . '/___analysis_scaffolds.php';
 
 // ---- Hygiene toggles ----
 $require_nlp_ok    = 1;
@@ -62,7 +65,7 @@ try {
     // Module queries
     // =========================================================================
 
-    require_once __DIR__ . '/___analysis_modules.php';
+    require_once BASE_PATH . '/___analysis_modules.php';
 
     $modules = analysis_run_modules($db, $SCAFFOLD, $bind);
 
@@ -153,7 +156,6 @@ try {
   <!-- Favicon-->
   <link rel="icon" type="image/png" href="assets/img/play-green.png" />
 
-
   <!-- Font Awesome icons (free version)-->
   <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous"></script>
   <!-- Google fonts-->
@@ -161,22 +163,22 @@ try {
   <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 
-
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Lato&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter&display=swap" rel="stylesheet">
 
-
   <!-- Core theme CSS (includes Bootstrap)-->
-  <link href="css/styles.css?v=<?php echo filemtime(__DIR__ . '/css/styles.css'); ?>" rel="stylesheet" />
-  <link href="css/custom.css?v=<?php echo filemtime(__DIR__ . '/css/custom.css'); ?>" rel="stylesheet" />
-  <link href="css/sn-analysis.css?v=<?php echo filemtime(__DIR__ . '/css/sn-analysis.css'); ?>" rel="stylesheet" />
+  <link href="css/styles.css?v=<?php echo filemtime(BASE_PATH . '/css/styles.css'); ?>" rel="stylesheet" />
+  <link href="css/custom.css?v=<?php echo filemtime(BASE_PATH . '/css/custom.css'); ?>" rel="stylesheet" />
+  <link href="css/sn-analysis.css?v=<?php echo filemtime(BASE_PATH . '/css/sn-analysis.css'); ?>" rel="stylesheet" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
 
 </head>
 <body class="bg-light">
 
   <!-- Top nav-->        
-  <?php require_once __DIR__ . '/___topnav_full.php'; ?>
+  <?php require_once BASE_PATH . '/___topnav_full.php'; ?>
 
   <div class="container-fluid">
 
@@ -236,53 +238,52 @@ try {
       <div class="row">
           <div class="col-12 col-lg-12">
               <!-- Corpus overview: context, window, size, bounds -->
-              <?php require __DIR__ . '/views/analysis/___card_corpus_kpis.php'; ?>
+              <?php require BASE_PATH . '/views/analysis/___card_corpus_kpis.php'; ?>
           </div>
       </div>
 
       <div class="row">
           <div class="col-12 col-lg-6">
               <!-- NLP: Top entities (deduped + magnet/filter actions) -->
-              <?php require __DIR__ . '/views/analysis/___card_top_entities.php'; ?>
+              <?php require BASE_PATH . '/views/analysis/___card_top_entities.php'; ?>
           </div>
 
           <div class="col-12 col-lg-6">
               <!-- NLP: Top source domains (favicons + magnet/filter actions) -->
-              <?php require __DIR__ . '/views/analysis/___card_top_sources.php'; ?>
+              <?php require BASE_PATH . '/views/analysis/___card_top_sources.php'; ?>
           </div>
       </div>
 
       <div class="row">
           <div class="col-12 col-lg-6">
               <!-- NLP: Top topics (Top N + Other + magnet/filter actions) -->
-              <?php require __DIR__ . '/views/analysis/___card_top_topics.php'; ?>
+              <?php require BASE_PATH . '/views/analysis/___card_top_topics.php'; ?>
           </div>
 
           <div class="col-12 col-lg-6">
               <!-- NLP: Sentiment distribution (labels + emojis + magnet/filter actions) -->
-              <?php require __DIR__ . '/views/analysis/___card_sentiment.php'; ?>
+              <?php require BASE_PATH . '/views/analysis/___card_sentiment.php'; ?>
           </div>
       </div>
 
       <div class="row">
           <div class="col-12 col-lg-12">
               <!-- Corpus: Article table + client-side filters (chips/typeahead/magnets) -->
-              <?php require __DIR__ . '/views/analysis/___table_articles.php'; ?>
+              <?php require BASE_PATH . '/views/analysis/___table_articles.php'; ?>
           </div>
       </div>
   </div>
 
   <!-- Footer-->        
-  <?php require_once __DIR__ . '/___footer.php'; ?>
+  <?php require_once BASE_PATH . '/___footer.php'; ?>
   
   <!-- Modals-->        
-  <?php require_once __DIR__ . '/___modals.php'; ?>
+  <?php require_once BASE_PATH . '/___modals.php'; ?>
 
   <!-- Core JS (Bootstrap 4 requires jQuery first) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
-  <script src="js/sn-analysis-corpus.js?v=<?php echo filemtime(__DIR__ . '/js/sn-analysis-corpus.js'); ?>" defer></script>
+  <script src="js/sn-analysis-corpus.js?v=<?php echo filemtime(BASE_PATH . '/js/sn-analysis-corpus.js'); ?>" defer></script>
 
 </body>
 </html>

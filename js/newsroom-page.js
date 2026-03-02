@@ -171,7 +171,7 @@
       if (!$el || !term) return;
 
       $.ajax({
-        url: 'definitions.php?term=' + encodeURIComponent(term) + '&label=' + encodeURIComponent($el.attr('data-label') || ''),
+        url: '/api/definitions.php?term=' + encodeURIComponent(term) + '&label=' + encodeURIComponent($el.attr('data-label') || ''),
         type: 'GET',
         success: function (result) {
           let def = '';

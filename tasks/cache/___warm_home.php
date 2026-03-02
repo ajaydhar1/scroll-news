@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__ . '/___modules.php';
+define('BASE_PATH', dirname(__DIR__, 2)); // /tasks/cache -> project root
+require_once BASE_PATH . '/core/___modules.php';
 
 $bust = true;
 

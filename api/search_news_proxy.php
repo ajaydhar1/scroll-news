@@ -1,8 +1,10 @@
 <?php
 header('Content-Type: application/json');
 error_reporting(E_ERROR | E_PARSE);
-require_once("Feed.php");
-require_once('___modules.php');
+
+define('BASE_PATH', dirname(__DIR__)); // /api -> project root
+require_once BASE_PATH . '/core/___modules.php';
+require_once BASE_PATH . '/Feed.php';
 
 
 if (!isset($_GET['q']) || empty($_GET['q'])) {

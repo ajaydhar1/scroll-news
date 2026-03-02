@@ -1,6 +1,5 @@
 <?php
 // newsroom_core/request_resolution_layer.php
-require_once __DIR__ . '/../___modules.php'; // for getRandomArticle(), fix_image_if_broken(), etc.
 require_once __DIR__ . '/../OpenGraph.php';
 require_once __DIR__ . '/../Feed.php';
 

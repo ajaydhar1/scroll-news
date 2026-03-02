@@ -18,7 +18,7 @@ $('#analyzeForm').on('submit', function(e) {
 
 function fetchRSSArticles(feedUrl, category) {
   	$.ajax({
-    	url: "rss_proxy.php", // PHP file that fetches RSS content
+    	url: "/api/rss_proxy.php", // PHP file that fetches RSS content
     	method: "POST",
     	data: { feed: feedUrl },
     	dataType: "json", // This is the key addition

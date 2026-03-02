@@ -1,6 +1,7 @@
 <?php
 error_reporting(E_ERROR | E_PARSE);
-require_once('___modules.php');
+define('BASE_PATH', dirname(__DIR__)); // /api -> project root
+require_once BASE_PATH . '/core/___modules.php';
 
 $term = trim($_GET['term'] ?? '');
 $label = ner_label_to_human($_GET['label']);

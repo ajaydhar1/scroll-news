@@ -3,7 +3,6 @@
 $scroll_strip_articles = [];
 
 try {
-    require_once "___modules.php";
 
     $db = _pdo_or_null();
 

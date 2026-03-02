@@ -2,10 +2,6 @@
 // ___active_stories.php
 // Active Stories panel (Power Centers + Story Clusters) sourced from SQL
 
-if (!function_exists('_pdo_or_null')) {
-    require_once __DIR__ . '/___modules.php';
-}
-
 $ACTIVE_STORIES_DEBUG = true; // set true temporarily while testing
 
 $activeStoriesFail = function(string $msg, ?Throwable $e = null) use ($ACTIVE_STORIES_DEBUG) {

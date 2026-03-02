@@ -1,3 +1,7 @@
+<?php
+define('BASE_PATH', __DIR__);
+require_once BASE_PATH . "/core/___modules.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -242,7 +246,6 @@
             </section>
 
             <?php 
-                require_once __DIR__ . '/___modules.php';
 
                 $bust = isset($_GET['nocache']) && $_GET['nocache'] == '1';
                 

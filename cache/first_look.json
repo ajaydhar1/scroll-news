@@ -1,38 +1,38 @@
 {
-    "fetched_at": 1772469432,
+    "fetched_at": 1772484453,
     "feeds": [
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "What to do if you're an American in the Middle East right now",
-                    "url": "https://www.businessinsider.com/us-strikes-iran-what-to-do-american-middle-east-travel-2026-2",
-                    "ts": 1772468210,
-                    "emo": "📰"
-                },
-                {
-                    "title": "I've shopped at Dollar Tree for 20 years. Here are 12 products I swear by getting at the budget chain.",
-                    "url": "https://www.businessinsider.com/dollar-tree-best-things-to-buy-shopping-there-20-years-2026-3",
-                    "ts": 1772467441,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "THREE US FIGHTER JETS SHOT DOWN IN KUWAIT...",
-                    "url": "https://metro.co.uk/2026/03/02/three-us-f-15-fighter-jets-shot-kuwait-friendly-fire-incident-27184276/",
-                    "ts": 1772466036,
-                    "emo": "📰"
+                    "title": "Map shows every attack by Iran and America so far...",
+                    "url": "https://www.the-express.com/news/world-news/200821/iran-war-map-missile-strikes",
+                    "ts": 1772484036,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "'FRIENDLY FIRE'...",
+                    "title": "THREE US FIGHTER JETS SHOT DOWN IN KUWAIT; 'FRIENDLY FIRE'...",
                     "url": "https://metro.co.uk/2026/03/02/three-us-f-15-fighter-jets-shot-kuwait-friendly-fire-incident-27184276/",
-                    "ts": 1772466036,
+                    "ts": 1772484036,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Jamie Dimon on Trump's debanking lawsuit: 'I'd be angry, too', but it has no merit",
+                    "url": "https://www.businessinsider.com/jamie-dimon-trump-jpmorgan-debanking-lawsuit-angry-2026-3",
+                    "ts": 1772482926,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "The 26 best women's work bags, tested over years of commuting",
+                    "url": "https://www.businessinsider.com/guides/style/best-work-bag-women",
+                    "ts": 1772482866,
                     "emo": "📰"
                 }
             ]

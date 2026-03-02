@@ -5,13 +5,15 @@ ini_set('display_startup_errors', '0');
 error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 ini_set('log_errors', '1');
 
-require_once('___session_results.php');
-require_once 'config_interest.php';
-require_once('___modules.php');
+define('BASE_PATH', __DIR__);
 
-require_once __DIR__ . '/newsroom_core/___request_resolution_layer.php';
-require_once __DIR__ . '/newsroom_core/___newsroom_meta.php';
-require_once __DIR__ . '/newsroom_core/___newsroom_bootstrap.php';
+require_once 'config_interest.php';
+require_once BASE_PATH . "/core/___session_results.php";
+require_once BASE_PATH . "/core/___modules.php";
+
+require_once BASE_PATH . '/newsroom_core/___request_resolution_layer.php';
+require_once BASE_PATH . '/newsroom_core/___newsroom_meta.php';
+require_once BASE_PATH . '/newsroom_core/___newsroom_bootstrap.php';
 
 ?>
 <!DOCTYPE html>
@@ -51,10 +53,10 @@ require_once __DIR__ . '/newsroom_core/___newsroom_bootstrap.php';
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans&display=swap" rel="stylesheet" />
 
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css?v=<?php echo filemtime(__DIR__ . '/css/styles.css'); ?>" rel="stylesheet" />
-        <link href="css/custom.css?v=<?php echo filemtime(__DIR__ . '/css/custom.css'); ?>" rel="stylesheet" />
-        <link href="css/newsroom.css?v=<?php echo filemtime(__DIR__ . '/css/newsroom.css'); ?>" rel="stylesheet" />
-        <link href="css/mindpour.css?v=<?php echo filemtime(__DIR__ . '/css/mindpour.css'); ?>" rel="stylesheet" />
+        <link href="css/styles.css?v=<?php echo filemtime(BASE_PATH . '/css/styles.css'); ?>" rel="stylesheet" />
+        <link href="css/custom.css?v=<?php echo filemtime(BASE_PATH . '/css/custom.css'); ?>" rel="stylesheet" />
+        <link href="css/newsroom.css?v=<?php echo filemtime(BASE_PATH . '/css/newsroom.css'); ?>" rel="stylesheet" />
+        <link href="css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/css/mindpour.css'); ?>" rel="stylesheet" />
 
         <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
         <script src="https://www.amcharts.com/lib/3/serial.js"></script>
@@ -81,7 +83,7 @@ require_once __DIR__ . '/newsroom_core/___newsroom_bootstrap.php';
         <div class="page">
 
             <!-- Top nav-->        
-            <?php require_once __DIR__ . '/___topnav_full.php'; ?>
+            <?php require_once BASE_PATH . '/___topnav_full.php'; ?>
 
             <!-- Masthead-->
             <header class="masthead" style="background-image: url(<?php echo $img; ?>)">
@@ -381,7 +383,7 @@ require_once __DIR__ . '/newsroom_core/___newsroom_bootstrap.php';
             </div>
 
             <!-- Footer-->
-            <?php require_once __DIR__ . '/___footer.php'; ?>
+            <?php require_once BASE_PATH . '/___footer.php'; ?>
 
             <div id="sn-mini-player-mount"></div>
 
@@ -398,7 +400,7 @@ require_once __DIR__ . '/newsroom_core/___newsroom_bootstrap.php';
         </span>
 
         <!-- Modals-->        
-        <?php require_once __DIR__ . '/___modals.php'; ?>
+        <?php require_once BASE_PATH . '/___modals.php'; ?>
 
         <!-- Core JS (Bootstrap 4 requires jQuery first) -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
@@ -414,7 +416,7 @@ require_once __DIR__ . '/newsroom_core/___newsroom_bootstrap.php';
         <script src="js/newsroom/init.js" defer></script>
 
         <script src="js/sn_history.js"></script>
-        <script src="js/sn-mini-player-yt.js?v=<?= filemtime(__DIR__.'/js/sn-mini-player-yt.js') ?>" defer></script>
+        <script src="js/sn-mini-player-yt.js?v=<?= filemtime(BASE_PATH.'/js/sn-mini-player-yt.js') ?>" defer></script>
 
         <script>
             window.NEWSROOM = <?= json_encode([
@@ -426,7 +428,7 @@ require_once __DIR__ . '/newsroom_core/___newsroom_bootstrap.php';
             ], JSON_UNESCAPED_SLASHES) ?>;
         </script>
 
-        <script src="js/newsroom-page.js?v=<?= filemtime(__DIR__.'/js/newsroom-page.js') ?>" defer></script>
+        <script src="js/newsroom-page.js?v=<?= filemtime(BASE_PATH.'/js/newsroom-page.js') ?>" defer></script>
 
     </body>
 </html>

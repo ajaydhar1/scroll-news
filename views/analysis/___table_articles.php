@@ -189,7 +189,7 @@ if (!function_exists('canonEntityListFromNlp')) {
 
       <div class="col-md-2">
         <label class="form-label small text-muted mb-1">Category</label>
-        <select class="form-select form-select-sm" id="corpusCorpusCategorySelect">
+        <select class="form-select form-select-sm" id="corpusCategorySelect">
           <option value="">All</option>
           <!-- render categories server-side OR populate via JS -->
         </select>

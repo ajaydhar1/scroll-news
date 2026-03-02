@@ -210,7 +210,7 @@ $(document).ready(function() {
 
             function getDefinitions(element, term) {
                 $.ajax({
-                    url:"definitions.php?term=" + encodeURIComponent(term),
+                    url:"/api/definitions.php?term=" + encodeURIComponent(term),
                     type:"GET",
                     success:function(result) {
                         def = '';

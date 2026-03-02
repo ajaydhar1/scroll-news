@@ -1,7 +1,7 @@
 <?php
 
-require_once 'config_interest.php';
-require_once '___render.php';
+require_once __DIR__ . '/../config_interest.php';
+require_once __DIR__ . '/../___render.php';
 
 $CACHE_VER = 'v12';
 

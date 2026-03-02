@@ -1,5 +1,3 @@
-<?php require_once __DIR__ . '/___modules.php'; ?>
-
 <!-- Loading overlay -->
 <div id="loadingOverlay" class="loading-overlay" aria-live="polite" aria-busy="true" hidden>
     <div class="loading-spinner" role="status" aria-label="Loading"></div>

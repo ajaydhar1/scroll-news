@@ -4,10 +4,6 @@
 
 require_once 'config_interest.php';
 
-if (!function_exists('_pdo_or_null')) {
-    require_once __DIR__ . '/___modules.php';
-}
-
 $intel_panel = [
     'stats'    => [],
     'entities' => [],

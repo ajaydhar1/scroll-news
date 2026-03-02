@@ -1,10 +1,6 @@
 <?php
 // includes/analysis_helpers.php
 
-if (!function_exists('_pdo_or_null')) {
-    require_once __DIR__ . '/___modules.php';
-}
-
 function analysis_fail(string $msg, ?Throwable $e = null, bool $debug = false): void {
     error_log('[Analysis] ' . $msg . ($e ? (' | ' . $e->getMessage()) : ''));
     if ($debug) {

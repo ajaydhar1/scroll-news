@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     sourceInput: document.getElementById('sourceInput'),
     titleInput: document.getElementById('titleInput'),
     sentimentSelect: document.getElementById('sentimentSelect'),
-    corpusCorpusCategorySelect: document.getElementById('corpusCorpusCategorySelect'),
+    corpusCategorySelect: document.getElementById('corpusCategorySelect'),
     active: document.getElementById('corpusActiveFilters'),
     countLine: document.getElementById('corpusCountLine'),
     clearBtn: document.getElementById('corpusClearBtn'),
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (el.entityList) fillDatalist(el.entityList, entityCounts);
     if (el.sourceList) fillDatalist(el.sourceList, sourceCounts);
 
-    if (el.corpusCorpusCategorySelect) fillCorpusCategorySelect(categoryCounts);
+    if (el.corpusCategorySelect) fillCorpusCategorySelect(categoryCounts);
 
     if (el.topEntityChips) {
       renderTopChips(el.topEntityChips, entityCounts, 10, (v) => {
@@ -102,10 +102,10 @@ document.addEventListener('DOMContentLoaded', function () {
       .map(([k]) => k);
 
     const keepFirst =
-      el.corpusCorpusCategorySelect.querySelector('option[value=""]')?.outerHTML
+      el.corpusCategorySelect.querySelector('option[value=""]')?.outerHTML
       || '<option value="">All</option>';
 
-    el.corpusCorpusCategorySelect.innerHTML =
+    el.corpusCategorySelect.innerHTML =
       keepFirst + cats.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(titleCase(c))}</option>`).join('');
   }
 
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (state.topic)  chips.push(makeActiveChip('Topic', state.topic,  () => { state.topic=''; applyFilters(); }));
     if (state.title)  chips.push(makeActiveChip('Title', state.title,  () => { state.title=''; if (el.titleInput) el.titleInput.value=''; applyFilters(); }));
     if (state.sentiment) chips.push(makeActiveChip('Sentiment', state.sentiment, () => { state.sentiment=''; if (el.sentimentSelect) el.sentimentSelect.value=''; applyFilters(); }));
-    if (state.category)  chips.push(makeActiveChip('Category', state.category, () => { state.category=''; if (el.corpusCorpusCategorySelect) el.corpusCorpusCategorySelect.value=''; applyFilters(); }));
+    if (state.category)  chips.push(makeActiveChip('Category', state.category, () => { state.category=''; if (el.corpusCategorySelect) el.corpusCategorySelect.value=''; applyFilters(); }));
 
     el.active.innerHTML = chips.length ? chips.join('') : `<span class="text-muted small">No active filters</span>`;
   }
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (el.sourceInput) el.sourceInput.value = '';
     if (el.titleInput) el.titleInput.value = '';
     if (el.sentimentSelect) el.sentimentSelect.value = '';
-    if (el.corpusCorpusCategorySelect) el.corpusCorpusCategorySelect.value = '';
+    if (el.corpusCategorySelect) el.corpusCategorySelect.value = '';
 
     applyFilters();
   }
@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (el.titleInput)  el.titleInput.addEventListener('input', () => { state.title  = norm(el.titleInput.value); applyFilters(); });
 
   if (el.sentimentSelect) el.sentimentSelect.addEventListener('change', () => { state.sentiment = norm(el.sentimentSelect.value); applyFilters(); });
-  if (el.corpusCorpusCategorySelect) el.corpusCorpusCategorySelect.addEventListener('change', () => { state.category = norm(el.corpusCorpusCategorySelect.value); applyFilters(); });
+  if (el.corpusCategorySelect) el.corpusCategorySelect.addEventListener('change', () => { state.category = norm(el.corpusCategorySelect.value); applyFilters(); });
 
   if (el.clearBtn) el.clearBtn.addEventListener('click', clearAll);
 

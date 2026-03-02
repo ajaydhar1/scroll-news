@@ -6,8 +6,10 @@
 //   - rss_items.feed_id -> feeds.id
 //   - articles has a URL column matching rss_items.link (adjust if needed)
 
+define('BASE_PATH', __DIR__);
+
 require_once 'config_interest.php';
-require_once "___modules.php"; // adjust if needed
+require_once BASE_PATH . "/core/___modules.php";
 
 $pdo        = _pdo_or_null();
 $results    = [];

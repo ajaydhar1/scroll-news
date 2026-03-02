@@ -1,3 +1,6 @@
+<?php
+define('BASE_PATH', __DIR__);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -74,7 +77,7 @@
             font-size: 1.2rem;
             font-weight: 300;
             }
-            
+
         </style>
     </head>
     <body id="page-top">

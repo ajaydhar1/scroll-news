@@ -1,7 +1,9 @@
 <?php
 // scroll-archive.php — Daily Scroll Archive inside Scroll News template
 
-require_once('___modules.php');
+define('BASE_PATH', __DIR__);
+
+require_once BASE_PATH . "/core/___modules.php";
 
 // Fetch all RSS items ordered by pub_date DESC
 $DAYS_TO_SHOW = 4;
