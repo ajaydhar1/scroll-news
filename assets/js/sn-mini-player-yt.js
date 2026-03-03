@@ -511,10 +511,19 @@
     syncWidget();
   });
 
-  widget.addEventListener('click', ()=>{
-    shell().classList.remove('hud-hidden');
-    shell().classList.toggle('hud-collapsed');
-    saveUICollapsed(shell().classList.contains('hud-collapsed'));
+  widget.addEventListener('click', () => {
+    const c = shell();
+
+    // If hidden, open expanded (don’t collapse on first click)
+    if (c.classList.contains('hud-hidden')) {
+      c.classList.remove('hud-hidden');
+      c.classList.remove('hud-collapsed');
+    } else {
+      // Otherwise, toggle collapsed/expanded
+      c.classList.toggle('hud-collapsed');
+    }
+
+    saveUICollapsed(c.classList.contains('hud-collapsed'));
     syncWidget();
   });
 
@@ -531,13 +540,6 @@
     widget.setAttribute('aria-pressed', String(!collapsed && !hidden));
     widget.innerHTML = (collapsed || hidden) ? ICONS.widgetClosed : ICONS.widgetOpen;
   }
-  
-  widget.addEventListener('click', ()=>{
-    shell().classList.remove('hud-hidden');
-    shell().classList.toggle('hud-collapsed');
-    saveUICollapsed(shell().classList.contains('hud-collapsed')); // persist
-    syncWidget();
-  });
 
 
   // Also keep widget in sync when code collapses/expands elsewhere
