@@ -166,19 +166,23 @@ function sn_article_vm_from_row(array $row, array $ctx = []): array {
         }
         $hashtags = array_slice($hashtags, 0, 5);
 
-        // Sentiment
-        $label = $nlp['sentiment']['label'] ?? null;
+        // Sentiment (score → bucket → emoji; consistent with analysis + intel panel)
         $score = $nlp['sentiment']['score'] ?? null;
 
-        $emoji = '';
-        if ($label === 'positive') $emoji = '😊';
-        elseif ($label === 'negative') $emoji = '😔';
-        elseif ($label === 'neutral')  $emoji = '😐';
+        $bucket = sn_sentiment_bucket_from_score($score);   // positive|neutral|negative|unknown
+        $emoji  = sn_sentiment_emoji($bucket);              // 🙂 😐 ☹️ 🤷
 
         $percent = null;
-        if (is_numeric($score)) $percent = (int)round(((float)$score) * 100);
+        if (is_numeric($score)) {
+            $percent = (int)round(((float)$score) * 100);
+        }
 
-        $sentiment = ['label' => $label, 'emoji' => $emoji, 'percent' => $percent];
+        $sentiment = [
+            'label'   => ($bucket === 'unknown' ? null : $bucket),
+            'emoji'   => $emoji,
+            'percent' => $percent,
+            'score'   => (is_numeric($score) ? (float)$score : null),
+        ];
 
         // Emotional reaction (top 3)
         $emotionsRaw = $nlp['emotional_reaction'] ?? [];
@@ -578,14 +582,26 @@ function scroll_render_article_intel_item(array $article, array $opts = []): str
     $emotionMinPct  = (float)($opts['emotion_min_pct'] ?? 15.0);
 
     // --- Helpers local to this function (safe + contained)
-    $sentimentEmoji = function (?string $label): string {
-        if (!$label) return '';
-        switch (strtolower($label)) {
+
+    // 1) Bucket from score (same logic as analysis.php)
+    $sentimentBucket = function ($score): string {
+        if ($score === null || $score === '' || !is_numeric($score)) return 'unknown';
+        $s = (float)$score;
+
+        // Uses your centralized thresholds
+        if ($s >= SN_SENT_POS) return 'positive';
+        if ($s <= SN_SENT_NEG) return 'negative';
+        return 'neutral';
+    };
+
+    // 2) Emoji from bucket
+    $sentimentEmoji = function (?string $bucket): string {
+        if (!$bucket) return '🤷';
+        switch (strtolower($bucket)) {
             case 'positive': return '🙂';
             case 'negative': return '☹️';
             case 'neutral':  return '😐';
-            case 'mixed':    return '😶';
-            default:         return '😐';
+            default:         return '🤷';
         }
     };
 
@@ -625,8 +641,9 @@ function scroll_render_article_intel_item(array $article, array $opts = []): str
     if (!is_array($nlp)) $nlp = [];
 
     // Sentiment
-    $sentLabel = $nlp['sentiment']['label'] ?? null;
-    $sentEmoji = $sentimentEmoji(is_string($sentLabel) ? $sentLabel : null);
+    $score  = $nlp['sentiment']['score'] ?? null;
+    $bucket = $sentimentBucket($score);
+    $sentEmoji  = $sentimentEmoji($bucket);
 
     // Emotions
     $emotionDetail = $topEmotions($nlp['emotional_reaction'] ?? [], 2, $emotionMinPct);

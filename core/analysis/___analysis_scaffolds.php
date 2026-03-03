@@ -76,8 +76,21 @@ domainized AS (
         ''
       )
     ) AS domain,
+
+    -- Legacy label stored by NLP API (keep for debugging / reference)
     COALESCE(b.nlp::jsonb #>> '{sentiment,label}', 'unknown') AS sentiment_label,
-    NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric AS sentiment_score
+
+    -- Raw score stored by NLP API
+    NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric AS sentiment_score,
+
+    -- ✅ New: bucket computed from score using your thresholds
+    CASE
+      WHEN NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '') IS NULL THEN 'unknown'
+      WHEN (NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric) >= :sent_pos THEN 'positive'
+      WHEN (NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric) <= :sent_neg THEN 'negative'
+      ELSE 'neutral'
+    END AS sentiment_bucket
+
   FROM base_articles b
 ),
 topics AS (
@@ -184,8 +197,21 @@ domainized AS (
         ''
       )
     ) AS domain,
+
+    -- Legacy label stored by NLP API (keep for debugging / reference)
     COALESCE(b.nlp::jsonb #>> '{sentiment,label}', 'unknown') AS sentiment_label,
-    NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric AS sentiment_score
+
+    -- Raw score stored by NLP API
+    NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric AS sentiment_score,
+
+    -- ✅ New: bucket computed from score using your thresholds
+    CASE
+      WHEN NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '') IS NULL THEN 'unknown'
+      WHEN (NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric) >= :sent_pos THEN 'positive'
+      WHEN (NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric) <= :sent_neg THEN 'negative'
+      ELSE 'neutral'
+    END AS sentiment_bucket
+
   FROM base_articles b
 ),
 topics AS (
@@ -278,7 +304,6 @@ base_articles AS (
       OR (a.nlp IS NOT NULL)
     )
     AND a.nlp IS NOT NULL
-    AND lower(COALESCE(a.nlp::jsonb #>> '{sentiment,label}', 'unknown')) = b.val
 ),
 domainized AS (
   SELECT
@@ -290,9 +315,25 @@ domainized AS (
         ''
       )
     ) AS domain,
+
     COALESCE(b.nlp::jsonb #>> '{sentiment,label}', 'unknown') AS sentiment_label,
-    NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric AS sentiment_score
+    NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric AS sentiment_score,
+
+    CASE
+      WHEN NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '') IS NULL THEN 'unknown'
+      WHEN (NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric) >= :sent_pos THEN 'positive'
+      WHEN (NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric) <= :sent_neg THEN 'negative'
+      ELSE 'neutral'
+    END AS sentiment_bucket
+
   FROM base_articles b
+  WHERE
+    CASE
+      WHEN NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '') IS NULL THEN 'unknown'
+      WHEN (NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric) >= :sent_pos THEN 'positive'
+      WHEN (NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric) <= :sent_neg THEN 'negative'
+      ELSE 'neutral'
+    END = b.val
 ),
 topics AS (
   SELECT
@@ -396,8 +437,21 @@ domainized AS (
         ''
       )
     ) AS domain,
+
+    -- Legacy label stored by NLP API (keep for debugging / reference)
     COALESCE(b.nlp::jsonb #>> '{sentiment,label}', 'unknown') AS sentiment_label,
-    NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric AS sentiment_score
+
+    -- Raw score stored by NLP API
+    NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric AS sentiment_score,
+
+    -- ✅ New: bucket computed from score using your thresholds
+    CASE
+      WHEN NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '') IS NULL THEN 'unknown'
+      WHEN (NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric) >= :sent_pos THEN 'positive'
+      WHEN (NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric) <= :sent_neg THEN 'negative'
+      ELSE 'neutral'
+    END AS sentiment_bucket
+
   FROM base_articles b
 ),
 topics AS (
@@ -506,8 +560,21 @@ domainized AS (
         ''
       )
     ) AS domain,
+
+    -- Legacy label stored by NLP API (keep for debugging / reference)
     COALESCE(b.nlp::jsonb #>> '{sentiment,label}', 'unknown') AS sentiment_label,
-    NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric AS sentiment_score
+
+    -- Raw score stored by NLP API
+    NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric AS sentiment_score,
+
+    -- ✅ New: bucket computed from score using your thresholds
+    CASE
+      WHEN NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '') IS NULL THEN 'unknown'
+      WHEN (NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric) >= :sent_pos THEN 'positive'
+      WHEN (NULLIF(b.nlp::jsonb #>> '{sentiment,score}', '')::numeric) <= :sent_neg THEN 'negative'
+      ELSE 'neutral'
+    END AS sentiment_bucket
+
   FROM base_articles b
 ),
 topics AS (

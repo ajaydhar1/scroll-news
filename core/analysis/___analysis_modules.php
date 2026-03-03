@@ -100,7 +100,7 @@ SQL);
     // ================================
     $sentiment = $run(<<<SQL
 SELECT
-  sentiment_label,
+  sentiment_bucket AS sentiment_label,
   count(*) AS articles
 FROM domainized
 GROUP BY 1
@@ -147,7 +147,7 @@ SELECT
   title,
   url,
   author,
-  sentiment_label,
+  sentiment_bucket AS sentiment_label,
   sentiment_score,
   nlp
 FROM domainized

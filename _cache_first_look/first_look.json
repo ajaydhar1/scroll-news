@@ -1,20 +1,20 @@
 {
-    "fetched_at": 1772557988,
+    "fetched_at": 1772573952,
     "feeds": [
         {
             "name": "BusinessInsider",
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "For months, I felt constantly bored and disengaged from hobbies I used to love. Then, I started saying yes to everything.",
-                    "url": "https://www.businessinsider.com/forced-myself-say-yes-all-plans-off-phone-made-friends-2026-3",
-                    "ts": 1772556579,
-                    "emo": "📰"
+                    "title": "Stocks drop, oil gains as traders digest the latest updates in the Iran war",
+                    "url": "https://markets.businessinsider.com/news/stocks/stock-market-wrap-energy-prices-crude-iran-qatar-lng-spx-2026-3",
+                    "ts": 1772572723,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "Zohran Mamdani is rolling out his first wave of free childcare. See which NYC neighborhoods get free 2-K this fall.",
-                    "url": "https://www.businessinsider.com/zohran-mamdani-launches-free-childcare-program-new-york-city-2026-3",
-                    "ts": 1772556435,
+                    "title": "Palantir wants its old employees back: 'The shire is calling'",
+                    "url": "https://www.businessinsider.com/palantir-former-employees-return-shire-lord-of-the-rings-2026-3",
+                    "ts": 1772572558,
                     "emo": "📰"
                 }
             ]
@@ -26,13 +26,13 @@
                 {
                     "title": "DAY 4: Iranian Drones and Missiles Challenge Stretched U.S. Forces...",
                     "url": "https://www.wsj.com/world/middle-east/iranian-drones-and-missiles-challenge-stretched-u-s-forces-9e41df9a",
-                    "ts": 1772556216,
+                    "ts": 1772571876,
                     "emo": "📰"
                 },
                 {
                     "title": "Will assault drain interceptor stockpiles?",
                     "url": "https://www.france24.com/en/live-news/20260303-will-iran-s-missiles-drain-us-interceptor-stocks",
-                    "ts": 1772556216,
+                    "ts": 1772571876,
                     "emo": "📰"
                 }
             ]

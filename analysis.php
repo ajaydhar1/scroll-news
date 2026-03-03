@@ -50,6 +50,8 @@ try {
         ':require_status_ok'  => $require_status_ok,
         ':value'              => $value,   // context-specific meaning
         ':context'            => $context, // useful for KPI display
+        ':sent_pos'           => SN_SENT_POS,
+        ':sent_neg'           => SN_SENT_NEG,
     ];
 
     // ---- Query runner: appends FINAL SELECT onto the scaffold ----

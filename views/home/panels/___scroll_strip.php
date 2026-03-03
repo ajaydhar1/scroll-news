@@ -24,6 +24,9 @@ try {
             url IS NOT NULL 
             AND title IS NOT NULL
             AND media_url IS NOT NULL
+            AND nlp IS NOT NULL
+            AND jsonb_typeof(nlp->'entities') = 'array'
+            AND jsonb_array_length(nlp->'entities') > 0
         ORDER BY pub_date DESC
         LIMIT 12
     ";

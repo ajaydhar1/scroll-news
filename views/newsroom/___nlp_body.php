@@ -234,25 +234,25 @@
                           <?php
                            
                            
-                            $arrss=array('positive','neutral','negative');
-                            $sentiment_score = $arr['sentiment'];
-                            $sentiment = 'neutral';
+                            $arrss = ['positive','neutral','negative'];
 
-                            if ($sentiment_score < -0.025) {
-                              $sentiment = 'negative';
+                            // $arr should be decoded NLP array
+                            $score = null;
+                            if (isset($arr['sentiment']) && is_array($arr['sentiment'])) {
+                                $score = $arr['sentiment']['score'] ?? null;
                             }
-                            else if ($sentiment_score > 0.025) {
-                              $sentiment = 'positive';
-                            }
-                          
-                            foreach($arrss as $arrsss)
-                            {
-                              $ctc='';
-                              if($arrsss == $sentiment)
-                                $ctc='style="background:black; padding:7px 10px; color:white;"';
-                              
-                              echo  '<p class="text-center" style="margin-top:40px; "><span '.$ctc.'> '.ucfirst($arrsss).' </span> </p>';   
-              
+
+                            // Compute bucket using shared thresholds
+                            $bucket = sn_sentiment_bucket_from_score($score); // returns positive/neutral/negative/unknown
+
+                            // If you only want to display the 3 options, treat unknown as neutral (or add unknown to arrss)
+                            $sentiment = ($bucket === 'unknown') ? 'neutral' : $bucket;
+
+                            foreach ($arrss as $label) {
+                                $ctc = ($label === $sentiment)
+                                    ? 'style="background:black; padding:7px 10px; color:white;"'
+                                    : '';
+                                echo '<p class="text-center" style="margin-top:40px;"><span '.$ctc.'> '.ucfirst($label).' </span></p>';
                             }
                           
                           ?>

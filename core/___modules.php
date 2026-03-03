@@ -1,6 +1,8 @@
 <?php
 
 require_once __DIR__ . '/config/interest.php';
+require_once __DIR__ . '/utils/___sentiment.php';
+require_once __DIR__ . '/config/sentiment_thresholds.php';
 require_once __DIR__ . '/render/___render.php';
 
 $CACHE_VER = 'v13';

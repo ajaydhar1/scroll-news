@@ -121,17 +121,29 @@
 
       // NLP bits (DB only)
       const hashtags = Array.isArray(a.hashtags) ? a.hashtags : [];
-      const sentimentLabel = a.sentiment_label || null;
+      const sentimentScoreRaw = a.sentiment_score ?? a.sentimentScore ?? null;
       const emotions = Array.isArray(a.emotions) ? a.emotions : [];
 
       // Badges (DB only)
       const badges = Array.isArray(a.badges) ? a.badges : [];
 
-      // Sentiment emoji
-      let sentimentEmoji = "";
-      if (sentimentLabel === "positive") sentimentEmoji = "😊";
-      else if (sentimentLabel === "negative") sentimentEmoji = "😔";
-      else if (sentimentLabel === "neutral") sentimentEmoji = "😐";
+      // Sentiment (score → bucket → emoji) — keep consistent with site thresholds
+      const SENT_POS = 0.30;   // match SN_SENT_POS
+      const SENT_NEG = -0.02;  // match SN_SENT_NEG (or -0.30 if you kept symmetric)
+
+      let sentimentBucket = "unknown";
+      const s = Number(sentimentScoreRaw);
+
+      if (Number.isFinite(s)) {
+        if (s >= SENT_POS) sentimentBucket = "positive";
+        else if (s <= SENT_NEG) sentimentBucket = "negative";
+        else sentimentBucket = "neutral";
+      }
+
+      let sentimentEmoji = "🤷";
+      if (sentimentBucket === "positive") sentimentEmoji = "🙂";
+      else if (sentimentBucket === "negative") sentimentEmoji = "☹️";
+      else if (sentimentBucket === "neutral") sentimentEmoji = "😐";
 
       // Hashtag chips
       let hashtagsHtml = "";
