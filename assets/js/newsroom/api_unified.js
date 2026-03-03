@@ -22,7 +22,7 @@
 
     
     function getData(cb){
-        $.getJSON('newsroom_core/public/api/newsroom_data.php', { url: articleUrl }).done(cb).fail(err => {
+        $.getJSON('core/newsroom/public/api/newsroom_data.php', { url: articleUrl }).done(cb).fail(err => {
             console.error('newsroom_data error', err);
         });
     }

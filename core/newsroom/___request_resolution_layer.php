@@ -1,5 +1,5 @@
 <?php
-// newsroom_core/request_resolution_layer.php
+// core/newsroom/request_resolution_layer.php
 require_once BASE_PATH . '/vendor/opengraph/OpenGraph.php';
 require_once BASE_PATH . '/vendor/feed/Feed.php';
 

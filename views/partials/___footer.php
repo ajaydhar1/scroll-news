@@ -11,7 +11,7 @@
                     <a class="btn btn-black btn-social mx-2" title="IG profile" href="https://www.instagram.com/scrollnewsio/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                 </div>
                 <div class="col-lg-4 text-lg-right font-weight-bold">
-                    <a href="index.php" data-loading>scroll news</a>
+                    <a href="/" data-loading>scroll news</a>
                     <br>
                     <a href="about.php" class="text-muted small mr-3">About</a>
                     <a href="terms.php" class="text-muted small mr-3">Terms</a>

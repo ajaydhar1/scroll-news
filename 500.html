@@ -38,8 +38,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter&display=swap" rel="stylesheet">
 
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css?v=<?php echo filemtime(__DIR__ . '/css/styles.css'); ?>" rel="stylesheet" />
-        <link href="css/custom.css?v=<?php echo filemtime(__DIR__ . '/css/custom.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
 
         <style>
             section#services {
@@ -97,7 +97,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4 d-flex text-lg-left text-bolder">
                         <h5 class="mb-2 mb-sm-0">
-                            <a href="index.php" data-loading>
+                            <a href="/" data-loading>
                                 <img src="assets/img/play-green.png" alt="Logo play button" style="height: 24px; width: auto; vertical-align: middle; margin-right: 5px; margin-bottom: 5px;">
                                 Scroll News
                             </a>
@@ -133,7 +133,7 @@
                             that’s definitely working.
                         </p>
                         <div class="mt-4">
-                            <a href="index.php" class="btn btn-dark btn-lg mr-2" data-loading>
+                            <a href="/" class="btn btn-dark btn-lg mr-2" data-loading>
                                 <i class="fas fa-home mr-1"></i> Go to Homepage
                             </a>
                             <a href="newsroom.php" class="btn btn-green btn-lg" data-loading>
@@ -186,7 +186,7 @@
                             <a class="btn btn-black btn-social mx-2" title="IG profile" href="https://www.instagram.com/scrollnewsio/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                         </div>
                         <div class="col-lg-4 text-lg-right font-weight-bold">
-                            <a href="index.php" data-loading>scroll news</a>
+                            <a href="/" data-loading>scroll news</a>
                             <br>
                             <a href="about.php" class="text-muted small mr-3">About</a>
                             <a href="terms.php" class="text-muted small mr-3">Terms</a>
@@ -206,7 +206,7 @@
         <script src="assets/mail/jqBootstrapValidation.js"></script>
         <script src="assets/mail/contact_me.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="/assets/js/scripts.js"></script>
 
         <script>
             function goToAnalytics() {

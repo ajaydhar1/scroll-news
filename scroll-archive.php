@@ -142,10 +142,10 @@ if (!$pdo) {
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans&display=swap" rel="stylesheet" />
 
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css?v=<?php echo filemtime(__DIR__ . '/css/styles.css'); ?>" rel="stylesheet" />
-        <link href="css/custom.css?v=<?php echo filemtime(__DIR__ . '/css/custom.css'); ?>" rel="stylesheet" />
-        <link href="css/mindpour.css?v=<?php echo filemtime(__DIR__ . '/css/mindpour.css'); ?>" rel="stylesheet" />
-        <link href="css/scroll-archive.css?v=<?php echo filemtime(__DIR__ . '/css/scroll-archive.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/mindpour.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/scroll-archive.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/scroll-archive.css'); ?>" rel="stylesheet" />
 
     </head>
     <body id="page-top" class="bg-light-3">
@@ -293,8 +293,8 @@ if (!$pdo) {
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <script src="js/sn_history.js"></script>
-        <script src="js/scroll-archive.js?v=<?php echo filemtime(__DIR__ . '/js/scroll-archive.js'); ?>"></script>
+        <script src="/assets/js/scripts.js"></script>
+        <script src="/assets/js/sn_history.js"></script>
+        <script src="/assets/js/scroll-archive.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/scroll-archive.js'); ?>"></script>
     </body>
 </html>

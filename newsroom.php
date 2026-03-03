@@ -11,9 +11,9 @@ require_once BASE_PATH . "/core/config/interest.php";
 require_once BASE_PATH . "/core/___session_results.php";
 require_once BASE_PATH . "/core/___modules.php";
 
-require_once BASE_PATH . '/newsroom_core/___request_resolution_layer.php';
-require_once BASE_PATH . '/newsroom_core/___newsroom_meta.php';
-require_once BASE_PATH . '/newsroom_core/___newsroom_bootstrap.php';
+require_once BASE_PATH . '/core/newsroom/___request_resolution_layer.php';
+require_once BASE_PATH . '/core/newsroom/___newsroom_meta.php';
+require_once BASE_PATH . '/core/newsroom/___newsroom_bootstrap.php';
 
 ?>
 <!DOCTYPE html>
@@ -56,10 +56,10 @@ require_once BASE_PATH . '/newsroom_core/___newsroom_bootstrap.php';
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans&display=swap" rel="stylesheet" />
 
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css?v=<?php echo filemtime(BASE_PATH . '/css/styles.css'); ?>" rel="stylesheet" />
-        <link href="css/custom.css?v=<?php echo filemtime(BASE_PATH . '/css/custom.css'); ?>" rel="stylesheet" />
-        <link href="css/newsroom.css?v=<?php echo filemtime(BASE_PATH . '/css/newsroom.css'); ?>" rel="stylesheet" />
-        <link href="css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/css/mindpour.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/newsroom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/newsroom.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/mindpour.css'); ?>" rel="stylesheet" />
 
         <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
         <script src="https://www.amcharts.com/lib/3/serial.js"></script>
@@ -68,9 +68,9 @@ require_once BASE_PATH . '/newsroom_core/___newsroom_bootstrap.php';
         <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
         <!-- Add IntroJs styles -->
-        <link href="css/introjs.css" rel="stylesheet">
+        <link href="/assets/css/introjs.css" rel="stylesheet">
 
-        <link href="css/lightbox.css" rel="stylesheet" />
+        <link href="/assets/css/lightbox.css" rel="stylesheet" />
 
         <script>
             // Flip this to false to go back to your old 2-AJAX flow instantly.
@@ -408,17 +408,17 @@ require_once BASE_PATH . '/newsroom_core/___newsroom_bootstrap.php';
         <!-- Core JS (Bootstrap 4 requires jQuery first) -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
-        <script src="js/lottie.js" type="text/javascript"></script>
+        <script src="/assets/js/lottie.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/intro.js"></script>
         <script type="text/javascript" src="js/lightbox.js"></script>
 
-        <script src="js/newsroom/handlers.js" defer></script>
-        <!--<script src="js/newsroom/api_legacy.js" defer></script>-->
-        <!--<script src="js/newsroom/api_unified.js" defer></script>-->
-        <script src="js/newsroom/init.js" defer></script>
+        <script src="/assets/js/newsroom/handlers.js" defer></script>
+        <!--<script src="/assets/js/newsroom/api_legacy.js" defer></script>-->
+        <!--<script src="/assets/js/newsroom/api_unified.js" defer></script>-->
+        <script src="/assets/js/newsroom/init.js" defer></script>
 
-        <script src="js/sn_history.js"></script>
-        <script src="js/sn-mini-player-yt.js?v=<?= filemtime(BASE_PATH.'/js/sn-mini-player-yt.js') ?>" defer></script>
+        <script src="/assets/js/sn_history.js"></script>
+        <script src="/assets/js/sn-mini-player-yt.js?v=<?= filemtime(BASE_PATH.'/assets/js/sn-mini-player-yt.js') ?>" defer></script>
 
         <script>
             window.NEWSROOM = <?= json_encode([
@@ -430,7 +430,7 @@ require_once BASE_PATH . '/newsroom_core/___newsroom_bootstrap.php';
             ], JSON_UNESCAPED_SLASHES) ?>;
         </script>
 
-        <script src="js/newsroom-page.js?v=<?= filemtime(BASE_PATH.'/js/newsroom-page.js') ?>" defer></script>
+        <script src="/assets/js/newsroom-page.js?v=<?= filemtime(BASE_PATH.'/assets/js/newsroom-page.js') ?>" defer></script>
 
     </body>
 </html>

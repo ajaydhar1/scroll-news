@@ -95,15 +95,15 @@ require_once BASE_PATH . "/core/___modules.php";
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans&display=swap" rel="stylesheet" />
 
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css?v=<?php echo filemtime(__DIR__ . '/css/styles.css'); ?>" rel="stylesheet" />
-        <link href="css/custom.css?v=<?php echo filemtime(__DIR__ . '/css/custom.css'); ?>" rel="stylesheet" />
-        <link href="css/mindpour.css?v=<?php echo filemtime(__DIR__ . '/css/mindpour.css'); ?>" rel="stylesheet" />
-        <link href="css/home.css?v=<?php echo filemtime(__DIR__ . '/css/home.css'); ?>" rel="stylesheet" />
-        <link href="css/news-intel-panel.css?v=<?php echo filemtime(__DIR__ . '/css/news-intel-panel.css'); ?>" rel="stylesheet" />
-        <link href="css/active-stories.css?v=<?php echo filemtime(__DIR__ . '/css/active-stories.css'); ?>" rel="stylesheet" />
-        <link href="css/scroll-strip.css?v=<?php echo filemtime(__DIR__ . '/css/scroll-strip.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/mindpour.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/home.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/home.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/news-intel-panel.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/news-intel-panel.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/active-stories.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/active-stories.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/scroll-strip.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/scroll-strip.css'); ?>" rel="stylesheet" />
 
-        <link href="css/lightbox.css" rel="stylesheet" />
+        <link href="/assets/css/lightbox.css" rel="stylesheet" />
 
         <link rel="preload" as="image" href="assets/img/header-bg-3.jpg">
 
@@ -322,8 +322,8 @@ require_once BASE_PATH . "/core/___modules.php";
 
         <script type="text/javascript" src="js/lightbox.js"></script>
 
-        <script src="js/sn_history.js"></script>
-        <script src="js/sn-mini-player-yt.js?v=<?= filemtime(__DIR__.'/js/sn-mini-player-yt.js') ?>" defer></script>
+        <script src="/assets/js/sn_history.js"></script>
+        <script src="/assets/js/sn-mini-player-yt.js?v=<?= filemtime(BASE_PATH . '/assets/js/sn-mini-player-yt.js') ?>" defer></script>
 
     </body>
 </html>

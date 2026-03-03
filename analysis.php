@@ -172,9 +172,9 @@ try {
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter&display=swap" rel="stylesheet">
 
   <!-- Core theme CSS (includes Bootstrap)-->
-  <link href="css/styles.css?v=<?php echo filemtime(BASE_PATH . '/css/styles.css'); ?>" rel="stylesheet" />
-  <link href="css/custom.css?v=<?php echo filemtime(BASE_PATH . '/css/custom.css'); ?>" rel="stylesheet" />
-  <link href="css/sn-analysis.css?v=<?php echo filemtime(BASE_PATH . '/css/sn-analysis.css'); ?>" rel="stylesheet" />
+  <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
+  <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
+  <link href="/assets/css/sn-analysis.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/sn-analysis.css'); ?>" rel="stylesheet" />
 
 </head>
 <body class="bg-light">
@@ -285,7 +285,7 @@ try {
   <!-- Core JS (Bootstrap 4 requires jQuery first) -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
-  <script src="js/sn-analysis-corpus.js?v=<?php echo filemtime(BASE_PATH . '/js/sn-analysis-corpus.js'); ?>" defer></script>
+  <script src="/assets/js/sn-analysis-corpus.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/sn-analysis-corpus.js'); ?>" defer></script>
 
 </body>
 </html>

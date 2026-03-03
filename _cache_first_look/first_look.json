@@ -1,20 +1,20 @@
 {
-    "fetched_at": 1772500493,
+    "fetched_at": 1772546365,
     "feeds": [
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "Map shows every attack by Iran and America so far...",
-                    "url": "https://www.the-express.com/news/200821",
-                    "ts": 1772500416,
-                    "emo": "🔥"
+                    "title": "DAY 4: Iranian Drones and Missiles Challenge Stretched U.S. Forces...",
+                    "url": "https://www.wsj.com/world/middle-east/iranian-drones-and-missiles-challenge-stretched-u-s-forces-9e41df9a",
+                    "ts": 1772545776,
+                    "emo": "📰"
                 },
                 {
-                    "title": "THREE US FIGHTER JETS SHOT DOWN IN KUWAIT; 'FRIENDLY FIRE'...",
-                    "url": "https://metro.co.uk/2026/03/02/three-us-f-15-fighter-jets-shot-kuwait-friendly-fire-incident-27184276/",
-                    "ts": 1772500416,
+                    "title": "State Dept Urges Americans in 14 Countries to Leave...",
+                    "url": "https://www.newsweek.com/warning-issued-to-americans-in-14-countries-as-iran-war-grows-depart-now-11608241",
+                    "ts": 1772545776,
                     "emo": "📰"
                 }
             ]
@@ -24,15 +24,15 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Amazon says 3 data centers damaged by drone strikes in Middle East",
-                    "url": "https://www.businessinsider.com/amazon-data-centers-middle-east-drone-strukes-us-iran-conflict-2026-3",
-                    "ts": 1772498385,
+                    "title": "Why 'Bridgerton' showrunner Jess Brownell says it was 'hugely important' for Benedict to come out to Sophie",
+                    "url": "https://www.businessinsider.com/bridgerton-showrunner-important-benedict-coming-out-scene-2026-3",
+                    "ts": 1772544901,
                     "emo": "📰"
                 },
                 {
-                    "title": "Lady Gaga tour tickets 2026: Dates, cities, and where to buy",
-                    "url": "https://www.businessinsider.com/guides/tickets/where-to-buy-lady-gaga-tickets-concert-tour",
-                    "ts": 1772494854,
+                    "title": "Austin's growth has skyrocketed in the last decade. See which other cities are booming.",
+                    "url": "https://www.businessinsider.com/fastest-growing-cities-usa-2026",
+                    "ts": 1772544001,
                     "emo": "📰"
                 }
             ]

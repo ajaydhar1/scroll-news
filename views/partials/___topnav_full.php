@@ -8,7 +8,7 @@
         <div class="row align-items-center">
             <div class="col-lg-4 text-lg-left d-flex justify-content-between align-items-center">
                 <h5 class="mb-2 mb-sm-0 align-items-center">
-                    <a href="index.php" data-loading>
+                    <a href="/" data-loading>
                         <img src="assets/img/play-green.png" alt="Logo" style="height: 24px; width: auto; vertical-align: middle; margin-right: 5px; margin-bottom: 5px;">
                         Scroll News
                     </a>
@@ -46,8 +46,8 @@
     pubsToFilterOut = <?php echo json_encode($filter_out ?? []); ?>;
 </script>
 
-<script src="js/newsroom/utils.js" defer></script>
-<script src="js/newsroom/modules.js" defer></script>
+<script src="/assets/js/newsroom/utils.js" defer></script>
+<script src="/assets/js/newsroom/modules.js" defer></script>
 
 <script>
     (function(){

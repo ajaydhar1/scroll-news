@@ -1,5 +1,5 @@
 <?php
-// newsroom_core/public/api/newsroom_data.php
+// core/newsroom/public/api/newsroom_data.php
 
 /**
  * newsroom_data.php

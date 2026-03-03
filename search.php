@@ -121,9 +121,9 @@ if (!$pdo) {
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans&display=swap" rel="stylesheet" />
 
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css?v=<?php echo filemtime(__DIR__ . '/css/styles.css'); ?>" rel="stylesheet" />
-        <link href="css/custom.css?v=<?php echo filemtime(__DIR__ . '/css/custom.css'); ?>" rel="stylesheet" />
-        <link href="css/sn-search.css?v=<?php echo filemtime(__DIR__ . '/css/sn-search.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/sn-search.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/sn-search.css'); ?>" rel="stylesheet" />
 
     </head>
     <body id="page-top" class="bg-dark">
@@ -365,12 +365,12 @@ if (!$pdo) {
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
         <!-- Theme -->
-        <script src="js/scripts.js" defer></script>
+        <script src="/assets/js/scripts.js" defer></script>
 
         <!-- Scroll News Features -->
-        <script src="js/sn_history.js" defer></script>
-        <script src="js/sn-mini-player-yt.js?v=<?= filemtime(__DIR__.'/js/sn-mini-player-yt.js') ?>" defer></script>
-        <script src="js/sn-search.js?v=<?= filemtime(__DIR__.'/js/sn-search.js') ?>" defer></script>
+        <script src="/assets/js/sn_history.js" defer></script>
+        <script src="/assets/js/sn-mini-player-yt.js?v=<?= filemtime(BASE_PATH . '/assets/js/sn-mini-player-yt.js') ?>" defer></script>
+        <script src="/assets/js/sn-search.js?v=<?= filemtime(BASE_PATH . '/assets/js/sn-search.js') ?>" defer></script>
 
     </body>
 </html>

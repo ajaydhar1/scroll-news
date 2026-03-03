@@ -14,14 +14,14 @@
 // Config
 // ============================
 define('APP_ROOT', dirname(__DIR__));
-define('PUBLIC_DIR', APP_ROOT . '/newsroom_core/public');
-define('SHOT_DIR', PUBLIC_DIR . '/newsroom_core/public/shots');      // where screenshots are stored
-define('SHOT_URL_BASE', '/newsroom_core/public/shots');              // public URL prefix for shots
+define('PUBLIC_DIR', APP_ROOT . '/core/newsroom/public');
+define('SHOT_DIR', PUBLIC_DIR . '/core/newsroom/public/shots');      // where screenshots are stored
+define('SHOT_URL_BASE', '/core/newsroom/public/shots');              // public URL prefix for shots
 
 // External services (replace with your real endpoints)
 define('BASE_URL', 'http://127.0.0.1/scroll-news/'); // or your dev host
 define('NLP_ENDPOINT',  getenv('NLP_ENDPOINT')  ?: BASE_URL . 'api/analyze.php?url=');
-define('WIKI_ENDPOINT', getenv('WIKI_ENDPOINT') ?: BASE_URL . 'newsroom_core/public/api/wiki_by_url.php?url=');
+define('WIKI_ENDPOINT', getenv('WIKI_ENDPOINT') ?: BASE_URL . 'core/newsroom/public/api/wiki_by_url.php?url=');
 define('SHOT_ENDPOINT', getenv('SHOT_ENDPOINT') ?: BASE_URL . 'api/screenshot.php?url=');
 
 // TTLs
