@@ -81,6 +81,9 @@ require_once BASE_PATH . "/core/___modules.php";
         }
         </script>
 
+        <!-- jQuery min-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous"></script>
 
@@ -90,8 +93,6 @@ require_once BASE_PATH . "/core/___modules.php";
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans&display=swap" rel="stylesheet" />
-    
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css?v=<?php echo filemtime(__DIR__ . '/css/styles.css'); ?>" rel="stylesheet" />
@@ -115,7 +116,7 @@ require_once BASE_PATH . "/core/___modules.php";
         <div class="page">
 
             <!-- Top nav-->        
-            <?php require_once __DIR__ . '/___topnav_full.php'; ?>
+            <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
 
             <!-- Masthead-->
             <header class="masthead bg-light-2">
@@ -255,44 +256,40 @@ require_once BASE_PATH . "/core/___modules.php";
             <!-- News Intelligence Panel-->
             <?php
                 fragment_cache_swr("news_intel_panel_$CACHE_VER", 60, 600, function () {
-                    include __DIR__ . '/___news_intel_panel.php';
+                    include BASE_PATH . '/views/home/panels/___news_intel_panel.php';
                 }, $bust, false, false);
             ?>
 
             <!-- Active Stories Panel-->
             <?php
                 fragment_cache_swr("active_stories_$CACHE_VER", 30, 300, function () {
-                    include __DIR__ . '/___active_stories.php';
+                    include BASE_PATH . '/views/home/panels/___active_stories.php';
                 }, $bust, false, false);
             ?>
 
             <!-- Brief Me Bar-->
-            <?php require_once __DIR__ . '/___brief_me.php'; ?>
+            <?php require_once BASE_PATH . '/views/home/partials/___brief_me.php'; ?>
 
             <!-- First Look-->
-            <?php
-                fragment_cache_swr("first_look_$CACHE_VER", 30, 300, function () {
-                    include __DIR__ . '/___first_look.php';
-                }, $bust, false, false);
-            ?>
+            <?php include BASE_PATH . '/views/home/panels/___first_look.php'; ?>
 
 
-            <?php include __DIR__ . '/___home_features.php'; ?>
-            <?php include __DIR__ . '/___home_modules.php'; ?>
-            <?php include __DIR__ . '/___home_story.php'; ?>
+            <?php include BASE_PATH . '/views/home/partials/___home_features.php'; ?>
+            <?php include BASE_PATH . '/views/home/partials/___home_modules.php'; ?>
+            <?php include BASE_PATH . '/views/home/partials/___home_story.php'; ?>
 
 
             <?php
                 fragment_cache_swr("scroll_strip_$CACHE_VER", 60, 600, function () {
-                    include __DIR__ . '/___scroll_strip.php';
+                    include BASE_PATH . '/views/home/panels/___scroll_strip.php';
                 }, $bust, false, false);
             ?>
 
 
             
-            <?php include __DIR__ . '/___home_playlist.php'; ?>
+            <?php include BASE_PATH . '/views/home/partials/___home_playlist.php'; ?>
 
-            <?php include __DIR__ . '/___home_team.php'; ?>
+            <?php include BASE_PATH . '/views/home/partials/___home_team.php'; ?>
 
 
             <!-- Trusted by creators text section -->
@@ -313,12 +310,12 @@ require_once BASE_PATH . "/core/___modules.php";
             </section>
             
             <!-- Footer-->
-            <?php require_once __DIR__ . '/___footer.php'; ?>
+            <?php require_once BASE_PATH . '/views/partials/___footer.php'; ?>
         
         </div>
         
         <!-- Modals-->        
-        <?php require_once __DIR__ . '/___modals.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___modals.php'; ?>
 
         <!-- Core JS (Bootstrap 4 requires jQuery first) -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>

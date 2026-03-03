@@ -434,7 +434,7 @@
     const form = new URLSearchParams({ url, revalidate: '1' });
 
     try {
-      const res = await fetch('analyze.php', {
+      const res = await fetch('/api/analyze.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: form
@@ -501,7 +501,7 @@
 
     $.ajax({
       type: 'POST',
-      url: 'analyze.php',
+      url: '/api/analyze.php',
       data: { url: url },
       success: function (msg) {
         $analytics.html(msg);

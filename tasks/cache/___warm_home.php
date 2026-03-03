@@ -13,19 +13,22 @@ if ($secret !== '' && (($_GET['key'] ?? '') !== $secret)) {
 }
 
 fragment_cache_swr("news_intel_panel_$CACHE_VER", 120, 600, function () {
-  include __DIR__ . '/___news_intel_panel.php';
+  include BASE_PATH . '/views/home/panels/___news_intel_panel.php';
 }, $bust, true, false);
 
 fragment_cache_swr("active_stories_$CACHE_VER", 60, 300, function () {
-  include __DIR__ . '/___active_stories.php';
+  include BASE_PATH . '/views/home/panels/___active_stories.php';
 }, $bust, true, false);
 
-fragment_cache_swr("first_look_$CACHE_VER", 60, 300, function () {
-  include __DIR__ . '/___first_look.php';
-}, $bust, true, false);
+// Prime First Look JSON cache (no fragment caching)
+ob_start();
+$_GET['warm'] = '1';
+include BASE_PATH . '/views/home/panels/___first_look.php';
+unset($_GET['warm']);
+ob_end_clean();
 
 fragment_cache_swr("scroll_strip_$CACHE_VER", 120, 600, function () {
-  include __DIR__ . '/___scroll_strip.php';
+  include BASE_PATH . '/views/home/panels/___scroll_strip.php';
 }, $bust, true, false);
 
 header("Content-Type: text/plain");

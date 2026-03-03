@@ -43,7 +43,7 @@
 </footer>
 
 <script>
-    pubsToFilterOut = <?php echo json_encode($filter_out); ?>;
+    pubsToFilterOut = <?php echo json_encode($filter_out ?? []); ?>;
 </script>
 
 <script src="js/newsroom/utils.js" defer></script>

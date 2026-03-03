@@ -29,6 +29,9 @@ define('BASE_PATH', __DIR__);
         <meta name="twitter:description" content="Learn what Scroll News is, why it was created, and how it helps you analyze, browse, and search the news more intelligently." />
         <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-about-1200x630.png" />
 
+        <!-- jQuery min-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+
         <!-- Icons -->
         <script
             src="https://use.fontawesome.com/releases/v6.7.2/js/all.js"
@@ -66,7 +69,7 @@ define('BASE_PATH', __DIR__);
     <body id="page-top">
 
         <!-- Top nav-->
-        <?php require_once __DIR__ . '/___topnav_full.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
 
         <!-- Content area -->
         <div class="container my-5">
@@ -163,17 +166,13 @@ define('BASE_PATH', __DIR__);
         </div>
 
         <!-- Footer-->
-        <?php require_once __DIR__ . '/___footer.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___footer.php'; ?>
 
         <!-- Modals-->
-        <?php require_once __DIR__ . '/___modals.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___modals.php'; ?>
 
         <!-- Bootstrap core JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-
-        <!-- Third party plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
     </body>
 </html>

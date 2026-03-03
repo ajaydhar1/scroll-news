@@ -128,6 +128,9 @@ if (!$pdo) {
         <meta name="twitter:description" content="Flip through the full Scroll News archive like a book, with one horizontal row of cards for each day." />
         <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-history-1200x630.png" />
 
+        <!-- jQuery min-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous"></script>
         
@@ -153,7 +156,7 @@ if (!$pdo) {
         <div class="page">
 
             <!-- Top nav-->        
-            <?php require_once __DIR__ . '/___topnav_full.php'; ?>
+            <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
 
             <!-- Daily Scroll Archive -->
             <section class="page-section" id="" style="padding: 4rem 0;">
@@ -213,7 +216,7 @@ if (!$pdo) {
                             </div>
                         </div>
 
-                        <?php require_once 'config_interest.php'; ?>
+                        <?php require_once BASE_PATH . "/core/config/interest.php"; ?>
 
                         <div id="history-no-results" class="row justify-content-center mt-3 d-none">
                             <div class="col-md-6">
@@ -279,15 +282,14 @@ if (!$pdo) {
             </section>
 
             <!-- Footer-->        
-            <?php require_once __DIR__ . '/___footer.php'; ?>
+            <?php require_once BASE_PATH . '/views/partials/___footer.php'; ?>
 
         </div>
 
         <!-- Modals-->        
-        <?php require_once __DIR__ . '/___modals.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___modals.php'; ?>
 
         <!-- Core JS (Bootstrap 4 requires jQuery first) -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
         <!-- Core theme JS-->

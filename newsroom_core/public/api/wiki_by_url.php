@@ -14,7 +14,7 @@ $entities = $payload['nlp']['entities'] ?? null;
 
 // 3) if missing, call analyze.php to get NLP
 if (!$entities) {
-  $analyzeUrl = BASE_URL . '/analyze.php?format=json&url=' . rawurlencode($norm);
+  $analyzeUrl = BASE_URL . '/api/analyze.php?format=json&url=' . rawurlencode($norm);
   $resp = multiFetch(['nlp'=>['url'=>$analyzeUrl]], 12);
   if (($resp['nlp']['code'] ?? 0) === 200 && valid_json_string($resp['nlp']['body'])) {
     $nlp = json_decode($resp['nlp']['body'], true);

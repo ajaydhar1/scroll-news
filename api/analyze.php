@@ -1,7 +1,9 @@
         <?php
           error_reporting(E_ERROR | E_PARSE);
-
           set_time_limit(300);
+
+          define('BASE_PATH', dirname(__DIR__)); // /api -> project root
+          require_once BASE_PATH . '/core/___modules.php';
 
           $url = trim($_POST['url'] ?? $_GET['url'] ?? '');
 
@@ -39,7 +41,7 @@
         ?>
         
 
-        <?php require_once("___nlp_body.php"); ?>
+        <?php require_once BASE_PATH . "/views/newsroom/___nlp_body.php"; ?>
 
 
         <?php

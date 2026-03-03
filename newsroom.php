@@ -7,7 +7,7 @@ ini_set('log_errors', '1');
 
 define('BASE_PATH', __DIR__);
 
-require_once 'config_interest.php';
+require_once BASE_PATH . "/core/config/interest.php";
 require_once BASE_PATH . "/core/___session_results.php";
 require_once BASE_PATH . "/core/___modules.php";
 
@@ -41,6 +41,9 @@ require_once BASE_PATH . '/newsroom_core/___newsroom_bootstrap.php';
         <meta property="og:description" content="<?= htmlspecialchars($title) ?>" />
         <meta property="og:image" content="<?php echo $img; ?>" />    
         <meta property="og:site_name" content="Scroll News" />
+
+        <!-- jQuery min-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
 
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous"></script>
@@ -83,7 +86,7 @@ require_once BASE_PATH . '/newsroom_core/___newsroom_bootstrap.php';
         <div class="page">
 
             <!-- Top nav-->        
-            <?php require_once BASE_PATH . '/___topnav_full.php'; ?>
+            <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
 
             <!-- Masthead-->
             <header class="masthead" style="background-image: url(<?php echo $img; ?>)">
@@ -260,7 +263,7 @@ require_once BASE_PATH . '/newsroom_core/___newsroom_bootstrap.php';
                                     }
 
                                     else {
-                                        require_once("___nlp_body.php");
+                                        require_once BASE_PATH . "/views/newsroom/___nlp_body.php";
                                     }
                                 }
 
@@ -383,7 +386,7 @@ require_once BASE_PATH . '/newsroom_core/___newsroom_bootstrap.php';
             </div>
 
             <!-- Footer-->
-            <?php require_once BASE_PATH . '/___footer.php'; ?>
+            <?php require_once BASE_PATH . '/views/partials/___footer.php'; ?>
 
             <div id="sn-mini-player-mount"></div>
 
@@ -400,10 +403,9 @@ require_once BASE_PATH . '/newsroom_core/___newsroom_bootstrap.php';
         </span>
 
         <!-- Modals-->        
-        <?php require_once BASE_PATH . '/___modals.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___modals.php'; ?>
 
         <!-- Core JS (Bootstrap 4 requires jQuery first) -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
         <script src="js/lottie.js" type="text/javascript"></script>

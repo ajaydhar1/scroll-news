@@ -29,6 +29,6 @@
             </div>
         </div>
 
-        <script src="js/home-playlists.js?v=<?= filemtime(__DIR__.'/js/home-playlists.js') ?>" defer></script>
+        <script src="/js/home-playlists.js?v=<?= filemtime(BASE_PATH.'/js/home-playlists.js') ?>" defer></script>
     </div>
 </section>

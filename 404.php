@@ -25,6 +25,9 @@
         <meta name="twitter:description" content="The page you’re looking for could not be found. Return to the Scroll News homepage to analyze, browse, or search the news." />
         <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-404-1200x630.png" />
 
+        <!-- jQuery min-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous"></script>
 
@@ -198,7 +201,6 @@
         </div>
 
         <!-- Bootstrap core JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>

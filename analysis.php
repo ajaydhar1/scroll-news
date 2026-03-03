@@ -8,9 +8,9 @@ require_once BASE_PATH . "/core/___modules.php";
 $ANALYSIS_DEBUG = true; // toggle while building
 
 // ---- includes (keep these super short so the file stays scannable) ----
-require_once BASE_PATH . '/___analysis_helpers.php';
-require_once BASE_PATH . '/___analysis_params.php';
-require_once BASE_PATH . '/___analysis_scaffolds.php';
+require_once BASE_PATH . '/core/analysis/___analysis_helpers.php';
+require_once BASE_PATH . '/core/analysis/___analysis_params.php';
+require_once BASE_PATH . '/core/analysis/___analysis_scaffolds.php';
 
 // ---- Hygiene toggles ----
 $require_nlp_ok    = 1;
@@ -65,7 +65,7 @@ try {
     // Module queries
     // =========================================================================
 
-    require_once BASE_PATH . '/___analysis_modules.php';
+    require_once BASE_PATH . '/core/analysis/___analysis_modules.php';
 
     $modules = analysis_run_modules($db, $SCAFFOLD, $bind);
 
@@ -156,8 +156,12 @@ try {
   <!-- Favicon-->
   <link rel="icon" type="image/png" href="assets/img/play-green.png" />
 
+  <!-- jQuery min-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+
   <!-- Font Awesome icons (free version)-->
   <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous"></script>
+
   <!-- Google fonts-->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
@@ -172,13 +176,11 @@ try {
   <link href="css/custom.css?v=<?php echo filemtime(BASE_PATH . '/css/custom.css'); ?>" rel="stylesheet" />
   <link href="css/sn-analysis.css?v=<?php echo filemtime(BASE_PATH . '/css/sn-analysis.css'); ?>" rel="stylesheet" />
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
-
 </head>
 <body class="bg-light">
 
   <!-- Top nav-->        
-  <?php require_once BASE_PATH . '/___topnav_full.php'; ?>
+  <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
 
   <div class="container-fluid">
 
@@ -275,10 +277,10 @@ try {
   </div>
 
   <!-- Footer-->        
-  <?php require_once BASE_PATH . '/___footer.php'; ?>
+  <?php require_once BASE_PATH . '/views/partials/___footer.php'; ?>
   
   <!-- Modals-->        
-  <?php require_once BASE_PATH . '/___modals.php'; ?>
+  <?php require_once BASE_PATH . '/views/partials/___modals.php'; ?>
 
   <!-- Core JS (Bootstrap 4 requires jQuery first) -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>

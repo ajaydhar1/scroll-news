@@ -1,9 +1,9 @@
 <?php
 
-require_once __DIR__ . '/../config_interest.php';
-require_once __DIR__ . '/../___render.php';
+require_once __DIR__ . '/config/interest.php';
+require_once __DIR__ . '/render/___render.php';
 
-$CACHE_VER = 'v12';
+$CACHE_VER = 'v13';
 
 date_default_timezone_set('America/New_York');
 
@@ -2067,7 +2067,7 @@ function sn_format_pub_date(?string $raw): string {
 
 
 function _fragment_cache_dir(): string {
-    $dir = __DIR__ . '/_cache_fragments';
+    $dir = dirname(__DIR__) . '/_cache_fragments';
     if (!is_dir($dir)) @mkdir($dir, 0775, true);
     return $dir;
 }

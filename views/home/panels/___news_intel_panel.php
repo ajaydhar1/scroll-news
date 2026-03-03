@@ -2,7 +2,7 @@
 // ___news_intel_panel.php
 // News Intelligence Panel: trending entities / places / topics for last 24h
 
-require_once 'config_interest.php';
+require_once BASE_PATH . "/core/config/interest.php";
 
 $intel_panel = [
     'stats'    => [],

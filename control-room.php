@@ -28,6 +28,9 @@ define('BASE_PATH', __DIR__);
         <meta name="twitter:description" content="Access the Scroll News control room to experiment with article analysis, entity extraction, and other news intelligence tools." />
         <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-control-room-1200x630.png" />
 
+        <!-- jQuery min-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous"></script>
 
@@ -54,23 +57,22 @@ define('BASE_PATH', __DIR__);
             </video>
 
             <!-- Top nav-->        
-            <?php require_once __DIR__ . '/___topnav_full.php'; ?>
+            <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
 
             <div class="content">
                 <h1 class="text-white">Stumble Through the News</h1>
                 <h2 class="brand-text">Smart analytics. Fresh perspectives.</h2>
                 
                 <!-- Footer-->        
-                <?php require_once __DIR__ . '/___footer_control_room.php'; ?>
+                <?php require_once BASE_PATH . '/views/partials/___footer_control_room.php'; ?>
 
             </div>
         </div>
 
         <!-- Modals-->        
-        <?php require_once __DIR__ . '/___modals.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___modals.php'; ?>
 
         <!-- Core JS (Bootstrap 4 requires jQuery first) -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
     </body>

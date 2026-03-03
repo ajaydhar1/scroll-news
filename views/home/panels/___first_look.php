@@ -28,7 +28,8 @@ $FIRST_LOOK_FEEDS = [
 ];
 
 function fl_cache_dir(): string {
-  $dir = __DIR__ . '/cache';
+  $root = dirname(__DIR__, 3); // /views/home/panels -> project root
+  $dir  = $root . '/_cache_first_look';
   if (!is_dir($dir)) @mkdir($dir, 0775, true);
   return $dir;
 }

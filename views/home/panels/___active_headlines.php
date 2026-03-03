@@ -1,14 +1,14 @@
 <?php
 // ___active_headlines.php
 
-require_once __DIR__ . '/___emoji_headlines.php';
+require_once BASE_PATH . '/core/headlines/___emoji_headlines.php';
 
 const ACTIVE_HEADLINES_LIMIT = 6;
 const ACTIVE_HEADLINES_FEEDS = [
     'https://feeds.nbcnews.com/nbcnews/public/news',
 ];
 const ACTIVE_HEADLINES_CACHE_TTL    = 300; // seconds = 5 minutes
-const ACTIVE_HEADLINES_CACHE_FILE   = __DIR__ . '/cache/active_headlines_nbc.json';
+const ACTIVE_HEADLINES_CACHE_FILE   = BASE_PATH . '/_cache_active_headlines/active_headlines_nbc.json';
 
 /**
  * Fetch active headlines with a small file cache.

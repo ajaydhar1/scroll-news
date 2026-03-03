@@ -1,5 +1,5 @@
 {
-    "fetched_at": 1772484453,
+    "fetched_at": 1772500493,
     "feeds": [
         {
             "name": "Drudge",
@@ -7,14 +7,14 @@
             "items": [
                 {
                     "title": "Map shows every attack by Iran and America so far...",
-                    "url": "https://www.the-express.com/news/world-news/200821/iran-war-map-missile-strikes",
-                    "ts": 1772484036,
+                    "url": "https://www.the-express.com/news/200821",
+                    "ts": 1772500416,
                     "emo": "🔥"
                 },
                 {
                     "title": "THREE US FIGHTER JETS SHOT DOWN IN KUWAIT; 'FRIENDLY FIRE'...",
                     "url": "https://metro.co.uk/2026/03/02/three-us-f-15-fighter-jets-shot-kuwait-friendly-fire-incident-27184276/",
-                    "ts": 1772484036,
+                    "ts": 1772500416,
                     "emo": "📰"
                 }
             ]
@@ -24,15 +24,15 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Jamie Dimon on Trump's debanking lawsuit: 'I'd be angry, too', but it has no merit",
-                    "url": "https://www.businessinsider.com/jamie-dimon-trump-jpmorgan-debanking-lawsuit-angry-2026-3",
-                    "ts": 1772482926,
-                    "emo": "⚖️"
+                    "title": "Amazon says 3 data centers damaged by drone strikes in Middle East",
+                    "url": "https://www.businessinsider.com/amazon-data-centers-middle-east-drone-strukes-us-iran-conflict-2026-3",
+                    "ts": 1772498385,
+                    "emo": "📰"
                 },
                 {
-                    "title": "The 26 best women's work bags, tested over years of commuting",
-                    "url": "https://www.businessinsider.com/guides/style/best-work-bag-women",
-                    "ts": 1772482866,
+                    "title": "Lady Gaga tour tickets 2026: Dates, cities, and where to buy",
+                    "url": "https://www.businessinsider.com/guides/tickets/where-to-buy-lady-gaga-tickets-concert-tour",
+                    "ts": 1772494854,
                     "emo": "📰"
                 }
             ]

@@ -12,7 +12,7 @@ $(document).ready(function() {
 
     $.ajax({
         type:   "GET",
-        url:    "analyze.php?url=<?= $url ?>",
+        url:    "/api/analyze.php?url=<?= $url ?>",
         success: function(msg) {
         
             $("#analytics").html(msg);

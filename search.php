@@ -8,7 +8,7 @@
 
 define('BASE_PATH', __DIR__);
 
-require_once 'config_interest.php';
+require_once BASE_PATH . "/core/config/interest.php";
 require_once BASE_PATH . "/core/___modules.php";
 
 $pdo        = _pdo_or_null();
@@ -107,6 +107,9 @@ if (!$pdo) {
         <meta name="twitter:description" content="Search recent headlines and jump into Scroll News analysis or publisher stories." />
         <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-search-1200x630.png" />
 
+        <!-- jQuery min-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous"></script>
         
@@ -134,7 +137,7 @@ if (!$pdo) {
         </div>
 
         <!-- Top nav-->        
-        <?php require_once __DIR__ . '/___topnav_full.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
 
         <!-- Main content section, reusing services section styling -->
         <section class="page-section" id="services" style="padding: 4rem 0;">
@@ -163,7 +166,7 @@ if (!$pdo) {
                             ];
                         ?>
 
-                        <?php require_once __DIR__ . '/___search_form.php'; ?>
+                        <?php require_once BASE_PATH . '/views/search/___search_form.php'; ?>
 
                         <div class="small text-muted mt-2">
                             Search across recent items from all feeds.
@@ -353,13 +356,12 @@ if (!$pdo) {
         </section>
 
         <!-- Footer-->        
-        <?php require_once __DIR__ . '/___footer.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___footer.php'; ?>
         
         <!-- Modals-->        
-        <?php require_once __DIR__ . '/___modals.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___modals.php'; ?>
 
         <!-- Core JS (Bootstrap 4 requires jQuery first) -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
         <!-- Theme -->

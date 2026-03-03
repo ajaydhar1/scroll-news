@@ -20,9 +20,9 @@ define('SHOT_URL_BASE', '/newsroom_core/public/shots');              // public U
 
 // External services (replace with your real endpoints)
 define('BASE_URL', 'http://127.0.0.1/scroll-news/'); // or your dev host
-define('NLP_ENDPOINT',  getenv('NLP_ENDPOINT')  ?: BASE_URL . 'analyze.php?url=');
+define('NLP_ENDPOINT',  getenv('NLP_ENDPOINT')  ?: BASE_URL . 'api/analyze.php?url=');
 define('WIKI_ENDPOINT', getenv('WIKI_ENDPOINT') ?: BASE_URL . 'newsroom_core/public/api/wiki_by_url.php?url=');
-define('SHOT_ENDPOINT', getenv('SHOT_ENDPOINT') ?: BASE_URL . 'screenshot.php?url=');
+define('SHOT_ENDPOINT', getenv('SHOT_ENDPOINT') ?: BASE_URL . 'api/screenshot.php?url=');
 
 // TTLs
 define('NLP_TTL',   2 * 24 * 3600);  // 2 days
