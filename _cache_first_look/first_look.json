@@ -1,21 +1,21 @@
 {
-    "fetched_at": 1772576195,
+    "fetched_at": 1772578246,
     "feeds": [
         {
             "name": "BusinessInsider",
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Stocks drop, oil gains as traders digest the latest updates in the Iran war",
-                    "url": "https://markets.businessinsider.com/news/stocks/stock-market-wrap-energy-prices-crude-iran-qatar-lng-spx-2026-3",
-                    "ts": 1772572723,
-                    "emo": "🔥"
+                    "title": "Two years of Quince: How the brand's 'affordable luxury' clothing holds up",
+                    "url": "https://www.businessinsider.com/guides/style/quince-clothing-review",
+                    "ts": 1772578072,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Palantir wants its old employees back: 'The shire is calling'",
-                    "url": "https://www.businessinsider.com/palantir-former-employees-return-shire-lord-of-the-rings-2026-3",
-                    "ts": 1772572558,
-                    "emo": "📰"
+                    "title": "The AI boom is minting startup multimillionaires at an unprecedented speed",
+                    "url": "https://www.businessinsider.com/anthropic-ai-boom-mint-startup-multimillionaires-unprecedented-speed-2026-3",
+                    "ts": 1772576060,
+                    "emo": "🧪"
                 }
             ]
         },

@@ -502,3 +502,8 @@ footer .text-lg-right a {
 footer .text-lg-right a:hover {
   color: black;
 }
+
+.browse-card-btn-col {
+  padding-left: .15rem;
+  padding-right: .15rem;
+}
