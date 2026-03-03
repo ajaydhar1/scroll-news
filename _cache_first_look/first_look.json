@@ -1,5 +1,5 @@
 {
-    "fetched_at": 1772546365,
+    "fetched_at": 1772555780,
     "feeds": [
         {
             "name": "Drudge",
@@ -8,13 +8,13 @@
                 {
                     "title": "DAY 4: Iranian Drones and Missiles Challenge Stretched U.S. Forces...",
                     "url": "https://www.wsj.com/world/middle-east/iranian-drones-and-missiles-challenge-stretched-u-s-forces-9e41df9a",
-                    "ts": 1772545776,
+                    "ts": 1772552076,
                     "emo": "📰"
                 },
                 {
-                    "title": "State Dept Urges Americans in 14 Countries to Leave...",
-                    "url": "https://www.newsweek.com/warning-issued-to-americans-in-14-countries-as-iran-war-grows-depart-now-11608241",
-                    "ts": 1772545776,
+                    "title": "Will assault drain interceptor stockpiles?",
+                    "url": "https://www.france24.com/en/live-news/20260303-will-iran-s-missiles-drain-us-interceptor-stocks",
+                    "ts": 1772552076,
                     "emo": "📰"
                 }
             ]
@@ -24,16 +24,16 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Why 'Bridgerton' showrunner Jess Brownell says it was 'hugely important' for Benedict to come out to Sophie",
-                    "url": "https://www.businessinsider.com/bridgerton-showrunner-important-benedict-coming-out-scene-2026-3",
-                    "ts": 1772544901,
-                    "emo": "📰"
+                    "title": "Russian war bloggers are watching the US' new LUCAS drones — and fretting about Starshield terminals",
+                    "url": "https://www.businessinsider.com/russian-milbloggers-react-us-lucas-drones-satellite-terminal-iran-war-2026-3",
+                    "ts": 1772551046,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "Austin's growth has skyrocketed in the last decade. See which other cities are booming.",
-                    "url": "https://www.businessinsider.com/fastest-growing-cities-usa-2026",
-                    "ts": 1772544001,
-                    "emo": "📰"
+                    "title": "I visited Punch, the famous baby monkey, in Japan. Here's what TikTok doesn't show.",
+                    "url": "https://www.businessinsider.com/visited-punch-viral-baby-monkey-ikea-orangutan-japanese-zoo-ichikawa2026-3",
+                    "ts": 1772550495,
+                    "emo": "🎭"
                 }
             ]
         }

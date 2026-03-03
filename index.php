@@ -98,10 +98,10 @@ require_once BASE_PATH . "/core/___modules.php";
         <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
         <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
         <link href="/assets/css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/mindpour.css'); ?>" rel="stylesheet" />
-        <link href="/assets/css/home.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/home.css'); ?>" rel="stylesheet" />
-        <link href="/assets/css/news-intel-panel.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/news-intel-panel.css'); ?>" rel="stylesheet" />
-        <link href="/assets/css/active-stories.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/active-stories.css'); ?>" rel="stylesheet" />
-        <link href="/assets/css/scroll-strip.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/scroll-strip.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/pages/home.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/home.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/panels/news-intel-panel.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/news-intel-panel.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/panels/active-stories.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/active-stories.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/panels/scroll-strip.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/scroll-strip.css'); ?>" rel="stylesheet" />
 
         <link href="/assets/css/lightbox.css" rel="stylesheet" />
 

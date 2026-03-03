@@ -145,7 +145,7 @@ if (!$pdo) {
         <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
         <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
         <link href="/assets/css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/mindpour.css'); ?>" rel="stylesheet" />
-        <link href="/assets/css/scroll-archive.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/scroll-archive.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/pages/scroll-archive.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/scroll-archive.css'); ?>" rel="stylesheet" />
 
     </head>
     <body id="page-top" class="bg-light-3">
@@ -295,6 +295,6 @@ if (!$pdo) {
         <!-- Core theme JS-->
         <script src="/assets/js/scripts.js"></script>
         <script src="/assets/js/sn_history.js"></script>
-        <script src="/assets/js/scroll-archive.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/scroll-archive.js'); ?>"></script>
+        <script src="/assets/js/pages/scroll-archive.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/pages/scroll-archive.js'); ?>"></script>
     </body>
 </html>

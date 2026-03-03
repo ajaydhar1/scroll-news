@@ -146,4 +146,4 @@ try {
   ?> || [];
 </script>
 
-<script src="/assets/js/scroll-strip.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/scroll-strip.js'); ?>"></script>
+<script src="/assets/js/panels/scroll-strip.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/panels/scroll-strip.js'); ?>"></script>

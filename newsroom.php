@@ -58,7 +58,7 @@ require_once BASE_PATH . '/core/newsroom/___newsroom_bootstrap.php';
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
         <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
-        <link href="/assets/css/newsroom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/newsroom.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/pages/newsroom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/newsroom.css'); ?>" rel="stylesheet" />
         <link href="/assets/css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/mindpour.css'); ?>" rel="stylesheet" />
 
         <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
@@ -430,7 +430,7 @@ require_once BASE_PATH . '/core/newsroom/___newsroom_bootstrap.php';
             ], JSON_UNESCAPED_SLASHES) ?>;
         </script>
 
-        <script src="/assets/js/newsroom-page.js?v=<?= filemtime(BASE_PATH.'/assets/js/newsroom-page.js') ?>" defer></script>
+        <script src="/assets/js/pages/newsroom.js?v=<?= filemtime(BASE_PATH.'/assets/js/pages/newsroom.js') ?>" defer></script>
 
     </body>
 </html>

@@ -174,7 +174,7 @@ try {
   <!-- Core theme CSS (includes Bootstrap)-->
   <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
   <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
-  <link href="/assets/css/sn-analysis.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/sn-analysis.css'); ?>" rel="stylesheet" />
+  <link href="/assets/css/pages/analysis.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/analysis.css'); ?>" rel="stylesheet" />
 
 </head>
 <body class="bg-light">
@@ -285,7 +285,7 @@ try {
   <!-- Core JS (Bootstrap 4 requires jQuery first) -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
-  <script src="/assets/js/sn-analysis-corpus.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/sn-analysis-corpus.js'); ?>" defer></script>
+  <script src="/assets/js/pages/components/analysis-corpus.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/pages/components/analysis-corpus.js'); ?>" defer></script>
 
 </body>
 </html>

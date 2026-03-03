@@ -1,4 +1,4 @@
-/* assets/js/scroll-strip.js
+/* assets/js/panels/search.js
    Scroll Strip: renders a horizontal article carousel from DB-injected JSON or RSS fallback.
 */
 

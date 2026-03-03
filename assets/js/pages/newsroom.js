@@ -1,5 +1,5 @@
 /**
- * newsroom_page.js
+ * newsroom.js
  * Consolidates all the inline JS from newsroom.php into one file.
  *
  * Requires on the page:

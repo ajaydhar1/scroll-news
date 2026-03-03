@@ -123,7 +123,7 @@ if (!$pdo) {
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
         <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
-        <link href="/assets/css/sn-search.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/sn-search.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/pages/search.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/search.css'); ?>" rel="stylesheet" />
 
     </head>
     <body id="page-top" class="bg-dark">
@@ -370,7 +370,7 @@ if (!$pdo) {
         <!-- Scroll News Features -->
         <script src="/assets/js/sn_history.js" defer></script>
         <script src="/assets/js/sn-mini-player-yt.js?v=<?= filemtime(BASE_PATH . '/assets/js/sn-mini-player-yt.js') ?>" defer></script>
-        <script src="/assets/js/sn-search.js?v=<?= filemtime(BASE_PATH . '/assets/js/sn-search.js') ?>" defer></script>
+        <script src="/assets/js/pages/search.js?v=<?= filemtime(BASE_PATH . '/assets/js/pages/search.js') ?>" defer></script>
 
     </body>
 </html>
