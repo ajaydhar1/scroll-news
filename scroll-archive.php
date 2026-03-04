@@ -21,6 +21,8 @@ if (!$pdo) {
             ->sub(new DateInterval('P' . ($DAYS_TO_SHOW - 1) . 'D'))
             ->format('Y-m-d');
 
+        // SQL for all RSS articles
+        /*
         $sql = "
             SELECT 
                 ri.id,
@@ -31,6 +33,27 @@ if (!$pdo) {
                 f.name AS feed_name
             FROM rss_items ri
             JOIN feeds f ON f.id = ri.feed_id
+            WHERE 
+                ri.pub_date IS NOT NULL
+                AND ri.pub_date::date >= :cutoff_date
+            ORDER BY ri.pub_date DESC, ri.id DESC
+        ";
+        */
+
+        // SQL for only articles that have been analyzed
+        $sql = "
+            SELECT 
+                ri.id,
+                ri.title,
+                ri.link,
+                ri.pub_date,
+                ri.media_url,
+                f.name AS feed_name,
+                a.id AS article_id,
+                a.nlp
+            FROM rss_items ri
+            JOIN feeds f ON f.id = ri.feed_id
+            JOIN articles a ON a.url = ri.link
             WHERE 
                 ri.pub_date IS NOT NULL
                 AND ri.pub_date::date >= :cutoff_date
@@ -267,10 +290,12 @@ if (!$pdo) {
                                             $vm = sn_article_vm_from_row($row, [
                                                 'mode' => 'classic',
                                                 'analysis_window' => '30d',
-                                                'force_analyze' => true,   // ✅ bring Analyze back for archive rows
+                                                'force_analyze' => true,
+                                                'force_db' => true,   // ✅ new
                                             ]);
 
                                             sn_render_article_card_archive($vm, []);
+
                                             ?>
                                         <?php endforeach; ?>
                                     </div>

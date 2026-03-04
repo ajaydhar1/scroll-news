@@ -138,6 +138,7 @@ p {
 
 .article-actions {
     margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -257,4 +258,102 @@ a.btn.btn-outline-primary.btn-analyze:hover {
     letter-spacing: 0.04em;
     color: #6b6b7a;
     margin-bottom: 0.15rem;
+}
+
+
+/* ==========================================
+   NLP Chips (entities / hashtags)
+========================================== */
+
+.sn-hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.sn-hashtag-chip {
+    display: inline-block;
+    padding: 3px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    border-radius: 14px;
+    background: #f3f6f9;
+    color: #34495e;
+    text-decoration: none;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: all 0.15s ease;
+}
+
+.sn-hashtag-chip:hover {
+    background: #e9f2ff;
+    color: #0d6efd;
+    border-color: rgba(13,110,253,0.25);
+    text-decoration: none;
+}
+
+/* ==========================================
+   Sentiment Label
+========================================== */
+
+.sn-sentiment {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #8a94a6;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.sn-sentiment-label {
+    font-weight: 600;
+}
+
+.sn-sentiment-score {
+    opacity: 0.7;
+    font-size: 12px;
+}
+
+/* ==========================================
+   Emotion bars (archive)
+========================================== */
+
+.sn-emotions {
+    margin-top: 8px;
+}
+
+.sn-emotion-bar {
+    display: grid;
+    grid-template-columns: 80px 1fr 44px;
+    align-items: center;
+    gap: 8px;
+    margin: 6px 0;
+}
+
+.sn-emotion-label {
+    font-size: 12px;
+    color: #969ba5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sn-emotion-bar-track {
+    height: 8px;                /* <- key: give it height */
+    background: #eef2f6;        /* <- key: visible track */
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.sn-emotion-bar-fill {
+    height: 100%;               /* <- key: match track height */
+    background: #9aa3b2;        /* neutral gray fill */
+    border-radius: 999px;
+}
+
+.sn-emotion-value {
+    font-size: 12px;
+    color: #9aa3b2;
+    text-align: right;
 }

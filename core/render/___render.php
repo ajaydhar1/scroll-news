@@ -119,8 +119,10 @@ function sn_article_vm_from_row(array $row, array $ctx = []): array {
             . '&category=' . urlencode($feedNameHuman ?: $feedNameRaw)
             . '&pub_date=' . urlencode($pubTs);
 
+        $forceDb = !empty($ctx['force_db']);
+
         // Only add db=1 when we *know* it's in articles
-        if ($inArticlesTable) {
+        if ($inArticlesTable || $forceDb) {
             $analyzeUrl .= '&db=1';
         }
     }
@@ -497,33 +499,6 @@ function sn_render_article_card_archive(array $vm, array $opts = []): void {
         <div class="article-body">
             <h4 class="article-title mb-0"><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></h4>
 
-            <?php if (!empty($badges)) : ?>
-                <div class="scroll-article-badges">
-                    <?php foreach ($badges as $badge): ?>
-                        <?php
-                            $slug = $badge['slug'] ?? '';
-                            $tooltip = $badge['tooltip'] ?? '';
-                            $label = $badge['label'] ?? '';
-
-                            $href = '#';
-                            if (is_callable($badgeHrefBuilder)) {
-                                $href = (string)call_user_func($badgeHrefBuilder, $slug, $vm, $opts);
-                            } else {
-                                if ($slug === 'deep-dive') $href = '/search.php?mode=nlp&deep_dive=1';
-                                elseif ($slug === 'high-signal-publisher') $href = '/search.php?high_signal=1';
-                                else $href = '/search.php';
-                            }
-                        ?>
-                        <a class="scroll-badge scroll-badge-<?= htmlspecialchars($slug, ENT_QUOTES, 'UTF-8'); ?>"
-                           href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8'); ?>"
-                           title="<?= htmlspecialchars($tooltip, ENT_QUOTES, 'UTF-8'); ?>"
-                           data-loading>
-                            <?= htmlspecialchars($label, ENT_QUOTES, 'UTF-8'); ?>
-                        </a>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
-
             <div class="article-meta">
                 <?= htmlspecialchars($pubTime, ENT_QUOTES, 'UTF-8'); ?>
             </div>
@@ -551,6 +526,17 @@ function sn_render_article_card_archive(array $vm, array $opts = []): void {
                     <span>Read story</span><span class="icon">↗</span>
                 </a>
             </div>
+
+            <?php
+            sn_render_article_nlp_extras($vm, [
+                'analysis_window' => '30d',
+                'show_badges' => true,
+                'show_hashtags' => true,
+                'show_sentiment' => true,
+                'show_emotions' => true, // start light
+                'badge_href_builder' => $badgeHrefBuilder,
+            ]);
+            ?>
         </div>
     </article>
     <?php
@@ -860,4 +846,107 @@ function scroll_render_article_intel_item(array $article, array $opts = []): str
     </li>
     <?php
     return ob_get_clean();
+}
+
+function sn_render_article_nlp_extras(array $vm, array $opts = []): void {
+    $showBadges    = $opts['show_badges']    ?? true;
+    $showHashtags  = $opts['show_hashtags']  ?? true;
+    $showSentiment = $opts['show_sentiment'] ?? true;
+    $showEmotions  = $opts['show_emotions']  ?? false; // default off (archive-safe)
+    $analysisWindow = $opts['analysis_window'] ?? ($vm['analysis_window'] ?? '7d');
+
+    $badges     = $vm['badges'] ?? [];
+    $hashtags   = $vm['hashtags'] ?? [];
+    $sentiment  = $vm['sentiment'] ?? ['label'=>null,'emoji'=>'','percent'=>null];
+    $topEmotions = $vm['top_emotions'] ?? [];
+
+    // Optional builder for badge links
+    $badgeHrefBuilder = $opts['badge_href_builder'] ?? null;
+
+    // If nothing to show, bail early
+    $hasAny =
+        ($showBadges && !empty($badges)) ||
+        ($showHashtags && !empty($hashtags)) ||
+        ($showSentiment && !empty($sentiment['label'])) ||
+        ($showEmotions && !empty($topEmotions));
+
+    if (!$hasAny) return;
+    ?>
+
+    <?php if ($showBadges && !empty($badges)) : ?>
+        <div class="scroll-article-badges">
+            <?php foreach ($badges as $badge): ?>
+                <?php
+                $slug = $badge['slug'] ?? '';
+                $tooltip = $badge['tooltip'] ?? '';
+                $label = $badge['label'] ?? '';
+
+                $href = '#';
+                if (is_callable($badgeHrefBuilder)) {
+                    $href = (string)call_user_func($badgeHrefBuilder, $slug, $vm, $opts);
+                } else {
+                    if ($slug === 'deep-dive') $href = '/search.php?mode=nlp&deep_dive=1';
+                    elseif ($slug === 'high-signal-publisher') $href = '/search.php?high_signal=1';
+                    else $href = '/search.php';
+                }
+                ?>
+                <a class="scroll-badge scroll-badge-<?= htmlspecialchars($slug, ENT_QUOTES, 'UTF-8'); ?>"
+                   href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8'); ?>"
+                   title="<?= htmlspecialchars($tooltip, ENT_QUOTES, 'UTF-8'); ?>"
+                   data-loading>
+                    <?= htmlspecialchars($label, ENT_QUOTES, 'UTF-8'); ?>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($showHashtags && !empty($hashtags)): ?>
+        <div class="sn-hashtags mt-1">
+            <?php foreach ($hashtags as $tag): ?>
+                <?php
+                $raw = (string)$tag;
+                $clean = trim(ltrim($raw, "# \t\n\r\0\x0B"));
+                $href = sn_analysis_url($clean, $analysisWindow, 'entity');
+                ?>
+                <a class="sn-hashtag-chip"
+                   href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
+                   data-loading>
+                    <?= htmlspecialchars($raw, ENT_QUOTES, 'UTF-8') ?>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($showSentiment && !empty($sentiment['label'])): ?>
+        <div class="sn-sentiment mt-1">
+            <span class="sn-sentiment-label">
+                <?php if (!empty($sentiment['emoji'])): ?>
+                    <span class="mr-1"><?= htmlspecialchars($sentiment['emoji'], ENT_QUOTES, 'UTF-8'); ?></span>
+                <?php endif; ?>
+                <?= htmlspecialchars(ucfirst((string)$sentiment['label']), ENT_QUOTES, 'UTF-8'); ?>
+            </span>
+            <?php if ($sentiment['percent'] !== null): ?>
+                <span class="sn-sentiment-score text-muted small">
+                    (<?= (int)$sentiment['percent']; ?>%)
+                </span>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($showEmotions && !empty($topEmotions)): ?>
+        <div class="sn-emotions mt-1">
+            <?php foreach ($topEmotions as $emo): ?>
+                <div class="sn-emotion-bar">
+                    <span class="sn-emotion-label"><?= htmlspecialchars($emo['label'] ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
+                    <div class="sn-emotion-bar-track">
+                        <div class="sn-emotion-bar-fill"
+                             style="width: <?= (float)max(5, min(100, (float)($emo['value'] ?? 0))); ?>%;"></div>
+                    </div>
+                    <span class="sn-emotion-value"><?= (int)round((float)($emo['value'] ?? 0)); ?>%</span>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
+    <?php
 }
