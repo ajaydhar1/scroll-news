@@ -451,7 +451,8 @@ a.nlp-chip.nlp-chip-topic:hover {
 
 
 .btn {
-    box-shadow: 0 0 0 0.14rem var(--brand-color) !important;
+    /* box-shadow: 0 0 0 0.14rem var(--brand-color) !important; */
+    box-shadow: none !important;
 }
 
 .analyze-btn {

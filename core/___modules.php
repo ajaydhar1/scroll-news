@@ -699,9 +699,61 @@ function buildNotILikeNamed(array $needles, string $col = 'url'): array {
 
 // Obtain PDO the same way you already do.
 // If you have getPdoOrExplain(), this will use it; otherwise falls back to getPdo().
-function _pdo_or_null() {
-    if (function_exists('getPdoOrExplain')) return getPdoOrExplain();
-    if (function_exists('getPdo'))         return getPdo();
+function _pdo_or_null(): ?PDO {
+    // 1) get a PDO from whichever factory exists
+    $pdo = null;
+
+    try {
+        if (function_exists('getPdo')) {
+            $pdo = getPdo();
+        } elseif (function_exists('getPdoOrExplain')) {
+            // ⚠️ Prefer getPdo() over getPdoOrExplain() for APIs like RSS
+            // because explain-style helpers sometimes echo output.
+            $pdo = getPdoOrExplain();
+        }
+    } catch (Throwable $e) {
+        $pdo = null;
+    }
+
+    if (!$pdo instanceof PDO) {
+        // one short retry (fixes the “every other request” pattern in dev)
+        usleep(80_000);
+        try {
+            if (function_exists('getPdo')) {
+                $pdo = getPdo();
+            } elseif (function_exists('getPdoOrExplain')) {
+                $pdo = getPdoOrExplain();
+            }
+        } catch (Throwable $e) {
+            return null;
+        }
+    }
+
+    if (!$pdo instanceof PDO) return null;
+
+    // 2) ping the connection; if it’s stale, reconnect once
+    try {
+        $pdo->query('SELECT 1');
+        return $pdo;
+    } catch (Throwable $e) {
+        usleep(80_000);
+        try {
+            if (function_exists('getPdo')) {
+                $pdo = getPdo();
+            } elseif (function_exists('getPdoOrExplain')) {
+                $pdo = getPdoOrExplain();
+            } else {
+                return null;
+            }
+            if ($pdo instanceof PDO) {
+                $pdo->query('SELECT 1');
+                return $pdo;
+            }
+        } catch (Throwable $e2) {
+            return null;
+        }
+    }
+
     return null;
 }
 

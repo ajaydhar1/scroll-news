@@ -13,13 +13,13 @@
                         <div class="mb-3">
                           <label for="categorySelect">Select Category:</label>
                           <select id="categorySelect" class="form-control">
-                            <option value="https://rss.app/feeds/tahaOzLGHPxMD9OC.xml">Politics</option>
-                            <option value="https://rss.app/feeds/tDmGft5qv7QGmWHv.xml">Business</option>
-                            <option value="https://rss.app/feeds/t8coleFVxgPf56NK.xml">Technology</option>
-                            <option value="https://rss.app/feeds/tCQMLQm6AHeQ5hJk.xml">Sports</option>
-                            <option value="https://rss.app/feeds/tZPiCoHdJqTYlcZc.xml">Health</option>
-                            <option value="https://rss.app/feeds/tLSguoVp4t7wa1eJ.xml">Science</option>
-                            <option value="https://rss.app/feeds/tBiQM8jJROm1RYn3.xml">Entertainment</option>
+                            <option value="/rss.php?category=Politics">🗳 Politics</option>
+                            <option value="/rss.php?category=Business">💼 Business</option>
+                            <option value="/rss.php?category=Technology">💻 Technology</option>
+                            <option value="/rss.php?category=Sports">🏈 Sports</option>
+                            <option value="/rss.php?category=Health">🩺 Health</option>
+                            <option value="/rss.php?category=Science">🔬 Science</option>
+                            <option value="/rss.php?category=Entertainment">🎬 Entertainment</option>
                           </select>
                         </div>
                     </div>

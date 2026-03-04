@@ -15,6 +15,19 @@ require_once BASE_PATH . '/core/newsroom/___request_resolution_layer.php';
 require_once BASE_PATH . '/core/newsroom/___newsroom_meta.php';
 require_once BASE_PATH . '/core/newsroom/___newsroom_bootstrap.php';
 
+/*
+echo '<pre>';
+var_dump([
+  'url' => $_GET['url'] ?? null,
+  'category' => $_GET['category'] ?? null,
+  'db' => $_GET['db'] ?? null,
+  'fromDb' => $fromDb ?? null,
+  'article_is_array' => isset($article) && is_array($article),
+]);
+echo '</pre>';
+exit;
+*/
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,9 +112,7 @@ require_once BASE_PATH . '/core/newsroom/___newsroom_bootstrap.php';
                     <div class="masthead-heading text-uppercase"><?php echo htmlspecialchars($title); ?></div>
                     <?php
                         $badges = [];
-
-                        if ($fromDb) {
-                            // $article is your article row
+                        if ($fromDb && is_array($article)) {
                             $badges = scroll_get_article_badges($article);
                         }
 
@@ -409,8 +420,8 @@ require_once BASE_PATH . '/core/newsroom/___newsroom_bootstrap.php';
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
         <script src="/assets/js/lottie.js" type="text/javascript"></script>
-        <script type="text/javascript" src="js/intro.js"></script>
-        <script type="text/javascript" src="js/lightbox.js"></script>
+        <script type="text/javascript" src="/assets/js/intro.js"></script>
+        <script type="text/javascript" src="/assets/js/lightbox.js"></script>
 
         <script src="/assets/js/newsroom/handlers.js" defer></script>
         <!--<script src="/assets/js/newsroom/api_legacy.js" defer></script>-->
@@ -420,10 +431,14 @@ require_once BASE_PATH . '/core/newsroom/___newsroom_bootstrap.php';
         <script src="/assets/js/sn_history.js"></script>
         <script src="/assets/js/sn-mini-player-yt.js?v=<?= filemtime(BASE_PATH.'/assets/js/sn-mini-player-yt.js') ?>" defer></script>
 
+        <?php
+            $cfg_fromDb = (bool)($vm['fromDb'] ?? $fromDb ?? false);
+            $cfg_url    = (string)($vm['url'] ?? $url ?? '');
+        ?>
         <script>
             window.NEWSROOM = <?= json_encode([
-                'fromDb' => (bool)$vm['fromDb'],
-                'url' => $vm['url'],
+                'fromDb' => $cfg_fromDb,
+                'url' => $cfg_url,
                 'intro' => [
                 'shouldRun' => (($_SESSION['resultViewed'] ?? 999) < 2) && (($_GET['siteSubmit'] ?? '') !== 'true')
                 ],

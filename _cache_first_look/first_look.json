@@ -1,39 +1,39 @@
 {
-    "fetched_at": 1772578246,
+    "fetched_at": 1772657510,
     "feeds": [
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Two years of Quince: How the brand's 'affordable luxury' clothing holds up",
-                    "url": "https://www.businessinsider.com/guides/style/quince-clothing-review",
-                    "ts": 1772578072,
-                    "emo": "📰"
-                },
-                {
-                    "title": "The AI boom is minting startup multimillionaires at an unprecedented speed",
-                    "url": "https://www.businessinsider.com/anthropic-ai-boom-mint-startup-multimillionaires-unprecedented-speed-2026-3",
-                    "ts": 1772576060,
-                    "emo": "🧪"
-                }
-            ]
-        },
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "DAY 4: Iranian Drones and Missiles Challenge Stretched U.S. Forces...",
-                    "url": "https://www.wsj.com/world/middle-east/iranian-drones-and-missiles-challenge-stretched-u-s-forces-9e41df9a",
-                    "ts": 1772571876,
+                    "title": "Israeli special units may be operating in Iran...",
+                    "url": "https://www.ynetnews.com/article/hy11qwl8kze",
+                    "ts": 1772656476,
+                    "emo": "🌍"
+                },
+                {
+                    "title": "'Carrying out missions that could ignite the imagination'...",
+                    "url": "https://www.ynetnews.com/article/hy11qwl8kze",
+                    "ts": 1772656476,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "F-bombs and a vanishing Billie Eilish concert: Ex-arena exec describes 'retaliation' for booting Ticketmaster",
+                    "url": "https://www.businessinsider.com/ticketmaster-retaliation-brooklyn-arena-billie-eilish-concert-barclays-ceo-testimony-2026-3",
+                    "ts": 1772655342,
                     "emo": "📰"
                 },
                 {
-                    "title": "Will assault drain interceptor stockpiles?",
-                    "url": "https://www.france24.com/en/live-news/20260303-will-iran-s-missiles-drain-us-interceptor-stocks",
-                    "ts": 1772571876,
-                    "emo": "📰"
+                    "title": "Hedge fund billionaire Ray Dalio says bitcoin will never seriously challenge gold",
+                    "url": "https://www.businessinsider.com/ray-dalio-gold-vs-bitcoin-hedge-crypto-economy-markets-btc-2026-3",
+                    "ts": 1772653854,
+                    "emo": "💰"
                 }
             ]
         }

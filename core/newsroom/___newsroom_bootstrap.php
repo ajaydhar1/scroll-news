@@ -5,7 +5,23 @@ $url      = $resolved['url'];
 $category = $resolved['category'] ?? '';
 $db = $resolved['db'] ?? '';
 
-$fromDb = $db == "1" || $category == "db";
+// ✅ normalize db flag
+$dbFlag = ($db === '1' || $db === 'true' || $db === 'yes');
+
+// ✅ only DB mode if dbFlag OR category=db
+$fromDb = $dbFlag || (strtolower($category) === 'db');
+
+$article = null;
+
+if ($fromDb) {
+    $article = getArticleFromDBByUrl($url);
+
+    // If not found, degrade gracefully
+    if (!is_array($article) || empty($article)) {
+        $fromDb = false;
+        $article = null;
+    }
+}
 
 // Get meta data for article
 $meta           = [];
