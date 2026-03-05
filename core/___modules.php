@@ -1252,9 +1252,9 @@ function getRecentWeightedArticle_fromDB(
  */
 function getRecentWeightedArticle_forStumble_fromDB(
     bool $requireEntities = true,
-    int $days = 35,
-    int $limit = 500,
-    float $decay = 0.12
+    int $days = 120,
+    int $limit = 2000,
+    float $decay = 0.04
 ): array {
     global $filter_out;
     $pdo = _pdo_or_null();
