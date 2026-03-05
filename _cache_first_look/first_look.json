@@ -1,5 +1,5 @@
 {
-    "fetched_at": 1772657510,
+    "fetched_at": 1772669511,
     "feeds": [
         {
             "name": "Drudge",
@@ -8,13 +8,13 @@
                 {
                     "title": "Israeli special units may be operating in Iran...",
                     "url": "https://www.ynetnews.com/article/hy11qwl8kze",
-                    "ts": 1772656476,
+                    "ts": 1772669444,
                     "emo": "🌍"
                 },
                 {
                     "title": "'Carrying out missions that could ignite the imagination'...",
                     "url": "https://www.ynetnews.com/article/hy11qwl8kze",
-                    "ts": 1772656476,
+                    "ts": 1772669444,
                     "emo": "📰"
                 }
             ]
@@ -24,16 +24,16 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "F-bombs and a vanishing Billie Eilish concert: Ex-arena exec describes 'retaliation' for booting Ticketmaster",
-                    "url": "https://www.businessinsider.com/ticketmaster-retaliation-brooklyn-arena-billie-eilish-concert-barclays-ceo-testimony-2026-3",
-                    "ts": 1772655342,
+                    "title": "I've raised my 3 kids across Switzerland, Australia, and the US — each culture has taught me valuable parenting lessons",
+                    "url": "https://www.businessinsider.com/raised-kids-in-different-countries-best-lessons-australia-switzerland-us-2026-3",
+                    "ts": 1772666761,
                     "emo": "📰"
                 },
                 {
-                    "title": "Hedge fund billionaire Ray Dalio says bitcoin will never seriously challenge gold",
-                    "url": "https://www.businessinsider.com/ray-dalio-gold-vs-bitcoin-hedge-crypto-economy-markets-btc-2026-3",
-                    "ts": 1772653854,
-                    "emo": "💰"
+                    "title": "Morgan Stanley is cutting 3% of its workforce in core business lines, including banking, trading, and wealth",
+                    "url": "https://www.businessinsider.com/morgan-stanley-cut-3-worldwide-workforce-in-key-business-lines-2026-3",
+                    "ts": 1772665715,
+                    "emo": "📰"
                 }
             ]
         }

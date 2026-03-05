@@ -378,3 +378,49 @@ button.nav-link.active {
 .scroll-badge {
     font-size: .77rem;
 }
+
+/* Loader container */
+
+.analytics-loader{
+  border:1px solid #eee;
+  border-radius:12px;
+  padding:16px;
+}
+
+/* Header */
+
+.loader-header{
+  display:flex;
+  align-items:center;
+  font-size:.95rem;
+  margin-bottom:12px;
+}
+
+/* Skeleton grid */
+
+.analytics-skeleton{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+}
+
+/* Skeleton card */
+
+.sk-card{
+  height:70px;
+  border-radius:10px;
+  border:1px solid #eee;
+  background: linear-gradient(
+      90deg,
+      #f1f1f1 25%,
+      #fafafa 50%,
+      #f1f1f1 75%
+  );
+  background-size:200% 100%;
+  animation: sk-shimmer 1.3s infinite linear;
+}
+
+@keyframes sk-shimmer{
+  0% { background-position:200% 0; }
+  100% { background-position:-200% 0; }
+}

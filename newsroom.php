@@ -280,8 +280,23 @@ exit;
 
                                 else {
                                     echo '
-                                        <div id="lottie" class="mb-4"></div>
-                                        <!-- NLP results (injected from AJAX) will appear here -->
+                                        <div id="analytics-loader" class="analytics-loader mb-4">
+
+                                            <div class="loader-header">
+                                                <div class="spinner-border spinner-border-sm text-primary me-2" role="status"></div>
+                                                <span class="fw-semibold">Analyzing article...</span>
+                                            </div>
+
+                                            <div class="analytics-skeleton">
+                                                <div class="sk-card"></div>
+                                                <div class="sk-card"></div>
+                                                <div class="sk-card"></div>
+                                                <div class="sk-card"></div>
+                                            </div>
+
+                                        </div>
+
+                                        <div id="analytics-results"></div>
                                     ';
                                 }
 
@@ -419,7 +434,6 @@ exit;
         <!-- Core JS (Bootstrap 4 requires jQuery first) -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
-        <script src="/assets/js/lottie.js" type="text/javascript"></script>
         <script type="text/javascript" src="/assets/js/intro.js"></script>
         <script type="text/javascript" src="/assets/js/lightbox.js"></script>
 

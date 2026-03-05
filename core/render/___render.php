@@ -61,11 +61,20 @@ function sn_article_vm_from_row(array $row, array $ctx = []): array {
     $mode = ($ctx['mode'] ?? 'classic') === 'nlp' ? 'nlp' : 'classic';
     $isNlpMode = ($mode === 'nlp');
 
-    // --- Map fields by mode ---
-    $title   = (string)($row['title'] ?? '');
-    $readUrl = $isNlpMode ? (string)($row['url'] ?? '#') : (string)($row['link'] ?? '#');
+    // --- Map fields by mode (with safe fallbacks) ---
+    $title = (string)($row['title'] ?? '');
 
-    $feedNameRaw   = $isNlpMode ? (string)($row['source_slug'] ?? '') : (string)($row['feed_name'] ?? '');
+    $classicUrl = (string)($row['link'] ?? '#');
+    $nlpUrl     = (string)($row['url'] ?? '#');
+
+    // If mode says NLP but row doesn't actually have url, fall back to classic link.
+    $readUrl = $isNlpMode ? ($nlpUrl !== '#' ? $nlpUrl : $classicUrl) : $classicUrl;
+
+    // Same idea for source/feed name:
+    $classicFeed = (string)($row['feed_name'] ?? '');
+    $nlpFeed     = (string)($row['source_slug'] ?? '');
+
+    $feedNameRaw = $isNlpMode ? ($nlpFeed !== '' ? $nlpFeed : $classicFeed) : $classicFeed;
     $feedNameHuman = $feedNameRaw !== '' ? ucfirst($feedNameRaw) : '';
     $feedNameLower = strtolower($feedNameRaw);
 

@@ -5,13 +5,12 @@
  * Requires on the page:
  *  - window.NEWSROOM = { fromDb: bool, url: string, intro?: { shouldRun?: bool }, ... }
  *  - jQuery + Bootstrap (popover)
- *  - lottie (optional, only used when fromDb === false)
  *  - introJs (optional)
  *
  * Safe to call multiple times (e.g., after analytics HTML is injected).
  */
 
-/* global $, introJs, lottie */
+/* global $, introJs */
 
 (function () {
   'use strict';
@@ -465,8 +464,9 @@
   NS.setupAnalyticsUI = setupAnalyticsUI;
 
   // -------------------------
-  // 9) Non-DB analyze flow (lottie + analyze.php POST)
+  // 9) Non-DB analyze flow (loader + analyze.php POST)
   // -------------------------
+
   function runAnalyzeFlowIfNeeded() {
     const cfg = window.NEWSROOM || {};
     const fromDb = !!cfg.fromDb;
@@ -477,38 +477,40 @@
       return;
     }
 
-    // Non-DB mode: show lottie + inject analyze.php response
+    // Non-DB mode: show skeleton + inject analyze.php response
     const url = cfg.url;
     if (!url) return;
 
-    // Lottie
-    try {
-      const ele = qs('#lottie');
-      if (ele && typeof lottie !== 'undefined' && lottie && typeof lottie.loadAnimation === 'function') {
-        lottie.loadAnimation({
-          container: ele,
-          renderer: 'svg',
-          loop: true,
-          autoplay: true,
-          path: 'assets/img/animation-w500-h500.json'
-        });
-      }
-    } catch (_) {}
+    // Elements
+    const $loader  = $('#analytics-loader');
+    const $results = $('#analytics-results');
 
-    // Load analytics
-    const $analytics = $('#analytics');
-    if (!$analytics.length) return;
+    // If markup isn't present, fail-soft (won't break page)
+    if (!$results.length) return;
+
+    // Show loader (in case it was hidden)
+    if ($loader.length) $loader.show();
+    $results.empty().removeClass('d-none');
 
     $.ajax({
       type: 'POST',
       url: '/api/analyze.php',
       data: { url: url },
+
       success: function (msg) {
-        $analytics.html(msg);
+        // Hide loader + render results
+        if ($loader.length) $loader.hide();
+        $results.html(msg);
+
+        // Wire up any UI behaviors (tooltips, accordions, etc.)
         setupAnalyticsUI();
       },
+
       error: function () {
-        $analytics.html('<div class="alert alert-warning mb-0">Sorry—we could not analyze this article right now.</div>');
+        if ($loader.length) $loader.hide();
+        $results.html(
+          '<div class="alert alert-warning mb-0">Sorry—we could not analyze this article right now.</div>'
+        );
       }
     });
   }
