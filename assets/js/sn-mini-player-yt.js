@@ -444,7 +444,7 @@
   const root = document.createElement('div');
   root.className = 'hud-mini-player';
   root.innerHTML = `
-    <div class="hud-shell hud-hidden ${START_COLLAPSED ? 'hud-collapsed' : ''}" data-step="4" data-intro="News media player">
+    <div class="hud-shell hud-hidden ${START_COLLAPSED ? 'hud-collapsed' : ''}">
       <div class="hud-header">
         <div class="hud-dot" title="connected"></div>
         <div class="hud-select-wrap">

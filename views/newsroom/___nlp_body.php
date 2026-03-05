@@ -4,7 +4,7 @@
 
           <div class="col-12 col-md-12 col-lg-12 col-xl-4 d-flex align-items-stretch">
 
-            <div data-step="5" data-intro="Hashtags of people, places, and organizations." class="card w-100 shadow mb-3">
+            <div data-step="4" data-intro="Hashtags of people, places, and organizations." class="card w-100 shadow mb-3">
               <!-- Card Header - Dropdown -->
               <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
                 <h5 class="m-0 font-weight-bold">Hashtags</h5>
@@ -14,7 +14,7 @@
                 <div id="hashtags">
                   <div class="basement_title mb-2">
                     <span class="h5" id="sm-tags">Google</span>
-                      <span id="hash-icons" data-step="6" data-intro="Click an icon to change the platform for the hashtags" style="float:right;height:22px;">
+                      <span id="hash-icons" data-step="5" data-intro="Click an icon to change the platform for the hashtags" style="float:right;height:22px;">
                         <a id="google-link" class="item google-highlight waves-effect waves-light mr-1" href="javascript:void(0)"><em id="google-icon" style="color:var(--brand-color);" class="fab fa-google"></em></a>
                         <a id="youtube-link" class="item youtube-highlight waves-effect waves-light mr-1" href="javascript:void(0)"><em id="youtube-icon" style="color:#34495E;" class="fab fa-youtube"></em></a>
                         <?php /*
@@ -94,7 +94,7 @@
           <div class="col-12 col-md-12 col-lg-12 col-xl-8 d-flex align-items-stretch">
             <div class="row d-flex align-items-stretch">
                 <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch" style="max-height: 340px;">
-                    <div data-step="7" data-intro="Wikipedia articles." class="card w-100 shadow mb-3">
+                    <div data-step="6" data-intro="Wikipedia articles." class="card w-100 shadow mb-3">
                       <!-- Card Header - Dropdown -->
                       <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
                         <h5 class="m-0 font-weight-bold">Wikipedia</h5>
@@ -121,7 +121,7 @@
                   </div>
 
                   <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch">
-                    <div data-step="8" data-intro="A taxonomy of the topics covered in the article." class="card w-100 shadow mb-3">
+                    <div data-step="7" data-intro="A taxonomy of the topics covered in the article." class="card w-100 shadow mb-3">
                       <!-- Card Header - Dropdown -->
                       <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
                         <h5 class="m-0 font-weight-bold">Subject Matter</h5>
@@ -269,7 +269,7 @@
 
                   </div>
                   <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch">
-                    <div data-step="9" data-intro="Emotions evoked." class="card w-100 shadow mb-3">
+                    <div data-step="8" data-intro="Emotions evoked." class="card w-100 shadow mb-3">
                       <!-- Card Header - Dropdown -->
                       <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
                         <h5 class="m-0 font-weight-bold">Emotional Reaction</h5>
@@ -338,7 +338,7 @@
                     </div>
                   </div>
                   <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch">
-                    <div data-step="10" data-intro="Author's tone." class="card w-100 shadow mb-3">
+                    <div data-step="9" data-intro="Author's tone." class="card w-100 shadow mb-3">
                       <!-- Card Header - Dropdown -->
                       <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
                         <h5 class="m-0 font-weight-bold">Sentiment</h5>
