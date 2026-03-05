@@ -74,12 +74,6 @@ exit;
         <link href="/assets/css/pages/newsroom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/newsroom.css'); ?>" rel="stylesheet" />
         <link href="/assets/css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/mindpour.css'); ?>" rel="stylesheet" />
 
-        <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-        <script src="https://www.amcharts.com/lib/3/serial.js"></script>
-        <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-        <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-        <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
-
         <!-- Add IntroJs styles -->
         <link href="/assets/css/introjs.css" rel="stylesheet">
 

@@ -78,10 +78,6 @@ a {
     color: var(--brand-color);
 }
 
-.amcharts-export-menu.amcharts-export-menu-top-right.amExportButton {
-    display: none;
-}
-
 .card-header {
     background-color: white;
 }
@@ -273,7 +269,7 @@ button.nav-link.active {
 /* === Knowledge Card Popover (Google-like) ======================= */
 .popover {
   --gkp-w: 340px;
-  --gkp-radius: 14px;
+  --gkp-radius: 7px;
   --gkp-border: #e5e7eb;            /* slate-200 */
   --gkp-text: #111827;              /* slate-900 */
   --gkp-muted: #6b7280;             /* slate-500 */
@@ -323,8 +319,8 @@ button.nav-link.active {
 
 /* Title + Meta row */
 .popover .gkp__title {
-  font-size: 28px; font-weight: 700; line-height: 1.2;
-  margin: 2px 0 2px;
+  font-size: 27px; font-weight: 700; line-height: 1.2;
+  margin: 7px 0 2px;
 }
 .popover .gkp__meta {
   font-size: 12px; font-weight: 600;
