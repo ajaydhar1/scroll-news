@@ -218,21 +218,19 @@ if (!$pdo) {
                         <div class="sn-history-filters mt-5 mb-0">
                             <div class="container-fluid px-0 px-md-1">
                                 <div class="row justify-content-center">
-                                    <div class="col-md-4 col-lg-2 mb-2">
+                                    <div class="col-md-4 col-lg-2 mb-2 filter-col">
                                         <label for="historyFilterKeyword">Filter by keyword</label>
                                         <input id="historyFilterKeyword" type="text" class="form-control form-control-sm" placeholder="headline, topic, etc.">
                                     </div>
-                                    <div class="col-md-4 col-lg-2 mb-2">
+                                    <div class="col-md-4 col-lg-2 mb-2 filter-col">
                                         <label for="historyFilterDomain">Filter by domain</label>
                                         <input id="historyFilterDomain" type="text" class="form-control form-control-sm" placeholder="e.g. nytimes.com">
                                     </div>
-                                    <div class="col-md-4 col-lg-2 mb-2">
+                                    <div class="col-md-4 col-lg-2 col-xl-1 mb-2 filter-col">
                                         <label for="historyFilterTime">Time window</label>
                                         <select id="historyFilterTime" class="form-control form-control-sm">
                                             <option value="all">All time</option>
                                             <option value="1d">Last 24 hours</option>
-                                            <option value="7d">Last 7 days</option>
-                                            <option value="30d">Last 30 days</option>
                                         </select>
                                     </div>
                                 </div>

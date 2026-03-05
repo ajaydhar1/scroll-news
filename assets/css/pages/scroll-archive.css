@@ -357,3 +357,9 @@ a.btn.btn-outline-primary.btn-analyze:hover {
     color: #9aa3b2;
     text-align: right;
 }
+
+
+.filter-col {
+    background: rgba(0, 0, 0, .37);
+    padding: 10px 20px 20px;
+}
