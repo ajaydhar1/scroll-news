@@ -1,11 +1,15 @@
 # Use the official PHP 7.4 image with Apache
-FROM php:7.4-apache
+# OLD (example)
+# FROM php:7.4-apache
 
-# Install Postgres client libs and build the PHP pgsql extensions
-RUN apt-get update \
- && apt-get install -y --no-install-recommends libpq-dev \
- && docker-php-ext-install -j"$(nproc)" pdo_pgsql pgsql \
- && rm -rf /var/lib/apt/lists/*
+# NEW
+FROM php:8.2-apache
+
+# Common deps (adjust to your needs)
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    && docker-php-ext-install pdo pdo_pgsql \
+    && rm -rf /var/lib/apt/lists/*
 
 # Enable Apache mod_rewrite (useful for clean URLs)
 RUN a2enmod rewrite headers
