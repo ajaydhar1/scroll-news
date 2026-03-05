@@ -217,12 +217,12 @@ p {
 
 a.btn.btn-outline-primary.btn-analyze:hover {
     background: #00bfa6;
-    border: none;
+    border-color: var(--brand-color);
 }
 
 .btn-outline-primary {
     color: black;
-    border: none;
+    border: 2px solid var(--brand-color);
 }
 
 .article-image-wrap {
