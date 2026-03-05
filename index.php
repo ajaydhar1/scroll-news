@@ -234,7 +234,7 @@ require_once BASE_PATH . "/core/___modules.php";
                 $isActive = ($currentCtx === 'category' && $currentVal === $slug);
                 ?>
                 <a
-                    class="sn-pill bg-dark <?= $isActive ? 'sn-pill-active' : '' ?>"
+                    class="btn btn-dark mx-1 mb-2"
                     href="<?= htmlspecialchars($href) ?>"
                     title="Analyze <?= htmlspecialchars($label) ?>"
                     data-loading
