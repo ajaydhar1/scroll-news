@@ -516,6 +516,30 @@
   }
 
   // -------------------------
+  // Wikipedia entity overlay
+  // -------------------------
+  $(function () {
+
+    $(document).on("click", ".js-wiki", function (e) {
+      e.preventDefault();
+
+      $.fancybox.open({
+        src: $(this).attr("href"),
+        type: "iframe",
+        width: "95%",
+        height: "95%",
+        autoSize: false,
+        fitToView: false,
+        closeClick: false,
+        openEffect: "none",
+        closeEffect: "none"
+      });
+
+    });
+
+  });
+
+  // -------------------------
   // Boot
   // -------------------------
   function initNewsroomPage() {

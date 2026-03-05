@@ -109,7 +109,7 @@
                               
                                 if (array_key_exists("wikipedia_url", $entity)) {
                                   echo '
-                                      <li><a href="'.$entity["wikipedia_url"].'" target="_blank" data-label="'.$entity["label"].'">'.$entity["text"].'</a></li>';
+                                      <li><a class="js-wiki" href="'.$entity["wikipedia_url"].'" data-label="'.$entity["label"].'">'.$entity["text"].'</a></li>';
                                 }    
                               }
                             ?>

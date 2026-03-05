@@ -77,8 +77,8 @@ exit;
         <!-- Add IntroJs styles -->
         <link href="/assets/css/introjs.css" rel="stylesheet">
 
-        <link href="/assets/css/lightbox.css" rel="stylesheet" />
-
+        <link rel="stylesheet" href="/assets/css/jquery.fancybox.min.css"/>
+        
         <script>
             // Flip this to false to go back to your old 2-AJAX flow instantly.
             const USE_UNIFIED_NEWSROOM_API = true;
@@ -429,8 +429,8 @@ exit;
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
         <script type="text/javascript" src="/assets/js/intro.js"></script>
-        <script type="text/javascript" src="/assets/js/lightbox.js"></script>
-
+        <script type="text/javascript" src="/assets/js/jquery.fancybox.min.js"></script>
+        
         <script src="/assets/js/newsroom/handlers.js" defer></script>
         <!--<script src="/assets/js/newsroom/api_legacy.js" defer></script>-->
         <!--<script src="/assets/js/newsroom/api_unified.js" defer></script>-->
