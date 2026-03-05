@@ -424,3 +424,58 @@ button.nav-link.active {
   0% { background-position:200% 0; }
   100% { background-position:-200% 0; }
 }
+
+/* Emotional Reaction (CSS chart) */
+.sn-emo{
+  display:flex;
+  flex-direction:column;
+  gap:.6rem;
+}
+
+.sn-emo-row{
+  display:grid;
+  grid-template-columns: 90px 1fr 52px;
+  gap:.75rem;
+  align-items:center;
+}
+
+.sn-emo-label{
+  font-size:.9rem;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.sn-emo-val{
+  font-size:.85rem;
+  opacity:.75;
+  text-align:right;
+  font-variant-numeric: tabular-nums;
+}
+
+.sn-emo-bar{
+  height:12px;
+  border-radius:999px;
+  background:#f1f3f5;
+  border:1px solid #eee;
+  overflow:hidden;
+  position:relative;
+}
+
+.sn-emo-fill{
+  display:block;
+  height:100%;
+  width: var(--v, 0%);
+  border-radius:999px;
+  background: linear-gradient(90deg, #00bfa6, #7ee7d7);
+  transition: width 220ms ease;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .sn-emo-fill{ transition:none; }
+}
+
+/* Optional: make "angry" stand out a bit */
+.sn-emo-row[data-emo="angry"] .sn-emo-fill{
+  background: linear-gradient(90deg, #ff6b6b, #ffd6d6);
+}

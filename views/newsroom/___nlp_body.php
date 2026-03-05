@@ -130,63 +130,139 @@
                       <div class="card-body">
                         <div id="subject-matter">
                           <ul class="rec-list" style="padding-left:10px;">
-                               
+
                             <?php
+                              // --- 1) Input topics (label => score 0..1) ---
+                              $topics = (isset($arr['topics']) && is_array($arr['topics'])) ? $arr['topics'] : [];
 
-                            foreach ($arr['topics'] as $key => $value) {
-                            
+                              // Normalize topics to sum to 1.0 (so displayed % add to ~100)
+                              $total = 0.0;
 
-                            echo ' 
-                                <li class="rec-list-head">
-                              
-                                  <div class="left-view"> '.$key.' 
-                                
-                                    <span class="right-view">  <b> '.number_format($value * 100,2).'%  </b></span>
-                                
-                                </div>
+                              // detect if values are 0..100 already (optional heuristic)
+                              $maxVal = 0.0;
+                              foreach ($topics as $lbl => $v) {
+                                $v = (float)$v;
+                                $maxVal = max($maxVal, $v);
+                              }
 
-                                </li>';
-                                
-                                
-                                /*
-
-                                $ds=$arr['topics'][$i]['sublevels'];
-                                
-                               
-                               
-                               
-                                if(count($ds) > 0)
-                                {
-                                    echo '<ul  class="rec-list"style="padding-left:15px;">';
-                                    
-                                for($j=0;$j<count($ds);$j++)
-                                {
-                                    echo '
-                                    
-                                     <li class="rec-list">
-                              
-                                  <div class="left-view"> '.ucfirst($ds[$j]['category']).'
-                                
-                                    <span class="right-view"> '.number_format($ds[$j]['score'] * 100,2).'% </span>
-                                
-                                </div>
-
-                                     </li>
-                                    
-                                    ';
-                                    
+                              // If values look like 0..100, convert to 0..1 first
+                              if ($maxVal > 1.00001) {
+                                foreach ($topics as $lbl => $v) {
+                                  $topics[$lbl] = ((float)$v) / 100.0;
                                 }
+                              }
+
+                              foreach ($topics as $lbl => $v) {
+                                $total += max(0.0, (float)$v);
+                              }
+
+                              if ($total > 0) {
+                                foreach ($topics as $lbl => $v) {
+                                  $topics[$lbl] = max(0.0, (float)$v) / $total;  // now sums to 1.0
+                                }
+                              }
+
+                              // --- 2) 4-group taxonomy ---
+                              $groupMap = [
+                                'Politics & Government' => [
+                                  'Political Theatre',
+                                  'Government',
+                                ],
+                                'Society & Public Safety' => [
+                                  'Civil Unrest, Conflict',
+                                  'Friends and Family',
+                                ],
+                                'Health & Environment' => [
+                                  'Health',
+                                  'Environment, Climate',
+                                  'Food and Beverage',
+                                ],
+                                'Business & Technology' => [
+                                  'Business, Companies',
+                                  'Technology',
+                                ],
+                                'Culture & Media' => [
+                                  'Entertainment',
+                                ],
+                              ];
+
+                              // --- 3) Build groups with rollups ---
+                              $groups = []; // parent => ['total'=>float, 'children'=>[topic=>float]]
+                              foreach ($groupMap as $parent => $childrenList) {
+                                $groups[$parent] = ['total' => 0.0, 'children' => []];
+
+                                foreach ($childrenList as $topicLabel) {
+                                  // find the topic score in $topics by exact key
+                                  if (array_key_exists($topicLabel, $topics)) {
+                                    $score = (float)$topics[$topicLabel];
+                                    $groups[$parent]['children'][$topicLabel] = $score;
+                                    $groups[$parent]['total'] += $score;
+                                  }
+                                }
+                              }
+
+                              // --- 4) Handle any "unknown/unmapped" topics gracefully ---
+                              $mapped = [];
+                              foreach ($groupMap as $parent => $childrenList) {
+                                foreach ($childrenList as $t) $mapped[$t] = true;
+                              }
+
+                              $unmapped = [];
+                              foreach ($topics as $label => $score) {
+                                if (!isset($mapped[$label])) {
+                                  $unmapped[$label] = (float)$score;
+                                }
+                              }
+                              if (!empty($unmapped)) {
+                                $groups['Other'] = [
+                                  'total' => array_sum($unmapped),
+                                  'children' => $unmapped
+                                ];
+                              }
+
+                              // --- 5) Sort parents by total desc; children by score desc ---
+                              uasort($groups, fn($a,$b) => ($b['total'] <=> $a['total']));
+                              foreach ($groups as $p => $g) {
+                                arsort($groups[$p]['children']);
+                              }
+
+                              // Optional: hide empty groups
+                              $groups = array_filter($groups, fn($g) => !empty($g['children']) || ($g['total'] > 0));
+
+                              // --- 6) Render ---
+                              foreach ($groups as $parent => $g) {
+
+                                $parentPct = number_format($g['total'] * 100, 2);
+
+                                echo '
+                                  <li class="rec-list-head">
+                                    <div class="left-view">
+                                      <b>' . htmlspecialchars($parent) . '</b>
+                                      <span class="right-view"><b>' . $parentPct . '%</b></span>
+                                    </div>
+                                  </li>
+                                ';
+
+                                echo '<ul class="rec-list" style="padding-left:15px;">';
+
+                                foreach ($g['children'] as $childLabel => $childScore) {
+                                  $childPct = number_format($childScore * 100, 2);
+
+                                  echo '
+                                    <li class="rec-list">
+                                      <div class="left-view">
+                                        ' . htmlspecialchars($childLabel) . '
+                                        <span class="right-view">' . $childPct . '%</span>
+                                      </div>
+                                    </li>
+                                  ';
+                                }
+
                                 echo '</ul>';
-                                }
+                              }
+                            ?>
 
-                                */
-                                
-                                
-                              }                   
-                              
-                              ?>
-                                              
-                            </ul>
+                          </ul>
                         </div>
                       </div>
                     </div>
@@ -203,21 +279,60 @@
                         <div id="emotions">
 
                           <?php
+                            // Normalize: ensure keys exist (keep your existing defaults)
+                            $reaction = [
+                              'love'  => 0,
+                              'angry' => 0,
+                              'ahah'  => 0,
+                              'wow'   => 0,
+                              'sad'   => 0,
+                            ];
 
-                            $reaction['love']=0;
-                            $reaction['angry']=0;
-                            $reaction['ahah']=0;
-                            $reaction['wow']=0;
-                            $reaction['sad']=0;
-
-                            foreach ($arr['emotional_reaction'] as $key => $value) {
-                                
-                                $reaction[strtolower($key)]=$value;
-                                
+                            foreach (($arr['emotional_reaction'] ?? []) as $key => $value) {
+                              $k = strtolower(trim((string)$key));
+                              if (array_key_exists($k, $reaction)) {
+                                $reaction[$k] = (float)$value;
+                              }
                             }
+
+                            // If your values are 0..1, convert to percent. If they’re already 0..100, this keeps them sane.
+                            $max = max($reaction) ?: 0;
+
+                            $toPct = function($v) use ($max) {
+                              $v = (float)$v;
+                              // Heuristic: if it looks like 0..1 floats, convert to 0..100
+                              if ($v <= 1.00001) $v *= 100.0;
+                              // Clamp
+                              if ($v < 0) $v = 0;
+                              if ($v > 100) $v = 100;
+                              return (int)round($v);
+                            };
+
+                            // Display order
+                            $order = ['love','ahah','wow','sad','angry'];
+
+                            // Optional: pretty labels
+                            $labels = [
+                              'love'  => 'Love',
+                              'ahah'  => 'Aha-ha',
+                              'wow'   => 'Wow',
+                              'sad'   => 'Sad',
+                              'angry' => 'Angry',
+                            ];
                           ?>
 
-                          <div id="chartdiv" style="height: 290px;"></div>
+                          <div class="sn-emo" role="group" aria-label="Emotional Reaction">
+                            <?php foreach ($order as $k): ?>
+                              <?php $pct = $toPct($reaction[$k] ?? 0); ?>
+                              <div class="sn-emo-row" data-emo="<?= htmlspecialchars($k) ?>">
+                                <div class="sn-emo-label"><?= htmlspecialchars($labels[$k] ?? ucfirst($k)) ?></div>
+                                <div class="sn-emo-bar" style="--v: <?= $pct ?>%;">
+                                  <span class="sn-emo-fill"></span>
+                                </div>
+                                <div class="sn-emo-val"><?= $pct ?>%</div>
+                              </div>
+                            <?php endforeach; ?>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -232,29 +347,40 @@
                       <div class="card-body">
                         <div id="sentiment" class="text-center" style="height: 220px;">
                           <?php
-                           
-                           
+
                             $arrss = ['positive','neutral','negative'];
+
+                            // Emoji map
+                            $emoji = [
+                              'positive' => '🙂',
+                              'neutral'  => '😐',
+                              'negative' => '☹️'
+                            ];
 
                             // $arr should be decoded NLP array
                             $score = null;
                             if (isset($arr['sentiment']) && is_array($arr['sentiment'])) {
-                                $score = $arr['sentiment']['score'] ?? null;
+                              $score = $arr['sentiment']['score'] ?? null;
                             }
 
                             // Compute bucket using shared thresholds
-                            $bucket = sn_sentiment_bucket_from_score($score); // returns positive/neutral/negative/unknown
+                            $bucket = sn_sentiment_bucket_from_score($score); // positive/neutral/negative/unknown
 
-                            // If you only want to display the 3 options, treat unknown as neutral (or add unknown to arrss)
+                            // Treat unknown as neutral
                             $sentiment = ($bucket === 'unknown') ? 'neutral' : $bucket;
 
                             foreach ($arrss as $label) {
-                                $ctc = ($label === $sentiment)
-                                    ? 'style="background:black; padding:7px 10px; color:white;"'
-                                    : '';
-                                echo '<p class="text-center" style="margin-top:40px;"><span '.$ctc.'> '.ucfirst($label).' </span></p>';
+
+                              $ctc = ($label === $sentiment)
+                                ? 'style="background:black; padding:7px 10px; color:white; border-radius:6px;"'
+                                : '';
+
+                              $icon = $emoji[$label] ?? '';
+
+                              echo '<p class="text-center" style="margin-top:12px;">
+                                      <span '.$ctc.'> '.$icon.' '.ucfirst($label).' </span>
+                                    </p>';
                             }
-                          
                           ?>
 
                         </div>
@@ -266,75 +392,6 @@
 
             
         </div>
-
-
-        <script>
-            var chart = AmCharts.makeChart( "chartdiv", {
-              "type": "serial",
-              "theme": "dark",
-              "color": "#b9b9b9",
-              "dataProvider": [ {
-                "country": "love",
-                "visits": <?= $reaction['love'] ?>,
-                "color": "#00bfa6"
-              },
-              {
-                "country": "angry",
-                "visits": <?= $reaction['angry'] ?>,
-                "color": "#00bfa6"
-              },
-              {
-                "country": "ahah",
-                "visits": <?= $reaction['ahah'] ?>,
-                "color": "#00bfa6"
-              },
-              {
-                "country": "wow",
-                "visits": <?= $reaction['wow'] ?>,
-                "color": "#00bfa6"
-              },
-              {
-                "country": "sad",
-                "visits": <?= $reaction['sad'] ?>,
-                "color": "#00bfa6"
-              }
-              ],
-
-
-
-              "valueAxes": [ {
-                "gridColor": "#FFFFFF",
-                "gridAlpha": 0.4,
-                "dashLength": 0
-              } ],
-              "gridAboveGraphs": true,
-              "startDuration": 1,
-              "graphs": [ {
-                "balloonText": "[[category]]: <b>[[value]]</b>",
-                "fillAlphas": 0.8,
-                "lineAlpha": 0.2,
-              "fillColorsField": "color",
-                "type": "column",
-                "valueField": "visits"
-              } ],
-              "chartCursor": {
-                "categoryBalloonEnabled": false,
-                "cursorAlpha": 0,
-                "zoomable": false
-              },
-              "categoryField": "country",
-              "categoryAxis": {
-                "gridPosition": "start",
-                "labelRotation": 45,
-                "tickPosition": "start",
-                
-              },
-              "export": {
-                "enabled": true
-              }
-
-            } );
-          </script>
 
 
           
