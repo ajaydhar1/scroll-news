@@ -239,6 +239,54 @@ try {
           </p>
       </div>
 
+      <!-- Category pills for the analysis page -->
+      <?php
+
+        $categories = [
+        'politics'      => 'Politics',
+        'sports'        => 'Sports',
+        'business'      => 'Business',
+        'technology'    => 'Technology',
+        'science'       => 'Science',
+        'health'        => 'Health',
+        'entertainment' => 'Entertainment',
+        ];
+
+        // optional: highlight the active category if you're already on analysis pages
+        $currentCtx = isset($_GET['context']) ? strtolower(trim((string)$_GET['context'])) : '';
+        $currentVal = isset($_GET['value'])   ? strtolower(trim((string)$_GET['value']))   : '';
+        ?>
+        <section class="container-fluid bg-light-2 py-2 text-center">
+        <div class="sn-categories-strip">
+        <div class="sn-categories-title">Explore by Category</div>
+
+        <div class="sn-categories-pills">
+            <?php foreach ($categories as $slug => $label):
+            $params = $_GET; // preserve existing params (optional)
+            $params['context'] = 'category';
+            $params['value']   = $slug;
+            $params['w']       = '7d';
+
+            // If you don't want to preserve homepage params, replace the 4 lines above with:
+            // $params = ['context' => 'category', 'value' => $slug, 'w' => '7d'];
+
+            $href = '/analysis.php?' . http_build_query($params);
+
+            $isActive = ($currentCtx === 'category' && $currentVal === $slug);
+            ?>
+            <a
+                class="btn btn-dark mx-1 mb-2"
+                href="<?= htmlspecialchars($href) ?>"
+                title="Analyze <?= htmlspecialchars($label) ?>"
+                data-loading
+            >
+                <?= htmlspecialchars($label) ?>
+            </a>
+            <?php endforeach; ?>
+        </div>
+        </div>
+      </section>
+
       <div class="row">
           <div class="col-12 col-lg-12">
               <!-- Corpus overview: context, window, size, bounds -->
