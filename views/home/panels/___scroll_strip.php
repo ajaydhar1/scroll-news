@@ -73,23 +73,12 @@ try {
             $sentimentLabel = $nlp['sentiment']['label'] ?? null;
             $sentimentScore = $nlp['sentiment']['score'] ?? null; // e.g. 0.1712
 
-            // 3) Emotional reaction (Wow / Love / etc.) – sort and take top 3
+            // 3) Emotional reaction (top 3, normalized to true 100% distribution)
             $emotionsRaw = $nlp['emotional_reaction'] ?? [];
-            $emotions = [];
-
-            if (is_array($emotionsRaw)) {
-                foreach ($emotionsRaw as $label => $value) {
-                    if (!is_numeric($value)) continue;
-                    $emotions[] = [
-                        'label' => (string)$label,
-                        'value' => (float)$value
-                    ];
-                }
-                usort($emotions, function ($a, $b) {
-                    return $b['value'] <=> $a['value'];
-                });
-                $emotions = array_slice($emotions, 0, 3);
-            }
+            $emotions = sn_normalized_emotion_distribution(
+                is_array($emotionsRaw) ? $emotionsRaw : [],
+                3
+            );
 
             $enriched[] = [
                 'url'             => $row['url'],

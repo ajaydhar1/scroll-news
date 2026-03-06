@@ -90,7 +90,7 @@ if (!$pdo) {
         <title>Search – Scroll News</title>
 
         <!-- Favicon-->
-        <link rel="icon" type="image/png" href="assets/img/play-green.png" />
+        <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
         <link rel="canonical" href="https://scrollnews.io/search.php">
 
         <!-- Open Graph / Facebook -->

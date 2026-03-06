@@ -279,7 +279,7 @@
                         <div id="emotions">
 
                           <?php
-                            // Normalize: ensure keys exist (keep your existing defaults)
+                            // Base emotion set
                             $reaction = [
                               'love'  => 0,
                               'angry' => 0,
@@ -291,27 +291,14 @@
                             foreach (($arr['emotional_reaction'] ?? []) as $key => $value) {
                               $k = strtolower(trim((string)$key));
                               if (array_key_exists($k, $reaction)) {
-                                $reaction[$k] = (float)$value;
+                                $reaction[$k] = max(0, (float)$value);
                               }
                             }
 
-                            // If your values are 0..1, convert to percent. If they’re already 0..100, this keeps them sane.
-                            $max = max($reaction) ?: 0;
-
-                            $toPct = function($v) use ($max) {
-                              $v = (float)$v;
-                              // Heuristic: if it looks like 0..1 floats, convert to 0..100
-                              if ($v <= 1.00001) $v *= 100.0;
-                              // Clamp
-                              if ($v < 0) $v = 0;
-                              if ($v > 100) $v = 100;
-                              return (int)round($v);
-                            };
-
                             // Display order
-                            $order = ['love','ahah','wow','sad','angry'];
+                            $order = ['love', 'ahah', 'wow', 'sad', 'angry'];
 
-                            // Optional: pretty labels
+                            // Pretty labels
                             $labels = [
                               'love'  => 'Love',
                               'ahah'  => 'Aha-ha',
@@ -319,11 +306,65 @@
                               'sad'   => 'Sad',
                               'angry' => 'Angry',
                             ];
+
+                            // Detect whether values look like 0..1 scores and scale them up uniformly.
+                            // This does NOT affect the final distribution mathematically, but keeps handling clean.
+                            $maxVal = max($reaction);
+                            if ($maxVal > 0 && $maxVal <= 1.00001) {
+                              foreach ($reaction as $k => $v) {
+                                $reaction[$k] = $v * 100.0;
+                              }
+                            }
+
+                            $total = array_sum($reaction);
+
+                            // Build exact normalized percentages first
+                            $normalized = [];
+                            if ($total > 0) {
+                              foreach ($order as $k) {
+                                $exact = ($reaction[$k] / $total) * 100.0;
+                                $normalized[$k] = [
+                                  'exact' => $exact,
+                                  'floor' => (int) floor($exact),
+                                  'frac'  => $exact - floor($exact),
+                                ];
+                              }
+
+                              // Start with floors
+                              $sumFloor = 0;
+                              foreach ($order as $k) {
+                                $sumFloor += $normalized[$k]['floor'];
+                              }
+
+                              // Distribute leftover points to largest fractional parts
+                              $remainder = 100 - $sumFloor;
+
+                              usort($order, function($a, $b) use ($normalized) {
+                                return $normalized[$b]['frac'] <=> $normalized[$a]['frac'];
+                              });
+
+                              foreach ($order as $i => $k) {
+                                $normalized[$k]['pct'] = $normalized[$k]['floor'] + ($i < $remainder ? 1 : 0);
+                              }
+
+                              // Restore original display order
+                              $order = ['love', 'ahah', 'wow', 'sad', 'angry'];
+                            } else {
+                              // No data case: all zero
+                              foreach ($order as $k) {
+                                $normalized[$k] = [
+                                  'exact' => 0,
+                                  'floor' => 0,
+                                  'frac'  => 0,
+                                  'pct'   => 0,
+                                ];
+                              }
+                            }
                           ?>
 
                           <div class="sn-emo" role="group" aria-label="Emotional Reaction">
                             <?php foreach ($order as $k): ?>
-                              <?php $pct = $toPct($reaction[$k] ?? 0); ?>
+                              <?php $pct = $normalized[$k]['pct']; ?>
                               <div class="sn-emo-row" data-emo="<?= htmlspecialchars($k) ?>">
                                 <div class="sn-emo-label"><?= htmlspecialchars($labels[$k] ?? ucfirst($k)) ?></div>
                                 <div class="sn-emo-bar" style="--v: <?= $pct ?>%;">

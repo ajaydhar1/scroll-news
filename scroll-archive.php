@@ -134,7 +134,7 @@ if (!$pdo) {
         <title>Daily Scroll Archive – Browse Every Saved Article</title>
 
         <!-- Favicon-->
-        <link rel="icon" type="image/png" href="assets/img/play-green.png" />
+        <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
         <link rel="canonical" href="https://scrollnews.io/scroll-archive.php">
 
         <!-- Open Graph / Facebook -->

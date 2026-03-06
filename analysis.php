@@ -156,7 +156,7 @@ try {
   <meta name="author" content="Scroll News" />
 
   <!-- Favicon-->
-  <link rel="icon" type="image/png" href="assets/img/play-green.png" />
+  <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
 
   <!-- jQuery min-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

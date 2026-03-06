@@ -195,15 +195,12 @@ function sn_article_vm_from_row(array $row, array $ctx = []): array {
             'score'   => (is_numeric($score) ? (float)$score : null),
         ];
 
-        // Emotional reaction (top 3)
+        // Emotional reaction (top 3, normalized to true 100% distribution)
         $emotionsRaw = $nlp['emotional_reaction'] ?? [];
-        $emotions = [];
-        foreach ($emotionsRaw as $emoLabel => $value) {
-            if (!is_numeric($value)) continue;
-            $emotions[] = ['label' => (string)$emoLabel, 'value' => (float)$value];
-        }
-        usort($emotions, fn($a,$b) => $b['value'] <=> $a['value']);
-        $topEmotions = array_slice($emotions, 0, 3);
+        $topEmotions = sn_normalized_emotion_distribution(
+            is_array($emotionsRaw) ? $emotionsRaw : [],
+            3
+        );
     }
 
     // Default category URL builder
@@ -600,20 +597,6 @@ function scroll_render_article_intel_item(array $article, array $opts = []): str
         }
     };
 
-    $topEmotions = function ($emotionalReaction, int $max = 2, float $minPercent = 10.0): array {
-        if (!is_array($emotionalReaction) || !$emotionalReaction) return [];
-        arsort($emotionalReaction);
-
-        $out = [];
-        foreach ($emotionalReaction as $name => $pct) {
-            if (count($out) >= $max) break;
-            $pct = (float)$pct;
-            if ($pct < $minPercent) continue;
-            $out[] = ['name' => (string)$name, 'pct' => $pct];
-        }
-        return $out;
-    };
-
     $parsePub = function ($pubRaw): array {
         // returns [$pub_ts, $pubIso, $formattedDate]
         $pub_ts = null;
@@ -641,7 +624,22 @@ function scroll_render_article_intel_item(array $article, array $opts = []): str
     $sentEmoji  = $sentimentEmoji($bucket);
 
     // Emotions
-    $emotionDetail = $topEmotions($nlp['emotional_reaction'] ?? [], 2, $emotionMinPct);
+    $emotionDetailRaw = sn_normalized_emotion_distribution(
+        is_array($nlp['emotional_reaction'] ?? null) ? $nlp['emotional_reaction'] : [],
+        null
+    );
+
+    // Keep only the top N that meet the minimum normalized percentage
+    $emotionDetail = [];
+    foreach ($emotionDetailRaw as $emo) {
+        if (count($emotionDetail) >= 2) break;
+        if ((float)($emo['value'] ?? 0) < $emotionMinPct) continue;
+
+        $emotionDetail[] = [
+            'name' => (string)($emo['label'] ?? ''),
+            'pct'  => (int)($emo['value'] ?? 0),
+        ];
+    }
 
     // Topics: top N by score
     $topicChips = [];

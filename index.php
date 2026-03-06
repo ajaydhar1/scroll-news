@@ -12,7 +12,7 @@ require_once BASE_PATH . "/core/___modules.php";
         <title>Scroll News – AI-Powered U.S. News Summaries & Trending Headlines</title>
 
         <!-- Favicon-->
-        <link rel="icon" type="image/png" href="assets/img/play-green.png" />
+        <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
         <link rel="canonical" href="https://scrollnews.io/">
 
         <!-- Performance: YouTube preconnects -->

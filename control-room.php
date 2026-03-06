@@ -11,7 +11,7 @@ define('BASE_PATH', __DIR__);
         <title>Scroll News Control Room – Tune Your Newsroom Tools</title>
 
         <!-- Favicon-->
-        <link rel="icon" type="image/png" href="assets/img/play-green.png" />
+        <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
         <link rel="canonical" href="https://scrollnews.io/control-room">
 
         <!-- Open Graph / Facebook -->

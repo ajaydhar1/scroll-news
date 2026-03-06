@@ -13,7 +13,7 @@ define('BASE_PATH', __DIR__);
 
         <!-- Canonical + favicon -->
         <link rel="canonical" href="https://scrollnews.io/terms" />
-        <link rel="icon" type="image/png" href="assets/img/play-green.png" />
+        <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
 
         <!-- Open Graph -->
         <meta property="og:type" content="website" />

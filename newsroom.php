@@ -41,7 +41,7 @@ exit;
         <title><?= htmlspecialchars($title) ?></title>
 
         <!-- Favicon-->
-        <link rel="icon" type="image/png" href="assets/img/play-green.png" />
+        <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
 
         <!-- Twitter card and Open Graph-->
         <meta name="twitter:card" content="summary_large_image" />

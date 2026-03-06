@@ -9,7 +9,7 @@
             <div class="col-lg-4 d-flex text-lg-left text-bolder">
                 <h5 class="mb-2 mb-sm-0">
                     <a href="/" data-loading>
-                        <img src="assets/img/play-green.png" alt="Logo play button" style="height: 24px; width: auto; vertical-align: middle; margin-right: 5px; margin-bottom: 5px;">
+                        <img src="/assets/img/play-green.png" alt="Logo play button" style="height: 24px; width: auto; vertical-align: middle; margin-right: 5px; margin-bottom: 5px;">
                         Scroll News
                     </a>
                 </h5>

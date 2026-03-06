@@ -13,7 +13,7 @@ define('BASE_PATH', __DIR__);
 
         <!-- Canonical + favicon -->
         <link rel="canonical" href="https://scrollnews.io/about" />
-        <link rel="icon" type="image/png" href="assets/img/play-green.png" />
+        <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
 
         <!-- Open Graph -->
         <meta property="og:type" content="website" />
@@ -77,7 +77,7 @@ define('BASE_PATH', __DIR__);
                 <div class="card-body p-5">
 
                     <header class="mb-5">
-                        <h1 class="mb-3"><img src="assets/img/play-green.png" alt="Logo" style="height: 38px; width: auto; vertical-align: middle; margin-right: 10px; margin-bottom: 5px;">About Scroll News</h1>
+                        <h1 class="mb-3"><img src="/assets/img/play-green.png" alt="Logo" style="height: 38px; width: auto; vertical-align: middle; margin-right: 10px; margin-bottom: 5px;">About Scroll News</h1>
                         <p class="text-muted mb-0">
                             <strong>Scroll News is a personal news intelligence layer.</strong>
                         </p>

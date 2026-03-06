@@ -11,7 +11,7 @@ define('BASE_PATH', __DIR__);
         <title>Page Not Found | Scroll News</title>
 
         <!-- Favicon-->
-        <link rel="icon" type="image/png" href="assets/img/play-green.png" />
+        <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
         <link rel="canonical" href="https://scrollnews.io/404">
 
         <!-- Open Graph / Facebook -->
