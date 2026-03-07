@@ -1,13 +1,16 @@
 <?php
-// scroll-archive.php — Daily Scroll Archive inside Scroll News template
-
 define('BASE_PATH', __DIR__);
 
 require_once BASE_PATH . "/core/___modules.php";
 
-// Fetch all RSS items ordered by pub_date DESC
-$DAYS_TO_SHOW = 4;
-$errorMsg   = null;
+// Config
+$DAYS_PER_PAGE = 5;
+$errorMsg      = null;
+$page          = max(1, (int)($_GET['page'] ?? 1));
+$totalPages    = 1;
+$days          = [];
+
+$ARCHIVE_OLDEST_DATE = '2025-11-30'; // first day RSS ingestion started
 
 $pdo = _pdo_or_null();
 
@@ -15,32 +18,35 @@ if (!$pdo) {
     $errorMsg = "Database connection not available.";
 } else {
     try {
+        $tzId = 'America/New_York';
+        $tz   = new DateTimeZone($tzId);
 
-        // Compute cutoff date: today minus (DAYS_TO_SHOW - 1) days
-        $cutoffDate = (new DateTimeImmutable('today'))
-            ->sub(new DateInterval('P' . ($DAYS_TO_SHOW - 1) . 'D'))
-            ->format('Y-m-d');
+        $todayLocal = new DateTimeImmutable('today', $tz);
 
-        // SQL for all RSS articles
-        /*
-        $sql = "
-            SELECT 
-                ri.id,
-                ri.title,
-                ri.link,
-                ri.pub_date,
-                ri.media_url,
-                f.name AS feed_name
-            FROM rss_items ri
-            JOIN feeds f ON f.id = ri.feed_id
-            WHERE 
-                ri.pub_date IS NOT NULL
-                AND ri.pub_date::date >= :cutoff_date
-            ORDER BY ri.pub_date DESC, ri.id DESC
-        ";
-        */
+        $windowStart = $todayLocal->sub(new DateInterval('P' . (($page - 1) * $DAYS_PER_PAGE + ($DAYS_PER_PAGE - 1)) . 'D'));
+        $windowEnd   = $todayLocal->sub(new DateInterval('P' . (($page - 1) * $DAYS_PER_PAGE) . 'D'))
+            ->add(new DateInterval('P1D'));
 
-        // SQL for only articles that have been analyzed
+        $windowStartDate = $windowStart->format('Y-m-d');
+        $windowEndDate   = $windowEnd->format('Y-m-d');
+
+        $oldestDate = new DateTimeImmutable($ARCHIVE_OLDEST_DATE, $tz);
+        $newestDate = new DateTimeImmutable('today', $tz);
+
+        $totalDays  = (int)$oldestDate->diff($newestDate)->days + 1;
+        $totalPages = max(1, (int)ceil($totalDays / $DAYS_PER_PAGE));
+
+        if ($page > $totalPages) {
+            $page = $totalPages;
+
+            $windowStart = $todayLocal->sub(new DateInterval('P' . (($page - 1) * $DAYS_PER_PAGE + ($DAYS_PER_PAGE - 1)) . 'D'));
+            $windowEnd   = $todayLocal->sub(new DateInterval('P' . (($page - 1) * $DAYS_PER_PAGE) . 'D'))
+                ->add(new DateInterval('P1D'));
+
+            $windowStartDate = $windowStart->format('Y-m-d');
+            $windowEndDate   = $windowEnd->format('Y-m-d');
+        }
+
         $sql = "
             SELECT 
                 ri.id,
@@ -56,41 +62,35 @@ if (!$pdo) {
             JOIN articles a ON a.url = ri.link
             WHERE 
                 ri.pub_date IS NOT NULL
-                AND ri.pub_date::date >= :cutoff_date
+                AND ri.pub_date::date >= :window_start
+                AND ri.pub_date::date < :window_end
             ORDER BY ri.pub_date DESC, ri.id DESC
         ";
 
-        $stmt  = $pdo->prepare($sql);
-        $stmt->execute([':cutoff_date' => $cutoffDate]);
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':window_start' => $windowStartDate,
+            ':window_end'   => $windowEndDate,
+        ]);
         $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        // Group items by local date (Y-m-d) based on pub_date, using same offset logic as format_news_date()
-        $days = [];
-
-        $tzId = 'America/New_York';
-        $tz   = new DateTimeZone($tzId);
 
         foreach ($items as $item) {
             if (empty($item['pub_date'])) {
-                continue; // nothing to group
+                continue;
             }
 
             $raw = $item['pub_date'];
-
-            // Allow either a Unix timestamp-ish value or a datetime string from the DB
             $ts = null;
 
             if (is_numeric($raw)) {
-                // Normalize digits and guard against ms
                 $digits = preg_replace('/\D/', '', (string)$raw);
                 if ($digits !== '') {
                     $ts = (int)$digits;
-                    if ($ts > 1000000000000) { // looks like ms
+                    if ($ts > 1000000000000) {
                         $ts = (int)round($ts / 1000);
                     }
                 }
             } else {
-                // Treat as TIMESTAMPTZ string like "2025-12-01 18:15:00+00"
                 $tmp = strtotime($raw);
                 if ($tmp !== false) {
                     $ts = $tmp;
@@ -98,18 +98,15 @@ if (!$pdo) {
             }
 
             if ($ts === null) {
-                continue; // can't parse, skip
+                continue;
             }
 
-            // Apply same offset logic as the masthead: start from UTC and shift to America/New_York
             $dt = (new DateTimeImmutable('@' . $ts))->setTimezone($tz);
 
-            // Store for later display (you can reuse this with format_news_date if you want)
             $item['_dt']       = $dt;
-            $item['_ts']       = $ts;               // raw Unix seconds for filters
+            $item['_ts']       = $ts;
             $item['_date_key'] = $dt->format('Y-m-d');
 
-            // Group by local calendar date
             $dateKey = $item['_date_key'];
 
             if (!isset($days[$dateKey])) {
@@ -119,8 +116,7 @@ if (!$pdo) {
         }
     } catch (Throwable $e) {
         $errorMsg = 'There was a problem loading your scroll history.';
-        $rows     = [];
-        // Optional: error_log($e->getMessage());
+        $days     = [];
     }
 }
 ?>
@@ -188,7 +184,10 @@ if (!$pdo) {
                         <div class="col-md-8 text-center">
                             <h2 class="section-heading text-uppercase">Daily Scroll Archive</h2>
                             <p class="section-subheading">
-                                Flip through every article Scroll News has captured over the last <?= $DAYS_TO_SHOW + 1 ?> days, with one horizontal row of cards for each day.
+                                Flip through every article Scroll News has captured, with one horizontal row of cards for each day.
+                            </p>
+                            <p class="section-subheading">
+                                Viewing page <?= (int)$page; ?> of <?= (int)$totalPages; ?> — a <?= $DAYS_PER_PAGE ?>-day slice of the Scroll News archive.
                             </p>
                         </div>
                     </div>
@@ -236,6 +235,16 @@ if (!$pdo) {
                                 </div>
                             </div>
                         </div>
+
+                        <?php
+                        $rangeLabelStart = $windowStart->format('F j, Y');
+                        $rangeLabelEnd   = $windowEnd->sub(new DateInterval('P1D'))->format('F j, Y');
+                        ?>
+                        <p class="small text-muted text-center mt-3 mb-0">
+                            Showing archive window: <strong><?php echo $rangeLabelStart; ?></strong>
+                            through
+                            <strong><?php echo $rangeLabelEnd; ?></strong>
+                        </p>
 
                         <?php require_once BASE_PATH . "/core/config/interest.php"; ?>
 
@@ -300,6 +309,71 @@ if (!$pdo) {
                                 </div>
                             </section>
                         <?php endforeach; ?>
+
+                        <?php
+                        $paginationRadius = 2;
+                        $startPage = max(1, $page - $paginationRadius);
+                        $endPage   = min($totalPages, $page + $paginationRadius);
+
+                        $buildArchivePageUrl = function (int $targetPage): string {
+                            $params = $_GET;
+                            $params['page'] = $targetPage;
+                            return 'scroll-archive.php?' . http_build_query($params);
+                        };
+                        ?>
+
+                        <?php if ($totalPages > 1): ?>
+                            <nav class="sn-archive-pagination mt-4 mt-md-5" aria-label="Scroll Archive pagination">
+                                <ul class="pagination justify-content-center flex-wrap">
+                                    <li class="page-item <?php echo $page <= 1 ? 'disabled' : ''; ?>">
+                                        <a class="page-link"
+                                        href="<?php echo $page > 1 ? htmlspecialchars($buildArchivePageUrl($page - 1), ENT_QUOTES, 'UTF-8') : '#'; ?>"
+                                        aria-label="Previous"
+                                        <?php echo $page > 1 ? 'data-loading' : 'tabindex="-1" aria-disabled="true"'; ?>>
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+
+                                    <?php if ($startPage > 1): ?>
+                                        <li class="page-item">
+                                            <a class="page-link" href="<?php echo htmlspecialchars($buildArchivePageUrl(1), ENT_QUOTES, 'UTF-8'); ?>" data-loading>1</a>
+                                        </li>
+                                        <?php if ($startPage > 2): ?>
+                                            <li class="page-item disabled"><span class="page-link">…</span></li>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+
+                                    <?php for ($p = $startPage; $p <= $endPage; $p++): ?>
+                                        <li class="page-item <?php echo $p === $page ? 'active' : ''; ?>">
+                                            <a class="page-link" href="<?php echo htmlspecialchars($buildArchivePageUrl($p), ENT_QUOTES, 'UTF-8'); ?>" data-loading>
+                                                <?php echo $p; ?>
+                                            </a>
+                                        </li>
+                                    <?php endfor; ?>
+
+                                    <?php if ($endPage < $totalPages): ?>
+                                        <?php if ($endPage < $totalPages - 1): ?>
+                                            <li class="page-item disabled"><span class="page-link">…</span></li>
+                                        <?php endif; ?>
+                                        <li class="page-item">
+                                            <a class="page-link" href="<?php echo htmlspecialchars($buildArchivePageUrl($totalPages), ENT_QUOTES, 'UTF-8'); ?>" data-loading>
+                                                <?php echo $totalPages; ?>
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+
+                                    <li class="page-item <?php echo $page >= $totalPages ? 'disabled' : ''; ?>">
+                                        <a class="page-link"
+                                        href="<?php echo $page < $totalPages ? htmlspecialchars($buildArchivePageUrl($page + 1), ENT_QUOTES, 'UTF-8') : '#'; ?>"
+                                        aria-label="Next"
+                                        <?php echo $page < $totalPages ? 'data-loading' : 'tabindex="-1" aria-disabled="true"'; ?>>
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        <?php endif; ?>
+
                     <?php endif; ?>
                 </div>
             </section>

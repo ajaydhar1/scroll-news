@@ -504,3 +504,17 @@ footer .text-lg-right a:hover {
   padding-left: .15rem;
   padding-right: .15rem;
 }
+
+
+.page-item.active .page-link {
+    background-color: var(--brand-color);
+    border-color: var(--brand-color);
+}
+
+.page-link {
+    color: var(--brand-color);
+}
+
+.page-link:hover {
+    color: var(--brand-color);
+}

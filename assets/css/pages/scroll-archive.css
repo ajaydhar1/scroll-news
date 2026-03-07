@@ -363,3 +363,19 @@ a.btn.btn-outline-primary.btn-analyze:hover {
     background: rgba(0, 0, 0, .37);
     padding: 10px 20px 20px;
 }
+
+
+.sn-archive-pagination .pagination {
+    gap: 0.2rem;
+}
+
+.sn-archive-pagination .page-link {
+    border-radius: 999px;
+    min-width: 42px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.sn-archive-pagination .page-item.active .page-link {
+    box-shadow: 0 4px 14px rgba(0,0,0,.12);
+}
