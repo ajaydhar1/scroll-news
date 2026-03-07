@@ -23,12 +23,15 @@ if (!$pdo) {
 
         $todayLocal = new DateTimeImmutable('today', $tz);
 
-        $windowStart = $todayLocal->sub(new DateInterval('P' . (($page - 1) * $DAYS_PER_PAGE + ($DAYS_PER_PAGE - 1)) . 'D'));
-        $windowEnd   = $todayLocal->sub(new DateInterval('P' . (($page - 1) * $DAYS_PER_PAGE) . 'D'))
+        $daysBackStart = (($page - 1) * $DAYS_PER_PAGE) + ($DAYS_PER_PAGE - 1);
+        $daysBackEnd   = ($page - 1) * $DAYS_PER_PAGE;
+
+        $windowStart = $todayLocal->sub(new DateInterval('P' . $daysBackStart . 'D'));
+        $windowEndExclusive = $todayLocal->sub(new DateInterval('P' . $daysBackEnd . 'D'))
             ->add(new DateInterval('P1D'));
 
         $windowStartDate = $windowStart->format('Y-m-d');
-        $windowEndDate   = $windowEnd->format('Y-m-d');
+        $windowEndDate   = $windowEndExclusive->format('Y-m-d');
 
         $oldestDate = new DateTimeImmutable($ARCHIVE_OLDEST_DATE, $tz);
         $newestDate = new DateTimeImmutable('today', $tz);
@@ -62,8 +65,8 @@ if (!$pdo) {
             JOIN articles a ON a.url = ri.link
             WHERE 
                 ri.pub_date IS NOT NULL
-                AND ri.pub_date::date >= :window_start
-                AND ri.pub_date::date < :window_end
+                AND (ri.pub_date AT TIME ZONE 'America/New_York')::date >= :window_start
+                AND (ri.pub_date AT TIME ZONE 'America/New_York')::date < :window_end
             ORDER BY ri.pub_date DESC, ri.id DESC
         ";
 
@@ -238,7 +241,7 @@ if (!$pdo) {
 
                         <?php
                         $rangeLabelStart = $windowStart->format('F j, Y');
-                        $rangeLabelEnd   = $windowEnd->sub(new DateInterval('P1D'))->format('F j, Y');
+                        $rangeLabelEnd   = $windowEndExclusive->sub(new DateInterval('P1D'))->format('F j, Y');
                         ?>
                         <p class="small text-muted text-center mt-3 mb-0">
                             Showing archive window: <strong><?php echo $rangeLabelStart; ?></strong>
