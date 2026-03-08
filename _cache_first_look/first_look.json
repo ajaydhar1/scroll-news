@@ -1,20 +1,20 @@
 {
-    "fetched_at": 1772778490,
+    "fetched_at": 1772965027,
     "feeds": [
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "Iran's new Ayatollah vows to 'shed Trump's blood' in televised address...",
-                    "url": "https://www.the-express.com/news/201150",
-                    "ts": 1772777076,
-                    "emo": "⚖️"
+                    "title": "TENSE: Loud bang reported near U.S. Embassy in Oslo, Norway...",
+                    "url": "https://bnonews.com/index.php/2026/03/loud-bang-reported-near-u-s-embassy-in-oslo-norway/",
+                    "ts": 1772961036,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Hormuz death trap...",
-                    "url": "https://www.telegraph.co.uk/business/2026/03/04/irans-plan-turn-strait-of-hormuz-into-death-trap-for-trump/",
-                    "ts": 1772777076,
+                    "title": "'No reports of any injured persons'...",
+                    "url": "http://yahoo.com/news/articles/loud-blast-heard-near-us-005054720.html",
+                    "ts": 1772961036,
                     "emo": "📰"
                 }
             ]
@@ -24,16 +24,16 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Microsoft says Anthropic's products can stay on its platforms after lawyers 'studied' the Pentagon supply chain risk designation",
-                    "url": "https://www.businessinsider.com/microsoft-anthropic-claude-pentagon-designation-supply-chain-risk-lawyers-2026-3",
-                    "ts": 1772773389,
+                    "title": "I'm 83 and raised my grandchildren and great-grandchildren. I work part-time for extra money and hope to retire by 90.",
+                    "url": "https://www.businessinsider.com/retirement-grandparent-raising-grandchildren-working-at-83-raising-kids-finances-2026-3",
+                    "ts": 1772960701,
                     "emo": "📰"
                 },
                 {
-                    "title": "Zelenskyy said the US asked Ukraine for support in fighting off Iran's Shahed drones, so he's sending experts their way",
-                    "url": "https://www.businessinsider.com/zelenskyy-us-support-fight-iran-shahed-drones-2026-3",
-                    "ts": 1772773258,
-                    "emo": "🌍"
+                    "title": "Urgency, pressure, persistence: Jeffrey Epstein's playbook for landing a billionaire client",
+                    "url": "https://www.businessinsider.com/jeffrey-epstein-files-playbook-landing-billionaire-clients-mort-zuckerman-2026-3",
+                    "ts": 1772960401,
+                    "emo": "📰"
                 }
             ]
         }

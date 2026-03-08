@@ -373,9 +373,11 @@ function sn_render_article_card(array $vm, array $opts = []): void {
                         $href = sn_analysis_url($clean, $w, 'entity');
                         ?>
                         <a class="sn-hashtag-chip"
-                           href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
-                           data-loading>
-                            <?= htmlspecialchars($raw, ENT_QUOTES, 'UTF-8') ?>
+                            href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
+                            title="Analyze entity: <?= htmlspecialchars($clean, ENT_QUOTES, 'UTF-8') ?>"
+                            aria-label="Analyze entity: <?= htmlspecialchars($clean, ENT_QUOTES, 'UTF-8') ?>"
+                            data-loading>
+                                <?= htmlspecialchars($raw, ENT_QUOTES, 'UTF-8') ?>
                         </a>
                     <?php endforeach; ?>
                 </div>
@@ -799,6 +801,8 @@ function scroll_render_article_intel_item(array $article, array $opts = []): str
                     ?>
                     <a class="nlp-chip nlp-chip-entity"
                         href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
+                        title="Analyze entity: <?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?>"
+                        aria-label="Analyze entity: <?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?>"
                         data-loading>
                         #<?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?>
                     </a>
@@ -813,6 +817,8 @@ function scroll_render_article_intel_item(array $article, array $opts = []): str
                     ?>
                     <a class="nlp-chip nlp-chip-topic"
                         href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
+                        title="Analyze topic: <?= htmlspecialchars($topicName, ENT_QUOTES, 'UTF-8') ?>"
+                        aria-label="Analyze topic: <?= htmlspecialchars($topicName, ENT_QUOTES, 'UTF-8') ?>"
                         data-loading>
                         <?= htmlspecialchars($topicName, ENT_QUOTES, 'UTF-8') ?>
                     </a>
@@ -916,9 +922,11 @@ function sn_render_article_nlp_extras(array $vm, array $opts = []): void {
                 $href = sn_analysis_url($clean, $analysisWindow, 'entity');
                 ?>
                 <a class="sn-hashtag-chip"
-                   href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
-                   data-loading>
-                    <?= htmlspecialchars($raw, ENT_QUOTES, 'UTF-8') ?>
+                    href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
+                    title="Analyze entity: <?= htmlspecialchars($clean, ENT_QUOTES, 'UTF-8') ?>"
+                    aria-label="Analyze entity: <?= htmlspecialchars($clean, ENT_QUOTES, 'UTF-8') ?>"
+                    data-loading>
+                        <?= htmlspecialchars($raw, ENT_QUOTES, 'UTF-8') ?>
                 </a>
             <?php endforeach; ?>
         </div>
