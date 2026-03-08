@@ -11,80 +11,67 @@
               </div>
               <!-- Card Body -->
               <div class="card-body">
-                <div id="hashtags">
-                  <div class="basement_title mb-2">
-                    <span class="h5" id="sm-tags">Google</span>
-                      <span id="hash-icons" data-step="5" data-intro="Click an icon to change the platform for the hashtags" style="float:right;height:23px;">
-                        <a id="google-link" class="item google-highlight waves-effect waves-light mr-1" href="javascript:void(0)"><em id="google-icon" style="color:var(--brand-color);" class="fab fa-google" title="Search hashtag on Google"></em></a>
-                        <a id="youtube-link" class="item youtube-highlight waves-effect waves-light mr-1" href="javascript:void(0)"><em id="youtube-icon" style="color:#34495E;" class="fab fa-youtube" title="Search hashtag on YouTube"></em></a>
-                        <?php /*
-                        <a id="twitter-link" class="item twitter-highlight waves-effect waves-light" href="javascript:void(0)"><em id="twitter-icon" style="color:#34495E" class="fab fa-twitter"></em></a>
-                        <a id="insta-link" class="item instagram-highlight waves-effect waves-light" href="javascript:void(0)"><em id="insta-icon" style="color:#34495E" class="fab fa-instagram"></em></a>
-                        */ ?>
-                        <a id="search-link" class="item search-highlight waves-effect waves-light" href="javascript:void(0)"><em id="search-icon" style="color:#34495E;" class="fa fa-search" title="Search hashtag on Scroll News"></em></a>
-                      <span>
+                <div id="hashtags" class="hashtags-panel">
+                  <div class="hashtags-toolbar basement_title mb-2">
+                    <span class="h5 mb-1" id="sm-tags">Google</span>
+                    <span id="hash-icons" class="mb-2" data-step="5" data-intro="Click an icon to change the platform for the hashtags">
+                      <a id="google-link" class="item google-highlight waves-effect waves-light mr-1" href="javascript:void(0)">
+                        <em id="google-icon" style="color:var(--brand-color);" class="fab fa-google" title="Search hashtag on Google"></em>
+                      </a>
+                      <a id="youtube-link" class="item youtube-highlight waves-effect waves-light mr-1" href="javascript:void(0)">
+                        <em id="youtube-icon" style="color:#34495E;" class="fab fa-youtube" title="Search hashtag on YouTube"></em>
+                      </a>
+                      <a id="search-link" class="item search-highlight waves-effect waves-light" href="javascript:void(0)">
+                        <em id="search-icon" style="color:#34495E;" class="fa fa-search" title="Search hashtag on Scroll News"></em>
+                      </a>
+                    </span>
                   </div>
-          
-                  <div id="twitter-tags" class="tag-cloud-sidebar basement_content card-content" style="overflow:auto;display:none;">
-                    
-                    
-                    <?php 
-                        for($i=0;$i<count($arr['entities']);$i++)
-                        {
+                  <div class="hashtags-scroll">
+                    <div id="twitter-tags" class="tag-cloud-sidebar basement_content card-content" style="display:none;">
+                      <?php 
+                          for($i=0;$i<count($arr['entities']);$i++)
+                          {
+                      ?>
+                              <div class="hashtag"><a href="https://twitter.com/search?q=%23<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?>" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>" data-label="<?= $arr['entities'][$i]['label'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>                  
+                      <?php } ?>
+                    </div>
 
-                    ?>
-                            <div class="hashtag"><a href="https://twitter.com/search?q=%23<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?>" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>" data-label="<?= $arr['entities'][$i]['label'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>                  
-                    <?php } ?>
+                    <div id="insta-tags" class="tag-cloud-sidebar basement_content card-content" style="display:none;"> 
+                      <?php 
+                          for($i=0;$i<count($arr['entities']);$i++)
+                          {
+                      ?>
+                              <div class="hashtag"><a href="https://www.instagram.com/explore/tags/<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?>/" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>" data-label="<?= $arr['entities'][$i]['label'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>
+                      <?php } ?>
+                    </div>
 
+                    <div id="google-tags" class="tag-cloud-sidebar basement_content card-content"> 
+                      <?php 
+                          for($i=0;$i<count($arr['entities']);$i++)
+                          {
+                      ?>
+                              <div class="hashtag"><a href="https://www.google.com/search?q=<?=str_replace(' ', '+', $arr['entities'][$i]['text'])?>" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>" data-label="<?= $arr['entities'][$i]['label'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>                
+                      <?php } ?>
+                    </div>
+
+                    <div id="youtube-tags" class="tag-cloud-sidebar basement_content card-content" style="display:none;"> 
+                      <?php 
+                          for($i=0;$i<count($arr['entities']);$i++)
+                          {
+                      ?>
+                              <div class="hashtag"><a href="https://www.youtube.com/results?search_query=<?=str_replace(' ', '+', $arr['entities'][$i]['text'])?>" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>" data-label="<?= $arr['entities'][$i]['label'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>
+                      <?php } ?>
+                    </div>
+
+                    <div id="search-tags" class="tag-cloud-sidebar basement_content card-content" style="display:none;">
+                      <?php 
+                          for($i=0;$i<count($arr['entities']);$i++)
+                          {
+                      ?>
+                              <div class="hashtag"><a href="search.php?q=<?=str_replace(' ', '+', $arr['entities'][$i]['text'])?>" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>" data-label="<?= $arr['entities'][$i]['label'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>
+                      <?php } ?>
+                    </div>
                   </div>
-
-                  <div id="insta-tags" class="tag-cloud-sidebar basement_content card-content" style="overflow:auto;display:none;">
-                        
-                    <?php 
-                        for($i=0;$i<count($arr['entities']);$i++)
-                        {
-                    ?>
-                            <div class="hashtag"><a href="https://www.instagram.com/explore/tags/<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?>/" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>" data-label="<?= $arr['entities'][$i]['label'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>
-                    <?php } ?>
-
-                  </div>
-
-                  <div id="google-tags" class="tag-cloud-sidebar basement_content card-content" style="overflow:auto;">
-                        
-                    <?php 
-                        for($i=0;$i<count($arr['entities']);$i++)
-                        {
-                    ?>
-                            <div class="hashtag"><a href="https://www.google.com/search?q=<?=str_replace(' ', '+', $arr['entities'][$i]['text'])?>" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>" data-label="<?= $arr['entities'][$i]['label'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>
-                                        
-                    <?php } ?>
-
-                  </div>
-
-                  <div id="youtube-tags" class="tag-cloud-sidebar basement_content card-content" style="overflow:auto;display:none;">
-                        
-                    <?php 
-                        for($i=0;$i<count($arr['entities']);$i++)
-                        {
-                    ?>
-                            <div class="hashtag"><a href="https://www.youtube.com/results?search_query=<?=str_replace(' ', '+', $arr['entities'][$i]['text'])?>" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>" data-label="<?= $arr['entities'][$i]['label'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>
-                        
-                    <?php } ?>
-
-                  </div>
-
-                  <div id="search-tags" class="tag-cloud-sidebar basement_content card-content" style="overflow:auto;display:none;">
-                        
-                    <?php 
-                        for($i=0;$i<count($arr['entities']);$i++)
-                        {
-                    ?>
-                            <div class="hashtag"><a href="search.php?q=<?=str_replace(' ', '+', $arr['entities'][$i]['text'])?>" target="_blank" data-hashtext="<?= $arr['entities'][$i]['text'] ?>" data-label="<?= $arr['entities'][$i]['label'] ?>">#<?=preg_replace('/[^A-Za-z0-9]/', '', str_replace(' ', '', $arr['entities'][$i]['text']))?></a></div>
-                        
-                    <?php } ?>
-
-                  </div>
-
                 </div>
               </div>
 

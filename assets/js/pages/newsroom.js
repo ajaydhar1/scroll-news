@@ -115,13 +115,18 @@
   // 2) Definitions popovers (Wikipedia + hashtags)
   // -------------------------
   function setupDefinitionPopovers() {
+    try { $('[data-toggle="popover"]').popover('dispose'); } catch (_) {}
+
+    const enableDefinitionPopovers = false;
+    if (!enableDefinitionPopovers) return;
+
     const wikiLinks = qsa('#wikipedia a');
     const hashLinks = qsa('.hashtag a');
 
-    // If nothing exists yet (common before AJAX inject), skip silently.
     if (!wikiLinks.length && !hashLinks.length) return;
 
-    // Mark required attributes (idempotent)
+    const popoverTrigger = isMobile() ? 'click' : 'hover';
+
     function prepLinks(links, placement) {
       links.forEach(a => {
         a.setAttribute('data-container', 'body');
@@ -135,37 +140,34 @@
     prepLinks(wikiLinks, 'bottom');
     prepLinks(hashLinks, 'auto');
 
-    // One-time global click closer (idempotent)
     if (!document.body.dataset.snPopCloseBound) {
       document.body.dataset.snPopCloseBound = '1';
 
       document.addEventListener('click', function (e) {
         const t = e.target;
 
-        // If click is inside a popover, ignore
         if (t && t.closest && t.closest('.popover')) return;
-
-        // If click is on a relevant anchor, ignore (handled elsewhere)
         if (t && t.closest && (t.closest('#wikipedia a') || t.closest('.hashtag a'))) return;
 
-        // Close popovers
         try { $('#wikipedia a').popover('hide'); } catch (_) {}
         try { $('.hashtag a').popover('hide'); } catch (_) {}
 
-        // Reset tap state
         window.__snTapped = 0;
       }, true);
     }
 
-    // Bootstrap popover init (safe)
+    try {
+      $('[data-toggle="popover"]').popover('dispose');
+    } catch (_) {}
+
     try {
       $('[data-toggle="popover"]').popover({
+        trigger: popoverTrigger,
         boundary: 'window',
         html: true
       });
     } catch (_) {}
 
-    // Fetch definition + show
     function getDefinitions($el, term) {
       if (!$el || !term) return;
 
@@ -180,18 +182,24 @@
             def = 'No definition found.';
           }
 
-          // Only show if still relevant (hovered for desktop)
           const isHovered = $el.is(':hover');
           const allowShow = !isMobile() ? isHovered : true;
 
           if (allowShow) {
             $el.attr('data-content', def);
+
+            try {
+              $('[data-toggle="popover"]').popover('dispose');
+            } catch (_) {}
+
             try {
               $('[data-toggle="popover"]').popover({
+                trigger: popoverTrigger,
                 boundary: 'window',
                 html: true
               });
             } catch (_) {}
+
             try { $el.popover('show'); } catch (_) {}
           }
         }
