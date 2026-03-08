@@ -71,7 +71,7 @@
       { key: 'twitter', label: 'Twitter' },
       { key: 'google',  label: 'Google' },
       { key: 'youtube', label: 'Youtube' },
-      { key: 'search',  label: 'News Search' },
+      { key: 'search',  label: 'Scroll Search' },
     ];
 
     function activate(key) {
