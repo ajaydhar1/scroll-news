@@ -1369,6 +1369,90 @@ function getRecentWeightedArticle_forStumble_fromDB(
 }
 
 
+/**
+ * Random article picker for the "Stumble" button:
+ * - Picks a truly random article from the last N hours
+ * - Filters to NLP-ready articles
+ * - Applies entity filters (unless $requireEntities = false)
+ * - Respects global $filter_out NOT ILIKE terms
+ * - Does NOT require screenshot_bytes
+ */
+function getRandomRecentArticle_forStumble_fromDB(
+    bool $requireEntities = true,
+    int $hours = 72
+): array {
+    global $filter_out;
+
+    $pdo = _pdo_or_null();
+    if (!$pdo) {
+        return function_exists('getRandomArticle_fromRSS')
+            ? getRandomArticle_fromRSS()
+            : ['category' => 'db', 'link' => null, 'pub_date' => null];
+    }
+
+    // Timestamp column we trust for recency
+    $tsCol = 'updated_at';
+
+    // Entities filter
+    $entitiesClause = '';
+    if ($requireEntities) {
+        $entitiesClause =
+            " AND (nlp::text) NOT LIKE '%\"entities\": []%'".
+            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"X-Forbidden\", \"count\": 1, \"label\": \"ORG\"}]%'".
+            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"JavaScript\", \"count\": 1, \"label\": \"PRODUCT\"}]%'".
+            " AND (nlp::text) NOT LIKE '%\"emotional_reaction\": {}%'";
+    }
+
+    // NLP must be present, but no screenshot requirement
+    $ready = "nlp IS NOT NULL";
+
+    // Filters: NOT ILIKE any of $filter_out
+    [$notLikeSql, $notLikeParams] = buildNotILikeNamed(is_array($filter_out) ? $filter_out : []);
+
+    // Time window
+    $sinceTs = (new DateTimeImmutable('now'))
+        ->modify("-{$hours} hours")
+        ->format('Y-m-d H:i:s');
+
+    $commonWhere = "$ready $entitiesClause AND {$tsCol} >= :since_ts" . ($notLikeSql ? " AND $notLikeSql" : "");
+
+    // True random row from the recent pool
+    $sql = "
+        SELECT id, url, source_slug, created_at
+        FROM articles
+        WHERE $commonWhere
+        ORDER BY RANDOM()
+        LIMIT 1
+    ";
+
+    $stmt = $pdo->prepare($sql);
+
+    $params = array_merge(
+        $notLikeParams,
+        [':since_ts' => $sinceTs]
+    );
+
+    $stmt->execute($params);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$row || empty($row['url'])) {
+        return function_exists('getRandomArticle_fromDB')
+            ? getRandomArticle_fromDB($requireEntities, 30)
+            : (function_exists('getRandomArticle_fromRSS')
+                ? getRandomArticle_fromRSS()
+                : ['category' => 'db', 'link' => null, 'pub_date' => null]);
+    }
+
+    return [
+        'category'   => isset($row['source_slug']) ? ucfirst($row['source_slug']) : 'db',
+        'link'       => $row['url'],
+        'article_id' => (int)$row['id'],
+        'pub_date'   => toEpoch(toIsoZ($row['created_at'])),
+        'source'     => 'db',
+    ];
+}
+
+
 // Returns the row or null if not found
 function getNLPFromDB(string $url) {
     
