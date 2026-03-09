@@ -153,7 +153,7 @@ if (!function_exists('canonEntityListFromNlp')) {
     </div>
 
     <div class="mb-3">
-      <div class="text-muted small mb-1">Top topics</div>
+      <div class="text-muted small mb-1">Top narrative frames</div>
       <div class="d-flex flex-wrap gap-2" id="topTopicChips"></div>
     </div>
 

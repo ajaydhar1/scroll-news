@@ -34,7 +34,7 @@ This site was designed for people living in the **United States**, or for anyone
 We don’t just summarize — we **distill**. The Scroll News dashboard surfaces:
 
 - 🔍 Named entities (people, places, orgs)
-- 🗂️ Topics and keyword breakdowns
+- 🗂️ Narrative frames and keyword breakdowns
 - 💬 Sentiment and emotional reaction
 - 📚 Wikipedia links to deepen context
 

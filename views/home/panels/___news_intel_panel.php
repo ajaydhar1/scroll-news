@@ -487,13 +487,13 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
                     🧠 News Intelligence
                 </h2>
                 <p class="text-muted mb-0">
-                    Trending entities, places, and topics from the last 24 hours.
+                    Trending entities, places, and narrative frames from the last 24 hours.
                 </p>
             </div>
             <?php if (!empty($intel_panel['stats'])): ?>
                 <div class="text-muted mt-3">
                     <div><?= (int)$intel_panel['stats']['article_count_24h'] ?> articles</div>
-                    <div><?= (int)$intel_panel['stats']['unique_entities'] ?> entities · <?= (int)$intel_panel['stats']['unique_places'] ?> places · <?= (int)$intel_panel['stats']['unique_topics'] ?> topics</div>
+                    <div><?= (int)$intel_panel['stats']['unique_entities'] ?> entities · <?= (int)$intel_panel['stats']['unique_places'] ?> places · <?= (int)$intel_panel['stats']['unique_topics'] ?> narrative frames</div>
                 </div>
             <?php endif; ?>
         </div>
@@ -503,7 +503,7 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
             $sections = [
                 'places'   => ['title' => 'Trending Places',   'icon' => '🗺️'],
                 'entities' => ['title' => 'Trending Entities', 'icon' => '👤'],
-                'topics'   => ['title' => 'Trending Topics',   'icon' => '🧵'],
+                'topics'   => ['title' => 'Trending Narrative Frames',   'icon' => '🧵'],
             ];
 
             foreach ($sections as $key => $meta):

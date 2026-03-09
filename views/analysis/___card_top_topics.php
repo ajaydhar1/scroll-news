@@ -27,12 +27,12 @@ foreach ($topics_chart as $r) {
 ?>
 
 <div class="card" style="flex:1; min-width:320px; margin-top:12px;">
-  <div class="card-eyebrow">What’s being discussed</div>
-  <h3>Top Topics</h3>
+  <div class="card-eyebrow">How the stories are being framed</div>
+  <h3>Top Narrative Frames</h3>
 
   <?php if (empty($topics_chart)): ?>
       <div class="text-muted small" style="padding:12px;">
-          No topics found for this corpus.
+          No narrative frames found for this corpus.
       </div>
   <?php else: ?>
 

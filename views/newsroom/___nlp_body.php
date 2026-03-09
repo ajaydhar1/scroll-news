@@ -108,14 +108,14 @@
                   </div>
 
                   <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch">
-                    <div data-step="7" data-intro="A taxonomy of the topics covered in the article." class="card w-100 shadow mb-3">
+                    <div data-step="7" data-intro="The major narrative angles used to frame the story in the article." class="card w-100 shadow mb-3">
                       <!-- Card Header - Dropdown -->
                       <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
-                        <h5 class="m-0 font-weight-bold">Subject Matter</h5>
+                        <h5 class="m-0 font-weight-bold">Narrative Frames</h5>
                       </div>
                       <!-- Card Body -->
                       <div class="card-body">
-                        <div id="subject-matter">
+                        <div id="narrative-frames">
                           <ul class="rec-list" style="padding-left:10px;">
 
                             <?php

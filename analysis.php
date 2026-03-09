@@ -186,10 +186,14 @@ try {
 
   <div class="container-fluid">
 
+      <?php
+      $context_label = ($context === 'topic') ? 'narrative frame' : $context;
+      ?>
+
       <h1 style="margin:0 0 6px 0;" class="text-center mt-3">Text & Content Analysis</h1>
       <div class="note text-center">
       Context:
-      <strong><?= htmlspecialchars($context) ?></strong>
+      <strong><?= htmlspecialchars($context_label) ?></strong>
       <span class="muted">(<?= htmlspecialchars($value) ?>)</span>
       &nbsp;|&nbsp;
 
@@ -234,7 +238,7 @@ try {
 
       <div class="analysis-desc text-center mt-2">
           <p>
-              This page analyzes how a selected entity or topic appears in recent news coverage within the specified time window.
+              This page analyzes how a selected category, entity, or narrative frame appears in recent news coverage within the specified time window.
               Metrics and breakdowns are derived from the active article corpus.
           </p>
       </div>
@@ -308,7 +312,7 @@ try {
 
       <div class="row">
           <div class="col-12 col-lg-6">
-              <!-- NLP: Top topics (Top N + Other + magnet/filter actions) -->
+              <!-- NLP: Top narrative frames (Top N + Other + magnet/filter actions) -->
               <?php require BASE_PATH . '/views/analysis/___card_top_topics.php'; ?>
           </div>
 

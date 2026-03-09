@@ -815,10 +815,10 @@ function scroll_render_article_intel_item(array $article, array $opts = []): str
                             ? sn_analysis_url($clean, $w, 'topic')
                             : ("/analysis.php?context=topic&value=" . urlencode($clean) . "&w=" . urlencode($w));
                     ?>
-                    <a class="nlp-chip nlp-chip-topic"
+                    <a class="nlp-chip nlp-chip-frame"
                         href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
-                        title="Analyze topic: <?= htmlspecialchars($topicName, ENT_QUOTES, 'UTF-8') ?>"
-                        aria-label="Analyze topic: <?= htmlspecialchars($topicName, ENT_QUOTES, 'UTF-8') ?>"
+                        title="Explore narrative frame: <?= htmlspecialchars($topicName, ENT_QUOTES, 'UTF-8') ?>"
+                        aria-label="Explore narrative frame: <?= htmlspecialchars($topicName, ENT_QUOTES, 'UTF-8') ?>"
                         data-loading>
                         <?= htmlspecialchars($topicName, ENT_QUOTES, 'UTF-8') ?>
                     </a>

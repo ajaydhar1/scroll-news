@@ -428,7 +428,7 @@ a.nlp-chip.nlp-chip-entity:hover {
     background: rgba(255, 255, 255, 0.2) !important;
 }
 
-a.nlp-chip.nlp-chip-topic:hover {
+a.nlp-chip.nlp-chip-frame:hover {
     background: rgba(0, 200, 140, 0.5) !important;
 }
 

@@ -118,7 +118,7 @@ header.masthead {
     color: white !important;
 }
 
-.news-intel-panel .nlp-chip-topic {
+.news-intel-panel .nlp-chip-frame {
     background: rgba(0, 200, 140, 0.3) !important;
     color: #00ffbb !important;
 }

@@ -244,7 +244,7 @@ exit;
                                             <div>
                                             <h6 class="mb-1">Nothing to analyze</h6>
                                             <p class="mb-2 text-muted small">
-                                                We couldn’t find enough readable text on <span class="fw-semibold">'.$host.'</span> to compute keywords, entities, topics, or sentiment.
+                                                We couldn’t find enough readable text on <span class="fw-semibold">'.$host.'</span> to compute keywords, entities, narrative frames, or sentiment.
                                             </p>
                                             <div class="d-flex gap-2">
                                                 <a class="btn btn-sm btn-outline-secondary mr-2" href="'.$url.'" target="_blank" rel="noopener">Open article</a>';

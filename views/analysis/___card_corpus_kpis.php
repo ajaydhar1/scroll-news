@@ -23,7 +23,12 @@ $row = $kpi[0] ?? [];
 
 <div class="kpis">
     <div class="kpi">
-    <div class="label"><?= htmlspecialchars((string)$ctxLabel) ?></div>
+
+    <?php
+      $ctxLabelUI = ($ctxLabel === 'Topic') ? 'Narrative Frame' : $ctxLabel;
+    ?>
+
+    <div class="label"><?= htmlspecialchars((string)$ctxLabelUI) ?></div>
     <div class="val"><?= htmlspecialchars((string)$ctxValue) ?></div>
     </div>
 
