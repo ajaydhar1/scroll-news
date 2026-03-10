@@ -810,10 +810,10 @@ function scroll_render_article_intel_item(array $article, array $opts = []): str
 
                 <?php foreach ($topicChips as $topicName): ?>
                     <?php
-                        $clean = trim(strtolower($topicName));
+                        $clean = trim($topicName);
                         $href  = function_exists('sn_analysis_url')
-                            ? sn_analysis_url($clean, $w, 'topic')
-                            : ("/analysis.php?context=topic&value=" . urlencode($clean) . "&w=" . urlencode($w));
+                            ? sn_analysis_url($clean, $w, 'narrative_frame')
+                            : ("/analysis.php?context=narrative_frame&value=" . urlencode($clean) . "&w=" . urlencode($w));
                     ?>
                     <a class="nlp-chip nlp-chip-frame"
                         href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"

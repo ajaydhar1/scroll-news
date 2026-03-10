@@ -539,11 +539,15 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
                                         <div class="d-flex justify-content-between align-items-center mb-1">
                                             <?php
                                             $entityLabel = (string)($item['label'] ?? '');
-                                            $entityValue = strtolower(trim($entityLabel)); // analysis expects lowercase canonical-ish
+                                            $entityValue = trim($entityLabel); // analysis expects lowercase canonical-ish
                                             $entityValue = preg_replace('/\s+/', ' ', $entityValue); // normalize spaces
+                                            
+                                            if ($key === 'entity') {
+                                                $entityValue = strtolower($entityValue);
+                                            }
 
                                             // Decide analysis context based on panel key
-                                            $analysisContext = ($key === 'topics') ? 'topic' : 'entity';
+                                            $analysisContext = ($key === 'topics') ? 'narrative_frame' : 'entity';
 
                                             $analysisUrl = '/analysis.php?' . http_build_query([
                                                 'context' => $analysisContext,

@@ -39,7 +39,7 @@ foreach ($topics_chart as $r) {
   <table class="bar-table bar-cells">
       <thead>
           <tr>
-              <th>Topic</th>
+              <th>Frame</th>
               <th style="text-align:right;">Weight</th>
               <th style="text-align:right;">Actions</th>
           </tr>
@@ -52,7 +52,7 @@ foreach ($topics_chart as $r) {
           $pctBar = ($maxWeight > 0) ? round(($w / $maxWeight) * 100, 2) : 0;
 
           $isOther = ($topic === 'Other');
-          $analyzeUrl = !$isOther ? $analysisHref('topic', $topic) : null;
+          $analyzeUrl = !$isOther ? $analysisHref('narrative_frame', $topic) : null;
       ?>
           <tr>
               <td><?= htmlspecialchars((string)($r['topic_bucket'] ?? '')) ?></td>
@@ -66,7 +66,7 @@ foreach ($topics_chart as $r) {
                   <?php if (!$isOther): ?>
                       <a class="sn-btn"
                          href="<?= htmlspecialchars((string)$analyzeUrl) ?>"
-                         title="Analyze topic"
+                         title="Analyze narrative frame"
                          data-loading>
                           📊
                       </a>
@@ -74,7 +74,7 @@ foreach ($topics_chart as $r) {
                       <a class="sn-btn sn-corpus-magnet"
                          href="#"
                          title="Filter corpus by <?= htmlspecialchars($topic) ?>"
-                         data-topic="<?= htmlspecialchars($normTopic($topic), ENT_QUOTES, 'UTF-8') ?>"
+                         data-frame="<?= htmlspecialchars($normTopic($topic), ENT_QUOTES, 'UTF-8') ?>"
                          onclick="return false;">
                           🧲
                       </a>

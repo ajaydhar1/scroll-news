@@ -27,6 +27,12 @@ try {
     $p = analysis_read_params();
 
     $context     = $p['context'];
+
+    // Temporary alias: narrative_frame → topic
+    if ($context === 'narrative_frame') {
+        $context = 'topic';
+    }
+
     $value       = $p['value'];
     $time_window = $p['time_window'];
     $custom_from = $p['custom_from']; // 'YYYY-MM-DD' or null
@@ -118,7 +124,7 @@ try {
   // Build a friendly, compact title for the browser tab / SEO
   $ctxLabelMap = [
     'entity'    => 'Entity',
-    'topic'     => 'Topic',
+    'topic'     => 'Narrative Frame',
     'pub'       => 'Publisher',
     'sent'      => 'Sentiment',
     'category'  => 'Category',

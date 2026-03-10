@@ -154,7 +154,7 @@ if (!function_exists('canonEntityListFromNlp')) {
 
     <div class="mb-3">
       <div class="text-muted small mb-1">Top narrative frames</div>
-      <div class="d-flex flex-wrap gap-2" id="topTopicChips"></div>
+      <div class="d-flex flex-wrap gap-2" id="topFrameChips"></div>
     </div>
 
     <!-- Typeahead + search + dropdowns -->
@@ -299,7 +299,7 @@ if (!function_exists('canonEntityListFromNlp')) {
       <tr class="corpus-row"
           data-entity-list="<?= htmlspecialchars(pipeList($entityList), ENT_QUOTES) ?>"
           data-source="<?= htmlspecialchars(norm($domain), ENT_QUOTES) ?>"
-          data-topic-list="<?= htmlspecialchars(pipeList($topicList), ENT_QUOTES) ?>"
+          data-frame-list="<?= htmlspecialchars(pipeList($topicList), ENT_QUOTES) ?>"
           data-category="<?= htmlspecialchars(norm($cat), ENT_QUOTES) ?>"
           data-sentiment="<?= htmlspecialchars(norm($sentLabel ?: 'unknown'), ENT_QUOTES) ?>"
           data-title="<?= htmlspecialchars(norm($title), ENT_QUOTES) ?>"

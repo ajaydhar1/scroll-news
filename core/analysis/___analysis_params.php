@@ -3,7 +3,7 @@
 
 function analysis_read_params(): array {
 
-    $allowed_contexts   = ['entity','pub','topic','sent','category'];
+    $allowed_contexts   = ['entity','pub','narrative_frame','sent','category'];
     $allowed_windows    = ['24h','7d','30d','custom'];
     $allowed_categories = ['politics','sports','business','technology','science','health','entertainment'];
     $allowed_sent       = ['positive','neutral','negative','unknown'];

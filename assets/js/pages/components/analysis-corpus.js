@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const state = {
     entity: '',
     source: '',
-    topic: '',
+    frame: '',
     title: '',
     sentiment: '',
     category: ''
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const el = {
     topEntityChips: document.getElementById('topEntityChips'),
     topSourceChips: document.getElementById('topSourceChips'),
-    topTopicChips: document.getElementById('topTopicChips'),
+    topFrameChips: document.getElementById('topFrameChips'),
     entityInput: document.getElementById('entityInput'),
     sourceInput: document.getElementById('sourceInput'),
     titleInput: document.getElementById('titleInput'),
@@ -41,17 +41,17 @@ document.addEventListener('DOMContentLoaded', function () {
   function buildStats() {
     const entityCounts = new Map();
     const sourceCounts = new Map();
-    const topicCounts = new Map();
+    const frameCounts = new Map();
     const categoryCounts = new Map();
 
     for (const r of rows) {
       const entities = getPipeSet(r.dataset.entityList);
-      const topics   = getPipeSet(r.dataset.topicList);
+      const frames   = getPipeSet(r.dataset.frameList);
       const src      = norm(r.dataset.source);
       const cat      = norm(r.dataset.category);
 
       for (const e of entities) entityCounts.set(e, (entityCounts.get(e) || 0) + 1);
-      for (const t of topics)   topicCounts.set(t, (topicCounts.get(t) || 0) + 1);
+      for (const t of frames)   frameCounts.set(t, (frameCounts.get(t) || 0) + 1);
       if (src) sourceCounts.set(src, (sourceCounts.get(src) || 0) + 1);
       if (cat) categoryCounts.set(cat, (categoryCounts.get(cat) || 0) + 1);
     }
@@ -77,9 +77,9 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
-    if (el.topTopicChips) {
-      renderTopChips(el.topTopicChips, topicCounts, 4, (v) => {
-        state.topic = v;
+    if (el.topFrameChips) {
+      renderTopChips(el.topFrameChips, frameCounts, 4, (v) => {
+        state.frame = v;
         applyFilters();
       });
     }
@@ -137,9 +137,9 @@ document.addEventListener('DOMContentLoaded', function () {
       if (norm(row.dataset.source) !== state.source) return false;
     }
 
-    if (state.topic) {
-      const topics = getPipeSet(row.dataset.topicList);
-      if (!topics.has(state.topic)) return false;
+    if (state.frame) {
+      const frames = getPipeSet(row.dataset.frameList);
+      if (!frames.has(state.frame)) return false;
     }
 
     if (state.title) {
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (state.entity) chips.push(makeActiveChip('Entity', state.entity, () => { state.entity=''; if (el.entityInput) el.entityInput.value=''; applyFilters(); }));
     if (state.source) chips.push(makeActiveChip('Source', state.source, () => { state.source=''; if (el.sourceInput) el.sourceInput.value=''; applyFilters(); }));
-    if (state.topic)  chips.push(makeActiveChip('Topic', state.topic,  () => { state.topic=''; applyFilters(); }));
+    if (state.frame)  chips.push(makeActiveChip('Frame', state.frame,  () => { state.frame=''; applyFilters(); }));
     if (state.title)  chips.push(makeActiveChip('Title', state.title,  () => { state.title=''; if (el.titleInput) el.titleInput.value=''; applyFilters(); }));
     if (state.sentiment) chips.push(makeActiveChip('Sentiment', state.sentiment, () => { state.sentiment=''; if (el.sentimentSelect) el.sentimentSelect.value=''; applyFilters(); }));
     if (state.category)  chips.push(makeActiveChip('Category', state.category, () => { state.category=''; if (el.corpusCategorySelect) el.corpusCategorySelect.value=''; applyFilters(); }));
@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function clearAll() {
     state.entity = '';
     state.source = '';
-    state.topic = '';
+    state.frame = '';
     state.title = '';
     state.sentiment = '';
     state.category = '';
@@ -249,13 +249,13 @@ document.addEventListener('DOMContentLoaded', function () {
     btn.addEventListener('click', function () {
       const entity    = norm(this.dataset.entity);
       const source    = norm(this.dataset.source);
-      const topic     = norm(this.dataset.topic);
+      const frame     = norm(this.dataset.frame);
       const sentiment = norm(this.dataset.sentiment);
 
       // Reset dims (single dimension focus)
       state.entity = '';
       state.source = '';
-      state.topic = '';
+      state.frame = '';
       state.sentiment = '';
 
       if (entity) {
@@ -270,8 +270,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (el.entityInput) el.entityInput.value = '';
       }
 
-      if (topic) {
-        state.topic = topic;
+      if (frame) {
+        state.frame = frame;
       }
 
       if (sentiment) {
