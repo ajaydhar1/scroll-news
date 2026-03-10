@@ -58,7 +58,7 @@
                 <!-- Portfolio item 5-->
                 <div class="portfolio-item">
                     <a href="scroll-archive.php" data-loading>
-                        <img class="img-fluid" src="assets/img/portfolio/scroll-history.jpg" alt="Screenshot of a news article captured by Scroll News"/>
+                        <img class="img-fluid" src="assets/img/portfolio/scroll-archive.jpg" alt="Screenshot of a news article captured by Scroll News"/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Scroll Archive</div>

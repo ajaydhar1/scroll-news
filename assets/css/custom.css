@@ -518,3 +518,15 @@ footer .text-lg-right a:hover {
 .page-link:hover {
     color: var(--brand-color);
 }
+
+
+/* Selected radio dot */
+.custom-control-input:checked ~ .custom-control-label::before {
+  background-color: var(--brand-color); /* brand green */
+  border-color: var(--brand-color);
+}
+
+/* Focus glow */
+.custom-control-input:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 0.2rem rgba(40,167,69,.25);
+}

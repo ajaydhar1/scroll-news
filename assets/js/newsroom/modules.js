@@ -3,12 +3,47 @@
 // ============================
 
 $('#analyzeForm').on('submit', function(e) {
-	e.preventDefault();
-	const url = $('#articleUrl').val().trim();
-	if (url) {
-  		const encoded = encodeURIComponent(url);
-  		window.location.href = `newsroom.php?url=${encoded}`;
+
+	const mode = $('input[name="analyzeMode"]:checked').val();
+
+	// URL mode
+	if (mode === 'url') {
+
+		e.preventDefault();
+
+		const url = $('#articleUrl').val().trim();
+
+		if (url) {
+			const encoded = encodeURIComponent(url);
+			window.location.href = `newsroom.php?url=${encoded}`;
+		}
+
 	}
+
+	// Text mode
+	if (mode === 'text') {
+
+		e.preventDefault();
+
+		const text = $('#articleText').val().trim();
+
+		if (!text) return;
+
+		const form = $('<form>', {
+      method: 'POST',
+      action: 'textroom.php'
+    });
+
+    const field = $('<textarea>', {
+      name: 'text'
+    }).val(text);
+
+    form.append(field);
+    $('body').append(form);
+    form.submit();
+
+	}
+
 });
 
 

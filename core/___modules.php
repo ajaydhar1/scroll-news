@@ -412,6 +412,16 @@ function azeo_toolkit_results($text) {
     
 }
 
+function azeo_text_results($text) {
+    
+  $url='https://news-nlp-api-08865bb82971.herokuapp.com/analyze_text'; 
+
+  $arr=azeo_postData($url, 'text='.urlencode($text)); 
+  return $arr;
+    
+}
+
+
 
 function azeo_create_link($url, $image, $pub, $des, $title, $pubDate) {
     

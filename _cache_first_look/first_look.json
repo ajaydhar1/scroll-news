@@ -1,21 +1,21 @@
 {
-    "fetched_at": 1773089515,
+    "fetched_at": 1773104824,
     "feeds": [
         {
             "name": "BusinessInsider",
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "The 12 best places to buy prescription glasses online with insurance, HSA, or FSA money",
-                    "url": "https://www.businessinsider.com/guides/style/where-to-buy-glasses-online-using-insurance",
-                    "ts": 1773087886,
-                    "emo": "📰"
+                    "title": "Stock futures dip after Trump gave mixed signals on the war with Iran and attempted to soothe concerns about oil",
+                    "url": "https://www.businessinsider.com/oil-price-shock-brent-wti-crude-100-threshold-iran-war-2026-3",
+                    "ts": 1773101082,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "'The Diary of a CEO' star Steven Bartlett is going all in on AI  — except on LinkedIn",
-                    "url": "https://www.businessinsider.com/steven-bartlett-diary-ceo-ai-scale-podcast-flightstory-2026-3",
-                    "ts": 1773085104,
-                    "emo": "🧪"
+                    "title": "Meet Jay Graber, who is stepping down as Bluesky's CEO to return to 'building new things' as chief innovation officer",
+                    "url": "https://www.businessinsider.com/meet-jay-graber-ceo-bluesky-who-wants-change-social-media",
+                    "ts": 1773098456,
+                    "emo": "📰"
                 }
             ]
         },
@@ -26,13 +26,13 @@
                 {
                     "title": "OIL CHAOS",
                     "url": "https://www.cnbc.com/2026/03/08/crude-oil-prices-today-iran-war.html",
-                    "ts": 1773085416,
+                    "ts": 1773098917,
                     "emo": "💰"
                 },
                 {
                     "title": "PRESSURE TO RELEASE RESERVES",
                     "url": "https://www.cnbc.com/2026/03/09/iran-war-g7-energy-minister-oil-reserves.html",
-                    "ts": 1773085416,
+                    "ts": 1773098917,
                     "emo": "📰"
                 }
             ]
