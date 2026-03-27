@@ -1,21 +1,21 @@
 {
-    "fetched_at": 1773107388,
+    "fetched_at": 1774623808,
     "feeds": [
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "JD LANCED; THE DON CHEERS ON RUBIO...",
-                    "url": "https://www.nbcnews.com/politics/rcna261794",
-                    "ts": 1773105397,
-                    "emo": "📰"
+                    "title": "TRUMP WEALTH BALLOONS TO '$6.5 BILLION'...",
+                    "url": "https://www.forbes.com/sites/danalexander/article/the-definitive-networth-of-donaldtrump/",
+                    "ts": 1774620817,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "PRESSURE TO RELEASE OIL RESERVES",
-                    "url": "https://www.cnbc.com/2026/03/09/iran-war-g7-energy-minister-oil-reserves.html",
-                    "ts": 1773105398,
-                    "emo": "💰"
+                    "title": "First president to put signature on dollar bills...",
+                    "url": "https://www.nbcnews.com/politics/donald-trump/signature-appear-paper-currency-dollar-bills-first-sitting-president-rcna265389",
+                    "ts": 1774620817,
+                    "emo": "📰"
                 }
             ]
         },
@@ -24,15 +24,15 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Stock futures dip after Trump gave mixed signals on the war with Iran and attempted to soothe concerns about oil",
-                    "url": "https://www.businessinsider.com/oil-price-shock-brent-wti-crude-100-threshold-iran-war-2026-3",
-                    "ts": 1773101082,
-                    "emo": "🔥"
+                    "title": "Savannah Guthrie says the 'Today' show is 'part of my purpose'",
+                    "url": "https://www.businessinsider.com/savannah-guthrie-today-show-return-date-nancy-guthrie-interview-2026-3",
+                    "ts": 1774618926,
+                    "emo": "🎭"
                 },
                 {
-                    "title": "Meet Jay Graber, who is stepping down as Bluesky's CEO to return to 'building new things' as chief innovation officer",
-                    "url": "https://www.businessinsider.com/meet-jay-graber-ceo-bluesky-who-wants-change-social-media",
-                    "ts": 1773098456,
+                    "title": "I took a gap year from college and lived out of my car. I then launched a side hustle that has turned into a lucrative career.",
+                    "url": "https://www.businessinsider.com/gap-year-from-college-side-hustle-career-2026-3",
+                    "ts": 1774618791,
                     "emo": "📰"
                 }
             ]

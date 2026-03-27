@@ -150,6 +150,9 @@ if (!$pdo) {
         <meta name="twitter:description" content="Flip through the full Scroll News archive like a book, with one horizontal row of cards for each day." />
         <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-history-1200x630.png" />
 
+        <!-- Performance: Preload background -->
+        <link rel="preload" as="image" href="/assets/img/mind-pour_00.jpg">
+
         <!-- jQuery min-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 

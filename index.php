@@ -36,6 +36,9 @@ require_once BASE_PATH . "/core/___modules.php";
         <meta name="twitter:description" content="A smarter way to catch up on the news. Analyze articles by URL, browse top stories by topic, and search the latest headlines." />
         <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-home-1200x630.png" />
 
+        <!-- Performance: Preload background -->
+        <link rel="preload" as="image" href="/assets/img/mind-pour_00.jpg">
+
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
@@ -105,7 +108,7 @@ require_once BASE_PATH . "/core/___modules.php";
 
         <link href="/assets/css/lightbox.css" rel="stylesheet" />
 
-        <link rel="preload" as="image" href="assets/img/header-bg-3.jpg">
+        <link rel="preload" as="image" href="/assets/img/header-bg-3.jpg">
 
     </head>
     <body id="page-top">
