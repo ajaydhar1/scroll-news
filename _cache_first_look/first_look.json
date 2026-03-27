@@ -1,6 +1,24 @@
 {
-    "fetched_at": 1774623808,
+    "fetched_at": 1774630433,
     "feeds": [
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Barclays says the 'Trump put' is fading, and the president can no longer prop up stocks as headline fatigue sets in",
+                    "url": "https://www.businessinsider.com/trump-stocks-oil-price-iran-markets-war-wall-street-sell-2026-3",
+                    "ts": 1774628025,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "I set a goal to bake a new treat every week. So far, it's actually helped me snack less and eat healthier.",
+                    "url": "https://www.businessinsider.com/weekly-baking-helped-me-eat-healthier-habits-less-snacking-2026-3",
+                    "ts": 1774627861,
+                    "emo": "📰"
+                }
+            ]
+        },
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
@@ -8,31 +26,13 @@
                 {
                     "title": "TRUMP WEALTH BALLOONS TO '$6.5 BILLION'...",
                     "url": "https://www.forbes.com/sites/danalexander/article/the-definitive-networth-of-donaldtrump/",
-                    "ts": 1774620817,
+                    "ts": 1774625136,
                     "emo": "⚖️"
                 },
                 {
                     "title": "First president to put signature on dollar bills...",
                     "url": "https://www.nbcnews.com/politics/donald-trump/signature-appear-paper-currency-dollar-bills-first-sitting-president-rcna265389",
-                    "ts": 1774620817,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Savannah Guthrie says the 'Today' show is 'part of my purpose'",
-                    "url": "https://www.businessinsider.com/savannah-guthrie-today-show-return-date-nancy-guthrie-interview-2026-3",
-                    "ts": 1774618926,
-                    "emo": "🎭"
-                },
-                {
-                    "title": "I took a gap year from college and lived out of my car. I then launched a side hustle that has turned into a lucrative career.",
-                    "url": "https://www.businessinsider.com/gap-year-from-college-side-hustle-career-2026-3",
-                    "ts": 1774618791,
+                    "ts": 1774625136,
                     "emo": "📰"
                 }
             ]

@@ -108,8 +108,6 @@ require_once BASE_PATH . "/core/___modules.php";
 
         <link href="/assets/css/lightbox.css" rel="stylesheet" />
 
-        <link rel="preload" as="image" href="/assets/img/header-bg-3.jpg">
-
     </head>
     <body id="page-top">
 

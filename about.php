@@ -29,6 +29,9 @@ define('BASE_PATH', __DIR__);
         <meta name="twitter:description" content="Learn what Scroll News is, why it was created, and how it helps you analyze, browse, and search the news more intelligently." />
         <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-about-1200x630.png" />
 
+        <!-- Performance: Preload background -->
+        <link rel="preload" as="image" href="/assets/img/mind-pour_00.jpg">
+
         <!-- jQuery min-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -48,10 +51,10 @@ define('BASE_PATH', __DIR__);
         <!-- Site CSS -->
         <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
         <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/mindpour.css'); ?>" rel="stylesheet" />
 
         <!-- Page-specific styles -->
         <style>
-            body#page-top { background: #fafafa; }
 
             a { color: var(--brand-color); }
 
@@ -68,105 +71,112 @@ define('BASE_PATH', __DIR__);
     </head>
     <body id="page-top">
 
-        <!-- Top nav-->
-        <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
+        <!-- Blurred overlay -->
+        <div class="blur-layer"></div>
 
-        <!-- Content area -->
-        <div class="container my-5">
-            <div class="card border-0 shadow-sm rounded-3">
-                <div class="card-body p-5">
+        <div class="page">
 
-                    <header class="mb-5">
-                        <h1 class="mb-3"><img src="/assets/img/play-green.png" alt="Logo" style="height: 38px; width: auto; vertical-align: middle; margin-right: 10px; margin-bottom: 5px;">About Scroll News</h1>
-                        <p class="text-muted mb-0">
-                            <strong>Scroll News is a personal news intelligence layer.</strong>
+            <!-- Top nav-->
+            <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
+
+            <!-- Content area -->
+            <div class="container my-5">
+                <div class="card border-0 shadow-sm rounded-3">
+                    <div class="card-body p-5">
+
+                        <header class="text-center mb-5">
+                            <h1 class="mb-3"><img src="/assets/img/play-green.png" alt="Logo" style="height: 38px; width: auto; vertical-align: middle; margin-right: 10px; margin-bottom: 5px;">About Scroll News</h1>
+                            <p class="mb-0">
+                                <strong>Scroll News is a personal news intelligence layer.</strong>
+                            </p>
+                        </header>
+
+                        <p class="lead text-primary">
+                            Modern news is overwhelming. Headlines compete for attention, timelines refresh endlessly,
+                            and important context gets buried under volume.
                         </p>
-                    </header>
 
-                    <p class="lead">
-                        Modern news is overwhelming. Headlines compete for attention, timelines refresh endlessly,
-                        and important context gets buried under volume.
-                    </p>
+                        <p style="font-size: 1.05rem; line-height: 1.7;">
+                            Scroll News was built as a calm alternative — a way to see what matters, revisit what you’ve read,
+                            and build understanding over time.
+                        </p>
 
-                    <p class="text-muted" style="font-size: 1.05rem; line-height: 1.7;">
-                        Scroll News was built as a calm alternative — a way to see what matters, revisit what you’ve read,
-                        and build understanding over time.
-                    </p>
+                        <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 0.75rem;">
+                            It’s designed to be:
+                        </p>
 
-                    <p class="text-muted" style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 0.75rem;">
-                        It’s designed to be:
-                    </p>
+                        <ul style="font-size: 1.05rem; line-height: 1.8; font-weight: 300;">
+                            <li>A focused layer on top of the news you already read</li>
+                            <li>A way to track themes, people, and places across stories</li>
+                            <li>A personal archive of headlines you cared enough to save</li>
+                            <li>A quiet space built for clarity, not urgency</li>
+                        </ul>
 
-                    <ul class="text-muted" style="font-size: 1.05rem; line-height: 1.8; font-weight: 300;">
-                        <li>A focused layer on top of the news you already read</li>
-                        <li>A way to track themes, people, and places across stories</li>
-                        <li>A personal archive of headlines you cared enough to save</li>
-                        <li>A quiet space built for clarity, not urgency</li>
-                    </ul>
+                        <p style="font-size: 1.05rem; line-height: 1.7; margin-top: 1.25rem;">
+                            <span class="text-primary" style="font-weight: 600;">No ads. No outrage.</span> Just information — organized.
+                        </p>
 
-                    <p class="text-muted" style="font-size: 1.05rem; line-height: 1.7; margin-top: 1.25rem;">
-                        <span style="font-weight: 600;">No ads. No outrage.</span> Just information — organized.
-                    </p>
+                        <hr class="my-5">
 
-                    <hr class="my-5">
+                        <!-- Feature blocks -->
+                        <div class="row g-4 justify-content-center text-center">
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow-sm rounded-3">
+                                    <div class="card-body p-4">
+                                        <span class="fa-stack fa-3x mb-3">
+                                            <i class="fas fa-circle fa-stack-2x text-dark"></i>
+                                            <i class="fas fa-flag-usa fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                        <h4 class="mb-2">U.S. News</h4>
+                                        <p class="text-muted mb-0">
+                                            Scroll News focuses on U.S. coverage — built for people who live here, or anyone
+                                            who wants a clear view of what’s happening.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <!-- Feature blocks -->
-                    <div class="row g-4 justify-content-center text-center">
-                        <div class="col-md-4">
-                            <div class="card h-100 border-0 shadow-sm rounded-3">
-                                <div class="card-body p-4">
-                                    <span class="fa-stack fa-3x mb-3">
-                                        <i class="fas fa-circle fa-stack-2x text-dark"></i>
-                                        <i class="fas fa-flag-usa fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                    <h4 class="mb-2">U.S. News</h4>
-                                    <p class="text-muted mb-0">
-                                        Scroll News focuses on U.S. coverage — built for people who live here, or anyone
-                                        who wants a clear view of what’s happening.
-                                    </p>
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow-sm rounded-3">
+                                    <div class="card-body p-4">
+                                        <span class="fa-stack fa-3x mb-3">
+                                            <i class="fas fa-circle fa-stack-2x text-pink"></i>
+                                            <i class="fas fa-newspaper fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                        <h4 class="mb-2">Signal</h4>
+                                        <p class="text-muted mb-0">
+                                            A fast way to catch the day’s active headlines and the stories that are picking up
+                                            momentum — without the chaos.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow-sm rounded-3">
+                                    <div class="card-body p-4">
+                                        <span class="fa-stack fa-3x mb-3">
+                                            <i class="fas fa-circle fa-stack-2x" style="color: #00bfa6;"></i>
+                                            <i class="fas fa-chart-bar fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                        <h4 class="mb-2">Insight</h4>
+                                        <p class="text-muted mb-0">
+                                            Natural language processing highlights key people, places, and themes — so you can
+                                            see patterns across stories at a glance.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-md-4">
-                            <div class="card h-100 border-0 shadow-sm rounded-3">
-                                <div class="card-body p-4">
-                                    <span class="fa-stack fa-3x mb-3">
-                                        <i class="fas fa-circle fa-stack-2x text-pink"></i>
-                                        <i class="fas fa-newspaper fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                    <h4 class="mb-2">Signal</h4>
-                                    <p class="text-muted mb-0">
-                                        A fast way to catch the day’s active headlines and the stories that are picking up
-                                        momentum — without the chaos.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="card h-100 border-0 shadow-sm rounded-3">
-                                <div class="card-body p-4">
-                                    <span class="fa-stack fa-3x mb-3">
-                                        <i class="fas fa-circle fa-stack-2x" style="color: #00bfa6;"></i>
-                                        <i class="fas fa-chart-bar fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                    <h4 class="mb-2">Insight</h4>
-                                    <p class="text-muted mb-0">
-                                        Natural language processing highlights key people, places, and themes — so you can
-                                        see patterns across stories at a glance.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
                 </div>
             </div>
-        </div>
 
-        <!-- Footer-->
-        <?php require_once BASE_PATH . '/views/partials/___footer.php'; ?>
+            <!-- Footer-->
+            <?php require_once BASE_PATH . '/views/partials/___footer.php'; ?>
+
+        </div>
 
         <!-- Modals-->
         <?php require_once BASE_PATH . '/views/partials/___modals.php'; ?>

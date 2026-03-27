@@ -229,3 +229,7 @@ h5.m-0.font-weight-bold {
 a.btn.btn-outline-primary.btn-analyze.article-link {
     color: white !important;
 }
+
+hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
