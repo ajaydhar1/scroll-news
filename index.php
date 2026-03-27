@@ -7,9 +7,9 @@ require_once BASE_PATH . "/core/___modules.php";
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="Scroll News uses AI to break down U.S. news into fast, readable summaries. Browse trending stories, search headlines, and explore interactive analytics." />
+        <meta name="description" content="Scroll News uses AI to analyze news articles, uncover narrative frames, and highlight key entities and trends. Explore headlines with deeper insight and interactive analytics." />
         <meta name="author" content="Scroll News" />
-        <title>Scroll News – AI-Powered U.S. News Summaries & Trending Headlines</title>
+        <title>Scroll News – AI News Analysis, Narrative Frames & Trending Stories</title>
 
         <!-- Favicon-->
         <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
