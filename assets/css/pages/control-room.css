@@ -177,3 +177,41 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     max-width: 100%;
   }
 }
+
+@media (min-width: 769px) and (max-width: 1200px) {
+  .control-room-overlay {
+    top: 5%;
+    width: min(90vw, 420px);
+  }
+
+  .reading-profile-card {
+    max-width: 420px;
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  .reading-profile-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .reading-profile-card p {
+    font-size: 0.85rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .reading-profile-card .mini-stat {
+    padding: 0.48rem 0;
+  }
+
+  .reading-profile-card .mini-stat span,
+  .reading-profile-card .mini-stat strong {
+    font-size: 0.78rem;
+  }
+
+  .reading-profile-card .card-label {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.55rem;
+    margin-bottom: 0.55rem;
+  }
+}
