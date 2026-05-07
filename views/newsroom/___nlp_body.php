@@ -1,6 +1,5 @@
-<button class="btn btn-small btn-primary btn-rectangle mt-3" style="color: black; box-shadow: none !important;" onclick="introJs().setOptions({highlightClass: 'custom-highlight', overlayOpacity: 0.5}).start();"><i class="fa fa-play-circle" style=""></i><span>&nbsp;&nbsp;&nbsp;Guide</span></button>
 
-        <div class="row mt-3 d-flex align-items-stretch">
+        <div class="row mt-2 d-flex align-items-stretch">
 
           <div class="col-12 col-md-12 col-lg-12 col-xl-4 d-flex align-items-stretch">
 
