@@ -39,12 +39,12 @@
   // ----------------- Config -----------------
   const PLAYLISTS = [
     { name: 'Bloomberg — Markets',  id: 'PLGaYlBJIOoa9DV4I6sC8R8bX4L0Jq16XZ' },
+    { name: 'Fox News — Trump', id: 'PLGmceqLQ0UeYSzvsA6agwpkdoCMySiLA6' },
     { name: 'Bloomberg — Top News',  id: 'PLGaYlBJIOoa83e_1h9T0JfxtoqTOhgaZE' },
+    { name: 'ABC News',  id: 'PLQOa26lW-uI8H1WxYPbSEqQJYoTRq2h5n' },
     { name: 'Bloomberg — Energy',  id: 'PLGaYlBJIOoa-dJt0qCPkO2y99xQt4LJ-j' },
     { name: 'Bloomberg — Technology',  id: 'PLGaYlBJIOoa9aFYxidijF94vLKdDb04El' },
     { name: 'MSNBC — MS NOW', id: 'PLDIVi-vBsOEy7nK-gNvoU8TS_BDOqBOxE' },
-    { name: 'Fox News — Trump', id: 'PLGmceqLQ0UeYSzvsA6agwpkdoCMySiLA6' },
-    { name: 'ABC News',  id: 'PLQOa26lW-uI8H1WxYPbSEqQJYoTRq2h5n' },
   ];
   const START_COLLAPSED = false;
 
