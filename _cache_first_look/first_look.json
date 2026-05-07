@@ -1,38 +1,38 @@
 {
-    "fetched_at": 1774630433,
+    "fetched_at": 1778116362,
     "feeds": [
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Barclays says the 'Trump put' is fading, and the president can no longer prop up stocks as headline fatigue sets in",
-                    "url": "https://www.businessinsider.com/trump-stocks-oil-price-iran-markets-war-wall-street-sell-2026-3",
-                    "ts": 1774628025,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "I set a goal to bake a new treat every week. So far, it's actually helped me snack less and eat healthier.",
-                    "url": "https://www.businessinsider.com/weekly-baking-helped-me-eat-healthier-habits-less-snacking-2026-3",
-                    "ts": 1774627861,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "TRUMP WEALTH BALLOONS TO '$6.5 BILLION'...",
-                    "url": "https://www.forbes.com/sites/danalexander/article/the-definitive-networth-of-donaldtrump/",
-                    "ts": 1774625136,
-                    "emo": "⚖️"
+                    "title": "TED TURNER DEAD",
+                    "url": "https://www.nytimes.com/2026/05/06/business/media/ted-turner-dead.html?unlocked_article_code=1.gVA.9Rmj.PssZDeAztqxf&smid=url-share",
+                    "ts": 1778112457,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "First president to put signature on dollar bills...",
-                    "url": "https://www.nbcnews.com/politics/donald-trump/signature-appear-paper-currency-dollar-bills-first-sitting-president-rcna265389",
-                    "ts": 1774625136,
+                    "title": "MAVERICK MOGUL AND CNN FOUNDER",
+                    "url": "https://www.hollywoodreporter.com/business/business-news/ted-turner-dead-maverick-mogul-cnn-founder-1236587849/",
+                    "ts": 1778112457,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Claude Code creator Boris Cherny is sick of the phrase 'vibe coding'",
+                    "url": "https://www.businessinsider.com/claude-code-creator-boris-cherny-vibe-coding-anthropic-ai-2026-5",
+                    "ts": 1778110821,
+                    "emo": "📰"
+                },
+                {
+                    "title": "The $75,000 schmooze: Inside the networking frenzy at the Milken Global Conference",
+                    "url": "https://www.businessinsider.com/inside-the-networking-frenzy-at-this-years-milken-global-conference-2026-5",
+                    "ts": 1778110216,
                     "emo": "📰"
                 }
             ]

@@ -8,7 +8,7 @@ function newsroom_resolve_article(): array {
     if (empty($_GET['url'])) {
 
         try { 
-            $random = getRandomRecentArticle_forStumble_fromDB(); // ['category'=>..., 'link'=>...]
+            $random = getRandomRecentArticle_forStumble_fromLatestPoolDB(true, 2000); // ['category'=>..., 'link'=>...]
         
         } catch (Throwable $e) {
             error_log("getRandomRecentArticle_forStumble_fromDB DB error: " . $e->getMessage());

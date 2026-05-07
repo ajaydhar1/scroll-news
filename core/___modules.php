@@ -1426,23 +1426,35 @@ function getRandomRecentArticle_forStumble_fromDB(
 
     $commonWhere = "$ready $entitiesClause AND {$tsCol} >= :since_ts" . ($notLikeSql ? " AND $notLikeSql" : "");
 
-    // True random row from the recent pool
+    // Pick a random offset inside the recent pool.
+    $offset = random_int(0, max(0, $poolLimit - 1));
+
+    // Instead of ORDER BY RANDOM(), randomly OFFSET into the latest pool.
     $sql = "
         SELECT id, url, source_slug, created_at
-        FROM articles
-        WHERE $commonWhere
-        ORDER BY RANDOM()
+        FROM (
+            SELECT id, url, source_slug, created_at, {$tsCol}
+            FROM articles
+            WHERE $commonWhere
+            ORDER BY {$tsCol} DESC
+            LIMIT :pool_limit
+        ) recent_pool
+        OFFSET :random_offset
         LIMIT 1
     ";
 
     $stmt = $pdo->prepare($sql);
 
-    $params = array_merge(
-        $notLikeParams,
-        [':since_ts' => $sinceTs]
-    );
+    // Bind NOT ILIKE params.
+    foreach ($notLikeParams as $key => $value) {
+        $stmt->bindValue($key, $value);
+    }
 
-    $stmt->execute($params);
+    // Bind pool limit + random offset.
+    $stmt->bindValue(':pool_limit', $poolLimit, PDO::PARAM_INT);
+    $stmt->bindValue(':random_offset', $offset, PDO::PARAM_INT);
+
+    $stmt->execute();
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$row || empty($row['url'])) {
@@ -1462,6 +1474,93 @@ function getRandomRecentArticle_forStumble_fromDB(
     ];
 }
 
+/**
+ * Random article picker for the "Stumble" button:
+ * - Builds a pool from the latest N NLP-ready articles
+ * - Randomly selects 1 article from that recent pool
+ * - Avoids depending on an exact "last X hours" window
+ * - Applies entity filters unless $requireEntities = false
+ * - Respects global $filter_out NOT ILIKE terms
+ * - Does NOT require screenshot_bytes
+ */
+function getRandomRecentArticle_forStumble_fromLatestPoolDB(
+    bool $requireEntities = true,
+    int $poolLimit = 2000
+): array {
+    global $filter_out;
+
+    $pdo = _pdo_or_null();
+    if (!$pdo) {
+        return function_exists('getRandomArticle_fromRSS')
+            ? getRandomArticle_fromRSS()
+            : ['category' => 'db', 'link' => null, 'pub_date' => null];
+    }
+
+    // Safety clamp so the pool does not become accidentally huge or invalid.
+    $poolLimit = max(100, min($poolLimit, 5000));
+
+    // Timestamp column we trust for recency.
+    $tsCol = 'updated_at';
+
+    // Entities filter.
+    $entitiesClause = '';
+    if ($requireEntities) {
+        $entitiesClause =
+            " AND (nlp::text) NOT LIKE '%\"entities\": []%'" .
+            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"X-Forbidden\", \"count\": 1, \"label\": \"ORG\"}]%'" .
+            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"JavaScript\", \"count\": 1, \"label\": \"PRODUCT\"}]%'" .
+            " AND (nlp::text) NOT LIKE '%\"emotional_reaction\": {}%'";
+    }
+
+    // NLP must be present, but no screenshot requirement.
+    $ready = "nlp IS NOT NULL";
+
+    // Filters: NOT ILIKE any of $filter_out.
+    [$notLikeSql, $notLikeParams] = buildNotILikeNamed(is_array($filter_out) ? $filter_out : []);
+
+    $commonWhere = "$ready $entitiesClause" . ($notLikeSql ? " AND $notLikeSql" : "");
+
+    // Pick randomly from the latest N eligible articles.
+    $sql = "
+        SELECT id, url, source_slug, created_at
+        FROM (
+            SELECT id, url, source_slug, created_at, {$tsCol}
+            FROM articles
+            WHERE $commonWhere
+            ORDER BY {$tsCol} DESC
+            LIMIT :pool_limit
+        ) recent_pool
+        ORDER BY RANDOM()
+        LIMIT 1
+    ";
+
+    $stmt = $pdo->prepare($sql);
+
+    foreach ($notLikeParams as $key => $value) {
+        $stmt->bindValue($key, $value);
+    }
+
+    $stmt->bindValue(':pool_limit', $poolLimit, PDO::PARAM_INT);
+
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$row || empty($row['url'])) {
+        return function_exists('getRandomArticle_fromDB')
+            ? getRandomArticle_fromDB($requireEntities, 30)
+            : (function_exists('getRandomArticle_fromRSS')
+                ? getRandomArticle_fromRSS()
+                : ['category' => 'db', 'link' => null, 'pub_date' => null]);
+    }
+
+    return [
+        'category'   => isset($row['source_slug']) ? ucfirst($row['source_slug']) : 'db',
+        'link'       => $row['url'],
+        'article_id' => (int)$row['id'],
+        'pub_date'   => toEpoch(toIsoZ($row['created_at'])),
+        'source'     => 'db',
+    ];
+}
 
 // Returns the row or null if not found
 function getNLPFromDB(string $url) {
