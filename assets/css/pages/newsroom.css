@@ -154,7 +154,15 @@ ion-icon {
 .hashtags-card .card-body {
   flex: 1;
   min-height: 0;
+
+  max-height: 600px;
   overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .hashtags-card .card-body {
+    max-height: 400px;
+  }
 }
 
 .blue-hover:hover,
