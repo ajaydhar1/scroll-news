@@ -129,7 +129,7 @@ exit;
                 <div id="panel-inner-row" class="row"> <?php //  style="height: 95vh;" 
                                                                 ?>
                     <!-- NLP Dashboard Panel -->
-                    <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12 panel order-2 order-xl-1" style="overflow-y: auto;">
+                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 panel order-2 order-lg-1" style="overflow-y: auto;">
                         <div id="analytics" class="skeleton">
 
                             <?php
@@ -203,7 +203,7 @@ exit;
                     </div>
 
                     <!-- Article Image Panel -->
-                    <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12 panel order-1 order-xl-2" style="height: 100%; overflow-y: auto;"> <?php //background-color: #fcfcfc; 
+                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 panel order-1 order-lg-2" style="height: 100%; overflow-y: auto;"> <?php //background-color: #fcfcfc; 
                                                                                                                         ?>
                         <!-- Masthead-->
                         <header class="masthead" style="background-image: url(<?php echo $img; ?>)">
