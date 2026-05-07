@@ -32,6 +32,8 @@ exit;
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <?php require_once BASE_PATH . '/views/partials/___google_analytics.php'; ?>
+
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="robots" content="noindex, nofollow">

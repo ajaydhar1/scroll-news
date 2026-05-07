@@ -4,6 +4,8 @@ define('BASE_PATH', __DIR__);
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <?php require_once BASE_PATH . '/views/partials/___google_analytics.php'; ?>
+
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="Use the Scroll News Control Room to fine-tune how you browse U.S. news, adjust filters, and explore tools for analyzing headlines, entities, and narrative trends." />

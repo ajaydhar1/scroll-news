@@ -4,6 +4,8 @@ define('BASE_PATH', __DIR__);
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <?php require_once BASE_PATH . '/views/partials/___google_analytics.php'; ?>
+
         <!-- Basics -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
