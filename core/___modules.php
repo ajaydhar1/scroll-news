@@ -12,7 +12,7 @@ date_default_timezone_set('America/New_York');
 
 $filter_out = array("usatoday", "independent.co.uk", "nytimes", "9to5google", "tomsguide", "thehockeynews", "cbssports", "businessinsider", "abc7chicago", "livescience", "wlns", "myedmondsnews", "reuters", "sportingnews", "bloomberg", "wane.com", "politico", "wvpublic", "cnbc", "mercurynews", "utahstories", "imdb", "9to5mac", "mashable", "stpetecatalyst", "kark", "journalism.cuny.edu", "yahoo.com", "startribune", "wgntv", "msnbc", "kosu.org", "wpri.com", "theberkshireedge.com", "kron4.com", "nymag.com");
 
-$rss_feeds = array("Politics" => "https://rss.app/feeds/tahaOzLGHPxMD9OC.xml", "Business" => "https://rss.app/feeds/tDmGft5qv7QGmWHv.xml", "Technology" => "https://rss.app/feeds/t8coleFVxgPf56NK.xml", "Sports" => "https://rss.app/feeds/tCQMLQm6AHeQ5hJk.xml", "Health" => "https://rss.app/feeds/tZPiCoHdJqTYlcZc.xml", "Science" => "https://rss.app/feeds/tLSguoVp4t7wa1eJ.xml", "Entertainment" => "https://rss.app/feeds/tBiQM8jJROm1RYn3.xml");
+$rss_feeds = array("Politics" => "/rss.php?category=Politics", "Business" => "/rss.php?category=Business", "Technology" => "/rss.php?category=Technology", "Sports" => "/rss.php?category=Sports", "Health" => "/rss.php?category=Health", "Science" => "/rss.php?category=Science", "Entertainment" => "/rss.php?category=Entertainment");
 
 function getPdo(): PDO {
     static $pdo = null;
