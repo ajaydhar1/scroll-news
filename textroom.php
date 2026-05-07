@@ -51,13 +51,13 @@ $title = mb_substr(preg_replace('/\s+/', ' ', $text), 0, 80);
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Scroll News Text Analysis Tool" />
         <meta name="twitter:description" content="Paste any article or document and instantly analyze entities, sentiment, emotions, and keywords." />
-        <meta name="twitter:image" content="https://scrollnews.io/assets/img/scrollnews-og.png" />
+        <meta name="twitter:image" content="https://scrollnews.ai/assets/img/scrollnews-og.png" />
 
         <!-- Open Graph -->
-        <meta property="og:url" content="https://scrollnews.io/textroom.php" />
+        <meta property="og:url" content="https://scrollnews.ai/textroom.php" />
         <meta property="og:title" content="Scroll News Text Analysis Tool" />
         <meta property="og:description" content="Paste any article or document and instantly analyze entities, sentiment, emotions, and keywords." />
-        <meta property="og:image" content="https://scrollnews.io/assets/img/scrollnews-og.png" />
+        <meta property="og:image" content="https://scrollnews.ai/assets/img/scrollnews-og.png" />
         <meta property="og:site_name" content="Scroll News" />
         <meta property="og:type" content="website" />
 

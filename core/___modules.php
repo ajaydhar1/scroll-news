@@ -135,7 +135,7 @@ function http_get($url) {
     CURLOPT_CONNECTTIMEOUT => 10,
     CURLOPT_TIMEOUT        => 20,
     CURLOPT_ENCODING       => '', // auto-decode gzip/deflate
-    CURLOPT_USERAGENT      => 'ScrollNewsBot/1.0 (+https://scrollnews.io/contact)',
+    CURLOPT_USERAGENT      => 'ScrollNewsBot/1.0 (+https://scrollnews.ai/contact)',
     CURLOPT_HTTPHEADER     => [
       'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
       'Accept-Language: en-US,en;q=0.9',
@@ -282,7 +282,7 @@ function azeo_getData($url) {
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
     // Set the custom User-Agent string
-    $userAgent = "ScrollNewsBot/1.0 (+https://scrollnews.io/contact)";
+    $userAgent = "ScrollNewsBot/1.0 (+https://scrollnews.ai/contact)";
     curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
 
     $data = curl_exec($ch);

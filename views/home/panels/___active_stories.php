@@ -344,7 +344,7 @@ try {
     };
 
     $build_search_url = function(string $q, string $mode = 'nlp'): string {
-        return 'https://scrollnews.io/search.php?' . http_build_query([
+        return 'https://scrollnews.ai/search.php?' . http_build_query([
             'q'          => $q,
             'range'      => 'all',
             'mode'       => $mode,

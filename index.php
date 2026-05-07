@@ -13,7 +13,7 @@ require_once BASE_PATH . "/core/___modules.php";
 
         <!-- Favicon-->
         <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
-        <link rel="canonical" href="https://scrollnews.io/">
+        <link rel="canonical" href="https://scrollnews.ai/">
 
         <!-- Performance: YouTube preconnects -->
         <link rel="preconnect" href="https://www.youtube.com" crossorigin>
@@ -24,17 +24,17 @@ require_once BASE_PATH . "/core/___modules.php";
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://scrollnews.io/" />
+        <meta property="og:url" content="https://scrollnews.ai/" />
         <meta property="og:title" content="Scroll News — Analyze, Browse, Search the news" />
         <meta property="og:description" content="A smarter way to catch up on the news. Analyze articles by URL, browse top stories by topic, and search the latest headlines." />
-        <meta property="og:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-home-1200x630.png" />
+        <meta property="og:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-home-1200x630.png" />
 
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://scrollnews.io/" />
+        <meta name="twitter:url" content="https://scrollnews.ai/" />
         <meta name="twitter:title" content="Scroll News — Analyze, Browse, Search the news" />
         <meta name="twitter:description" content="A smarter way to catch up on the news. Analyze articles by URL, browse top stories by topic, and search the latest headlines." />
-        <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-home-1200x630.png" />
+        <meta name="twitter:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-home-1200x630.png" />
 
         <!-- Performance: Preload background -->
         <link rel="preload" as="image" href="/assets/img/mind-pour_00.jpg">
@@ -45,39 +45,39 @@ require_once BASE_PATH . "/core/___modules.php";
           "@graph": [
             {
               "@type": "WebSite",
-              "@id": "https://scrollnews.io/#website",
-              "url": "https://scrollnews.io/",
+              "@id": "https://scrollnews.ai/#website",
+              "url": "https://scrollnews.ai/",
               "name": "Scroll News",
               "description": "A smarter way to catch up on the news. Analyze articles by URL, browse stories by topic, and search the latest headlines.",
               "inLanguage": "en",
               "publisher": {
-                "@id": "https://scrollnews.io/#organization"
+                "@id": "https://scrollnews.ai/#organization"
               },
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://scrollnews.io/search.php?q={search_term_string}",
+                "target": "https://scrollnews.ai/search.php?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             },
             {
               "@type": "Organization",
-              "@id": "https://scrollnews.io/#organization",
+              "@id": "https://scrollnews.ai/#organization",
               "name": "Scroll News",
-              "url": "https://scrollnews.io/",
+              "url": "https://scrollnews.ai/",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://scrollnews.io/assets/img/logos/scrollnews-icon-512.png"
+                "url": "https://scrollnews.ai/assets/img/logos/scrollnews-icon-512.png"
               }
             },
             {
               "@type": "WebPage",
-              "@id": "https://scrollnews.io/#homepage",
-              "url": "https://scrollnews.io/",
+              "@id": "https://scrollnews.ai/#homepage",
+              "url": "https://scrollnews.ai/",
               "name": "Scroll News — Analyze, Browse, Search the news",
               "description": "A smarter way to catch up on the news. Analyze articles by URL, browse stories by topic, and search the latest headlines.",
               "inLanguage": "en",
               "isPartOf": {
-                "@id": "https://scrollnews.io/#website"
+                "@id": "https://scrollnews.ai/#website"
               }
             }
           ]

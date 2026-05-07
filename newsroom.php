@@ -49,7 +49,7 @@ exit;
         <meta name="twitter:description" content="<?= htmlspecialchars($title) ?>" />
         <meta name="twitter:image" content="<?php echo $img; ?>" />
     
-        <meta property="og:url" content="https://scrollnews.io" />
+        <meta property="og:url" content="https://scrollnews.ai" />
         <meta property="og:title" content="Scroll News: [<?php echo $pub; ?> - <?= htmlspecialchars($title) ?>]" />
         <meta property="og:description" content="<?= htmlspecialchars($title) ?>" />
         <meta property="og:image" content="<?php echo $img; ?>" />    

@@ -14,7 +14,7 @@ define('BASE_PATH', dirname(__DIR__)); // /api -> project root
         <!-- Favicon-->
         <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
 
-        <link rel="canonical" href="https://scrollnews.io/api/docs" />
+        <link rel="canonical" href="https://scrollnews.ai/api/docs" />
 
         <!-- Twitter card and Open Graph-->
         <meta name="twitter:card" content="summary_large_image" />
@@ -22,7 +22,7 @@ define('BASE_PATH', dirname(__DIR__)); // /api -> project root
         <meta name="twitter:description" content="<?= htmlspecialchars($title) ?>" />
         <meta name="twitter:image" content="<?php echo $img; ?>" />
     
-        <meta property="og:url" content="https://scrollnews.io" />
+        <meta property="og:url" content="https://scrollnews.ai" />
         <meta property="og:title" content="Scroll News: [<?php echo $pub; ?> - <?= htmlspecialchars($title) ?>]" />
         <meta property="og:description" content="<?= htmlspecialchars($title) ?>" />
         <meta property="og:image" content="<?php echo $img; ?>" />    

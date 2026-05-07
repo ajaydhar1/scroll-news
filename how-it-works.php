@@ -12,22 +12,22 @@ define('BASE_PATH', __DIR__);
         <title>How It Works | Scroll News</title>
 
         <!-- Canonical + favicon -->
-        <link rel="canonical" href="https://scrollnews.io/how-it-works" />
+        <link rel="canonical" href="https://scrollnews.ai/how-it-works" />
         <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
 
         <!-- Open Graph -->
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://scrollnews.io/how-it-works" />
+        <meta property="og:url" content="https://scrollnews.ai/how-it-works" />
         <meta property="og:title" content="How Scroll News Works" />
         <meta property="og:description" content="See how Scroll News analyzes sentiment, emotions, and narrative frames to reveal how news stories evolve across sources." />
-        <meta property="og:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-how-1200x630.png?v=2" />
+        <meta property="og:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-how-1200x630.png?v=2" />
 
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://scrollnews.io/how-it-works" />
+        <meta name="twitter:url" content="https://scrollnews.ai/how-it-works" />
         <meta name="twitter:title" content="How Scroll News Works" />
         <meta name="twitter:description" content="Understand how to read sentiment, emotions, and narrative frames to analyze the news more effectively." />
-        <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-how-1200x630.png?v=2" />
+        <meta name="twitter:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-how-1200x630.png?v=2" />
 
         <!-- jQuery min-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

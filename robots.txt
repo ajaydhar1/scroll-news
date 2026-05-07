@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://scrollnews.io/sitemap.xml
+Sitemap: https://scrollnews.ai/sitemap.xml

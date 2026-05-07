@@ -12,21 +12,21 @@ define('BASE_PATH', __DIR__);
 
         <!-- Favicon-->
         <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
-        <link rel="canonical" href="https://scrollnews.io/404">
+        <link rel="canonical" href="https://scrollnews.ai/404">
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://scrollnews.io/404.php" />
+        <meta property="og:url" content="https://scrollnews.ai/404.php" />
         <meta property="og:title" content="Page not found — Scroll News" />
         <meta property="og:description" content="The page you’re looking for could not be found. Return to the Scroll News homepage to analyze, browse, or search the news." />
-        <meta property="og:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-404-1200x630.png" />
+        <meta property="og:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-404-1200x630.png" />
 
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://scrollnews.io/404.php" />
+        <meta name="twitter:url" content="https://scrollnews.ai/404.php" />
         <meta name="twitter:title" content="Page not found — Scroll News" />
         <meta name="twitter:description" content="The page you’re looking for could not be found. Return to the Scroll News homepage to analyze, browse, or search the news." />
-        <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-404-1200x630.png" />
+        <meta name="twitter:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-404-1200x630.png" />
 
         <!-- jQuery min-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -12,22 +12,22 @@ define('BASE_PATH', __DIR__);
         <title>About Scroll News – Our Story & How It Works</title>
 
         <!-- Canonical + favicon -->
-        <link rel="canonical" href="https://scrollnews.io/about" />
+        <link rel="canonical" href="https://scrollnews.ai/about" />
         <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
 
         <!-- Open Graph -->
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://scrollnews.io/about" />
+        <meta property="og:url" content="https://scrollnews.ai/about" />
         <meta property="og:title" content="About Scroll News — Why it was built" />
         <meta property="og:description" content="Learn what Scroll News is, why it was created, and how it helps you analyze, browse, and search the news more intelligently." />
-        <meta property="og:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-about-1200x630.png" />
+        <meta property="og:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-about-1200x630.png" />
 
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://scrollnews.io/about" />
+        <meta name="twitter:url" content="https://scrollnews.ai/about" />
         <meta name="twitter:title" content="About Scroll News — Why it was built" />
         <meta name="twitter:description" content="Learn what Scroll News is, why it was created, and how it helps you analyze, browse, and search the news more intelligently." />
-        <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-about-1200x630.png" />
+        <meta name="twitter:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-about-1200x630.png" />
 
         <!-- Performance: Preload background -->
         <link rel="preload" as="image" href="/assets/img/mind-pour_00.jpg">

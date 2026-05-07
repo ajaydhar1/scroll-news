@@ -12,21 +12,21 @@ define('BASE_PATH', __DIR__);
 
         <!-- Favicon-->
         <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
-        <link rel="canonical" href="https://scrollnews.io/control-room">
+        <link rel="canonical" href="https://scrollnews.ai/control-room">
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://scrollnews.io/control-room.php" />
+        <meta property="og:url" content="https://scrollnews.ai/control-room.php" />
         <meta property="og:title" content="Scroll News Control Room — Tools & analysis" />
         <meta property="og:description" content="Access the Scroll News control room to experiment with article analysis, entity extraction, and other news intelligence tools." />
-        <meta property="og:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-control-room-1200x630.png" />
+        <meta property="og:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-control-room-1200x630.png" />
 
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://scrollnews.io/control-room.php" />
+        <meta name="twitter:url" content="https://scrollnews.ai/control-room.php" />
         <meta name="twitter:title" content="Scroll News Control Room — Tools & analysis" />
         <meta name="twitter:description" content="Access the Scroll News control room to experiment with article analysis, entity extraction, and other news intelligence tools." />
-        <meta name="twitter:image" content="https://scrollnews.io/assets/img/og/og-scrollnews-control-room-1200x630.png" />
+        <meta name="twitter:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-control-room-1200x630.png" />
 
         <!-- jQuery min-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

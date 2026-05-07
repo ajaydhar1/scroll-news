@@ -34,7 +34,7 @@ function http_get(string $url): string {
     CURLOPT_CONNECTTIMEOUT => 8,
     CURLOPT_TIMEOUT        => 15,
     CURLOPT_ENCODING       => '', // auto-handle gzip
-    CURLOPT_USERAGENT      => 'ScrollNewsBot/1.0 (+https://scrollnews.io)',
+    CURLOPT_USERAGENT      => 'ScrollNewsBot/1.0 (+https://scrollnews.ai)',
     CURLOPT_HTTPHEADER     => ['Accept: application/json, text/html;q=0.8'],
   ]);
   $body = curl_exec($ch);
