@@ -1,5 +1,5 @@
 {
-    "fetched_at": 1778116362,
+    "fetched_at": 1778122486,
     "feeds": [
         {
             "name": "Drudge",
@@ -8,13 +8,13 @@
                 {
                     "title": "TED TURNER DEAD",
                     "url": "https://www.nytimes.com/2026/05/06/business/media/ted-turner-dead.html?unlocked_article_code=1.gVA.9Rmj.PssZDeAztqxf&smid=url-share",
-                    "ts": 1778112457,
+                    "ts": 1778119656,
                     "emo": "🔥"
                 },
                 {
                     "title": "MAVERICK MOGUL AND CNN FOUNDER",
                     "url": "https://www.hollywoodreporter.com/business/business-news/ted-turner-dead-maverick-mogul-cnn-founder-1236587849/",
-                    "ts": 1778112457,
+                    "ts": 1778119656,
                     "emo": "📰"
                 }
             ]
@@ -24,15 +24,15 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Claude Code creator Boris Cherny is sick of the phrase 'vibe coding'",
-                    "url": "https://www.businessinsider.com/claude-code-creator-boris-cherny-vibe-coding-anthropic-ai-2026-5",
-                    "ts": 1778110821,
+                    "title": "The 'Meme King' is turning eBay listings into takeover theater",
+                    "url": "https://www.businessinsider.com/gamestop-ceo-ryan-cohen-selling-items-ebay-meme-stock-king-2026-5",
+                    "ts": 1778116037,
                     "emo": "📰"
                 },
                 {
-                    "title": "The $75,000 schmooze: Inside the networking frenzy at the Milken Global Conference",
-                    "url": "https://www.businessinsider.com/inside-the-networking-frenzy-at-this-years-milken-global-conference-2026-5",
-                    "ts": 1778110216,
+                    "title": "Claude Code creator Boris Cherny is sick of the phrase 'vibe coding'",
+                    "url": "https://www.businessinsider.com/claude-code-creator-boris-cherny-vibe-coding-anthropic-ai-2026-5",
+                    "ts": 1778110821,
                     "emo": "📰"
                 }
             ]

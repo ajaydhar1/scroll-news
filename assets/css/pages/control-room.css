@@ -48,6 +48,18 @@ html, body {
     min-height: 100vh; /* full viewport height */
     display: flex;
     flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+#myVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 
 .footer-bottom {
@@ -56,4 +68,98 @@ html, body {
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     line-height: calc(var(--line-height-unit) * 1.1) !important;
+}
+
+.reading-profile-card {
+  max-width: 460px;
+  padding: 1.5rem;
+  border-radius: 24px;
+  color: #fff;
+  background: rgba(8, 12, 24, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.reading-profile-card .card-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
+  margin-bottom: 0.9rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #dbeafe;
+  background: rgba(59, 130, 246, 0.18);
+  border: 1px solid rgba(147, 197, 253, 0.25);
+}
+
+.reading-profile-card h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.reading-profile-card p {
+  margin: 0 0 1.2rem;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.5;
+}
+
+.reading-profile-card strong {
+  color: #fff;
+}
+
+.reading-profile-card .mini-stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.reading-profile-card .mini-stat span {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.9rem;
+}
+
+.reading-profile-card .mini-stat strong {
+  max-width: 62%;
+  text-align: right;
+  font-size: 0.95rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reading-profile-card {
+  max-width: 520px;
+  padding: 1.35rem;
+}
+
+.reading-profile-card .mini-stat {
+  padding: 0.7rem 0;
+}
+
+.reading-profile-card h3 {
+  font-size: 1.45rem;
+}
+
+.reading-profile-card p {
+  margin-bottom: 0.85rem;
+}
+
+.control-room-overlay {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
 }
