@@ -1,15 +1,15 @@
 
         <div class="row mt-2 d-flex align-items-stretch">
 
-          <div class="col-12 col-md-12 col-lg-12 col-xl-4 d-flex align-items-stretch">
+          <div class="col-12 col-md-12 col-lg-12 col-xl-4 d-flex align-items-stretch mb-3">
 
-            <div data-step="4" data-intro="Hashtags of people, places, and organizations." class="card w-100 shadow mb-3">
+            <div data-step="4" data-intro="Hashtags of people, places, and organizations." class="card hashtags-card w-100 shadow mb-3">
               <!-- Card Header - Dropdown -->
               <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
                 <h5 class="m-0 font-weight-bold">Hashtags</h5>
               </div>
               <!-- Card Body -->
-              <div class="card-body">
+              <div class="card-body hashtags-scroll">
                 <div id="hashtags" class="hashtags-panel">
                   <div class="hashtags-toolbar basement_title mb-2">
                     <span class="h5 mb-1" id="sm-tags">Google</span>
@@ -79,7 +79,7 @@
 
           <div class="col-12 col-md-12 col-lg-12 col-xl-8 d-flex align-items-stretch">
             <div class="row d-flex align-items-stretch">
-                <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch" style="max-height: 340px;">
+                <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch" style="">
                     <div data-step="6" data-intro="Wikipedia articles." class="card w-100 shadow mb-3">
                       <!-- Card Header - Dropdown -->
                       <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
