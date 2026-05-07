@@ -20,7 +20,7 @@
             <div class="col-lg-4 my-3 my-lg-0">
                 <a data-step="2" data-intro="Click here for a feed of fresh articles analyzed and indexed by Scroll News." class="btn btn-black btn-social mx-2" title="Scroll Archive" href="scroll-archive.php" data-loading><i class="fas fa-history"></i></a>
                 <a data-step="1" data-intro="Welcome to the Scroll News newsroom! Here we provide analytics for the latest news stories. Click this play button to stumble through trending articles." class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" onclick="trackStumbleClick('top_nav')" data-loading><i class="fas fa-play"></i></a>
-                <a data-step="3" data-intro="Click here to see our newsroom video trailer." class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
+                <a data-step="3" data-intro="Click here to see our control room — a personalized intelligence layer that visualizes your reading patterns, engagement signals, and news behavior over time.." class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
             </div>
             <div class="col-lg-4 text-lg-right d-flex justify-content-between" style="">
                 <button class="btn btn-outline-dark blue-hover browse-btn mr-3" data-toggle="modal" data-target="#browseNewsModal" aria-label="Browse news by topic">
