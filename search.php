@@ -371,7 +371,7 @@ if (!$pdo) {
 
         <!-- Scroll News Features -->
         <script src="/assets/js/sn_history.js" defer></script>
-        <script src="/assets/js/sn-mini-player-yt.js?v=<?= filemtime(BASE_PATH . '/assets/js/sn-mini-player-yt.js') ?>" defer></script>
+        
         <script src="/assets/js/pages/search.js?v=<?= filemtime(BASE_PATH . '/assets/js/pages/search.js') ?>" defer></script>
 
     </body>

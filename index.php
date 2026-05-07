@@ -326,7 +326,7 @@ require_once BASE_PATH . "/core/___modules.php";
         <script type="text/javascript" src="/assets/js/lightbox.js"></script>
 
         <script src="/assets/js/sn_history.js"></script>
-        <script src="/assets/js/sn-mini-player-yt.js?v=<?= filemtime(BASE_PATH . '/assets/js/sn-mini-player-yt.js') ?>" defer></script>
+        
 
     </body>
 </html>

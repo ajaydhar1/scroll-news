@@ -1,5 +1,5 @@
 {
-    "fetched_at": 1778122486,
+    "fetched_at": 1778144202,
     "feeds": [
         {
             "name": "Drudge",
@@ -8,13 +8,13 @@
                 {
                     "title": "TED TURNER DEAD",
                     "url": "https://www.nytimes.com/2026/05/06/business/media/ted-turner-dead.html?unlocked_article_code=1.gVA.9Rmj.PssZDeAztqxf&smid=url-share",
-                    "ts": 1778119656,
+                    "ts": 1778139997,
                     "emo": "🔥"
                 },
                 {
                     "title": "MAVERICK MOGUL AND CNN FOUNDER",
                     "url": "https://www.hollywoodreporter.com/business/business-news/ted-turner-dead-maverick-mogul-cnn-founder-1236587849/",
-                    "ts": 1778119656,
+                    "ts": 1778139997,
                     "emo": "📰"
                 }
             ]
@@ -24,16 +24,16 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "The 'Meme King' is turning eBay listings into takeover theater",
-                    "url": "https://www.businessinsider.com/gamestop-ceo-ryan-cohen-selling-items-ebay-meme-stock-king-2026-5",
-                    "ts": 1778116037,
-                    "emo": "📰"
+                    "title": "A post-holiday rally just sent this stock market to a record high",
+                    "url": "https://www.businessinsider.com/japan-nikkei-225-record-tech-ai-gains-yen-intervention-boj-2026-5",
+                    "ts": 1778130013,
+                    "emo": "💰"
                 },
                 {
-                    "title": "Claude Code creator Boris Cherny is sick of the phrase 'vibe coding'",
-                    "url": "https://www.businessinsider.com/claude-code-creator-boris-cherny-vibe-coding-anthropic-ai-2026-5",
-                    "ts": 1778110821,
-                    "emo": "📰"
+                    "title": "DoorDash CEO says AI is making engineers faster, but productivity isn't everything",
+                    "url": "https://www.businessinsider.com/doordash-ceo-tony-xu-ai-helping-engineers-workforce-priority-customers-2026-5",
+                    "ts": 1778129040,
+                    "emo": "🧪"
                 }
             ]
         }
