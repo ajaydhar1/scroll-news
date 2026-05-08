@@ -93,7 +93,7 @@ if (!$pdo) {
 
         <!-- Favicon-->
         <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
-        <link rel="canonical" href="https://scrollnews.ai/search.php">
+        <link rel="canonical" href="https://scrollnews.ai/search">
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website" />

@@ -136,21 +136,21 @@ if (!$pdo) {
 
         <!-- Favicon-->
         <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
-        <link rel="canonical" href="https://scrollnews.ai/scroll-archive.php">
+        <link rel="canonical" href="https://scrollnews.ai/scroll-archive">
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://scrollnews.ai/scroll-archive.php" />
         <meta property="og:title" content="Daily Scroll Archive — Every Article in One Place" />
         <meta property="og:description" content="Flip through the full Scroll News archive like a book, with one horizontal row of cards for each day." />
-        <meta property="og:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-history-1200x630.png" />
+        <meta property="og:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-archive-1200x630.png" />
 
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://scrollnews.ai/scroll-archive.php" />
         <meta name="twitter:title" content="Daily Scroll Archive — Every Article in One Place" />
         <meta name="twitter:description" content="Flip through the full Scroll News archive like a book, with one horizontal row of cards for each day." />
-        <meta name="twitter:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-history-1200x630.png" />
+        <meta name="twitter:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-archive-1200x630.png" />
 
         <!-- Performance: Preload background -->
         <link rel="preload" as="image" href="/assets/img/mind-pour_00.jpg">
