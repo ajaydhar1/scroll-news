@@ -378,7 +378,7 @@ if (!is_array($feedsData) || count($feedsData) === 0) {
           Front page of front pages<?php if ($ageSec !== null) echo " • updated " . (int)round($ageSec/60) . "m ago"; ?>
         </div>
       </div>
-      <a href="saved_headlines.php" class="firstlook-more" style="">Saved Headlines</a>
+      <a href="saved-headlines.php" class="firstlook-more" style="">Saved Headlines</a>
     </div>
 
     <div class="firstlook-grid">

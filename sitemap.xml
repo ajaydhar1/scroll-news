@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url><loc>https://scrollnews.ai/</loc></url>
+
   <url><loc>https://scrollnews.ai/about</loc></url>
+  <url><loc>https://scrollnews.ai/how-it-works</loc></url>
+
   <url><loc>https://scrollnews.ai/control-room</loc></url>
-  <url><loc>https://scrollnews.ai/terms</loc></url>
-  <url><loc>https://scrollnews.ai/privacy</loc></url>
   <url><loc>https://scrollnews.ai/scroll-archive</loc></url>
   <url><loc>https://scrollnews.ai/search</loc></url>
+
+  <url><loc>https://scrollnews.ai/privacy</loc></url>
+  <url><loc>https://scrollnews.ai/terms</loc></url>
+
 </urlset>

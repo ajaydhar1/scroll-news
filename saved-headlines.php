@@ -1,6 +1,7 @@
 <?php
-// saved_headlines.php
+// saved-headlines.php
 $page_title = "Saved Headlines";
+define('BASE_PATH', __DIR__);
 ?>
 <!doctype html>
 <html lang="en">

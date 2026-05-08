@@ -1,39 +1,39 @@
 {
-    "fetched_at": 1778144202,
+    "fetched_at": 1778198269,
     "feeds": [
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "TED TURNER DEAD",
-                    "url": "https://www.nytimes.com/2026/05/06/business/media/ted-turner-dead.html?unlocked_article_code=1.gVA.9Rmj.PssZDeAztqxf&smid=url-share",
-                    "ts": 1778139997,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "MAVERICK MOGUL AND CNN FOUNDER",
-                    "url": "https://www.hollywoodreporter.com/business/business-news/ted-turner-dead-maverick-mogul-cnn-founder-1236587849/",
-                    "ts": 1778139997,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "BusinessInsider",
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "A post-holiday rally just sent this stock market to a record high",
-                    "url": "https://www.businessinsider.com/japan-nikkei-225-record-tech-ai-gains-yen-intervention-boj-2026-5",
-                    "ts": 1778130013,
-                    "emo": "💰"
+                    "title": "'Directionally very bad' has entered the lexicon, thanks to Sam Altman and Mira Murati",
+                    "url": "https://www.businessinsider.com/sam-altman-mira-murati-elon-musk-trial-text-memes-2026-5",
+                    "ts": 1778194210,
+                    "emo": "📰"
                 },
                 {
-                    "title": "DoorDash CEO says AI is making engineers faster, but productivity isn't everything",
-                    "url": "https://www.businessinsider.com/doordash-ceo-tony-xu-ai-helping-engineers-workforce-priority-customers-2026-5",
-                    "ts": 1778129040,
-                    "emo": "🧪"
+                    "title": "Best Spanx coupon and promo codes we've tested in May 2026",
+                    "url": "https://www.businessinsider.com/guides/deals/best-spanx-coupon-promo-voucher-codes",
+                    "ts": 1778191150,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "USA, Iran trade fire in Strait of Hormuz; Each claims other shot first...",
+                    "url": "https://www.cnbc.com/2026/05/07/iran-war-hormuz-strait-ceasefire-trump.html",
+                    "ts": 1778191296,
+                    "emo": "🌍"
+                },
+                {
+                    "title": "Key port struck... Major escalation during 'ceasefire'...",
+                    "url": "https://www.the-sun.com/news/16329798",
+                    "ts": 1778191296,
+                    "emo": "📰"
                 }
             ]
         }
