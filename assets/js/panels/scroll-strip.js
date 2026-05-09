@@ -35,19 +35,17 @@
 
     let str = String(value).trim();
 
-    // MySQL datetime: "2026-05-09 15:30:00"
-    if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/.test(str)) {
-      str = str.replace(" ", "T");
-    }
+    // Convert MySQL datetime to ISO
+    str = str.replace(" ", "T");
 
-    const date = new Date(str);
+    const timestamp = Date.parse(str);
 
-    if (Number.isNaN(date.getTime())) {
+    if (isNaN(timestamp)) {
       console.warn("Invalid pubDate:", value);
       return "";
     }
 
-    return date.toISOString();
+    return new Date(timestamp).toISOString();
   }
 
   function timeAgo(iso) {
