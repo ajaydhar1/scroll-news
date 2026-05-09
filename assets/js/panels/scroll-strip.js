@@ -107,6 +107,12 @@
 
       const pubDate = normalizePubDate(rawPubDate);
 
+      console.log("Scroll Strip date debug:", {
+        title: a.title,
+        rawPubDate,
+        pubDate
+      });
+
       const pubForLink =
         a.pub_date_ts ||
         a.pubDateForLink ||
