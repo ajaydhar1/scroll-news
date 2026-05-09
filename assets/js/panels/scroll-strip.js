@@ -35,8 +35,15 @@
 
     let str = String(value).trim();
 
-    // Convert MySQL datetime to ISO
+    // Convert:
+    // 2026-05-09 20:25:33+00
+    // ->
+    // 2026-05-09T20:25:33Z
     str = str.replace(" ", "T");
+
+    if (str.endsWith("+00")) {
+      str = str.replace("+00", "Z");
+    }
 
     const timestamp = Date.parse(str);
 
