@@ -30,6 +30,26 @@
     });
   }
 
+  function normalizePubDate(value) {
+    if (!value) return "";
+
+    let str = String(value).trim();
+
+    // MySQL datetime: "2026-05-09 15:30:00"
+    if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/.test(str)) {
+      str = str.replace(" ", "T");
+    }
+
+    const date = new Date(str);
+
+    if (Number.isNaN(date.getTime())) {
+      console.warn("Invalid pubDate:", value);
+      return "";
+    }
+
+    return date.toISOString();
+  }
+
   function timeAgo(iso) {
     const t = new Date(iso).getTime();
     if (!isFinite(t)) return "";
@@ -81,11 +101,13 @@
         a.image_url ||
         "assets/img/news-placeholder.jpg";
 
-      const pubDate =
+      const rawPubDate =
         a.pub_date_iso ||
         a.pubDate ||
         a.pub_date ||
-        new Date().toISOString();
+        "";
+
+      const pubDate = normalizePubDate(rawPubDate);
 
       const pubForLink =
         a.pub_date_ts ||
@@ -216,7 +238,7 @@
               <span>${safeText(domainOrSource)}</span>
               ${sentimentEmoji ? `<span class="sn-dot" aria-hidden="true"></span><span>${sentimentEmoji}</span>` : ""}
               <span class="sn-dot" aria-hidden="true"></span>
-              <time datetime="${safeText(pubDate)}">${safeText(timeAgo(pubDate))}</time>
+              <time datetime="${safeText(pubDate)}">${pubDate ? safeText(timeAgo(pubDate)) : "Recent"}</time>
             </div>
             ${badgesHtml}
             ${hashtagsHtml}
