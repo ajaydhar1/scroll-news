@@ -28,16 +28,16 @@ if ($category === '') {
 }
 
 $pdo = _pdo_or_null();
-
 $dbExplain = null;
 
-if (!$pdo && function_exists('getPdoOrExplain')) {
-  $result = getPdoOrExplain();
-
-  if ($result instanceof PDO) {
-    $pdo = $result;
-  } else {
-    $dbExplain = $result;
+if (!$pdo && function_exists('getPdo')) {
+  try {
+    $pdo = getPdo();
+  } catch (Throwable $e) {
+    $dbExplain = [
+      'message' => $e->getMessage(),
+      'code' => $e->getCode(),
+    ];
   }
 }
 
