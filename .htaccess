@@ -4,35 +4,42 @@
 RewriteEngine On
 RewriteBase /
 
-# 2) Serve real files/dirs as-is
+# 2) Force old .io domain to new .ai domain
+RewriteCond %{HTTP_HOST} ^(www\.)?scrollnews\.io$ [NC]
+RewriteRule ^(.*)$ https://scrollnews.ai/$1 [R=301,L]
+
+# 3) Force www.scrollnews.ai to scrollnews.ai
+RewriteCond %{HTTP_HOST} ^www\.scrollnews\.ai$ [NC]
+RewriteRule ^(.*)$ https://scrollnews.ai/$1 [R=301,L]
+
+# 4) Serve real files/dirs as-is
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# 3) Redirect .php/.html to clean paths (canonicalize)
+# 5) Redirect .php/.html to clean paths
 #    /about.php  -> /about
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?]
 RewriteRule ^ %1 [R=301,L]
 
-#    /about.php -> /about
+#    /about.html -> /about
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?]
 RewriteRule ^ %1 [R=301,L]
 
-# 4) Map clean paths to .php if it exists
+# 6) Map clean paths to .php if it exists
 RewriteCond %{DOCUMENT_ROOT}/$1.php -f
 RewriteRule ^(.+?)/?$ $1.php [L]
 
-# 5) Otherwise map to .html if that exists
+# 7) Otherwise map to .html if that exists
 RewriteCond %{DOCUMENT_ROOT}/$1.html -f
 RewriteRule ^(.+?)/?$ $1.html [L]
 
-# 6) Optional: default to index.php for unknown routes (comment out if not needed)
+# 8) Optional: default to index.php for unknown routes
 # RewriteRule ^ index.php [L]
 
 # Use custom error pages
 ErrorDocument 404 /404.php
 ErrorDocument 500 /500.html
 
-# (Optional but often helpful)
 # Make sure Apache doesn't try to be clever with content negotiation
 Options -MultiViews
