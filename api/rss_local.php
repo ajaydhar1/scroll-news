@@ -41,6 +41,42 @@ if (!$pdo && function_exists('getPdo')) {
   }
 }
 
+$pdo = _pdo_or_null();
+$dbExplain = null;
+
+if (!$pdo && function_exists('getPdo')) {
+  try {
+    $pdo = getPdo();
+  } catch (Throwable $e) {
+    $dbExplain = [
+      'message' => $e->getMessage(),
+      'code' => $e->getCode(),
+      'type' => get_class($e),
+    ];
+  }
+}
+
+if (!$pdo) {
+  http_response_code(500);
+
+  $debug = [
+    'debug_version' => 'rss-local-db-debug-v2',
+    'error' => 'DB connection not available',
+    'has_getPdo' => function_exists('getPdo'),
+    'has_getPdoOrExplain' => function_exists('getPdoOrExplain'),
+    'has_DATABASE_URL' => (bool)getenv('DATABASE_URL'),
+    'has_DB_HOST' => (bool)getenv('DB_HOST'),
+    'has_DB_NAME' => (bool)getenv('DB_NAME'),
+    'has_DB_USER' => (bool)getenv('DB_USER'),
+    'db_explain' => $dbExplain,
+    'cwd' => getcwd(),
+    'base_path' => defined('BASE_PATH') ? BASE_PATH : null,
+  ];
+
+  echo json_encode($debug, JSON_UNESCAPED_SLASHES);
+  exit;
+}
+
 if (!$pdo) {
   http_response_code(500);
 
