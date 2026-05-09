@@ -28,6 +28,19 @@ if ($category === '') {
 }
 
 $pdo = _pdo_or_null();
+
+$dbExplain = null;
+
+if (!$pdo && function_exists('getPdoOrExplain')) {
+  $result = getPdoOrExplain();
+
+  if ($result instanceof PDO) {
+    $pdo = $result;
+  } else {
+    $dbExplain = $result;
+  }
+}
+
 if (!$pdo) {
   http_response_code(500);
 
@@ -35,6 +48,11 @@ if (!$pdo) {
     'error' => 'DB connection not available',
     'has_getPdo' => function_exists('getPdo'),
     'has_getPdoOrExplain' => function_exists('getPdoOrExplain'),
+    'has_DATABASE_URL' => (bool)getenv('DATABASE_URL'),
+    'has_DB_HOST' => (bool)getenv('DB_HOST'),
+    'has_DB_NAME' => (bool)getenv('DB_NAME'),
+    'has_DB_USER' => (bool)getenv('DB_USER'),
+    'db_explain' => $dbExplain,
     'cwd' => getcwd(),
     'base_path' => defined('BASE_PATH') ? BASE_PATH : null,
   ];
