@@ -6,7 +6,7 @@
             <div data-step="4" data-intro="Hashtags of people, places, and organizations." class="card hashtags-card w-100 shadow mb-3">
               <!-- Card Header - Dropdown -->
               <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
-                <h5 class="m-0 font-weight-bold">Hashtags</h5>
+                <h5 class="m-0 font-weight-bold">🏷️ Hashtags</h5>
               </div>
               <!-- Card Body -->
               <div class="card-body hashtags-scroll">
