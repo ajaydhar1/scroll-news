@@ -100,9 +100,11 @@ a {
 /* SM Small Device :320px. */
 @media only screen and (min-width: 280px) and (max-width: 1024px) {
 
+  /*
   span.link {
     display: none;
-  } 
+  }
+  */
 
   #side-by-side-panel {
     /* margin-bottom: 60px; */
