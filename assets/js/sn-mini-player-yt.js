@@ -251,7 +251,7 @@
   //
   function defaultState(){
     const first = PLAYLISTS[0]?.id || '';
-    return { active:first, ui:{collapsed:false}, prefs:{muted:true, shuffle:false, repeat:'none'}, playing:false, playlists:{} };
+    return { active:first, ui:{collapsed:false}, prefs:{muted:false, shuffle:false, repeat:'none'}, playing:false, playlists:{} };
   }
   function getState(){ return Object.assign(defaultState(), safeGet(STORAGE_KEY)||{}); }
   function putState(next){ safeSet(STORAGE_KEY, next); }
@@ -789,10 +789,12 @@
           onReady: async ()=> {
             const s = getState();
 
-            // ✅ FORCE mute on first paint so autoplay is allowed
+            if (s.prefs?.muted) {
+              savePrefs({ muted: false });
+            }
             try {
-              player.mute();
-              savePrefs({ muted: true }); // keep prefs in sync
+              player.unMute();
+              player.setVolume(100);
             } catch {}
 
             applyShuffleLoop();
@@ -861,7 +863,9 @@
         const stp = player.getPlayerState();
         const YTP = YT.PlayerState;
         const s   = getState();
-        if (s.prefs.muted) player.mute(); else player.unMute();
+        savePrefs({ muted: false });
+        player.unMute();
+        player.setVolume(100);
 
         if (stp === YTP.PAUSED || stp === YTP.CUED || stp === YTP.BUFFERING){
           player.playVideo(); savePlaying(true);
@@ -885,7 +889,7 @@
     if (act === 'next'){
       try {
         const s = getState();
-        if (s.prefs.muted) player.mute(); else player.unMute();
+        //if (s.prefs.muted) player.mute(); else player.unMute();
         player.nextVideo(); savePlaying(true); isPlayingFlag = true;
         syncPlayIcon();
         setTimeout(syncMutedFromPlayer, 0); // reflect true mute state
@@ -896,7 +900,7 @@
       try {
         const t = player.getCurrentTime ? player.getCurrentTime() : 0;
         const s = getState();
-        if (s.prefs.muted) player.mute(); else player.unMute();
+        //if (s.prefs.muted) player.mute(); else player.unMute();
         if (t > 3) { player.seekTo(0, true); } else { player.previousVideo(); }
         savePlaying(true); isPlayingFlag = true;
         syncPlayIcon();
