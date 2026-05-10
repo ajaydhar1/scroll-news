@@ -2135,25 +2135,38 @@ function search_classic(PDO $db, string $q, array $opts = []): array
     $where = $conds ? ('WHERE ' . implode(' AND ', $conds)) : '';
 
     $sql = "
+        WITH matched AS (
+            SELECT
+                ri.id,
+                ri.title,
+                ri.link,
+                ri.pub_date,
+                ri.media_url,
+                ri.feed_id
+            FROM rss_items ri
+            $where
+            ORDER BY
+                ri.pub_date DESC NULLS LAST,
+                ri.id DESC
+            LIMIT 100
+        )
         SELECT
-            ri.id,
-            ri.title,
-            ri.link,
-            ri.pub_date,
-            ri.media_url,
+            m.id,
+            m.title,
+            m.link,
+            m.pub_date,
+            m.media_url,
             f.name AS feed_name,
             a.id  AS article_id,
             a.nlp
-        FROM rss_items ri
+        FROM matched m
         JOIN feeds f
-          ON f.id = ri.feed_id
+        ON f.id = m.feed_id
         LEFT JOIN articles a
-          ON a.url = ri.link
-        $where
+        ON a.url = m.link
         ORDER BY
-            ri.pub_date DESC NULLS LAST,
-            ri.id DESC
-        LIMIT 100
+            m.pub_date DESC NULLS LAST,
+            m.id DESC
     ";
 
     $stmt = $db->prepare($sql);
