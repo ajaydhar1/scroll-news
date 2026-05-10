@@ -11,7 +11,7 @@ function newsroom_resolve_article(): array {
             $random = getRandomRecentArticle_forStumble_fromLatestPoolDB(true, 2000); // ['category'=>..., 'link'=>...]
         
         } catch (Throwable $e) {
-            error_log("getRandomRecentArticle_forStumble_fromDB DB error: " . $e->getMessage());
+            error_log("getRandomRecentArticle_forStumble_fromLatestPoolDB: " . $e->getMessage());
         }
 
         $redirect_url = 'Location: newsroom.php?url=' . urlencode($random['link']) . '&category=' . urlencode($random['category']) . '&pub_date=' . urlencode($random['pub_date']);

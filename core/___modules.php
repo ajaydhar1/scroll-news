@@ -18,7 +18,7 @@ function getPdo(): PDO {
     static $pdo = null;
     if ($pdo) return $pdo;
 
-    $dbUrl = getenv('DATABASE_URL') ?: 'postgres://u54p8tqv3cg377:pf57c19d9494bc3a1f56ab4eb97c53566f24c574235c261f7a8cfba7eb648034c@c18qegamsgjut6.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/despq103h47h7m';
+    $dbUrl = getenv('DATABASE_URL') ?: 'postgres://u54p8tqv3cg377:p07d3f3181a94264cd3a103e335f8fa769dccd2ca4b9788a78cd5f660fcbfd1e1@c12662383iu6b3.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/daa88slg44bj7f';
     if ($dbUrl) {
         $parts = parse_url($dbUrl);
         $host  = $parts['host'] ?? '127.0.0.1';
@@ -69,7 +69,7 @@ function getPdoOrExplain(): ?PDO {
     }
 
     // 2) Build DSN from DATABASE_URL (Heroku/Render) or PG* envs
-    $dbUrl = getenv('DATABASE_URL') ?: 'postgres://u54p8tqv3cg377:pf57c19d9494bc3a1f56ab4eb97c53566f24c574235c261f7a8cfba7eb648034c@c18qegamsgjut6.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/despq103h47h7m';
+    $dbUrl = getenv('DATABASE_URL') ?: 'postgres://u54p8tqv3cg377:p07d3f3181a94264cd3a103e335f8fa769dccd2ca4b9788a78cd5f660fcbfd1e1@c12662383iu6b3.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/daa88slg44bj7f';
     if ($dbUrl) {
         $p = parse_url($dbUrl);
         $host = $p['host'] ?? '';
@@ -1523,15 +1523,10 @@ function getRandomRecentArticle_forStumble_fromLatestPoolDB(
     // Pick randomly from the latest N eligible articles.
     $sql = "
         SELECT id, url, source_slug, created_at
-        FROM (
-            SELECT id, url, source_slug, created_at, {$tsCol}
-            FROM articles
-            WHERE $commonWhere
-            ORDER BY {$tsCol} DESC
-            LIMIT :pool_limit
-        ) recent_pool
-        ORDER BY RANDOM()
-        LIMIT 1
+        FROM articles
+        WHERE $commonWhere
+        ORDER BY {$tsCol} DESC
+        LIMIT :pool_limit
     ";
 
     $stmt = $pdo->prepare($sql);
@@ -1543,7 +1538,18 @@ function getRandomRecentArticle_forStumble_fromLatestPoolDB(
     $stmt->bindValue(':pool_limit', $poolLimit, PDO::PARAM_INT);
 
     $stmt->execute();
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if (!$rows) {
+        return function_exists('getRandomArticle_fromDB')
+            ? getRandomArticle_fromDB($requireEntities, 30)
+            : (function_exists('getRandomArticle_fromRSS')
+                ? getRandomArticle_fromRSS()
+                : ['category' => 'db', 'link' => null, 'pub_date' => null]);
+    }
+
+    $row = $rows[array_rand($rows)];
 
     if (!$row || empty($row['url'])) {
         return function_exists('getRandomArticle_fromDB')
