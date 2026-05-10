@@ -151,4 +151,7 @@ foreach ($rows as $r) {
   ];
 }
 
+$stmt = null;
+$pdo = null;
+
 echo json_encode(['items' => $items], JSON_UNESCAPED_SLASHES);
