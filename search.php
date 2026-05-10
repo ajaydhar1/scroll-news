@@ -64,6 +64,11 @@ if (!$pdo) {
                 // Classic search on rss_items + feeds + articles
                 $results = search_classic($pdo, $q, $options);
             }
+
+            if (!empty($_GET['shuffle'])) {
+                shuffle($results);
+            }
+
         } else {
             $results = [];
         }
@@ -292,6 +297,16 @@ if (!$pdo) {
                                     <span class="text-muted">
                                         · <?php echo count($results); ?> found
                                     </span>
+                                    <?php
+                                    $params = $_GET;
+                                    $params['shuffle'] = 1;
+
+                                    $explore_url = '?' . http_build_query($params);
+                                    ?>
+
+                                    <a href="<?= htmlspecialchars($explore_url) ?>" class="btn btn-sm btn-info" data-sn-loading>
+                                        🔀 Shuffle
+                                    </a>
                                 <?php endif; ?>
                             </h2>
 
