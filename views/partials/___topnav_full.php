@@ -39,7 +39,7 @@
                         href="how-it-works.php" 
                         title="How this works" 
                         aria-label="How this works">
-                        ?
+                        🧭
                     </a>
                     <a class="search-button" href="search.php" title="Search" aria-label="Search">🔍</a>
                 </div>
