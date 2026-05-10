@@ -1507,14 +1507,20 @@ function getRandomRecentArticle_forStumble_fromLatestPoolDB(
     // Entities filter.
     $entitiesClause = '';
     if ($requireEntities) {
-        $entitiesClause =
-            " AND (nlp::text) NOT LIKE '%\"entities\": []%'" .
-            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"X-Forbidden\", \"count\": 1, \"label\": \"ORG\"}]%'" .
-            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"JavaScript\", \"count\": 1, \"label\": \"PRODUCT\"}]%'" .
-            " AND (nlp::text) NOT LIKE '%\"emotional_reaction\": {}%'";
+        $entitiesClause = "
+            AND jsonb_typeof(nlp->'entities') = 'array'
+            AND jsonb_array_length(nlp->'entities') > 0
+            AND NOT (nlp->'entities' @> '[{\"text\":\"X-Forbidden\",\"count\":1,\"label\":\"ORG\"}]'::jsonb)
+            AND NOT (nlp->'entities' @> '[{\"text\":\"JavaScript\",\"count\":1,\"label\":\"PRODUCT\"}]'::jsonb)
+            AND jsonb_typeof(nlp->'emotional_reaction') = 'object'
+            AND nlp->'emotional_reaction' <> '{}'::jsonb
+        ";
     }
 
-    $commonWhere = "nlp IS NOT NULL";
+    // NLP must be present, but no screenshot requirement
+    $ready = "nlp IS NOT NULL";
+
+    $commonWhere = "$ready $entitiesClause";
 
     // Pick randomly from the latest N eligible articles.
     $sql = "
