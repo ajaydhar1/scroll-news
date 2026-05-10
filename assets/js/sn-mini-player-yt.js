@@ -223,7 +223,7 @@
     s.active = firstPlaylist;          // ✅ must update active
 
     // Optional: make sure it actually plays after reset
-    s.playing = true;
+    s.playing = false;
 
     putState(s);
   }
@@ -671,16 +671,28 @@
     const { index, seconds } = getPlaylistProgress(s.active);
     try{
       // Use loadPlaylist to force switching immediately; avoid stale cue
-      if (player.loadPlaylist){
-        player.loadPlaylist({ list:s.active, listType:'playlist', index:index||0, startSeconds:Math.max(0, seconds||0) });
-      } else if (player.cuePlaylist){
+      if (!autoPlay && player.cuePlaylist) {
+        player.cuePlaylist({
+          listType: 'playlist',
+          list: s.active,
+          index: index || 0,
+          startSeconds: Math.max(0, seconds || 0)
+        });
+      } else if (player.loadPlaylist) {
+        player.loadPlaylist({
+          list: s.active,
+          listType: 'playlist',
+          index: index || 0,
+          startSeconds: Math.max(0, seconds || 0)
+        });
+      } else if (player.cuePlaylist) {
         player.cuePlaylist({ listType:'playlist', list:s.active, index:index||0, startSeconds:Math.max(0, seconds||0) });
       }
       await waitForPlaylist(player).catch(()=>{});
       // If another switch started, abort finishing this one
       if (typeof nonce==='number' && nonce !== _switchNonce) return;
 
-      if (autoPlay || s.playing){
+      if (autoPlay){
         const {muted} = s.prefs; if (muted) player.mute(); else player.unMute();
         player.playVideo(); isPlayingFlag = true; btnPlay().textContent = '⏸';
       } else {
@@ -767,7 +779,7 @@
       player = new YT.Player(container(), {
         width: '100%', height: '100%',
         playerVars: {
-          autoplay: 1,          // ✅ request autoplay
+          autoplay: 0,          // ✅ request autoplay
           controls: 0,
           playsinline: 1,
           modestbranding: 1,
@@ -789,7 +801,7 @@
 
             // ✅ cue + autoplay on load
             syncPlaylistSelectFromState();
-            await cueActivePlaylist({ autoPlay: true, nonce: _switchNonce });
+            await cueActivePlaylist({ autoPlay: false, nonce: _switchNonce });
             syncPlaylistSelectFromState();
 
             // optional: keep shuffle tweak but DON'T force pause
