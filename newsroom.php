@@ -61,6 +61,8 @@ exit;
     <!-- Performance: Preload background -->
     <link rel="preload" as="image" href="/assets/img/mind-pour_00.jpg">
 
+    <link rel="preload" as="image" href="<?= $img ?>">
+
     <!-- jQuery min-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 

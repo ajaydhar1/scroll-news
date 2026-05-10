@@ -1389,7 +1389,8 @@ function getRecentWeightedArticle_forStumble_fromDB(
  */
 function getRandomRecentArticle_forStumble_fromDB(
     bool $requireEntities = true,
-    int $hours = 72
+    int $hours = 72,
+    int $poolLimit = 2000
 ): array {
     global $filter_out;
 
@@ -1490,6 +1491,7 @@ function getRandomRecentArticle_forStumble_fromLatestPoolDB(
     global $filter_out;
 
     $pdo = _pdo_or_null();
+
     if (!$pdo) {
         return function_exists('getRandomArticle_fromRSS')
             ? getRandomArticle_fromRSS()
@@ -1512,13 +1514,7 @@ function getRandomRecentArticle_forStumble_fromLatestPoolDB(
             " AND (nlp::text) NOT LIKE '%\"emotional_reaction\": {}%'";
     }
 
-    // NLP must be present, but no screenshot requirement.
-    $ready = "nlp IS NOT NULL";
-
-    // Filters: NOT ILIKE any of $filter_out.
-    [$notLikeSql, $notLikeParams] = buildNotILikeNamed(is_array($filter_out) ? $filter_out : []);
-
-    $commonWhere = "$ready $entitiesClause" . ($notLikeSql ? " AND $notLikeSql" : "");
+    $commonWhere = "nlp IS NOT NULL";
 
     // Pick randomly from the latest N eligible articles.
     $sql = "
@@ -1531,17 +1527,14 @@ function getRandomRecentArticle_forStumble_fromLatestPoolDB(
 
     $stmt = $pdo->prepare($sql);
 
-    foreach ($notLikeParams as $key => $value) {
-        $stmt->bindValue($key, $value);
-    }
-
     $stmt->bindValue(':pool_limit', $poolLimit, PDO::PARAM_INT);
 
     $stmt->execute();
-    
+
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if (!$rows) {
+
         return function_exists('getRandomArticle_fromDB')
             ? getRandomArticle_fromDB($requireEntities, 30)
             : (function_exists('getRandomArticle_fromRSS')
@@ -1549,9 +1542,35 @@ function getRandomRecentArticle_forStumble_fromLatestPoolDB(
                 : ['category' => 'db', 'link' => null, 'pub_date' => null]);
     }
 
-    $row = $rows[array_rand($rows)];
+    $filteredRows = array_values(array_filter($rows, function ($row) use ($filter_out) {
+        $url = strtolower((string)($row['url'] ?? ''));
+
+        if ($url === '') {
+            return false;
+        }
+
+        foreach ($filter_out as $bad) {
+            $bad = strtolower(trim((string)$bad));
+
+            if ($bad !== '' && str_contains($url, $bad)) {
+                return false;
+            }
+        }
+
+        return true;
+    }));
+
+    if (!$filteredRows) {
+        error_log('STUMBLE: no rows left after PHP URL filtering');
+        // fallback here
+    }
+
+    shuffle($filteredRows);
+
+    $row = $filteredRows[0];
 
     if (!$row || empty($row['url'])) {
+
         return function_exists('getRandomArticle_fromDB')
             ? getRandomArticle_fromDB($requireEntities, 30)
             : (function_exists('getRandomArticle_fromRSS')
