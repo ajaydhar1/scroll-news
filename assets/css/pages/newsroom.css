@@ -97,6 +97,10 @@ a {
     margin-bottom: 40px;
 }
 
+span.link {
+  word-break: break-all;
+}
+
 /* SM Small Device :320px. */
 @media only screen and (min-width: 280px) and (max-width: 1024px) {
 
