@@ -40,6 +40,18 @@
     }
   }
 
+  // Hide loading spinner when page is ready (covers BFCache too)
+
+  const searchOverlay = document.getElementById('sn-search-loading');
+
+  const hideSearchSpinner = () => {
+    if (!searchOverlay) return;
+
+    searchOverlay.classList.remove('active');
+  };
+
+  window.addEventListener('pageshow', hideSearchSpinner);
+
   document.addEventListener('DOMContentLoaded', function () {
     const form = $('sn-search-form');
     if (!form) return;
