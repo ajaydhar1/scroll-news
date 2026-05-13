@@ -179,3 +179,7 @@ p {
 }
 
 section#services { background: #eee; }
+
+.page-section h3.section-subheading {
+    font-style: normal;
+}

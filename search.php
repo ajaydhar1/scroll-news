@@ -194,9 +194,6 @@ if (!$pdo) {
                 <?php if (!$hasFilters): ?>
                     <div class="row">
                         <div class="col-md-8 mx-auto">
-                            <p class="text-muted">
-                                Type a keyword above to search headlines from your feeds.
-                            </p>
 
                             <?php
                                 // Curated starter searches (ship-now)
@@ -204,8 +201,16 @@ if (!$pdo) {
                                     'AI regulation', 'Apple', 'Microsoft', 'Elon Musk',
                                     'OpenAI', 'NVIDIA', 'Ukraine', 'Gaza', 'Supreme Court',
                                     'Interest rates', 'Inflation', 'Climate', 'Taylor Swift',
-                                    'NFL', 'NBA',
+                                    'NFL', 'NBA', 'AI startups', 'Cybersecurity', 'Robotics', 
+                                    'SpaceX', 'Quantum computing', 'EVs', 'Semiconductors', 
+                                    'Gen Z', 'Dating', 'Mental health', 'Remote work', 
+                                    'Productivity', 'Billionaires', 'Housing', 'Education', 
+                                    'Longevity', 'Climate tech', 'Neuroscience', 'Future cities', 
+                                    'Energy', 'Biotechnology', 'Movies', 'Streaming', 'YouTube', 
+                                    'Gaming', 'Celebrities', 'Music industry', 'UFC', 'Soccer', 
+                                    'Formula 1', 'MLB'
                                 ];
+
 
                                 // build classic search urls
                                 $buildSearchUrl = function(string $q): string {
@@ -220,7 +225,7 @@ if (!$pdo) {
                                 };
                             ?>
 
-                            <div class="sn-search-chips mt-2">
+                            <div class="sn-search-chips">
                                 <?php foreach ($searchChips as $chip): ?>
                                     <a class="sn-chip" href="<?= htmlspecialchars($buildSearchUrl($chip), ENT_QUOTES, 'UTF-8') ?>" data-sn-loading>
                                         <?= htmlspecialchars($chip, ENT_QUOTES, 'UTF-8') ?>
@@ -228,7 +233,7 @@ if (!$pdo) {
                                 <?php endforeach; ?>
                             </div>
 
-                            <div class="small text-muted mt-2">
+                            <div class="small text-muted mt-5">
                                 Tip: try names, companies, locations, or big topics.
                             </div>
                         </div>
