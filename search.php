@@ -198,9 +198,11 @@ if (!$pdo) {
                             <?php
                                 // Curated starter searches (ship-now)
                                 $searchChips = [
-                                    'AI', 'Trump', 'Markets', 'New York', 'Los Angeles',
+                                    'AI', 'Trump', 'Markets',
                                     'AI regulation', 'Apple', 'Microsoft', 'Elon Musk',
+                                    'Democrat', 'Iran', 'Congress', 'California', 'Washington',
                                     'OpenAI', 'NVIDIA', 'Ukraine', 'Gaza', 'Supreme Court',
+                                    'Los Angeles', 'Republican',
                                     'Interest rates', 'Inflation', 'Climate', 'Taylor Swift',
                                     'NFL', 'NBA', 'AI startups', 'Cybersecurity', 'Robotics', 
                                     'SpaceX', 'Quantum computing', 'EVs', 'Semiconductors', 

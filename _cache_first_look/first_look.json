@@ -1,20 +1,20 @@
 {
-    "fetched_at": 1778366814,
+    "fetched_at": 1778790905,
     "feeds": [
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "AS THE MAGA TURNS: INSIDE BEN SHAPIRO'S MELTDOWN...",
-                    "url": "https://www.washingtonpost.com/technology/2026/05/09/ben-shapiro-daily-wire-maga-media/",
-                    "ts": 1778362296,
+                    "title": "CUBA COMPLETELY RUNS OUT OF FUEL... DEVELOPING...",
+                    "url": "https://www.upi.com/Top_News/World-News/2026/05/14/Cuba-says-oil-reserves-totally-drained/9311778746907/",
+                    "ts": 1778789256,
                     "emo": "📰"
                 },
                 {
-                    "title": "SUMMER BUMMER: TRAVEL UPENDED",
-                    "url": "https://www.theguardian.com/us-news/2026/may/09/travelers-feel-squeeze-summer-travel-iran-war-fuel",
-                    "ts": 1778362297,
+                    "title": "PROTESTS FLARE IN HAVANA...",
+                    "url": "https://news.sky.com/story/protests-break-out-in-havana-during-cubas-worst-blackouts-in-decades-as-minister-says-we-have-no-fuel-13543872",
+                    "ts": 1778789256,
                     "emo": "📰"
                 }
             ]
@@ -24,15 +24,15 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "A nutritionist stocks up on 12 ingredients to effortlessly add protein, fiber, and vitamins to his meals",
-                    "url": "https://www.businessinsider.com/a-nutritionists-12-kitchen-staples-for-quick-nutrient-dense-meals-2026-5",
-                    "ts": 1778358661,
-                    "emo": "💰"
+                    "title": "I build homes for billionaires. Here are 5 features my ultrawealthy clients request — and what I tell them not to do.",
+                    "url": "https://www.businessinsider.com/luxury-home-trends-for-wealthy-billionaires-according-to-builder-2026-5",
+                    "ts": 1778787453,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Everything to know about using FSA or HSA funds to buy a new mattress",
-                    "url": "https://www.businessinsider.com/guides/home/how-to-use-fsa-hsa-for-mattress",
-                    "ts": 1778357281,
+                    "title": "OpenAI's chip partner Cerebras hit Wall Street, and that means a big payday for Sam Altman",
+                    "url": "https://www.businessinsider.com/cerebras-ipo-openai-ceo-sam-altman-stake-2026-5",
+                    "ts": 1778787328,
                     "emo": "📰"
                 }
             ]
