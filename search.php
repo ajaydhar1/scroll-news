@@ -198,6 +198,7 @@ if (!$pdo) {
                             <?php
                                 // Curated starter searches (ship-now)
                                 $searchChips = [
+                                    'AI', 'Trump', 'Markets', 'New York', 'Los Angeles',
                                     'AI regulation', 'Apple', 'Microsoft', 'Elon Musk',
                                     'OpenAI', 'NVIDIA', 'Ukraine', 'Gaza', 'Supreme Court',
                                     'Interest rates', 'Inflation', 'Climate', 'Taylor Swift',
