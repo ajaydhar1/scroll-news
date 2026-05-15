@@ -1,20 +1,20 @@
 {
-    "fetched_at": 1778790905,
+    "fetched_at": 1778803853,
     "feeds": [
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "CUBA COMPLETELY RUNS OUT OF FUEL... DEVELOPING...",
-                    "url": "https://www.upi.com/Top_News/World-News/2026/05/14/Cuba-says-oil-reserves-totally-drained/9311778746907/",
-                    "ts": 1778789256,
-                    "emo": "📰"
+                    "title": "Trump ethics filing reveals THOUSANDS of trades tied to U.S. stocks...",
+                    "url": "https://www.nbcnews.com/business/rcna345197",
+                    "ts": 1778799696,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "PROTESTS FLARE IN HAVANA...",
-                    "url": "https://news.sky.com/story/protests-break-out-in-havana-during-cubas-worst-blackouts-in-decades-as-minister-says-we-have-no-fuel-13543872",
-                    "ts": 1778789256,
+                    "title": "UP TO $750M...",
+                    "url": "https://www.nbcnews.com/business/rcna345197",
+                    "ts": 1778799696,
                     "emo": "📰"
                 }
             ]
@@ -24,15 +24,15 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "I build homes for billionaires. Here are 5 features my ultrawealthy clients request — and what I tell them not to do.",
-                    "url": "https://www.businessinsider.com/luxury-home-trends-for-wealthy-billionaires-according-to-builder-2026-5",
-                    "ts": 1778787453,
+                    "title": "How to buy Megan Moroney tickets for the Cloud 9 Tour, dates, and prices compared",
+                    "url": "https://www.businessinsider.com/guides/tickets/how-to-buy-megan-moroney-tickets-concert-tour-2026",
+                    "ts": 1778799661,
                     "emo": "📰"
                 },
                 {
-                    "title": "OpenAI's chip partner Cerebras hit Wall Street, and that means a big payday for Sam Altman",
-                    "url": "https://www.businessinsider.com/cerebras-ipo-openai-ceo-sam-altman-stake-2026-5",
-                    "ts": 1778787328,
+                    "title": "Gavin Newsom proposes a California digital software tax",
+                    "url": "https://www.businessinsider.com/gavin-newsom-california-digital-software-tax-2026-5",
+                    "ts": 1778797567,
                     "emo": "📰"
                 }
             ]

@@ -2510,4 +2510,132 @@ function sn_analysis_url(string $term, string $window = '24h', string $context =
     return $path . '?' . http_build_query($params, '', '&', PHP_QUERY_RFC3986);
 }
 
+/**
+ * Insert or update a rendered HTML cache entry.
+ *
+ * Example:
+ * upsert_cache(
+ *     cache_key: 'homepage_breaking_news',
+ *     cache_group: 'homepage',
+ *     html: $renderedHtml,
+ *     expires_in_seconds: 300,
+ *     build_version: APP_VERSION,
+ *     meta: [
+ *         'article_count' => 24,
+ *         'source' => 'nbc_rss'
+ *     ]
+ * );
+ */
+function upsert_cache(
+    string $cache_key,
+    string $cache_group,
+    string $html,
+    int $expires_in_seconds = 300,
+    ?string $build_version = null,
+    ?array $meta = null
+): bool {
+
+    $pdo = _pdo_or_null();
+
+    if (!$pdo) {
+        return false;
+    }
+
+    // Safety: never overwrite good cache with empty output
+    if (trim($html) === '') {
+        error_log("upsert_cache: refused to cache empty HTML for {$cache_key}");
+        return false;
+    }
+
+    try {
+
+        $sql = "
+            INSERT INTO scrollnews_cache (
+                cache_key,
+                cache_group,
+                html,
+                generated_at,
+                expires_at,
+                build_version,
+                meta
+            )
+            VALUES (
+                :cache_key,
+                :cache_group,
+                :html,
+                NOW(),
+                NOW() + (:expires_in_seconds || ' seconds')::interval,
+                :build_version,
+                :meta::jsonb
+            )
+
+            ON CONFLICT (cache_key)
+
+            DO UPDATE SET
+                html = EXCLUDED.html,
+                generated_at = NOW(),
+                expires_at = EXCLUDED.expires_at,
+                build_version = EXCLUDED.build_version,
+                meta = EXCLUDED.meta
+        ";
+
+        $stmt = $pdo->prepare($sql);
+
+        return $stmt->execute([
+            ':cache_key' => $cache_key,
+            ':cache_group' => $cache_group,
+            ':html' => $html,
+            ':expires_in_seconds' => $expires_in_seconds,
+            ':build_version' => $build_version,
+            ':meta' => $meta ? json_encode($meta) : null,
+        ]);
+
+    } catch (Throwable $e) {
+
+        error_log(
+            "upsert_cache failed for {$cache_key}: " . $e->getMessage()
+        );
+
+        return false;
+    }
+}
+
+
+function get_cache_group(string $cache_group): array
+{
+    $pdo = _pdo_or_null();
+
+    if (!$pdo) {
+        return [];
+    }
+
+    try {
+        $sql = "
+            SELECT cache_key, html, generated_at, expires_at, build_version, meta
+            FROM scrollnews_cache
+            WHERE cache_group = :cache_group
+        ";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':cache_group' => $cache_group
+        ]);
+
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $cache = [];
+
+        foreach ($rows as $row) {
+            $cache[$row['cache_key']] = $row;
+        }
+
+        return $cache;
+
+    } catch (Throwable $e) {
+        error_log("get_cache_group failed for {$cache_group}: " . $e->getMessage());
+        return [];
+    }
+}
+
+
 ?>

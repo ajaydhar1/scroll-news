@@ -249,45 +249,98 @@ require_once BASE_PATH . "/core/___modules.php";
             </div>
             </section>
 
-            <?php 
+
+            <?php
 
                 $bust = isset($_GET['nocache']) && $_GET['nocache'] == '1';
-                
+
                 // bump $CACHE_VER in ___modules.php to v2 when you change markup in cached includes
+
+                $homepageCache = $bust ? [] : get_cache_group('homepage');
+
+                function render_home_panel(
+                    string $cache_key,
+                    int $ttl,
+                    int $stale_ttl,
+                    string $include_path,
+                    bool $bust,
+                    array $homepageCache
+                ): void {
+                    global $CACHE_VER;
+
+                    if (!$bust && !empty($homepageCache[$cache_key]['html'])) {
+                        echo $homepageCache[$cache_key]['html'];
+                        return;
+                    }
+
+                    fragment_cache_swr(
+                        "{$cache_key}_{$CACHE_VER}",
+                        $ttl,
+                        $stale_ttl,
+                        function () use ($include_path) {
+                            include $include_path;
+                        },
+                        $bust,
+                        false,
+                        false
+                    );
+                }
+
             ?>
 
             <!-- News Intelligence Panel-->
             <?php
-                fragment_cache_swr("news_intel_panel_$CACHE_VER", 60, 600, function () {
-                    include BASE_PATH . '/views/home/panels/___news_intel_panel.php';
-                }, $bust, false, false);
+                render_home_panel(
+                    'homepage_news_intel_panel',
+                    60,
+                    600,
+                    BASE_PATH . '/views/home/panels/___news_intel_panel.php',
+                    $bust,
+                    $homepageCache
+                );
             ?>
 
             <!-- Active Stories Panel-->
             <?php
-                fragment_cache_swr("active_stories_$CACHE_VER", 30, 300, function () {
-                    include BASE_PATH . '/views/home/panels/___active_stories.php';
-                }, $bust, false, false);
+                render_home_panel(
+                    'homepage_active_stories',
+                    30,
+                    300,
+                    BASE_PATH . '/views/home/panels/___active_stories.php',
+                    $bust,
+                    $homepageCache
+                );
             ?>
 
             <!-- Brief Me Bar-->
             <?php require_once BASE_PATH . '/views/home/partials/___brief_me.php'; ?>
 
             <!-- First Look-->
-            <?php include BASE_PATH . '/views/home/panels/___first_look.php'; ?>
-
+            <?php
+                render_home_panel(
+                    'homepage_first_look',
+                    600,
+                    1200,
+                    BASE_PATH . '/views/home/panels/___first_look.php',
+                    $bust,
+                    $homepageCache
+                );
+            ?>
 
             <?php include BASE_PATH . '/views/home/partials/___home_features.php'; ?>
             <?php include BASE_PATH . '/views/home/partials/___home_modules.php'; ?>
             <?php include BASE_PATH . '/views/home/partials/___home_story.php'; ?>
 
-
             <?php
-                fragment_cache_swr("scroll_strip_$CACHE_VER", 60, 600, function () {
-                    include BASE_PATH . '/views/home/panels/___scroll_strip.php';
-                }, $bust, false, false);
+                render_home_panel(
+                    'homepage_scroll_strip',
+                    60,
+                    600,
+                    BASE_PATH . '/views/home/panels/___scroll_strip.php',
+                    $bust,
+                    $homepageCache
+                );
             ?>
-
 
             
             <?php include BASE_PATH . '/views/home/partials/___home_playlist.php'; ?>
