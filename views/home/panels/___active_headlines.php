@@ -5,10 +5,51 @@ require_once BASE_PATH . '/core/headlines/___emoji_headlines.php';
 
 const ACTIVE_HEADLINES_LIMIT = 6;
 const ACTIVE_HEADLINES_FEEDS = [
-    'https://feeds.nbcnews.com/nbcnews/public/news',
+    'https://feeds.nbcnews.com/feeds/topstories',
 ];
 const ACTIVE_HEADLINES_CACHE_TTL    = 300; // seconds = 5 minutes
 const ACTIVE_HEADLINES_CACHE_FILE   = BASE_PATH . '/_cache_active_headlines/active_headlines_nbc.json';
+
+function active_headlines_fetch_url(string $url): string|false
+{
+    if (function_exists('curl_init')) {
+        $ch = curl_init($url);
+
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_MAXREDIRS => 5,
+            CURLOPT_CONNECTTIMEOUT => 4,
+            CURLOPT_TIMEOUT => 8,
+            CURLOPT_USERAGENT => 'ScrollNewsActiveHeadlines/1.0 (+https://scrollnews.ai)',
+            CURLOPT_HTTPHEADER => [
+                'Accept: application/rss+xml, application/xml;q=0.9, text/xml;q=0.8, */*;q=0.5',
+            ],
+        ]);
+
+        if ($_SERVER['SERVER_NAME'] === 'localhost') {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        }
+
+        $body = curl_exec($ch);
+        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $err = curl_error($ch);
+
+        error_log("[ActiveHeadlines] cURL result for {$url}; status={$status}; bytes=" . strlen((string)$body) . "; error={$err}");
+
+        curl_close($ch);
+
+        if ($body === false || $status >= 400) {
+            error_log("[ActiveHeadlines] cURL failed for {$url}; status={$status}; error={$err}");
+            return false;
+        }
+
+        return $body;
+    }
+
+    return @file_get_contents($url);
+}
 
 /**
  * Fetch active headlines with a small file cache.
@@ -26,8 +67,17 @@ function scrollnews_fetch_active_headlines(): array
     $now        = time();
     $cachedData = null;
 
+    $debug   = isset($_GET['debug_active_headlines']);
+    $nocache = isset($_GET['nocache']) && $_GET['nocache'] === '1';
+
+    if ($debug) {
+        error_log("[ActiveHeadlines] DEBUG enabled");
+        error_log("[ActiveHeadlines] cacheFile={$cacheFile}");
+        error_log("[ActiveHeadlines] nocache=" . ($nocache ? 'yes' : 'no'));
+    }
+
     // 1) Try to load any existing cache (even if it may be expired)
-    if (is_readable($cacheFile)) {
+    if (!$nocache && is_readable($cacheFile)) {
         $json = @file_get_contents($cacheFile);
         if ($json !== false) {
             $decoded = json_decode($json, true);
@@ -49,20 +99,13 @@ function scrollnews_fetch_active_headlines(): array
 
     // 2) Cache is missing or expired -> fetch live
     $items = [];
-    $httpContext = stream_context_create([
-        'http' => ['timeout' => 4],
-        'ssl'  => [
-            'verify_peer'      => true,
-            'verify_peer_name' => true,
-        ],
-    ]);
 
     foreach (ACTIVE_HEADLINES_FEEDS as $feedUrl) {
         if (count($items) >= ACTIVE_HEADLINES_LIMIT) {
             break;
         }
 
-        $xmlString = @file_get_contents($feedUrl, false, $httpContext);
+        $xmlString = active_headlines_fetch_url($feedUrl);
         if (!$xmlString) {
             error_log("[ActiveHeadlines] Failed to fetch feed: {$feedUrl}");
             continue;
@@ -107,6 +150,14 @@ function scrollnews_fetch_active_headlines(): array
                 'pub_human' => $pubHuman,
                 'source'    => $host,
             ];
+        }
+    }
+
+    if ($debug) {
+        error_log("[ActiveHeadlines] Parsed " . count($items) . " live items");
+
+        if (!empty($items[0])) {
+            error_log("[ActiveHeadlines] First live item: " . json_encode($items[0]));
         }
     }
 

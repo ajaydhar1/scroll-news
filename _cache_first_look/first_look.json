@@ -1,38 +1,38 @@
 {
-    "fetched_at": 1778803853,
+    "fetched_at": 1778845612,
     "feeds": [
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "Trump ethics filing reveals THOUSANDS of trades tied to U.S. stocks...",
-                    "url": "https://www.nbcnews.com/business/rcna345197",
-                    "ts": 1778799696,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "UP TO $750M...",
-                    "url": "https://www.nbcnews.com/business/rcna345197",
-                    "ts": 1778799696,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "BusinessInsider",
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "How to buy Megan Moroney tickets for the Cloud 9 Tour, dates, and prices compared",
-                    "url": "https://www.businessinsider.com/guides/tickets/how-to-buy-megan-moroney-tickets-concert-tour-2026",
-                    "ts": 1778799661,
+                    "title": "I'm a French mom raising my daughter in Florida. I wasn't prepared for how differently people parent here.",
+                    "url": "https://www.businessinsider.com/french-mom-raising-daughter-florida-parenting-differences-2026-5",
+                    "ts": 1778844061,
                     "emo": "📰"
                 },
                 {
-                    "title": "Gavin Newsom proposes a California digital software tax",
-                    "url": "https://www.businessinsider.com/gavin-newsom-california-digital-software-tax-2026-5",
-                    "ts": 1778797567,
+                    "title": "Mark Cuban says getting fired taught him how to be a better entrepreneur",
+                    "url": "https://www.businessinsider.com/mark-cuban-getting-fired-taught-better-entrepreneur-2026-5",
+                    "ts": 1778842710,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "XI'S WARNING",
+                    "url": "https://www.the-express.com/news/207191",
+                    "ts": 1778840916,
+                    "emo": "📰"
+                },
+                {
+                    "title": "'AMERICA IN DECLINE'",
+                    "url": "https://www.nytimes.com/2026/05/12/business/china-trump-xi-decline.html?unlocked_article_code=1.h1A.BSLV.DtxZZRKqANF8&smid=url-share",
+                    "ts": 1778840916,
                     "emo": "📰"
                 }
             ]
