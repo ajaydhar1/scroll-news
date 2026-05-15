@@ -1,10 +1,11 @@
 <?php
 
 function fl_cache_dir(): string {
-  $root = dirname(__DIR__, 3); // /views/home/panels -> project root
-  $dir  = $root . '/_cache_first_look';
-  if (!is_dir($dir)) @mkdir($dir, 0775, true);
-  return $dir;
+    $dir = BASE_PATH . '/_cache_first_look';
+    if (!is_dir($dir)) {
+        @mkdir($dir, 0775, true);
+    }
+    return $dir;
 }
 
 function fl_cache_path(): string {
