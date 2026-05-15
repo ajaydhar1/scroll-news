@@ -290,14 +290,9 @@ require_once BASE_PATH . "/core/___modules.php";
 
             <!-- News Intelligence Panel-->
             <?php
-                render_home_panel(
-                    'homepage_news_intel_panel',
-                    60,
-                    600,
-                    BASE_PATH . '/views/home/panels/___news_intel_panel.php',
-                    $bust,
-                    $homepageCache
-                );
+                fragment_cache_swr("news_intel_panel_$CACHE_VER", 60, 600, function () {
+                    include BASE_PATH . '/views/home/panels/___news_intel_panel.php';
+                }, $bust, false, false);
             ?>
 
             <!-- Active Stories Panel-->
@@ -316,16 +311,7 @@ require_once BASE_PATH . "/core/___modules.php";
             <?php require_once BASE_PATH . '/views/home/partials/___brief_me.php'; ?>
 
             <!-- First Look-->
-            <?php
-                render_home_panel(
-                    'homepage_first_look',
-                    600,
-                    1200,
-                    BASE_PATH . '/views/home/panels/___first_look.php',
-                    $bust,
-                    $homepageCache
-                );
-            ?>
+            <?php include BASE_PATH . '/views/home/panels/___first_look.php'; ?>
 
             <?php include BASE_PATH . '/views/home/partials/___home_features.php'; ?>
             <?php include BASE_PATH . '/views/home/partials/___home_modules.php'; ?>
