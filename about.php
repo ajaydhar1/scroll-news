@@ -1,4 +1,10 @@
 <?php
+http_response_code(301);
+header("Location: /how-it-works.php");
+exit;
+?>
+
+<?php
 define('BASE_PATH', __DIR__);
 ?>
 <!DOCTYPE html>

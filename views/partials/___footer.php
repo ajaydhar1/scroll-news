@@ -13,7 +13,7 @@
                 <div class="col-lg-4 text-lg-right font-weight-bold">
                     <a href="/" data-loading>scroll news</a>
                     <br>
-                    <a href="about.php" class="text-muted small mr-3">About</a>
+                    <a href="how-it-works.php" class="text-muted small mr-3">How It Works</a>
                     <a href="terms.php" class="text-muted small mr-3">Terms</a>
                     <a href="privacy.php" class="text-muted small">Privacy</a>
                 </div>
