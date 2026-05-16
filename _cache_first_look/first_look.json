@@ -1,20 +1,20 @@
 {
-    "fetched_at": 1778845612,
+    "fetched_at": 1778892863,
     "feeds": [
         {
             "name": "BusinessInsider",
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "I'm a French mom raising my daughter in Florida. I wasn't prepared for how differently people parent here.",
-                    "url": "https://www.businessinsider.com/french-mom-raising-daughter-florida-parenting-differences-2026-5",
-                    "ts": 1778844061,
+                    "title": "How to get Lorde tickets for her 2026 Ultrasound World Tour",
+                    "url": "https://www.businessinsider.com/guides/tickets/how-to-get-lorde-tickets-concert-tour",
+                    "ts": 1778889952,
                     "emo": "📰"
                 },
                 {
-                    "title": "Mark Cuban says getting fired taught him how to be a better entrepreneur",
-                    "url": "https://www.businessinsider.com/mark-cuban-getting-fired-taught-better-entrepreneur-2026-5",
-                    "ts": 1778842710,
+                    "title": "How to get Zach Bryan tickets: 2026 concert dates and prices compared",
+                    "url": "https://www.businessinsider.com/guides/tickets/where-to-buy-zach-bryan-tickets-concert-tour",
+                    "ts": 1778883876,
                     "emo": "📰"
                 }
             ]
@@ -24,15 +24,15 @@
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "XI'S WARNING",
-                    "url": "https://www.the-express.com/news/207191",
-                    "ts": 1778840916,
+                    "title": "MISTRIAL!",
+                    "url": "https://nypost.com/2026/05/15/us-news/judge-declares-mistrial-in-harvey-weinsteins-third-nyc-sex-crimes-trial",
+                    "ts": 1778888616,
                     "emo": "📰"
                 },
                 {
-                    "title": "'AMERICA IN DECLINE'",
-                    "url": "https://www.nytimes.com/2026/05/12/business/china-trump-xi-decline.html?unlocked_article_code=1.h1A.BSLV.DtxZZRKqANF8&smid=url-share",
-                    "ts": 1778840916,
+                    "title": "Weinstein's THIRD Manhattan trial a dud...",
+                    "url": "https://nypost.com/2026/05/15/us-news/judge-declares-mistrial-in-harvey-weinsteins-third-nyc-sex-crimes-trial",
+                    "ts": 1778888616,
                     "emo": "📰"
                 }
             ]

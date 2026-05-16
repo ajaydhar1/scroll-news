@@ -12,15 +12,20 @@
                     <div class="col-lg-5">
                         <div class="mb-3">
                           <label for="categorySelect">Select Category:</label>
-                          <select id="categorySelect" class="form-control">
-                            <option value="/rss.php?category=Politics">🗳 Politics</option>
-                            <option value="/rss.php?category=Business">💼 Business</option>
-                            <option value="/rss.php?category=Technology">💻 Technology</option>
-                            <option value="/rss.php?category=Sports">🏈 Sports</option>
-                            <option value="/rss.php?category=Health">🩺 Health</option>
-                            <option value="/rss.php?category=Science">🔬 Science</option>
-                            <option value="/rss.php?category=Entertainment">🎬 Entertainment</option>
-                          </select>
+                          <div class="d-flex align-items-center flex-wrap">
+                            <select id="categorySelect" class="form-control w-auto mr-2 mb-2">
+                              <option value="/rss.php?category=Politics">🗳 Politics</option>
+                              <option value="/rss.php?category=Business">💼 Business</option>
+                              <option value="/rss.php?category=Technology">💻 Technology</option>
+                              <option value="/rss.php?category=Sports">🏈 Sports</option>
+                              <option value="/rss.php?category=Health">🩺 Health</option>
+                              <option value="/rss.php?category=Science">🔬 Science</option>
+                              <option value="/rss.php?category=Entertainment">🎬 Entertainment</option>
+                            </select>
+                            <button id="shuffleArticlesBtn" type="button" class="btn btn-light mb-2">
+                              🔀 Shuffle
+                            </button>
+                          </div>
                         </div>
                     </div>
                 </div>

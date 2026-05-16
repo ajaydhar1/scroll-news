@@ -2,34 +2,34 @@
 // Analyze Article module
 // ============================
 
-$('#analyzeForm').on('submit', function(e) {
+$('#analyzeForm').on('submit', function (e) {
 
-	const mode = $('input[name="analyzeMode"]:checked').val();
+  const mode = $('input[name="analyzeMode"]:checked').val();
 
-	// URL mode
-	if (mode === 'url') {
+  // URL mode
+  if (mode === 'url') {
 
-		e.preventDefault();
+    e.preventDefault();
 
-		const url = $('#articleUrl').val().trim();
+    const url = $('#articleUrl').val().trim();
 
-		if (url) {
-			const encoded = encodeURIComponent(url);
-			window.location.href = `newsroom.php?url=${encoded}`;
-		}
+    if (url) {
+      const encoded = encodeURIComponent(url);
+      window.location.href = `newsroom.php?url=${encoded}`;
+    }
 
-	}
+  }
 
-	// Text mode
-	if (mode === 'text') {
+  // Text mode
+  if (mode === 'text') {
 
-		e.preventDefault();
+    e.preventDefault();
 
-		const text = $('#articleText').val().trim();
+    const text = $('#articleText').val().trim();
 
-		if (!text) return;
+    if (!text) return;
 
-		const form = $('<form>', {
+    const form = $('<form>', {
       method: 'POST',
       action: 'textroom.php'
     });
@@ -42,7 +42,7 @@ $('#analyzeForm').on('submit', function(e) {
     $('body').append(form);
     form.submit();
 
-	}
+  }
 
 });
 
@@ -140,38 +140,58 @@ function fetchRSSArticles(feedUrl, category) {
   });
 }
 
-$(document).ready(function() {
-	const defaultFeed = $("#categorySelect").val();
-    fetchRSSArticles(defaultFeed, "Politics");
+// Shuffle articles
+const shuffleBtn = document.getElementById("shuffleArticlesBtn");
 
-    $("#categorySelect").change(function() {
-    	fetchRSSArticles($(this).val(), $(this).find(":selected").text());
-    });
+function shuffleArticleCards() {
+
+  const container = document.getElementById("rssArticles");
+  if (!container) return;
+
+  const cards = Array.from(container.children);
+
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+
+  cards.forEach(card => container.appendChild(card));
+}
+
+shuffleBtn?.addEventListener("click", shuffleArticleCards);
+
+$(document).ready(function () {
+  const defaultFeed = $("#categorySelect").val();
+  fetchRSSArticles(defaultFeed, "Politics");
+
+  $("#categorySelect").change(function () {
+    fetchRSSArticles($(this).val(), $(this).find(":selected").text());
+  });
 });
 
-$(document).on("click", ".category-link", function(e) {
-    e.preventDefault();
+$(document).on("click", ".category-link", function (e) {
+  e.preventDefault();
 
-    // Get category from data attribute
-    const category = $(this).data("category");
+  // Get category from data attribute
+  const category = $(this).data("category");
 
-    var categoryArray = ["Politics", "Business", "Technology", "Sports", "Health", "Science", "Entertainment"];
+  var categoryArray = ["Politics", "Business", "Technology", "Sports", "Health", "Science", "Entertainment"];
 
-	if (categoryArray.includes(category)) {
+  if (categoryArray.includes(category)) {
 
-		// Get the RSS URL from the data attribute
-        const rssUrl = $(this).data("category-url");
+    // Get the RSS URL from the data attribute
+    const rssUrl = $(this).data("category-url");
 
-        // Set the dropdown in the modal to match this URL
-        $("#categorySelect").val(rssUrl);
+    // Set the dropdown in the modal to match this URL
+    $("#categorySelect").val(rssUrl);
 
-        // Open the modal
-        $("#browseNewsModal").modal("show");
+    // Open the modal
+    $("#browseNewsModal").modal("show");
 
-        // Trigger the article fetch
-        fetchRSSArticles(rssUrl);
+    // Trigger the article fetch
+    fetchRSSArticles(rssUrl);
 
-    }
+  }
 });
 
 
@@ -183,87 +203,87 @@ $(document).on("click", ".category-link", function(e) {
 let searchTable;
 
 $("#searchNewsBtn").click(function () {
-	const query = $("#newsSearchInput").val().trim();
-    if (!query) return;
+  const query = $("#newsSearchInput").val().trim();
+  if (!query) return;
 
-    fetchWithRetry(`search_news_proxy.php?q=${encodeURIComponent(query)}`, {
-        method: 'GET',
-        cache: 'no-store'
-    })
+  fetchWithRetry(`search_news_proxy.php?q=${encodeURIComponent(query)}`, {
+    method: 'GET',
+    cache: 'no-store'
+  })
     //.then(res => res.json())
     .then(data => {
-    	if (!data.items) return;
+      if (!data.items) return;
 
       const rows = data.items.map(article => {
-      	
+
         const filterOutPublisher = pubsToFilterOut.some(substring => article.link.includes(substring));
 
         if (!filterOutPublisher) {
           return [
-             	article.title,
-              article.publisher,
-              timeElapsedString(new Date(article.pubDate)),
-              `<button class="btn btn-sm btn-green" onclick="analyzeNews('${article.link}', '${article.pubDateForLink}')">Analyze</button>`
-            ];
+            article.title,
+            article.publisher,
+            timeElapsedString(new Date(article.pubDate)),
+            `<button class="btn btn-sm btn-green" onclick="analyzeNews('${article.link}', '${article.pubDateForLink}')">Analyze</button>`
+          ];
         }
       });
 
       if (!searchTable) {
-      	searchTable = $('#searchResultsTable').DataTable({
-          	data: rows,
-              columns: [
-              	{ title: "Title" },
-                  { title: "Publisher" },
-                  { title: "Published" },
-                  { title: "Actions" }
-              ]
-          });
+        searchTable = $('#searchResultsTable').DataTable({
+          data: rows,
+          columns: [
+            { title: "Title" },
+            { title: "Publisher" },
+            { title: "Published" },
+            { title: "Actions" }
+          ]
+        });
       } else {
-      	searchTable.clear();
+        searchTable.clear();
         searchTable.rows.add(rows).draw();
       }
 
     })
     .catch(err => {
-    	alert("Failed to fetch.");
-        console.error("Fetch error:", err);
+      alert("Failed to fetch.");
+      console.error("Fetch error:", err);
     });
 });
 
 function fetchWithRetry(url, options = {}, retries = 3, delay = 1000) {
-	return fetch(url, { cache: 'no-store', ...options })
+  return fetch(url, { cache: 'no-store', ...options })
     .then(res => {
-      	if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-    	return res.json();
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      return res.json();
     })
     .catch(err => {
-    	if (retries > 0) {
-        	return new Promise(resolve => setTimeout(resolve, delay)).then(() =>
-            	fetchWithRetry(url, options, retries - 1, delay)
-            );
-        } else {
-        	alert("Failed to fetch after retries.");
-            throw err;
-        }
-	});
+      if (retries > 0) {
+        return new Promise(resolve => setTimeout(resolve, delay)).then(() =>
+          fetchWithRetry(url, options, retries - 1, delay)
+        );
+      } else {
+        alert("Failed to fetch after retries.");
+        throw err;
+      }
+    });
 }
 
 function analyzeNews(rssLink, pubDateForLink) {
-	fetch(`get_real_url.php?link=${encodeURIComponent(rssLink)}`)
+  fetch(`get_real_url.php?link=${encodeURIComponent(rssLink)}`)
     .then(res => res.json())
     .then(data => {
-    	if (data.resolved_url) {
-        	window.location.href = `newsroom.php?url=${encodeURIComponent(data.resolved_url)}&pub_date=${pubDateForLink}`;
-        } else {
-        	alert("Could not resolve article URL.");
-        }
+      if (data.resolved_url) {
+        window.location.href = `newsroom.php?url=${encodeURIComponent(data.resolved_url)}&pub_date=${pubDateForLink}`;
+      } else {
+        alert("Could not resolve article URL.");
+      }
     });
 }
 
 /*
 document.getElementById("newsSearchInput").addEventListener("keydown", function(event) {
-	if (event.key === "Enter") {
-    	event.preventDefault(); // Prevent form submission if inside a form
+  if (event.key === "Enter") {
+      event.preventDefault(); // Prevent form submission if inside a form
         document.getElementById("searchNewsBtn").click(); // Simulate button click
     }
 });
