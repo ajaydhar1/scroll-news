@@ -1,12 +1,22 @@
 <?php
 
+$config = require __DIR__ . '/../config/auth_config.php';
+
 $successMessages = [
     'registered' => 'Your account has been created. Please check your email to verify your account before signing in.',
 ];
 
-$successKey = isset($_GET['registered']) ? 'registered' : null;
+$errorMessages = [
+    'invalid_login' => 'The email or password you entered is incorrect.',
+    'email_not_verified' => 'Please verify your email address before signing in.',
+    'login_failed' => 'Something went wrong while signing you in. Please try again.',
+];
 
+$successKey = isset($_GET['registered']) ? 'registered' : null;
 $successMessage = $successMessages[$successKey] ?? null;
+
+$errorKey = $_GET['error'] ?? null;
+$errorMessage = $errorMessages[$errorKey] ?? null;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,7 +109,13 @@ $successMessage = $successMessages[$successKey] ?? null;
                         </div>
                     <?php endif; ?>
 
-                    <form method="post" action="/auth/handlers/login.handler.php">
+                    <?php if ($errorMessage): ?>
+                        <div class="alert alert-danger auth-alert" role="alert">
+                            <?= htmlspecialchars($errorMessage, ENT_QUOTES, 'UTF-8') ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <form method="post" action="/auth/handlers/login_handler.php">
                         <div class="form-group">
                             <label for="email">Email address</label>
                             <input type="email" class="form-control" id="email" name="email" required>
@@ -107,12 +123,12 @@ $successMessage = $successMessages[$successKey] ?? null;
 
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <input type="password" class="form-control" id="password" name="password" minlength="<?= $config['min_password_length'] ?>" required>
                         </div>
 
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="remember" name="remember">
+                                <input class="form-check-input" type="checkbox" id="remember" name="remember_me">
                                 <label class="form-check-label" for="remember">
                                     Keep me signed in
                                 </label>
