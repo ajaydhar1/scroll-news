@@ -479,11 +479,11 @@ function sn_render_article_card_archive(array $vm, array $opts = []): void {
     >
         <div class="article-image-wrap">
             <img
-                src="<?= htmlspecialchars($mediaUrl ?: 'assets/img/news-placeholder.jpg', ENT_QUOTES, 'UTF-8'); ?>"
+                src="<?= htmlspecialchars($mediaUrl ?: '/assets/img/news-placeholder.jpg', ENT_QUOTES, 'UTF-8'); ?>"
                 alt=""
                 loading="lazy"
                 decoding="async"
-                onerror="this.onerror=null;this.src='assets/img/news-placeholder.jpg';"
+                onerror="this.onerror=null;this.src='/assets/img/news-placeholder.jpg';"
             />
 
             <?php if ($domain): ?>

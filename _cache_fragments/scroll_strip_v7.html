@@ -180,7 +180,7 @@
 
     strip.innerHTML = articles.map(a => {
       const link    = a.link || a.url || "#";
-      const image   = a.image || a.image_url || "assets/img/news-placeholder.jpg";
+      const image   = a.image || a.image_url || "/assets/img/news-placeholder.jpg";
       const pubDate    = a.pubDate || a.pub_date || new Date().toISOString();
       const pubForLink = a.pubDateForLink || a.pub_date_ts || a.pub_date || pubDate;
 
@@ -283,7 +283,7 @@
       return `
         <a class="sn-card" role="listitem" href="${newsroomLink}" rel="noopener noreferrer" aria-label="Open article: ${safeTitle}" data-loading>
           <div class="sn-media">
-            <img src="${image}" alt="${safeTitle}" onerror="this.src = 'assets/img/news-placeholder.jpg';" loading="lazy" decoding="async">
+            <img src="${image}" alt="${safeTitle}" onerror="this.src = '/assets/img/news-placeholder.jpg';" loading="lazy" decoding="async">
             <span class="sn-badge">
               <img src="${faviconUrl}" alt="${domainOrSource} logo" class="sn-favicon">
               ${domainOrSource}

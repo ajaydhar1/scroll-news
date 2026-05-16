@@ -336,7 +336,7 @@
     if (!img) return;
 
     // Allow HTML to override fallback via data-fallback-src
-    const fallbackSrc = img.getAttribute('data-fallback-src') || 'assets/img/news-placeholder.jpg';
+    const fallbackSrc = img.getAttribute('data-fallback-src') || '/assets/img/news-placeholder.jpg';
 
     const hideLoader = () => {
       if (imgLoader) imgLoader.style.display = 'none';

@@ -104,7 +104,7 @@
       const image =
         a.image ||
         a.image_url ||
-        "assets/img/news-placeholder.jpg";
+        "/assets/img/news-placeholder.jpg";
 
       const rawPubDate =
         a.pub_date_iso ||
@@ -238,7 +238,7 @@
            data-loading>
           <div class="sn-media">
             <img src="${image}" alt="${safeTitle}"
-                 onerror="this.src = 'assets/img/news-placeholder.jpg';"
+                 onerror="this.src = '/assets/img/news-placeholder.jpg';"
                  loading="lazy" decoding="async">
             <span class="sn-badge">
               <img src="${faviconUrl}" alt="${safeText(domainOrSource)} logo" class="sn-favicon">

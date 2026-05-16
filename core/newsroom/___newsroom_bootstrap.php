@@ -55,7 +55,7 @@ if (empty($meta['image'])) {
         // $meta = array_merge($meta, $scraped);
 
         if (empty($meta['image'])) {
-            $meta['image'] = 'assets/img/news-placeholder.jpg';
+            $meta['image'] = '/assets/img/news-placeholder.jpg';
         }
     }
 }

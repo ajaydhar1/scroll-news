@@ -82,9 +82,9 @@ function fetchRSSArticles(feedUrl, category) {
           const card = `
             <div class="col-md-4 mb-4">
               <div class="card h-100">
-                <img src="${article.image || "assets/img/news-placeholder.jpg"}"
+                <img src="${article.image || "/assets/img/news-placeholder.jpg"}"
                      class="card-img-top news-modal" alt=""
-                     onerror="this.src='assets/img/news-placeholder.jpg';">
+                     onerror="this.src='/assets/img/news-placeholder.jpg';">
                 <div class="card-body d-flex flex-column">
                   <h4 class="card-title mb-2">${article.title || ""}</h4>
                   <p class="card-text text-muted mb-1">

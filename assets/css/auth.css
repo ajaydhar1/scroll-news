@@ -1,0 +1,31 @@
+body.auth-page {
+    background: #eef1f4;
+}
+
+a {
+    color: var(--brand-color);
+}
+
+p {
+    font-weight: 300;
+}
+
+.lead {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.auth-card {
+    background: #111418;
+    color: #f5f7fa;
+}
+
+.auth-card .text-muted {
+    color: rgba(255,255,255,0.7) !important;
+}
+
+.auth-card .form-control {
+    background: #1a1f26;
+    border-color: #2a313b;
+    color: #fff;
+}
