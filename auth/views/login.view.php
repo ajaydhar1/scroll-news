@@ -1,3 +1,13 @@
+<?php
+
+$successMessages = [
+    'registered' => 'Your account has been created. Please check your email to verify your account before signing in.',
+];
+
+$successKey = isset($_GET['registered']) ? 'registered' : null;
+
+$successMessage = $successMessages[$successKey] ?? null;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,6 +92,12 @@
                             Save your history, revisit trails, and build your personal news archive.
                         </p>
                     </header>
+
+                    <?php if ($successMessage): ?>
+                        <div class="alert alert-success auth-alert" role="alert">
+                            <?= htmlspecialchars($successMessage, ENT_QUOTES, 'UTF-8') ?>
+                        </div>
+                    <?php endif; ?>
 
                     <form method="post" action="/auth/handlers/login.handler.php">
                         <div class="form-group">

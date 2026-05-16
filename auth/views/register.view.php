@@ -1,3 +1,18 @@
+<?php
+
+$config = require __DIR__ . '/../config/auth_config.php';
+
+$errorMessages = [
+    'invalid_email' => 'Please enter a valid email address.',
+    'password_too_short' => 'Your password must be at least ' . $config['min_password_length'] . ' characters long.',
+    'passwords_do_not_match' => 'The passwords you entered do not match.',
+    'email_exists' => 'An account with that email already exists.',
+    'registration_failed' => 'Something went wrong while creating your account. Please try again.',
+];
+
+$errorKey = $_GET['error'] ?? null;
+$errorMessage = $errorMessages[$errorKey] ?? null;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,7 +126,13 @@
                         </p>
                     </header>
 
-                    <form method="post" action="/auth/handlers/register.handler.php">
+                    <?php if ($errorMessage): ?>
+                        <div class="alert alert-danger auth-alert" role="alert">
+                            <?= htmlspecialchars($errorMessage, ENT_QUOTES, 'UTF-8') ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <form method="post" action="/auth/handlers/register_handler.php">
 
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -120,7 +141,7 @@
                                 type="text"
                                 class="form-control"
                                 id="name"
-                                name="name"
+                                name="display_name"
                                 autocomplete="name"
                                 required>
                         </div>
@@ -146,6 +167,7 @@
                                 id="password"
                                 name="password"
                                 autocomplete="new-password"
+                                minlength="<?= $config['min_password_length'] ?>"
                                 required>
                         </div>
 
@@ -158,8 +180,9 @@
                                 type="password"
                                 class="form-control"
                                 id="confirm_password"
-                                name="confirm_password"
+                                name="password_confirm"
                                 autocomplete="new-password"
+                                minlength="<?= $config['min_password_length'] ?>"
                                 required>
                         </div>
 
