@@ -1,3 +1,26 @@
+<?php
+
+$config = require __DIR__ . '/../config/auth_config.php';
+
+$errorMessage = null;
+
+if (isset($_GET['error'])) {
+    switch ($_GET['error']) {
+
+        case 'password_too_short':
+            $errorMessage = 'Your password must be at least ' . $config['min_password_length'] . ' characters long.';
+            break;
+
+        case 'password_mismatch':
+            $errorMessage = 'Passwords do not match.';
+            break;
+
+        case 'server_error':
+            $errorMessage = 'Something went wrong. Please try again.';
+            break;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,13 +134,18 @@
                         </p>
                     </header>
 
+                    <?php if ($errorMessage): ?>
+                        <div class="alert alert-danger auth-alert" role="alert">
+                            <?= htmlspecialchars($errorMessage, ENT_QUOTES, 'UTF-8') ?>
+                        </div>
+                    <?php endif; ?>
+
                     <form method="post" action="/auth/handlers/reset-password.handler.php">
 
                         <input
                             type="hidden"
                             name="token"
-                            value="<?php echo htmlspecialchars($token ?? ''); ?>"
-                        >
+                            value="<?php echo htmlspecialchars($token ?? ''); ?>">
 
                         <div class="form-group">
                             <label for="password">New password</label>

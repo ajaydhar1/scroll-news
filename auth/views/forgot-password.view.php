@@ -12,6 +12,11 @@ if (isset($_GET['error'])) {
             $errorMessage = 'Please enter a valid email address.';
             break;
 
+        case 'invalid_token':
+        case 'invalid_or_expired_token':
+            $errorMessage = 'This password reset link is invalid or has expired. Please request a new one.';
+            break;
+
         case 'server_error':
             $errorMessage = 'Something went wrong. Please try again.';
             break;

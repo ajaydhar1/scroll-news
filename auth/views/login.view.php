@@ -4,6 +4,7 @@ $config = require __DIR__ . '/../config/auth_config.php';
 
 $successMessages = [
     'registered' => 'Your account has been created. Please check your email to verify your account before signing in.',
+    'reset_success' => 'Your password has been reset. You can now log in.',
 ];
 
 $errorMessages = [
@@ -12,11 +13,21 @@ $errorMessages = [
     'login_failed' => 'Something went wrong while signing you in. Please try again.',
 ];
 
-$successKey = isset($_GET['registered']) ? 'registered' : null;
+$successKey = null;
+
+if (isset($_GET['registered'])) {
+    $successKey = 'registered';
+}
+
+if (($_GET['reset'] ?? '') === 'success') {
+    $successKey = 'reset_success';
+}
+
 $successMessage = $successMessages[$successKey] ?? null;
 
 $errorKey = $_GET['error'] ?? null;
 $errorMessage = $errorMessages[$errorKey] ?? null;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
