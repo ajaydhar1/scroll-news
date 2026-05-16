@@ -1,3 +1,23 @@
+<?php
+$successMessage = null;
+$errorMessage = null;
+
+if (isset($_GET['reset'])) {
+    $successMessage = 'If an account exists for that email address, a password reset link has been sent.';
+}
+
+if (isset($_GET['error'])) {
+    switch ($_GET['error']) {
+        case 'invalid_email':
+            $errorMessage = 'Please enter a valid email address.';
+            break;
+
+        case 'server_error':
+            $errorMessage = 'Something went wrong. Please try again.';
+            break;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -110,6 +130,18 @@
                             Enter your email and we’ll send you a link to reset your password.
                         </p>
                     </header>
+
+                    <?php if ($successMessage): ?>
+                        <div class="alert alert-success auth-alert" role="alert">
+                            <?= htmlspecialchars($successMessage, ENT_QUOTES, 'UTF-8') ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($errorMessage): ?>
+                        <div class="alert alert-danger auth-alert" role="alert">
+                            <?= htmlspecialchars($errorMessage, ENT_QUOTES, 'UTF-8') ?>
+                        </div>
+                    <?php endif; ?>
 
                     <form method="post" action="/auth/handlers/forgot-password.handler.php">
 

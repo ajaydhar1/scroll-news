@@ -13,6 +13,13 @@ CREATE TABLE users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+ALTER TABLE users
+ADD COLUMN password_reset_token VARCHAR(64),
+ADD COLUMN password_reset_expires_at TIMESTAMP;
+
+CREATE INDEX idx_users_password_reset_token
+ON users(password_reset_token);
+
 
 -- Persistent login sessions and remember-me authentication
 CREATE TABLE user_sessions (
