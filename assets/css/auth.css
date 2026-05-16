@@ -21,7 +21,7 @@ p {
 }
 
 .auth-card .text-muted {
-    color: rgba(255,255,255,0.7) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
 }
 
 .auth-card .form-control {
@@ -34,4 +34,28 @@ p {
     font-size: 0.92rem;
     border-radius: 12px;
     margin-bottom: 1rem;
+}
+
+.auth-status-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+.auth-status-success {
+    color: #1f7a4d;
+    background: rgba(31, 122, 77, 0.12);
+    border: 1px solid rgba(31, 122, 77, 0.2);
+}
+
+.auth-status-error {
+    color: #9f2d2d;
+    background: rgba(159, 45, 45, 0.1);
+    border: 1px solid rgba(159, 45, 45, 0.18);
 }

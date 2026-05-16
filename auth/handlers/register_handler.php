@@ -108,14 +108,13 @@ try {
     // Later: send this link by email.
     // For now, you can log it locally for testing.
     $verificationLink = rtrim($config['base_url'], '/') .
-        '/auth/handlers/verify_email_handler.php?token=' .
+        '/auth/verify-email.php?token=' .
         urlencode($rawToken);
 
     error_log('Email verification link: ' . $verificationLink);
 
     header('Location: ' . $config['login_path'] . '?registered=1');
     exit;
-
 } catch (Throwable $e) {
     if (isset($pdo) && $pdo->inTransaction()) {
         $pdo->rollBack();
