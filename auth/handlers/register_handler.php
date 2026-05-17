@@ -124,8 +124,8 @@ If you did not create this account, you can safely ignore this email.
 ";
 
     $headers = [
-        'From: Scroll News <noreply@scrollnews.ai>',
-        'Reply-To: noreply@scrollnews.ai',
+        'From: ' . $config['auth_email_from'],
+        'Reply-To: ' . $config['auth_email_from'],
         'Content-Type: text/plain; charset=UTF-8',
     ];
 

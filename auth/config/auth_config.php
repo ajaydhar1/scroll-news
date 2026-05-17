@@ -23,7 +23,7 @@ return [
 
     'base_url' => 'http://localhost:8000',
 
-    'auth_email_from' => 'no-reply@scrollnews.ai',
+    'auth_email_from' => 'Scroll News <noreply@scrollnews.ai>',
 
 
     /*
