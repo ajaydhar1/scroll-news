@@ -2,11 +2,11 @@
 
 define('BASE_PATH', dirname(__DIR__));
 
-// UI-only placeholder for now.
-// Later: require auth/session helper here.
-// require_once __DIR__ . '/../auth/require_auth.php';
+require_once __DIR__ . '/../auth/includes/require_auth.php';
 
-$userEmail = 'ajay@example.com'; // Temporary UI placeholder.
+$userEmail = $_SESSION['user_email'] ?? '';
+$displayName = $_SESSION['display_name'] ?? '';
+$userId = $_SESSION['user_id'] ?? null;
 
 ?>
 <!DOCTYPE html>

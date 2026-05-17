@@ -9,6 +9,10 @@
   <url><loc>https://scrollnews.ai/scroll-archive</loc></url>
   <url><loc>https://scrollnews.ai/search</loc></url>
 
+  <url><loc>https://scrollnews.ai/auth/login</loc></url>
+  <url><loc>https://scrollnews.ai/auth/register</loc></url>
+  <url><loc>https://scrollnews.ai/auth/forgot-password</loc></url>
+
   <url><loc>https://scrollnews.ai/privacy</loc></url>
   <url><loc>https://scrollnews.ai/terms</loc></url>
 

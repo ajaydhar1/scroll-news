@@ -57,7 +57,7 @@ return [
     'session_lifetime' => 60 * 60 * 24 * 7, // 7 days
 
     // Persistent "Keep Me Signed In" lifetime
-    'remember_me_lifetime' => 60 * 60 * 24 * 30, // 30 days
+    'remember_me_lifetime' => 60 * 60 * 24 * 90, // 90 days
 
 
     /*
