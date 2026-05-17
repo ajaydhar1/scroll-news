@@ -146,11 +146,11 @@ if (isset($_GET['error'])) {
                             style="height: 52px; width: auto;">
 
                         <h1 class="h3 mb-2">
-                            Create a new password
+                            Change your password
                         </h1>
 
                         <p class="text-muted mb-0">
-                            Enter a new password to regain access to your Scroll News account.
+                            Update the password for your Scroll News account.
                         </p>
                     </header>
 
