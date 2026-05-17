@@ -4,7 +4,7 @@
 </div>
 
 <footer class="footer py-4 bg-white sticky-top sn-top-nav">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row align-items-center">
             <div class="col-lg-4 text-lg-left d-flex justify-content-between align-items-center">
                 <h5 class="mb-2 mb-sm-0 align-items-center">
@@ -26,23 +26,42 @@
                 <button class="btn btn-outline-dark blue-hover browse-btn mr-3" data-toggle="modal" data-target="#browseNewsModal" aria-label="Browse news by topic">
                     Browse News
                 </button>
-                
+
                 <?php /*
                 <button class="btn btn-outline-dark blue-hover browse-btn ml-2" data-toggle="modal" data-target="#searchNewsModal" aria-label="Search news articles">
                     Search News
                 </button>
                 */ ?>
                 <div style="margin-top: 3px;">
-                    <?php //<a href="about.php" class="mr-3">About</a> ?>
+                    <?php //<a href="about.php" class="mr-3">About</a> 
+                    ?>
                     <a class="search-button mr-2" href="/analysis.php?context=category&value=politics&w=7d" title="Analyze trends" aria-label="Analyze trends" data-loading>📊</a>
-                    <a class="search-button mr-2" 
-                        href="/how-it-works.php" 
-                        title="How this works" 
+                    <a class="search-button mr-2"
+                        href="/how-it-works.php"
+                        title="How this works"
                         aria-label="How this works">
                         🧭
                     </a>
                     <a class="search-button" href="/search.php" title="Search" aria-label="Search">🔍</a>
                 </div>
+                <?php
+
+                    $currentUser = $currentUser ?? [
+                        'first_name' => 'Ajay',
+                        'email' => 'ajay@example.com',
+                        'profile_image' => null,
+                    ];
+
+                ?>
+                <?php if (!empty($currentUser)): ?>
+                    <?php require BASE_PATH . '/views/partials/___account_menu.php'; ?>
+                <?php else: ?>
+                    <div class="nav-item d-flex align-items-center gap-2">
+                        <a class="btn btn-green btn-sm" href="/auth/login.php">
+                            Sign In
+                        </a>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -56,7 +75,7 @@
 <script src="/assets/js/newsroom/modules.js" defer></script>
 
 <script>
-    (function(){
+    (function() {
         const overlay = document.getElementById('loadingOverlay');
         const show = () => overlay && (overlay.hidden = false);
         const hide = () => overlay && (overlay.hidden = true);
@@ -68,18 +87,19 @@
         window.addEventListener('pageshow', hide);
 
         // For specific buttons/links, add data-loading attribute
-        document.addEventListener('click', function(e){
-        const t = e.target.closest('[data-loading]');
-        if (t) show();
+        document.addEventListener('click', function(e) {
+            const t = e.target.closest('[data-loading]');
+            if (t) show();
         });
 
         // Optional: inline button spinner (keeps overlay too)
-        document.addEventListener('click', function(e){
-        const btn = e.target.closest('[data-loading-btn]');
-        if (!btn) return;
-        btn.dataset.originalHtml = btn.innerHTML;
-        btn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span>&nbsp;Loading…';
-        btn.classList.add('disabled'); btn.setAttribute('aria-busy','true');
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('[data-loading-btn]');
+            if (!btn) return;
+            btn.dataset.originalHtml = btn.innerHTML;
+            btn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span>&nbsp;Loading…';
+            btn.classList.add('disabled');
+            btn.setAttribute('aria-busy', 'true');
         });
 
         // Minimal CSS for inline button spinner:
@@ -90,16 +110,14 @@
 </script>
 
 <script>
-
     function trackStumbleClick(location = 'unknown') {
         if (typeof gtag === 'function') {
             gtag('event', 'stumble_click', {
-            event_category: 'engagement',
-            event_label: location,
-            page_location: window.location.href,
-            transport_type: 'beacon'
+                event_category: 'engagement',
+                event_label: location,
+                page_location: window.location.href,
+                transport_type: 'beacon'
             });
         }
     }
-
 </script>
