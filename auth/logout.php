@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/config/auth_config.php';
+$config = require_once __DIR__ . '/config/auth_config.php';
 
 require_once __DIR__ . '/includes/auth_db.php';
 
@@ -41,9 +41,9 @@ setcookie(
     [
         'expires' => time() - 3600,
         'path' => '/',
-        'secure' => !empty($_SERVER['HTTPS']),
-        'httponly' => true,
-        'samesite' => 'Lax',
+        'secure' => $config['secure_cookies'],
+        'httponly' => $config['http_only_cookies'],
+        'samesite' => $config['same_site_policy'],
     ]
 );
 

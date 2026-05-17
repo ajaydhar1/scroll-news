@@ -12,6 +12,7 @@ $errorMessages = [
     'invalid_login' => 'The email or password you entered is incorrect.',
     'email_not_verified' => 'Please verify your email address before signing in.',
     'login_failed' => 'Something went wrong while signing you in. Please try again.',
+    'login_required' => 'Please sign in to continue.',
     'session_expired' => 'Your session has expired. Please sign in again.',
 ];
 

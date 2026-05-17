@@ -11,7 +11,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (empty($_COOKIE['scroll_news_session'])) {
-    header('Location: ' . $config['login_path']);
+    header('Location: ' . $config['login_path'] . '?error=login_required');
     exit;
 }
 
@@ -65,6 +65,35 @@ try {
         );
 
         header('Location: ' . $config['login_path'] . '?error=session_expired');
+        exit;
+    }
+
+    if ((int) $authUser['email_verified'] !== 1) {
+
+        if (!empty($authUser['session_id'])) {
+            $deleteStmt = $pdo->prepare("
+                DELETE FROM user_sessions
+                WHERE id = :session_id
+            ");
+
+            $deleteStmt->execute([
+                ':session_id' => $authUser['session_id'],
+            ]);
+        }
+
+        setcookie(
+            'scroll_news_session',
+            '',
+            [
+                'expires' => time() - 3600,
+                'path' => '/',
+                'secure' => $config['secure_cookies'],
+                'httponly' => $config['http_only_cookies'],
+                'samesite' => $config['same_site_policy'],
+            ]
+        );
+
+        header('Location: ' . $config['login_path'] . '?error=email_not_verified');
         exit;
     }
 
