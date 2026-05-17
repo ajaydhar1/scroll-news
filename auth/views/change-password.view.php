@@ -2,10 +2,30 @@
 
 $config = require __DIR__ . '/../config/auth_config.php';
 
+$successMessages = [
+    'changed' => 'Your password has been updated.',
+];
+
+$successKey = null;
+
+if (isset($_GET['changed'])) {
+    $successKey = 'changed';
+}
+
+$successMessage = $successMessages[$successKey] ?? null;
+
 $errorMessage = null;
 
 if (isset($_GET['error'])) {
     switch ($_GET['error']) {
+
+        case 'login_required':
+            $errorMessage = 'Please sign in to access this page.';
+            break;
+
+        case 'invalid_current_password':
+            $errorMessage = 'Your current password is incorrect.';
+            break;
 
         case 'password_too_short':
             $errorMessage = 'Your password must be at least ' . $config['min_password_length'] . ' characters long.';
@@ -33,14 +53,14 @@ if (isset($_GET['error'])) {
 
     <meta
         name="description"
-        content="Create a new password for your Scroll News account and regain access to your saved articles, news trails, and reading history." />
+        content="Update the password for your Scroll News account to keep your news history, saved articles, and account secure." />
 
     <meta name="author" content="Scroll News" />
 
-    <title>Reset Password — Scroll News</title>
+    <title>Change Password — Scroll News</title>
 
     <!-- Canonical + favicon -->
-    <link rel="canonical" href="https://scrollnews.ai/auth/reset-password" />
+    <link rel="canonical" href="https://scrollnews.ai/auth/change-password" />
     <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
 
     <!-- Open Graph -->
@@ -48,15 +68,15 @@ if (isset($_GET['error'])) {
 
     <meta
         property="og:url"
-        content="https://scrollnews.ai/auth/reset-password" />
+        content="https://scrollnews.ai/auth/change-password" />
 
     <meta
         property="og:title"
-        content="Reset Password — Scroll News" />
+        content="Change Password — Scroll News" />
 
     <meta
         property="og:description"
-        content="Create a new password for your Scroll News account and regain access to your saved articles, news trails, and reading history." />
+        content="Update the password for your Scroll News account to keep your news history, saved articles, and account secure." />
 
     <meta
         property="og:image"
@@ -67,15 +87,15 @@ if (isset($_GET['error'])) {
 
     <meta
         name="twitter:url"
-        content="https://scrollnews.ai/auth/reset-password" />
+        content="https://scrollnews.ai/auth/change-password" />
 
     <meta
         name="twitter:title"
-        content="Reset Password — Scroll News" />
+        content="Change Password — Scroll News" />
 
     <meta
         name="twitter:description"
-        content="Create a new password for your Scroll News account and regain access to your saved articles, news trails, and reading history." />
+        content="Update the password for your Scroll News account to keep your news history, saved articles, and account secure." />
 
     <meta
         name="twitter:image"
@@ -134,18 +154,32 @@ if (isset($_GET['error'])) {
                         </p>
                     </header>
 
+                    <?php if ($successMessage): ?>
+                        <div class="alert alert-success auth-alert" role="alert">
+                            <?= htmlspecialchars($successMessage, ENT_QUOTES, 'UTF-8') ?>
+                        </div>
+                    <?php endif; ?>
+
                     <?php if ($errorMessage): ?>
                         <div class="alert alert-danger auth-alert" role="alert">
                             <?= htmlspecialchars($errorMessage, ENT_QUOTES, 'UTF-8') ?>
                         </div>
                     <?php endif; ?>
 
-                    <form method="post" action="/auth/handlers/reset_password_handler.php">
+                    <form method="post" action="/auth/handlers/change_password_handler.php">
 
-                        <input
-                            type="hidden"
-                            name="token"
-                            value="<?php echo htmlspecialchars($token ?? ''); ?>">
+                        <div class="form-group">
+                            <label for="old_password">Old password</label>
+
+                            <input
+                                type="password"
+                                class="form-control"
+                                id="old_password"
+                                name="old_password"
+                                autocomplete="current-password"
+                                minlength="<?= $config['min_password_length'] ?>"
+                                required>
+                        </div>
 
                         <div class="form-group">
                             <label for="password">New password</label>
@@ -176,7 +210,7 @@ if (isset($_GET['error'])) {
                         </div>
 
                         <button type="submit" class="btn btn-green btn-block">
-                            Reset Password
+                            Change Password
                         </button>
 
                     </form>

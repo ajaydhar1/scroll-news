@@ -79,7 +79,7 @@
                     </header>
 
                     <?php if ($isSuccess): ?>
-                        <a href="/auth/login" class="btn btn-green btn-block">
+                        <a href="/auth/login.php" class="btn btn-green btn-block">
                             Sign In
                         </a>
                     <?php endif; ?>

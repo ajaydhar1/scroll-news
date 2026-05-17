@@ -1,20 +1,20 @@
 {
-    "fetched_at": 1778980009,
+    "fetched_at": 1779020727,
     "feeds": [
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "THE DON'S $1.7 BILLION 'SLUSH FUND'",
-                    "url": "https://abcnews.com/US/trump-administration-create-1776b-truth-justice-commission-compensate/story?id=133005480",
-                    "ts": 1778977536,
-                    "emo": "📰"
+                    "title": "Massive Fireball Seen Near Jerusalem After Explosion At Israeli Defense Facility...",
+                    "url": "https://www.news18.com/world/massive-fireball-seen-near-jerusalem-after-explosion-at-israeli-missile-testing-site-video-ws-l-10095707.html",
+                    "ts": 1779016956,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "'TRUTH COMMISSION' TO COMPENSATE ALLIES",
-                    "url": "https://abcnews.com/US/trump-administration-create-1776b-truth-justice-commission-compensate/story?id=133005480",
-                    "ts": 1778977536,
+                    "title": "RESIDENTS ALARMED BY BLAST... DEVELOPING...",
+                    "url": "https://x.com/MarioNawfal/status/2055828042254070205",
+                    "ts": 1779016956,
                     "emo": "📰"
                 }
             ]
@@ -24,16 +24,16 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Mistral AI's CEO says Europe has 2 years to stop becoming America's AI 'vassal state'",
-                    "url": "https://www.businessinsider.com/mistral-ceo-warns-europe-2-years-avoid-us-ai-dependence-2026-5",
-                    "ts": 1778970901,
-                    "emo": "🧪"
+                    "title": "Billionaire Jim Thompson's daughter now runs his company. He reflects on being a founder and a father.",
+                    "url": "https://www.businessinsider.com/billionaire-jim-thompson-daughter-jennifer-harvey-crown-worldwide-parenting-succession-2026-5",
+                    "ts": 1779012782,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Arizona students boo former Google CEO Eric Schmidt as he talks about AI during graduation speech",
-                    "url": "https://www.businessinsider.com/students-boo-eric-schmidt-google-ceo-ai-university-arizona-2026-5",
-                    "ts": 1778962165,
-                    "emo": "🧪"
+                    "title": "What it's like to run the family business when your dad is its billionaire founder",
+                    "url": "https://www.businessinsider.com/billionaire-family-business-empire-crown-harvey-thompson-succession-leadership-parenting-2026-5",
+                    "ts": 1779012781,
+                    "emo": "📰"
                 }
             ]
         }

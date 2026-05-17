@@ -643,3 +643,8 @@ blockquote::before {
   width: 18px;
   text-align: center;
 }
+
+.btn-dark-clean {
+  color: white;
+  border-color: transparent;
+}

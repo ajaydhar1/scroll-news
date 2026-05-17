@@ -58,7 +58,7 @@
                 <?php else: ?>
                     <div class="nav-item d-flex align-items-center gap-2">
                         <a class="btn btn-green btn-sm" href="/auth/login.php">
-                            Sign In
+                            Login
                         </a>
                     </div>
                 <?php endif; ?>

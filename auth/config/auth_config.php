@@ -44,6 +44,8 @@ return [
 
     'reset_password_path' => '/auth/reset-password.php',
 
+    'change_password_path' => '/auth/change-password.php',
+
 
     /*
     |--------------------------------------------------------------------------

@@ -128,7 +128,8 @@ require_once BASE_PATH . "/core/___modules.php";
                     <div class="masthead-heading text-uppercase">AI-Driven News<br><span>Insights</span></div>
                     <div class="cta-group text-center">
                         <a id="scroll" class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black d-block d-md-inline-block btn-width-mobile-75 mx-auto mb-3 mb-sm-0 mr-md-2" href="newsroom.php" data-loading>Launch Newsroom</a>
-                        <a class="btn btn-dark btn-lg btn-rectangle js-scroll-trigger d-block d-md-inline-block btn-width-mobile-75 w-md-auto mx-auto" href="#playlists" style="color: white; border-color: transparent;">Watch Video</a>
+                        <a class="btn btn-dark btn-dark-clean btn-lg btn-rectangle js-scroll-trigger d-block d-md-inline-block btn-width-mobile-75 w-md-auto mx-auto mb-3 mb-sm-0 mr-md-2" href="/auth/register.php">Sign Up</a>
+                        <a id="" class="btn btn-light btn-lg btn-rectangle js-scroll-trigger text-black d-block d-md-inline-block btn-width-mobile-75 mx-auto" href="/auth/login.php">Login</a>
                     </div>
                 </div>
             </header>
