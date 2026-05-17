@@ -87,9 +87,16 @@ $userEmail = 'ajay@example.com'; // Temporary UI placeholder.
                                     <h2 class="h5 mb-2">
                                         <i class="fa-solid fa-user mr-2"></i>Account & Security
                                     </h2>
-                                    <p class="text-muted mb-3">
+                                    <p class="text-muted mb-2">
                                         Manage your email, password, and sign-in settings.
                                     </p>
+                                    <ul class="text-muted mb-3">
+                                        <li>Email address</li>
+                                        <li>Password</li>
+                                        <li>Email verification status</li>
+                                        <li>Active sessions/devices</li>
+                                        <li>Remembered devices</li>
+                                    </ul>
                                     <a href="/account/profile.php" class="btn btn-green btn-sm">Manage Account</a>
                                 </div>
                             </div>
@@ -99,27 +106,19 @@ $userEmail = 'ajay@example.com'; // Temporary UI placeholder.
                             <div class="card h-100 border-0 shadow-sm">
                                 <div class="card-body">
                                     <h2 class="h5 mb-2">
-                                        <i class="fa-solid fa-bookmark mr-2"></i>Saved Articles
+                                        <i class="fa-solid fa-wave-square mr-2"></i>Your Activity
                                         <span class="badge badge-light ml-1">Coming soon</span>
                                     </h2>
-                                    <p class="text-muted mb-3">
-                                        Save articles and come back to them later.
+                                    <p class="text-muted mb-2">
+                                        Saved articles, searches, and your reading history.
                                     </p>
-                                    <button class="btn btn-outline-secondary btn-sm" disabled>Coming Soon</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <div class="card h-100 border-0 shadow-sm">
-                                <div class="card-body">
-                                    <h2 class="h5 mb-2">
-                                        <i class="fa-solid fa-clock-rotate-left mr-2"></i>Reading History
-                                        <span class="badge badge-light ml-1">Coming soon</span>
-                                    </h2>
-                                    <p class="text-muted mb-3">
-                                        Revisit articles, searches, and analysis pages you viewed.
-                                    </p>
+                                    <ul class="text-muted mb-3">
+                                        <li>Saved headlines</li>
+                                        <li>Reading history</li>
+                                        <li>Saved searches</li>
+                                        <li>Shuffle history</li>
+                                        <li>Your news pattern</li>
+                                    </ul>
                                     <button class="btn btn-outline-secondary btn-sm" disabled>Coming Soon</button>
                                 </div>
                             </div>
@@ -132,9 +131,36 @@ $userEmail = 'ajay@example.com'; // Temporary UI placeholder.
                                         <i class="fa-solid fa-route mr-2"></i>News Trails
                                         <span class="badge badge-light ml-1">Coming soon</span>
                                     </h2>
-                                    <p class="text-muted mb-3">
-                                        Build personal trails across related stories and narrative frames.
+                                    <p class="text-muted mb-2">
+                                        Trace AI-powered trails across related stories and narrative frames.
                                     </p>
+                                    <ul class="text-muted mb-3">
+                                        <li>Personal Trails</li>
+                                        <li>Editor Trails</li>
+                                        <li>Community Trails</li>
+                                        <li>Signal paths through the news</li>
+                                    </ul>
+                                    <button class="btn btn-outline-secondary btn-sm" disabled>Coming Soon</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <h2 class="h5 mb-2">
+                                        <i class="fa-solid fa-tower-broadcast mr-2"></i>Publisher Tools
+                                        <span class="badge badge-light ml-1">Coming soon</span>
+                                    </h2>
+                                    <p class="text-muted mb-2">
+                                        Manage feeds, publisher verification, content rights, and distribution tools.
+                                    </p>
+                                    <ul class="text-muted mb-3">
+                                        <li>Publisher verification</li>
+                                        <li>RSS feed submissions</li>
+                                        <li>Article removals</li>
+                                        <li>Creator profile</li>
+                                    </ul>
                                     <button class="btn btn-outline-secondary btn-sm" disabled>Coming Soon</button>
                                 </div>
                             </div>
