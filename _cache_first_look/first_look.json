@@ -1,39 +1,39 @@
 {
-    "fetched_at": 1778929505,
+    "fetched_at": 1778980009,
     "feeds": [
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Where to watch FA Cup Final: Live stream Chelsea vs. Man City free from anywhere",
-                    "url": "https://www.businessinsider.com/guides/streaming/where-to-watch-fa-cup-final-chelsea-man-city-2026",
-                    "ts": 1778929201,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "The resale OG is back: How eBay won over fashion shoppers again",
-                    "url": "https://www.businessinsider.com/how-ebay-won-over-fashion-shoppers-again-2026-5",
-                    "ts": 1778926861,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "MISTRIAL!",
-                    "url": "https://nypost.com/2026/05/15/us-news/judge-declares-mistrial-in-harvey-weinsteins-third-nyc-sex-crimes-trial",
-                    "ts": 1778929116,
+                    "title": "THE DON'S $1.7 BILLION 'SLUSH FUND'",
+                    "url": "https://abcnews.com/US/trump-administration-create-1776b-truth-justice-commission-compensate/story?id=133005480",
+                    "ts": 1778977536,
                     "emo": "📰"
                 },
                 {
-                    "title": "Weinstein's THIRD Manhattan trial a dud...",
-                    "url": "https://nypost.com/2026/05/15/us-news/judge-declares-mistrial-in-harvey-weinsteins-third-nyc-sex-crimes-trial",
-                    "ts": 1778929116,
+                    "title": "'TRUTH COMMISSION' TO COMPENSATE ALLIES",
+                    "url": "https://abcnews.com/US/trump-administration-create-1776b-truth-justice-commission-compensate/story?id=133005480",
+                    "ts": 1778977536,
                     "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Mistral AI's CEO says Europe has 2 years to stop becoming America's AI 'vassal state'",
+                    "url": "https://www.businessinsider.com/mistral-ceo-warns-europe-2-years-avoid-us-ai-dependence-2026-5",
+                    "ts": 1778970901,
+                    "emo": "🧪"
+                },
+                {
+                    "title": "Arizona students boo former Google CEO Eric Schmidt as he talks about AI during graduation speech",
+                    "url": "https://www.businessinsider.com/students-boo-eric-schmidt-google-ceo-ai-university-arizona-2026-5",
+                    "ts": 1778962165,
+                    "emo": "🧪"
                 }
             ]
         }
