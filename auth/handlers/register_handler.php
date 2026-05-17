@@ -111,6 +111,31 @@ try {
         '/auth/verify-email.php?token=' .
         urlencode($rawToken);
 
+    $subject = 'Verify your Scroll News email address';
+
+    $message = "
+Welcome to Scroll News!
+
+Please verify your email address by clicking the link below:
+
+$verificationLink
+
+If you did not create this account, you can safely ignore this email.
+";
+
+    $headers = [
+        'From: Scroll News <noreply@scrollnews.ai>',
+        'Reply-To: noreply@scrollnews.ai',
+        'Content-Type: text/plain; charset=UTF-8',
+    ];
+
+    @mail(
+        $email,
+        $subject,
+        $message,
+        implode("\r\n", $headers)
+    );
+
     error_log('Email verification link: ' . $verificationLink);
 
     header('Location: ' . $config['login_path'] . '?registered=1');
