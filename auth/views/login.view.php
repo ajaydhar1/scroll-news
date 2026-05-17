@@ -5,6 +5,7 @@ $config = require __DIR__ . '/../config/auth_config.php';
 $successMessages = [
     'registered' => 'Your account has been created. Please check your email to verify your account before signing in.',
     'reset_success' => 'Your password has been reset. You can now log in.',
+    'logged_out' => 'You have been signed out successfully.',
 ];
 
 $errorMessages = [
@@ -21,6 +22,10 @@ if (isset($_GET['registered'])) {
 
 if (($_GET['reset'] ?? '') === 'success') {
     $successKey = 'reset_success';
+}
+
+if (isset($_GET['logged_out'])) {
+    $successKey = 'logged_out';
 }
 
 $successMessage = $successMessages[$successKey] ?? null;
