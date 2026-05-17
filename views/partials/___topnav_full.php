@@ -1,3 +1,16 @@
+<?php
+
+$currentUser = null;
+
+if (!empty($_SESSION['user_id'])) {
+    $currentUser = [
+        'email' => $_SESSION['user_email'] ?? null,
+        'display_name' => $_SESSION['display_name'] ?? null,
+    ];
+}
+
+?>
+
 <!-- Loading overlay -->
 <div id="loadingOverlay" class="loading-overlay" aria-live="polite" aria-busy="true" hidden>
     <div class="loading-spinner" role="status" aria-label="Loading"></div>
@@ -44,15 +57,7 @@
                     </a>
                     <a class="search-button" href="/search.php" title="Search" aria-label="Search">🔍</a>
                 </div>
-                <?php
-
-                    $currentUser = $currentUser ?? [
-                        'first_name' => 'Ajay',
-                        'email' => 'ajay@example.com',
-                        'profile_image' => null,
-                    ];
-
-                ?>
+                
                 <?php if (!empty($currentUser)): ?>
                     <?php require BASE_PATH . '/views/partials/___account_menu.php'; ?>
                 <?php else: ?>
