@@ -153,8 +153,8 @@ if (!$pdo) {
             <div class="container">
                 <div class="row justify-content-center mb-4">
                     <div class="col-md-8 text-center">
-                        <h2 class="section-heading text-uppercase">Search headlines</h2>
-                        <h3 class="section-subheading" style="margin-bottom: 1.5rem;">
+                        <h2 class="section-heading">🔎 Search Headlines</h2>
+                        <h3 class="section-subheading text-muted" style="margin-bottom: 1.5rem;">
                             Find recent stories from Scroll News feeds, then read or analyze them.
                         </h3>
                     </div>
@@ -177,9 +177,6 @@ if (!$pdo) {
 
                         <?php require_once BASE_PATH . '/views/search/___search_form.php'; ?>
 
-                        <div class="small text-muted mt-2">
-                            Search across recent items from all feeds.
-                        </div>
                     </div>
                 </div>
 
@@ -238,9 +235,9 @@ if (!$pdo) {
                                 <?php endforeach; ?>
                             </div>
 
-                            <div class="small text-muted mt-5">
+                            <blockquote class="small text-muted mt-5">
                                 Tip: try names, companies, locations, or big topics.
-                            </div>
+                            </blockquote>
                         </div>
                     </div>
                 <?php else: ?>
@@ -286,7 +283,7 @@ if (!$pdo) {
                             ?>
 
                             <?php if ($hasFilters && !empty($filterChips)): ?>
-                                <p class="small text-muted mb-1">
+                                <p class="text-muted mb-1">
                                     Active filters:
                                     <?php echo htmlspecialchars(implode(' · ', $filterChips), ENT_QUOTES, 'UTF-8'); ?>
                                 </p>
