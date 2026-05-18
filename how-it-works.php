@@ -1,5 +1,6 @@
 <?php
 define('BASE_PATH', __DIR__);
+require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

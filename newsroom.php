@@ -7,6 +7,8 @@ ini_set('log_errors', '1');
 
 define('BASE_PATH', __DIR__);
 
+require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
+
 require_once BASE_PATH . "/core/config/interest.php";
 require_once BASE_PATH . "/core/___session_results.php";
 require_once BASE_PATH . "/core/___modules.php";
