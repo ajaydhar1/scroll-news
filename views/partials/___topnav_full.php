@@ -1,17 +1,6 @@
 <?php
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-$currentUser = null;
-
-if (!empty($_SESSION['user_id'])) {
-    $currentUser = [
-        'email' => $_SESSION['user_email'] ?? null,
-        'display_name' => $_SESSION['display_name'] ?? null,
-    ];
-}
+require_once __DIR__ . '/../../auth/includes/auth_bootstrap.php';
 
 ?>
 

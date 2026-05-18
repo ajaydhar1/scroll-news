@@ -1,3 +1,7 @@
+.analysis-page {
+    background: #eef1f4;
+}
+
 /* minimal styling; swap for your site CSS */
 body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; }
 .row { display: flex; flex-wrap: wrap; }

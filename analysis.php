@@ -188,7 +188,7 @@ try {
   <link href="/assets/css/pages/analysis.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/analysis.css'); ?>" rel="stylesheet" />
 
 </head>
-<body class="bg-light">
+<body class="analysis-page">
 
   <!-- Top nav-->        
   <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>

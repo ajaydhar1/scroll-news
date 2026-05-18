@@ -49,7 +49,7 @@ define('BASE_PATH', __DIR__);
 
         <style>
             section#services {
-                background: #eee;
+                background: #eef1f4;
             }
 
             p {

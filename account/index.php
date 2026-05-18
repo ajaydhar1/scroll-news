@@ -59,7 +59,7 @@ $userId = $_SESSION['user_id'] ?? null;
 
         <div class="auth-shell container my-5">
             <div class="auth-card card border-0 rounded-3">
-                <div class="card-body p-5">
+                <div class="card-body">
 
                     <header class="text-center mb-4">
                         <img
