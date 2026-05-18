@@ -10,12 +10,34 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if (empty($_COOKIE['scroll_news_session'])) {
+/*
+|--------------------------------------------------------------------------
+| Active PHP Session Check
+|--------------------------------------------------------------------------
+|
+| If the user already has a valid PHP session, allow the request.
+| The remember-me cookie is only needed when restoring a session.
+|
+*/
+
+if (!empty($_SESSION['user_id'])) {
+    return;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Remember-Me Session Restore
+|--------------------------------------------------------------------------
+*/
+
+$rememberCookieName = $config['remember_cookie_name'] ?? 'scroll_news_session';
+
+if (empty($_COOKIE[$rememberCookieName])) {
     header('Location: ' . $config['login_path'] . '?error=login_required');
     exit;
 }
 
-$tokenHash = hash('sha256', $_COOKIE['scroll_news_session']);
+$tokenHash = hash('sha256', $_COOKIE[$rememberCookieName]);
 
 try {
     $pdo = auth_db();
