@@ -23,7 +23,7 @@
                               <option value="/rss.php?category=Entertainment">🎬 Entertainment</option>
                             </select>
                             <button id="shuffleArticlesBtn" type="button" class="btn btn-light mb-2">
-                              🔀 Shuffle
+                              🔀 AI-powered Shuffle
                             </button>
                           </div>
                         </div>

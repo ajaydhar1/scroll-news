@@ -526,6 +526,7 @@ a.nlp-chip.nlp-chip-frame:hover {
 .analyze-btn,
 .browse-btn {
   width: 150px;
+  height: 38px;
 }
 
 #browseNewsModal p.card-text {

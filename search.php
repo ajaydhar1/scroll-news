@@ -314,7 +314,7 @@ if (!$pdo) {
                                     ?>
 
                                     <a href="<?= htmlspecialchars($explore_url) ?>" class="btn btn-sm btn-info" data-sn-loading>
-                                        🔀 Shuffle
+                                        🔀 AI-powered Shuffle
                                     </a>
                                 <?php endif; ?>
                             </h2>
