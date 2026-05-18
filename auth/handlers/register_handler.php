@@ -123,13 +123,12 @@ try {
     $emailSent = send_auth_email(
         $email,
         'Verify your Scroll News account',
-        '
-            <p>Welcome to Scroll News.</p>
-            <p>Please verify your email address by clicking the link below:</p>
-            <p><a href="' . htmlspecialchars($verificationLink, ENT_QUOTES, 'UTF-8') . '">Verify your email</a></p>
-            <p>If the button does not work, copy and paste this link into your browser:</p>
-            <p>' . htmlspecialchars($verificationLink, ENT_QUOTES, 'UTF-8') . '</p>
-        '
+        build_auth_email_html(
+            'Welcome to Scroll News',
+            'Please verify your email address to finish creating your account.',
+            'Verify your email',
+            $verificationLink
+        )
     );
 
     if (!$emailSent) {

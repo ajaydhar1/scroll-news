@@ -67,14 +67,13 @@ try {
         $emailSent = send_auth_email(
             $email,
             'Reset your Scroll News password',
-            '
-                <p>We received a request to reset your Scroll News password.</p>
-                <p>You can reset your password by clicking the link below:</p>
-                <p><a href="' . htmlspecialchars($resetUrl, ENT_QUOTES, 'UTF-8') . '">Reset your password</a></p>
-                <p>If the button does not work, copy and paste this link into your browser:</p>
-                <p>' . htmlspecialchars($resetUrl, ENT_QUOTES, 'UTF-8') . '</p>
-                <p>If you did not request this, you can ignore this email.</p>
-            '
+            build_auth_email_html(
+                'Reset your password',
+                'We received a request to reset your Scroll News password.',
+                'Reset your password',
+                $resetUrl,
+                'If you did not request this password reset, you can safely ignore this email.'
+            )
         );
 
         if (!$emailSent) {
