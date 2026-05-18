@@ -80,24 +80,13 @@ try {
 
     // Invalidate all persistent login sessions / remember-me tokens
     $stmt = $pdo->prepare("
-    DELETE FROM user_sessions
-    WHERE user_id = :user_id
-");
+        DELETE FROM user_sessions
+        WHERE user_id = :user_id
+    ");
 
     $stmt->execute([
         ':user_id' => $user['id'],
     ]);
-
-    // Clear remember-me cookie on this browser
-    if (!empty($config['remember_cookie_name'])) {
-        setcookie($config['remember_cookie_name'], '', [
-            'expires' => time() - 3600,
-            'path' => '/',
-            'secure' => $config['secure_cookies'],
-            'httponly' => true,
-            'samesite' => 'Lax',
-        ]);
-    }
 
     header('Location: ' . $config['change_password_path'] . '?changed=1');
     exit;
