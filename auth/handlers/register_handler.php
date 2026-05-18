@@ -136,7 +136,7 @@ try {
         error_log('[Register] Verification email failed to send to ' . $email);
     }
 
-    error_log('Email verification link: ' . $verificationLink);
+    // error_log('Email verification link: ' . $verificationLink);
 
     header('Location: ' . $config['login_path'] . '?registered=1');
     exit;

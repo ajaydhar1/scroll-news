@@ -62,7 +62,7 @@ try {
 
         $resetUrl = rtrim($config['base_url'], '/') . '/' . ltrim($config['reset_password_path'], '/') . '?token=' . urlencode($token);
 
-        error_log('[ForgotPassword] Reset URL: ' . $resetUrl);
+        // error_log('[ForgotPassword] Reset URL: ' . $resetUrl);
 
         $emailSent = send_auth_email(
             $email,
