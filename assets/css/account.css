@@ -1,9 +1,14 @@
 body.account-page {
-    background: #111418;
+    background: #eef1f4;
 }
 
 .auth-card .text-muted {
     color: #6c757d !important;
+}
+
+.auth-card {
+    background: #eef1f4;
+    color: #212529;
 }
 
 .auth-card .card {
