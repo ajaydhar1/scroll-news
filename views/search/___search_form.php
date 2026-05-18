@@ -12,7 +12,7 @@ $highSignalActive = !empty($snSearch['high_signal_active']);
 ?>
 
 <form id="sn-search-form" method="get" action="search.php" class="mb-4">
-  <div class="row g-2 align-items-center">
+  <div class="row g-2 align-items-center search-toolbar">
     <div class="col-md-6">
       <input
         type="text"
