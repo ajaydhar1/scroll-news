@@ -111,7 +111,7 @@ unset($_SESSION['old']);
 
         <!-- Content area -->
         <div class="auth-shell container my-5">
-            <div class="auth-card card border-0 shadow-lg rounded-3">
+            <div class="auth-card card border-0">
                 <div class="card-body p-5">
 
                     <header class="text-center mb-4">
