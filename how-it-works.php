@@ -55,7 +55,7 @@ require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
     <!-- Page-specific styles -->
     <style>
         body#page-top {
-            background: #fafafa;
+            background: #eef1f4;
         }
 
         @media (min-width: 768px) {
