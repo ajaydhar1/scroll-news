@@ -227,6 +227,8 @@ if (!$pdo) {
                                 };
                             ?>
 
+                            <h5 class="text-center mb-3">Discovery topic chips</h5>
+
                             <div class="sn-search-chips">
                                 <?php foreach ($searchChips as $chip): ?>
                                     <a class="sn-chip" href="<?= htmlspecialchars($buildSearchUrl($chip), ENT_QUOTES, 'UTF-8') ?>" data-sn-loading>
