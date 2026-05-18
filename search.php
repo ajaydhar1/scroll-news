@@ -205,6 +205,7 @@ if (!$pdo) {
                                     'Interest rates', 'Inflation', 'Climate', 'Taylor Swift', 'Stock',
                                     'NFL', 'NBA', 'AI startups', 'Cybersecurity', 'Robotics', 
                                     'SpaceX', 'Quantum computing', 'EVs', 'Semiconductors', 
+                                    'China', 'London', 'Africa', 'UN', 'Middle East', 
                                     'Gen Z', 'Dating', 'Mental health', 'Remote work', 
                                     'Productivity', 'Billionaires', 'Housing', 'Education', 
                                     'Longevity', 'Climate tech', 'Neuroscience', 'Future cities', 
