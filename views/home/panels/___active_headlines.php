@@ -361,8 +361,8 @@ $activeHeadlines = scrollnews_fetch_active_headlines();
                                 <!-- NBC Favicon -->
                                 <img src="https://www.google.com/s2/favicons?sz=64&domain=nbcnews.com"
                                     alt="NBC News"
-                                    width="14"
-                                    height="14"
+                                    width="15"
+                                    height="15"
                                     class="sn-headline-favicon">
 
                                 <span class="sn-headline-source">

@@ -753,8 +753,8 @@ function scroll_render_article_intel_item(array $article, array $opts = []): str
                         <?php if ($faviconUrl): ?>
                             <img src="<?= htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8') ?>"
                                     alt=""
-                                    width="14"
-                                    height="14"
+                                    width="15"
+                                    height="15"
                                     class="intel-favicon">
                         <?php endif; ?>
                         <span><?= htmlspecialchars($publisherDomain, ENT_QUOTES, 'UTF-8') ?></span>

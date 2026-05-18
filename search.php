@@ -192,7 +192,9 @@ if (!$pdo) {
 
                 <?php if (!$hasFilters): ?>
                     <div class="row">
-                        <div class="col-md-8 mx-auto">
+                        <div class="col-md-8 mx-auto text-center">
+
+                            <img src="/assets/img/stickers/radar.gif" class="radar" />
 
                             <?php
                                 // Curated starter searches (ship-now)
