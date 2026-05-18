@@ -24,7 +24,7 @@ $oldPassword = $_POST['old_password'] ?? '';
 $password = $_POST['password'] ?? '';
 $confirmPassword = $_POST['confirm_password'] ?? '';
 
-if (strlen($password) < $config['password_min_length']) {
+if (strlen($password) < $config['min_password_length']) {
     header('Location: ' . $config['change_password_path'] . '?error=password_too_short');
     exit;
 }
