@@ -22,7 +22,7 @@ if ($token === '') {
     exit;
 }
 
-if (strlen($password) < $config['password_min_length']) {
+if (strlen($password) < $config['min_password_length']) {
     header('Location: ' . $config['reset_password_path'] . '?token=' . urlencode($token) . '&error=password_too_short');
     exit;
 }
