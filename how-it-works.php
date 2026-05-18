@@ -55,7 +55,7 @@ require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
     <!-- Page-specific styles -->
     <style>
         body#page-top {
-            background: #eef1f4;
+            background: linear-gradient(to bottom, #eef1f4, #e8edf1);
         }
 
         @media (min-width: 768px) {

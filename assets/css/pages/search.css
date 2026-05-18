@@ -179,7 +179,7 @@ p {
     font-weight: 700; 
 }
 
-section#services { background: #eef1f4; }
+section#services { background: linear-gradient(to bottom, #eef1f4, #e8edf1); }
 
 .page-section h3.section-subheading {
     font-style: normal;

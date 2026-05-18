@@ -1,5 +1,5 @@
 body.account-page {
-    background: #eef1f4;
+    background: linear-gradient(to bottom, #eef1f4, #e8edf1);
 }
 
 .auth-card .text-muted {
@@ -7,7 +7,7 @@ body.account-page {
 }
 
 .auth-card {
-    background: #eef1f4;
+    background: transparent;
     color: #212529;
 }
 

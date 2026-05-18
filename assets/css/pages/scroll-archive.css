@@ -11,7 +11,7 @@
 }
 
 section#services {
-    background: #eef1f4;
+    background: linear-gradient(to bottom, #eef1f4, #e8edf1);
 }
 
 p {
