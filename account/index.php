@@ -97,7 +97,7 @@ $userId = $_SESSION['user_id'] ?? null;
                                         <li>Active sessions/devices</li>
                                         <li>Remembered devices</li>
                                     </ul>
-                                    <a href="/account/profile.php" class="btn btn-green btn-sm">Manage Account</a>
+                                    <a href="#" class="btn btn-green btn-sm">Manage Account</a>
                                 </div>
                             </div>
                         </div>

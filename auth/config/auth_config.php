@@ -21,7 +21,7 @@ return [
 
     'app_name' => 'Scroll News',
 
-    'base_url' => 'http://localhost:3000',
+    'base_url' => 'https://scrollnews.ai',
 
     'auth_email_from' => 'Scroll News <noreply@scrollnews.ai>',
 
@@ -83,7 +83,7 @@ return [
     'min_password_length' => 8,
 
     // Secure cookie requirement
-    'secure_cookies' => false,
+    'secure_cookies' => true,
 
     // HttpOnly cookies
     'http_only_cookies' => true,

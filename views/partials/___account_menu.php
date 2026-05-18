@@ -45,7 +45,7 @@ $initial = strtoupper(substr($firstName ?: $email ?: 'U', 0, 1));
             <i class="fa-solid fa-user mr-2"></i> Account
         </a>
 
-        <a class="dropdown-item" href="/account/activity.php">
+        <a class="dropdown-item" href="#">
             <i class="fa-solid fa-wave-square mr-2"></i> Your Activity
         </a>
 

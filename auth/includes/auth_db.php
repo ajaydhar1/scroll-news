@@ -24,17 +24,41 @@ function auth_db(): PDO
     | Database Configuration
     |--------------------------------------------------------------------------
     |
-    | Replace these values with your actual database credentials.
-    | Later, these can be moved into environment variables or a
-    | centralized application config system.
+    | Uses the DATABASE_URL environment variable provided by
+    | Render or your local environment.
+    |
+    | Example:
+    | postgres://user:password@host:5432/database
     |
     */
 
-    $host = 'YOUR_DB_HOST';
-    $port = '5432';
-    $dbname = 'YOUR_DB_NAME';
-    $username = 'YOUR_DB_USER';
-    $password = 'YOUR_DB_PASSWORD';
+    $databaseUrl = getenv('DATABASE_URL');
+
+    if (!$databaseUrl) {
+
+        error_log('DATABASE_URL environment variable is missing.');
+
+        http_response_code(500);
+
+        exit('Database configuration missing.');
+    }
+
+    $db = parse_url($databaseUrl);
+
+    if ($db === false) {
+
+        error_log('Failed to parse DATABASE_URL.');
+
+        http_response_code(500);
+
+        exit('Invalid database configuration.');
+    }
+
+    $host = $db['host'] ?? 'localhost';
+    $port = $db['port'] ?? '5432';
+    $dbname = ltrim($db['path'] ?? '', '/');
+    $username = $db['user'] ?? '';
+    $password = $db['pass'] ?? '';
 
     /*
     |--------------------------------------------------------------------------

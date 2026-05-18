@@ -1,24 +1,6 @@
 {
-    "fetched_at": 1779062065,
+    "fetched_at": 1779067680,
     "feeds": [
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "After years abroad, they retired in Thailand instead of returning to the US. They pay $870 for a 3-bedroom.",
-                    "url": "https://www.businessinsider.com/couple-left-america-moved-abroad-retired-in-huahin-thailand-affordable-2026-5",
-                    "ts": 1779059641,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Citadel CEO Ken Griffin was a prominent AI skeptic. Now he says, 'AI is real.'",
-                    "url": "https://www.businessinsider.com/ken-griffin-citadel-ai-skeptic-changes-tune-hype-jobs-finance-2026-5",
-                    "ts": 1779055347,
-                    "emo": "🧪"
-                }
-            ]
-        },
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
@@ -26,13 +8,31 @@
                 {
                     "title": "Huge Fireball Near Jerusalem After 'Pre-Planned' Explosion At Israeli Defense Facility...",
                     "url": "https://www.timesofisrael.com/late-night-blast-fireball-near-beit-shemesh-rattles-jittery-residents/",
-                    "ts": 1779059436,
+                    "ts": 1779064656,
                     "emo": "🔥"
                 },
                 {
                     "title": "RESIDENTS ALARMED BY BLAST...",
                     "url": "https://x.com/MarioNawfal/status/2055828042254070205",
-                    "ts": 1779059436,
+                    "ts": 1779064656,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "I started a publishing gig outside my day job to see if a creative side hustle could break even",
+                    "url": "https://www.businessinsider.com/singapore-millennial-publishing-creative-side-hustle-paper-jam-2026-5",
+                    "ts": 1779062881,
+                    "emo": "📰"
+                },
+                {
+                    "title": "After years abroad, they retired in Thailand instead of returning to the US. They pay $870 for a 3-bedroom.",
+                    "url": "https://www.businessinsider.com/couple-left-america-moved-abroad-retired-in-huahin-thailand-affordable-2026-5",
+                    "ts": 1779059641,
                     "emo": "📰"
                 }
             ]
