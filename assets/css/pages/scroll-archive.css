@@ -310,6 +310,10 @@ a.btn.btn-outline-primary.btn-analyze:hover {
     font-weight: 600;
 }
 
+.sn-sentiment-label span {
+    font-size: 19px;
+}
+
 .sn-sentiment-score {
     opacity: 0.7;
     font-size: 12px;

@@ -588,8 +588,8 @@ try {
                                       <?php if ($faviconUrl): ?>
                                           <img src="<?= htmlspecialchars($faviconUrl) ?>"
                                               alt=""
-                                              width="14"
-                                              height="14"
+                                              width="15"
+                                              height="15"
                                               class="story-favicon">
                                       <?php endif; ?>
 
