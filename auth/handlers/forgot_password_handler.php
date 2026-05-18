@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../includes/auth_db.php';
 
+require_once __DIR__ . '/../includes/send_auth_email.php';
+
 $config = require __DIR__ . '/../config/auth_config.php';
 
 session_start();
@@ -62,23 +64,21 @@ try {
 
         error_log('[ForgotPassword] Reset URL: ' . $resetUrl);
 
-        $subject = 'Reset your password';
-        $message = "Hi,\n\n";
-        $message .= "We received a request to reset your password.\n\n";
-        $message .= "Click the link below to choose a new password:\n";
-        $message .= $resetUrl . "\n\n";
-        $message .= "This link will expire soon. If you did not request this, you can ignore this email.\n";
+        $emailSent = send_auth_email(
+            $email,
+            'Reset your Scroll News password',
+            '
+                <p>We received a request to reset your Scroll News password.</p>
+                <p>You can reset your password by clicking the link below:</p>
+                <p><a href="' . htmlspecialchars($resetUrl, ENT_QUOTES, 'UTF-8') . '">Reset your password</a></p>
+                <p>If the button does not work, copy and paste this link into your browser:</p>
+                <p>' . htmlspecialchars($resetUrl, ENT_QUOTES, 'UTF-8') . '</p>
+                <p>If you did not request this, you can ignore this email.</p>
+            '
+        );
 
-        $headers = [
-            'From: ' . $config['auth_email_from'],
-            'Reply-To: ' . $config['auth_email_from'],
-            'Content-Type: text/plain; charset=UTF-8',
-        ];
-
-        $mailSent = mail($user['email'], $subject, $message, implode("\r\n", $headers));
-
-        if (!$mailSent) {
-            error_log('[ForgotPassword] Failed to send password reset email to user ID ' . $user['id']);
+        if (!$emailSent) {
+            error_log('[ForgotPassword] Reset email failed to send to ' . $email);
         }
     }
 
