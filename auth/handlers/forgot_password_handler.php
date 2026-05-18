@@ -60,6 +60,8 @@ try {
 
         $resetUrl = rtrim($config['base_url'], '/') . '/' . ltrim($config['reset_password_path'], '/') . '?token=' . urlencode($token);
 
+        error_log('[ForgotPassword] Reset URL: ' . $resetUrl);
+
         $subject = 'Reset your password';
         $message = "Hi,\n\n";
         $message .= "We received a request to reset your password.\n\n";

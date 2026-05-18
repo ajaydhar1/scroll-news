@@ -1,38 +1,38 @@
 {
-    "fetched_at": 1779020727,
+    "fetched_at": 1779062065,
     "feeds": [
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "Massive Fireball Seen Near Jerusalem After Explosion At Israeli Defense Facility...",
-                    "url": "https://www.news18.com/world/massive-fireball-seen-near-jerusalem-after-explosion-at-israeli-missile-testing-site-video-ws-l-10095707.html",
-                    "ts": 1779016956,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "RESIDENTS ALARMED BY BLAST... DEVELOPING...",
-                    "url": "https://x.com/MarioNawfal/status/2055828042254070205",
-                    "ts": 1779016956,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "BusinessInsider",
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Billionaire Jim Thompson's daughter now runs his company. He reflects on being a founder and a father.",
-                    "url": "https://www.businessinsider.com/billionaire-jim-thompson-daughter-jennifer-harvey-crown-worldwide-parenting-succession-2026-5",
-                    "ts": 1779012782,
+                    "title": "After years abroad, they retired in Thailand instead of returning to the US. They pay $870 for a 3-bedroom.",
+                    "url": "https://www.businessinsider.com/couple-left-america-moved-abroad-retired-in-huahin-thailand-affordable-2026-5",
+                    "ts": 1779059641,
                     "emo": "📰"
                 },
                 {
-                    "title": "What it's like to run the family business when your dad is its billionaire founder",
-                    "url": "https://www.businessinsider.com/billionaire-family-business-empire-crown-harvey-thompson-succession-leadership-parenting-2026-5",
-                    "ts": 1779012781,
+                    "title": "Citadel CEO Ken Griffin was a prominent AI skeptic. Now he says, 'AI is real.'",
+                    "url": "https://www.businessinsider.com/ken-griffin-citadel-ai-skeptic-changes-tune-hype-jobs-finance-2026-5",
+                    "ts": 1779055347,
+                    "emo": "🧪"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "Huge Fireball Near Jerusalem After 'Pre-Planned' Explosion At Israeli Defense Facility...",
+                    "url": "https://www.timesofisrael.com/late-night-blast-fireball-near-beit-shemesh-rattles-jittery-residents/",
+                    "ts": 1779059436,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "RESIDENTS ALARMED BY BLAST...",
+                    "url": "https://x.com/MarioNawfal/status/2055828042254070205",
+                    "ts": 1779059436,
                     "emo": "📰"
                 }
             ]

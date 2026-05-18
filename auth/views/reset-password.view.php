@@ -140,6 +140,10 @@ if (isset($_GET['error'])) {
                         </div>
                     <?php endif; ?>
 
+                    <?php
+                        $token = $_GET['token'] ?? '';
+                    ?>
+
                     <form method="post" action="/auth/handlers/reset_password_handler.php">
 
                         <input

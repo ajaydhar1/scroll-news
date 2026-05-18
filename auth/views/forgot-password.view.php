@@ -148,7 +148,7 @@ if (isset($_GET['error'])) {
                         </div>
                     <?php endif; ?>
 
-                    <form method="post" action="/auth/handlers/forgot-password.handler.php">
+                    <form method="post" action="/auth/handlers/forgot_password_handler.php">
 
                         <div class="form-group">
                             <label for="email">Email address</label>

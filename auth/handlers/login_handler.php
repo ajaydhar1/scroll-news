@@ -4,6 +4,8 @@ require_once __DIR__ . '/../includes/auth_db.php';
 
 $config = require __DIR__ . '/../config/auth_config.php';
 
+session_start();
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: ' . $config['login_path']);
     exit;
@@ -12,6 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $email = strtolower(trim($_POST['email'] ?? ''));
 $password = $_POST['password'] ?? '';
 $rememberMe = isset($_POST['remember_me']);
+
+$_SESSION['old'] = [
+    'email' => $email,
+    'remember_me' => $rememberMe,
+];
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     header('Location: ' . $config['login_path'] . '?error=invalid_login');

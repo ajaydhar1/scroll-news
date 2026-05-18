@@ -1,27 +1,18 @@
 <?php
 
-/**
- * Account menu partial
- *
- * Expected later:
- * $currentUser = [
- *     'first_name' => 'Ajay',
- *     'email' => 'ajay@example.com',
- *     'profile_image' => null,
- * ];
- */
-
-$currentUser = $currentUser ?? [
-    'first_name' => 'Ajay',
-    'email' => 'ajay@example.com',
-    'profile_image' => null,
-];
-
-$firstName = trim($currentUser['first_name'] ?? '');
+$displayName = trim($currentUser['display_name'] ?? '');
 $email = trim($currentUser['email'] ?? '');
 $profileImage = trim($currentUser['profile_image'] ?? '');
 
+$firstName = '';
+
+if ($displayName !== '') {
+    $nameParts = preg_split('/\s+/', $displayName);
+    $firstName = $nameParts[0] ?? '';
+}
+
 $initial = strtoupper(substr($firstName ?: $email ?: 'U', 0, 1));
+
 ?>
 
 <div class="nav-item dropdown account-nav-item">

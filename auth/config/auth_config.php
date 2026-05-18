@@ -21,7 +21,7 @@ return [
 
     'app_name' => 'Scroll News',
 
-    'base_url' => 'http://localhost:8000',
+    'base_url' => 'http://localhost:3000',
 
     'auth_email_from' => 'Scroll News <noreply@scrollnews.ai>',
 
@@ -38,7 +38,7 @@ return [
 
     'logout_path' => '/auth/handlers/logout_handler.php',
 
-    'dashboard_path' => '/auth/',
+    'dashboard_path' => '/account/',
 
     'forgot_password_path' => '/auth/forgot-password.php',
 

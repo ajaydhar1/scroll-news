@@ -12,6 +12,12 @@ $errorMessages = [
 
 $errorKey = $_GET['error'] ?? null;
 $errorMessage = $errorMessages[$errorKey] ?? null;
+
+$name = $_SESSION['old']['display_name'] ?? '';
+$email = $_SESSION['old']['email'] ?? '';
+
+unset($_SESSION['old']);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -142,6 +148,7 @@ $errorMessage = $errorMessages[$errorKey] ?? null;
                                 class="form-control"
                                 id="name"
                                 name="display_name"
+                                value="<?= htmlspecialchars($name ?? '', ENT_QUOTES, 'UTF-8') ?>"
                                 autocomplete="name"
                                 required>
                         </div>
@@ -154,6 +161,7 @@ $errorMessage = $errorMessages[$errorKey] ?? null;
                                 class="form-control"
                                 id="email"
                                 name="email"
+                                value="<?= htmlspecialchars($email ?? '', ENT_QUOTES, 'UTF-8') ?>"
                                 autocomplete="email"
                                 required>
                         </div>

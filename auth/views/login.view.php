@@ -35,6 +35,11 @@ $successMessage = $successMessages[$successKey] ?? null;
 $errorKey = $_GET['error'] ?? null;
 $errorMessage = $errorMessages[$errorKey] ?? null;
 
+$email = $_SESSION['old']['email'] ?? '';
+$rememberMe = $_SESSION['old']['remember_me'] ?? false;
+
+unset($_SESSION['old']);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -136,7 +141,13 @@ $errorMessage = $errorMessages[$errorKey] ?? null;
                     <form method="post" action="/auth/handlers/login_handler.php">
                         <div class="form-group">
                             <label for="email">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                name="email"
+                                value="<?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8') ?>"
+                                required>
                         </div>
 
                         <div class="form-group">
@@ -146,7 +157,13 @@ $errorMessage = $errorMessages[$errorKey] ?? null;
 
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="remember" name="remember_me">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="remember"
+                                    name="remember_me"
+                                    value="1"
+                                    <?= $rememberMe ? 'checked' : '' ?>>
                                 <label class="form-check-label" for="remember">
                                     Keep me signed in
                                 </label>

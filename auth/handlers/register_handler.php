@@ -4,6 +4,8 @@ require_once __DIR__ . '/../includes/auth_db.php';
 
 $config = require __DIR__ . '/../config/auth_config.php';
 
+session_start();
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: ' . $config['register_path']);
     exit;
@@ -13,6 +15,11 @@ $email = trim($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
 $passwordConfirm = $_POST['password_confirm'] ?? '';
 $displayName = trim($_POST['display_name'] ?? '');
+
+$_SESSION['old'] = [
+    'display_name' => $displayName,
+    'email' => $email,
+];
 
 $email = strtolower($email);
 
@@ -72,7 +79,7 @@ try {
         ':email' => $email,
         ':password_hash' => $passwordHash,
         ':display_name' => $displayName !== '' ? $displayName : null,
-        ':email_verified' => false,
+        ':email_verified' => 0,
     ]);
 
     $userId = $stmt->fetchColumn();

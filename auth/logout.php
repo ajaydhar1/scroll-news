@@ -81,5 +81,5 @@ session_destroy();
 |--------------------------------------------------------------------------
 */
 
-header('Location: /auth/login?logged_out=1');
+header('Location: /auth/login.php?logged_out=1');
 exit;
