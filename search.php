@@ -98,6 +98,7 @@ if (!$pdo) {
         <meta name="author" content="Scroll News" />
         <title>Search – Scroll News</title>
 
+        <meta name="robots" content="noindex,follow">
         <!-- Favicon-->
         <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
         <link rel="canonical" href="https://scrollnews.ai/search">
