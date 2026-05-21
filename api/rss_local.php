@@ -115,6 +115,7 @@ $sql = "
     AND url IS NOT NULL
     AND pub_date IS NOT NULL
     AND LOWER(source_slug) = LOWER(:category)
+    AND deleted_at IS NULL
   ORDER BY pub_date DESC
   LIMIT {$LIMIT}
 ";

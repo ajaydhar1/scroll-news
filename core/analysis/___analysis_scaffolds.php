@@ -65,6 +65,7 @@ base_articles AS (
     AND a.source_slug = b.val
     AND (b.require_status_ok = 0 OR a.status = 'ok')
     AND (b.require_nlp_ok = 0 OR a.nlp IS NOT NULL)
+    AND a.deleted_at IS NULL
 ),
 domainized AS (
   SELECT
@@ -186,6 +187,7 @@ base_articles AS (
     ) = b.val
     AND (b.require_status_ok = 0 OR a.status = 'ok')
     AND (b.require_nlp_ok = 0 OR a.nlp IS NOT NULL)
+    AND a.deleted_at IS NULL
 ),
 domainized AS (
   SELECT
@@ -304,6 +306,7 @@ base_articles AS (
       OR (a.nlp IS NOT NULL)
     )
     AND a.nlp IS NOT NULL
+    AND a.deleted_at IS NULL
 ),
 domainized AS (
   SELECT
@@ -424,6 +427,7 @@ base_articles AS (
       OR (a.nlp IS NOT NULL)
     )
     AND a.nlp IS NOT NULL
+    AND a.deleted_at IS NULL
     AND jsonb_typeof(a.nlp::jsonb->'topics') = 'object'
     AND jsonb_exists(a.nlp::jsonb->'topics', b.val)
 ),
@@ -543,6 +547,7 @@ base_articles AS (
       OR (a.nlp IS NOT NULL)
     )
     AND a.nlp IS NOT NULL
+    AND a.deleted_at IS NULL
     AND jsonb_typeof(a.nlp::jsonb->'entities') = 'array'
     AND EXISTS (
       SELECT 1

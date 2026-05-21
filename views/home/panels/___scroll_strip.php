@@ -27,6 +27,7 @@ try {
             AND nlp IS NOT NULL
             AND jsonb_typeof(nlp->'entities') = 'array'
             AND jsonb_array_length(nlp->'entities') > 0
+            AND deleted_at IS NULL
         ORDER BY pub_date DESC
         LIMIT 12
     ";

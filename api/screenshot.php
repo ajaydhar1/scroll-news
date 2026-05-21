@@ -26,7 +26,7 @@ if (!$pdo) {
 $sql = "
     SELECT screenshot_bytes
     FROM articles
-    WHERE id = :id AND screenshot_bytes IS NOT NULL
+    WHERE id = :id AND screenshot_bytes IS NOT NULL AND deleted_at IS NULL
     LIMIT 1
 ";
 

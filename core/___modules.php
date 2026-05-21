@@ -14,7 +14,8 @@ $filter_out = array("usatoday", "independent.co.uk", "nytimes", "9to5google", "t
 
 $rss_feeds = array("Politics" => "/rss.php?category=Politics", "Business" => "/rss.php?category=Business", "Technology" => "/rss.php?category=Technology", "Sports" => "/rss.php?category=Sports", "Health" => "/rss.php?category=Health", "Science" => "/rss.php?category=Science", "Entertainment" => "/rss.php?category=Entertainment");
 
-function getPdo(): PDO {
+function getPdo(): PDO
+{
     static $pdo = null;
     if ($pdo) return $pdo;
 
@@ -44,11 +45,13 @@ function getPdo(): PDO {
 }
 
 // Tiny JSON logger
-function logj(string $msg, array $ctx = []): void {
+function logj(string $msg, array $ctx = []): void
+{
     error_log($msg . ' ' . json_encode($ctx, JSON_UNESCAPED_SLASHES));
 }
 
-function getPdoOrExplain(): ?PDO {
+function getPdoOrExplain(): ?PDO
+{
     // Make sure errors go to logs
     /*
     error_reporting(E_ALL);
@@ -79,7 +82,7 @@ function getPdoOrExplain(): ?PDO {
         $db   = isset($p['path']) ? ltrim($p['path'], '/') : '';
 
         // Internal Render DB hosts (e.g., *.internal) typically don't need SSL.
-        $isInternal = preg_match('/\.internal$/', $host) || in_array($host, ['localhost','127.0.0.1'], true);
+        $isInternal = preg_match('/\.internal$/', $host) || in_array($host, ['localhost', '127.0.0.1'], true);
         $sslmode = $isInternal ? 'prefer' : 'require';
 
         $dsn = "pgsql:host={$host};port={$port};dbname={$db};sslmode={$sslmode}";
@@ -104,180 +107,189 @@ function getPdoOrExplain(): ?PDO {
     }
 }
 
-function search_google_knowledge($query) {
-  $api_key = 'AIzaSyBhQWmKz8I-IRm3lKiQcHK9NANFgnbfAf0';
-  $service_url = 'https://kgsearch.googleapis.com/v1/entities:search';
-  $params = array(
-    'query' => $query,
-    'limit' => 1,
-    'indent' => TRUE,
-    'key' => $api_key);
-  $url = $service_url . '?' . http_build_query($params);
-  $ch = curl_init();
-  curl_setopt($ch, CURLOPT_URL, $url);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-  $response = json_decode(curl_exec($ch), true);
-  curl_close($ch);
-  //foreach($response['itemListElement'] as $element) {
-  //  echo $element['result']['name'] . '<br/>';
-  //}
-  return $response;
+function search_google_knowledge($query)
+{
+    $api_key = 'AIzaSyBhQWmKz8I-IRm3lKiQcHK9NANFgnbfAf0';
+    $service_url = 'https://kgsearch.googleapis.com/v1/entities:search';
+    $params = array(
+        'query' => $query,
+        'limit' => 1,
+        'indent' => TRUE,
+        'key' => $api_key
+    );
+    $url = $service_url . '?' . http_build_query($params);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $response = json_decode(curl_exec($ch), true);
+    curl_close($ch);
+    //foreach($response['itemListElement'] as $element) {
+    //  echo $element['result']['name'] . '<br/>';
+    //}
+    return $response;
 }
 
-function http_get($url) {
-  $ch = curl_init($url);
-  curl_setopt_array($ch, [
-    CURLOPT_SSL_VERIFYHOST => 0,
-    CURLOPT_SSL_VERIFYPEER => 0,
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_MAXREDIRS      => 10,
-    CURLOPT_CONNECTTIMEOUT => 10,
-    CURLOPT_TIMEOUT        => 20,
-    CURLOPT_ENCODING       => '', // auto-decode gzip/deflate
-    CURLOPT_USERAGENT      => 'ScrollNewsBot/1.0 (+https://scrollnews.ai/contact)',
-    CURLOPT_HTTPHEADER     => [
-      'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-      'Accept-Language: en-US,en;q=0.9',
-    ],
-    // CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4, // uncomment if IPv6 issues
-  ]);
+function http_get($url)
+{
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+        CURLOPT_SSL_VERIFYHOST => 0,
+        CURLOPT_SSL_VERIFYPEER => 0,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_MAXREDIRS      => 10,
+        CURLOPT_CONNECTTIMEOUT => 10,
+        CURLOPT_TIMEOUT        => 20,
+        CURLOPT_ENCODING       => '', // auto-decode gzip/deflate
+        CURLOPT_USERAGENT      => 'ScrollNewsBot/1.0 (+https://scrollnews.ai/contact)',
+        CURLOPT_HTTPHEADER     => [
+            'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language: en-US,en;q=0.9',
+        ],
+        // CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4, // uncomment if IPv6 issues
+    ]);
 
-  $body   = curl_exec($ch);
-  $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-  $err    = curl_error($ch);
-  curl_close($ch);
-  return [$status, $body, $err];
+    $body   = curl_exec($ch);
+    $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $err    = curl_error($ch);
+    curl_close($ch);
+    return [$status, $body, $err];
 }
 
-function azeo_wiki_results_2($keyword) {
-  // WIKIPEDIA SEARCH API
+function azeo_wiki_results_2($keyword)
+{
+    // WIKIPEDIA SEARCH API
 
-  $url='https://en.wikipedia.org/w/api.php?action=opensearch&limit=1&format=json&search='.urlencode($keyword); 
+    $url = 'https://en.wikipedia.org/w/api.php?action=opensearch&limit=1&format=json&search=' . urlencode($keyword);
 
-  //print_r($url);
+    //print_r($url);
 
-  $arr=azeo_getData($url); 
+    $arr = azeo_getData($url);
 
-  $return_result = [];
+    $return_result = [];
 
-  //print_r("Before array print");
-  //print_r($arr);
-  //print_r("After array print");
-  //exit;
+    //print_r("Before array print");
+    //print_r($arr);
+    //print_r("After array print");
+    //exit;
 
-  if (is_array($arr) && count($arr[3]) > 0) {
-    $return_result['title'] = $arr[1][0];
-    $return_result['url'] = $arr[3][0];
-  }
-
-  return $return_result;
-
-}
-
-function fix_image_if_broken($url) {
-  $img = $url;
-  if (strpos($url, 's.yimg.com') !== false) {
-    if (strpos($url, 'US_AFTP_GlobeNewsWire') !== false) {
-        $img = 'https://thenewshook.com/img/yahoo-placeholder.png';
+    if (is_array($arr) && count($arr[3]) > 0) {
+        $return_result['title'] = $arr[1][0];
+        $return_result['url'] = $arr[3][0];
     }
-  }
-  return $img;
+
+    return $return_result;
 }
 
-function xml_attribute($object, $attribute) {
-  if(isset($object[$attribute]))
-    return (string) $object[$attribute];
-}
-
-function strip_tags_content($text, $tags = '', $invert = FALSE) { 
-
-  preg_match_all('/<(.+?)[\s]*\/?[\s]*>/si', trim($tags), $tags); 
-  $tags = array_unique($tags[1]); 
-  
-  if(is_array($tags) AND count($tags) > 0) { 
-    if($invert == FALSE) { 
-      return preg_replace('@<(?!(?:'. implode('|', $tags) .')\b)(\w+)\b.*?>.*?</\1>@si', '', $text); 
-    } 
-    else { 
-      return preg_replace('@<('. implode('|', $tags) .')\b.*?>.*?</\1>@si', '', $text); 
-    } 
-  } 
-  elseif($invert == FALSE) { 
-    return preg_replace('@<(\w+)\b.*?>.*?</\1>@si', '', $text); 
-  } 
-  return $text; 
-} 
-
-function time_elapsed_string($ptime) {
-  $etime = time() - $ptime;
-
-  if ($etime < 1) {
-    return '0 seconds';
-  }
-
-  $a = array( 365 * 24 * 60 * 60  =>  'year',
-               30 * 24 * 60 * 60  =>  'month',
-                    24 * 60 * 60  =>  'day',
-                         60 * 60  =>  'hour',
-                              60  =>  'minute',
-                               1  =>  'second'
-              );
-  
-  $a_plural = array( 'year'   => 'years',
-                     'month'  => 'months',
-                     'day'    => 'days',
-                     'hour'   => 'hours',
-                     'minute' => 'minutes',
-                     'second' => 'seconds'
-              );
-
-  foreach ($a as $secs => $str) {
-    $d = $etime / $secs;
-    if ($d >= 1) {
-      $r = round($d);
-      return $r . ' ' . ($r > 1 ? $a_plural[$str] : $str) . ' ago';
+function fix_image_if_broken($url)
+{
+    $img = $url;
+    if (strpos($url, 's.yimg.com') !== false) {
+        if (strpos($url, 'US_AFTP_GlobeNewsWire') !== false) {
+            $img = 'https://thenewshook.com/img/yahoo-placeholder.png';
+        }
     }
-  }
+    return $img;
+}
+
+function xml_attribute($object, $attribute)
+{
+    if (isset($object[$attribute]))
+        return (string) $object[$attribute];
+}
+
+function strip_tags_content($text, $tags = '', $invert = FALSE)
+{
+
+    preg_match_all('/<(.+?)[\s]*\/?[\s]*>/si', trim($tags), $tags);
+    $tags = array_unique($tags[1]);
+
+    if (is_array($tags) and count($tags) > 0) {
+        if ($invert == FALSE) {
+            return preg_replace('@<(?!(?:' . implode('|', $tags) . ')\b)(\w+)\b.*?>.*?</\1>@si', '', $text);
+        } else {
+            return preg_replace('@<(' . implode('|', $tags) . ')\b.*?>.*?</\1>@si', '', $text);
+        }
+    } elseif ($invert == FALSE) {
+        return preg_replace('@<(\w+)\b.*?>.*?</\1>@si', '', $text);
+    }
+    return $text;
+}
+
+function time_elapsed_string($ptime)
+{
+    $etime = time() - $ptime;
+
+    if ($etime < 1) {
+        return '0 seconds';
+    }
+
+    $a = array(
+        365 * 24 * 60 * 60  =>  'year',
+        30 * 24 * 60 * 60  =>  'month',
+        24 * 60 * 60  =>  'day',
+        60 * 60  =>  'hour',
+        60  =>  'minute',
+        1  =>  'second'
+    );
+
+    $a_plural = array(
+        'year'   => 'years',
+        'month'  => 'months',
+        'day'    => 'days',
+        'hour'   => 'hours',
+        'minute' => 'minutes',
+        'second' => 'seconds'
+    );
+
+    foreach ($a as $secs => $str) {
+        $d = $etime / $secs;
+        if ($d >= 1) {
+            $r = round($d);
+            return $r . ' ' . ($r > 1 ? $a_plural[$str] : $str) . ' ago';
+        }
+    }
 }
 
 /**
  * Format a Unix timestamp (sec or ms) for newsroom display.
  */
-function format_news_date($rawTs, $tzId = 'America/New_York') {
-  // Strip non-digits just in case and normalize ms→s
-  $digits = preg_replace('/\D/', '', (string)$rawTs);
-  if ($digits === '') return '';
-  $ts = (int)$digits;
-  if ($ts > 1000000000000) { // looks like ms
-    $ts = (int)round($ts / 1000);
-  }
+function format_news_date($rawTs, $tzId = 'America/New_York')
+{
+    // Strip non-digits just in case and normalize ms→s
+    $digits = preg_replace('/\D/', '', (string)$rawTs);
+    if ($digits === '') return '';
+    $ts = (int)$digits;
+    if ($ts > 1000000000000) { // looks like ms
+        $ts = (int)round($ts / 1000);
+    }
 
-  try {
-    $tz = new DateTimeZone($tzId);
-    $dt = (new DateTimeImmutable('@' . $ts))->setTimezone($tz);
+    try {
+        $tz = new DateTimeZone($tzId);
+        $dt = (new DateTimeImmutable('@' . $ts))->setTimezone($tz);
 
-    // Same-year compact vs cross-year full
-    $now = new DateTimeImmutable('now', $tz);
-    $fmt = ($dt->format('Y') === $now->format('Y'))
-      ? 'M j • g:i A T'      // e.g., "Nov 2 • 1:03 AM ET"
-      : 'M j, Y • g:i A T';  // e.g., "Dec 28, 2024 • 9:10 PM ET"
+        // Same-year compact vs cross-year full
+        $now = new DateTimeImmutable('now', $tz);
+        $fmt = ($dt->format('Y') === $now->format('Y'))
+            ? 'M j • g:i A T'      // e.g., "Nov 2 • 1:03 AM ET"
+            : 'M j, Y • g:i A T';  // e.g., "Dec 28, 2024 • 9:10 PM ET"
 
-    return $dt->format($fmt);
-  } catch (Throwable $e) {
-    return ''; // fail quietly
-  }
+        return $dt->format($fmt);
+    } catch (Throwable $e) {
+        return ''; // fail quietly
+    }
 }
 
 
-function azeo_getData($url) {
+function azeo_getData($url)
+{
 
     //print_r("before url");
     //print_r($url);
     //print_r("after url");
 
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL,$url);
+    curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
@@ -291,217 +303,226 @@ function azeo_getData($url) {
     //print_r($data);
     //print_r("after data");
 
-    curl_close ($ch);
-    $json=json_decode($data, true); 
-    return $json;
-
-}
-
-function azeo_getData_second($url) {
-
-    $arrContextOptions=array(
-        "ssl"=>array(
-            "verify_peer"=>false,
-            "verify_peer_name"=>false,
-            ),
-        );  
-
-    $data=file_get_contents($url, false, stream_context_create($arrContextOptions));
-    $json=json_decode($data, true); 
+    curl_close($ch);
+    $json = json_decode($data, true);
     return $json;
 }
 
-function azeo_getData_original($url) {
-	
-  $data=file_get_contents($url);
+function azeo_getData_second($url)
+{
 
-  //echo $data;
+    $arrContextOptions = array(
+        "ssl" => array(
+            "verify_peer" => false,
+            "verify_peer_name" => false,
+        ),
+    );
 
-  $json=json_decode($data, true);	
-	
-	return $json;
+    $data = file_get_contents($url, false, stream_context_create($arrContextOptions));
+    $json = json_decode($data, true);
+    return $json;
 }
 
-function azeo_postData($url, $params) {
+function azeo_getData_original($url)
+{
 
-  //$data=file_get_contents($url);
+    $data = file_get_contents($url);
 
-  $ch = curl_init();
+    //echo $data;
 
-  curl_setopt($ch, CURLOPT_URL,$url);
-  curl_setopt($ch, CURLOPT_POST, 1);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+    $json = json_decode($data, true);
 
-  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-  // In real life you should use something like:
-  // curl_setopt($ch, CURLOPT_POSTFIELDS, 
-  //          http_build_query(array('postvar1' => 'value1')));
-
-  // Receive server response ...
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-  $data = curl_exec($ch);
-
-  curl_close ($ch);
-
-  //echo $data;
-
-  $json=json_decode($data, true);	
-	
-	return $json;
+    return $json;
 }
 
-function azeo_limit_text($text, $limit) {
-  if (str_word_count($text, 0) > $limit) {
-    $words = str_word_count($text, 2);
-    $pos = array_keys($words);
-    $text = substr($text, 0, $pos[$limit]) . '...';
-  }
-  return $text;
-}
-    
-function azeo_alt_text($text) {
-  $limit = 3;
-  if (str_word_count($text, 0) > $limit) {
-    $words = str_word_count($text, 2);
-    $pos = array_keys($words);
-    $text = substr($text, 0, $pos[$limit]);
-  }
-  return trim($text);
-}
+function azeo_postData($url, $params)
+{
 
-function azeo_alt_text2($imgUrl) {
-  $imgUrl = urldecode($imgUrl);
-  $arr = preg_split("#/#", $imgUrl);
-  $imgName = end($arr);
-  $name = preg_replace('/\.[^.\s]{3,4}$/', '', $imgName);
-  $text = str_replace("-", " ", $name);
-  $text = str_replace("_", " ", $text);
-  $text = str_replace(".", " ", $text);
+    //$data=file_get_contents($url);
 
-  return trim($text);
-}
+    $ch = curl_init();
 
-function azeo_results($url2) {
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
 
-  $url='http://52.9.160.250/api/v/url-extraction'; 
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-  $arr=azeo_postData($url, 'url='.$url2); 
-  return $arr;
-    
+    // In real life you should use something like:
+    // curl_setopt($ch, CURLOPT_POSTFIELDS, 
+    //          http_build_query(array('postvar1' => 'value1')));
+
+    // Receive server response ...
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $data = curl_exec($ch);
+
+    curl_close($ch);
+
+    //echo $data;
+
+    $json = json_decode($data, true);
+
+    return $json;
 }
 
-function azeo_site_results($url2) {
-
-  //$url='http://52.9.160.250/api/v/url-extraction-any-site'; 
-
-  $url='https://news-nlp-api-08865bb82971.herokuapp.com/analyze_article';
-
-  $arr=azeo_getData($url . '?url='.$url2); 
-  return $arr;
-    
-}
-
-function azeo_toolkit_results($text) {
-    
-  $url='http://52.9.160.250/api/v/document-extraction'; 
-
-  $arr=azeo_postData($url, 'text='.urlencode($text)); 
-  return $arr;
-    
-}
-
-function azeo_text_results($text) {
-    
-  $url='https://news-nlp-api-08865bb82971.herokuapp.com/analyze_text'; 
-
-  $arr=azeo_postData($url, 'text='.urlencode($text)); 
-  return $arr;
-    
-}
-
-
-
-function azeo_create_link($url, $image, $pub, $des, $title, $pubDate) {
-    
-  $final='results.php?q='.base64_encode($url).'&image='.base64_encode($image).'&pub='.$pub.'&des='.urlencode($des).'&title='.urlencode($title).'&pubDate='.$pubDate;         
-  $final = str_replace("\"","%22",$final);
-  $final = str_replace("'","%27",$final);
-  return $final;
-    
-}
-
-function azeo_title($str) {
-  $str=str_replace('-',' ',$str);
-  $str=ucwords($str);
-    
-  return $str;    
-}
-
-function azeo_parallel_exec($arr) {
-
-  $ch=array();
-
-  for($i=0;$i<count($arr);$i++) {
-
-    //azeo L1
-
-    $ch[$i] = curl_init($arr[$i]);
-    curl_setopt($ch[$i], CURLOPT_RETURNTRANSFER, true);
-  }
-
-  // build the multi-curl handle, adding both $ch
-  $mh = curl_multi_init();
-
-  for($i=0;$i<count($arr);$i++) {
-    // azeo L3
-    curl_multi_add_handle($mh, $ch[$i]);
-  }
-
-  $running = null;
-  do {
-    curl_multi_exec($mh, $running);
-  } while ($running);
-
-
-  //azeo L4
-  for($i=0;$i<count($arr);$i++) {
-    curl_multi_remove_handle($mh, $ch[$i]);
-  }
-
-  curl_multi_close($mh);
-  
-  // azeo L5
-  for($i=0;$i<count($arr);$i++) {
-    $res[$i] = curl_multi_getcontent($ch[$i]);
-  }
-
-  return $res;
-    
-}
-
-function removeUnescaped($str) {
-  return str_replace('\"', '"', $str);
-}
-
-function get_words($sentence, $count = 7) {
-  //preg_match("/(?:\w+(?:\W+|$)){0,$count}/", $sentence, $matches);
-  //return $matches[0];
-
-  $pieces = explode(" ", $sentence);
-  $first_part = implode(" ", array_splice($pieces, 0, $count));
-  return $first_part;
-}
-
-
-function doesntContainAny($string, array $needles) {
-  foreach ($needles as $needle) {
-    if (strpos($string, $needle) !== FALSE) { // Use strict comparison for accurate results
-      return false; // Found a match, so the string *does* contain a substring
+function azeo_limit_text($text, $limit)
+{
+    if (str_word_count($text, 0) > $limit) {
+        $words = str_word_count($text, 2);
+        $pos = array_keys($words);
+        $text = substr($text, 0, $pos[$limit]) . '...';
     }
-  }
-  return true; // No matches found after checking all substrings
+    return $text;
+}
+
+function azeo_alt_text($text)
+{
+    $limit = 3;
+    if (str_word_count($text, 0) > $limit) {
+        $words = str_word_count($text, 2);
+        $pos = array_keys($words);
+        $text = substr($text, 0, $pos[$limit]);
+    }
+    return trim($text);
+}
+
+function azeo_alt_text2($imgUrl)
+{
+    $imgUrl = urldecode($imgUrl);
+    $arr = preg_split("#/#", $imgUrl);
+    $imgName = end($arr);
+    $name = preg_replace('/\.[^.\s]{3,4}$/', '', $imgName);
+    $text = str_replace("-", " ", $name);
+    $text = str_replace("_", " ", $text);
+    $text = str_replace(".", " ", $text);
+
+    return trim($text);
+}
+
+function azeo_results($url2)
+{
+
+    $url = 'http://52.9.160.250/api/v/url-extraction';
+
+    $arr = azeo_postData($url, 'url=' . $url2);
+    return $arr;
+}
+
+function azeo_site_results($url2)
+{
+
+    //$url='http://52.9.160.250/api/v/url-extraction-any-site'; 
+
+    $url = 'https://news-nlp-api-08865bb82971.herokuapp.com/analyze_article';
+
+    $arr = azeo_getData($url . '?url=' . $url2);
+    return $arr;
+}
+
+function azeo_toolkit_results($text)
+{
+
+    $url = 'http://52.9.160.250/api/v/document-extraction';
+
+    $arr = azeo_postData($url, 'text=' . urlencode($text));
+    return $arr;
+}
+
+function azeo_text_results($text)
+{
+
+    $url = 'https://news-nlp-api-08865bb82971.herokuapp.com/analyze_text';
+
+    $arr = azeo_postData($url, 'text=' . urlencode($text));
+    return $arr;
+}
+
+
+
+function azeo_create_link($url, $image, $pub, $des, $title, $pubDate)
+{
+
+    $final = 'results.php?q=' . base64_encode($url) . '&image=' . base64_encode($image) . '&pub=' . $pub . '&des=' . urlencode($des) . '&title=' . urlencode($title) . '&pubDate=' . $pubDate;
+    $final = str_replace("\"", "%22", $final);
+    $final = str_replace("'", "%27", $final);
+    return $final;
+}
+
+function azeo_title($str)
+{
+    $str = str_replace('-', ' ', $str);
+    $str = ucwords($str);
+
+    return $str;
+}
+
+function azeo_parallel_exec($arr)
+{
+
+    $ch = array();
+
+    for ($i = 0; $i < count($arr); $i++) {
+
+        //azeo L1
+
+        $ch[$i] = curl_init($arr[$i]);
+        curl_setopt($ch[$i], CURLOPT_RETURNTRANSFER, true);
+    }
+
+    // build the multi-curl handle, adding both $ch
+    $mh = curl_multi_init();
+
+    for ($i = 0; $i < count($arr); $i++) {
+        // azeo L3
+        curl_multi_add_handle($mh, $ch[$i]);
+    }
+
+    $running = null;
+    do {
+        curl_multi_exec($mh, $running);
+    } while ($running);
+
+
+    //azeo L4
+    for ($i = 0; $i < count($arr); $i++) {
+        curl_multi_remove_handle($mh, $ch[$i]);
+    }
+
+    curl_multi_close($mh);
+
+    // azeo L5
+    for ($i = 0; $i < count($arr); $i++) {
+        $res[$i] = curl_multi_getcontent($ch[$i]);
+    }
+
+    return $res;
+}
+
+function removeUnescaped($str)
+{
+    return str_replace('\"', '"', $str);
+}
+
+function get_words($sentence, $count = 7)
+{
+    //preg_match("/(?:\w+(?:\W+|$)){0,$count}/", $sentence, $matches);
+    //return $matches[0];
+
+    $pieces = explode(" ", $sentence);
+    $first_part = implode(" ", array_splice($pieces, 0, $count));
+    return $first_part;
+}
+
+
+function doesntContainAny($string, array $needles)
+{
+    foreach ($needles as $needle) {
+        if (strpos($string, $needle) !== FALSE) { // Use strict comparison for accurate results
+            return false; // Found a match, so the string *does* contain a substring
+        }
+    }
+    return true; // No matches found after checking all substrings
 }
 
 /**
@@ -670,33 +691,35 @@ function toEpoch($value, string $assumeTz = 'UTC'): ?int
 }
 
 
-function getRandomArticle_fromRSS() {
+function getRandomArticle_fromRSS()
+{
 
-  global $filter_out;
-  global $rss_feeds;
+    global $filter_out;
+    global $rss_feeds;
 
-  $articles = [];
+    $articles = [];
 
-  $key = array_rand($rss_feeds);
-  $value = $rss_feeds[$key];
+    $key = array_rand($rss_feeds);
+    $value = $rss_feeds[$key];
 
-  $rss_url = $value;
+    $rss_url = $value;
 
-  $rss = Feed::loadRss($rss_url);
+    $rss = Feed::loadRss($rss_url);
 
-  foreach ($rss->item as $item) {
-      if (doesntContainAny($item->link->__toString(), $filter_out)) {
-          array_push($articles, array('article_link' => $item->link->__toString(), 'publish_date' => toEpoch(toIsoZ($item->pubDate->__toString())))); 
-      }
-  }
+    foreach ($rss->item as $item) {
+        if (doesntContainAny($item->link->__toString(), $filter_out)) {
+            array_push($articles, array('article_link' => $item->link->__toString(), 'publish_date' => toEpoch(toIsoZ($item->pubDate->__toString()))));
+        }
+    }
 
-  $random_article = $articles[array_rand($articles)];
+    $random_article = $articles[array_rand($articles)];
 
-  return ['category' => $key, 'link' => $random_article['article_link'], 'pub_date' => $random_article['publish_date'], 'source' => 'rss'];
+    return ['category' => $key, 'link' => $random_article['article_link'], 'pub_date' => $random_article['publish_date'], 'source' => 'rss'];
 }
 
 // Helper: build "url NOT ILIKE :f0 AND url NOT ILIKE :f1 ..." + params
-function buildNotILikeNamed(array $needles, string $col = 'url'): array {
+function buildNotILikeNamed(array $needles, string $col = 'url'): array
+{
     if (empty($needles)) return ['', []];
     $parts  = [];
     $params = [];
@@ -710,7 +733,8 @@ function buildNotILikeNamed(array $needles, string $col = 'url'): array {
 
 // Obtain PDO the same way you already do.
 // If you have getPdoOrExplain(), this will use it; otherwise falls back to getPdo().
-function _pdo_or_null(): ?PDO {
+function _pdo_or_null(): ?PDO
+{
     // 1) get a PDO from whichever factory exists
     $pdo = null;
 
@@ -768,177 +792,14 @@ function _pdo_or_null(): ?PDO {
     return null;
 }
 
-function getRandomArticle_fromDB_byRandom() {
-
-    global $filter_out;
-
-    $pdo = getPdoOrExplain();
-    if (!$pdo) {
-        logj('DB guard: falling back to RSS (no PDO)');
-        return getRandomArticle_fromRSS();
-    }
-
-    // Build the filter params once
-    $filters = array_map(fn($s) => '%' . $s . '%', $filter_out);
-
-    // Only add the clause if there are filters
-    $notLikeClause = '';
-    if (!empty($filters)) {
-        $placeholders = implode(',', array_fill(0, count($filters), '?'));
-        $notLikeClause = " AND NOT (url ILIKE ANY(ARRAY[$placeholders]))";
-    }
-
-    $sql = "
-      SELECT id, url, nlp, screenshot_bytes
-      FROM articles
-      WHERE nlp IS NOT NULL
-        AND ( (nlp::jsonb) ? 'entities'
-              AND jsonb_typeof((nlp::jsonb)->'entities') = 'array'
-              AND jsonb_array_length((nlp::jsonb)->'entities') > 0 )
-        AND COALESCE(octet_length(screenshot_bytes),0) > 0
-      $notLikeClause
-      ORDER BY RANDOM()
-      LIMIT 1
-    ";
-
-    try {
-        // IMPORTANT: prepare + execute WITH params
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute($filters); // <— this must match the number of ? in ARRAY[...]
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$row || empty($row['url'])) {
-            // Nothing ready in cache; return a safe fallback shape.
-            return ['category' => 'db', 'link' => null];
-        }
-
-        // Optional: keep the full row in case your caller wants it later.
-        // Return shape remains backward-compatible.
-        return [
-            'category' => 'db',          // previously was RSS category; now mark as DB
-            'link'     => $row['url'],   // the URL your app will open
-            'article'  => $row           // (optional) full record for advanced use
-        ];
-    } catch (Throwable $e) {
-        error_log("getRandomArticle DB error: " . $e->getMessage());
-        return ['category' => 'db', 'link' => null];
-    }
-}
-
-// ID-range sampler version
-function getRandomArticle_fromDB_withoutRecent(bool $requireEntities = true): array {
-    global $filter_out;                    // use your existing array
-    $pdo = _pdo_or_null();
-    if (!$pdo) {
-        // No driver / no DATABASE_URL — keep your existing fallback
-        return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
-                                                          : ['category' => 'db', 'link' => null];
-    }
-
-    // Add near the top of the function:
-    $entitiesClause = '';
-    if ($requireEntities) {
-      // Requires: ..."entities": [ <something not just ] >
-      $entitiesClause = " AND (nlp::text) NOT LIKE '%\"entities\": []%' AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"X-Forbidden\", \"count\": 1, \"label\": \"ORG\"}]%' AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"JavaScript\", \"count\": 1, \"label\": \"PRODUCT\"}]%' AND (nlp::text) NOT LIKE '%\"emotional_reaction\": {}%'";
-    }
-
-    // Base ready predicate (no JSON casts)
-    $ready = "nlp IS NOT NULL AND COALESCE(octet_length(screenshot_bytes),0) > 0";
-
-    // Filters: NOT ILIKE any of $filter_out
-    [$notLikeSql, $notLikeParams] = buildNotILikeNamed(is_array($filter_out) ? $filter_out : []);
-
-    // ---- 1) Get bounds over READY rows (helps the sampler jump into the range)
-    $sqlBounds = "
-        SELECT MIN(id) AS min_id, MAX(id) AS max_id
-        FROM articles
-        WHERE $ready $entitiesClause " . ($notLikeSql ? " AND $notLikeSql" : "");
-    $stmt = $pdo->prepare($sqlBounds);
-    $stmt->execute($notLikeParams);
-    $b = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    $minId = (int)($b['min_id'] ?? 0);
-    $maxId = (int)($b['max_id'] ?? 0);
-    if ($minId === 0 || $maxId === 0) {
-        // No ready rows in DB — fall back
-        return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
-                                                          : ['category' => 'db', 'link' => null];
-    }
-
-    // ---- 2) Fast ID-range picks (forward + wrap), a few attempts
-    $pickFwdSql = "
-        SELECT id, url
-        FROM articles
-        WHERE id >= :cand AND $ready $entitiesClause " . ($notLikeSql ? " AND $notLikeSql" : "") . "
-        ORDER BY id ASC
-        LIMIT 1";
-    $pickWrapSql = "
-        SELECT id, url
-        FROM articles
-        WHERE id < :cand AND $ready $entitiesClause " . ($notLikeSql ? " AND $notLikeSql" : "") . "
-        ORDER BY id ASC
-        LIMIT 1";
-
-    $pickFwd  = $pdo->prepare($pickFwdSql);
-    $pickWrap = $pdo->prepare($pickWrapSql);
-
-    for ($i = 0; $i < 8; $i++) {
-        $cand = ($maxId > $minId) ? random_int($minId, $maxId) : $minId;
-
-        // Forward from candidate
-        $params = array_merge([':cand' => $cand], $notLikeParams);
-        $pickFwd->execute($params);
-        $row = $pickFwd->fetch(PDO::FETCH_ASSOC);
-        if ($row && !empty($row['url'])) {
-            return [
-                'category'   => 'db',
-                'link'       => $row['url'],
-                'article_id' => (int)$row['id']
-            ];
-        }
-
-        // Wrap-around to beginning of range
-        $pickWrap->execute($params);
-        $row = $pickWrap->fetch(PDO::FETCH_ASSOC);
-        if ($row && !empty($row['url'])) {
-            return [
-                'category'   => 'db',
-                'link'       => $row['url'],
-                'article_id' => (int)$row['id']
-            ];
-        }
-    }
-
-    // ---- 3) Last-resort: RANDOM() over READY set (still respects filters)
-    $sqlFallback = "
-        SELECT id, url, title
-        FROM articles
-        WHERE $ready $entitiesClause " . ($notLikeSql ? " AND $notLikeSql" : "") . "
-        ORDER BY RANDOM()
-        LIMIT 1";
-    $stmt = $pdo->prepare($sqlFallback);
-    $stmt->execute($notLikeParams);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($row && !empty($row['url'])) {
-        return [
-            'category'   => 'db',
-            'link'       => $row['url'],
-            'article_id' => (int)$row['id']
-        ];
-    }
-
-    // Nothing matched — fall back
-    return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
-                                                      : ['category' => 'db', 'link' => null];
-}
-
 // ID-range sampler version, with "recent only" window
-function getRandomArticle_fromDB(bool $requireEntities = true, int $days = 35): array {
+function getRandomArticle_fromDB(bool $requireEntities = true, int $days = 35): array
+{
     global $filter_out;
     $pdo = _pdo_or_null();
     if (!$pdo) {
         return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
-                                                          : ['category' => 'db', 'link' => null, 'pub_date' => null];
+            : ['category' => 'db', 'link' => null, 'pub_date' => null];
     }
 
     // ---- Helper: figure out which timestamp column we can use
@@ -973,15 +834,15 @@ function getRandomArticle_fromDB(bool $requireEntities = true, int $days = 35): 
     // Entities filter (string-based, keeps you clear of JSONB regex issues)
     $entitiesClause = '';
     if ($requireEntities) {
-      $entitiesClause =
-        " AND (nlp::text) NOT LIKE '%\"entities\": []%'".
-        " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"X-Forbidden\", \"count\": 1, \"label\": \"ORG\"}]%'".
-        " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"JavaScript\", \"count\": 1, \"label\": \"PRODUCT\"}]%'".
-        " AND (nlp::text) NOT LIKE '%\"emotional_reaction\": {}%'";
+        $entitiesClause =
+            " AND (nlp::text) NOT LIKE '%\"entities\": []%'" .
+            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"X-Forbidden\", \"count\": 1, \"label\": \"ORG\"}]%'" .
+            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"JavaScript\", \"count\": 1, \"label\": \"PRODUCT\"}]%'" .
+            " AND (nlp::text) NOT LIKE '%\"emotional_reaction\": {}%'";
     }
 
     // Ready predicate
-    $ready = "nlp IS NOT NULL AND COALESCE(octet_length(screenshot_bytes),0) > 0";
+    $ready = "nlp IS NOT NULL AND deleted_at IS NULL AND COALESCE(octet_length(screenshot_bytes),0) > 0";
 
     // Filters: NOT ILIKE any of $filter_out
     [$notLikeSql, $notLikeParams] = buildNotILikeNamed(is_array($filter_out) ? $filter_out : []);
@@ -991,7 +852,7 @@ function getRandomArticle_fromDB(bool $requireEntities = true, int $days = 35): 
     $recentParams = [];
     $windowDays  = $days;
 
-    $buildRecent = function(int $d) use ($tsCol) {
+    $buildRecent = function (int $d) use ($tsCol) {
         if ($tsCol) {
             return [" AND {$tsCol} >= :since_ts", [':since_ts' => (new DateTimeImmutable("now"))->modify("-{$d} days")->format('Y-m-d H:i:s')]];
         }
@@ -1041,7 +902,7 @@ function getRandomArticle_fromDB(bool $requireEntities = true, int $days = 35): 
 
     if ($minId === 0 || $maxId === 0) {
         return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
-                                                          : ['category' => 'db', 'link' => null, 'pub_date' => null];
+            : ['category' => 'db', 'link' => null, 'pub_date' => null];
     }
 
     // ---- 2) Fast ID-range picks constrained by RECENT
@@ -1114,270 +975,8 @@ function getRandomArticle_fromDB(bool $requireEntities = true, int $days = 35): 
 
     // Nothing matched — fall back
     return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
-                                                      : ['category' => 'db', 'link' => null, 'pub_date' => null];
+        : ['category' => 'db', 'link' => null, 'pub_date' => null];
 }
-
-/**
- * Recent-weighted article picker:
- * - Filters to READY + NLP + non-empty screenshot + notLike filters
- * - Restricts to the last $days days using $tsCol
- * - Pulls up to $limit most recent rows
- * - Picks one in PHP with an exponential decay weight so
- *   newest articles are much more likely.
-
-$decay values:
-  0.15 → super aggressive (top 20–40 rows dominate)
-  0.13 → still aggressive, but ~2–3 days start to appear
-  0.12 → noticeably smoother (good mix of last 2–4 days)
-  0.11 → softer bias, pulls from ~5–7 days more often
-  0.10 → gentle slope, pulls from ~7–10 days regularly
-
- */
-function getRecentWeightedArticle_fromDB(
-    bool $requireEntities = true,
-    int $days = 35,
-    int $limit = 500,       // how many recent rows to consider
-    float $decay = 0.12     // higher = stronger bias to the top (baseline: 0.15)
-): array {
-    global $filter_out;
-    $pdo = _pdo_or_null();
-    if (!$pdo) {
-        return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
-            : ['category' => 'db', 'link' => null, 'pub_date' => null];
-    }
-
-    // Timestamp column we trust for recency
-    $tsCol = 'updated_at';
-
-    // Entities filter (same as your other function)
-    $entitiesClause = '';
-    if ($requireEntities) {
-        $entitiesClause =
-            " AND (nlp::text) NOT LIKE '%\"entities\": []%'".
-            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"X-Forbidden\", \"count\": 1, \"label\": \"ORG\"}]%'".
-            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"JavaScript\", \"count\": 1, \"label\": \"PRODUCT\"}]%'".
-            " AND (nlp::text) NOT LIKE '%\"emotional_reaction\": {}%'";
-    }
-
-    // Ready predicate
-    $ready = "nlp IS NOT NULL AND COALESCE(octet_length(screenshot_bytes),0) > 0";
-
-    // Filters: NOT ILIKE any of $filter_out
-    [$notLikeSql, $notLikeParams] = buildNotILikeNamed(is_array($filter_out) ? $filter_out : []);
-
-    // Time window
-    $sinceTs = (new DateTimeImmutable('now'))
-        ->modify("-{$days} days")
-        ->format('Y-m-d H:i:s');
-
-    $recentWhere = $tsCol
-        ? " AND {$tsCol} >= :since_ts"
-        : ''; // fallback if tsCol somehow missing
-
-    $commonWhere = "$ready $entitiesClause $recentWhere" . ($notLikeSql ? " AND $notLikeSql" : "");
-
-    // Pull a capped list of the *most recent* matching articles
-    $sql = "
-        SELECT id, url, created_at
-        FROM articles
-        WHERE $commonWhere
-        ORDER BY {$tsCol} DESC
-        LIMIT :limit_rows
-    ";
-
-    $stmt = $pdo->prepare($sql);
-
-    $params = array_merge(
-        $notLikeParams,
-        $tsCol ? [':since_ts' => $sinceTs] : [],
-        [':limit_rows' => $limit]  // <-- include limit here
-    );
-
-    $stmt->execute($params);
-    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    if (!$rows) {
-        // Fall back to your existing random function or RSS
-        return function_exists('getRandomArticle_fromDB')
-            ? getRandomArticle_fromDB($requireEntities, $days)
-            : (function_exists('getRandomArticle_fromRSS')
-                ? getRandomArticle_fromRSS()
-                : ['category' => 'db', 'link' => null, 'pub_date' => null]);
-    }
-
-    // --- Weighted pick in PHP ---
-    // Newest row is index 0. We assign weight w_i = exp(-decay * i)
-    $weights = [];
-    $totalWeight = 0.0;
-    $n = count($rows);
-
-    for ($i = 0; $i < $n; $i++) {
-        $w = exp(-$decay * $i);
-        $weights[$i] = $w;
-        $totalWeight += $w;
-    }
-
-    $r = mt_rand() / mt_getrandmax() * $totalWeight;
-    $acc = 0.0;
-    $chosenIndex = 0;
-
-    for ($i = 0; $i < $n; $i++) {
-        $acc += $weights[$i];
-        if ($r <= $acc) {
-            $chosenIndex = $i;
-            break;
-        }
-    }
-
-    $row = $rows[$chosenIndex];
-
-    if (empty($row['url'])) {
-        // Safety fallback if something is weird
-        return function_exists('getRandomArticle_fromDB')
-            ? getRandomArticle_fromDB($requireEntities, $days)
-            : (function_exists('getRandomArticle_fromRSS')
-                ? getRandomArticle_fromRSS()
-                : ['category' => 'db', 'link' => null, 'pub_date' => null]);
-    }
-
-    return [
-        'category'   => 'db',
-        'link'       => $row['url'],
-        'article_id' => (int)$row['id'],
-        'pub_date'   => toEpoch(toIsoZ($row['created_at'])),
-    ];
-}
-
-/**
- * Recent-weighted article picker for the "Stumble" button:
- * - Filters to NLP-ready articles (no screenshot requirement)
- * - Applies entity filters (unless $requireEntities = false)
- * - Respects global $filter_out NOT ILIKE terms
- * - Restricts to the last $days days using $tsCol
- * - Pulls up to $limit most recent rows
- * - Picks one in PHP with an exponential decay weight so
- *   newest articles are much more likely.
- *
- * This is similar to getRecentWeightedArticle_fromDB(), but
- * DOES NOT require screenshot_bytes to be present.
- */
-function getRecentWeightedArticle_forStumble_fromDB(
-    bool $requireEntities = true,
-    int $days = 120,
-    int $limit = 2000,
-    float $decay = 0.04
-): array {
-    global $filter_out;
-    $pdo = _pdo_or_null();
-    if (!$pdo) {
-        return function_exists('getRandomArticle_fromRSS') ? getRandomArticle_fromRSS()
-            : ['category' => 'db', 'link' => null, 'pub_date' => null];
-    }
-
-    // Timestamp column we trust for recency
-    $tsCol = 'updated_at';
-
-    // Entities filter (same as your other function)
-    $entitiesClause = '';
-    if ($requireEntities) {
-        $entitiesClause =
-            " AND (nlp::text) NOT LIKE '%\"entities\": []%'".
-            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"X-Forbidden\", \"count\": 1, \"label\": \"ORG\"}]%'".
-            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"JavaScript\", \"count\": 1, \"label\": \"PRODUCT\"}]%'".
-            " AND (nlp::text) NOT LIKE '%\"emotional_reaction\": {}%'";
-    }
-
-    // Ready predicate for STUMBLE:
-    // NLP must be present, but we do NOT require screenshot_bytes
-    $ready = "nlp IS NOT NULL";
-
-    // Filters: NOT ILIKE any of $filter_out
-    [$notLikeSql, $notLikeParams] = buildNotILikeNamed(is_array($filter_out) ? $filter_out : []);
-
-    // Time window
-    $sinceTs = (new DateTimeImmutable('now'))
-        ->modify("-{$days} days")
-        ->format('Y-m-d H:i:s');
-
-    $recentWhere = $tsCol
-        ? " AND {$tsCol} >= :since_ts"
-        : '';
-
-    $commonWhere = "$ready $entitiesClause $recentWhere" . ($notLikeSql ? " AND $notLikeSql" : "");
-
-    // Pull a capped list of the *most recent* matching articles
-    $sql = "
-        SELECT id, url, source_slug, created_at
-        FROM articles
-        WHERE $commonWhere
-        ORDER BY {$tsCol} DESC
-        LIMIT :limit_rows
-    ";
-
-    $stmt = $pdo->prepare($sql);
-
-    $params = array_merge(
-        $notLikeParams,
-        $tsCol ? [':since_ts' => $sinceTs] : [],
-        [':limit_rows' => $limit]
-    );
-
-    $stmt->execute($params);
-    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    if (!$rows) {
-        // Fall back to your existing random function or RSS
-        return function_exists('getRandomArticle_fromDB')
-            ? getRandomArticle_fromDB($requireEntities, $days)
-            : (function_exists('getRandomArticle_fromRSS')
-                ? getRandomArticle_fromRSS()
-                : ['category' => 'db', 'link' => null, 'pub_date' => null]);
-    }
-
-    // --- Weighted pick in PHP ---
-    // Newest row is index 0. We assign weight w_i = exp(-decay * i)
-    $weights = [];
-    $totalWeight = 0.0;
-    $n = count($rows);
-
-    for ($i = 0; $i < $n; $i++) {
-        $w = exp(-$decay * $i);
-        $weights[$i] = $w;
-        $totalWeight += $w;
-    }
-
-    $r = mt_rand() / mt_getrandmax() * $totalWeight;
-    $acc = 0.0;
-    $chosenIndex = 0;
-
-    for ($i = 0; $i < $n; $i++) {
-        $acc += $weights[$i];
-        if ($r <= $acc) {
-            $chosenIndex = $i;
-            break;
-        }
-    }
-
-    $row = $rows[$chosenIndex];
-
-    if (empty($row['url'])) {
-        // Safety fallback if something is weird
-        return function_exists('getRandomArticle_fromDB')
-            ? getRandomArticle_fromDB($requireEntities, $days)
-            : (function_exists('getRandomArticle_fromRSS')
-                ? getRandomArticle_fromRSS()
-                : ['category' => 'db', 'link' => null, 'pub_date' => null]);
-    }
-
-    return [
-        'category' => isset($row['source_slug']) ? ucfirst($row['source_slug']) : 'db',
-        'link'       => $row['url'],
-        'article_id' => (int)$row['id'],
-        'pub_date'   => toEpoch(toIsoZ($row['created_at'])),
-        'source'     => 'db',
-    ];
-}
-
 
 /**
  * Random article picker for the "Stumble" button:
@@ -1408,14 +1007,14 @@ function getRandomRecentArticle_forStumble_fromDB(
     $entitiesClause = '';
     if ($requireEntities) {
         $entitiesClause =
-            " AND (nlp::text) NOT LIKE '%\"entities\": []%'".
-            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"X-Forbidden\", \"count\": 1, \"label\": \"ORG\"}]%'".
-            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"JavaScript\", \"count\": 1, \"label\": \"PRODUCT\"}]%'".
+            " AND (nlp::text) NOT LIKE '%\"entities\": []%'" .
+            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"X-Forbidden\", \"count\": 1, \"label\": \"ORG\"}]%'" .
+            " AND (nlp::text) NOT LIKE '%\"entities\": [{\"text\": \"JavaScript\", \"count\": 1, \"label\": \"PRODUCT\"}]%'" .
             " AND (nlp::text) NOT LIKE '%\"emotional_reaction\": {}%'";
     }
 
-    // NLP must be present, but no screenshot requirement
-    $ready = "nlp IS NOT NULL";
+    // NLP must be present, and article must not be soft deleted
+    $ready = "nlp IS NOT NULL AND deleted_at IS NULL";
 
     // Filters: NOT ILIKE any of $filter_out
     [$notLikeSql, $notLikeParams] = buildNotILikeNamed(is_array($filter_out) ? $filter_out : []);
@@ -1517,8 +1116,8 @@ function getRandomRecentArticle_forStumble_fromLatestPoolDB(
         ";
     }
 
-    // NLP must be present, but no screenshot requirement
-    $ready = "nlp IS NOT NULL";
+    // NLP must be present, and article must not be soft deleted
+    $ready = "nlp IS NOT NULL AND deleted_at IS NULL";
 
     $commonWhere = "$ready $entitiesClause";
 
@@ -1594,8 +1193,9 @@ function getRandomRecentArticle_forStumble_fromLatestPoolDB(
 }
 
 // Returns the row or null if not found
-function getNLPFromDB(string $url) {
-    
+function getNLPFromDB(string $url)
+{
+
     $pdo = getPdoOrExplain();
     if (!$pdo) {
         logj('DB guard: falling back to RSS (no PDO)');
@@ -1606,6 +1206,7 @@ function getNLPFromDB(string $url) {
         SELECT id, url, nlp, screenshot_bytes
         FROM articles
         WHERE url = :url
+            AND deleted_at IS NULL
         LIMIT 1
     ";
 
@@ -1660,6 +1261,7 @@ function getArticleFromDBByUrl(string $url): ?array
             screenshot_bytes
         FROM articles
         WHERE url = :url
+            AND deleted_at IS NULL
         LIMIT 1
     ";
 
@@ -1691,13 +1293,14 @@ function getArticleFromDBByUrl(string $url): ?array
         'rss_item_id'     => isset($row['rss_item_id']) ? (int) $row['rss_item_id'] : null,
         'feed_id'         => isset($row['feed_id']) ? (int) $row['feed_id'] : null,
         'source_slug'     => $row['source_slug'] ?? null,
-        'screenshot_bytes'=> $row['screenshot_bytes'] ?? null,
+        'screenshot_bytes' => $row['screenshot_bytes'] ?? null,
         'nlp'             => $nlp,
     ];
 }
 
 
-function sn_get_latest_articles(int $limit = 12): array {
+function sn_get_latest_articles(int $limit = 12): array
+{
 
     $pdo = _pdo_or_null();
 
@@ -1705,6 +1308,7 @@ function sn_get_latest_articles(int $limit = 12): array {
         SELECT id, url, screenshot_bytes, created_at
         FROM articles
         WHERE screenshot_bytes IS NOT NULL
+            AND deleted_at IS NULL
         ORDER BY created_at DESC
         LIMIT :limit
     ";
@@ -1861,9 +1465,11 @@ function normalize_headline(string $s): string
     return strtr($s, $replacements);
 }
 
-function clean_string($str) {
+function clean_string($str)
+{
     // Remove spaces, parentheses, and periods
-    return preg_replace('/[.,\s()\-\&]/', '', $str);}
+    return preg_replace('/[.,\s()\-\&]/', '', $str);
+}
 
 function clean_headline(string $str): string
 {
@@ -1888,7 +1494,8 @@ function clean_headline(string $str): string
     return trim($str);
 }
 
-function is_file_width_over_min($html) {
+function is_file_width_over_min($html)
+{
     if (preg_match('/data-file-width\s*=\s*"(\d+)"/i', $html, $matches)) {
         $width = (int)$matches[1];
         return $width > 1500;
@@ -1896,7 +1503,8 @@ function is_file_width_over_min($html) {
     return false; // attribute not found
 }
 
-function endsWith($haystack, $needle) {
+function endsWith($haystack, $needle)
+{
     $length = strlen($needle);
     if ($length == 0) {
         return true; // Any string ends with an empty string
@@ -1932,6 +1540,9 @@ function search_nlp(PDO $db, ?string $q = '', array $opts = []): array
 
     // And only those with a real pub_date
     $conds[] = "pub_date IS NOT NULL";
+
+    // And not soft deleted
+    $conds[] = "deleted_at IS NULL";
 
     // --- Time window ---
     if ($range === '24h') {
@@ -2068,7 +1679,6 @@ function search_nlp(PDO $db, ?string $q = '', array $opts = []): array
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     } catch (Throwable $e) {
         // Always log the real error server-side
         error_log('search_nlp ERROR: ' . $e->getMessage());
@@ -2078,7 +1688,6 @@ function search_nlp(PDO $db, ?string $q = '', array $opts = []): array
         // Let the caller / controller decide how to respond
         return [];
     }
-
 }
 
 
@@ -2119,6 +1728,9 @@ function search_classic(PDO $db, string $q, array $opts = []): array
     } elseif ($range === 'older') {
         $conds[] = "ri.pub_date < NOW() - INTERVAL '24 hours'";
     }
+
+    // Not soft deleted
+    $conds[] = "ri.deleted_at IS NULL";
 
     // High-signal publishers filter (based on ri.link URL substring)
     if ($highSignal && !empty($SCROLL_HIGH_SIGNAL_PUBLISHERS)) {
@@ -2167,9 +1779,10 @@ function search_classic(PDO $db, string $q, array $opts = []): array
             a.nlp
         FROM matched m
         JOIN feeds f
-        ON f.id = m.feed_id
+        ON f.id = m.feed_id AND f.deleted_at IS NULL
         LEFT JOIN articles a
         ON a.url = m.link
+        AND a.deleted_at IS NULL
         ORDER BY
             m.pub_date DESC NULLS LAST,
             m.id DESC
@@ -2191,6 +1804,7 @@ function sn_intel_sentiment_counts(PDO $db): array
             COUNT(*) AS count
         FROM articles
         WHERE nlp IS NOT NULL
+          AND deleted_at IS NULL
           AND pub_date IS NOT NULL
           AND pub_date >= NOW() - INTERVAL '24 hours'
         GROUP BY (nlp->'sentiment'->>'label')
@@ -2218,6 +1832,7 @@ function sn_intel_recent_sentiment_articles(PDO $db, string $label, int $limit =
             pub_date
         FROM articles
         WHERE nlp IS NOT NULL
+          AND deleted_at IS NULL
           AND pub_date IS NOT NULL
           AND pub_date >= NOW() - INTERVAL '24 hours'
           AND (nlp->'sentiment'->>'label') = :label
@@ -2233,7 +1848,7 @@ function sn_intel_recent_sentiment_articles(PDO $db, string $label, int $limit =
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function sn_intel_emotion_counts(PDO $db, array $emotions = ['Wow','Love','Sad']): array
+function sn_intel_emotion_counts(PDO $db, array $emotions = ['Wow', 'Love', 'Sad']): array
 {
     // We’ll loop in PHP and reuse one query
     $out = [];
@@ -2242,6 +1857,7 @@ function sn_intel_emotion_counts(PDO $db, array $emotions = ['Wow','Love','Sad']
             SELECT COUNT(*) AS count
             FROM articles
             WHERE nlp IS NOT NULL
+              AND deleted_at IS NULL
               AND pub_date IS NOT NULL
               AND pub_date >= NOW() - INTERVAL '24 hours'
               AND (nlp->'emotional_reaction'->>:emotion) IS NOT NULL
@@ -2264,6 +1880,7 @@ function sn_intel_recent_emotion_articles(PDO $db, string $emotion, int $limit =
             pub_date
         FROM articles
         WHERE nlp IS NOT NULL
+          AND deleted_at IS NULL
           AND pub_date IS NOT NULL
           AND pub_date >= NOW() - INTERVAL '24 hours'
           AND (nlp->'emotional_reaction'->>:emotion) IS NOT NULL
@@ -2279,7 +1896,7 @@ function sn_intel_recent_emotion_articles(PDO $db, string $emotion, int $limit =
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function sn_intel_trending_entities(PDO $db, array $labels = ['PERSON','ORG','GPE'], int $limit = 5): array
+function sn_intel_trending_entities(PDO $db, array $labels = ['PERSON', 'ORG', 'GPE'], int $limit = 5): array
 {
     $sql = "
         SELECT
@@ -2290,6 +1907,7 @@ function sn_intel_trending_entities(PDO $db, array $labels = ['PERSON','ORG','GP
         FROM articles a
         CROSS JOIN LATERAL jsonb_array_elements(a.nlp->'entities') AS ent
         WHERE a.nlp IS NOT NULL
+          AND a.deleted_at IS NULL
           AND a.pub_date IS NOT NULL
           AND a.pub_date >= NOW() - INTERVAL '24 hours'
           AND ent->>'label' = ANY(:labels)
@@ -2322,9 +1940,12 @@ function sn_intel_recent_entity_articles(PDO $db, string $entityText, int $limit
         FROM articles a
         LEFT JOIN rss_items ri
             ON ri.link = a.url
+            AND ri.deleted_at IS NULL
         LEFT JOIN feeds f
             ON f.id = ri.feed_id
+            AND f.deleted_at IS NULL
         WHERE a.nlp IS NOT NULL
+          AND a.deleted_at IS NULL
           AND a.pub_date IS NOT NULL
           AND a.pub_date >= NOW() - INTERVAL '24 hours'
           AND EXISTS (
@@ -2344,7 +1965,8 @@ function sn_intel_recent_entity_articles(PDO $db, string $entityText, int $limit
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function sn_format_pub_date(?string $raw): string {
+function sn_format_pub_date(?string $raw): string
+{
     if (empty($raw)) return '';
 
     $ts = strtotime($raw);
@@ -2358,13 +1980,15 @@ function sn_format_pub_date(?string $raw): string {
 }
 
 
-function _fragment_cache_dir(): string {
+function _fragment_cache_dir(): string
+{
     $dir = dirname(__DIR__) . '/_cache_fragments';
     if (!is_dir($dir)) @mkdir($dir, 0775, true);
     return $dir;
 }
 
-function _fragment_cache_path(string $key): string {
+function _fragment_cache_path(string $key): string
+{
     $safe = preg_replace('/[^a-zA-Z0-9_\-\.]/', '_', $key);
     return _fragment_cache_dir() . '/' . $safe . '.html';
 }
@@ -2384,14 +2008,14 @@ function fragment_cache_swr(
 
     $lockMaxAge = 30; // seconds; prevents stuck locks
 
-    $lockIsFresh = function() use ($lock, $now, $lockMaxAge): bool {
+    $lockIsFresh = function () use ($lock, $now, $lockMaxAge): bool {
         if (!is_file($lock)) return false;
         $lockTs = (int)@file_get_contents($lock);
         if ($lockTs <= 0) $lockTs = filemtime($lock) ?: $now;
         return ($now - $lockTs) <= $lockMaxAge;
     };
 
-    $breakLockIfStale = function() use ($lock, $lockIsFresh) {
+    $breakLockIfStale = function () use ($lock, $lockIsFresh) {
         if (is_file($lock) && !$lockIsFresh()) {
             @unlink($lock);
         }
@@ -2442,7 +2066,8 @@ function fragment_cache_swr(
     if (!$silent) echo $html;
 }
 
-function fl_headline_emoji(string $title): string {
+function fl_headline_emoji(string $title): string
+{
     $t = mb_strtolower($title);
 
     // urgency / breaking
@@ -2589,7 +2214,6 @@ function upsert_cache(
             ':build_version' => $build_version,
             ':meta' => $meta ? json_encode($meta) : null,
         ]);
-
     } catch (Throwable $e) {
 
         error_log(
@@ -2614,6 +2238,7 @@ function get_cache_group(string $cache_group): array
             SELECT cache_key, html, generated_at, expires_at, build_version, meta
             FROM scrollnews_cache
             WHERE cache_group = :cache_group
+                AND deleted_at IS NULL
         ";
 
         $stmt = $pdo->prepare($sql);
@@ -2630,12 +2255,8 @@ function get_cache_group(string $cache_group): array
         }
 
         return $cache;
-
     } catch (Throwable $e) {
         error_log("get_cache_group failed for {$cache_group}: " . $e->getMessage());
         return [];
     }
 }
-
-
-?>

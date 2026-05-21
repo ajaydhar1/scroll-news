@@ -62,10 +62,11 @@ if (!$pdo) {
                 a.id AS article_id,
                 a.nlp
             FROM rss_items ri
-            JOIN feeds f ON f.id = ri.feed_id
-            JOIN articles a ON a.url = ri.link
+            JOIN feeds f ON f.id = ri.feed_id AND f.deleted_at IS NULL
+            JOIN articles a ON a.url = ri.link AND a.deleted_at IS NULL
             WHERE 
                 ri.pub_date IS NOT NULL
+                AND ri.deleted_at IS NULL
                 AND (ri.pub_date AT TIME ZONE 'America/New_York')::date >= :window_start
                 AND (ri.pub_date AT TIME ZONE 'America/New_York')::date < :window_end
             ORDER BY ri.pub_date DESC, ri.id DESC

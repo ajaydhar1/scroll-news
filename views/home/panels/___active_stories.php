@@ -74,6 +74,7 @@ try {
           AND jsonb_typeof(a.nlp->'entities') = 'array'
           AND COALESCE(e->>'text','') <> ''
           AND LENGTH(TRIM(e->>'text')) >= 3
+          AND a.deleted_at IS NULL
 
           -- EXCLUDE PUBLISHERS (prevents ranking domination)
           AND NOT EXISTS (
@@ -251,6 +252,7 @@ try {
           WHERE a.created_at >= p.since_7d
             AND a.source_slug <> 'sports'
             AND a.nlp IS NOT NULL
+            AND a.deleted_at IS NULL
             AND NOT (pr.label = 'GPE' AND a.source_slug = 'entertainment')
 
             -- EXCLUDE PUBLISHERS (previews too)
