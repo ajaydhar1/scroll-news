@@ -15,7 +15,7 @@ $('#analyzeForm').on('submit', function (e) {
 
     if (url) {
       const encoded = encodeURIComponent(url);
-      window.location.href = `newsroom.php?url=${encoded}`;
+      window.location.href = `/newsroom.php?url=${encoded}`;
     }
 
   }
@@ -100,7 +100,7 @@ function fetchRSSArticles(feedUrl, category) {
                       <a href="${article.link}" class="btn btn-secondary mt-auto w-100" target="_blank">Read Story</a>
                     </div>
                     <div class="col-6 d-grid browse-card-btn-col">
-                      <a href="newsroom.php?url=${encodeURIComponent(article.link)}&category=${category}&pub_date=${article.pubDateForLink || ""}&db=1"
+                      <a href="/newsroom.php?url=${encodeURIComponent(article.link)}&category=${category}&pub_date=${article.pubDateForLink || ""}&db=1"
                          class="btn btn-green mt-auto w-100">Analyze</a>
                     </div>
                   </div>
@@ -273,7 +273,7 @@ function analyzeNews(rssLink, pubDateForLink) {
     .then(res => res.json())
     .then(data => {
       if (data.resolved_url) {
-        window.location.href = `newsroom.php?url=${encodeURIComponent(data.resolved_url)}&pub_date=${pubDateForLink}`;
+        window.location.href = `/newsroom.php?url=${encodeURIComponent(data.resolved_url)}&pub_date=${pubDateForLink}`;
       } else {
         alert("Could not resolve article URL.");
       }

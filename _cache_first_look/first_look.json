@@ -1,38 +1,38 @@
 {
-    "fetched_at": 1779093429,
+    "fetched_at": 1779374212,
     "feeds": [
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Pizza Hut's AI system caused 'cascading' problems and $100M in damages, franchisee alleges in new suit",
-                    "url": "https://www.businessinsider.com/pizza-hut-ai-system-dragontail-lawsuit-franchisee-2026-5",
-                    "ts": 1779091861,
-                    "emo": "🧪"
-                },
-                {
-                    "title": "These are the 3 drones Ukraine said it used to pierce Moscow's air defense gauntlet in its biggest attack yet",
-                    "url": "https://www.businessinsider.com/ukraine-drones-long-range-moscow-air-defenses-biggest-attack-2026-5",
-                    "ts": 1779087035,
-                    "emo": "🔥"
-                }
-            ]
-        },
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "Huge Fireball Near Jerusalem After 'Pre-Planned' Explosion At Israeli Defense Facility...",
-                    "url": "https://www.timesofisrael.com/late-night-blast-fireball-near-beit-shemesh-rattles-jittery-residents/",
-                    "ts": 1779088416,
-                    "emo": "🔥"
+                    "title": "SUPREME LEADER: URANIUM STAYS IN IRAN",
+                    "url": "https://www.msn.com/en-us/money/general/exclusive-supreme-leader-says-enriched-uranium-must-stay-in-iran-iranian-sources-say/ar-AA23ITZq",
+                    "ts": 1779370836,
+                    "emo": "🌍"
                 },
                 {
-                    "title": "RESIDENTS ALARMED BY BLAST...",
-                    "url": "https://x.com/MarioNawfal/status/2055828042254070205",
-                    "ts": 1779088416,
+                    "title": "As war redraws Middle East, Turkey braces for rivalry with Israel...",
+                    "url": "https://www.washingtonpost.com/world/2026/05/21/turkey-braces-rivalry-with-israel-us-war-redraws-middle-east/",
+                    "ts": 1779370836,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Moving into a 500-square-foot cabin was our dream — but making it work involved some lifestyle compromises",
+                    "url": "https://www.businessinsider.com/living-in-small-cabin-lifestyle-changes-decor-storage-hobbies-hosting-2026-5",
+                    "ts": 1779370201,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Only 49 songs have stayed at No. 1 on the chart for 10 weeks or more — here they all are",
+                    "url": "https://www.businessinsider.com/number-1-songs-chart-longest-leaders-billboard-hot-100",
+                    "ts": 1779370081,
                     "emo": "📰"
                 }
             ]
