@@ -14,3 +14,7 @@ body.account-page {
 .auth-card .card {
     color: #212529;
 }
+
+.account-link {
+    text-decoration: underline;
+}
