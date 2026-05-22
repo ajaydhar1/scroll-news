@@ -401,7 +401,7 @@ if (!$pdo) {
 
         <!-- Core theme JS-->
         <script src="/assets/js/scripts.js"></script>
-        <script src="/assets/js/sn_history.js"></script>
+        <script src="/assets/js/sn_history.js?v=<?= filemtime(BASE_PATH . '/assets/js/sn_history.js') ?>" defer></script>
         <script src="/assets/js/pages/scroll-archive.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/pages/scroll-archive.js'); ?>"></script>
     </body>
 </html>
