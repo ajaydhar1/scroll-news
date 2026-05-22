@@ -650,6 +650,15 @@ blockquote::before {
   border-color: transparent;
 }
 
-.dropdown-item.active, .dropdown-item:active {
+.dropdown-item.active,
+.dropdown-item:active {
   background-color: #f8f9fa;
+}
+
+@media (max-width: 576px) {
+  .browse-btn {
+    font-size: 1rem;
+    white-space: nowrap;
+    line-height: .5;
+  }
 }
