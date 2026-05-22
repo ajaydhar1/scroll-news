@@ -32,9 +32,8 @@ function auth_db(): PDO
     |
     */
 
-    //$databaseUrl = getenv('DATABASE_URL');
-    $databaseUrl = "postgres://u54p8tqv3cg377:p07d3f3181a94264cd3a103e335f8fa769dccd2ca4b9788a78cd5f660fcbfd1e1@c12662383iu6b3.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/daa88slg44bj7f";
-
+    $databaseUrl = getenv('DATABASE_URL');
+    
     if (!$databaseUrl) {
 
         error_log('DATABASE_URL environment variable is missing.');

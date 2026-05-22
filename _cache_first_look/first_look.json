@@ -1,20 +1,20 @@
 {
-    "fetched_at": 1779417818,
+    "fetched_at": 1779472107,
     "feeds": [
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "SHOCK POLL: TRUMP APPROVAL 31%...",
-                    "url": "https://americanresearchgroup.com/economy/",
-                    "ts": 1779414936,
+                    "title": "TRUMP: NOT GOING TO SON'S WEDDING...",
+                    "url": "https://x.com/TrumpDailyPosts/status/2057872994995949859",
+                    "ts": 1779470916,
                     "emo": "⚖️"
                 },
                 {
-                    "title": "Rove Warns 'Dangerously' Unpopular...",
-                    "url": "https://www.mediaite.com/media/news/karl-rove-warns-dangerously-unpopular-trump-is-tanking-the-gops-midterm-chances/",
-                    "ts": 1779414936,
+                    "title": "TULSI OUT",
+                    "url": "https://www.foxnews.com/politics/exclusive-tulsi-gabbard-resigns-from-trump-cabinet",
+                    "ts": 1779470916,
                     "emo": "📰"
                 }
             ]
@@ -24,16 +24,16 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "A productivity startup is laying off 22% of the company to create million-dollar salary bands",
-                    "url": "https://www.businessinsider.com/clickup-cuts-jobs-million-dollar-salary-band-remaining-employees-2026-5",
-                    "ts": 1779414853,
-                    "emo": "📰"
+                    "title": "Read the AI executive order Trump didn't sign",
+                    "url": "https://www.businessinsider.com/trump-ai-oversight-executive-order-draft-2026-5",
+                    "ts": 1779470367,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "The 9 best workout clothes for women in 2026, tested by a fitness gear expert",
-                    "url": "https://www.businessinsider.com/guides/health/fitness/best-workout-clothes-women",
-                    "ts": 1779412547,
-                    "emo": "📰"
+                    "title": "How solo founders use AI to reduce the operational and mental load of inventory management",
+                    "url": "https://www.businessinsider.com/generative-ai-inventory-management-small-business-sales-2026-5",
+                    "ts": 1779466967,
+                    "emo": "🧪"
                 }
             ]
         }
