@@ -113,7 +113,7 @@ $userId = $_SESSION['user_id'] ?? null;
                                         Saved articles, searches, and your reading history.
                                     </p>
                                     <ul class="text-muted mb-3">
-                                        <li>Saved headlines</li>
+                                        <li><a href="/account/saved-headlines.php" class="account-link">Saved headlines</a></li>
                                         <li><a href="/account/reading-history.php" class="account-link">Reading history</a></li>
                                         <li>Saved searches</li>
                                         <li>Shuffle history</li>

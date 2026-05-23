@@ -35,12 +35,24 @@ $initial = strtoupper(substr($firstName ?: $email ?: 'U', 0, 1));
             </span>
         <?php endif; ?>
 
-        <span class="account-nav-label ml-2">
-            <?= htmlspecialchars($firstName ?: 'Account', ENT_QUOTES, 'UTF-8') ?>
-        </span>
     </a>
 
     <div class="dropdown-menu dropdown-menu-right account-nav-menu" aria-labelledby="accountDropdown">
+
+        <div class="dropdown-header account-dropdown-header">
+            <div class="font-weight-bold">
+                <?= htmlspecialchars($displayName ?: 'Account', ENT_QUOTES, 'UTF-8') ?>
+            </div>
+
+            <?php if ($email): ?>
+                <div class="small text-muted">
+                    <?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8') ?>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <div class="dropdown-divider"></div>
+
         <a class="dropdown-item" href="/account/">
             <i class="fa-solid fa-user mr-2"></i> Account
         </a>

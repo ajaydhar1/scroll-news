@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ___first_look.php
  * First Look panel (top 1–2 items per publisher) with file cache
@@ -14,19 +15,19 @@ $FIRST_LOOK_MAX_ITEMS_PER_FEED = 2;
 
 // Pick 12–15 stable feeds for MVP (you can expand later)
 $FIRST_LOOK_FEEDS = [
-  ['name'=>'Reuters',        'rss'=>'http://feeds.reuters.com/reuters/topNews',                 'url'=>'https://www.reuters.com'],
-  ['name'=>'BBC',            'rss'=>'http://feeds.bbci.co.uk/news/rss.xml',                      'url'=>'https://www.bbc.com/news'],
-  ['name'=>'NBC',            'rss'=>'http://feeds.nbcnews.com/feeds/topstories',                 'url'=>'https://www.nbcnews.com'],
-  ['name'=>'Fox',            'rss'=>'http://feeds.foxnews.com/foxnews/latest',                   'url'=>'https://www.foxnews.com'],
-  ['name'=>'NYT',            'rss'=>'http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml',  'url'=>'https://www.nytimes.com'],
-  ['name'=>'The Hill',       'rss'=>'http://thehill.com/rss/syndicator/19110',                   'url'=>'https://thehill.com'],
-  ['name'=>'The Guardian',   'rss'=>'https://www.theguardian.com/business/economics/rss',       'url'=>'https://www.theguardian.com'],
-  ['name'=>'CNBC',           'rss'=>'https://www.cnbc.com/id/100003114/device/rss/rss.html',     'url'=>'https://www.cnbc.com'],
-  ['name'=>'MarketWatch',    'rss'=>'http://feeds.marketwatch.com/marketwatch/topstories/',     'url'=>'https://www.marketwatch.com'],
-  ['name'=>'BusinessInsider','rss'=>'http://feeds2.feedburner.com/businessinsider',             'url'=>'https://www.businessinsider.com'],
-  ['name'=>'Daily Mail',     'rss'=>'http://www.dailymail.co.uk/articles.rss',                   'url'=>'https://www.dailymail.co.uk'],
-  ['name'=>'NY Post',        'rss'=>'https://nypost.com/feed/',                                  'url'=>'https://nypost.com'],
-  ['name'=>'Drudge',         'rss'=>'http://feeds.feedburner.com/DrudgeReportFeed',             'url'=>'https://drudgereport.com'],
+  ['name' => 'Reuters',        'rss' => 'http://feeds.reuters.com/reuters/topNews',                 'url' => 'https://www.reuters.com'],
+  ['name' => 'BBC',            'rss' => 'http://feeds.bbci.co.uk/news/rss.xml',                      'url' => 'https://www.bbc.com/news'],
+  ['name' => 'NBC',            'rss' => 'http://feeds.nbcnews.com/feeds/topstories',                 'url' => 'https://www.nbcnews.com'],
+  ['name' => 'Fox',            'rss' => 'http://feeds.foxnews.com/foxnews/latest',                   'url' => 'https://www.foxnews.com'],
+  ['name' => 'NYT',            'rss' => 'http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml',  'url' => 'https://www.nytimes.com'],
+  ['name' => 'The Hill',       'rss' => 'http://thehill.com/rss/syndicator/19110',                   'url' => 'https://thehill.com'],
+  ['name' => 'The Guardian',   'rss' => 'https://www.theguardian.com/business/economics/rss',       'url' => 'https://www.theguardian.com'],
+  ['name' => 'CNBC',           'rss' => 'https://www.cnbc.com/id/100003114/device/rss/rss.html',     'url' => 'https://www.cnbc.com'],
+  ['name' => 'MarketWatch',    'rss' => 'http://feeds.marketwatch.com/marketwatch/topstories/',     'url' => 'https://www.marketwatch.com'],
+  ['name' => 'BusinessInsider', 'rss' => 'http://feeds2.feedburner.com/businessinsider',             'url' => 'https://www.businessinsider.com'],
+  ['name' => 'Daily Mail',     'rss' => 'http://www.dailymail.co.uk/articles.rss',                   'url' => 'https://www.dailymail.co.uk'],
+  ['name' => 'NY Post',        'rss' => 'https://nypost.com/feed/',                                  'url' => 'https://nypost.com'],
+  ['name' => 'Drudge',         'rss' => 'http://feeds.feedburner.com/DrudgeReportFeed',             'url' => 'https://drudgereport.com'],
 ];
 
 
@@ -58,26 +59,27 @@ if (isset($_GET['warm']) && $_GET['warm'] == '1') {
     'age_seconds' => $hasCache ? $age : null,
     'feeds_count' => is_array($cached['feeds'] ?? null) ? count($cached['feeds']) : 0,
     'cache_path' => basename($cachePath),
-  ], JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);
+  ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
   return;
 }
 
 // If no cache yet: render fast placeholder (don’t fetch on homepage)
 if (!$hasCache) {
-  ?>
+?>
   <div class="toy-box firstlook-box">
     <div class="firstlook-head">
       <div>
         <div class="firstlook-title">First Look</div>
         <div class="firstlook-sub">Warming up…</div>
       </div>
-      <?php // <a class="firstlook-more" href="/first-look.php">See more →</a> ?>
+      <?php // <a class="firstlook-more" href="/first-look.php">See more →</a> 
+      ?>
     </div>
     <div style="color:rgba(255,255,255,.6);font-size:12px;padding:0 4px 6px;">
       First Look is building its cache. Refresh in a moment.
     </div>
   </div>
-  <?php
+<?php
   // Kick a background refresh attempt (best-effort) so it fills soon.
   fl_trigger_background_refresh($cachePath, $FIRST_LOOK_FEEDS, $FIRST_LOOK_MAX_ITEMS_PER_FEED);
   return;
@@ -95,141 +97,186 @@ if (!$isFresh) {
 
 // Fail-soft if cache got corrupted
 if (!is_array($feedsData) || count($feedsData) === 0) {
-  ?>
+?>
   <div class="toy-box firstlook-box">
     <div class="firstlook-head">
       <div class="firstlook-title">First Look</div>
       <div class="firstlook-sub">Multi-source snapshot (temporarily unavailable)</div>
     </div>
   </div>
-  <?php
+<?php
   return;
 }
 ?>
 
 <style>
-.firstlook-box{
-  margin-top: 14px;
-  padding: 14px 14px 10px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(10,12,20,.55);
-  backdrop-filter: blur(10px);
-}
-.firstlook-head{
-  display:flex; align-items:flex-end; gap:10px; justify-content:space-between;
-  padding: 2px 4px 10px;
-}
-.firstlook-title{
-  font-weight: 800;
-  letter-spacing: .2px;
-}
-.firstlook-sub{
-  color: rgba(255,255,255,.65);
-  font-size: 12px;
-  white-space: nowrap;
-}
-.firstlook-grid{
-  display:grid;
-  gap: 10px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-@media (min-width: 901px){
-  .firstlook-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-@media (min-width: 1201px){
-  .firstlook-grid{ grid-template-columns: repeat(4, minmax(0, 1fr)); }
-}
-.firstlook-col{
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 14px;
-  overflow:hidden;
-  background: rgba(5,7,20,.55);
-}
-.firstlook-colhead{
-  display:flex; align-items:center; justify-content:space-between; gap:10px;
-  padding: 10px 10px 8px;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-}
-.firstlook-pill{
-  display:inline-flex; align-items:center; gap:8px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(23,213,255,.12);
-  border: 1px solid rgba(23,213,255,.25);
-  color: rgba(255,255,255,.92);
-  font-weight: 750;
-  font-size: 12px;
-  text-decoration:none;
-}
-.firstlook-count{
-  color: rgba(255,255,255,.45);
-  font-size: 12px;
-}
-.firstlook-list{
-  padding: 10px 12px 12px;
-  display:flex; flex-direction:column; gap:10px;
-}
-.firstlook-item a{
-  color: rgba(255,255,255,.92);
-  text-decoration:none;
-  font-weight: 650;
-  line-height: 1.25;
-}
-.firstlook-item a:hover{ text-decoration: underline; }
-.firstlook-time{
-  margin-top: 4px;
-  color: rgba(255,255,255,.50);
-  font-size: 11px;
-}
-.firstlook-foot{
-  display:flex; justify-content:space-between; align-items:center;
-  padding: 10px 4px 0;
-  color: rgba(255,255,255,.55);
-  font-size: 12px;
-}
-.firstlook-more{
-  color: rgba(23,213,255,.95);
-  text-decoration:none;
-  font-weight: 700;
-}
-.firstlook-more:hover{ text-decoration: underline; color: rgba(23, 213, 255, .8); }
+  .firstlook-box {
+    margin-top: 14px;
+    padding: 14px 14px 10px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, .10);
+    background: rgba(10, 12, 20, .55);
+    backdrop-filter: blur(10px);
+  }
+
+  .firstlook-head {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    justify-content: space-between;
+    padding: 2px 4px 10px;
+  }
+
+  .firstlook-title {
+    font-weight: 800;
+    letter-spacing: .2px;
+  }
+
+  .firstlook-sub {
+    color: rgba(255, 255, 255, .65);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .firstlook-grid {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 901px) {
+    .firstlook-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1201px) {
+    .firstlook-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .firstlook-col {
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(5, 7, 20, .55);
+  }
+
+  .firstlook-colhead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 10px 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+  }
+
+  .firstlook-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(23, 213, 255, .12);
+    border: 1px solid rgba(23, 213, 255, .25);
+    color: rgba(255, 255, 255, .92);
+    font-weight: 750;
+    font-size: 12px;
+    text-decoration: none;
+  }
+
+  .firstlook-count {
+    color: rgba(255, 255, 255, .45);
+    font-size: 12px;
+  }
+
+  .firstlook-list {
+    padding: 10px 12px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .firstlook-item a {
+    color: rgba(255, 255, 255, .92);
+    text-decoration: none;
+    font-weight: 650;
+    line-height: 1.25;
+  }
+
+  .firstlook-item a:hover {
+    text-decoration: underline;
+  }
+
+  .firstlook-time {
+    margin-top: 4px;
+    color: rgba(255, 255, 255, .50);
+    font-size: 11px;
+  }
+
+  .firstlook-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 4px 0;
+    color: rgba(255, 255, 255, .55);
+    font-size: 12px;
+  }
+
+  .firstlook-more {
+    color: rgba(23, 213, 255, .95);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .firstlook-more:hover {
+    text-decoration: underline;
+    color: rgba(23, 213, 255, .8);
+  }
 </style>
 
 <style>
+  .firstlook-save-btn {
+    border: 1px solid rgba(255, 255, 255, .15);
+    background: rgba(255, 255, 255, .06);
+    border-radius: 10px;
+    /* padding: 6px 10px; */
+    cursor: pointer;
+    font-size: .85rem;
+    /* margin-left: 10px; */
+    white-space: nowrap;
+  }
 
-.firstlook-save-btn{
-  border: 1px solid rgba(255,255,255,.15);
-  background: rgba(255,255,255,.06);
-  border-radius: 10px;
-  /* padding: 6px 10px; */
-  cursor: pointer;
-  font-size: .85rem;
-  /* margin-left: 10px; */
-  white-space: nowrap;
-}
-.firstlook-save-btn:hover{ background: rgba(255,255,255,.10); }
-.firstlook-save-btn.is-saved{
-  background: rgba(255,255,255,.14);
-}
-.firstlook-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-}
-.firstlook-link{ flex: 1; min-width: 0; }
+  .firstlook-save-btn:hover {
+    background: rgba(255, 255, 255, .10);
+  }
 
+  .firstlook-save-btn.is-saved {
+    background: rgba(255, 255, 255, .14);
+  }
+
+  .firstlook-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .firstlook-link {
+    flex: 1;
+    min-width: 0;
+  }
 </style>
 
-<div class="container-fluid">
+<div id="first-look" class="container-fluid">
   <div class="toy-box firstlook-box">
     <div class="firstlook-head">
       <div>
         <div class="sn-time-marker">TODAY</div>
         <div class="firstlook-title">First Look</div>
         <div class="firstlook-sub">
-          Front page of front pages<?php if ($ageSec !== null) echo " • updated " . (int)round($ageSec/60) . "m ago"; ?>
+          Front page of front pages<?php if ($ageSec !== null) echo " • updated " . (int)round($ageSec / 60) . "m ago"; ?>
         </div>
       </div>
       <a href="saved-headlines.php" class="firstlook-more" style="">Saved Headlines</a>
@@ -248,11 +295,11 @@ if (!is_array($feedsData) || count($feedsData) === 0) {
           <div class="firstlook-list">
             <?php foreach (($f['items'] ?? []) as $it): ?>
               <?php
-                // Example variables you likely have:
-                $url   = $it['url'] ?? '';
-                $title = $it['title'] ?? '';
-                $src   = $f['name'] ?? '';
-                $pub   = $it['s'] ?? '';
+              // Example variables you likely have:
+              $url   = $it['url'] ?? '';
+              $title = $it['title'] ?? '';
+              $src   = $f['name'] ?? '';
+              $pub   = $it['s'] ?? '';
               ?>
               <div class="firstlook-item">
                 <a href="<?php echo htmlspecialchars($it['url']); ?>" target="_blank" rel="noopener">
@@ -265,8 +312,7 @@ if (!is_array($feedsData) || count($feedsData) === 0) {
                   data-title="<?= htmlspecialchars($title) ?>"
                   data-source="<?= htmlspecialchars($src) ?>"
                   data-pub="<?= htmlspecialchars($pub) ?>"
-                  aria-label="Save headline"
-                >Save</button>
+                  aria-label="Save headline">Save</button>
                 <?php if (!empty($it['ts'])): ?>
                   <div class="firstlook-time"><?php echo date('g:ia', (int)$it['ts']); ?></div>
                 <?php endif; ?>
@@ -285,97 +331,186 @@ if (!is_array($feedsData) || count($feedsData) === 0) {
 </div>
 
 <script>
-(function () {
-  const KEY = 'scrollnews:saved_firstlook:v1';
+  (function() {
+    const KEY = 'scrollnews:saved_firstlook:v1';
+    const SAVE_API_URL = '/account/api/saved-headlines-save.php';
+    const UNSAVE_API_URL = '/account/api/saved-headlines-unsave.php';
 
-  function safeParse(json, fallback) {
-    try { return JSON.parse(json); } catch { return fallback; }
-  }
-  function getSaved() {
-    return safeParse(localStorage.getItem(KEY) || '[]', []);
-  }
-  function setSaved(list) {
-    localStorage.setItem(KEY, JSON.stringify(list));
-  }
+    function safeParse(json, fallback) {
+      try {
+        return JSON.parse(json);
+      } catch {
+        return fallback;
+      }
+    }
 
-  // Stable ID so "same headline" toggles properly
-  function makeId(url, title) {
-    const s = (url || '') + '|' + (title || '');
-    // light hash
-    let h = 0;
-    for (let i=0; i<s.length; i++) h = ((h<<5) - h) + s.charCodeAt(i) | 0;
-    return 'h' + Math.abs(h);
-  }
+    function getSaved() {
+      return safeParse(localStorage.getItem(KEY) || '[]', []);
+    }
 
-  function isSaved(id) {
-    return getSaved().some(x => x && x.id === id);
-  }
+    function setSaved(list) {
+      localStorage.setItem(KEY, JSON.stringify(list));
+    }
 
-  function save(item) {
-    const list = getSaved();
-    if (!list.some(x => x && x.id === item.id)) {
-      list.push(item);
+    // Stable ID so "same headline" toggles properly
+    function makeId(url, title) {
+      const s = (url || '') + '|' + (title || '');
+      let h = 0;
+
+      for (let i = 0; i < s.length; i++) {
+        h = ((h << 5) - h) + s.charCodeAt(i) | 0;
+      }
+
+      return 'h' + Math.abs(h);
+    }
+
+    function isSaved(id) {
+      return getSaved().some(item => item && item.id === id);
+    }
+
+    function saveLocal(item) {
+      const list = getSaved();
+
+      if (!list.some(existing => existing && existing.id === item.id)) {
+        list.push(item);
+        setSaved(list);
+      }
+    }
+
+    function unsaveLocal(id) {
+      const list = getSaved().filter(item => item && item.id !== id);
       setSaved(list);
     }
-  }
 
-  function unsave(id) {
-    const list = getSaved().filter(x => x && x.id !== id);
-    setSaved(list);
-  }
+    async function saveToAccount(item) {
+      try {
+        const response = await fetch(SAVE_API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(item)
+        });
 
-  function setBtnState(btn, saved) {
-    btn.textContent = saved ? 'Unsave' : 'Save';
-    btn.classList.toggle('is-saved', saved);
-    btn.setAttribute('aria-label', saved ? 'Unsave headline' : 'Save headline');
-  }
-
-  function initButtons() {
-    document.querySelectorAll('.firstlook-save-btn').forEach(btn => {
-      const url   = btn.getAttribute('data-url') || '';
-      const title = btn.getAttribute('data-title') || '';
-      const src   = btn.getAttribute('data-source') || '';
-      const pub   = btn.getAttribute('data-pub') || '';
-
-      const id = makeId(url, title);
-      btn.dataset.id = id;
-
-      setBtnState(btn, isSaved(id));
-
-      btn.addEventListener('click', () => {
-        const savedNow = isSaved(id);
-
-        if (savedNow) {
-          unsave(id);
-          setBtnState(btn, false);
-        } else {
-          save({
-            id,
-            url,
-            title,
-            source_slug: src,
-            pub_date: pub,
-            saved_at: Date.now()
-          });
-          setBtnState(btn, true);
+        // 401 just means logged out. LocalStorage still handled it.
+        if (response.status === 401) {
+          return null;
         }
 
-        // update across tabs/pages
-        window.dispatchEvent(new StorageEvent('storage', { key: KEY }));
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          console.warn('Saved headline account save failed:', data);
+        }
+
+        return data;
+      } catch (err) {
+        console.warn('Saved headline account save failed:', err);
+        return null;
+      }
+    }
+
+    async function unsaveFromAccount(id) {
+      try {
+        const response = await fetch(UNSAVE_API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            id
+          })
+        });
+
+        if (response.status === 401) {
+          return null;
+        }
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          console.warn('Saved headline account unsave failed:', data);
+        }
+
+        return data;
+      } catch (err) {
+        console.warn('Saved headline account unsave failed:', err);
+        return null;
+      }
+    }
+
+    function buildItemFromButton(btn) {
+      const url = btn.getAttribute('data-url') || '';
+      const title = btn.getAttribute('data-title') || '';
+      const source = btn.getAttribute('data-source') || '';
+      const pubDate = btn.getAttribute('data-pub') || '';
+      const id = btn.dataset.id || makeId(url, title);
+
+      return {
+        id,
+        url,
+        title,
+        source_slug: source,
+        pub_date: pubDate,
+        saved_at: Date.now()
+      };
+    }
+
+    function setBtnState(btn, saved) {
+      btn.textContent = saved ? 'Unsave' : 'Save';
+      btn.classList.toggle('is-saved', saved);
+      btn.setAttribute('aria-label', saved ? 'Unsave headline' : 'Save headline');
+    }
+
+    function refreshButtonStates() {
+      document.querySelectorAll('.firstlook-save-btn').forEach(btn => {
+        const id = btn.dataset.id;
+
+        if (!id) return;
+
+        setBtnState(btn, isSaved(id));
       });
-    });
-  }
+    }
 
-  // Update button states if Saved page or another tab changes localStorage
-  window.addEventListener('storage', (e) => {
-    if (e.key !== KEY) return;
-    document.querySelectorAll('.firstlook-save-btn').forEach(btn => {
-      const id = btn.dataset.id;
-      if (!id) return;
-      setBtnState(btn, isSaved(id));
-    });
-  });
+    function initButtons() {
+      document.querySelectorAll('.firstlook-save-btn').forEach(btn => {
+        const url = btn.getAttribute('data-url') || '';
+        const title = btn.getAttribute('data-title') || '';
+        const id = makeId(url, title);
 
-  initButtons();
-})();
+        btn.dataset.id = id;
+        setBtnState(btn, isSaved(id));
+
+        btn.addEventListener('click', async () => {
+          const savedNow = isSaved(id);
+
+          if (savedNow) {
+            unsaveLocal(id);
+            setBtnState(btn, false);
+            unsaveFromAccount(id);
+
+            // DB unsave comes later with a soft-delete endpoint.
+          } else {
+            const item = buildItemFromButton(btn);
+
+            saveLocal(item);
+            setBtnState(btn, true);
+
+            saveToAccount(item);
+          }
+
+          window.dispatchEvent(new StorageEvent('storage', {
+            key: KEY
+          }));
+        });
+      });
+    }
+
+    window.addEventListener('storage', (e) => {
+      if (e.key !== KEY) return;
+      refreshButtonStates();
+    });
+
+    initButtons();
+  })();
 </script>

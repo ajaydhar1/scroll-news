@@ -23,7 +23,7 @@
 }
 
 /* Disable sticky on small screens */
-@media (max-width: 767.98px) {
+@media (max-width: 991.98px) {
   .sn-top-nav.sticky-top {
     position: static !important;
     top: auto !important;
@@ -655,10 +655,20 @@ blockquote::before {
   background-color: #f8f9fa;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 1180px) {
   .browse-btn {
     font-size: 1rem;
     white-space: nowrap;
     line-height: .5;
+  }
+}
+
+#first-look {
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 991.98px) {
+  #first-look {
+    scroll-margin-top: 0;
   }
 }
