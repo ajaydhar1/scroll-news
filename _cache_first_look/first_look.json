@@ -1,5 +1,5 @@
 {
-    "fetched_at": 1779538135,
+    "fetched_at": 1779559716,
     "feeds": [
         {
             "name": "Drudge",
@@ -8,13 +8,13 @@
                 {
                     "title": "MAG 6 QUAKE HAWAII...",
                     "url": "https://www.hawaiinewsnow.com/2026/05/23/magnitude-60-earthquake-hawaii-island-shakes-state-no-tsunami-generated/",
-                    "ts": 1779536976,
+                    "ts": 1779558396,
                     "emo": "📰"
                 },
                 {
                     "title": "MAP...",
                     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv74966427/executive",
-                    "ts": 1779536976,
+                    "ts": 1779558396,
                     "emo": "📰"
                 }
             ]
@@ -24,16 +24,16 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "The US military is using the southern border as a 'sandbox' to test out counter-drone tech amid cartel flights",
-                    "url": "https://www.businessinsider.com/us-military-using-the-southern-border-test-counter-drone-tech-2026-5",
-                    "ts": 1779534721,
+                    "title": "What smart people are saying about the new green card crackdown",
+                    "url": "https://www.businessinsider.com/experts-react-donald-trump-new-immigration-policy-green-card-applications-2026-5",
+                    "ts": 1779552318,
                     "emo": "📰"
                 },
                 {
-                    "title": "How the opioid black market actually works, according to a former pill mill owner",
-                    "url": "https://www.businessinsider.com/how-the-opioid-black-market-works-from-a-former-pill-mill-owner-2026-5",
-                    "ts": 1779534001,
-                    "emo": "💰"
+                    "title": "Best streaming deals and bundles (2026)",
+                    "url": "https://www.businessinsider.com/guides/deals/best-streaming-deals-bundles",
+                    "ts": 1779549244,
+                    "emo": "📰"
                 }
             ]
         }

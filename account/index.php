@@ -115,7 +115,7 @@ $userId = $_SESSION['user_id'] ?? null;
                                     <ul class="text-muted mb-3">
                                         <li><a href="/account/saved-headlines.php" class="account-link">Saved headlines</a></li>
                                         <li><a href="/account/reading-history.php" class="account-link">Reading history</a></li>
-                                        <li>Saved searches</li>
+                                        <li><a href="/account/search-history.php" class="account-link">Search history</a></li>
                                         <li>Shuffle history</li>
                                         <li>Your news pattern</li>
                                     </ul>

@@ -112,19 +112,9 @@ function pageUrl(int $page): string
     <meta name="author" content="Scroll News" />
     <title>Reading History — Scroll News</title>
 
+    <meta name="robots" content="noindex, nofollow">
     <link rel="canonical" href="https://scrollnews.ai/account/reading-history.php" />
     <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://scrollnews.ai/account/reading-history.php" />
-    <meta property="og:title" content="Reading History — Scroll News" />
-    <meta property="og:description" content="Review your Scroll News reading history." />
-    <meta property="og:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-home-1200x630.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Reading History — Scroll News" />
-    <meta name="twitter:description" content="Review your Scroll News reading history." />
-    <meta name="twitter:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-home-1200x630.png" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous"></script>
@@ -447,7 +437,7 @@ function pageUrl(int $page): string
                     <hr class="my-4">
 
                     <div class="d-flex justify-content-between align-items-center">
-                        <a href="/" class="text-muted">← Back to Scroll News</a>
+                        <a href="/" class="text-muted" data-loading>← Back to Scroll News</a>
                         <a href="/auth/logout.php" class="btn btn-outline-secondary btn-sm">Sign Out</a>
                     </div>
 

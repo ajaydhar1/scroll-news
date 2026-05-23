@@ -13,6 +13,58 @@ require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
 require_once BASE_PATH . "/core/config/interest.php";
 require_once BASE_PATH . "/core/___modules.php";
 
+function save_user_search_history(PDO $pdo, int $userId, array $data): void
+{
+    $query = trim((string) ($data['query'] ?? ''));
+
+    if ($query === '') {
+        return;
+    }
+
+    $mode = trim((string) ($data['mode'] ?? ''));
+    $range = trim((string) ($data['range'] ?? ''));
+
+    $params = $data['params'] ?? [];
+
+    if (!is_array($params)) {
+        $params = [];
+    }
+
+    // Remove empty values
+    $params = array_filter($params, static function ($value) {
+        return $value !== null && $value !== '';
+    });
+
+    $sql = "
+        INSERT INTO user_search_history (
+            user_id,
+            query,
+            mode,
+            range,
+            params_json
+        )
+        VALUES (
+            :user_id,
+            :query,
+            :mode,
+            :range,
+            :params_json
+        )
+    ";
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->execute([
+        ':user_id' => $userId,
+        ':query' => $query,
+        ':mode' => $mode !== '' ? $mode : null,
+        ':range' => $range !== '' ? $range : null,
+        ':params_json' => !empty($params)
+            ? json_encode($params, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+            : null,
+    ]);
+}
+
 $pdo        = _pdo_or_null();
 $results    = [];
 $errorMsg   = null;
@@ -71,6 +123,18 @@ if (!$pdo) {
                 shuffle($results);
             }
 
+            if ($currentUser && $q !== '') {
+                save_user_search_history(
+                    $pdo,
+                    (int) $currentUser['id'],
+                    [
+                        'query' => $q,
+                        'mode' => $mode ?? null,
+                        'range' => $range ?? null,
+                        'params' => $_GET,
+                    ]
+                );
+            }
         } else {
             $results = [];
         }
@@ -89,318 +153,371 @@ if (!$pdo) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <?php require_once BASE_PATH . '/views/partials/___google_analytics.php'; ?>
 
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="Search recent headlines across Scroll News feeds and jump into articles or detailed analysis." />
-        <meta name="author" content="Scroll News" />
-        <title>Search – Scroll News</title>
+<head>
+    <?php require_once BASE_PATH . '/views/partials/___google_analytics.php'; ?>
 
-        <meta name="robots" content="noindex,follow">
-        <!-- Favicon-->
-        <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
-        <link rel="canonical" href="https://scrollnews.ai/search">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Search recent headlines across Scroll News feeds and jump into articles or detailed analysis." />
+    <meta name="author" content="Scroll News" />
+    <title>Search – Scroll News</title>
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://scrollnews.ai/search.php" />
-        <meta property="og:title" content="Search headlines on Scroll News" />
-        <meta property="og:description" content="Search recent U.S. news headlines across Scroll News feeds, then read or analyze stories in detail." />
-        <meta property="og:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-search-1200x630.png" />
+    <meta name="robots" content="noindex,follow">
+    <!-- Favicon-->
+    <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
+    <link rel="canonical" href="https://scrollnews.ai/search">
 
-        <!-- Twitter -->
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://scrollnews.ai/search.php" />
-        <meta name="twitter:title" content="Search headlines on Scroll News" />
-        <meta name="twitter:description" content="Search recent headlines and jump into Scroll News analysis or publisher stories." />
-        <meta name="twitter:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-search-1200x630.png" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://scrollnews.ai/search.php" />
+    <meta property="og:title" content="Search headlines on Scroll News" />
+    <meta property="og:description" content="Search recent U.S. news headlines across Scroll News feeds, then read or analyze stories in detail." />
+    <meta property="og:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-search-1200x630.png" />
 
-        <!-- jQuery min-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://scrollnews.ai/search.php" />
+    <meta name="twitter:title" content="Search headlines on Scroll News" />
+    <meta name="twitter:description" content="Search recent headlines and jump into Scroll News analysis or publisher stories." />
+    <meta name="twitter:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-search-1200x630.png" />
 
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous"></script>
-        
-        <!-- Google fonts-->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans&display=swap" rel="stylesheet" />
+    <!-- jQuery min-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
-        <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
-        <link href="/assets/css/pages/search.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/search.css'); ?>" rel="stylesheet" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous"></script>
 
-    </head>
-    <body id="page-top" class="bg-dark">
+    <!-- Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans&display=swap" rel="stylesheet" />
 
-        <div id="sn-search-loading" class="sn-loading-overlay" aria-hidden="true">
-            <div class="sn-loading-spinner">
-                <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Loading…</span>
-                </div>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
+    <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
+    <link href="/assets/css/pages/search.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/search.css'); ?>" rel="stylesheet" />
+
+</head>
+
+<body id="page-top" class="bg-dark">
+
+    <div id="sn-search-loading" class="sn-loading-overlay" aria-hidden="true">
+        <div class="sn-loading-spinner">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading…</span>
             </div>
         </div>
+    </div>
 
-        <!-- Top nav-->        
-        <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
+    <!-- Top nav-->
+    <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
 
-        <!-- Main content section, reusing services section styling -->
-        <section class="page-section" id="services" style="padding: 4rem 0;">
-            <div class="container">
-                <div class="row justify-content-center mb-4">
-                    <div class="col-md-8 text-center">
-                        <h2 class="section-heading">🔎 Search Headlines</h2>
-                        <h3 class="section-subheading text-muted" style="margin-bottom: 1.5rem;">
-                            Find recent stories from Scroll News feeds, then read or analyze them.
-                        </h3>
+    <!-- Main content section, reusing services section styling -->
+    <section class="page-section" id="services" style="padding: 4rem 0;">
+        <div class="container">
+            <div class="row justify-content-center mb-4">
+                <div class="col-md-8 text-center">
+                    <h2 class="section-heading">🔎 Search Headlines</h2>
+                    <h3 class="section-subheading text-muted" style="margin-bottom: 1.5rem;">
+                        Find recent stories from Scroll News feeds, then read or analyze them.
+                    </h3>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-8 mx-auto">
+
+                    <?php
+                    $snSearch = [
+                        'mode' => $mode,
+                        'q' => $q,
+                        'range' => $range,
+                        'sentiment' => $sentiment,
+                        'emotion' => $emotion,
+                        'deep_dive_active' => $deepDiveActive,
+                        'high_signal_active' => $highSignalActive,
+                    ];
+                    ?>
+
+                    <?php require_once BASE_PATH . '/views/search/___search_form.php'; ?>
+
+                </div>
+            </div>
+
+            <?php if ($errorMsg): ?>
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <div class="alert alert-danger">
+                            <?php echo htmlspecialchars($errorMsg, ENT_QUOTES, 'UTF-8'); ?>
+                        </div>
                     </div>
                 </div>
+            <?php endif; ?>
 
-                <div class="row mb-4">
+            <?php if (!$hasFilters): ?>
+                <div class="row">
+                    <div class="col-md-8 mx-auto text-center">
+
+                        <img src="/assets/img/stickers/radar.gif" class="radar" />
+
+                        <?php
+                        // Curated starter searches (ship-now)
+                        $searchChips = [
+                            'AI',
+                            'Trump',
+                            'Markets',
+                            'AI regulation',
+                            'Apple',
+                            'Microsoft',
+                            'Elon Musk',
+                            'Democrat',
+                            'Iran',
+                            'Congress',
+                            'California',
+                            'Washington',
+                            'OpenAI',
+                            'NVIDIA',
+                            'Ukraine',
+                            'Gaza',
+                            'Supreme Court',
+                            'Los Angeles',
+                            'Republican',
+                            'Politics',
+                            'Business',
+                            'Policy',
+                            'Interest rates',
+                            'Inflation',
+                            'Climate',
+                            'Taylor Swift',
+                            'Stock',
+                            'NFL',
+                            'NBA',
+                            'AI startups',
+                            'Cybersecurity',
+                            'Robotics',
+                            'SpaceX',
+                            'Quantum computing',
+                            'EVs',
+                            'Semiconductors',
+                            'China',
+                            'London',
+                            'Africa',
+                            'UN',
+                            'Middle East',
+                            'Gen Z',
+                            'Dating',
+                            'Mental health',
+                            'Remote work',
+                            'Productivity',
+                            'Billionaires',
+                            'Housing',
+                            'Education',
+                            'Longevity',
+                            'Climate tech',
+                            'Neuroscience',
+                            'Future cities',
+                            'Energy',
+                            'Biotechnology',
+                            'Movies',
+                            'Streaming',
+                            'YouTube',
+                            'Gaming',
+                            'Celebrities',
+                            'Music industry',
+                            'UFC',
+                            'Soccer',
+                            'Formula 1',
+                            'MLB'
+                        ];
+
+
+                        // build classic search urls
+                        $buildSearchUrl = function (string $q): string {
+                            $params = [
+                                'q' => $q,
+                                'range' => 'all',
+                                'mode' => 'classic',
+                                'deep_dive' => '',
+                                'high_signal' => '',
+                            ];
+                            return '/search.php?' . http_build_query($params);
+                        };
+                        ?>
+
+                        <h5 class="text-center mb-3">Discovery topic chips</h5>
+
+                        <div class="sn-search-chips">
+                            <?php foreach ($searchChips as $chip): ?>
+                                <a class="sn-chip" href="<?= htmlspecialchars($buildSearchUrl($chip), ENT_QUOTES, 'UTF-8') ?>" data-sn-loading>
+                                    <?= htmlspecialchars($chip, ENT_QUOTES, 'UTF-8') ?>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+
+                        <blockquote class="small text-muted mt-5">
+                            Tip: try names, companies, locations, or big topics.
+                        </blockquote>
+                    </div>
+                </div>
+            <?php else: ?>
+                <div class="row">
                     <div class="col-md-8 mx-auto">
 
                         <?php
-                            $snSearch = [
-                            'mode' => $mode,
-                            'q' => $q,
-                            'range' => $range,
-                            'sentiment' => $sentiment,
-                            'emotion' => $emotion,
-                            'deep_dive_active' => $deepDiveActive,
-                            'high_signal_active' => $highSignalActive,
-                            ];
+                        // Build a simple "Active filters" string
+                        $filterChips = [];
+
+                        if ($mode === 'nlp') {
+                            $filterChips[] = 'Smart (NLP)';
+                        } else {
+                            $filterChips[] = 'Keyword';
+                        }
+
+                        if ($range === '24h') {
+                            $filterChips[] = 'Last 24 hours';
+                        } elseif ($range === 'older') {
+                            $filterChips[] = 'Older than 24 hours';
+                        } else {
+                            $filterChips[] = 'All time';
+                        }
+
+                        if (!empty($sentiment)) {
+                            $filterChips[] = 'Sentiment: ' . ucfirst($sentiment);
+                        }
+
+                        if (!empty($emotion)) {
+                            $filterChips[] = 'Emotion: ' . $emotion;
+                        }
+
+                        // NEW: High-signal publishers
+                        if (!empty($highSignalOnly)) {
+                            $filterChips[] = 'High-signal publishers';
+                        }
+
+                        // NEW: Deep dive (entity-dense)
+                        if (!empty($deepDive) && $mode === 'nlp') {
+                            $filterChips[] = 'Deep Dive (entity-dense)';
+                            // or shorter: 'Deep Dive'
+                        }
                         ?>
 
-                        <?php require_once BASE_PATH . '/views/search/___search_form.php'; ?>
+                        <?php if ($hasFilters && !empty($filterChips)): ?>
+                            <p class="text-muted mb-1">
+                                Active filters:
+                                <?php echo htmlspecialchars(implode(' · ', $filterChips), ENT_QUOTES, 'UTF-8'); ?>
+                            </p>
+                        <?php endif; ?>
 
-                    </div>
-                </div>
 
-                <?php if ($errorMsg): ?>
-                    <div class="row">
-                        <div class="col-md-8 mx-auto">
-                            <div class="alert alert-danger">
-                                <?php echo htmlspecialchars($errorMsg, ENT_QUOTES, 'UTF-8'); ?>
-                            </div>
-                        </div>
-                    </div>
-                <?php endif; ?>
+                        <h2 class="h6 mb-3">
+                            <?php if ($q !== ''): ?>
+                                Results for
+                                "<span class="fw-semibold">
+                                    <?php echo htmlspecialchars($q, ENT_QUOTES, 'UTF-8'); ?>
+                                </span>"
+                            <?php else: ?>
+                                Filtered results
+                            <?php endif; ?>
 
-                <?php if (!$hasFilters): ?>
-                    <div class="row">
-                        <div class="col-md-8 mx-auto text-center">
+                            <?php if (!empty($results)): ?>
+                                <span class="text-muted">
+                                    · <?php echo count($results); ?> found
+                                </span>
+                                <?php
+                                $params = $_GET;
+                                $params['shuffle'] = 1;
 
-                            <img src="/assets/img/stickers/radar.gif" class="radar" />
+                                $explore_url = '?' . http_build_query($params);
+                                ?>
 
-                            <?php
-                                // Curated starter searches (ship-now)
-                                $searchChips = [
-                                    'AI', 'Trump', 'Markets',
-                                    'AI regulation', 'Apple', 'Microsoft', 'Elon Musk',
-                                    'Democrat', 'Iran', 'Congress', 'California', 'Washington',
-                                    'OpenAI', 'NVIDIA', 'Ukraine', 'Gaza', 'Supreme Court',
-                                    'Los Angeles', 'Republican',  'Politics', 'Business', 'Policy',
-                                    'Interest rates', 'Inflation', 'Climate', 'Taylor Swift', 'Stock',
-                                    'NFL', 'NBA', 'AI startups', 'Cybersecurity', 'Robotics', 
-                                    'SpaceX', 'Quantum computing', 'EVs', 'Semiconductors', 
-                                    'China', 'London', 'Africa', 'UN', 'Middle East', 
-                                    'Gen Z', 'Dating', 'Mental health', 'Remote work', 
-                                    'Productivity', 'Billionaires', 'Housing', 'Education', 
-                                    'Longevity', 'Climate tech', 'Neuroscience', 'Future cities', 
-                                    'Energy', 'Biotechnology', 'Movies', 'Streaming', 'YouTube', 
-                                    'Gaming', 'Celebrities', 'Music industry', 'UFC', 'Soccer', 
-                                    'Formula 1', 'MLB'
+                                <a href="<?= htmlspecialchars($explore_url) ?>" class="btn btn-sm btn-info" data-sn-loading>
+                                    🔀 AI-powered Shuffle
+                                </a>
+                            <?php endif; ?>
+                        </h2>
+
+                        <?php if (empty($results)): ?>
+                            <p class="text-muted">
+                                No results matched your search or filters. Try another keyword or a more general phrase, or loosen your filters.
+                            </p>
+                        <?php else: ?>
+                            <?php foreach ($results as $row): ?>
+                                <?php
+                                $vm = sn_article_vm_from_row($row, [
+                                    'mode' => $mode,
+                                    'analysis_window' => '7d',
+                                ]);
+
+                                // Search page should preserve current filters when clicking badges (recommended)
+                                $baseParams = [
+                                    'q' => $q,
+                                    'range' => $range,
+                                    'mode' => $mode,
+                                    'sentiment' => $sentiment,
+                                    'emotion' => $emotion,
+                                    'deep_dive' => $deepDiveActive ? '1' : '',
+                                    'high_signal' => $highSignalActive ? '1' : '',
                                 ];
 
+                                $badgeHrefBuilder = function (string $slug, array $vm) use ($baseParams) {
+                                    // preserve current params, then force the badge param
+                                    $p = $baseParams;
 
-                                // build classic search urls
-                                $buildSearchUrl = function(string $q): string {
-                                    $params = [
-                                        'q' => $q,
-                                        'range' => 'all',
-                                        'mode' => 'classic',
-                                        'deep_dive' => '',
-                                        'high_signal' => '',
-                                    ];
-                                    return '/search.php?' . http_build_query($params);
+                                    if ($slug === 'deep-dive') {
+                                        $p['mode'] = 'nlp';
+                                        $p['deep_dive'] = '1';
+                                    } elseif ($slug === 'high-signal-publisher') {
+                                        $p['high_signal'] = '1';
+                                    }
+
+                                    // remove empties
+                                    $p = array_filter($p, fn($v) => $v !== '' && $v !== null);
+
+                                    return '/search.php?' . http_build_query($p);
                                 };
-                            ?>
+                                ?>
 
-                            <h5 class="text-center mb-3">Discovery topic chips</h5>
-
-                            <div class="sn-search-chips">
-                                <?php foreach ($searchChips as $chip): ?>
-                                    <a class="sn-chip" href="<?= htmlspecialchars($buildSearchUrl($chip), ENT_QUOTES, 'UTF-8') ?>" data-sn-loading>
-                                        <?= htmlspecialchars($chip, ENT_QUOTES, 'UTF-8') ?>
-                                    </a>
-                                <?php endforeach; ?>
-                            </div>
-
-                            <blockquote class="small text-muted mt-5">
-                                Tip: try names, companies, locations, or big topics.
-                            </blockquote>
-                        </div>
+                                <?php
+                                sn_render_article_card($vm, [
+                                    'card_class' => 'sn-search-card',
+                                    'analysis_window' => '7d',
+                                    'badge_href_builder' => $badgeHrefBuilder,
+                                    // Search page: show NLP details if present
+                                    'show_hashtags' => true,
+                                    'show_sentiment' => true,
+                                    'show_emotions' => true,
+                                    'show_badges' => true,
+                                    'show_analyze' => true,
+                                ]);
+                                ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
-                <?php else: ?>
-                    <div class="row">
-                        <div class="col-md-8 mx-auto">
+                </div>
+            <?php endif; ?>
+        </div>
+    </section>
 
-                            <?php
-                                // Build a simple "Active filters" string
-                                $filterChips = [];
+    <!-- Footer-->
+    <?php require_once BASE_PATH . '/views/partials/___footer.php'; ?>
 
-                                if ($mode === 'nlp') {
-                                    $filterChips[] = 'Smart (NLP)';
-                                } else {
-                                    $filterChips[] = 'Keyword';
-                                }
+    <!-- Modals-->
+    <?php require_once BASE_PATH . '/views/partials/___modals.php'; ?>
 
-                                if ($range === '24h') {
-                                    $filterChips[] = 'Last 24 hours';
-                                } elseif ($range === 'older') {
-                                    $filterChips[] = 'Older than 24 hours';
-                                } else {
-                                    $filterChips[] = 'All time';
-                                }
+    <!-- Core JS (Bootstrap 4 requires jQuery first) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
-                                if (!empty($sentiment)) {
-                                    $filterChips[] = 'Sentiment: ' . ucfirst($sentiment);
-                                }
+    <!-- Theme -->
+    <script src="/assets/js/scripts.js" defer></script>
 
-                                if (!empty($emotion)) {
-                                    $filterChips[] = 'Emotion: ' . $emotion;
-                                }
+    <!-- Scroll News Features -->
+    <script src="/assets/js/sn_history.js" defer></script>
 
-                                // NEW: High-signal publishers
-                                if (!empty($highSignalOnly)) {
-                                    $filterChips[] = 'High-signal publishers';
-                                }
+    <script src="/assets/js/pages/search.js?v=<?= filemtime(BASE_PATH . '/assets/js/pages/search.js') ?>" defer></script>
 
-                                // NEW: Deep dive (entity-dense)
-                                if (!empty($deepDive) && $mode === 'nlp') {
-                                    $filterChips[] = 'Deep Dive (entity-dense)';
-                                    // or shorter: 'Deep Dive'
-                                }
-                            ?>
+</body>
 
-                            <?php if ($hasFilters && !empty($filterChips)): ?>
-                                <p class="text-muted mb-1">
-                                    Active filters:
-                                    <?php echo htmlspecialchars(implode(' · ', $filterChips), ENT_QUOTES, 'UTF-8'); ?>
-                                </p>
-                            <?php endif; ?>
-
-
-                            <h2 class="h6 mb-3">
-                                <?php if ($q !== ''): ?>
-                                    Results for
-                                    "<span class="fw-semibold">
-                                        <?php echo htmlspecialchars($q, ENT_QUOTES, 'UTF-8'); ?>
-                                    </span>"
-                                <?php else: ?>
-                                    Filtered results
-                                <?php endif; ?>
-
-                                <?php if (!empty($results)): ?>
-                                    <span class="text-muted">
-                                        · <?php echo count($results); ?> found
-                                    </span>
-                                    <?php
-                                    $params = $_GET;
-                                    $params['shuffle'] = 1;
-
-                                    $explore_url = '?' . http_build_query($params);
-                                    ?>
-
-                                    <a href="<?= htmlspecialchars($explore_url) ?>" class="btn btn-sm btn-info" data-sn-loading>
-                                        🔀 AI-powered Shuffle
-                                    </a>
-                                <?php endif; ?>
-                            </h2>
-
-                            <?php if (empty($results)): ?>
-                                <p class="text-muted">
-                                    No results matched your search or filters. Try another keyword or a more general phrase, or loosen your filters.
-                                </p>
-                            <?php else: ?>
-                                <?php foreach ($results as $row): ?>
-                                    <?php
-                                        $vm = sn_article_vm_from_row($row, [
-                                            'mode' => $mode,
-                                            'analysis_window' => '7d',
-                                        ]);
-
-                                        // Search page should preserve current filters when clicking badges (recommended)
-                                        $baseParams = [
-                                            'q' => $q,
-                                            'range' => $range,
-                                            'mode' => $mode,
-                                            'sentiment' => $sentiment,
-                                            'emotion' => $emotion,
-                                            'deep_dive' => $deepDiveActive ? '1' : '',
-                                            'high_signal' => $highSignalActive ? '1' : '',
-                                        ];
-
-                                        $badgeHrefBuilder = function (string $slug, array $vm) use ($baseParams) {
-                                            // preserve current params, then force the badge param
-                                            $p = $baseParams;
-
-                                            if ($slug === 'deep-dive') {
-                                                $p['mode'] = 'nlp';
-                                                $p['deep_dive'] = '1';
-                                            } elseif ($slug === 'high-signal-publisher') {
-                                                $p['high_signal'] = '1';
-                                            }
-
-                                            // remove empties
-                                            $p = array_filter($p, fn($v) => $v !== '' && $v !== null);
-
-                                            return '/search.php?' . http_build_query($p);
-                                        };
-                                    ?>
-
-                                    <?php
-                                        sn_render_article_card($vm, [
-                                            'card_class' => 'sn-search-card',
-                                            'analysis_window' => '7d',
-                                            'badge_href_builder' => $badgeHrefBuilder,
-                                            // Search page: show NLP details if present
-                                            'show_hashtags' => true,
-                                            'show_sentiment' => true,
-                                            'show_emotions' => true,
-                                            'show_badges' => true,
-                                            'show_analyze' => true,
-                                        ]);
-                                    ?>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
-            </div>
-        </section>
-
-        <!-- Footer-->        
-        <?php require_once BASE_PATH . '/views/partials/___footer.php'; ?>
-        
-        <!-- Modals-->        
-        <?php require_once BASE_PATH . '/views/partials/___modals.php'; ?>
-
-        <!-- Core JS (Bootstrap 4 requires jQuery first) -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
-
-        <!-- Theme -->
-        <script src="/assets/js/scripts.js" defer></script>
-
-        <!-- Scroll News Features -->
-        <script src="/assets/js/sn_history.js" defer></script>
-        
-        <script src="/assets/js/pages/search.js?v=<?= filemtime(BASE_PATH . '/assets/js/pages/search.js') ?>" defer></script>
-
-    </body>
 </html>
