@@ -130,10 +130,10 @@ exit;
         <div id="side-by-side-panel"> <?php // class="mb-4" style="min-height:480px;" 
                                         ?>
             <div class="container-fluid" style="padding-top: 30px;">
-                <div id="panel-inner-row" class="row"> <?php //  style="height: 95vh;" 
+                <div id="panel-inner-row newsroom-layout" class="row"> <?php //  style="height: 95vh;" 
                                                                 ?>
                     <!-- NLP Dashboard Panel -->
-                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 panel" style="overflow-y: auto;">
+                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 panel newsroom-main" style="overflow-y: auto;">
                         
                         <!-- Masthead-->
                         <header class="masthead" style="background-image: url(<?php echo $img; ?>)">
@@ -241,7 +241,7 @@ exit;
                     </div>
 
                     <!-- Article Image Panel -->
-                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 panel" style="height: 100%; overflow-y: auto;"> <?php //background-color: #fcfcfc; 
+                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 panel newsroom-sidebar" style="height: 100%; overflow-y: auto;"> <?php //background-color: #fcfcfc; 
                                                                                                                         ?>
                         <div id="analytics" class="skeleton">
 

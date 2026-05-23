@@ -525,3 +525,15 @@ button.nav-link.active {
 .hashtags-scroll .tag-cloud-sidebar {
     overflow: visible !important;
 }
+
+@media (min-width: 1200px) and (max-width: 1450px) {
+    .newsroom-layout {
+        flex-direction: column;
+    }
+
+    .newsroom-main,
+    .newsroom-sidebar {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+}
