@@ -16,6 +16,13 @@ $totalItems = 0;
 $totalPages = 1;
 $historyItems = [];
 
+$q = trim($_GET['q'] ?? '');
+$hasSearch = $q !== '';
+
+$searchSql = $hasSearch
+    ? " AND (title ILIKE :search OR source ILIKE :search)"
+    : "";
+
 try {
     $countSql = "
         SELECT COUNT(*)
@@ -23,7 +30,8 @@ try {
             SELECT DISTINCT ON (url) url
             FROM user_reading_history
             WHERE user_id = :user_id
-              AND deleted_at IS NULL
+            AND deleted_at IS NULL
+            $searchSql
             ORDER BY url, viewed_at DESC
         ) latest
     ";
@@ -31,7 +39,13 @@ try {
     $pdo = auth_db();
 
     $countStmt = $pdo->prepare($countSql);
-    $countStmt->execute(['user_id' => $userId]);
+    $countStmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+
+    if ($hasSearch) {
+        $countStmt->bindValue(':search', '%' . $q . '%', PDO::PARAM_STR);
+    }
+
+    $countStmt->execute();
     $totalItems = (int)$countStmt->fetchColumn();
     $totalPages = max(1, (int)ceil($totalItems / $perPage));
 
@@ -56,7 +70,8 @@ try {
                 rss_item_id
             FROM user_reading_history
             WHERE user_id = :user_id
-              AND deleted_at IS NULL
+            AND deleted_at IS NULL
+            $searchSql
             ORDER BY url, viewed_at DESC
         ) latest
         ORDER BY viewed_at DESC
@@ -65,6 +80,11 @@ try {
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+
+    if ($hasSearch) {
+        $stmt->bindValue(':search', '%' . $q . '%', PDO::PARAM_STR);
+    }
+
     $stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
     $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
     $stmt->execute();
@@ -96,7 +116,13 @@ function niceDate($value): string
 
 function pageUrl(int $page): string
 {
-    return '/account/reading-history.php?page=' . $page;
+    $params = ['page' => $page];
+
+    if (trim($_GET['q'] ?? '') !== '') {
+        $params['q'] = trim($_GET['q']);
+    }
+
+    return '/account/reading-history.php?' . http_build_query($params);
 }
 
 ?>
@@ -245,6 +271,12 @@ function pageUrl(int $page): string
                 height: 150px;
             }
         }
+
+        .reading-history-search .form-control {
+            background: #fff;
+            border: 1px solid #ced4da;
+            color: #495057;
+        }
     </style>
 </head>
 
@@ -270,6 +302,11 @@ function pageUrl(int $page): string
                                     <p class="text-muted mb-0">
                                         Articles you’ve opened across Scroll News. Publisher and Newsroom views are saved here.
                                     </p>
+                                    <?php if ($hasSearch): ?>
+                                        <div class="small text-muted mt-2">
+                                            Search results for <strong>"<?= h($q) ?>"</strong>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
@@ -278,11 +315,29 @@ function pageUrl(int $page): string
                                     <i class="fa-solid fa-trash-can mr-1"></i> Clear History
                                 </button>
                                 <div class="text-muted small mt-2">
-                                    <?= number_format($totalItems) ?> saved article<?= $totalItems === 1 ? '' : 's' ?>
+                                    <?php if ($hasSearch): ?>
+                                        Showing <?= number_format($totalItems) ?> result<?= $totalItems === 1 ? '' : 's' ?>
+                                    <?php else: ?>
+                                        <?= number_format($totalItems) ?> saved article<?= $totalItems === 1 ? '' : 's' ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <form method="get" class="reading-history-search mb-4">
+                        <div class="input-group">
+                            <input
+                                type="search"
+                                name="q"
+                                class="form-control"
+                                placeholder="Search your reading history..."
+                                value="<?= h($_GET['q'] ?? '') ?>">
+                            <div class="input-group-append">
+                                <button class="btn btn-dark" type="submit" data-loading>Search</button>
+                            </div>
+                        </div>
+                    </form>
 
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <a href="/account/" class="text-muted">← Back to Account</a>
