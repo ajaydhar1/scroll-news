@@ -352,13 +352,33 @@ function pageUrl(int $page): string
                             <div class="reading-history-icon mb-3">
                                 <i class="fa-solid fa-book-open-reader"></i>
                             </div>
-                            <h2 class="h5 mb-2">No reading history yet</h2>
-                            <p class="text-muted mb-4">
-                                Open a few articles from the Newsroom or Search page, and they’ll appear here automatically.
-                            </p>
-                            <a href="/newsroom.php" class="btn btn-green btn-sm">
-                                Start Reading
-                            </a>
+
+                            <?php if ($hasSearch): ?>
+
+                                <h2 class="h5 mb-2">No matching articles found</h2>
+
+                                <p class="text-muted mb-4">
+                                    No reading history matched "<strong><?= h($q) ?></strong>". Try a different keyword or clear the search.
+                                </p>
+
+                                <a href="/account/reading-history.php" class="btn btn-outline-secondary btn-sm" data-loading>
+                                    Clear Search
+                                </a>
+
+                            <?php else: ?>
+
+                                <h2 class="h5 mb-2">No reading history yet</h2>
+
+                                <p class="text-muted mb-4">
+                                    Open a few articles from the Newsroom or Search page, and they’ll appear here automatically.
+                                </p>
+
+                                <a href="/newsroom.php" class="btn btn-green btn-sm">
+                                    Start Reading
+                                </a>
+
+                            <?php endif; ?>
+
                         </div>
 
                     <?php else: ?>
