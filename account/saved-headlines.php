@@ -248,7 +248,7 @@ function pageUrl(int $page): string
 
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <a href="/account/" class="text-muted">← Back to Account</a>
-                        <a href="/#first-look" class="btn btn-green btn-sm">
+                        <a href="/#first-look" class="btn btn-green btn-sm" data-loading>
                             <i class="fa-solid fa-newspaper mr-1"></i> First Look
                         </a>
                     </div>
@@ -263,7 +263,7 @@ function pageUrl(int $page): string
                             <p class="text-muted mb-4">
                                 Save headlines from the First Look panel, and they’ll appear here.
                             </p>
-                            <a href="/#first-look" class="btn btn-green btn-sm">
+                            <a href="/#first-look" class="btn btn-green btn-sm" data-loading>
                                 Go to First Look
                             </a>
                         </div>
