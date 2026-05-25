@@ -49,6 +49,8 @@ $stmt->execute([
 
 $shuffleSessions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$totalSessions = count($shuffleSessions);
+
 function shuffle_type_label(string $sourceContext, string $shuffleType): string
 {
     if ($sourceContext === 'search_results') {
@@ -167,11 +169,37 @@ function shuffle_view_url(array $row): string
                 <div class="col-lg-9 mx-auto">
 
                     <div class="shuffle-history-header mb-4">
-                        <p class="text-muted small mb-1">Your discovery history</p>
-                        <h1 class="h3 mb-2">Shuffle History</h1>
-                        <p class="text-muted mb-0">
-                            Revisit AI-powered shuffle sessions from Search and Browse News.
-                        </p>
+                        <div class="d-flex flex-wrap justify-content-between align-items-start">
+
+                            <div class="d-flex align-items-start">
+                                <div class="shuffle-history-icon mr-3">
+                                    <i class="fas fa-random"></i>
+                                </div>
+
+                                <div>
+                                    <p class="text-muted small mb-1">Your discovery history</p>
+
+                                    <h1 class="h3 mb-2">Shuffle History</h1>
+
+                                    <p class="text-muted mb-0">
+                                        Revisit AI-powered shuffle sessions from Search and Browse News.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="mt-3 mt-md-0 text-md-right">
+                                <button class="btn btn-outline-secondary btn-sm" disabled>
+                                    <i class="fa-solid fa-trash-can mr-1"></i>
+                                    Clear History
+                                </button>
+
+                                <div class="text-muted small mt-2">
+                                    <?= number_format($totalSessions) ?>
+                                    shuffle session<?= $totalSessions === 1 ? '' : 's' ?>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
 
                     <?php if (empty($shuffleSessions)): ?>
@@ -236,7 +264,7 @@ function shuffle_view_url(array $row): string
 
                                         <div class="text-nowrap">
                                             <a href="<?= htmlspecialchars($viewUrl, ENT_QUOTES, 'UTF-8') ?>"
-                                                class="btn btn-sm btn-outline-primary">
+                                                class="btn btn-sm btn-outline-primary" data-loading>
                                                 View shuffle
                                             </a>
                                         </div>
