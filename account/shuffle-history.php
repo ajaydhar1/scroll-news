@@ -84,12 +84,12 @@ function shuffle_view_url(array $row): string
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Review your Scroll News reading history and return to articles you recently opened." />
+    <meta name="description" content="Revisit your AI-powered shuffle sessions from Search and Browse News on Scroll News." />
     <meta name="author" content="Scroll News" />
-    <title>Reading History — Scroll News</title>
+    <title>Shuffle History — Scroll News</title>
 
     <meta name="robots" content="noindex, nofollow">
-    <link rel="canonical" href="https://scrollnews.ai/account/reading-history.php" />
+    <link rel="canonical" href="https://scrollnews.ai/account/shuffle-history.php" />
     <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
