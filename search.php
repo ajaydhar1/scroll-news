@@ -65,6 +65,110 @@ function save_user_search_history(PDO $pdo, int $userId, array $data): void
     ]);
 }
 
+function save_search_shuffle_history(PDO $pdo, int $userId, array $results, array $context): void
+{
+    if (empty($results)) {
+        return;
+    }
+
+    $pdo->beginTransaction();
+
+    try {
+        $sessionStmt = $pdo->prepare("
+            INSERT INTO shuffle_sessions (
+                user_id,
+                source_context,
+                shuffle_type,
+                query,
+                seed,
+                algorithm_version,
+                results_count,
+                filters_json,
+                snapshot_json
+            ) VALUES (
+                :user_id,
+                'search_results',
+                'search_shuffle',
+                :query,
+                :seed,
+                'v1',
+                :results_count,
+                :filters_json,
+                :snapshot_json
+            )
+            RETURNING id
+        ");
+
+        $filters = $context['filters'] ?? [];
+        $snapshot = $context['snapshot'] ?? [];
+
+        $sessionStmt->execute([
+            ':user_id' => $userId,
+            ':query' => $context['query'] ?? null,
+            ':seed' => $context['seed'] ?? null,
+            ':results_count' => count($results),
+            ':filters_json' => !empty($filters)
+                ? json_encode($filters, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+                : null,
+            ':snapshot_json' => !empty($snapshot)
+                ? json_encode($snapshot, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+                : null,
+        ]);
+
+        $shuffleSessionId = $sessionStmt->fetchColumn();
+
+        $itemStmt = $pdo->prepare("
+            INSERT INTO shuffle_session_items (
+                shuffle_session_id,
+                position,
+                article_id,
+                url,
+                title,
+                source_name,
+                pub_date,
+                image_url
+            ) VALUES (
+                :shuffle_session_id,
+                :position,
+                :article_id,
+                :url,
+                :title,
+                :source_name,
+                :pub_date,
+                :image_url
+            )
+        ");
+
+        foreach ($results as $index => $row) {
+            $url = $row['link'] ?? $row['url'] ?? '';
+            $title = $row['title'] ?? '';
+
+            if ($url === '' || $title === '') {
+                continue;
+            }
+
+            $itemStmt->execute([
+                ':shuffle_session_id' => $shuffleSessionId,
+                ':position' => $index + 1,
+                ':article_id' => $row['article_id'] ?? $row['id'] ?? null,
+                ':url' => $url,
+                ':title' => $title,
+                ':source_name' => $row['source_name'] ?? $row['feed_name'] ?? $row['feed_title'] ?? null,
+                ':pub_date' => $row['pub_date'] ?? $row['published_at'] ?? $row['created_at'] ?? null,
+                ':image_url' => $row['image_url'] ?? $row['image'] ?? null,
+            ]);
+        }
+
+        $pdo->commit();
+    } catch (Throwable $e) {
+        if ($pdo->inTransaction()) {
+            $pdo->rollBack();
+        }
+
+        error_log('Search shuffle history save failed: ' . $e->getMessage());
+    }
+}
+
 $pdo        = _pdo_or_null();
 $results    = [];
 $errorMsg   = null;
@@ -144,6 +248,11 @@ if (!$pdo) {
         // (Optional) error_log($e->getMessage());
     }
 }
+
+$shouldSaveSearchShuffle =
+    !empty($_GET['shuffle']) &&
+    $currentUser &&
+    !empty($results);
 
 // From here down, render your HTML:
 // - use $q to populate the search box
@@ -500,6 +609,70 @@ if (!$pdo) {
             <?php endif; ?>
         </div>
     </section>
+
+    <?php if ($shouldSaveSearchShuffle): ?>
+        <script>
+            window.scrollNewsShufflePayload = {
+                source_context: 'search_results',
+                shuffle_type: 'search_shuffle',
+                query: <?php echo json_encode($q !== '' ? $q : null); ?>,
+                seed: null,
+                algorithm_version: 'v1',
+                filters: <?php echo json_encode([
+                                'mode' => $mode,
+                                'range' => $range,
+                                'sentiment' => $sentiment,
+                                'emotion' => $emotion,
+                                'high_signal' => $highSignalOnly,
+                                'deep_dive' => $deepDive,
+                                'params' => $_GET,
+                            ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>,
+                snapshot: <?php echo json_encode([
+                                'page' => 'search.php',
+                                'total_results' => count($results),
+                            ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>,
+                results: <?php echo json_encode(array_values(array_map(function ($row, $index) {
+                                return [
+                                    'position' => $index + 1,
+                                    'article_id' => $row['article_id'] ?? $row['id'] ?? null,
+                                    'url' => $row['link'] ?? $row['url'] ?? '',
+                                    'title' => $row['title'] ?? '',
+                                    'source_name' => $row['source_name'] ?? $row['feed_name'] ?? $row['feed_title'] ?? null,
+                                    'pub_date' => $row['pub_date'] ?? $row['published_at'] ?? $row['created_at'] ?? null,
+                                    'image_url' => $row['image_url'] ?? $row['image'] ?? null,
+                                ];
+                            }, $results, array_keys($results))), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>
+            };
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                if (!window.scrollNewsShufflePayload) {
+                    return;
+                }
+
+                fetch('/account/api/save-shuffle-history.php', {
+                        method: 'POST',
+                        credentials: 'same-origin',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(window.scrollNewsShufflePayload)
+                    })
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        if (!data.success) {
+                            console.warn('Shuffle history was not saved:', data.error);
+                        }
+                    })
+                    .catch(function(error) {
+                        console.warn('Shuffle history save failed:', error);
+                    });
+            });
+        </script>
+    <?php endif; ?>
 
     <!-- Footer-->
     <?php require_once BASE_PATH . '/views/partials/___footer.php'; ?>
