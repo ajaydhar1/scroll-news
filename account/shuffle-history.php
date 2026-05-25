@@ -254,11 +254,11 @@ function shuffle_view_url(array $row): string
                                             </p>
 
                                             <?php if (!empty($previewTitles)): ?>
-                                                <ul class="text-muted small mb-0 ps-3">
+                                                <ol class="text-muted small mb-0 ps-3">
                                                     <?php foreach ($previewTitles as $title): ?>
                                                         <li><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></li>
                                                     <?php endforeach; ?>
-                                                </ul>
+                                                </ol>
                                             <?php endif; ?>
                                         </div>
 

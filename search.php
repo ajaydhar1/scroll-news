@@ -192,6 +192,11 @@ $highSignalActive  = !empty($_GET['high_signal']);
 $deepDive       = ($mode === 'nlp') ? $deepDive : false;
 $deepDiveActive = $deepDive;
 
+$shuffleSessionId = $_GET['shuffle_session'] ?? '';
+$shuffleSessionId = is_string($shuffleSessionId) ? trim($shuffleSessionId) : '';
+
+$isSavedShuffleView = $shuffleSessionId !== '';
+
 // Decide if *any* filters are active (even without q)
 $hasFilters =
     ($q !== '') ||
@@ -205,7 +210,19 @@ if (!$pdo) {
     $errorMsg = "Database connection not available.";
 } else {
     try {
-        if ($hasFilters) {
+        if ($isSavedShuffleView && $currentUser) {
+            $results = load_search_shuffle_results(
+                $pdo,
+                (int) $currentUser['id'],
+                $shuffleSessionId
+            );
+
+            $hasFilters = true;
+
+            if (!empty($results)) {
+                $q = $results[0]['query'] ?? '';
+            }
+        } elseif ($hasFilters) {
             // shared options
             $options = [
                 'emotion'      => $emotion,
@@ -352,6 +369,28 @@ $shouldSaveSearchShuffle =
                     ?>
 
                     <?php require_once BASE_PATH . '/views/search/___search_form.php'; ?>
+
+                    <?php if ($currentUser): ?>
+                        <div class="mb-3 d-flex flex-wrap align-items-center gap-2">
+
+                            <span class="text-muted small mr-2">
+                                Your discovery history:
+                            </span>
+
+                            <a href="/account/search-history.php"
+                                class="btn btn-sm btn-outline-secondary mr-2" data-loading>
+                                <i class="fas fa-search mr-1"></i>
+                                Search History
+                            </a>
+
+                            <a href="/account/shuffle-history.php"
+                                class="btn btn-sm btn-outline-secondary" data-loading>
+                                <i class="fas fa-random mr-1"></i>
+                                Shuffle History
+                            </a>
+
+                        </div>
+                    <?php endif; ?>
 
                 </div>
             </div>
@@ -513,22 +552,46 @@ $shouldSaveSearchShuffle =
                         }
                         ?>
 
-                        <?php if ($hasFilters && !empty($filterChips)): ?>
+                        <?php if ($isSavedShuffleView): ?>
+
+                            <p class="text-muted mb-1">
+                                Saved AI-powered shuffle session
+                            </p>
+
+                        <?php elseif ($hasFilters && !empty($filterChips)): ?>
+
                             <p class="text-muted mb-1">
                                 Active filters:
                                 <?php echo htmlspecialchars(implode(' · ', $filterChips), ENT_QUOTES, 'UTF-8'); ?>
                             </p>
+
                         <?php endif; ?>
 
 
                         <h2 class="h6 mb-3">
-                            <?php if ($q !== ''): ?>
+
+                            <?php if ($isSavedShuffleView): ?>
+
+                                AI-powered Shuffle
+
+                                <?php if ($q !== ''): ?>
+                                    for
+                                    "<span class="fw-semibold">
+                                        <?php echo htmlspecialchars($q, ENT_QUOTES, 'UTF-8'); ?>
+                                    </span>"
+                                <?php endif; ?>
+
+                            <?php elseif ($q !== ''): ?>
+
                                 Results for
                                 "<span class="fw-semibold">
                                     <?php echo htmlspecialchars($q, ENT_QUOTES, 'UTF-8'); ?>
                                 </span>"
+
                             <?php else: ?>
+
                                 Filtered results
+
                             <?php endif; ?>
 
                             <?php if (!empty($results)): ?>

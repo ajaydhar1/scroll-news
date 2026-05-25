@@ -1794,6 +1794,81 @@ function search_classic(PDO $db, string $q, array $opts = []): array
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function load_search_shuffle_results(PDO $db, int $userId, string $shuffleSessionId): array
+{
+    $sql = "
+        WITH saved AS (
+            SELECT
+                si.position,
+                si.article_id AS saved_article_id,
+                si.url AS saved_url,
+                si.title AS saved_title,
+                si.source_name AS saved_source_name,
+                si.pub_date AS saved_pub_date,
+                si.image_url AS saved_image_url,
+                ss.query,
+                ss.created_at AS shuffle_created_at
+            FROM shuffle_sessions ss
+            JOIN shuffle_session_items si
+                ON si.shuffle_session_id = ss.id
+            WHERE ss.id = :shuffle_session_id
+              AND ss.user_id = :user_id
+              AND ss.deleted_at IS NULL
+              AND ss.source_context = 'search_results'
+        ),
+        hydrated AS (
+            SELECT
+                s.position,
+
+                COALESCE(ri.id, s.saved_article_id) AS id,
+                COALESCE(ri.title, s.saved_title) AS title,
+                COALESCE(ri.link, s.saved_url) AS link,
+                COALESCE(ri.pub_date, s.saved_pub_date) AS pub_date,
+                COALESCE(ri.media_url, s.saved_image_url) AS media_url,
+
+                COALESCE(f.name, s.saved_source_name) AS feed_name,
+
+                a.id AS article_id,
+                a.nlp,
+
+                s.query,
+                s.shuffle_created_at
+            FROM saved s
+            LEFT JOIN rss_items ri
+                ON ri.id = s.saved_article_id
+                AND ri.deleted_at IS NULL
+            LEFT JOIN feeds f
+                ON f.id = ri.feed_id
+                AND f.deleted_at IS NULL
+            LEFT JOIN articles a
+                ON a.url = COALESCE(ri.link, s.saved_url)
+                AND a.deleted_at IS NULL
+        )
+        SELECT
+            id,
+            title,
+            link,
+            pub_date,
+            media_url,
+            feed_name,
+            article_id,
+            nlp,
+            position,
+            query,
+            shuffle_created_at
+        FROM hydrated
+        ORDER BY position ASC
+    ";
+
+    $stmt = $db->prepare($sql);
+
+    $stmt->execute([
+        ':shuffle_session_id' => $shuffleSessionId,
+        ':user_id' => $userId,
+    ]);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 
 function sn_intel_sentiment_counts(PDO $db): array
