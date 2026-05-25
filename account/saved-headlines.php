@@ -15,18 +15,41 @@ $totalItems = 0;
 $totalPages = 1;
 $savedItems = [];
 
+$searchQuery = trim((string)($_GET['q'] ?? ''));
+$hasSearch = $searchQuery !== '';
+
+$whereSql = "
+    user_id = :user_id
+    AND deleted_at IS NULL
+";
+
+$params = [
+    'user_id' => $userId,
+];
+
+if ($searchQuery !== '') {
+    $whereSql .= "
+        AND (
+            headline_title ILIKE :search
+            OR source_slug ILIKE :search
+            OR headline_url ILIKE :search
+        )
+    ";
+
+    $params['search'] = '%' . $searchQuery . '%';
+}
+
 try {
     $pdo = auth_db();
 
     $countSql = "
         SELECT COUNT(*)
         FROM user_saved_headlines
-        WHERE user_id = :user_id
-          AND deleted_at IS NULL
+        WHERE $whereSql
     ";
 
     $countStmt = $pdo->prepare($countSql);
-    $countStmt->execute(['user_id' => $userId]);
+    $countStmt->execute($params);
     $totalItems = (int)$countStmt->fetchColumn();
     $totalPages = max(1, (int)ceil($totalItems / $perPage));
 
@@ -45,14 +68,17 @@ try {
             pub_date,
             saved_at
         FROM user_saved_headlines
-        WHERE user_id = :user_id
-          AND deleted_at IS NULL
+        WHERE $whereSql
         ORDER BY saved_at DESC
         LIMIT :limit OFFSET :offset
     ";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+
+    foreach ($params as $key => $value) {
+        $stmt->bindValue(':' . $key, $value, $key === 'user_id' ? PDO::PARAM_INT : PDO::PARAM_STR);
+    }
+
     $stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
     $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
     $stmt->execute();
@@ -84,7 +110,15 @@ function niceDate($value): string
 
 function pageUrl(int $page): string
 {
-    return '/account/saved-headlines.php?page=' . $page;
+    $params = ['page' => $page];
+
+    $q = trim((string)($_GET['q'] ?? ''));
+
+    if ($q !== '') {
+        $params['q'] = $q;
+    }
+
+    return '/account/saved-headlines.php?' . http_build_query($params);
 }
 
 ?>
@@ -192,6 +226,12 @@ function pageUrl(int $page): string
             border-color: #198754;
             color: #fff;
         }
+
+        .saved-headlines-search .form-control {
+            background: #fff;
+            border: 1px solid #ced4da;
+            color: #495057;
+        }
     </style>
 </head>
 
@@ -217,6 +257,11 @@ function pageUrl(int $page): string
                                     <p class="text-muted mb-0">
                                         Headlines you saved from the First Look panel.
                                     </p>
+                                    <?php if ($hasSearch): ?>
+                                        <div class="small text-muted mt-2">
+                                            Search results for <strong>"<?= h($searchQuery) ?>"</strong>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
@@ -225,7 +270,11 @@ function pageUrl(int $page): string
                                     <i class="fa-solid fa-trash-can mr-1"></i> Clear Saved
                                 </button>
                                 <div class="text-muted small mt-2">
-                                    <?= number_format($totalItems) ?> saved headline<?= $totalItems === 1 ? '' : 's' ?>
+                                    <?php if ($hasSearch): ?>
+                                        Showing <?= number_format($totalItems) ?> result<?= $totalItems === 1 ? '' : 's' ?>
+                                    <?php else: ?>
+                                        <?= number_format($totalItems) ?> saved headline<?= $totalItems === 1 ? '' : 's' ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -246,6 +295,20 @@ function pageUrl(int $page): string
                         </div>
                     </div>
 
+                    <form method="get" class="saved-headlines-search mb-4">
+                        <div class="input-group">
+                            <input
+                                type="search"
+                                name="q"
+                                class="form-control"
+                                placeholder="Search saved headlines..."
+                                value="<?= h($searchQuery) ?>">
+                            <div class="input-group-append">
+                                <button class="btn btn-dark" type="submit" data-loading>Search</button>
+                            </div>
+                        </div>
+                    </form>
+
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <a href="/account/" class="text-muted">← Back to Account</a>
                         <a href="/#first-look" class="btn btn-green btn-sm" data-loading>
@@ -255,18 +318,44 @@ function pageUrl(int $page): string
 
                     <?php if (empty($savedItems)): ?>
 
-                        <div class="saved-headlines-empty-state text-center">
-                            <div class="saved-headlines-icon mb-3">
-                                <i class="fa-regular fa-bookmark"></i>
+                        <?php if ($searchQuery !== ''): ?>
+
+                            <div class="saved-headlines-empty-state text-center">
+                                <div class="saved-headlines-icon mb-3">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+
+                                <h2 class="h5 mb-2">No saved headlines found</h2>
+
+                                <p class="text-muted mb-4">
+                                    No saved headlines matched your search for
+                                    <strong>"<?= h($searchQuery) ?>"</strong>.
+                                </p>
+
+                                <a href="/account/saved-headlines.php" class="btn btn-green btn-sm" data-loading>
+                                    Clear Search
+                                </a>
                             </div>
-                            <h2 class="h5 mb-2">No saved headlines yet</h2>
-                            <p class="text-muted mb-4">
-                                Save headlines from the First Look panel, and they’ll appear here.
-                            </p>
-                            <a href="/#first-look" class="btn btn-green btn-sm" data-loading>
-                                Go to First Look
-                            </a>
-                        </div>
+
+                        <?php else: ?>
+
+                            <div class="saved-headlines-empty-state text-center">
+                                <div class="saved-headlines-icon mb-3">
+                                    <i class="fa-regular fa-bookmark"></i>
+                                </div>
+
+                                <h2 class="h5 mb-2">No saved headlines yet</h2>
+
+                                <p class="text-muted mb-4">
+                                    Save headlines from the First Look panel, and they’ll appear here.
+                                </p>
+
+                                <a href="/#first-look" class="btn btn-green btn-sm" data-loading>
+                                    Go to First Look
+                                </a>
+                            </div>
+
+                        <?php endif; ?>
 
                     <?php else: ?>
 
@@ -395,152 +484,160 @@ function pageUrl(int $page): string
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 
     <script>
-    (function () {
-        const LOCAL_KEY = 'scrollnews:saved_firstlook:v1';
-        const SAVE_API_URL = '/account/api/saved-headlines-save.php';
-        const UNSAVE_API_URL = '/account/api/saved-headlines-unsave.php';
-        const dbSavedIds = new Set(<?= json_encode(array_values(array_map(static fn($item) => $item['headline_hash'], $savedItems))) ?>);
+        (function() {
+            const LOCAL_KEY = 'scrollnews:saved_firstlook:v1';
+            const SAVE_API_URL = '/account/api/saved-headlines-save.php';
+            const UNSAVE_API_URL = '/account/api/saved-headlines-unsave.php';
+            const dbSavedIds = new Set(<?= json_encode(array_values(array_map(static fn($item) => $item['headline_hash'], $savedItems))) ?>);
 
-        const importBanner = document.getElementById('savedHeadlinesImportBanner');
-        const importButton = document.getElementById('savedHeadlinesImportBtn');
-        const localCount = document.getElementById('savedHeadlinesLocalCount');
-        const localPlural = document.getElementById('savedHeadlinesLocalPlural');
+            const importBanner = document.getElementById('savedHeadlinesImportBanner');
+            const importButton = document.getElementById('savedHeadlinesImportBtn');
+            const localCount = document.getElementById('savedHeadlinesLocalCount');
+            const localPlural = document.getElementById('savedHeadlinesLocalPlural');
 
-        function safeParse(json, fallback) {
-            try { return JSON.parse(json); } catch { return fallback; }
-        }
-
-        function getLocalSaved() {
-            return safeParse(localStorage.getItem(LOCAL_KEY) || '[]', []);
-        }
-
-        function setLocalSaved(list) {
-            localStorage.setItem(LOCAL_KEY, JSON.stringify(list));
-        }
-
-        function getLocalOnlyItems() {
-            return getLocalSaved().filter(item => {
-                return item &&
-                    item.id &&
-                    item.url &&
-                    item.title &&
-                    !dbSavedIds.has(item.id);
-            });
-        }
-
-        function updateImportBanner() {
-            if (!importBanner || !localCount || !localPlural) return;
-
-            const localOnly = getLocalOnlyItems();
-
-            if (localOnly.length === 0) {
-                importBanner.classList.add('d-none');
-                return;
+            function safeParse(json, fallback) {
+                try {
+                    return JSON.parse(json);
+                } catch {
+                    return fallback;
+                }
             }
 
-            localCount.textContent = String(localOnly.length);
-            localPlural.textContent = localOnly.length === 1 ? '' : 's';
-            importBanner.classList.remove('d-none');
-        }
-
-        async function saveToAccount(item) {
-            const response = await fetch(SAVE_API_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(item)
-            });
-
-            const data = await response.json();
-
-            if (!response.ok || !data.success) {
-                throw new Error(data.error || 'Unable to save headline');
+            function getLocalSaved() {
+                return safeParse(localStorage.getItem(LOCAL_KEY) || '[]', []);
             }
 
-            return data;
-        }
-
-        async function unsaveFromAccount(id) {
-            const response = await fetch(UNSAVE_API_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ id })
-            });
-
-            const data = await response.json();
-
-            if (!response.ok || !data.success) {
-                throw new Error(data.error || 'Unable to unsave headline');
+            function setLocalSaved(list) {
+                localStorage.setItem(LOCAL_KEY, JSON.stringify(list));
             }
 
-            return data;
-        }
+            function getLocalOnlyItems() {
+                return getLocalSaved().filter(item => {
+                    return item &&
+                        item.id &&
+                        item.url &&
+                        item.title &&
+                        !dbSavedIds.has(item.id);
+                });
+            }
 
-        function removeFromLocalStorage(id) {
-            const next = getLocalSaved().filter(item => item && item.id !== id);
-            setLocalSaved(next);
-        }
+            function updateImportBanner() {
+                if (!importBanner || !localCount || !localPlural) return;
 
-        if (importButton) {
-            importButton.addEventListener('click', async () => {
                 const localOnly = getLocalOnlyItems();
 
                 if (localOnly.length === 0) {
-                    updateImportBanner();
+                    importBanner.classList.add('d-none');
                     return;
                 }
 
-                importButton.disabled = true;
-                importButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Adding…';
+                localCount.textContent = String(localOnly.length);
+                localPlural.textContent = localOnly.length === 1 ? '' : 's';
+                importBanner.classList.remove('d-none');
+            }
 
-                try {
-                    for (const item of localOnly) {
-                        await saveToAccount(item);
+            async function saveToAccount(item) {
+                const response = await fetch(SAVE_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(item)
+                });
+
+                const data = await response.json();
+
+                if (!response.ok || !data.success) {
+                    throw new Error(data.error || 'Unable to save headline');
+                }
+
+                return data;
+            }
+
+            async function unsaveFromAccount(id) {
+                const response = await fetch(UNSAVE_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok || !data.success) {
+                    throw new Error(data.error || 'Unable to unsave headline');
+                }
+
+                return data;
+            }
+
+            function removeFromLocalStorage(id) {
+                const next = getLocalSaved().filter(item => item && item.id !== id);
+                setLocalSaved(next);
+            }
+
+            if (importButton) {
+                importButton.addEventListener('click', async () => {
+                    const localOnly = getLocalOnlyItems();
+
+                    if (localOnly.length === 0) {
+                        updateImportBanner();
+                        return;
                     }
 
-                    window.location.reload();
-                } catch (err) {
-                    console.warn('Saved headlines import failed:', err);
-                    importButton.disabled = false;
-                    importButton.innerHTML = '<i class="fa-solid fa-cloud-arrow-up mr-1"></i> Try Again';
-                }
-            });
-        }
+                    importButton.disabled = true;
+                    importButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Adding…';
 
-        document.querySelectorAll('.saved-headline-unsave').forEach(button => {
-            button.addEventListener('click', async () => {
-                const id = button.getAttribute('data-id');
-                const card = button.closest('.saved-headline-card');
+                    try {
+                        for (const item of localOnly) {
+                            await saveToAccount(item);
+                        }
 
-                if (!id || !card) return;
-
-                button.disabled = true;
-                button.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Unsaving…';
-
-                try {
-                    await unsaveFromAccount(id);
-                    removeFromLocalStorage(id);
-                    card.remove();
-                    window.dispatchEvent(new StorageEvent('storage', { key: LOCAL_KEY }));
-                } catch (err) {
-                    console.warn('Saved headline unsave failed:', err);
-                    button.disabled = false;
-                    button.innerHTML = '<i class="fa-regular fa-bookmark mr-1"></i> Unsave';
-                }
-            });
-        });
-
-        window.addEventListener('storage', (event) => {
-            if (event.key === LOCAL_KEY) {
-                updateImportBanner();
+                        window.location.reload();
+                    } catch (err) {
+                        console.warn('Saved headlines import failed:', err);
+                        importButton.disabled = false;
+                        importButton.innerHTML = '<i class="fa-solid fa-cloud-arrow-up mr-1"></i> Try Again';
+                    }
+                });
             }
-        });
 
-        updateImportBanner();
-    })();
+            document.querySelectorAll('.saved-headline-unsave').forEach(button => {
+                button.addEventListener('click', async () => {
+                    const id = button.getAttribute('data-id');
+                    const card = button.closest('.saved-headline-card');
+
+                    if (!id || !card) return;
+
+                    button.disabled = true;
+                    button.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> Unsaving…';
+
+                    try {
+                        await unsaveFromAccount(id);
+                        removeFromLocalStorage(id);
+                        card.remove();
+                        window.dispatchEvent(new StorageEvent('storage', {
+                            key: LOCAL_KEY
+                        }));
+                    } catch (err) {
+                        console.warn('Saved headline unsave failed:', err);
+                        button.disabled = false;
+                        button.innerHTML = '<i class="fa-regular fa-bookmark mr-1"></i> Unsave';
+                    }
+                });
+            });
+
+            window.addEventListener('storage', (event) => {
+                if (event.key === LOCAL_KEY) {
+                    updateImportBanner();
+                }
+            });
+
+            updateImportBanner();
+        })();
     </script>
 
 </body>
