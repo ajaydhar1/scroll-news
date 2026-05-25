@@ -117,7 +117,7 @@ $userId = $_SESSION['user_id'] ?? null;
                                         <li><a href="/account/reading-history.php" class="account-link" data-loading>Reading history</a></li>
                                         <li><a href="/account/search-history.php" class="account-link" data-loading>Search history</a></li>
                                         <li>Shuffle history</li>
-                                        <li>Your news pattern</li>
+                                        <li><a href="/control-room.php" class="account-link">Your news pattern</a></li>
                                     </ul>
                                     <button class="btn btn-outline-secondary btn-sm" disabled>Coming Soon</button>
                                 </div>

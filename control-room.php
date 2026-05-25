@@ -112,8 +112,10 @@ require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
                 </div>
             </div>
 
+            <?php /*
             <h1 class="text-white">Stumble Through the News</h1>
             <h2 class="brand-text">Smart analytics. Fresh perspectives.</h2>
+            */ ?>
 
             <!-- Footer-->
             <?php require_once BASE_PATH . '/views/partials/___footer_control_room.php'; ?>
