@@ -228,14 +228,29 @@ function shuffle_view_url(array $row): string
                                     $previewTitles = explode('|||ORDER|||', $row['preview_titles']);
                                 }
 
-                                $createdAt = new DateTime($row['created_at']);
+                                $createdAt = new DateTime($row['created_at'], new DateTimeZone('UTC'));
+                                $createdAt->setTimezone(new DateTimeZone('America/New_York'));
+
+                                $createdAtLabel = $createdAt->format('M j, Y g:i A');
                                 ?>
 
                                 <div class="list-group-item p-3 shuffle-history-card">
                                     <div class="d-flex justify-content-between align-items-start gap-3">
                                         <div>
                                             <div class="mb-2">
-                                                <span class="badge badge-info">
+                                                <?php
+
+                                                $badgeClass = 'badge-info';
+
+                                                if ($label === 'Search Shuffle') {
+                                                    $badgeClass = 'badge-primary';
+                                                } elseif ($label === 'Browse News Shuffle') {
+                                                    $badgeClass = 'badge-success';
+                                                }
+
+                                                ?>
+
+                                                <span class="badge <?= $badgeClass ?>">
                                                     <?= htmlspecialchars($label, ENT_QUOTES, 'UTF-8') ?>
                                                 </span>
                                             </div>
@@ -250,7 +265,7 @@ function shuffle_view_url(array $row): string
 
                                             <p class="text-muted small mb-2">
                                                 <?= (int) $row['results_count'] ?> articles ·
-                                                <?= htmlspecialchars($createdAt->format('M j, Y g:i A'), ENT_QUOTES, 'UTF-8') ?>
+                                                <?= htmlspecialchars($createdAtLabel, ENT_QUOTES, 'UTF-8') ?>
                                             </p>
 
                                             <?php if (!empty($previewTitles)): ?>
@@ -263,10 +278,31 @@ function shuffle_view_url(array $row): string
                                         </div>
 
                                         <div class="text-nowrap">
-                                            <a href="<?= htmlspecialchars($viewUrl, ENT_QUOTES, 'UTF-8') ?>"
-                                                class="btn btn-sm btn-outline-primary" data-loading>
-                                                View shuffle
-                                            </a>
+
+                                            <?php if ($row['shuffle_type'] === 'browse_shuffle'): ?>
+
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-sm btn-outline-primary view-shuffle-btn"
+                                                    data-shuffle-session-id="<?= htmlspecialchars(urlencode($row['id']), ENT_QUOTES, 'UTF-8') ?>"
+                                                    data-shuffle-type="<?= htmlspecialchars($row['shuffle_type'], ENT_QUOTES, 'UTF-8') ?>">
+
+                                                    View shuffle
+
+                                                </button>
+
+                                            <?php else: ?>
+
+                                                <a href="<?= htmlspecialchars($viewUrl, ENT_QUOTES, 'UTF-8') ?>"
+                                                    class="btn btn-sm btn-outline-primary"
+                                                    data-loading>
+
+                                                    View shuffle
+
+                                                </a>
+
+                                            <?php endif; ?>
+
                                         </div>
                                     </div>
                                 </div>
@@ -287,6 +323,237 @@ function shuffle_view_url(array $row): string
     <?php require_once BASE_PATH . '/views/partials/___modals.php'; ?>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // View shuffle buttons
+        $(document).on("click", ".view-shuffle-btn", function(e) {
+
+            e.preventDefault();
+
+            const shuffleSessionId = $(this).data("shuffleSessionId");
+            const shuffleType = $(this).data("shuffleType");
+
+            if (!shuffleSessionId || !shuffleType) {
+                return;
+            }
+
+            // Browse News shuffle
+            if (shuffleType === "browse_shuffle") {
+
+                // Clear existing modal content
+                $("#rssArticles").empty();
+
+                // Optional loading state
+                $("#rssArticles").html(`
+                <div class="text-center py-5">
+                    <div class="spinner-border text-success" role="status"></div>
+                </div>
+                `);
+
+                // Open existing Browse News modal
+                $("#browseNewsModal").modal("show");
+
+                // Fetch + render saved shuffle
+                loadBrowseNewsShuffle(shuffleSessionId);
+
+                return;
+            }
+
+            // Search shuffle
+            if (shuffleType === "search_shuffle") {
+
+                window.location.href =
+                    "/search.php?shuffle_session_id=" +
+                    encodeURIComponent(shuffleSessionId);
+
+                return;
+            }
+
+        });
+
+        function loadBrowseNewsShuffle(shuffleSessionId) {
+
+            $.ajax({
+                url: "/account/api/get-browse-shuffle-history.php",
+                method: "GET",
+                data: {
+                    shuffle_session_id: shuffleSessionId
+                },
+                dataType: "json",
+
+                success: function(response) {
+
+                    const articles = response.items || [];
+
+                    const container = $("#rssArticles");
+
+                    container.empty();
+
+                    container.append(`
+                        <div class="col-12">
+                            <div class="alert alert-light border small d-flex align-items-center justify-content-between mb-4">
+
+                                <div>
+                                    <strong>Viewing saved Browse News shuffle</strong>
+                                    <span class="text-muted">
+                                        • Replaying a previously shuffled article session
+                                    </span>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-sm btn-outline-secondary"
+                                    id="returnToLiveBrowseNewsBtn"
+                                    onclick="fetchRSSArticles($('#categorySelect').val(), 'Politics');">
+
+                                    Back to Live Feed
+
+                                </button>
+
+                            </div>
+                        </div>
+                    `);
+
+                    if (articles.length === 0) {
+
+                        container.append(`
+                    <div class="col-12">
+                        <p class="text-muted mb-0">
+                            No articles found for this shuffle.
+                        </p>
+                    </div>
+                `);
+
+                        return;
+                    }
+
+                    articles.forEach((article) => {
+
+                        const filterOutPublisher = pubsToFilterOut.some((substring) =>
+                            (article.link || "").includes(substring)
+                        );
+
+                        if (!filterOutPublisher) {
+
+                            const encodedPub = encodeURIComponent(article.publisher || "");
+
+                            const faviconUrl =
+                                "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://" +
+                                encodedPub +
+                                "&size=64";
+
+                            const articleId = Number(article.articleId || 0);
+
+                            const card = `
+                        <div class="col-md-4 mb-4 browse-article-card"
+                             data-article-id="${articleId}"
+                             data-article-url="${article.link || ""}"
+                             data-article-title="${article.title || ""}"
+                             data-image-url="${article.image || ""}"
+                             data-publisher="${article.publisher || ""}"
+                             data-pub-date="${article.pubDate || ""}"
+                             data-description="${(article.description || "").replace(/"/g, '&quot;')}">
+
+                            <div class="card h-100">
+
+                                <img src="${article.image || "/assets/img/news-placeholder.jpg"}"
+                                     class="card-img-top news-modal"
+                                     alt=""
+                                     onerror="this.src='/assets/img/news-placeholder.jpg';">
+
+                                <div class="card-body d-flex flex-column">
+
+                                    <h4 class="card-title mb-2">
+                                        ${article.title || ""}
+                                    </h4>
+
+                                    <p class="card-text text-muted mb-1">
+
+                                        <img src="${faviconUrl}"
+                                             alt="${encodedPub} logo"
+                                             class="sn-favicon">
+
+                                        <small>
+                                            <a target="_blank"
+                                               href="https://${article.publisher || ""}">
+
+                                                ${article.publisher || ""}
+
+                                            </a>
+
+                                            ${article.pubDate
+                                                ? " • " + timeElapsedString(article.pubDate)
+                                                : ""}
+
+                                        </small>
+
+                                    </p>
+
+                                    <p class="card-text">
+                                        ${article.description || ""}
+                                    </p>
+
+                                    <div class="row g-2 mt-auto">
+
+                                        <div class="col-6 d-grid browse-card-btn-col">
+
+                                            <a href="${article.link}"
+                                               class="btn btn-secondary mt-auto w-100"
+                                               target="_blank">
+
+                                                Read Story
+
+                                            </a>
+
+                                        </div>
+
+                                        <div class="col-6 d-grid browse-card-btn-col">
+
+                                            <a href="/newsroom.php?url=${encodeURIComponent(article.link)}&pub_date=${article.pubDateForLink || ""}&db=1"
+                                               class="btn btn-green mt-auto w-100">
+
+                                                Analyze
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    `;
+
+                            container.append(card);
+                        }
+                    });
+                },
+
+                error: function(xhr, textStatus, errorThrown) {
+
+                    console.group("loadBrowseNewsShuffle ERROR");
+
+                    console.log("textStatus:", textStatus);
+                    console.log("errorThrown:", errorThrown);
+                    console.log("HTTP status:", xhr.status);
+                    console.log("Response text:", xhr.responseText);
+
+                    console.groupEnd();
+
+                    $("#rssArticles").html(`
+                        <div class="col-12">
+                            <p class="text-danger mb-0">
+                                Failed to load shuffle history.
+                            </p>
+                        </div>
+                    `);
+                }
+            });
+        }
+    </script>
 
 </body>
 

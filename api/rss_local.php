@@ -103,6 +103,7 @@ $LIMIT = 50;
 
 $sql = "
   SELECT
+    id,
     title,
     url AS link,
     source_slug,
@@ -140,6 +141,7 @@ foreach ($rows as $r) {
   $desc = preg_replace('/\s+/', ' ', trim($desc));
 
   $items[] = [
+    'articleId'      => $r['id'] ?? '',
     'title'          => (string)($r['title'] ?? ''),
     'link'           => $link,
     'publisher'      => $host,

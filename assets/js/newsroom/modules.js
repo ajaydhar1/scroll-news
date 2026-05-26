@@ -68,6 +68,8 @@ function fetchRSSArticles(feedUrl, category) {
       }
 
       articles.forEach((article) => {
+        const articleId = Number(article.article_id || article.id || article.articleId || 0);
+
         const filterOutPublisher = pubsToFilterOut.some((substring) =>
           (article.link || "").includes(substring)
         );
@@ -80,7 +82,14 @@ function fetchRSSArticles(feedUrl, category) {
             "&size=64";
 
           const card = `
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4 mb-4 browse-article-card"
+                data-article-id="${articleId}"
+                data-article-url="${article.link || ""}"
+                data-article-title="${article.title || ""}"
+                data-image-url="${article.image || ""}"
+                data-publisher="${article.publisher || ""}"
+                data-pub-date="${article.pubDate || ""}"
+                data-description="${(article.description || "").replace(/"/g, '&quot;')}">
               <div class="card h-100">
                 <img src="${article.image || "/assets/img/news-placeholder.jpg"}"
                      class="card-img-top news-modal" alt=""
@@ -144,18 +153,58 @@ function fetchRSSArticles(feedUrl, category) {
 const shuffleBtn = document.getElementById("shuffleArticlesBtn");
 
 function shuffleArticleCards() {
-
   const container = document.getElementById("rssArticles");
   if (!container) return;
 
-  const cards = Array.from(container.children);
+  const cards = Array.from(container.querySelectorAll(".browse-article-card"));
+  if (cards.length <= 1) return;
 
   for (let i = cards.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [cards[i], cards[j]] = [cards[j], cards[i]];
   }
 
-  cards.forEach(card => container.appendChild(card));
+  cards.forEach((card) => container.appendChild(card));
+
+  const shuffledArticles = cards.map((card, index) => ({
+    article_id: Number(card.dataset.articleId || 0),
+    position: index + 1,
+    url: card.dataset.articleUrl || "",
+    title: card.dataset.articleTitle || "",
+    image_url: card.dataset.imageUrl || "",
+    source_name: card.dataset.publisher || "",
+    pub_date: card.dataset.pubDate || "",
+    article_description: card.dataset.description || ""
+  }));
+
+  // Only save shuffle history for signed-in users
+  if (!window.isLoggedIn) {
+    return;
+  }
+
+
+  $.ajax({
+    url: "/account/api/save-shuffle-history.php",
+    method: "POST",
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify({
+      source_context: 'browse_news_modal',
+      shuffle_type: "browse_shuffle",
+      results: shuffledArticles
+    }),
+    success: function (response) {
+      console.log("Browse News shuffle saved:", response);
+    },
+    error: function (xhr, textStatus, errorThrown) {
+      console.group("save browse shuffle ERROR");
+      console.log("textStatus:", textStatus);
+      console.log("errorThrown:", errorThrown);
+      console.log("HTTP status:", xhr.status);
+      console.log("Response text:", xhr.responseText);
+      console.groupEnd();
+    }
+  });
 }
 
 shuffleBtn?.addEventListener("click", shuffleArticleCards);

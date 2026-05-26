@@ -142,6 +142,7 @@ try {
             article_id,
             url,
             title,
+            article_description,
             source_name,
             pub_date,
             image_url
@@ -151,6 +152,7 @@ try {
             :article_id,
             :url,
             :title,
+            :article_description,
             :source_name,
             :pub_date,
             :image_url
@@ -158,6 +160,7 @@ try {
     ");
 
     foreach ($results as $index => $item) {
+
         $position = $item['position'] ?? ($index + 1);
 
         if (empty($item['url']) || empty($item['title'])) {
@@ -170,6 +173,7 @@ try {
             ':article_id' => $item['article_id'] ?? null,
             ':url' => $item['url'],
             ':title' => $item['title'],
+            ':article_description' => $item['article_description'] ?? null,
             ':source_name' => $item['source_name'] ?? null,
             ':pub_date' => $item['pub_date'] ?? null,
             ':image_url' => $item['image_url'] ?? null
@@ -183,7 +187,6 @@ try {
         'shuffle_session_id' => $shuffleSessionId
     ]);
     exit;
-
 } catch (Throwable $e) {
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
