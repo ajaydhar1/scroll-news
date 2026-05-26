@@ -202,6 +202,18 @@ function shuffle_view_url(array $row): string
                         </div>
                     </div>
 
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <a href="/account/" class="text-muted">← Back to Account</a>
+                        <div>
+                            <a href="/search.php" class="btn btn-green btn-sm">
+                                <i class="fa-solid fa-search mr-1"></i> Search
+                            </a>
+                            <a href="" class="btn btn-green btn-sm" data-toggle="modal" data-target="#browseNewsModal">
+                                <i class="fa-solid fa-newspaper mr-1"></i> Browse News
+                            </a>
+                        </div>
+                    </div>
+
                     <?php if (empty($shuffleSessions)): ?>
 
                         <div class="shuffle-empty-state text-center p-4 border rounded bg-light">
@@ -311,6 +323,13 @@ function shuffle_view_url(array $row): string
                         </div>
 
                     <?php endif; ?>
+
+                    <hr class="my-4">
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="/" class="text-muted" data-loading>← Back to Scroll News</a>
+                        <a href="/auth/logout.php" class="btn btn-outline-secondary btn-sm">Sign Out</a>
+                    </div>
 
                 </div>
             </div>

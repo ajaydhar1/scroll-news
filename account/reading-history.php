@@ -342,7 +342,7 @@ function pageUrl(int $page): string
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <a href="/account/" class="text-muted">← Back to Account</a>
                         <a href="/newsroom.php" class="btn btn-green btn-sm">
-                            <i class="fa-solid fa-newspaper mr-1"></i> Browse News
+                            <i class="fa-solid fa-play mr-1"></i> Stumble
                         </a>
                     </div>
 
