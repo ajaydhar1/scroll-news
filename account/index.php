@@ -107,7 +107,6 @@ $userId = $_SESSION['user_id'] ?? null;
                                 <div class="card-body">
                                     <h2 class="h5 mb-2">
                                         <i class="fa-solid fa-wave-square mr-2"></i>Your Activity
-                                        <span class="badge badge-light ml-1">Coming soon</span>
                                     </h2>
                                     <p class="text-muted mb-2">
                                         Saved articles, searches, and your reading history.
