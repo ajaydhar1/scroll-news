@@ -343,6 +343,14 @@ function renderEmptyState(
             padding: 0 !important;
         }
 
+        h1, h2 {
+            color: white;
+        }
+
+        .text-trail-subtitle {
+            color: rgba(255, 255, 255, 0.72);
+        }
+
         .trail-empty-icon {
             font-size: 2rem;
             color: #6c757d;
@@ -352,7 +360,7 @@ function renderEmptyState(
 
 </head>
 
-<body id="page-top" class="auth-page account-page">
+<body id="page-top" class="bg-dark">
 
     <!-- Top nav-->
     <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
@@ -363,7 +371,7 @@ function renderEmptyState(
             <h1 class="h2 mb-2"><i class="fa-solid fa-route mr-1"></i> News Trails</h1>
             <div class="row justify-content-center">
                 <div class="col-lg-5">
-                    <p class="text-muted mb-0">
+                    <p class="text-trail-subtitle mb-0">
                         Explore grouped news journeys built from reading, searches, saved headlines, and shuffles.
                     </p>
                 </div>
