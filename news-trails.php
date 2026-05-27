@@ -361,9 +361,13 @@ function renderEmptyState(
 
         <header class="mb-5 text-center">
             <h1 class="h2 mb-2"><i class="fa-solid fa-route mr-1"></i> News Trails</h1>
-            <p class="text-muted mb-0">
-                Explore grouped news journeys built from reading, searches, saved headlines, and shuffles.
-            </p>
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <p class="text-muted mb-0">
+                        Explore grouped news journeys built from reading, searches, saved headlines, and shuffles.
+                    </p>
+                </div>
+            </div>
         </header>
 
         <?php if ($activeBase === 'all' || $activeBase === 'personal'): ?>
