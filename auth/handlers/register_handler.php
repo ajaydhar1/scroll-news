@@ -59,6 +59,7 @@ try {
     }
 
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+    $publicTrailKey = 'u_' . bin2hex(random_bytes(8));
 
     $pdo->beginTransaction();
 
@@ -67,11 +68,13 @@ try {
             email,
             password_hash,
             display_name,
+            public_trail_key,
             email_verified
         ) VALUES (
             :email,
             :password_hash,
             :display_name,
+            :public_trail_key,
             :email_verified
         )
         RETURNING id
@@ -81,6 +84,7 @@ try {
         ':email' => $email,
         ':password_hash' => $passwordHash,
         ':display_name' => $displayName !== '' ? $displayName : null,
+        ':public_trail_key' => $publicTrailKey,
         ':email_verified' => 0,
     ]);
 

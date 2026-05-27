@@ -209,7 +209,7 @@ function shuffle_view_url(array $row): string
                                 <i class="fa-solid fa-search mr-1"></i> Search
                             </a>
                             <a href="" class="btn btn-green btn-sm" data-toggle="modal" data-target="#browseNewsModal">
-                                <i class="fa-solid fa-newspaper mr-1"></i> Browse News
+                                <i class="fa-solid fa-newspaper mr-1"></i> Browse
                             </a>
                         </div>
                     </div>
