@@ -672,3 +672,62 @@ blockquote::before {
     scroll-margin-top: 0;
   }
 }
+
+.account-mega-menu {
+  width: 420px;
+  max-width: calc(100vw - 1.5rem);
+  padding: 0.75rem;
+  border-radius: 0.85rem;
+}
+
+.account-mega-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.account-mega-link {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  padding: 0.65rem;
+  border-radius: 0.65rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.account-mega-link:hover {
+  background: rgba(0, 0, 0, 0.045);
+  color: inherit;
+  text-decoration: none;
+}
+
+.account-mega-link i {
+  width: 1.15rem;
+  margin-top: 0.15rem;
+  color: #198754;
+}
+
+.account-mega-link strong {
+  display: block;
+  font-size: 0.9rem;
+  line-height: 1.15;
+}
+
+.account-mega-link small {
+  display: block;
+  color: #6c757d;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  margin-top: 0.15rem;
+}
+
+@media (max-width: 575.98px) {
+  .account-mega-menu {
+    width: calc(100vw - 1.5rem);
+  }
+
+  .account-mega-grid {
+    grid-template-columns: 1fr;
+  }
+}
