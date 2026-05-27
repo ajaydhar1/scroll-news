@@ -362,7 +362,7 @@ function renderEmptyState(
         <header class="mb-5 text-center">
             <h1 class="h2 mb-2"><i class="fa-solid fa-route mr-1"></i> News Trails</h1>
             <p class="text-muted mb-0">
-                Follow saved reading, searches, saved headlines, and shuffles grouped into 24-hour news sessions.
+                Explore grouped news journeys built from reading, searches, saved headlines, and shuffles.
             </p>
         </header>
 

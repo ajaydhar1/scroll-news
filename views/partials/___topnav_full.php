@@ -43,10 +43,10 @@ require_once __DIR__ . '/../../auth/includes/auth_bootstrap.php';
                     ?>
                     <a class="search-button mr-2" href="/analysis.php?context=category&value=politics&w=7d" title="Analyze trends" aria-label="Analyze trends" data-loading>📊</a>
                     <a class="search-button mr-2"
-                        href="/how-it-works.php"
-                        title="How this works"
-                        aria-label="How this works">
-                        🧭
+                        href="/news-trails.php"
+                        title="Trails"
+                        aria-label="Trails" data-loading>
+                        🛤️
                     </a>
                     <a class="search-button" href="/search.php" title="Search" aria-label="Search">🔍</a>
                 </div>
