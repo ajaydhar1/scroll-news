@@ -1,24 +1,6 @@
 {
-    "fetched_at": 1779901880,
+    "fetched_at": 1779914680,
     "feeds": [
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "I compared similar meals at Gordon Ramsay Steak and Papi Steak. One was way more worth the splurge.",
-                    "url": "https://www.businessinsider.com/gordon-ramsay-steak-vs-papi-steak-miami-value-2026-5",
-                    "ts": 1779901051,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Claude Code creator says 22-year-old CS grads should found startups: 'It's the golden age'",
-                    "url": "https://www.businessinsider.com/claude-code-creator-advice-cs-grads-startup-2026-5",
-                    "ts": 1779900948,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "Drudge",
             "home": "https://drudgereport.com",
@@ -26,13 +8,31 @@
                 {
                     "title": "SURVEY: Life No Longer 'Fun' For Half Of Americans...",
                     "url": "https://studyfinds.com/half-americans-say-no-fun-in-life/",
-                    "ts": 1779900396,
+                    "ts": 1779914436,
                     "emo": "📰"
                 },
                 {
                     "title": "TEXAS DUEL 2026",
                     "url": "https://www.cnn.com/2026/05/25/politics/james-talarico-ken-paxton-texas-senate-vegan",
-                    "ts": 1779900396,
+                    "ts": 1779914436,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Best Athleta coupon codes we've tested in May 2026",
+                    "url": "https://www.businessinsider.com/guides/deals/best-athleta-coupon-codes",
+                    "ts": 1779908046,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Best Sephora coupons and promo codes for May 2026",
+                    "url": "https://www.businessinsider.com/guides/deals/best-sephora-coupons-promo-codes-discounts-freebies",
+                    "ts": 1779906406,
                     "emo": "📰"
                 }
             ]

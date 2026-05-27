@@ -78,6 +78,18 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-4 col-sm-6">
+                <!-- Portfolio item 6-->
+                <div class="portfolio-item">
+                    <a href="/news-trails.php" data-loading>
+                        <img class="img-fluid" src="assets/img/portfolio/news-trails.jpg" alt="Screenshot of politics coverage analysis"/>
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">News Trails</div>
+                        <!--<div class="portfolio-caption-subheading text-muted">Photography</div>-->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
