@@ -13,12 +13,12 @@ require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
 require_once BASE_PATH . "/core/config/interest.php";
 require_once BASE_PATH . "/core/___modules.php";
 
-function save_user_search_history(PDO $pdo, int $userId, array $data): void
+function save_user_search_history(PDO $pdo, int $userId, array $data): ?int
 {
     $query = trim((string) ($data['query'] ?? ''));
 
     if ($query === '') {
-        return;
+        return null;
     }
 
     $mode = trim((string) ($data['mode'] ?? ''));
@@ -30,7 +30,6 @@ function save_user_search_history(PDO $pdo, int $userId, array $data): void
         $params = [];
     }
 
-    // Remove empty values
     $params = array_filter($params, static function ($value) {
         return $value !== null && $value !== '';
     });
@@ -50,6 +49,7 @@ function save_user_search_history(PDO $pdo, int $userId, array $data): void
             :range,
             :params_json
         )
+        RETURNING id
     ";
 
     $stmt = $pdo->prepare($sql);
@@ -63,6 +63,8 @@ function save_user_search_history(PDO $pdo, int $userId, array $data): void
             ? json_encode($params, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
             : null,
     ]);
+
+    return (int) $stmt->fetchColumn();
 }
 
 function save_search_shuffle_history(PDO $pdo, int $userId, array $results, array $context): void
@@ -206,6 +208,8 @@ $hasFilters =
     $highSignalOnly ||                                       // <-- NEW
     $deepDive;
 
+$searchHistoryId = null;
+
 if (!$pdo) {
     $errorMsg = "Database connection not available.";
 } else {
@@ -245,7 +249,7 @@ if (!$pdo) {
             }
 
             if ($currentUser && $q !== '') {
-                save_user_search_history(
+                $searchHistoryId = save_user_search_history(
                     $pdo,
                     (int) $currentUser['id'],
                     [
@@ -675,6 +679,8 @@ $shouldSaveSearchShuffle =
 
     <?php if ($shouldSaveSearchShuffle): ?>
         <script>
+            window.scrollNewsSearchHistoryId = <?= $searchHistoryId ? (int) $searchHistoryId : 'null' ?>;
+
             window.scrollNewsShufflePayload = {
                 source_context: 'search_results',
                 shuffle_type: 'search_shuffle',
@@ -728,10 +734,43 @@ $shouldSaveSearchShuffle =
                     .then(function(data) {
                         if (!data.success) {
                             console.warn('Shuffle history was not saved:', data.error);
+                            return;
+                        }
+
+                        if (!window.scrollNewsSearchHistoryId || !data.shuffle_session_id) {
+                            return;
+                        }
+
+                        return fetch('/account/api/link-search-shuffle.php', {
+                            method: 'POST',
+                            credentials: 'same-origin',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                search_history_id: window.scrollNewsSearchHistoryId,
+                                shuffle_session_uuid: data.shuffle_session_id
+                            })
+                        });
+                    })
+                    .then(function(response) {
+                        if (!response) {
+                            return null;
+                        }
+
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        if (!data) {
+                            return;
+                        }
+
+                        if (!data.success) {
+                            console.warn('Search history was not linked to shuffle:', data.error);
                         }
                     })
                     .catch(function(error) {
-                        console.warn('Shuffle history save failed:', error);
+                        console.warn('Shuffle history save/link failed:', error);
                     });
             });
         </script>

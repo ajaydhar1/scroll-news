@@ -80,7 +80,7 @@ if (!$pdo) {
     $total = (int) $countStmt->fetchColumn();
 
     $stmt = $pdo->prepare("
-        SELECT id, query, mode, \"range\", params_json, created_at
+        SELECT id, query, mode, \"range\", params_json, created_at, shuffle_session_uuid
         FROM user_search_history
         WHERE user_id = :user_id
           AND deleted_at IS NULL
@@ -385,6 +385,13 @@ function build_search_url(?string $paramsJson, string $fallbackQuery): string
                                     </div>
 
                                     <div class="d-flex align-items-center">
+
+                                        <?php if (!empty($item['shuffle_session_uuid'])): ?>
+                                            <a href="/search.php?shuffle_session=<?= urlencode($item['shuffle_session_uuid']) ?>" class="btn btn-sm btn-outline-success mr-2" data-loading>
+                                                <i class="fa-solid fa-shuffle mr-1"></i> Open Shuffle
+                                            </a>
+                                        <?php endif; ?>
+
                                         <a href="<?= htmlspecialchars($searchUrl, ENT_QUOTES, 'UTF-8') ?>" class="btn btn-sm btn-outline-success mr-2" data-loading>
                                             Run search
                                         </a>
