@@ -15,6 +15,35 @@ if (!$currentUser) {
 
 $userId = (int) $currentUser['id'];
 
+$search = trim($_GET['q'] ?? '');
+
+$params = [
+    ':user_id' => $userId,
+];
+
+$searchSql = '';
+
+if ($search !== '') {
+    $searchSql = "
+      AND (
+          ss.query ILIKE :search
+          OR EXISTS (
+              SELECT 1
+              FROM (
+                  SELECT title, article_description
+                  FROM shuffle_session_items
+                  WHERE shuffle_session_id = ss.id
+                  ORDER BY position ASC
+                  LIMIT 10
+              ) top_items
+              WHERE top_items.title ILIKE :search
+          )
+      )
+    ";
+
+    $params[':search'] = '%' . $search . '%';
+}
+
 $stmt = $pdo->prepare("
     SELECT
         ss.id,
@@ -39,13 +68,12 @@ $stmt = $pdo->prepare("
     FROM shuffle_sessions ss
     WHERE ss.user_id = :user_id
       AND ss.deleted_at IS NULL
+      $searchSql
     ORDER BY ss.created_at DESC
     LIMIT 50
 ");
 
-$stmt->execute([
-    ':user_id' => $userId,
-]);
+$stmt->execute($params);
 
 $shuffleSessions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -184,6 +212,15 @@ function shuffle_view_url(array $row): string
                                     <p class="text-muted mb-0">
                                         Revisit AI-powered shuffle sessions from Search and Browse News.
                                     </p>
+
+                                    <?php if ($search !== ''): ?>
+                                        <div class="small text-muted mt-2">
+                                            Search results for
+                                            <strong>
+                                                "<?= htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>"
+                                            </strong>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
@@ -201,6 +238,22 @@ function shuffle_view_url(array $row): string
 
                         </div>
                     </div>
+
+                    <form method="get" class="mb-4">
+                        <div class="input-group">
+                            <input
+                                type="search"
+                                name="q"
+                                class="form-control"
+                                placeholder="Search shuffle headlines or descriptions..."
+                                value="<?= htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>">
+                            <div class="input-group-append">
+                                <button class="btn btn-dark" type="submit" data-loading>
+                                    <i class="fa-solid fa-search mr-1"></i> Search
+                                </button>
+                            </div>
+                        </div>
+                    </form>
 
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <a href="/account/" class="text-muted">← Back to Account</a>
