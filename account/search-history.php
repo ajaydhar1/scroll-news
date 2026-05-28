@@ -388,7 +388,7 @@ function build_search_url(?string $paramsJson, string $fallbackQuery): string
 
                                         <?php if (!empty($item['shuffle_session_uuid'])): ?>
                                             <a href="/search.php?shuffle_session=<?= urlencode($item['shuffle_session_uuid']) ?>" class="btn btn-sm btn-outline-success mr-2" data-loading>
-                                                <i class="fa-solid fa-shuffle mr-1"></i> Open Shuffle
+                                                🔀 Open Shuffle
                                             </a>
                                         <?php endif; ?>
 
