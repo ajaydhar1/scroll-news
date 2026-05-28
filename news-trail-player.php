@@ -115,7 +115,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <h1 class="h2 mb-2"><i class="fa-solid fa-route mr-1"></i> News Trail Player</h1>
                         <div class="row justify-content-center">
                             <div class="col-lg-10">
-                                <p class="text-trail-subtitle mb-0">
+                                <p class="text-muted mb-0">
                                     A focused way to move through grouped news journeys built from reading,
                         saved headlines, searches, and shuffles.
                                 </p>

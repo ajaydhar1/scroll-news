@@ -363,7 +363,7 @@ function renderEmptyState(
             <h1 class="h2 mb-2"><i class="fa-solid fa-route mr-1"></i> News Trails</h1>
             <div class="row justify-content-center">
                 <div class="col-lg-5">
-                    <p class="text-trail-subtitle mb-0">
+                    <p class="text-muted mb-0">
                         Move through grouped news journeys built from reading history, saved headlines, searches, and shuffles.
                     </p>
                 </div>
