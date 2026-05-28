@@ -373,7 +373,7 @@ function renderEmptyState(
         <?php if ($activeBase === 'all' || $activeBase === 'personal'): ?>
             <section class="mb-5">
 
-                <h2 class="h5 mb-3">Personal Trails</h2>
+                <h2 class="h5 mb-3"><i class="fa-solid fa-user mr-2"></i> Personal Trails</h2>
 
                 <div class="row">
 
@@ -414,7 +414,7 @@ function renderEmptyState(
 
         <?php if ($activeBase === 'all' || $activeBase === 'editors'): ?>
             <section class="mb-5">
-                <h2 class="h5 mb-3">Editor Trails</h2>
+                <h2 class="h5 mb-3"><i class="fa-solid fa-newspaper mr-2"></i> Editor Trails</h2>
                 <div class="row">
                     <?php if (!empty($editorTrails)): ?>
                         <?php foreach ($editorTrails as $trail): ?>
@@ -436,7 +436,7 @@ function renderEmptyState(
 
         <?php if ($activeBase === 'all' || $activeBase === 'community'): ?>
             <section class="mb-5">
-                <h2 class="h5 mb-3">Community Trails</h2>
+                <h2 class="h5 mb-3"><i class="fa-solid fa-users mr-2"></i> Community Trails</h2>
                 <div class="row">
                     <?php if (!empty($communityTrails)): ?>
                         <?php foreach ($communityTrails as $trail): ?>
