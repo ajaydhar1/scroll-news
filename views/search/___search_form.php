@@ -67,7 +67,10 @@ $highSignalActive = !empty($snSearch['high_signal_active']);
         </select>
       <?php endif; ?>
 
-      <button type="submit" class="btn btn-sm btn-success">Search</button>
+      <button type="submit" class="btn btn-sm btn-success">
+        <i class="fa-solid fa-magnifying-glass mr-1" aria-hidden="true"></i>
+        Search
+      </button>
 
       <div class="scroll-article-badges">
         <?php if ($mode === 'nlp'): ?>
