@@ -210,6 +210,10 @@ $hasFilters =
 
 $searchHistoryId = null;
 
+$hasContext = isset($_GET['context']) && trim((string) $_GET['context']) !== '';
+$trackSearchHistory = !$hasContext;
+$showShuffleButton = !$hasContext;
+
 if (!$pdo) {
     $errorMsg = "Database connection not available.";
 } else {
@@ -248,7 +252,7 @@ if (!$pdo) {
                 shuffle($results);
             }
 
-            if ($currentUser && $q !== '') {
+            if ($trackSearchHistory && $currentUser && $q !== '') {
                 $searchHistoryId = save_user_search_history(
                     $pdo,
                     (int) $currentUser['id'],
@@ -271,6 +275,7 @@ if (!$pdo) {
 }
 
 $shouldSaveSearchShuffle =
+    !$hasContext &&
     !empty($_GET['shuffle']) &&
     $currentUser &&
     !empty($results);
@@ -609,9 +614,11 @@ $shouldSaveSearchShuffle =
                                 $explore_url = '?' . http_build_query($params);
                                 ?>
 
-                                <a href="<?= htmlspecialchars($explore_url) ?>" class="btn btn-sm btn-info" data-sn-loading>
-                                    🔀 AI-powered Shuffle
-                                </a>
+                                <?php if ($showShuffleButton): ?>
+                                    <a href="<?= htmlspecialchars($explore_url) ?>" class="btn btn-sm btn-info" data-sn-loading>
+                                        🔀 AI-powered Shuffle
+                                    </a>
+                                <?php endif; ?>
                             <?php endif; ?>
                         </h2>
 

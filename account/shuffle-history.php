@@ -95,11 +95,11 @@ function shuffle_type_label(string $sourceContext, string $shuffleType): string
 function shuffle_view_url(array $row): string
 {
     if (($row['source_context'] ?? '') === 'search_results') {
-        return '/search.php?shuffle_session=' . urlencode($row['id']);
+        return '/search.php?shuffle_session=' . urlencode($row['id']) . '&context=shuffle_history';
     }
 
     if (($row['source_context'] ?? '') === 'browse_news_modal') {
-        return '/newsroom.php?browse_shuffle=' . urlencode($row['id']);
+        return '/newsroom.php?browse_shuffle=' . urlencode($row['id']) . '&context=shuffle_history';
     }
 
     return '#';

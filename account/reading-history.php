@@ -438,7 +438,18 @@ function pageUrl(int $page): string
                                                 </div>
 
                                                 <div class="d-flex flex-wrap align-items-center">
-                                                    <a class="btn btn-green btn-sm mr-2 mb-2" href="<?= h($item['url']) ?>" <?= $targetAttrs ?>>
+                                                    <?php
+                                                    $linkUrl = $item['url'];
+
+                                                    if ($isAnalyze) {
+                                                        $separator = (strpos($linkUrl, '?') !== false) ? '&' : '?';
+                                                        $linkUrl .= $separator . 'context=reading_history';
+                                                    }
+                                                    ?>
+
+                                                    <a class="btn btn-green btn-sm mr-2 mb-2"
+                                                        href="<?= h($linkUrl) ?>"
+                                                        <?= $targetAttrs ?>>
                                                         <?= h($buttonText) ?>
                                                     </a>
 

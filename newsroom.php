@@ -17,6 +17,8 @@ require_once BASE_PATH . '/core/newsroom/___request_resolution_layer.php';
 require_once BASE_PATH . '/core/newsroom/___newsroom_meta.php';
 require_once BASE_PATH . '/core/newsroom/___newsroom_bootstrap.php';
 
+$hasContext = isset($_GET['context']) && trim($_GET['context']) !== '';
+
 /*
 echo '<pre>';
 var_dump([
@@ -131,10 +133,10 @@ exit;
                                         ?>
             <div class="container-fluid" style="padding-top: 30px;">
                 <div id="panel-inner-row newsroom-layout" class="row"> <?php //  style="height: 95vh;" 
-                                                                ?>
+                                                                        ?>
                     <!-- NLP Dashboard Panel -->
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 panel newsroom-main" style="overflow-y: auto;">
-                        
+
                         <!-- Masthead-->
                         <header class="masthead" style="background-image: url(<?php echo $img; ?>)">
                             <div class="container cover-img py-5">
@@ -237,12 +239,12 @@ exit;
                                 <?php endif; ?>
                             </div>
                         </header>
-                        
+
                     </div>
 
                     <!-- Article Image Panel -->
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 panel newsroom-sidebar" style="height: 100%; overflow-y: auto;"> <?php //background-color: #fcfcfc; 
-                                                                                                                        ?>
+                                                                                                                                        ?>
                         <div id="analytics" class="skeleton">
 
                             <?php
@@ -349,7 +351,10 @@ exit;
     <!--<script src="/assets/js/newsroom/api_unified.js" defer></script>-->
     <script src="/assets/js/newsroom/init.js" defer></script>
 
-    <script src="/assets/js/sn_history.js?v=<?= filemtime(BASE_PATH . '/assets/js/sn_history.js') ?>" defer></script>
+    <?php if (!$hasContext): ?>
+        <script src="/assets/js/sn_history.js?v=<?= filemtime(BASE_PATH . '/assets/js/sn_history.js') ?>" defer></script>
+    <?php endif; ?>
+
     <script src="/assets/js/sn-mini-player-yt.js?v=<?= filemtime(BASE_PATH . '/assets/js/sn-mini-player-yt.js') ?>" defer></script>
 
     <?php
