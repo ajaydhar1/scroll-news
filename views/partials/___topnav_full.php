@@ -1,5 +1,9 @@
 <?php
 
+if (($_GET['context'] ?? '') === 'trail-player') {
+    return;
+}
+
 require_once __DIR__ . '/../../auth/includes/auth_bootstrap.php';
 
 ?>

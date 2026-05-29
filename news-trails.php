@@ -80,29 +80,64 @@ function fetchTrails(PDO $pdo, string $base, ?int $currentUserId, array $editorE
     }
 
     $sql = "
-        WITH activity AS (
-            SELECT user_id, (created_at - INTERVAL '4 hours')::date AS trail_date, 'reading' AS activity_type
+        WITH activity_raw AS (
+            SELECT
+                user_id,
+                (viewed_at - INTERVAL '4 hours')::date AS trail_date,
+                'reading' AS activity_type,
+                LOWER(REGEXP_REPLACE(url, '[?#].*$', '')) AS item_key
             FROM user_reading_history
-            WHERE created_at >= NOW() - INTERVAL '2 months'
+            WHERE viewed_at >= NOW() - INTERVAL '2 months'
+            AND deleted_at IS NULL
+            AND url IS NOT NULL
+            AND url <> ''
 
             UNION ALL
 
-            SELECT user_id, (created_at - INTERVAL '4 hours')::date AS trail_date, 'saved' AS activity_type
+            SELECT
+                user_id,
+                (saved_at - INTERVAL '4 hours')::date AS trail_date,
+                'saved' AS activity_type,
+                LOWER(REGEXP_REPLACE(headline_url, '[?#].*$', '')) AS item_key
             FROM user_saved_headlines
-            WHERE created_at >= NOW() - INTERVAL '2 months'
+            WHERE saved_at >= NOW() - INTERVAL '2 months'
+            AND deleted_at IS NULL
+            AND headline_url IS NOT NULL
+            AND headline_url <> ''
 
             UNION ALL
 
-            SELECT user_id, (created_at - INTERVAL '4 hours')::date AS trail_date, 'search' AS activity_type
+            SELECT
+                user_id,
+                (created_at - INTERVAL '4 hours')::date AS trail_date,
+                'search' AS activity_type,
+                'search:' || id::text AS item_key
             FROM user_search_history
             WHERE created_at >= NOW() - INTERVAL '2 months'
+            AND deleted_at IS NULL
 
             UNION ALL
 
-            SELECT user_id, (created_at - INTERVAL '4 hours')::date AS trail_date, 'shuffle' AS activity_type
+            SELECT
+                user_id,
+                (created_at - INTERVAL '4 hours')::date AS trail_date,
+                'shuffle' AS activity_type,
+                'shuffle:' || id::text AS item_key
             FROM shuffle_sessions
             WHERE created_at >= NOW() - INTERVAL '2 months'
+            AND deleted_at IS NULL
+        ),
+
+        activity AS (
+            SELECT DISTINCT ON (user_id, trail_date, activity_type, item_key)
+                user_id,
+                trail_date,
+                activity_type,
+                item_key
+            FROM activity_raw
+            ORDER BY user_id, trail_date, activity_type, item_key
         )
+
         SELECT
             u.id AS user_id,
             u.public_trail_key,

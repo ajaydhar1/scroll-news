@@ -1,3 +1,11 @@
+<?php
+
+if (($_GET['context'] ?? '') === 'trail-player') {
+    return;
+}
+
+?>
+
 <div class="bg-dark" style="height: 338px;">        
     <footer class="footer footer-bottom bg-white py-4">
         <div class="container">
