@@ -87,43 +87,55 @@ $trailUserId = (int) $trailOwner['id'];
 
 // get trail links
 $stmt = $pdo->prepare("
-    SELECT
-        h.id,
-        h.url AS url,
-        h.title AS title,
-        h.source AS source,
-        h.pub_date AS published_at,
-        h.viewed_at AS event_at,
-        'reading' AS trail_type
-    FROM user_reading_history h
-    WHERE h.user_id = :user_id
-      AND h.deleted_at IS NULL
-      AND h.viewed_at >= :start_date
-      AND h.viewed_at < :end_date
+    WITH trail_items_raw AS (
+        SELECT
+            url,
+            title,
+            source,
+            image,
+            pub_date,
+            viewed_at AS activity_at,
+            'reading' AS activity_type
+        FROM user_reading_history
+        WHERE user_id = :user_id
+        AND deleted_at IS NULL
+        AND url IS NOT NULL
+        AND url <> ''
+        AND (viewed_at - INTERVAL '4 hours')::date = :trail_date
 
-    UNION ALL
+        UNION ALL
 
-    SELECT
-        s.id,
-        s.headline_url AS url,
-        s.headline_title AS title,
-        s.source_slug AS source,
-        s.pub_date AS published_at,
-        s.saved_at AS event_at,
-        'saved' AS trail_type
-    FROM user_saved_headlines s
-    WHERE s.user_id = :user_id
-      AND s.deleted_at IS NULL
-      AND s.saved_at >= :start_date
-      AND s.saved_at < :end_date
+        SELECT
+            headline_url AS url,
+            headline_title AS title,
+            source_slug AS source,
+            NULL AS image,
+            pub_date,
+            saved_at AS activity_at,
+            'saved' AS activity_type
+        FROM user_saved_headlines
+        WHERE user_id = :user_id
+        AND deleted_at IS NULL
+        AND headline_url IS NOT NULL
+        AND headline_url <> ''
+        AND (saved_at - INTERVAL '4 hours')::date = :trail_date
+    ),
 
-    ORDER BY event_at ASC
+    trail_items AS (
+        SELECT DISTINCT ON (LOWER(TRIM(url)))
+            *
+        FROM trail_items_raw
+        ORDER BY LOWER(TRIM(url)), activity_at DESC
+    )
+
+    SELECT *
+    FROM trail_items
+    ORDER BY activity_at ASC;
 ");
 
 $stmt->execute([
     ':user_id' => $trailUserId,
-    ':start_date' => $startDate,
-    ':end_date' => $endDate,
+    ':trail_date' => $trailDate,
 ]);
 
 $trailItems = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -85,7 +85,7 @@ function fetchTrails(PDO $pdo, string $base, ?int $currentUserId, array $editorE
                 user_id,
                 (viewed_at - INTERVAL '4 hours')::date AS trail_date,
                 'reading' AS activity_type,
-                LOWER(REGEXP_REPLACE(url, '[?#].*$', '')) AS item_key
+                LOWER(TRIM(url)) AS item_key
             FROM user_reading_history
             WHERE viewed_at >= NOW() - INTERVAL '2 months'
             AND deleted_at IS NULL
@@ -251,7 +251,7 @@ function renderTrailCard(array $trail, string $base): void
                 <?= (int) $trail['shuffle_count'] ?> shuffles
             </div>
 
-            <a href="<?= htmlspecialchars($url, ENT_QUOTES, 'UTF-8') ?>" class="btn btn-green btn-sm">
+            <a href="<?= htmlspecialchars($url, ENT_QUOTES, 'UTF-8') ?>" class="btn btn-green btn-sm" data-loading>
                 <i class="fa-solid fa-play mr-1"></i> Open Trail
             </a>
         </div>
