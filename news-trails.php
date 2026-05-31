@@ -464,8 +464,8 @@ function renderEmptyState(
         <?php endif; ?>
 
         <?php if ($activeBase === 'all' || $activeBase === 'editors'): ?>
-            <section class="mb-5">
-                <h2 class="h5 mb-3"><i class="fa-solid fa-newspaper mr-2"></i> Editor Trails</h2>
+            <section class="bg-dark p-4 mb-5">
+                <h2 class="h5 mb-3 text-white"><i class="fa-solid fa-newspaper mr-2"></i> Editor Trails</h2>
                 <div class="row">
                     <?php if (!empty($editorTrails)): ?>
                         <?php foreach ($editorTrails as $trail): ?>

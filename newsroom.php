@@ -18,6 +18,7 @@ require_once BASE_PATH . '/core/newsroom/___newsroom_meta.php';
 require_once BASE_PATH . '/core/newsroom/___newsroom_bootstrap.php';
 
 $hasContext = isset($_GET['context']) && trim($_GET['context']) !== '';
+$isTrailPlayer = ($_GET['context'] ?? '') === 'trail-player';
 
 /*
 echo '<pre>';
@@ -84,7 +85,9 @@ exit;
     <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/pages/newsroom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/newsroom.css'); ?>" rel="stylesheet" />
-    <link href="/assets/css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/mindpour.css'); ?>" rel="stylesheet" />
+    <?php if (!$isTrailPlayer): ?>
+        <link href="/assets/css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/mindpour.css'); ?>" rel="stylesheet" />
+    <?php endif; ?>
 
     <!-- Add IntroJs styles -->
     <link href="/assets/css/introjs.css" rel="stylesheet">
@@ -95,6 +98,19 @@ exit;
         // Flip this to false to go back to your old 2-AJAX flow instantly.
         const USE_UNIFIED_NEWSROOM_API = true;
     </script>
+
+    <style>
+        <?php if ($isTrailPlayer): ?>body {
+            background: linear-gradient(to bottom, #eef1f4, #e8edf1);
+        }
+
+        .card-header {
+            background-color: var(--dark);
+            color: white;
+        }
+
+        <?php endif; ?>
+    </style>
 
 </head>
 
@@ -110,7 +126,10 @@ exit;
 
         <div class="text-center my-3">
             <h2>🧠 NLP Dashboard</h2>
-            <button class="btn btn-small btn-primary btn-rectangle" style="color: black; box-shadow: none !important;" onclick="introJs().setOptions({highlightClass: 'custom-highlight', overlayOpacity: 0.5}).start();"><i class="fa fa-play-circle" style=""></i><span>&nbsp;&nbsp;&nbsp;Guide</span></button>
+
+            <?php if (!$isTrailPlayer): ?>
+                <button class="btn btn-small btn-primary btn-rectangle" style="color: black; box-shadow: none !important;" onclick="introJs().setOptions({highlightClass: 'custom-highlight', overlayOpacity: 0.5}).start();"><i class="fa fa-play-circle" style=""></i><span>&nbsp;&nbsp;&nbsp;Guide</span></button>
+            <?php endif; ?>
 
         </div>
 
@@ -366,7 +385,10 @@ exit;
                                 'fromDb' => $cfg_fromDb,
                                 'url' => $cfg_url,
                                 'intro' => [
-                                    'shouldRun' => (($_SESSION['resultViewed'] ?? 999) < 2) && (($_GET['siteSubmit'] ?? '') !== 'true')
+                                    'shouldRun' =>
+                                    !$isTrailPlayer
+                                        && (($_SESSION['resultViewed'] ?? 999) < 2)
+                                        && (($_GET['siteSubmit'] ?? '') !== 'true')
                                 ],
                             ], JSON_UNESCAPED_SLASHES) ?>;
     </script>

@@ -107,6 +107,7 @@ $userId = $_SESSION['user_id'] ?? null;
                                 <div class="card-body">
                                     <h2 class="h5 mb-2">
                                         <i class="fa-solid fa-wave-square mr-2"></i>Your Activity
+                                        <span class="badge badge-dark ml-1">New</span>
                                     </h2>
                                     <p class="text-muted mb-2">
                                         Saved articles, searches, and your reading history.
@@ -128,18 +129,18 @@ $userId = $_SESSION['user_id'] ?? null;
                                 <div class="card-body">
                                     <h2 class="h5 mb-2">
                                         <i class="fa-solid fa-route mr-2"></i>News Trails
-                                        <span class="badge badge-light ml-1">Coming soon</span>
+                                        <span class="badge badge-dark ml-1">New</span>
                                     </h2>
                                     <p class="text-muted mb-2">
                                         Trace AI-powered trails across related stories and narrative frames.
                                     </p>
                                     <ul class="text-muted mb-3">
-                                        <li>Personal Trails</li>
-                                        <li>Editor Trails</li>
-                                        <li>Community Trails</li>
-                                        <li>Signal paths through the news</li>
+                                        <li><a href="/news-trails.php?base=personal" class="account-link" data-loading>Personal Trails</a></li>
+                                        <li><a href="/news-trails.php?base=editors" class="account-link" data-loading>Editor Trails</a></li>
+                                        <li><a href="/news-trails.php?base=community" class="account-link" data-loading>Community Trails</a></li>
+                                        <li><a href="/news-trails.php" class="account-link" data-loading>Signal paths through the news</a></li>
                                     </ul>
-                                    <button class="btn btn-outline-secondary btn-sm" disabled>Coming Soon</button>
+                                    <button class="btn btn-outline-secondary btn-sm" disabled>Connected</button>
                                 </div>
                             </div>
                         </div>

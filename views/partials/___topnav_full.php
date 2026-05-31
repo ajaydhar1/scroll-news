@@ -50,7 +50,7 @@ require_once __DIR__ . '/../../auth/includes/auth_bootstrap.php';
                         href="/news-trails.php"
                         title="Trails"
                         aria-label="Trails" data-loading>
-                        🛤️
+                        🧭
                     </a>
                     <a class="search-button" href="/search.php" title="Search" aria-label="Search">🔍</a>
                 </div>
