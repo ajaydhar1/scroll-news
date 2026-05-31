@@ -85,7 +85,7 @@ function fetchTrails(PDO $pdo, string $base, ?int $currentUserId, array $editorE
                 user_id,
                 (viewed_at - INTERVAL '4 hours')::date AS trail_date,
                 'reading' AS activity_type,
-                LOWER(TRIM(url)) AS item_key
+                url AS item_url
             FROM user_reading_history
             WHERE viewed_at >= NOW() - INTERVAL '2 months'
             AND deleted_at IS NULL
@@ -98,7 +98,7 @@ function fetchTrails(PDO $pdo, string $base, ?int $currentUserId, array $editorE
                 user_id,
                 (saved_at - INTERVAL '4 hours')::date AS trail_date,
                 'saved' AS activity_type,
-                LOWER(REGEXP_REPLACE(headline_url, '[?#].*$', '')) AS item_key
+                headline_url AS item_url
             FROM user_saved_headlines
             WHERE saved_at >= NOW() - INTERVAL '2 months'
             AND deleted_at IS NULL
@@ -111,31 +111,47 @@ function fetchTrails(PDO $pdo, string $base, ?int $currentUserId, array $editorE
                 user_id,
                 (created_at - INTERVAL '4 hours')::date AS trail_date,
                 'search' AS activity_type,
-                'search:' || id::text AS item_key
+                '/search.php?q=' || replace(query, ' ', '+') ||
+                '&range=' || COALESCE(range, 'all') ||
+                '&mode=' || COALESCE(mode, 'classic') ||
+                '&deep_dive=' || COALESCE(params_json->>'deep_dive', '') ||
+                '&high_signal=' || COALESCE(params_json->>'high_signal', '') AS item_url
             FROM user_search_history
             WHERE created_at >= NOW() - INTERVAL '2 months'
             AND deleted_at IS NULL
+            AND shuffle_session_uuid IS NULL
+            AND query IS NOT NULL
+            AND query <> ''
 
             UNION ALL
 
             SELECT
-                user_id,
-                (created_at - INTERVAL '4 hours')::date AS trail_date,
+                ss.user_id,
+                (ss.created_at - INTERVAL '4 hours')::date AS trail_date,
                 'shuffle' AS activity_type,
-                'shuffle:' || id::text AS item_key
-            FROM shuffle_sessions
-            WHERE created_at >= NOW() - INTERVAL '2 months'
-            AND deleted_at IS NULL
+                CASE
+                    WHEN ss.source_context = 'search_results'
+                        THEN '/search.php?shuffle_session=' || ss.id::text
+                    WHEN ss.source_context = 'browse_news_modal'
+                        THEN '/browse-news.php?shuffle_session_id=' || ss.id::text
+                    ELSE NULL
+                END AS item_url
+            FROM shuffle_sessions ss
+            WHERE ss.created_at >= NOW() - INTERVAL '2 months'
+            AND ss.deleted_at IS NULL
+            AND ss.source_context IN ('search_results', 'browse_news_modal')
         ),
 
         activity AS (
-            SELECT DISTINCT ON (user_id, trail_date, activity_type, item_key)
+            SELECT DISTINCT ON (user_id, trail_date, LOWER(TRIM(item_url)))
                 user_id,
                 trail_date,
                 activity_type,
-                item_key
+                item_url
             FROM activity_raw
-            ORDER BY user_id, trail_date, activity_type, item_key
+            WHERE item_url IS NOT NULL
+            AND item_url <> ''
+            ORDER BY user_id, trail_date, LOWER(TRIM(item_url)), activity_type
         )
 
         SELECT

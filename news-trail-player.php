@@ -86,6 +86,7 @@ if (!$trailOwner) {
 $trailUserId = (int) $trailOwner['id'];
 
 // get trail links
+// get trail links
 $stmt = $pdo->prepare("
     WITH trail_items_raw AS (
         SELECT
@@ -98,10 +99,10 @@ $stmt = $pdo->prepare("
             'reading' AS activity_type
         FROM user_reading_history
         WHERE user_id = :user_id
-        AND deleted_at IS NULL
-        AND url IS NOT NULL
-        AND url <> ''
-        AND (viewed_at - INTERVAL '4 hours')::date = :trail_date
+          AND deleted_at IS NULL
+          AND url IS NOT NULL
+          AND url <> ''
+          AND (viewed_at - INTERVAL '4 hours')::date = :trail_date
 
         UNION ALL
 
@@ -115,16 +116,72 @@ $stmt = $pdo->prepare("
             'saved' AS activity_type
         FROM user_saved_headlines
         WHERE user_id = :user_id
-        AND deleted_at IS NULL
-        AND headline_url IS NOT NULL
-        AND headline_url <> ''
-        AND (saved_at - INTERVAL '4 hours')::date = :trail_date
+          AND deleted_at IS NULL
+          AND headline_url IS NOT NULL
+          AND headline_url <> ''
+          AND (saved_at - INTERVAL '4 hours')::date = :trail_date
+
+        UNION ALL
+
+        SELECT
+            '/search.php?q=' || replace(query, ' ', '+') ||
+            '&range=' || COALESCE(range, 'all') ||
+            '&mode=' || COALESCE(mode, 'classic') ||
+            '&deep_dive=' || COALESCE(params_json->>'deep_dive', '') ||
+            '&high_signal=' || COALESCE(params_json->>'high_signal', '') AS url,
+            'Search: ' || query AS title,
+            'Search' AS source,
+            NULL AS image,
+            NULL AS pub_date,
+            created_at AS activity_at,
+            'search' AS activity_type
+        FROM user_search_history
+            WHERE user_id = :user_id
+            AND deleted_at IS NULL
+            AND shuffle_session_uuid IS NULL
+            AND query IS NOT NULL
+            AND query <> ''
+            AND (created_at - INTERVAL '4 hours')::date = :trail_date
+
+        UNION ALL
+
+        SELECT
+            CASE
+                WHEN ss.source_context = 'search_results'
+                    THEN '/search.php?shuffle_session=' || ss.id::text
+                WHEN ss.source_context = 'browse_news_modal'
+                    THEN '/browse-news.php?shuffle_session_id=' || ss.id::text
+                ELSE NULL
+            END AS url,
+            CASE
+                WHEN ss.source_context = 'search_results'
+                    THEN 'Search Shuffle' || COALESCE(': ' || ush.query, '')
+                WHEN ss.source_context = 'browse_news_modal'
+                    THEN 'Browse News Shuffle'
+                ELSE 'News Shuffle'
+            END AS title,
+            'Shuffle' AS source,
+            NULL AS image,
+            NULL AS pub_date,
+            ss.created_at AS activity_at,
+            'shuffle' AS activity_type
+        FROM shuffle_sessions ss
+        LEFT JOIN user_search_history ush
+          ON ush.shuffle_session_uuid = ss.id
+         AND ush.user_id = ss.user_id
+         AND ush.deleted_at IS NULL
+        WHERE ss.user_id = :user_id
+          AND ss.deleted_at IS NULL
+          AND ss.source_context IN ('search_results', 'browse_news_modal')
+          AND (ss.created_at - INTERVAL '4 hours')::date = :trail_date
     ),
 
     trail_items AS (
         SELECT DISTINCT ON (LOWER(TRIM(url)))
             *
         FROM trail_items_raw
+        WHERE url IS NOT NULL
+          AND url <> ''
         ORDER BY LOWER(TRIM(url)), activity_at DESC
     )
 
@@ -394,7 +451,7 @@ unset($item);
                 const item = trailItems[currentIndex];
 
                 title.textContent = item.title || 'Untitled article';
-                meta.textContent = `${currentIndex + 1} of ${trailItems.length} · ${item.source || 'Unknown source'}${item.published_at ? ' · ' + item.published_at : ''}`;
+                meta.textContent = `${currentIndex + 1} of ${trailItems.length} · ${item.source || 'Unknown source'}${item.pub_date ? ' · ' + item.pub_date : ''}`;
 
                 frame.src = item.player_url || item.url;
                 openOriginal.href = item.url;
