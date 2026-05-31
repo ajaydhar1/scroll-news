@@ -1,7 +1,12 @@
-(function() {
+(function () {
   const STORAGE_KEY = 'sn_article_history';
   const MAX_ITEMS = 200;
   const SYNC_ENDPOINT = '/account/api/reading-history-save.php';
+
+  function isTrailPlayerContext() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('context') === 'trail-player';
+  }
 
   function getHistory() {
     try {
@@ -45,6 +50,10 @@
   }
 
   async function syncItem(item) {
+    if (isTrailPlayerContext()) {
+      return false;
+    }
+
     try {
       const response = await fetch(SYNC_ENDPOINT, {
         method: 'POST',
@@ -111,7 +120,11 @@
     }
   }
 
-  document.addEventListener('click', function(e) {
+  document.addEventListener('click', function (e) {
+    if (isTrailPlayerContext()) {
+      return;
+    }
+
     const link = e.target.closest('a[data-article-url]');
     if (!link) return;
 
@@ -131,7 +144,9 @@
 
   // Try to sync older LocalStorage history when the user is signed in.
   // If signed out, the endpoint returns 401 and items remain unsynced.
- setTimeout(syncUnsyncedHistory, 1500);
+  if (!isTrailPlayerContext()) {
+    setTimeout(syncUnsyncedHistory, 1500);
+  }
 
   window.ScrollNewsHistory = {
     getHistory,
