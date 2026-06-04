@@ -3,6 +3,7 @@
 define('BASE_PATH', dirname(__DIR__));
 
 require_once __DIR__ . '/../auth/includes/require_auth.php';
+require_once __DIR__ . '/../auth/includes/auth_db.php';
 
 $userEmail = $_SESSION['user_email'] ?? '';
 $displayName = $_SESSION['display_name'] ?? '';
@@ -91,13 +92,98 @@ $userId = $_SESSION['user_id'] ?? null;
                                         Manage your email, password, and sign-in settings.
                                     </p>
                                     <ul class="text-muted mb-3">
-                                        <li>Email address</li>
-                                        <li>Password</li>
-                                        <li>Email verification status</li>
-                                        <li>Active sessions/devices</li>
-                                        <li>Remembered devices</li>
+                                        <li><strong>Email address:</strong> <?= trim($currentUser['email'] ?? '') ?></li>
+                                        <li><strong>Email verification status:</strong> ✅</li>
+
+                                        <?php
+                                        $lastSession = null;
+
+                                        $pdo = auth_db();
+
+                                        $stmt = $pdo->prepare("
+                                                SELECT created_at, user_agent
+                                                FROM user_sessions
+                                                WHERE user_id = :user_id
+                                                ORDER BY created_at DESC
+                                                LIMIT 1
+                                            ");
+                                        $stmt->execute([
+                                            ':user_id' => $userId,
+                                        ]);
+                                        $lastSession = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                        $stmt = $pdo->prepare("
+                                            SELECT created_at
+                                            FROM users
+                                            WHERE id = :user_id
+                                            LIMIT 1
+                                        ");
+                                        $stmt->execute([
+                                            ':user_id' => $userId,
+                                        ]);
+
+                                        $userAccount = $stmt->fetch(PDO::FETCH_ASSOC);
+                                        $memberSince = $userAccount['created_at'] ?? null;
+
+                                        function h($value): string
+                                        {
+                                            return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8');
+                                        }
+
+                                        function summarize_user_agent(?string $userAgent): string
+                                        {
+                                            if (!$userAgent) {
+                                                return 'Unknown device';
+                                            }
+
+                                            $device = 'Desktop';
+                                            $browser = 'Browser';
+
+                                            if (stripos($userAgent, 'iPhone') !== false) {
+                                                $device = 'iPhone';
+                                            } elseif (stripos($userAgent, 'iPad') !== false) {
+                                                $device = 'iPad';
+                                            } elseif (stripos($userAgent, 'Android') !== false) {
+                                                $device = 'Android';
+                                            } elseif (stripos($userAgent, 'Windows') !== false) {
+                                                $device = 'Windows';
+                                            } elseif (stripos($userAgent, 'Mac OS X') !== false) {
+                                                $device = 'Mac';
+                                            }
+
+                                            if (stripos($userAgent, 'Edg/') !== false) {
+                                                $browser = 'Edge';
+                                            } elseif (stripos($userAgent, 'Chrome/') !== false && stripos($userAgent, 'Safari/') !== false) {
+                                                $browser = 'Chrome';
+                                            } elseif (stripos($userAgent, 'Firefox/') !== false) {
+                                                $browser = 'Firefox';
+                                            } elseif (stripos($userAgent, 'Safari/') !== false) {
+                                                $browser = 'Safari';
+                                            }
+
+                                            return $browser . ' on ' . $device;
+                                        }
+                                        ?>
+                                        <li>
+                                            <strong>Last login:</strong>
+                                            <?php if ($lastSession): ?>
+                                                <?= h(date('M j, Y g:i A', strtotime($lastSession['created_at']))) ?>
+                                                <span class="text-muted">
+                                                    — <?= h(summarize_user_agent($lastSession['user_agent'] ?? null)) ?>
+                                                </span>
+                                            <?php else: ?>
+                                                Unknown
+                                            <?php endif; ?>
+                                        </li>
+                                        <li>
+                                            <strong>Member since:</strong>
+                                            <?= $memberSince
+                                                ? h(date('M j, Y', strtotime($memberSince)))
+                                                : 'Unknown' ?>
+                                        </li>
+                                        <li><a href="/auth/change-password.php" class="account-link">Change password</a></li>
                                     </ul>
-                                    <a href="#" class="btn btn-green btn-sm">Manage Account</a>
+                                    <button class="btn btn-outline-secondary btn-sm" disabled>Connected</button>
                                 </div>
                             </div>
                         </div>
