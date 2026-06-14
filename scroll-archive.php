@@ -235,7 +235,7 @@ if (!$pdo) {
                                         <label for="historyFilterDomain">Filter by domain</label>
                                         <input id="historyFilterDomain" type="text" class="form-control form-control-sm" placeholder="e.g. nytimes.com">
                                     </div>
-                                    <div class="col-md-4 col-lg-2 col-xl-1 mb-2 filter-col">
+                                    <div class="col-md-4 col-lg-2 col-xl-2 mb-2 filter-col">
                                         <label for="historyFilterTime">Time window</label>
                                         <select id="historyFilterTime" class="form-control form-control-sm">
                                             <option value="all">All time</option>
