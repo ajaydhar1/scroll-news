@@ -292,9 +292,14 @@ require_once BASE_PATH . "/core/___modules.php";
 
             <!-- News Intelligence Panel-->
             <?php
-                fragment_cache_swr("news_intel_panel_$CACHE_VER", 60, 600, function () {
-                    include BASE_PATH . '/views/home/panels/___news_intel_panel.php';
-                }, $bust, false, false);
+                render_home_panel(
+                    'homepage_news_intel_panel',
+                    60,
+                    600,
+                    BASE_PATH . '/views/home/panels/___news_intel_panel.php',
+                    $bust,
+                    $homepageCache
+                );
             ?>
 
             <!-- Active Stories Panel-->
