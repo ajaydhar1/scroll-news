@@ -383,3 +383,11 @@ a.btn.btn-outline-primary.btn-analyze:hover {
 .sn-archive-pagination .page-item.active .page-link {
     box-shadow: 0 4px 14px rgba(0,0,0,.12);
 }
+
+.view-history {
+    color: #1ce3c0;
+}
+
+.view-history:hover {
+    color: #5cecd0;
+}

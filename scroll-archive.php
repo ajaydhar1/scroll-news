@@ -204,7 +204,7 @@ if (!$pdo) {
 
                     <p class="small text-muted text-center mb-3">
                         Want to see only what <em>you’ve</em> read?
-                        <a href="history.php">View your reading history →</a>
+                        <a href="history.php" class="view-history">View your reading history →</a>
                     </p>
 
                     <?php if ($errorMsg): ?>
