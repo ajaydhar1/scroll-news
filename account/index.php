@@ -74,6 +74,19 @@ $userId = $_SESSION['user_id'] ?? null;
                             You’re signed in as
                             <strong><?= htmlspecialchars($userEmail, ENT_QUOTES, 'UTF-8') ?></strong>
                         </p>
+                        <div class="badges gap-2 mb-4 mt-1">
+                            <span class="badge bg-success">
+                                ✅ Verified Member
+                            </span>
+
+                            <span class="badge bg-dark">
+                                📅 Member Since May 2026
+                            </span>
+
+                            <span class="badge bg-primary">
+                                📰 News Explorer
+                            </span>
+                        </div>
                     </header>
 
                     <div class="alert alert-success auth-alert" role="alert">

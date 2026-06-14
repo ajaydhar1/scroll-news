@@ -18,3 +18,8 @@ body.account-page {
 .account-link {
     text-decoration: underline;
 }
+
+.badges .badge {
+    color: white;
+    padding: 4px;
+}
