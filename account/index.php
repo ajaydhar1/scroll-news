@@ -9,6 +9,33 @@ $userEmail = $_SESSION['user_email'] ?? '';
 $displayName = $_SESSION['display_name'] ?? '';
 $userId = $_SESSION['user_id'] ?? null;
 
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $displayName = trim($_POST['display_name'] ?? '');
+
+    if ($displayName !== '') {
+
+        $pdo = auth_db();
+
+        $stmt = $pdo->prepare("
+            UPDATE users
+            SET display_name = :display_name
+            WHERE id = :user_id
+        ");
+
+        $stmt->execute([
+            ':display_name' => $displayName,
+            ':user_id' => $userId,
+        ]);
+
+        $_SESSION['display_name'] = $displayName;
+
+        header('Location: /account/?updated=1');
+        exit;
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,6 +118,51 @@ $userId = $_SESSION['user_id'] ?? null;
 
                     <div class="alert alert-success auth-alert" role="alert">
                         Signed in securely. Account features are being connected.
+                    </div>
+
+                    <div class="card border-0 shadow-sm mb-3">
+                        <div class="card-body">
+                            <h2 class="h5 mb-2">
+                                <i class="fa-solid fa-id-card mr-2"></i>Profile Information
+                            </h2>
+
+                            <p class="text-muted mb-3">
+                                Update the name associated with your Scroll News account.
+                            </p>
+
+                            <?php if (isset($_GET['updated'])): ?>
+                                <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+                                    <strong>Success!</strong> Your display name has been updated.
+                                    <button type="button" class="close" data-dismiss="alert">
+                                        <span>&times;</span>
+                                    </button>
+                                </div>
+                            <?php endif; ?>
+
+                            <form method="post">
+                                <div class="row align-items-end">
+                                    <div class="col-md-8">
+                                        <label class="small text-muted mb-1">
+                                            Display Name
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            name="display_name"
+                                            value="<?= htmlspecialchars($currentUser['display_name'] ?? '') ?>"
+                                            maxlength="100">
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <button type="submit"
+                                            class="btn btn-primary btn-block" data-loading>
+                                            Save Changes
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
 
                     <div class="row">
