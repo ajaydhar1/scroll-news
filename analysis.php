@@ -165,6 +165,7 @@ try {
 
   <meta name="author" content="Scroll News" />
 
+  <meta name="robots" content="noindex,follow">
   <!-- Favicon-->
   <link rel="icon" type="image/png" href="/assets/img/play-green.png" />
 
