@@ -45,7 +45,9 @@ $base = $_GET['base'] ?? 'personal';
 $trailUser = $_GET['trail_user'] ?? '';
 $trailDate = $_GET['trail_date'] ?? date('Y-m-d');
 
-if ($base !== 'personal') {
+$allowedBases = ['personal', 'editors', 'community'];
+
+if (!in_array($base, $allowedBases, true)) {
     http_response_code(400);
     exit('Invalid trail base.');
 }
