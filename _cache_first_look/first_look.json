@@ -1,38 +1,38 @@
 {
-    "fetched_at": 1781414153,
+    "fetched_at": 1783366528,
     "feeds": [
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "KNICKS WIN!",
-                    "url": "https://apnews.com/article/nba-finals-game-5-spurs-knicks-372c259a94837166818ca7386e678852",
-                    "ts": 1781408256,
-                    "emo": "📰"
-                },
-                {
-                    "title": "BREAK 53 YEAR DROUGHT",
-                    "url": "https://www.nytimes.com/athletic/live-blogs/knicks-vs-spurs-live-updates-nba-finals-game-5-score-result/CllNC3PHGOrS/?unlocked_article_code=1.qFA.kN-Y.0JGD4OHqJ9Uz&source=athletic_user_shared_gift_live_blog_copylink&smid=url-share-ta",
-                    "ts": 1781408256,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "BusinessInsider",
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Where to watch Australia vs. Turkey free live stream from anywhere",
-                    "url": "https://www.businessinsider.com/guides/streaming/where-to-watch-australia-vs-turkey-world-cup-2026",
-                    "ts": 1781398862,
-                    "emo": "🔥"
+                    "title": "Best smart speakers of 2026",
+                    "url": "https://www.businessinsider.com/guides/tech/best-smart-speakers",
+                    "ts": 1783362637,
+                    "emo": "📰"
                 },
                 {
-                    "title": "The best cat dewormers",
-                    "url": "https://www.businessinsider.com/guides/pets/best-cat-dewormer",
-                    "ts": 1781389861,
+                    "title": "I've worked at Costco for 20 years. Here are 7 of the best things I'm seeing on shelves right now.",
+                    "url": "https://www.businessinsider.com/best-things-at-costco-this-month-according-to-employee-2026-7",
+                    "ts": 1783361054,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "TRUMP CARD: WORLD CUP CHEATS FOR USA?",
+                    "url": "https://apnews.com/article/falorin-balogun-suspension-world-cup-e5a5cab5731a916808601be93cb36832",
+                    "ts": 1783359276,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "FIFA FUROR",
+                    "url": "https://www.telegraph.co.uk/football/2026/07/05/president-trump-delighted-fifa-cancel-folarin-baloguns-ban/",
+                    "ts": 1783359276,
                     "emo": "📰"
                 }
             ]

@@ -6,6 +6,12 @@ require_once __DIR__ . '/utils/___emotions.php';
 require_once __DIR__ . '/config/sentiment_thresholds.php';
 require_once __DIR__ . '/render/___render.php';
 
+$localConfig = __DIR__ . '/config/local.php';
+
+if (file_exists($localConfig)) {
+    require_once $localConfig;
+}
+
 $CACHE_VER = 'v13';
 
 date_default_timezone_set('America/New_York');
@@ -17,30 +23,43 @@ $rss_feeds = array("Politics" => "/rss.php?category=Politics", "Business" => "/r
 function getPdo(): PDO
 {
     static $pdo = null;
-    if ($pdo) return $pdo;
 
-    $dbUrl = getenv('DATABASE_URL') ?: 'postgres://u54p8tqv3cg377:p07d3f3181a94264cd3a103e335f8fa769dccd2ca4b9788a78cd5f660fcbfd1e1@c12662383iu6b3.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/daa88slg44bj7f';
-    if ($dbUrl) {
-        $parts = parse_url($dbUrl);
-        $host  = $parts['host'] ?? '127.0.0.1';
-        $port  = $parts['port'] ?? 5432;
-        $user  = $parts['user'] ?? '';
-        $pass  = $parts['pass'] ?? '';
-        $db    = ltrim($parts['path'] ?? '', '/');
-        $dsn   = "pgsql:host={$host};port={$port};dbname={$db};sslmode=require";
-    } else {
-        $host = getenv('PGHOST')     ?: '127.0.0.1';
-        $port = getenv('PGPORT')     ?: '5432';
-        $db   = getenv('PGDATABASE') ?: 'postgres';
-        $user = getenv('PGUSER')     ?: 'postgres';
-        $pass = getenv('PGPASSWORD') ?: '';
-        $dsn  = "pgsql:host={$host};port={$port};dbname={$db}";
+    if ($pdo instanceof PDO) {
+        return $pdo;
     }
+
+    $dbUrl = getenv('DATABASE_URL')
+        ?: (defined('DATABASE_URL') ? DATABASE_URL : null);
+
+    if (!$dbUrl) {
+        throw new RuntimeException('DATABASE_URL is not configured.');
+    }
+
+    $parts = parse_url($dbUrl);
+
+    if ($parts === false) {
+        throw new RuntimeException('DATABASE_URL is invalid.');
+    }
+
+    $host = $parts['host'] ?? '127.0.0.1';
+    $port = $parts['port'] ?? 5432;
+    $user = isset($parts['user']) ? urldecode($parts['user']) : '';
+    $pass = isset($parts['pass']) ? urldecode($parts['pass']) : '';
+    $db   = ltrim($parts['path'] ?? '', '/');
+
+    $isInternal = preg_match('/\.internal$/', $host)
+        || in_array($host, ['localhost', '127.0.0.1'], true);
+
+    $sslmode = $isInternal ? 'prefer' : 'require';
+
+    $dsn = "pgsql:host={$host};port={$port};dbname={$db};sslmode={$sslmode}";
 
     $pdo = new PDO($dsn, $user, $pass, [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES   => false,
     ]);
+
     return $pdo;
 }
 
@@ -52,57 +71,80 @@ function logj(string $msg, array $ctx = []): void
 
 function getPdoOrExplain(): ?PDO
 {
-    // Make sure errors go to logs
-    /*
-    error_reporting(E_ALL);
-    ini_set('log_errors', '1');
-    ini_set('display_errors', '1');
-    */
-
     error_log("PHP_VERSION=" . PHP_VERSION);
     error_log("php.ini=" . (php_ini_loaded_file() ?: 'NONE'));
     error_log("extension_dir=" . ini_get('extension_dir'));
     error_log("drivers=" . implode(',', class_exists('PDO') ? PDO::getAvailableDrivers() : []));
 
-    // 1) Driver present?
     $drivers = class_exists('PDO') ? PDO::getAvailableDrivers() : [];
+
     if (!in_array('pgsql', $drivers, true)) {
         logj('DB init: pdo_pgsql not loaded', ['drivers' => $drivers]);
         return null;
     }
 
-    // 2) Build DSN from DATABASE_URL (Heroku/Render) or PG* envs
-    $dbUrl = getenv('DATABASE_URL') ?: 'postgres://u54p8tqv3cg377:p07d3f3181a94264cd3a103e335f8fa769dccd2ca4b9788a78cd5f660fcbfd1e1@c12662383iu6b3.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/daa88slg44bj7f';
-    if ($dbUrl) {
-        $p = parse_url($dbUrl);
-        $host = $p['host'] ?? '';
-        $port = $p['port'] ?? 5432;
-        $user = isset($p['user']) ? urldecode($p['user']) : '';
-        $pass = isset($p['pass']) ? urldecode($p['pass']) : '';
-        $db   = isset($p['path']) ? ltrim($p['path'], '/') : '';
+    $dbUrl = getenv('DATABASE_URL')
+        ?: (defined('DATABASE_URL') ? DATABASE_URL : null);
 
-        // Internal Render DB hosts (e.g., *.internal) typically don't need SSL.
-        $isInternal = preg_match('/\.internal$/', $host) || in_array($host, ['localhost', '127.0.0.1'], true);
-        $sslmode = $isInternal ? 'prefer' : 'require';
+    if (!$dbUrl) {
+        logj('DB init: DATABASE_URL is not configured');
+        return null;
+    }
 
-        $dsn = "pgsql:host={$host};port={$port};dbname={$db};sslmode={$sslmode}";
-        try {
-            logj('DB connect try', ['host' => $host, 'port' => (int)$port, 'db' => $db, 'sslmode' => $sslmode]);
-            $pdo = new PDO($dsn, $user, $pass, [
-                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                PDO::ATTR_EMULATE_PREPARES   => false,
-            ]);
-            // Sanity ping
-            $pdo->query('SELECT 1');
-            logj('DB connect ok');
-            return $pdo;
-        } catch (Throwable $e) {
-            logj('DB connect failed', ['err' => $e->getMessage(), 'code' => $e->getCode()]);
-            return null;
-        }
-    } else {
-        logj('DB init: DATABASE_URL not set');
+    $p = parse_url($dbUrl);
+
+    if ($p === false) {
+        logj('DB init: failed to parse DATABASE_URL');
+        return null;
+    }
+
+    $host = $p['host'] ?? '';
+    $port = $p['port'] ?? 5432;
+    $user = isset($p['user']) ? urldecode($p['user']) : '';
+    $pass = isset($p['pass']) ? urldecode($p['pass']) : '';
+    $db   = isset($p['path']) ? ltrim($p['path'], '/') : '';
+
+    if (!$host || !$db) {
+        logj('DB init: DATABASE_URL missing host or database name', [
+            'host_present' => (bool) $host,
+            'db_present'   => (bool) $db,
+        ]);
+
+        return null;
+    }
+
+    $isInternal = preg_match('/\.internal$/', $host)
+        || in_array($host, ['localhost', '127.0.0.1'], true);
+
+    $sslmode = $isInternal ? 'prefer' : 'require';
+
+    $dsn = "pgsql:host={$host};port={$port};dbname={$db};sslmode={$sslmode}";
+
+    try {
+        logj('DB connect try', [
+            'host'    => $host,
+            'port'    => (int) $port,
+            'db'      => $db,
+            'sslmode' => $sslmode,
+        ]);
+
+        $pdo = new PDO($dsn, $user, $pass, [
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES   => false,
+        ]);
+
+        $pdo->query('SELECT 1');
+
+        logj('DB connect ok');
+
+        return $pdo;
+    } catch (Throwable $e) {
+        logj('DB connect failed', [
+            'err'  => $e->getMessage(),
+            'code' => $e->getCode(),
+        ]);
+
         return null;
     }
 }

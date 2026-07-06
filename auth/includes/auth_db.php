@@ -32,16 +32,17 @@ function auth_db(): PDO
     |
     */
 
-    //$databaseUrl = getenv('DATABASE_URL');
-    $databaseUrl = "postgres://u54p8tqv3cg377:p07d3f3181a94264cd3a103e335f8fa769dccd2ca4b9788a78cd5f660fcbfd1e1@c12662383iu6b3.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/daa88slg44bj7f";
+    $localConfig = __DIR__ . '/../../core/config/local.php';
+
+    if (file_exists($localConfig)) {
+        require_once $localConfig;
+    }
+
+    $databaseUrl = getenv('DATABASE_URL')
+        ?: (defined('DATABASE_URL') ? DATABASE_URL : null);
 
     if (!$databaseUrl) {
-
-        error_log('DATABASE_URL environment variable is missing.');
-
-        http_response_code(500);
-
-        exit('Database configuration missing.');
+        throw new RuntimeException('DATABASE_URL is not configured.');
     }
 
     $db = parse_url($databaseUrl);
@@ -83,7 +84,6 @@ function auth_db(): PDO
             $password,
             $options
         );
-
     } catch (PDOException $e) {
 
         error_log('Auth DB Connection Failed: ' . $e->getMessage());

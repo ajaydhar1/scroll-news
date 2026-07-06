@@ -1,0 +1,18 @@
+# Local configuration (contains secrets)
+core/config/local.php
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# VS Code
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# Logs
+*.log
