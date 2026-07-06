@@ -25,18 +25,28 @@
 - 🔗 **Sharable URLs**  
   Each analysis is bookmarkable and linkable with a query parameter for the article URL.
 
+- 👤 **Authentication System**  
+  User accounts with authentication, profiles, reading history, saved articles, and personalized News Trails.
+
+
 ## 🌎 Audience
 
 This site was designed for people living in the **United States**, or for anyone interested in **U.S. news and politics**. We aim to provide clean, digestible insights so you can understand the heart of a story in seconds.
 
 ## 📊 Analytics You Can Trust
 
-We don’t just summarize — we **distill**. The Scroll News dashboard surfaces:
+We don't just summarize — we **distill**. Our analytics include:
 
-- 🔍 Named entities (people, places, orgs)
+- 🔍 Named entities (people, places, organizations)
 - 🗂️ Narrative frames and keyword breakdowns
 - 💬 Sentiment and emotional reaction
 - 📚 Wikipedia links to deepen context
+- 🧩 Topic extraction
+- 📖 Reading history
+- 🔎 Search history
+- 🛤️ News Trails
+- 🎯 Personalized recommendations
+- 🤖 AI analysis pipeline
 
 ## 📦 Tech Stack
 
@@ -44,11 +54,23 @@ We don’t just summarize — we **distill**. The Scroll News dashboard surfaces
 - 📰 PHP front-end (Bootstrap, Intro.js, Open Graph parsing)
 - 🤖 NLP Libraries: spaCy, NLTK, HuggingFace Transformers (custom blend)
 - 🌐 Playwright for full-page article screenshots
-- 💾 Optional caching for faster repeat loads
+- 🐘 PostgreSQL
+- 🎨 Bootstrap
 
-## 🛠️ Getting Started (Coming Soon)
+## 🔒 Security
 
-Instructions for setup, dev mode, and deployment will be added soon.
+- Local development credentials are stored in `core/config/local.php`.
+- A template is provided in `core/config/local.example.php`.
+- `local.php` is excluded from version control.
+- Production uses the `DATABASE_URL` environment variable.
+
+## Getting Started
+
+1. Clone the repository.
+2. Copy `core/config/local.example.php` to `core/config/local.php`.
+3. Add your local `DATABASE_URL`.
+4. Install dependencies.
+5. Run the application locally.
 
 ## 📸 Demo
 
@@ -57,4 +79,4 @@ Instructions for setup, dev mode, and deployment will be added soon.
 
 ---
 
-Made with ❤️ by [Your Name] | Powered by machine learning
+Built and maintained by Ajay Dhar.
