@@ -57,12 +57,17 @@ We don't just summarize — we **distill**. Our analytics include:
 - 🐘 PostgreSQL
 - 🎨 Bootstrap
 
-## 🔒 Security
+## Security
 
-- Local development credentials are stored in `core/config/local.php`.
-- A template is provided in `core/config/local.example.php`.
-- `local.php` is excluded from version control.
-- Production uses the `DATABASE_URL` environment variable.
+Local development credentials are stored in:
+
+core/config/local.php
+
+A template is provided in:
+
+core/config/local.example.php
+
+The local configuration file is excluded from version control.
 
 ## Getting Started
 
