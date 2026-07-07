@@ -149,28 +149,6 @@ function getPdoOrExplain(): ?PDO
     }
 }
 
-function search_google_knowledge($query)
-{
-    $api_key = 'AIzaSyBhQWmKz8I-IRm3lKiQcHK9NANFgnbfAf0';
-    $service_url = 'https://kgsearch.googleapis.com/v1/entities:search';
-    $params = array(
-        'query' => $query,
-        'limit' => 1,
-        'indent' => TRUE,
-        'key' => $api_key
-    );
-    $url = $service_url . '?' . http_build_query($params);
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    $response = json_decode(curl_exec($ch), true);
-    curl_close($ch);
-    //foreach($response['itemListElement'] as $element) {
-    //  echo $element['result']['name'] . '<br/>';
-    //}
-    return $response;
-}
-
 function http_get($url)
 {
     $ch = curl_init($url);
