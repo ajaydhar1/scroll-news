@@ -63,6 +63,14 @@ $initial = strtoupper(substr($firstName ?: $email ?: 'U', 0, 1));
                 </span>
             </a>
 
+            <a class="account-mega-link" href="/auth/change-password.php">
+                <i class="fa-solid fa-lock"></i>
+                <span>
+                    <strong>Password</strong>
+                    <small>Change login password</small>
+                </span>
+            </a>
+
             <a class="account-mega-link" href="/account/reading-history.php" data-loading>
                 <i class="fa-solid fa-book-open-reader"></i>
                 <span>
@@ -95,11 +103,19 @@ $initial = strtoupper(substr($firstName ?: $email ?: 'U', 0, 1));
                 </span>
             </a>
 
-            <a class="account-mega-link" href="/auth/change-password.php">
-                <i class="fa-solid fa-lock"></i>
+            <a class="account-mega-link" href="/news-trails.php" data-loading>
+                <i class="fa-solid fa-route"></i>
                 <span>
-                    <strong>Password</strong>
-                    <small>Change login password</small>
+                    <strong>News Trails</strong>
+                    <small>Explore connected stories</small>
+                </span>
+            </a>
+
+            <a class="account-mega-link" href="/publisher-pro/">
+                <i class="fa-solid fa-tower-broadcast"></i>
+                <span>
+                    <strong>Publisher Pro</strong>
+                    <small>Publisher onboarding</small>
                 </span>
             </a>
 
