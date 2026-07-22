@@ -1,21 +1,39 @@
 {
-    "fetched_at": 1783366528,
+    "fetched_at": 1784677031,
     "feeds": [
         {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
+            "name": "NY Post",
+            "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Best smart speakers of 2026",
-                    "url": "https://www.businessinsider.com/guides/tech/best-smart-speakers",
-                    "ts": 1783362637,
+                    "title": "Iconic Valley diner that opened in 1977 to permanently close: ‘Nothing good lasts anymore’",
+                    "url": "https://nypost.com/2026/07/21/us-news/hearts-coffee-shop-in-lake-balboa-to-permanently-close/",
+                    "ts": 1784676711,
                     "emo": "📰"
                 },
                 {
-                    "title": "I've worked at Costco for 20 years. Here are 7 of the best things I'm seeing on shelves right now.",
-                    "url": "https://www.businessinsider.com/best-things-at-costco-this-month-according-to-employee-2026-7",
-                    "ts": 1783361054,
+                    "title": "NYC’s welfare spending is out of control — and Mamdani won’t stop it",
+                    "url": "https://nypost.com/2026/07/21/opinion/nycs-welfare-spending-is-out-of-control-and-mamdani-wont-stop-it/",
+                    "ts": 1784676453,
                     "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Mamdani calls out Democratic Party as 'well-paid consultants and big money interests'",
+                    "url": "https://www.foxnews.com/media/mamdani-calls-out-democratic-party-well-paid-consultants-big-money-interests",
+                    "ts": 1784676602,
+                    "emo": "📰"
+                },
+                {
+                    "title": "House Republicans move to make Trump's border policies permanent",
+                    "url": "https://www.foxnews.com/politics/house-republicans-move-make-trumps-border-policies-permanent",
+                    "ts": 1784676307,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -24,16 +42,178 @@
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "TRUMP CARD: WORLD CUP CHEATS FOR USA?",
-                    "url": "https://apnews.com/article/falorin-balogun-suspension-world-cup-e5a5cab5731a916808601be93cb36832",
-                    "ts": 1783359276,
-                    "emo": "⚖️"
+                    "title": "Iran warns war will widen if USA hits nuke sites...",
+                    "url": "https://www.drudgereport.com/ynetnews.com/article/rkndbwa4ml",
+                    "ts": 1784676156,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "FIFA FUROR",
-                    "url": "https://www.telegraph.co.uk/football/2026/07/05/president-trump-delighted-fifa-cancel-folarin-baloguns-ban/",
-                    "ts": 1783359276,
+                    "title": "Tehran attacks water, power infrastructure amid escalation...",
+                    "url": "https://www.nbcnews.com/world/rcna588143",
+                    "ts": 1784676156,
                     "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "Here’s how to time your retirement to keep your healthcare costs down",
+                    "url": "https://www.marketwatch.com/story/heres-how-to-time-your-retirement-to-keep-your-healthcare-costs-down-b1a4d427?mod=mw_rss_topstories",
+                    "ts": 1784675760,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Super Micro’s stock soars as its margins unexpectedly double",
+                    "url": "https://www.marketwatch.com/story/super-micros-stock-soars-as-its-margins-unexpectedly-double-8aa83784?mod=mw_rss_topstories",
+                    "ts": 1784671860,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "Suspected Ebola case is being monitored at a London hospital after 'exposure in the Democratic Republic of the Congo'",
+                    "url": "https://www.dailymail.com/health/article-15994837/Suspected-ebola-case-treated-London-hospital-exposure-Democratic-Republic-Congo.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1784675558,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Keir Starmer posts bizarre TikTok video with his face and the No10 door edited onto the final scene of Fast and Furious 7... and is heavily mocked",
+                    "url": "https://www.dailymail.com/news/article-15994639/Keir-Starmer-posts-bizarre-TikTok-video-face-No10.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1784675547,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "GOP bill leaves out anti-Planned Parenthood language",
+                    "url": "https://thehill.com/newsletters/healthcare/5982200-gop-bill-leaves-out-anti-planned-parenthood-language/",
+                    "ts": 1784674935,
+                    "emo": "📰"
+                },
+                {
+                    "title": "GOP links SAVE Act to Olive Garden's unlimited pasta deal",
+                    "url": "https://thehill.com/homenews/house/5982231-olive-garden-pasta-pass-comparison/",
+                    "ts": 1784674908,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Super Micro surges 15% on new order and margin disclosure after SpaceX announcement",
+                    "url": "https://www.cnbc.com/2026/07/21/super-micro-stock-spacex-announcement.html",
+                    "ts": 1784671856,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Goldman Sachs creates private markets platform as rich investors seek the next SpaceX and Stripe",
+                    "url": "https://www.cnbc.com/2026/07/21/goldman-sachs-private-markets-platform.html",
+                    "ts": 1784667094,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Inside Kalshi's plan to attract Wall Street traders",
+                    "url": "https://www.businessinsider.com/inside-kalshis-plan-to-attract-wall-street-traders-2026-7",
+                    "ts": 1784669671,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Best dog ear cleaners with veterinarian-approved ingredients",
+                    "url": "https://www.businessinsider.com/guides/pets/best-dog-ear-cleaners",
+                    "ts": 1784668041,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Houthis Threaten Red Sea Blockade, Putting Oil Market at Greater Risk",
+                    "url": "https://www.nytimes.com/2026/07/21/business/oil-red-sea-houthis.html",
+                    "ts": 1784664801,
+                    "emo": "💰"
+                },
+                {
+                    "title": "Water Plants Under Fire in the Gulf Are Crucial to Civilians",
+                    "url": "https://www.nytimes.com/2026/07/21/world/middleeast/desalination-water-middle-east.html",
+                    "ts": 1784660686,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "Ann Widdecombe was hit on head 21 times with hammer, prosecutors say",
+                    "url": "https://www.bbc.co.uk/news/articles/cj03r77n07jo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1784648108,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Burnham tells cabinet to tackle living costs at first meeting",
+                    "url": "https://www.bbc.co.uk/news/articles/cx2vp4x7gkxo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1784675733,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "US Carries out 10th Night of Strikes After Service Members Killed",
+                    "url": "https://www.today.com/video/trump-says-iran-will-pay-for-killing-of-us-service-members-267004485593",
+                    "ts": 1784632412,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "U.S. military identifies soldiers killed in Iranian attack in Jordan",
+                    "url": "https://www.nbcnews.com/world/middle-east/us-service-member-killed-in-iraq-rcna588275",
+                    "ts": 1784490752,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "The Guardian",
+            "home": "https://www.theguardian.com",
+            "items": [
+                {
+                    "title": "UK employers cut job vacancies as Burnham aims to lift living standards",
+                    "url": "https://www.theguardian.com/business/2026/jul/21/uk-employers-job-vacancies-andy-burnham-unemployment",
+                    "ts": 1784621774,
+                    "emo": "📰"
+                },
+                {
+                    "title": "RBA now twice as likely to hike interest rates as US-Iran war drives fuel prices higher",
+                    "url": "https://www.theguardian.com/australia-news/2026/jul/22/rba-interest-rate-rise-likely-us-iran-war-markets-forecast",
+                    "ts": 1784646051,
+                    "emo": "🔥"
                 }
             ]
         }

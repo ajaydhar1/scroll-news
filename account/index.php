@@ -327,6 +327,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         Manage feeds, publisher verification, content rights, and distribution tools.
                                     </p>
                                     <ul class="text-muted mb-3">
+                                        <li>
+                                            <a href="/publisher-pro/" class="account-link">
+                                                <strong>Publisher Pro</strong>
+                                            </a>
+                                            <span class="badge badge-success ml-1">New</span>
+                                        </li>
                                         <li>Publisher verification</li>
                                         <li>RSS feed submissions</li>
                                         <li>Article removals</li>
