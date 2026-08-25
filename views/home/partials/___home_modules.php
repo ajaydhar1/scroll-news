@@ -33,7 +33,7 @@
             <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
                 <!-- Portfolio item 4-->
                 <div class="portfolio-item">
-                    <a href="newsroom.php" data-loading>
+                    <a href="/newsroom.php" data-loading>
                         <img class="img-fluid" src="assets/img/portfolio/nlp-dashboard.jpg" alt="Screenshot of the NLP dashboard with charts and article stats"/>
                     </a>
                     <div class="portfolio-caption">

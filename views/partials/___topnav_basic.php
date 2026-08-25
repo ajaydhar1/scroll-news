@@ -15,9 +15,9 @@
                 </h5>
             </div>
             <div class="col-lg-4 my-3 my-lg-0">
-                <a class="btn btn-black btn-social mx-2" title="Scroll Archive" href="scroll-archive.php" data-loading><i class="fas fa-history"></i></a>
-                <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="newsroom.php" onclick="" data-loading><i class="fas fa-play"></i></a>
-                <a class="btn btn-black btn-social mx-2" title="Control Room" href="control-room.php"><i class="fas fa-dashboard"></i></a>
+                <a class="btn btn-black btn-social mx-2" title="Scroll Archive" href="/scroll-archive.php" data-loading><i class="fas fa-history"></i></a>
+                <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="/newsroom.php" onclick="" data-loading><i class="fas fa-play"></i></a>
+                <a class="btn btn-black btn-social mx-2" title="Control Room" href="/control-room.php"><i class="fas fa-dashboard"></i></a>
             </div>
             <div class="col-lg-4 d-flex text-lg-right" style="">
                 <div class="ml-auto">

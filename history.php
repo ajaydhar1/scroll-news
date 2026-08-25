@@ -57,7 +57,7 @@ define('BASE_PATH', __DIR__);
     if (!history.length) {
         container.innerHTML = `
             <div class="alert alert-secondary">
-                No articles viewed yet. Visit the <a href="newsroom.php">Newsroom</a> to start reading.
+                No articles viewed yet. Visit the <a href="/newsroom.php">Newsroom</a> to start reading.
             </div>
         `;
         return;

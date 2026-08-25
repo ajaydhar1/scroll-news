@@ -124,7 +124,7 @@ function sn_article_vm_from_row(array $row, array $ctx = []): array {
     // --- Analyze URL (newsroom.php) ---
     $analyzeUrl = null;
     if ($canAnalyze && $readUrl && $readUrl !== '#') {
-        $analyzeUrl = 'newsroom.php?url=' . urlencode($readUrl)
+        $analyzeUrl = '/newsroom.php?url=' . urlencode($readUrl)
             . '&category=' . urlencode($feedNameHuman ?: $feedNameRaw)
             . '&pub_date=' . urlencode($pubTs);
 
@@ -730,7 +730,7 @@ function scroll_render_article_intel_item(array $article, array $opts = []): str
     ob_start();
     ?>
     <li class="intel-article-item mb-2">
-        <a href="newsroom.php?<?= htmlspecialchars($qs, ENT_QUOTES, 'UTF-8') ?>"
+        <a href="/newsroom.php?<?= htmlspecialchars($qs, ENT_QUOTES, 'UTF-8') ?>"
             class="text-decoration-none d-block headline-link"
             data-loading>
             <?php if ($sentEmoji): ?>
@@ -850,7 +850,7 @@ function scroll_render_article_intel_item(array $article, array $opts = []): str
                 Read story
             </a>
 
-            <a href="newsroom.php?<?= htmlspecialchars($qs, ENT_QUOTES, 'UTF-8') ?>"
+            <a href="/newsroom.php?<?= htmlspecialchars($qs, ENT_QUOTES, 'UTF-8') ?>"
                 class="btn btn-green btn-gray-border"
                 data-loading>
                 Analyze

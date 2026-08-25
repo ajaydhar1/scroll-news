@@ -354,7 +354,7 @@ if (!function_exists('canonEntityListFromNlp')) {
 
         <td>
           <?php if ($qs !== ''): ?>
-            <a href="newsroom.php?<?= htmlspecialchars($qs) ?>"
+            <a href="/newsroom.php?<?= htmlspecialchars($qs) ?>"
                class="btn btn-sm btn-green"
                data-loading>Analyze</a>
           <?php else: ?>

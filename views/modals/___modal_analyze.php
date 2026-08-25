@@ -9,7 +9,7 @@
         </button>
       </div>
 
-      <form id="analyzeForm" method="get" action="newsroom.php">
+      <form id="analyzeForm" method="get" action="/newsroom.php">
         <div class="modal-body">
 
           <!-- Input mode -->
@@ -100,7 +100,7 @@
       urlGroup.classList.add('d-none');
       textGroup.classList.remove('d-none');
 
-      form.setAttribute('action', 'textroom.php');
+      form.setAttribute('action', '/textroom.php');
       form.setAttribute('method', 'post');
 
       urlInput.required = false;
@@ -113,7 +113,7 @@
       urlGroup.classList.remove('d-none');
       textGroup.classList.add('d-none');
 
-      form.setAttribute('action', 'newsroom.php');
+      form.setAttribute('action', '/newsroom.php');
       form.setAttribute('method', 'get');
 
       textInput.required = false;

@@ -1,20 +1,38 @@
 {
-    "fetched_at": 1784677031,
+    "fetched_at": 1787622521,
     "feeds": [
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "Perez Hilton suffered multiple broken bones the night of his horror self-harm livestream",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16077281/Perez-Hilton-multiple-broken-bones-self-harm-livestream.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1787622195,
+                    "emo": "📰"
+                },
+                {
+                    "title": "No weigh! 10,000 animals get their turn on the London Zoo's hidden scales for annual check up",
+                    "url": "https://www.dailymail.com/news/article-16076805/animals-London-Zoos-hidden-scales.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1787621982,
+                    "emo": "📰"
+                }
+            ]
+        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Iconic Valley diner that opened in 1977 to permanently close: ‘Nothing good lasts anymore’",
-                    "url": "https://nypost.com/2026/07/21/us-news/hearts-coffee-shop-in-lake-balboa-to-permanently-close/",
-                    "ts": 1784676711,
+                    "title": "Enes Kanter Freedom defiantly refutes report he’s not eligible to play in WNBA: ‘Fake news!’",
+                    "url": "https://nypost.com/2026/08/24/sports/enes-kanter-refutes-report-hes-not-eligible-to-play-in-wnba-fake-news/",
+                    "ts": 1787622115,
                     "emo": "📰"
                 },
                 {
-                    "title": "NYC’s welfare spending is out of control — and Mamdani won’t stop it",
-                    "url": "https://nypost.com/2026/07/21/opinion/nycs-welfare-spending-is-out-of-control-and-mamdani-wont-stop-it/",
-                    "ts": 1784676453,
+                    "title": "Olivia Jade dating tennis star Taylor Fritz: ‘They’ve really hit it off’",
+                    "url": "https://pagesix.com/2026/08/24/celebrity-news/olivia-jade-dating-tennis-star-taylor-fritz/",
+                    "ts": 1787622070,
                     "emo": "📰"
                 }
             ]
@@ -24,15 +42,15 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Mamdani calls out Democratic Party as 'well-paid consultants and big money interests'",
-                    "url": "https://www.foxnews.com/media/mamdani-calls-out-democratic-party-well-paid-consultants-big-money-interests",
-                    "ts": 1784676602,
+                    "title": "Abdul El-Sayed grilled on past statements on Sharia law and White supremacy, taxing the rich",
+                    "url": "https://www.foxnews.com/media/abdul-el-sayed-grilled-past-statements-sharia-law-white-supremacy-taxing-rich",
+                    "ts": 1787622040,
                     "emo": "📰"
                 },
                 {
-                    "title": "House Republicans move to make Trump's border policies permanent",
-                    "url": "https://www.foxnews.com/politics/house-republicans-move-make-trumps-border-policies-permanent",
-                    "ts": 1784676307,
+                    "title": "Trump administration proposes six-figure price tag for new H-1B visas",
+                    "url": "https://www.foxnews.com/politics/trump-administration-proposes-six-figure-price-tag-new-h-1b-visas",
+                    "ts": 1787621402,
                     "emo": "⚖️"
                 }
             ]
@@ -42,15 +60,15 @@
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "Iran warns war will widen if USA hits nuke sites...",
-                    "url": "https://www.drudgereport.com/ynetnews.com/article/rkndbwa4ml",
-                    "ts": 1784676156,
-                    "emo": "🔥"
+                    "title": "CNN Signal Down for Nearly 30 Mins...",
+                    "url": "https://www.mediaite.com/media/tv/cnns-signal-goes-down-for-nearly-30-minutes-sorry-for-the-interruption/",
+                    "ts": 1787619876,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Tehran attacks water, power infrastructure amid escalation...",
-                    "url": "https://www.nbcnews.com/world/rcna588143",
-                    "ts": 1784676156,
+                    "title": "CANADA THREATENS ELECTRICITY CUT TO USA",
+                    "url": "https://www.independent.co.uk/b3038268.html",
+                    "ts": 1787619876,
                     "emo": "📰"
                 }
             ]
@@ -60,87 +78,15 @@
             "home": "https://www.marketwatch.com",
             "items": [
                 {
-                    "title": "Here’s how to time your retirement to keep your healthcare costs down",
-                    "url": "https://www.marketwatch.com/story/heres-how-to-time-your-retirement-to-keep-your-healthcare-costs-down-b1a4d427?mod=mw_rss_topstories",
-                    "ts": 1784675760,
-                    "emo": "📰"
+                    "title": "‘She looked into COBRA’: My friend was laid off and lost her health insurance. How can she find affordable coverage?",
+                    "url": "https://www.marketwatch.com/story/shes-desperate-my-friend-was-laid-off-and-lost-her-health-insurance-how-can-she-find-affordable-coverage-3b17b553?mod=mw_rss_topstories",
+                    "ts": 1787616900,
+                    "emo": "🧪"
                 },
                 {
-                    "title": "Super Micro’s stock soars as its margins unexpectedly double",
-                    "url": "https://www.marketwatch.com/story/super-micros-stock-soars-as-its-margins-unexpectedly-double-8aa83784?mod=mw_rss_topstories",
-                    "ts": 1784671860,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Suspected Ebola case is being monitored at a London hospital after 'exposure in the Democratic Republic of the Congo'",
-                    "url": "https://www.dailymail.com/health/article-15994837/Suspected-ebola-case-treated-London-hospital-exposure-Democratic-Republic-Congo.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1784675558,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Keir Starmer posts bizarre TikTok video with his face and the No10 door edited onto the final scene of Fast and Furious 7... and is heavily mocked",
-                    "url": "https://www.dailymail.com/news/article-15994639/Keir-Starmer-posts-bizarre-TikTok-video-face-No10.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1784675547,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "GOP bill leaves out anti-Planned Parenthood language",
-                    "url": "https://thehill.com/newsletters/healthcare/5982200-gop-bill-leaves-out-anti-planned-parenthood-language/",
-                    "ts": 1784674935,
-                    "emo": "📰"
-                },
-                {
-                    "title": "GOP links SAVE Act to Olive Garden's unlimited pasta deal",
-                    "url": "https://thehill.com/homenews/house/5982231-olive-garden-pasta-pass-comparison/",
-                    "ts": 1784674908,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Super Micro surges 15% on new order and margin disclosure after SpaceX announcement",
-                    "url": "https://www.cnbc.com/2026/07/21/super-micro-stock-spacex-announcement.html",
-                    "ts": 1784671856,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Goldman Sachs creates private markets platform as rich investors seek the next SpaceX and Stripe",
-                    "url": "https://www.cnbc.com/2026/07/21/goldman-sachs-private-markets-platform.html",
-                    "ts": 1784667094,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Inside Kalshi's plan to attract Wall Street traders",
-                    "url": "https://www.businessinsider.com/inside-kalshis-plan-to-attract-wall-street-traders-2026-7",
-                    "ts": 1784669671,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Best dog ear cleaners with veterinarian-approved ingredients",
-                    "url": "https://www.businessinsider.com/guides/pets/best-dog-ear-cleaners",
-                    "ts": 1784668041,
+                    "title": "My father-in-law passed away, leaving a house with tenants. Do I evict them?",
+                    "url": "https://www.marketwatch.com/story/my-father-in-law-passed-away-leaving-a-house-with-tenants-do-i-evict-them-f974428c?mod=mw_rss_topstories",
+                    "ts": 1787616000,
                     "emo": "📰"
                 }
             ]
@@ -150,34 +96,52 @@
             "home": "https://www.nytimes.com",
             "items": [
                 {
-                    "title": "Houthis Threaten Red Sea Blockade, Putting Oil Market at Greater Risk",
-                    "url": "https://www.nytimes.com/2026/07/21/business/oil-red-sea-houthis.html",
-                    "ts": 1784664801,
-                    "emo": "💰"
+                    "title": "Court Allows Trump to Pursue Mail Voting Limits, for Now",
+                    "url": "https://www.nytimes.com/2026/08/24/us/politics/supreme-court-trump-mail-ballots.html",
+                    "ts": 1787616549,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "Water Plants Under Fire in the Gulf Are Crucial to Civilians",
-                    "url": "https://www.nytimes.com/2026/07/21/world/middleeast/desalination-water-middle-east.html",
-                    "ts": 1784660686,
+                    "title": "Trump Has Quietly Sought Control Over Postal Service to Transform U.S. Elections",
+                    "url": "https://www.nytimes.com/2026/08/24/us/politics/mail-voting-supreme-court-postal-service-trump.html",
+                    "ts": 1787612941,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Ontario Premier Doug Ford threatens to cut off electricity to the US",
+                    "url": "https://www.businessinsider.com/doug-ford-canada-could-cut-off-electricity-us-critical-minerals-2026-8",
+                    "ts": 1787615624,
+                    "emo": "📰"
+                },
+                {
+                    "title": "I took my daughter on a 'collegemoon' to Europe. It made my anticipatory grief about her leaving for school even stronger.",
+                    "url": "https://www.businessinsider.com/collegemoon-parent-child-trip-before-leaving-for-school-college-2026-8",
+                    "ts": 1787610301,
                     "emo": "📰"
                 }
             ]
         },
         {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
+            "name": "The Hill",
+            "home": "https://thehill.com",
             "items": [
                 {
-                    "title": "Ann Widdecombe was hit on head 21 times with hammer, prosecutors say",
-                    "url": "https://www.bbc.co.uk/news/articles/cj03r77n07jo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1784648108,
+                    "title": "Back-to-school season fuels growing measles concerns",
+                    "url": "https://thehill.com/newsletters/healthcare/6048133-back-to-school-season-fuels-growing-measles-concerns/",
+                    "ts": 1787613688,
                     "emo": "📰"
                 },
                 {
-                    "title": "Burnham tells cabinet to tackle living costs at first meeting",
-                    "url": "https://www.bbc.co.uk/news/articles/cx2vp4x7gkxo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1784675733,
-                    "emo": "📰"
+                    "title": "Jackson calls Supreme Court’s mail-in voting ruling a ‘Kafkaesque nightmare’ ",
+                    "url": "https://thehill.com/regulation/court-battles/6048109-justice-jackson-election-chaos-dissent/",
+                    "ts": 1787613040,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -186,15 +150,51 @@
             "home": "https://www.nbcnews.com",
             "items": [
                 {
-                    "title": "US Carries out 10th Night of Strikes After Service Members Killed",
-                    "url": "https://www.today.com/video/trump-says-iran-will-pay-for-killing-of-us-service-members-267004485593",
-                    "ts": 1784632412,
+                    "title": "Supreme Court hands preliminary win to Trump on mail-in ballots executive order",
+                    "url": "https://www.nbcnews.com/politics/supreme-court/supreme-court-hands-preliminary-win-trump-mail-ballots-executive-order-rcna590120",
+                    "ts": 1787605366,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "How the new U.S. sanctions on Iran could affect China",
+                    "url": "https://www.nbcnews.com/now/video/how-the-new-u-s-sanctions-on-iran-could-affect-china-268774469536",
+                    "ts": 1787593265,
+                    "emo": "🌍"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Trump admin unveils anti-Iran global sanctions plan, signals China not exempt",
+                    "url": "https://www.cnbc.com/2026/08/24/trump-iran-economy-sanctions-china-bessent.html",
+                    "ts": 1787596356,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Trump says U.S. will hike Canada auto tariffs to 50% as trade war escalates",
+                    "url": "https://www.cnbc.com/2026/08/24/trump-canada-auto-tariffs-trade-war.html",
+                    "ts": 1787614021,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "Organised crime arrests as police investigate A66 crash that killed two officers",
+                    "url": "https://www.bbc.co.uk/news/articles/c36d6975dzno?at_medium=RSS&at_campaign=rss",
+                    "ts": 1787594020,
                     "emo": "🔥"
                 },
                 {
-                    "title": "U.S. military identifies soldiers killed in Iranian attack in Jordan",
-                    "url": "https://www.nbcnews.com/world/middle-east/us-service-member-killed-in-iraq-rcna588275",
-                    "ts": 1784490752,
+                    "title": "How the deadly A66 crash unfolded leaving seven dead",
+                    "url": "https://www.bbc.co.uk/news/videos/cvgyx7yzejpo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1787590542,
                     "emo": "🔥"
                 }
             ]
@@ -204,16 +204,16 @@
             "home": "https://www.theguardian.com",
             "items": [
                 {
-                    "title": "UK employers cut job vacancies as Burnham aims to lift living standards",
-                    "url": "https://www.theguardian.com/business/2026/jul/21/uk-employers-job-vacancies-andy-burnham-unemployment",
-                    "ts": 1784621774,
+                    "title": "UK graduate job vacancies plunge to lowest in a decade",
+                    "url": "https://www.theguardian.com/business/2026/aug/24/uk-graduate-job-vacancies-plunge-adzuna",
+                    "ts": 1787554531,
                     "emo": "📰"
                 },
                 {
-                    "title": "RBA now twice as likely to hike interest rates as US-Iran war drives fuel prices higher",
-                    "url": "https://www.theguardian.com/australia-news/2026/jul/22/rba-interest-rate-rise-likely-us-iran-war-markets-forecast",
-                    "ts": 1784646051,
-                    "emo": "🔥"
+                    "title": "Up to £464m ‘moved through more than 3,000 UK high street shell companies’",
+                    "url": "https://www.theguardian.com/business/2026/aug/24/up-to-464m-moved-through-more-than-3000-uk-shell-companies-branded",
+                    "ts": 1787575757,
+                    "emo": "📰"
                 }
             ]
         }

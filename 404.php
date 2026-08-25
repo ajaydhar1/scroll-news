@@ -86,7 +86,7 @@ require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
                             <a href="/" class="btn btn-dark btn-lg mr-2" data-loading>
                                 <i class="fas fa-home mr-1"></i> Go to Homepage
                             </a>
-                            <a href="newsroom.php" class="btn btn-green btn-lg" data-loading>
+                            <a href="/newsroom.php" class="btn btn-green btn-lg" data-loading>
                                 <i class="fas fa-play mr-1"></i> Open Newsroom
                             </a>
                         </div>

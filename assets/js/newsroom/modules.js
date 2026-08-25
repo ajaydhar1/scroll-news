@@ -31,7 +31,7 @@ $('#analyzeForm').on('submit', function (e) {
 
     const form = $('<form>', {
       method: 'POST',
-      action: 'textroom.php'
+      action: '/textroom.php'
     });
 
     const field = $('<textarea>', {

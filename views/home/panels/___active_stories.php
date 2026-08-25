@@ -630,7 +630,7 @@ try {
                                 Read story
                             </a>
                             <a
-                                href="newsroom.php?<?= htmlspecialchars($qs) ?>"
+                                href="/newsroom.php?<?= htmlspecialchars($qs) ?>"
                                 class="btn btn-green btn-gray-border"
                                 data-loading
                             >
