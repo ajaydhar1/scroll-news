@@ -231,3 +231,7 @@ html[data-ui-theme="dark"] .sn-badge {
 html[data-ui-theme="dark"] .bg-dark {
     background-color: transparent !important;
 }
+
+html[data-ui-theme="dark"] #portfolio .portfolio-item .portfolio-caption {
+    background-color: transparent !important;
+}
