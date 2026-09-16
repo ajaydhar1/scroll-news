@@ -2,6 +2,18 @@ html[data-ui-theme="dark"] {
     background-image: url(../img/dark-city.gif) !important;
 }
 
+@-moz-document url-prefix() {
+  html[data-ui-theme="dark"] {
+    background-image: url(../img/dark-city-blurred.png);
+  }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  html[data-ui-theme="dark"] {
+    background-image: url(../img/dark-city-blurred.png);
+  }
+}
+
 html[data-ui-theme="dark"] .sn-top-nav {
     background: rgba(8, 13, 18, 0.78) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.14);
@@ -148,9 +160,74 @@ html[data-ui-theme="dark"] .card {
 
 html[data-ui-theme="dark"] .firstlook-col {
     border: none;
-    background: linear-gradient(to bottom, rgb(12 105 66 / 55%), rgba(0, 0, 0, 0))
+    background: linear-gradient(to bottom, rgb(0 0 0 / 95%), rgba(0, 0, 0, .4)), url(../img/city-pattern.png);
 }
 
 html[data-ui-theme="dark"] footer.footer-bottom .text-muted {
     color: #6c757d !important;
+}
+
+html[data-ui-theme="dark"] .sn-card-active-stories .story-card {
+    background: linear-gradient(to bottom, white, rgba(135, 202, 255, 1));
+}
+
+html[data-ui-theme="dark"] .sn-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 360px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+html[data-ui-theme="dark"] .sn-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    z-index: 0;
+}
+
+html[data-ui-theme="dark"] .sn-media > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Dark overlay over the image */
+html[data-ui-theme="dark"] .sn-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+
+    /* Lighter at top, darker behind the card content */
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.25) 0%,
+        rgba(0, 0, 0, 0.45) 40%,
+        rgba(0, 0, 0, 0.82) 100%
+    );
+}
+
+html[data-ui-theme="dark"] .sn-body {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+
+    margin-top: auto;
+}
+
+/* Keep source badge above the overlay */
+html[data-ui-theme="dark"] .sn-badge {
+    z-index: 3;
+    top: 10px;
+    bottom: unset;
+}
+
+html[data-ui-theme="dark"] .bg-dark {
+    background-color: transparent !important;
 }
