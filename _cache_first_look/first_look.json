@@ -1,6 +1,24 @@
 {
-    "fetched_at": 1789573747,
+    "fetched_at": 1789574622,
     "feeds": [
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "Duct-tape plane passenger breaks silence — and gives unbelievable excuse for midflight meltdown",
+                    "url": "https://nypost.com/2026/09/16/us-news/duct-tape-plane-passenger-gives-unbelievable-excuse-for-midflight-meltdown/",
+                    "ts": 1789574540,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Record set straight on Maxx Crosby  Rams trade rumors",
+                    "url": "https://nypost.com/2026/09/16/sports/record-set-straight-on-maxx-crosby-rams-trade-rumors/",
+                    "ts": 1789574539,
+                    "emo": "📰"
+                }
+            ]
+        },
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
@@ -8,32 +26,50 @@
                 {
                     "title": "Dakota Johnson and Machine Gun Kelly are pictured heading into pal Taylor Swift's apartment together as they spark dating rumours",
                     "url": "https://www.dailymail.com/tvshowbiz/article-16136477/Dakota-Johnson-Machine-Gun-Kelly-Taylor-Swifts-apartment-spark-dating-rumours.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1789573607,
+                    "ts": 1789574499,
                     "emo": "🚨"
                 },
                 {
-                    "title": "Divers scour lake in hunt for missing Noah: Specialist team from Met Police join search for non-verbal, partially deaf three-year-old 24 hours after he vanished from playground",
-                    "url": "https://www.dailymail.com/news/article-16135445/Father-missing-deaf-Noah-search-vanished-park.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1789573577,
-                    "emo": "🚨"
+                    "title": "Defiant Ed Sheeran fans vow to support star as they argue he 'shouldn't be blamed' after ALL opening acts dropped out of his tour amid Macklemore 'Free Palestine' row",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16136197/Defiant-Ed-Sheeran-fans-support-acts-tour-Macklemore-Free-Palestine-row.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1789574493,
+                    "emo": "📰"
                 }
             ]
         },
         {
-            "name": "NY Post",
-            "home": "https://nypost.com",
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
             "items": [
                 {
-                    "title": "Why Mitchell Robinson missed his Celtics introduction: ‘Can’t catch a break’",
-                    "url": "https://nypost.com/2026/09/16/sports/why-mitchell-robinson-missed-his-celtics-introduction-cant-catch-a-break/",
-                    "ts": 1789573578,
+                    "title": "I have $125,000 in credit-card debt. Will $17,000 a month in income, including disability, affect my bankruptcy?",
+                    "url": "https://www.marketwatch.com/story/i-am-drowning-in-debt-i-have-125-000-in-credit-card-debt-will-9-000-in-disability-income-affect-my-bankruptcy-f897c131?mod=mw_rss_topstories",
+                    "ts": 1789574400,
                     "emo": "📰"
                 },
                 {
-                    "title": "Bryan Johnson’s alien-like skincare hack is $19 on Amazon — Fans say it’s ‘wacky’ but works",
-                    "url": "https://nypost.com/2026/09/16/shopping/bryan-johnsons-alien-like-skincare-hack-is-19-on-amazon/",
-                    "ts": 1789573262,
+                    "title": "15 stocks that have grown dividends the most — and nearly all have beaten the S&P 500",
+                    "url": "https://www.marketwatch.com/story/15-stocks-that-have-grown-dividends-the-most-and-nearly-all-have-beaten-the-s-p-500-6d8923fc?mod=mw_rss_topstories",
+                    "ts": 1789574400,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Amazon is upping its minimum hourly wage for operations workers — and offering employees a new Whole Foods discount",
+                    "url": "https://www.businessinsider.com/amazon-increases-wages-offers-new-whole-foods-discounts-2026-9",
+                    "ts": 1789573829,
                     "emo": "📰"
+                },
+                {
+                    "title": "We got another trailer for 'The Hunger Games: Sunrise on the Reaping.' Here's everything we know about the film.",
+                    "url": "https://www.businessinsider.com/sunrise-on-the-reaping-hunger-games-prequel-cast-trailer-2026",
+                    "ts": 1789573666,
+                    "emo": "🎭"
                 }
             ]
         },
@@ -70,24 +106,6 @@
                     "url": "https://www.foxnews.com/outkick-betting/fanatics-sportsbook-promo-code-foxnews-provides-1000-promo-mlb-nfl-more-week",
                     "ts": 1789572241,
                     "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "OpenAI investors have approached the company about a new funding round",
-                    "url": "https://www.cnbc.com/2026/09/16/open-ai-investors-new-funding-round.html",
-                    "ts": 1789571896,
-                    "emo": "📰"
-                },
-                {
-                    "title": "J.B. Hunt stock plunges 10% after company warns third-quarter earnings will fall",
-                    "url": "https://www.cnbc.com/2026/09/16/jb-hunt-stock-jbht-earnings.html",
-                    "ts": 1789564629,
-                    "emo": "💰"
                 }
             ]
         },
@@ -146,37 +164,19 @@
             ]
         },
         {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
             "items": [
                 {
-                    "title": "I've visited all 50 states solo, but there's one region I keep coming back to in the fall",
-                    "url": "https://www.businessinsider.com/best-part-of-us-in-fall-midwest-recommendations-traveler-2026-9",
-                    "ts": 1789568297,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Kevin Warsh is getting a big test to prove the Fed's independence",
-                    "url": "https://www.businessinsider.com/fed-chair-kevin-warsh-faces-independence-test-trump-2026-9",
-                    "ts": 1789568268,
+                    "title": "World's top-performing sovereign wealth fund warns of looming pullback in U.S. stock market",
+                    "url": "https://www.cnbc.com/2026/09/16/new-zealand-sovereign-wealth-fund-stock-market.html",
+                    "ts": 1789569084,
                     "emo": "💰"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "What happens if you never buy a house? What renters are gaining — and giving up",
-                    "url": "https://www.marketwatch.com/story/what-happens-if-you-never-buy-a-house-what-renters-are-gaining-and-giving-up-45b69dcb?mod=mw_rss_topstories",
-                    "ts": 1789568280,
-                    "emo": "📰"
                 },
                 {
-                    "title": "Book your Thanksgiving and Christmas travel now — or risk getting priced out of flying home for the holidays",
-                    "url": "https://www.marketwatch.com/story/the-best-time-to-book-your-flight-home-for-the-holidays-yesterday-6f5928f2?mod=mw_rss_topstories",
-                    "ts": 1789567920,
+                    "title": "OpenAI investors have approached the company about a new funding round",
+                    "url": "https://www.cnbc.com/2026/09/16/open-ai-investors-new-funding-round.html",
+                    "ts": 1789571896,
                     "emo": "📰"
                 }
             ]
@@ -194,7 +194,7 @@
                 {
                     "title": "'Putney pusher' suspect found dead at home",
                     "url": "https://www.bbc.co.uk/news/articles/c6783ekp0yn8o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1789571230,
+                    "ts": 1789574166,
                     "emo": "🔥"
                 }
             ]

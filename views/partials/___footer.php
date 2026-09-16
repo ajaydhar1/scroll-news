@@ -13,9 +13,7 @@ if (($_GET['context'] ?? '') === 'trail-player') {
                 <div class="col-lg-4 text-lg-left">Copyright © Scroll News <?= date('Y') ?></div>
                 <div class="col-lg-4 my-3 my-lg-0">
                     <a class="btn btn-black btn-social mx-2" title="X profile" href="https://x.com/scrollnewsai" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a class="btn btn-black btn-social mx-2" title="Scroll Archive" href="/scroll-archive.php" data-loading>📜</a>
                     <a class="btn btn-green btn-social mx-2" title="Stumble through articles" href="/newsroom.php" onclick="trackStumbleClick('footer')" data-loading>▶</a>
-                    <a class="btn btn-black btn-social mx-2" title="Control Room" href="/control-room.php">⌘</a>
                     <a class="btn btn-black btn-social mx-2" title="IG profile" href="https://www.instagram.com/scrollnewsai/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                 </div>
                 <div class="col-lg-4 text-lg-right font-weight-bold">
