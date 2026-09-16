@@ -342,7 +342,7 @@ require_once BASE_PATH . "/core/___modules.php";
         ?>
 
         <!-- Brief Me Bar-->
-        <?php require_once BASE_PATH . '/views/home/partials/___brief_me.php'; ?>
+        <?php // require_once BASE_PATH . '/views/home/partials/___brief_me.php'; ?>
 
         <!-- First Look-->
         <?php include BASE_PATH . '/views/home/panels/___first_look.php'; ?>

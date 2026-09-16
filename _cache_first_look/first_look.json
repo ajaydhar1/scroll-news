@@ -1,20 +1,20 @@
 {
-    "fetched_at": 1789574622,
+    "fetched_at": 1789595380,
     "feeds": [
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Duct-tape plane passenger breaks silence — and gives unbelievable excuse for midflight meltdown",
-                    "url": "https://nypost.com/2026/09/16/us-news/duct-tape-plane-passenger-gives-unbelievable-excuse-for-midflight-meltdown/",
-                    "ts": 1789574540,
-                    "emo": "📰"
+                    "title": "AI already runs the farms, so we’re moving to the Moon",
+                    "url": "https://nypost.com/2026/09/16/opinion/ai-already-runs-the-farms-so-were-moving-to-the-moon/",
+                    "ts": 1789595094,
+                    "emo": "🧪"
                 },
                 {
-                    "title": "Record set straight on Maxx Crosby  Rams trade rumors",
-                    "url": "https://nypost.com/2026/09/16/sports/record-set-straight-on-maxx-crosby-rams-trade-rumors/",
-                    "ts": 1789574539,
+                    "title": "California billionaire tax draws majority support in new poll — but there’s a big catch",
+                    "url": "https://nypost.com/2026/09/16/us-news/california-billionaire-tax-draws-majority-support-in-new-poll/",
+                    "ts": 1789594865,
                     "emo": "📰"
                 }
             ]
@@ -24,15 +24,15 @@
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Dakota Johnson and Machine Gun Kelly are pictured heading into pal Taylor Swift's apartment together as they spark dating rumours",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16136477/Dakota-Johnson-Machine-Gun-Kelly-Taylor-Swifts-apartment-spark-dating-rumours.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1789574499,
-                    "emo": "🚨"
+                    "title": "Man in his 30s is arrested after teenage girl 'raped under bridge in daylight attack'",
+                    "url": "https://www.dailymail.com/news/article-16137229/Man-30s-arrested-teenage-girl-raped-bridge-daylight-attack.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1789594942,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "Defiant Ed Sheeran fans vow to support star as they argue he 'shouldn't be blamed' after ALL opening acts dropped out of his tour amid Macklemore 'Free Palestine' row",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16136197/Defiant-Ed-Sheeran-fans-support-acts-tour-Macklemore-Free-Palestine-row.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1789574493,
+                    "title": "Diddy's lawyers seek to withdraw as they accuse rapper of failure to pay and causing 'difficult' representation",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16136335/diddy-lawyers-drop-defamation-suit.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1789594846,
                     "emo": "📰"
                 }
             ]
@@ -42,52 +42,16 @@
             "home": "https://www.marketwatch.com",
             "items": [
                 {
-                    "title": "I have $125,000 in credit-card debt. Will $17,000 a month in income, including disability, affect my bankruptcy?",
-                    "url": "https://www.marketwatch.com/story/i-am-drowning-in-debt-i-have-125-000-in-credit-card-debt-will-9-000-in-disability-income-affect-my-bankruptcy-f897c131?mod=mw_rss_topstories",
-                    "ts": 1789574400,
-                    "emo": "📰"
-                },
-                {
-                    "title": "15 stocks that have grown dividends the most — and nearly all have beaten the S&P 500",
-                    "url": "https://www.marketwatch.com/story/15-stocks-that-have-grown-dividends-the-most-and-nearly-all-have-beaten-the-s-p-500-6d8923fc?mod=mw_rss_topstories",
-                    "ts": 1789574400,
+                    "title": "Fed rate hike fails to calm troubled markets as Dow falls 600 points. Expect more sharp swings in stocks and bonds.",
+                    "url": "https://www.marketwatch.com/story/fed-rate-hike-fails-to-calm-troubled-markets-as-dow-falls-600-points-expect-more-sharp-swings-in-stocks-and-bonds-5ffb55fe?mod=mw_rss_topstories",
+                    "ts": 1789594800,
                     "emo": "💰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
+                },
                 {
-                    "title": "Amazon is upping its minimum hourly wage for operations workers — and offering employees a new Whole Foods discount",
-                    "url": "https://www.businessinsider.com/amazon-increases-wages-offers-new-whole-foods-discounts-2026-9",
-                    "ts": 1789573829,
+                    "title": "Intel’s stock rises as investors hope memory chips can mark the next step in its turnaround",
+                    "url": "https://www.marketwatch.com/story/intels-stock-rises-as-investors-hope-memory-chips-can-mark-the-next-step-in-its-turnaround-a276608f?mod=mw_rss_topstories",
+                    "ts": 1789591980,
                     "emo": "📰"
-                },
-                {
-                    "title": "We got another trailer for 'The Hunger Games: Sunrise on the Reaping.' Here's everything we know about the film.",
-                    "url": "https://www.businessinsider.com/sunrise-on-the-reaping-hunger-games-prequel-cast-trailer-2026",
-                    "ts": 1789573666,
-                    "emo": "🎭"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Live updates: House will recess early; Federal Reserve board set to announce interest rates",
-                    "url": "https://thehill.com/homenews/state-watch/6091920-live-trump-whatley-north-carolina-warsh-fed-interest-rates/",
-                    "ts": 1789573548,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Trump faces legal setbacks on mail-in voting, Kennedy Center",
-                    "url": "https://thehill.com/newsletters/the-gavel/the-gavel-live-briefing/6092993-donald-trump-legal-setbacks-mail-in-voting-kennedy-center-renovations-discussion/",
-                    "ts": 1789572922,
-                    "emo": "⚖️"
                 }
             ]
         },
@@ -96,15 +60,141 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "New trailer for 'Other Mommy' with Jessica Chastain reveals a sinister entity terrorizing a young girl",
-                    "url": "https://www.foxnews.com/outkick/new-trailer-other-mommy-jessica-chastain-reveals-sinister-entity-terrorizing-young-girl",
-                    "ts": 1789573303,
+                    "title": "US-backed Israel-Morocco deal deepens Abraham Accords amid growing regional threats",
+                    "url": "https://www.foxnews.com/world/us-backed-israel-morocco-deal-deepens-abraham-accords-amid-growing-regional-threats",
+                    "ts": 1789594781,
+                    "emo": "🌍"
+                },
+                {
+                    "title": "Dermot Mulroney shares 'Young Guns' reunion photo with Emilio Estevez and original cast members",
+                    "url": "https://www.foxnews.com/entertainment/dermot-mulroney-shares-young-guns-reunion-photo-emilio-estevez-original-cast-members",
+                    "ts": 1789594423,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Trump demands 1% or lower interest rate after first Fed hike since 2023",
+                    "url": "https://www.cnbc.com/2026/09/16/trump-fed-interest-rate-warsh.html",
+                    "ts": 1789594138,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Analysis: How Trump could reignite the Fed independence fight after Warsh's rate hike",
+                    "url": "https://www.cnbc.com/2026/09/16/fed-interest-rates-kevin-warsh-trump.html",
+                    "ts": 1789592128,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "Rumors swirl around Xi Jinping health worries...",
+                    "url": "https://www.news.com.au/world/asia/c20a8d98b7ed85400c02f95fc22e9b33",
+                    "ts": 1789593756,
+                    "emo": "🧪"
+                },
+                {
+                    "title": "'He is not well'...",
+                    "url": "https://www.news.com.au/world/asia/c20a8d98b7ed85400c02f95fc22e9b33",
+                    "ts": 1789593756,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Trump offers fiery response to Federal Reserve rate hike",
+                    "url": "https://thehill.com/homenews/administration/6093973-trump-demands-lower-rates-federal-reserve/",
+                    "ts": 1789592886,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "More Americans say AI will hurt the environment than help it: Poll",
+                    "url": "https://thehill.com/policy/technology/6093816-americans-ai-negative-environmental-impacts-poll/",
+                    "ts": 1789592237,
+                    "emo": "🧪"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Sony WH-1000XM6 headphones review: The brand's best noise cancellation yet",
+                    "url": "https://www.businessinsider.com/guides/tech/sony-wh-1000xm6-headphones-review",
+                    "ts": 1789591365,
                     "emo": "📰"
                 },
                 {
-                    "title": "Fanatics Sportsbook Promo Code FOXNEWS Provides $1000 Promo for MLB, NFL, and More This Week",
-                    "url": "https://www.foxnews.com/outkick-betting/fanatics-sportsbook-promo-code-foxnews-provides-1000-promo-mlb-nfl-more-week",
-                    "ts": 1789572241,
+                    "title": "Best Chewy promo codes in September 2026: Get a $25 gift card",
+                    "url": "https://www.businessinsider.com/guides/deals/best-chewy-promo-codes-coupons",
+                    "ts": 1789591197,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Fed Signals Another Rate Increase Could Be Coming",
+                    "url": "https://www.nytimes.com/2026/09/16/business/fed-interest-rates-dot-plot.html",
+                    "ts": 1789585966,
+                    "emo": "💰"
+                },
+                {
+                    "title": "Why the Fed Might Raise Interest Rates When Borrowing Costs Are Surging",
+                    "url": "https://www.nytimes.com/2026/09/16/business/economy/fed-interest-rates-borrowing-costs.html",
+                    "ts": 1789582764,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "Body found in search for missing three-year-old Noah Woods",
+                    "url": "https://www.bbc.co.uk/news/articles/cm93v1573vqro?at_medium=RSS&at_campaign=rss",
+                    "ts": 1789584609,
+                    "emo": "📰"
+                },
+                {
+                    "title": "'Grief can colour memory': Palace responds after Earl Spencer's claim in Diana book",
+                    "url": "https://www.bbc.co.uk/news/articles/c8e3rk47r4ego?at_medium=RSS&at_campaign=rss",
+                    "ts": 1789591590,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Fed raises interest rates for first time since 2023, defying Trump as inflation mounts",
+                    "url": "https://www.nbcnews.com/business/economy/fed-raises-rates-defying-trump-rcna598148",
+                    "ts": 1789581625,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Third victim identified as Los Angeles reels from deadly news helicopter crash",
+                    "url": "https://www.nbcnews.com/now/video/third-victim-identified-as-l-a-reels-from-deadly-news-helicopter-crash-269979205736",
+                    "ts": 1789580234,
                     "emo": "📰"
                 }
             ]
@@ -124,96 +214,6 @@
                     "url": "https://www.theguardian.com/business/live/2026/sep/16/uk-inflation-expected-to-have-risen-in-august-as-cost-of-living-squeeze-tightens-business-live",
                     "ts": 1789567460,
                     "emo": "💰"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Global Oil Prices Could Hit Highest Levels in Months After Saudi Pipeline Attacks",
-                    "url": "https://www.nytimes.com/2026/09/16/business/saudi-pipeline-houthi-attacks.html",
-                    "ts": 1789571711,
-                    "emo": "💰"
-                },
-                {
-                    "title": "Is Iran Shaping Up to Be a ‘Forever War’?",
-                    "url": "https://www.nytimes.com/video/us/100000011145234/is-iran-shaping-up-to-be-a-forever-war.html",
-                    "ts": 1789555873,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "Saudi leader under siege as enemies close in and allies turn away...",
-                    "url": "https://www.telegraph.co.uk/world-news/2026/09/16/mohammed-bin-salman-saudi-arabia-dream-falters/",
-                    "ts": 1789570536,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Pipeline Attack Risks Loss of Millions of Barrels of Oil...",
-                    "url": "https://www.nytimes.com/2026/09/16/business/saudi-pipeline-houthi-attacks.html?unlocked_article_code=1.BlE.UFVm.nKlR_yVu9KTc&smid=url-share",
-                    "ts": 1789570536,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "World's top-performing sovereign wealth fund warns of looming pullback in U.S. stock market",
-                    "url": "https://www.cnbc.com/2026/09/16/new-zealand-sovereign-wealth-fund-stock-market.html",
-                    "ts": 1789569084,
-                    "emo": "💰"
-                },
-                {
-                    "title": "OpenAI investors have approached the company about a new funding round",
-                    "url": "https://www.cnbc.com/2026/09/16/open-ai-investors-new-funding-round.html",
-                    "ts": 1789571896,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "CCTV shows last sighting of Noah Woods",
-                    "url": "https://www.bbc.co.uk/news/videos/cw1mv721kedlo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1789566806,
-                    "emo": "📰"
-                },
-                {
-                    "title": "'Putney pusher' suspect found dead at home",
-                    "url": "https://www.bbc.co.uk/news/articles/c6783ekp0yn8o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1789574166,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Federal Reserve Poised to Raise Interest Rates: What to Know",
-                    "url": "https://www.today.com/video/federal-reserve-poised-to-raise-interest-rates-what-to-know-269957189612",
-                    "ts": 1789558353,
-                    "emo": "💰"
-                },
-                {
-                    "title": "3 Dead After NBC LA Helicopter Crashes",
-                    "url": "https://www.today.com/video/nbc-la-helicopter-crashes-leaves-3-dead-269956165570",
-                    "ts": 1789557063,
-                    "emo": "🔥"
                 }
             ]
         }
