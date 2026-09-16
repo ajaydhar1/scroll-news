@@ -106,7 +106,7 @@ html[data-ui-theme="dark"] .article-meta {
 html[data-ui-theme="dark"] .modal-title,
 html[data-ui-theme="dark"] .modal-body label,
 html[data-ui-theme="dark"] h5.m-0.font-weight-bold {
-    color: #f4f7f7 !important;
+    color: #212529 !important;
 }
 
 html[data-ui-theme="dark"] .form-control,
