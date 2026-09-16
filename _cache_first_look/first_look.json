@@ -1,39 +1,57 @@
 {
-    "fetched_at": 1789571243,
+    "fetched_at": 1789573747,
     "feeds": [
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "Hayden Panettiere’s ex Brian Hickerson, brother Zach get in motorcycle accident on way home from jail",
-                    "url": "https://pagesix.com/2026/09/16/celebrity-news/hayden-panettieres-ex-brian-hickerson-brother-zach-get-in-accident-on-way-home-from-jail/",
-                    "ts": 1789571204,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Hayden Panettiere’s ex Brian Hickerson, brother Zach get in motorcycle accident on way home from jail",
-                    "url": "https://pagesix.com/2026/09/16/celebrity-news/hayden-panettieres-ex-brian-hickerson-brother-zach-get-in-accident-on-way-home-from-jail/",
-                    "ts": 1789571204,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Three dead as plane crashes in Swiss Alps",
-                    "url": "https://www.dailymail.com/news/article-16136529/Three-dead-plane-crashes-Swiss-Alps.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1789571151,
+                    "title": "Dakota Johnson and Machine Gun Kelly are pictured heading into pal Taylor Swift's apartment together as they spark dating rumours",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16136477/Dakota-Johnson-Machine-Gun-Kelly-Taylor-Swifts-apartment-spark-dating-rumours.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1789573607,
+                    "emo": "🚨"
+                },
+                {
+                    "title": "Divers scour lake in hunt for missing Noah: Specialist team from Met Police join search for non-verbal, partially deaf three-year-old 24 hours after he vanished from playground",
+                    "url": "https://www.dailymail.com/news/article-16135445/Father-missing-deaf-Noah-search-vanished-park.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1789573577,
+                    "emo": "🚨"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "Why Mitchell Robinson missed his Celtics introduction: ‘Can’t catch a break’",
+                    "url": "https://nypost.com/2026/09/16/sports/why-mitchell-robinson-missed-his-celtics-introduction-cant-catch-a-break/",
+                    "ts": 1789573578,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Bryan Johnson’s alien-like skincare hack is $19 on Amazon — Fans say it’s ‘wacky’ but works",
+                    "url": "https://nypost.com/2026/09/16/shopping/bryan-johnsons-alien-like-skincare-hack-is-19-on-amazon/",
+                    "ts": 1789573262,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Live updates: House will recess early; Federal Reserve board set to announce interest rates",
+                    "url": "https://thehill.com/homenews/state-watch/6091920-live-trump-whatley-north-carolina-warsh-fed-interest-rates/",
+                    "ts": 1789573548,
                     "emo": "🔥"
                 },
                 {
-                    "title": "Bomb squad called and homes evacuated after 'substances' found in residential street - as woman, 35, is charged over 'explosives'",
-                    "url": "https://www.dailymail.com/news/article-16136367/Bomb-squad-evacuated-substances-woman-charged-explosives.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1789570994,
-                    "emo": "🚨"
+                    "title": "Trump faces legal setbacks on mail-in voting, Kennedy Center",
+                    "url": "https://thehill.com/newsletters/the-gavel/the-gavel-live-briefing/6092993-donald-trump-legal-setbacks-mail-in-voting-kennedy-center-renovations-discussion/",
+                    "ts": 1789572922,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -42,16 +60,70 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Dem fundraising giant ActBlue accused of fraudulent donation 'cover-up' in explosive report",
-                    "url": "https://www.foxnews.com/politics/dem-fundraising-giant-actblue-accused-fraudulent-donation-cover-up-explosive-report",
-                    "ts": 1789570830,
+                    "title": "New trailer for 'Other Mommy' with Jessica Chastain reveals a sinister entity terrorizing a young girl",
+                    "url": "https://www.foxnews.com/outkick/new-trailer-other-mommy-jessica-chastain-reveals-sinister-entity-terrorizing-young-girl",
+                    "ts": 1789573303,
                     "emo": "📰"
                 },
                 {
-                    "title": "Injured Louisiana boy hailed a 'superhero' for seeking help during deadly stabbing rampage",
-                    "url": "https://www.foxnews.com/us/injured-louisiana-boy-hailed-superhero-seeking-help-deadly-stabbing-rampage",
-                    "ts": 1789570751,
+                    "title": "Fanatics Sportsbook Promo Code FOXNEWS Provides $1000 Promo for MLB, NFL, and More This Week",
+                    "url": "https://www.foxnews.com/outkick-betting/fanatics-sportsbook-promo-code-foxnews-provides-1000-promo-mlb-nfl-more-week",
+                    "ts": 1789572241,
                     "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "OpenAI investors have approached the company about a new funding round",
+                    "url": "https://www.cnbc.com/2026/09/16/open-ai-investors-new-funding-round.html",
+                    "ts": 1789571896,
+                    "emo": "📰"
+                },
+                {
+                    "title": "J.B. Hunt stock plunges 10% after company warns third-quarter earnings will fall",
+                    "url": "https://www.cnbc.com/2026/09/16/jb-hunt-stock-jbht-earnings.html",
+                    "ts": 1789564629,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "The Guardian",
+            "home": "https://www.theguardian.com",
+            "items": [
+                {
+                    "title": "Burnham warns of ‘difficult decisions’ in budget as inflation rises to 3.1%",
+                    "url": "https://www.theguardian.com/business/2026/sep/16/uk-inflation-rises-pressure-on-households-bank-of-england-interest-rates",
+                    "ts": 1789571869,
+                    "emo": "💰"
+                },
+                {
+                    "title": "UK rents accelerate as London house prices fall, and inflation rises to 3.1% – as it happened",
+                    "url": "https://www.theguardian.com/business/live/2026/sep/16/uk-inflation-expected-to-have-risen-in-august-as-cost-of-living-squeeze-tightens-business-live",
+                    "ts": 1789567460,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Global Oil Prices Could Hit Highest Levels in Months After Saudi Pipeline Attacks",
+                    "url": "https://www.nytimes.com/2026/09/16/business/saudi-pipeline-houthi-attacks.html",
+                    "ts": 1789571711,
+                    "emo": "💰"
+                },
+                {
+                    "title": "Is Iran Shaping Up to Be a ‘Forever War’?",
+                    "url": "https://www.nytimes.com/video/us/100000011145234/is-iran-shaping-up-to-be-a-forever-war.html",
+                    "ts": 1789555873,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -69,42 +141,6 @@
                     "title": "Pipeline Attack Risks Loss of Millions of Barrels of Oil...",
                     "url": "https://www.nytimes.com/2026/09/16/business/saudi-pipeline-houthi-attacks.html?unlocked_article_code=1.BlE.UFVm.nKlR_yVu9KTc&smid=url-share",
                     "ts": 1789570536,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Senate Republican on Trump claim AI threat is 'hoax': 'Come on'",
-                    "url": "https://thehill.com/homenews/senate/6092827-gop-thom-tillis-donald-trump-ai-anxieties/",
-                    "ts": 1789569898,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "EU chief wants Canada as bloc's first associated member",
-                    "url": "https://thehill.com/policy/international/6092548-ursula-von-der-leyen-mark-carney-european-union-bloc-canada/",
-                    "ts": 1789569006,
-                    "emo": "🌍"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Global Oil Prices Could Hit Highest Levels in Months After Saudi Pipeline Attacks",
-                    "url": "https://www.nytimes.com/2026/09/16/business/saudi-pipeline-houthi-attacks.html",
-                    "ts": 1789569036,
-                    "emo": "💰"
-                },
-                {
-                    "title": "Is Iran Shaping Up to Be a ‘Forever War’?",
-                    "url": "https://www.nytimes.com/video/us/100000011145234/is-iran-shaping-up-to-be-a-forever-war.html",
-                    "ts": 1789555873,
                     "emo": "🔥"
                 }
             ]
@@ -146,24 +182,6 @@
             ]
         },
         {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "OpenAI investors have approached the company about a new funding round",
-                    "url": "https://www.cnbc.com/2026/09/16/open-ai-investors-new-funding-round.html",
-                    "ts": 1789568215,
-                    "emo": "📰"
-                },
-                {
-                    "title": "J.B. Hunt stock plunges 10% after company warns third-quarter earnings will fall",
-                    "url": "https://www.cnbc.com/2026/09/16/jb-hunt-stock-jbht-earnings.html",
-                    "ts": 1789564629,
-                    "emo": "💰"
-                }
-            ]
-        },
-        {
             "name": "BBC",
             "home": "https://www.bbc.com/news",
             "items": [
@@ -176,7 +194,7 @@
                 {
                     "title": "'Putney pusher' suspect found dead at home",
                     "url": "https://www.bbc.co.uk/news/articles/c6783ekp0yn8o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1789570846,
+                    "ts": 1789571230,
                     "emo": "🔥"
                 }
             ]
@@ -196,24 +214,6 @@
                     "url": "https://www.today.com/video/nbc-la-helicopter-crashes-leaves-3-dead-269956165570",
                     "ts": 1789557063,
                     "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "The Guardian",
-            "home": "https://www.theguardian.com",
-            "items": [
-                {
-                    "title": "UK retirees with no other income will not pay tax on new £13,000 state pension, No 10 says",
-                    "url": "https://www.theguardian.com/business/2026/sep/15/uk-pay-growth-interest-rates-unemployment-inflation-oil-price",
-                    "ts": 1789487022,
-                    "emo": "📰"
-                },
-                {
-                    "title": "UK rents accelerate as London house prices fall, and inflation rises to 3.1% – as it happened",
-                    "url": "https://www.theguardian.com/business/live/2026/sep/16/uk-inflation-expected-to-have-risen-in-august-as-cost-of-living-squeeze-tightens-business-live",
-                    "ts": 1789567460,
-                    "emo": "💰"
                 }
             ]
         }
