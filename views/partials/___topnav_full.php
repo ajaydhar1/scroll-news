@@ -52,9 +52,14 @@ require_once __DIR__ . '/../../auth/includes/auth_bootstrap.php';
                         aria-label="Trails" data-loading>
                         🧭
                     </a>
-                    <a class="search-button" href="/search.php" title="Search" aria-label="Search">🔍</a>
+                    <a class="search-button mr-2" href="/search.php" title="Search" aria-label="Search">🔍</a>
+                    <?php if (!empty($theme_experiment_enabled)): ?>
+                        <button class="btn btn-outline-dark theme-toggle" id="themeToggle" type="button" aria-label="Switch to Dark City theme" title="Switch to Dark City theme" aria-pressed="false">
+                            🌙
+                        </button>
+                    <?php endif; ?>
                 </div>
-                
+
                 <?php if (!empty($currentUser)): ?>
                     <?php require BASE_PATH . '/views/partials/___account_menu.php'; ?>
                 <?php else: ?>

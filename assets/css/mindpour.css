@@ -2,6 +2,7 @@
 
 html {
     background-image: url(../img/mind-pour_00.jpg);
+    /*background-image: url(../img/dark-city.gif);*/
     background-size: contain;
 }
 
@@ -89,6 +90,12 @@ a.bg-light:hover, a.bg-light:focus, button.bg-light:hover, button.bg-light:focus
 ::-moz-selection{
   background: rgba(0, 191, 166, 0.76) !important; /* your #00bfa6 but softened */
   color: white !important;
+}
+
+.sn-top-nav .theme-toggle {
+    border-color: rgba(255, 255, 255, 0.22) !important;
+    box-shadow: none !important;
+    padding: 0.175rem 0.65rem .275rem .475rem;
 }
 
 /* Homepage */

@@ -1,0 +1,156 @@
+html[data-ui-theme="dark"] {
+    background-image: url(../img/dark-city.gif) !important;
+}
+
+html[data-ui-theme="dark"] .sn-top-nav {
+    background: rgba(8, 13, 18, 0.78) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.24);
+    color: #f4f7f7;
+    backdrop-filter: saturate(125%) blur(18px);
+    -webkit-backdrop-filter: saturate(125%) blur(18px);
+}
+
+html[data-ui-theme="dark"] .sn-top-nav h5 a,
+html[data-ui-theme="dark"] .sn-top-nav .search-button,
+html[data-ui-theme="dark"] .sn-top-nav .btn-outline-dark,
+html[data-ui-theme="dark"] .sn-top-nav .theme-toggle {
+    color: #edf5f4 !important;
+}
+
+html[data-ui-theme="dark"] .sn-top-nav .btn-outline-dark,
+html[data-ui-theme="dark"] .sn-top-nav .theme-toggle {
+    border-color: rgba(255, 255, 255, 0.22) !important;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: none !important;
+}
+
+html[data-ui-theme="dark"] .sn-top-nav .btn-outline-dark:hover,
+html[data-ui-theme="dark"] .sn-top-nav .theme-toggle:hover,
+html[data-ui-theme="dark"] .sn-top-nav .theme-toggle:focus {
+    background: rgba(0, 191, 166, 0.16) !important;
+    border-color: var(--brand-color) !important;
+    color: #ffffff !important;
+}
+
+html[data-ui-theme="dark"] .sn-top-nav .btn-black {
+    background: rgba(0, 0, 0, 0.45) !important;
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
+html[data-ui-theme="dark"] .sn-top-nav .btn-green {
+    box-shadow: none !important;
+}
+
+html[data-ui-theme="dark"] header.masthead {
+    background-color: rgba(3, 8, 12, 0.42) !important;
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.12); */
+}
+
+html[data-ui-theme="dark"] .reading-modes-section,
+html[data-ui-theme="dark"] .bg-light-2,
+html[data-ui-theme="dark"] .bg-light-3,
+html[data-ui-theme="dark"] .bg-light-4 {
+    background-color: rgba(4, 9, 14, 0.38) !important;
+}
+
+html[data-ui-theme="dark"] .bg-light {
+    background-color: rgba(10, 17, 22, 0.5) !important;
+}
+
+/*
+html[data-ui-theme="dark"] .card,
+html[data-ui-theme="dark"] .sn-card,
+html[data-ui-theme="dark"] .article-card,
+html[data-ui-theme="dark"] .news-intel-panel .intel-card,
+html[data-ui-theme="dark"] .sn-card-active-headlines,
+html[data-ui-theme="dark"] .sn-card-active-stories {
+    background-color: rgba(8, 14, 19, 0.42) !important;
+    border-color: rgba(255, 255, 255, 0.13);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+*/
+
+html[data-ui-theme="dark"] .sn-card-active-stories .power-center,
+html[data-ui-theme="dark"] .sn-card-active-stories .story-card {
+    /* background-color: rgba(0, 0, 0, 0.24) !important; */
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+html[data-ui-theme="dark"] .modal .card,
+html[data-ui-theme="dark"] footer.sn-top-nav {
+    background-color: rgba(9, 15, 20, 0.9) !important;
+    border-color: rgba(255, 255, 255, 0.14);
+    color: #f4f7f7 !important;
+}
+
+html[data-ui-theme="dark"] footer .text-muted,
+html[data-ui-theme="dark"] .text-muted,
+html[data-ui-theme="dark"] .sn-meta,
+html[data-ui-theme="dark"] .article-meta {
+    color: #c2ccce !important;
+}
+
+html[data-ui-theme="dark"] .modal-title,
+html[data-ui-theme="dark"] .modal-body label,
+html[data-ui-theme="dark"] h5.m-0.font-weight-bold {
+    color: #f4f7f7 !important;
+}
+
+html[data-ui-theme="dark"] .form-control,
+html[data-ui-theme="dark"] select,
+html[data-ui-theme="dark"] textarea {
+    background: rgba(0, 0, 0, 0.28);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+html[data-ui-theme="dark"] .form-control::placeholder,
+html[data-ui-theme="dark"] textarea::placeholder {
+    color: rgba(255, 255, 255, 0.58);
+}
+
+html[data-ui-theme="dark"] hr {
+    border-top-color: rgba(255, 255, 255, 0.14);
+}
+
+html[data-ui-theme="dark"] .theme-toggle {
+    align-items: center;
+    border-radius: 50%;
+    display: inline-flex;
+    height: 32px;
+    justify-content: center;
+    margin-right: 0.5rem;
+    padding: 0;
+    width: 32px;
+}
+
+html[data-ui-theme="dark"] .theme-toggle span {
+    display: none;
+}
+
+@media (max-width: 767.98px) {
+    html[data-ui-theme="dark"] .sn-top-nav {
+        background: rgba(8, 13, 18, 0.88) !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html[data-ui-theme="dark"] {
+        background-image: url(../img/mind-pour_00_blur_35.jpg) !important;
+    }
+}
+
+html[data-ui-theme="dark"] .card {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .8), rgba(0, 0, 0, 0)) !important;
+    border: none;
+}
+
+html[data-ui-theme="dark"] .firstlook-col {
+    border: none;
+    background: linear-gradient(to bottom, rgb(12 105 66 / 55%), rgba(0, 0, 0, 0))
+}
+
+html[data-ui-theme="dark"] footer.footer-bottom .text-muted {
+    color: #6c757d !important;
+}
