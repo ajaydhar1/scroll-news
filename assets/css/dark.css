@@ -237,3 +237,12 @@ html[data-ui-theme="dark"] .bg-dark {
 html[data-ui-theme="dark"] #portfolio .portfolio-item .portfolio-caption {
     background-color: transparent !important;
 }
+
+html[data-ui-theme="dark"] .card.intel-card,
+html[data-ui-theme="dark"] .article-card {
+    background: linear-gradient(to bottom, #2a2a2b, rgba(0, 0, 0, 0)) !important;
+}
+
+html[data-ui-theme="dark"] #analytics .card {
+    background: linear-gradient(to bottom, #000, rgba(0, 0, 0, 0)) !important;
+}

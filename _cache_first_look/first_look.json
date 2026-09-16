@@ -1,20 +1,20 @@
 {
-    "fetched_at": 1789570053,
+    "fetched_at": 1789571243,
     "feeds": [
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "9 best home saunas for relaxing and recovery, per our experts and editors",
-                    "url": "https://nypost.com/article/best-home-saunas-with-expert-tips/",
-                    "ts": 1789570020,
+                    "title": "Hayden Panettiere’s ex Brian Hickerson, brother Zach get in motorcycle accident on way home from jail",
+                    "url": "https://pagesix.com/2026/09/16/celebrity-news/hayden-panettieres-ex-brian-hickerson-brother-zach-get-in-accident-on-way-home-from-jail/",
+                    "ts": 1789571204,
                     "emo": "📰"
                 },
                 {
-                    "title": "Joe Buck signing $108 million ESPN contract extension — and it could include an MLB twist",
-                    "url": "https://nypost.com/2026/09/16/sports/joe-buck-signing-108-million-espn-contract-extension-with-possible-mlb-twist/",
-                    "ts": 1789569898,
+                    "title": "Hayden Panettiere’s ex Brian Hickerson, brother Zach get in motorcycle accident on way home from jail",
+                    "url": "https://pagesix.com/2026/09/16/celebrity-news/hayden-panettieres-ex-brian-hickerson-brother-zach-get-in-accident-on-way-home-from-jail/",
+                    "ts": 1789571204,
                     "emo": "📰"
                 }
             ]
@@ -24,16 +24,52 @@
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Lena Dunham welcomes first child with husband Luis Felber via surrogate... eight years after hysterectomy",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16136359/lena-dunham-child-luis-felber-surrogate.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1789569938,
+                    "title": "Three dead as plane crashes in Swiss Alps",
+                    "url": "https://www.dailymail.com/news/article-16136529/Three-dead-plane-crashes-Swiss-Alps.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1789571151,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Bomb squad called and homes evacuated after 'substances' found in residential street - as woman, 35, is charged over 'explosives'",
+                    "url": "https://www.dailymail.com/news/article-16136367/Bomb-squad-evacuated-substances-woman-charged-explosives.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1789570994,
+                    "emo": "🚨"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Dem fundraising giant ActBlue accused of fraudulent donation 'cover-up' in explosive report",
+                    "url": "https://www.foxnews.com/politics/dem-fundraising-giant-actblue-accused-fraudulent-donation-cover-up-explosive-report",
+                    "ts": 1789570830,
                     "emo": "📰"
                 },
                 {
-                    "title": "Defiant Ed Sheeran fans vow to support star as they argue he 'shouldn't be blamed' after ALL opening acts dropped out of his tour amid Macklemore 'Free Palestine' row",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16136197/Defiant-Ed-Sheeran-fans-support-acts-tour-Macklemore-Free-Palestine-row.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1789569885,
+                    "title": "Injured Louisiana boy hailed a 'superhero' for seeking help during deadly stabbing rampage",
+                    "url": "https://www.foxnews.com/us/injured-louisiana-boy-hailed-superhero-seeking-help-deadly-stabbing-rampage",
+                    "ts": 1789570751,
                     "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "Saudi leader under siege as enemies close in and allies turn away...",
+                    "url": "https://www.telegraph.co.uk/world-news/2026/09/16/mohammed-bin-salman-saudi-arabia-dream-falters/",
+                    "ts": 1789570536,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Pipeline Attack Risks Loss of Millions of Barrels of Oil...",
+                    "url": "https://www.nytimes.com/2026/09/16/business/saudi-pipeline-houthi-attacks.html?unlocked_article_code=1.BlE.UFVm.nKlR_yVu9KTc&smid=url-share",
+                    "ts": 1789570536,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -56,20 +92,20 @@
             ]
         },
         {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
             "items": [
                 {
-                    "title": "WWE legend Rey Mysterio shares his thoughts on celebrities and pro athletes entering pro wrestling space",
-                    "url": "https://www.foxnews.com/outkick-sports/wwe-legend-rey-mysterio-shares-thoughts-celebrities-pro-athletes-entering-pro-wrestling-space",
-                    "ts": 1789569449,
-                    "emo": "🧪"
+                    "title": "Global Oil Prices Could Hit Highest Levels in Months After Saudi Pipeline Attacks",
+                    "url": "https://www.nytimes.com/2026/09/16/business/saudi-pipeline-houthi-attacks.html",
+                    "ts": 1789569036,
+                    "emo": "💰"
                 },
                 {
-                    "title": "Jim Jordan subpoenas blue state DAs accused of 'preferential treatment' for illegal immigrant criminals",
-                    "url": "https://www.foxnews.com/politics/jim-jordan-subpoenas-blue-state-das-accused-preferential-treatment-illegal-immigrant-criminals",
-                    "ts": 1789567247,
-                    "emo": "📰"
+                    "title": "Is Iran Shaping Up to Be a ‘Forever War’?",
+                    "url": "https://www.nytimes.com/video/us/100000011145234/is-iran-shaping-up-to-be-a-forever-war.html",
+                    "ts": 1789555873,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -138,45 +174,9 @@
                     "emo": "📰"
                 },
                 {
-                    "title": "EU chief backs plan for Canada to become 'associate member'",
-                    "url": "https://www.bbc.co.uk/news/articles/cjwyzrr9d3dko?at_medium=RSS&at_campaign=rss",
-                    "ts": 1789562211,
-                    "emo": "🌍"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "The World Economy Is Becoming Wary of the U.S.",
-                    "url": "https://www.nytimes.com/2026/09/16/business/trump-debt-sanctions-global-economy.html",
-                    "ts": 1789566066,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Fed Readies for Momentous Rate Decision",
-                    "url": "https://www.nytimes.com/2026/09/16/business/economy/federal-reserve-interest-rates-warsh.html",
-                    "ts": 1789549443,
-                    "emo": "💰"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "Saudi leader under siege as enemies close in and allies turn away...",
-                    "url": "https://www.telegraph.co.uk/world-news/2026/09/16/mohammed-bin-salman-saudi-arabia-dream-falters/",
-                    "ts": 1789560816,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Pipeline Attack Risks Loss of Millions of Barrels of Oil...",
-                    "url": "https://www.nytimes.com/2026/09/16/business/saudi-pipeline-houthi-attacks.html?unlocked_article_code=1.BlE.UFVm.nKlR_yVu9KTc&smid=url-share",
-                    "ts": 1789560816,
+                    "title": "'Putney pusher' suspect found dead at home",
+                    "url": "https://www.bbc.co.uk/news/articles/c6783ekp0yn8o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1789570846,
                     "emo": "🔥"
                 }
             ]
