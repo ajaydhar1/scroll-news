@@ -14,6 +14,32 @@ html[data-ui-theme="dark"] {
   }
 }
 
+html[data-ui-theme="dark"] body {
+    font-family: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html[data-ui-theme="dark"] h1,
+html[data-ui-theme="dark"] h2,
+html[data-ui-theme="dark"] h3,
+html[data-ui-theme="dark"] h4,
+html[data-ui-theme="dark"] h5,
+html[data-ui-theme="dark"] h6,
+html[data-ui-theme="dark"] .masthead-heading,
+html[data-ui-theme="dark"] .page-section h3.section-subheading,
+html[data-ui-theme="dark"] header.masthead .masthead-subheading {
+    font-family: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight: 600;
+}
+
+html[data-ui-theme="dark"] .masthead-heading {
+    font-family: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight: 700;
+}
+
+html[data-ui-theme="dark"] .btn {
+    font-family: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
 html[data-ui-theme="dark"] .sn-top-nav {
     background: rgba(8, 13, 18, 0.78) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.14);
