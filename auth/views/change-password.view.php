@@ -2,6 +2,8 @@
 
 $config = require __DIR__ . '/../config/auth_config.php';
 
+$theme_experiment_enabled = true;
+
 $successMessages = [
     'changed' => 'Your password has been updated.',
 ];
@@ -122,6 +124,10 @@ if (isset($_GET['error'])) {
     <!-- Site CSS -->
     <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
+    <link id="dark-typography-theme" href="/assets/css/dark-typography.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark-typography.css'); ?>" rel="stylesheet" />
+
+    <script src="/assets/js/dark-theme.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/dark-theme.js'); ?>"></script>
+
     <link href="/assets/css/auth.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/auth.css'); ?>" rel="stylesheet" />
 
 </head>

@@ -19,6 +19,7 @@ require_once BASE_PATH . '/core/newsroom/___newsroom_bootstrap.php';
 
 $hasContext = isset($_GET['context']) && trim($_GET['context']) !== '';
 $isTrailPlayer = ($_GET['context'] ?? '') === 'trail-player';
+$theme_experiment_enabled = !$isTrailPlayer;
 
 /*
 echo '<pre>';
@@ -65,6 +66,9 @@ exit;
 
     <!-- Performance: Preload background -->
     <link rel="preload" as="image" href="/assets/img/mind-pour_00.jpg">
+    <?php if (!$isTrailPlayer): ?>
+        <link rel="preload" as="image" href="/assets/img/dark-city.gif">
+    <?php endif; ?>
 
     <link rel="preload" as="image" href="<?= $img ?>">
 
@@ -86,7 +90,16 @@ exit;
     <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/pages/newsroom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/newsroom.css'); ?>" rel="stylesheet" />
     <?php if (!$isTrailPlayer): ?>
-        <link href="/assets/css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/mindpour.css'); ?>" rel="stylesheet" />
+        <!-- Inter -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+        <link id="mindpour-theme" href="/assets/css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/mindpour.css'); ?>" rel="stylesheet" />
+        <link id="dark-theme" href="/assets/css/dark.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark.css'); ?>" rel="stylesheet" disabled />
+        <link id="dark-typography-theme" href="/assets/css/dark-typography.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark-typography.css'); ?>" rel="stylesheet" />
+
+        <script src="/assets/js/dark-theme.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/dark-theme.js'); ?>"></script>
     <?php endif; ?>
 
     <!-- Add IntroJs styles -->

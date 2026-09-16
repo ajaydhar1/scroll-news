@@ -1,128 +1,38 @@
 {
-    "fetched_at": 1787622521,
+    "fetched_at": 1789570053,
     "feeds": [
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Perez Hilton suffered multiple broken bones the night of his horror self-harm livestream",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16077281/Perez-Hilton-multiple-broken-bones-self-harm-livestream.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1787622195,
-                    "emo": "📰"
-                },
-                {
-                    "title": "No weigh! 10,000 animals get their turn on the London Zoo's hidden scales for annual check up",
-                    "url": "https://www.dailymail.com/news/article-16076805/animals-London-Zoos-hidden-scales.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1787621982,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Enes Kanter Freedom defiantly refutes report he’s not eligible to play in WNBA: ‘Fake news!’",
-                    "url": "https://nypost.com/2026/08/24/sports/enes-kanter-refutes-report-hes-not-eligible-to-play-in-wnba-fake-news/",
-                    "ts": 1787622115,
+                    "title": "9 best home saunas for relaxing and recovery, per our experts and editors",
+                    "url": "https://nypost.com/article/best-home-saunas-with-expert-tips/",
+                    "ts": 1789570020,
                     "emo": "📰"
                 },
                 {
-                    "title": "Olivia Jade dating tennis star Taylor Fritz: ‘They’ve really hit it off’",
-                    "url": "https://pagesix.com/2026/08/24/celebrity-news/olivia-jade-dating-tennis-star-taylor-fritz/",
-                    "ts": 1787622070,
+                    "title": "Joe Buck signing $108 million ESPN contract extension — and it could include an MLB twist",
+                    "url": "https://nypost.com/2026/09/16/sports/joe-buck-signing-108-million-espn-contract-extension-with-possible-mlb-twist/",
+                    "ts": 1789569898,
                     "emo": "📰"
                 }
             ]
         },
         {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Abdul El-Sayed grilled on past statements on Sharia law and White supremacy, taxing the rich",
-                    "url": "https://www.foxnews.com/media/abdul-el-sayed-grilled-past-statements-sharia-law-white-supremacy-taxing-rich",
-                    "ts": 1787622040,
+                    "title": "Lena Dunham welcomes first child with husband Luis Felber via surrogate... eight years after hysterectomy",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16136359/lena-dunham-child-luis-felber-surrogate.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1789569938,
                     "emo": "📰"
                 },
                 {
-                    "title": "Trump administration proposes six-figure price tag for new H-1B visas",
-                    "url": "https://www.foxnews.com/politics/trump-administration-proposes-six-figure-price-tag-new-h-1b-visas",
-                    "ts": 1787621402,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "CNN Signal Down for Nearly 30 Mins...",
-                    "url": "https://www.mediaite.com/media/tv/cnns-signal-goes-down-for-nearly-30-minutes-sorry-for-the-interruption/",
-                    "ts": 1787619876,
-                    "emo": "📰"
-                },
-                {
-                    "title": "CANADA THREATENS ELECTRICITY CUT TO USA",
-                    "url": "https://www.independent.co.uk/b3038268.html",
-                    "ts": 1787619876,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "‘She looked into COBRA’: My friend was laid off and lost her health insurance. How can she find affordable coverage?",
-                    "url": "https://www.marketwatch.com/story/shes-desperate-my-friend-was-laid-off-and-lost-her-health-insurance-how-can-she-find-affordable-coverage-3b17b553?mod=mw_rss_topstories",
-                    "ts": 1787616900,
-                    "emo": "🧪"
-                },
-                {
-                    "title": "My father-in-law passed away, leaving a house with tenants. Do I evict them?",
-                    "url": "https://www.marketwatch.com/story/my-father-in-law-passed-away-leaving-a-house-with-tenants-do-i-evict-them-f974428c?mod=mw_rss_topstories",
-                    "ts": 1787616000,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Court Allows Trump to Pursue Mail Voting Limits, for Now",
-                    "url": "https://www.nytimes.com/2026/08/24/us/politics/supreme-court-trump-mail-ballots.html",
-                    "ts": 1787616549,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Trump Has Quietly Sought Control Over Postal Service to Transform U.S. Elections",
-                    "url": "https://www.nytimes.com/2026/08/24/us/politics/mail-voting-supreme-court-postal-service-trump.html",
-                    "ts": 1787612941,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Ontario Premier Doug Ford threatens to cut off electricity to the US",
-                    "url": "https://www.businessinsider.com/doug-ford-canada-could-cut-off-electricity-us-critical-minerals-2026-8",
-                    "ts": 1787615624,
-                    "emo": "📰"
-                },
-                {
-                    "title": "I took my daughter on a 'collegemoon' to Europe. It made my anticipatory grief about her leaving for school even stronger.",
-                    "url": "https://www.businessinsider.com/collegemoon-parent-child-trip-before-leaving-for-school-college-2026-8",
-                    "ts": 1787610301,
+                    "title": "Defiant Ed Sheeran fans vow to support star as they argue he 'shouldn't be blamed' after ALL opening acts dropped out of his tour amid Macklemore 'Free Palestine' row",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16136197/Defiant-Ed-Sheeran-fans-support-acts-tour-Macklemore-Free-Palestine-row.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1789569885,
                     "emo": "📰"
                 }
             ]
@@ -132,34 +42,70 @@
             "home": "https://thehill.com",
             "items": [
                 {
-                    "title": "Back-to-school season fuels growing measles concerns",
-                    "url": "https://thehill.com/newsletters/healthcare/6048133-back-to-school-season-fuels-growing-measles-concerns/",
-                    "ts": 1787613688,
-                    "emo": "📰"
+                    "title": "Senate Republican on Trump claim AI threat is 'hoax': 'Come on'",
+                    "url": "https://thehill.com/homenews/senate/6092827-gop-thom-tillis-donald-trump-ai-anxieties/",
+                    "ts": 1789569898,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "Jackson calls Supreme Court’s mail-in voting ruling a ‘Kafkaesque nightmare’ ",
-                    "url": "https://thehill.com/regulation/court-battles/6048109-justice-jackson-election-chaos-dissent/",
-                    "ts": 1787613040,
-                    "emo": "⚖️"
+                    "title": "EU chief wants Canada as bloc's first associated member",
+                    "url": "https://thehill.com/policy/international/6092548-ursula-von-der-leyen-mark-carney-european-union-bloc-canada/",
+                    "ts": 1789569006,
+                    "emo": "🌍"
                 }
             ]
         },
         {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Supreme Court hands preliminary win to Trump on mail-in ballots executive order",
-                    "url": "https://www.nbcnews.com/politics/supreme-court/supreme-court-hands-preliminary-win-trump-mail-ballots-executive-order-rcna590120",
-                    "ts": 1787605366,
-                    "emo": "⚖️"
+                    "title": "WWE legend Rey Mysterio shares his thoughts on celebrities and pro athletes entering pro wrestling space",
+                    "url": "https://www.foxnews.com/outkick-sports/wwe-legend-rey-mysterio-shares-thoughts-celebrities-pro-athletes-entering-pro-wrestling-space",
+                    "ts": 1789569449,
+                    "emo": "🧪"
                 },
                 {
-                    "title": "How the new U.S. sanctions on Iran could affect China",
-                    "url": "https://www.nbcnews.com/now/video/how-the-new-u-s-sanctions-on-iran-could-affect-china-268774469536",
-                    "ts": 1787593265,
-                    "emo": "🌍"
+                    "title": "Jim Jordan subpoenas blue state DAs accused of 'preferential treatment' for illegal immigrant criminals",
+                    "url": "https://www.foxnews.com/politics/jim-jordan-subpoenas-blue-state-das-accused-preferential-treatment-illegal-immigrant-criminals",
+                    "ts": 1789567247,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "I've visited all 50 states solo, but there's one region I keep coming back to in the fall",
+                    "url": "https://www.businessinsider.com/best-part-of-us-in-fall-midwest-recommendations-traveler-2026-9",
+                    "ts": 1789568297,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Kevin Warsh is getting a big test to prove the Fed's independence",
+                    "url": "https://www.businessinsider.com/fed-chair-kevin-warsh-faces-independence-test-trump-2026-9",
+                    "ts": 1789568268,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "What happens if you never buy a house? What renters are gaining — and giving up",
+                    "url": "https://www.marketwatch.com/story/what-happens-if-you-never-buy-a-house-what-renters-are-gaining-and-giving-up-45b69dcb?mod=mw_rss_topstories",
+                    "ts": 1789568280,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Book your Thanksgiving and Christmas travel now — or risk getting priced out of flying home for the holidays",
+                    "url": "https://www.marketwatch.com/story/the-best-time-to-book-your-flight-home-for-the-holidays-yesterday-6f5928f2?mod=mw_rss_topstories",
+                    "ts": 1789567920,
+                    "emo": "📰"
                 }
             ]
         },
@@ -168,16 +114,16 @@
             "home": "https://www.cnbc.com",
             "items": [
                 {
-                    "title": "Trump admin unveils anti-Iran global sanctions plan, signals China not exempt",
-                    "url": "https://www.cnbc.com/2026/08/24/trump-iran-economy-sanctions-china-bessent.html",
-                    "ts": 1787596356,
-                    "emo": "⚖️"
+                    "title": "OpenAI investors have approached the company about a new funding round",
+                    "url": "https://www.cnbc.com/2026/09/16/open-ai-investors-new-funding-round.html",
+                    "ts": 1789568215,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Trump says U.S. will hike Canada auto tariffs to 50% as trade war escalates",
-                    "url": "https://www.cnbc.com/2026/08/24/trump-canada-auto-tariffs-trade-war.html",
-                    "ts": 1787614021,
-                    "emo": "🔥"
+                    "title": "J.B. Hunt stock plunges 10% after company warns third-quarter earnings will fall",
+                    "url": "https://www.cnbc.com/2026/09/16/jb-hunt-stock-jbht-earnings.html",
+                    "ts": 1789564629,
+                    "emo": "💰"
                 }
             ]
         },
@@ -186,15 +132,69 @@
             "home": "https://www.bbc.com/news",
             "items": [
                 {
-                    "title": "Organised crime arrests as police investigate A66 crash that killed two officers",
-                    "url": "https://www.bbc.co.uk/news/articles/c36d6975dzno?at_medium=RSS&at_campaign=rss",
-                    "ts": 1787594020,
-                    "emo": "🔥"
+                    "title": "CCTV shows last sighting of Noah Woods",
+                    "url": "https://www.bbc.co.uk/news/videos/cw1mv721kedlo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1789566806,
+                    "emo": "📰"
                 },
                 {
-                    "title": "How the deadly A66 crash unfolded leaving seven dead",
-                    "url": "https://www.bbc.co.uk/news/videos/cvgyx7yzejpo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1787590542,
+                    "title": "EU chief backs plan for Canada to become 'associate member'",
+                    "url": "https://www.bbc.co.uk/news/articles/cjwyzrr9d3dko?at_medium=RSS&at_campaign=rss",
+                    "ts": 1789562211,
+                    "emo": "🌍"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "The World Economy Is Becoming Wary of the U.S.",
+                    "url": "https://www.nytimes.com/2026/09/16/business/trump-debt-sanctions-global-economy.html",
+                    "ts": 1789566066,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Fed Readies for Momentous Rate Decision",
+                    "url": "https://www.nytimes.com/2026/09/16/business/economy/federal-reserve-interest-rates-warsh.html",
+                    "ts": 1789549443,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "Saudi leader under siege as enemies close in and allies turn away...",
+                    "url": "https://www.telegraph.co.uk/world-news/2026/09/16/mohammed-bin-salman-saudi-arabia-dream-falters/",
+                    "ts": 1789560816,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Pipeline Attack Risks Loss of Millions of Barrels of Oil...",
+                    "url": "https://www.nytimes.com/2026/09/16/business/saudi-pipeline-houthi-attacks.html?unlocked_article_code=1.BlE.UFVm.nKlR_yVu9KTc&smid=url-share",
+                    "ts": 1789560816,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Federal Reserve Poised to Raise Interest Rates: What to Know",
+                    "url": "https://www.today.com/video/federal-reserve-poised-to-raise-interest-rates-what-to-know-269957189612",
+                    "ts": 1789558353,
+                    "emo": "💰"
+                },
+                {
+                    "title": "3 Dead After NBC LA Helicopter Crashes",
+                    "url": "https://www.today.com/video/nbc-la-helicopter-crashes-leaves-3-dead-269956165570",
+                    "ts": 1789557063,
                     "emo": "🔥"
                 }
             ]
@@ -204,16 +204,16 @@
             "home": "https://www.theguardian.com",
             "items": [
                 {
-                    "title": "UK graduate job vacancies plunge to lowest in a decade",
-                    "url": "https://www.theguardian.com/business/2026/aug/24/uk-graduate-job-vacancies-plunge-adzuna",
-                    "ts": 1787554531,
+                    "title": "UK retirees with no other income will not pay tax on new £13,000 state pension, No 10 says",
+                    "url": "https://www.theguardian.com/business/2026/sep/15/uk-pay-growth-interest-rates-unemployment-inflation-oil-price",
+                    "ts": 1789487022,
                     "emo": "📰"
                 },
                 {
-                    "title": "Up to £464m ‘moved through more than 3,000 UK high street shell companies’",
-                    "url": "https://www.theguardian.com/business/2026/aug/24/up-to-464m-moved-through-more-than-3000-uk-shell-companies-branded",
-                    "ts": 1787575757,
-                    "emo": "📰"
+                    "title": "UK rents accelerate as London house prices fall, and inflation rises to 3.1% – as it happened",
+                    "url": "https://www.theguardian.com/business/live/2026/sep/16/uk-inflation-expected-to-have-risen-in-august-as-cost-of-living-squeeze-tightens-business-live",
+                    "ts": 1789567460,
+                    "emo": "💰"
                 }
             ]
         }

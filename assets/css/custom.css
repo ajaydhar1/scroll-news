@@ -742,3 +742,14 @@ blockquote::before {
     grid-template-columns: 1fr;
   }
 }
+
+.theme-toggle {
+    align-items: center;
+    border-radius: 50%;
+    display: inline-flex;
+    height: 32px;
+    justify-content: center;
+    margin-right: 0.5rem;
+    padding: 0;
+    width: 32px;
+}

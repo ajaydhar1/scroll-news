@@ -3,6 +3,7 @@
 // Unified Analysis page: entity, pub, topic, sent, category
 
 define('BASE_PATH', __DIR__);
+$theme_experiment_enabled = true;
 require_once BASE_PATH . "/core/___modules.php";
 require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
 
@@ -187,6 +188,10 @@ try {
   <!-- Core theme CSS (includes Bootstrap)-->
   <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
   <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
+  <link id="dark-typography-theme" href="/assets/css/dark-typography.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark-typography.css'); ?>" rel="stylesheet" />
+
+  <script src="/assets/js/dark-theme.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/dark-theme.js'); ?>"></script>
+
   <link href="/assets/css/pages/analysis.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/analysis.css'); ?>" rel="stylesheet" />
 
 </head>
