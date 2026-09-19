@@ -241,3 +241,14 @@ html[data-ui-theme="dark"] .article-card {
 html[data-ui-theme="dark"] #analytics .card {
     background: linear-gradient(to bottom, #000, rgba(0, 0, 0, 0)) !important;
 }
+
+/* Browse News modal is intentionally light in both themes; undo dark card/text leakage */
+html[data-ui-theme="dark"] #browseNewsModal .card {
+    background: #fff !important;
+    border: 1px solid rgba(0, 0, 0, 0.125) !important;
+    color: #212529 !important;
+}
+
+html[data-ui-theme="dark"] #browseNewsModal .card-text.text-muted {
+    color: #6c757d !important;
+}
