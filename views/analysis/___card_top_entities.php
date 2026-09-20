@@ -125,7 +125,7 @@ $searchHref = function(
       </div>
   <?php else: ?>
 
-  <table class="bar-table">
+  <table class="bar-table bar-cells">
       <thead>
           <tr>
               <th>Entity</th>
@@ -147,8 +147,8 @@ $searchHref = function(
           $searchUrl   = $searchHref($entityValue);
       ?>
 
-      <tr class="bar-row" style="--bar: <?= $pctBar ?>%;">
-          <td class="bar-cell">
+      <tr>
+          <td class="bar-cell" style="--bar: <?= $pctBar ?>%;">
               <span class="bar-fill" aria-hidden="true"></span>
               <?= htmlspecialchars($pretty($row['entity'])) ?>
           </td>

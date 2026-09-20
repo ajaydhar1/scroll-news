@@ -32,7 +32,7 @@ foreach ($sources as $r) {
       </div>
   <?php else: ?>
 
-  <table class="bar-table">
+  <table class="bar-table bar-cells">
       <thead>
           <tr>
               <th>Domain</th>
@@ -61,8 +61,8 @@ foreach ($sources as $r) {
 
           $pct = (string)($r['pct'] ?? '');
       ?>
-          <tr class="bar-row" style="--bar: <?= $pctBar ?>%;">
-              <td class="sn-domain-cell bar-cell">
+          <tr>
+              <td class="sn-domain-cell bar-cell" style="--bar: <?= $pctBar ?>%;">
                   <span class="bar-fill" aria-hidden="true"></span>
 
                   <a

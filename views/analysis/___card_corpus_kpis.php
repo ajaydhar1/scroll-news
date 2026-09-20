@@ -16,6 +16,31 @@ $windowLabelMap = [
 $windowLabel = $windowLabelMap[$time_window] ?? $time_window;
 
 $row = $kpi[0] ?? [];
+
+// Scoped to this card only: same convention as sn_format_pub_date(), plus a leading weekday.
+if (!function_exists('sn_format_kpi_date')) {
+    function sn_format_kpi_date(?string $raw): string
+    {
+        if (empty($raw)) return '';
+
+        $ts = strtotime($raw);
+        if ($ts === false) return '';
+
+        try {
+            $tz  = new DateTimeZone('America/New_York');
+            $dt  = (new DateTimeImmutable('@' . $ts))->setTimezone($tz);
+            $now = new DateTimeImmutable('now', $tz);
+
+            $fmt = ($dt->format('Y') === $now->format('Y'))
+                ? 'D, M j • g:i A T'
+                : 'D, M j, Y • g:i A T';
+
+            return $dt->format($fmt);
+        } catch (Throwable $e) {
+            return '';
+        }
+    }
+}
 ?>
 
 <div class="card" style="margin-top:12px;">
@@ -44,20 +69,20 @@ $row = $kpi[0] ?? [];
 
     <div class="kpi">
     <div class="label">From</div>
-    <div class="val"><?= htmlspecialchars((string)($row['corpus_min_pub_date'] ?? '')) ?></div>
+    <div class="val"><?= htmlspecialchars(sn_format_kpi_date($row['corpus_min_pub_date'] ?? null)) ?></div>
     </div>
 
     <div class="kpi">
     <div class="label">To</div>
-    <div class="val"><?= htmlspecialchars((string)($row['corpus_max_pub_date'] ?? '')) ?></div>
+    <div class="val"><?= htmlspecialchars(sn_format_kpi_date($row['corpus_max_pub_date'] ?? null)) ?></div>
     </div>
 
     <div class="kpi">
     <div class="label">Range</div>
     <div class="val">
-        <?= htmlspecialchars((string)($row['time_min'] ?? '')) ?>
+        <?= htmlspecialchars(sn_format_kpi_date($row['time_min'] ?? null)) ?>
         →
-        <?= htmlspecialchars((string)($row['time_max'] ?? '')) ?>
+        <?= htmlspecialchars(sn_format_kpi_date($row['time_max'] ?? null)) ?>
     </div>
     </div>
 </div>
