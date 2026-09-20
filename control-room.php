@@ -140,7 +140,12 @@ require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
 
     <script>
         (function() {
-            const history = JSON.parse(localStorage.getItem('sn_article_history') || '[]');
+            let history = [];
+            try {
+                history = JSON.parse(localStorage.getItem('sn_article_history') || '[]');
+            } catch {
+                history = [];
+            }
 
             const $ = (id) => document.getElementById(id);
 

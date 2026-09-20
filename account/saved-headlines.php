@@ -513,11 +513,19 @@ function pageUrl(int $page): string
             }
 
             function getLocalSaved() {
-                return safeParse(localStorage.getItem(LOCAL_KEY) || '[]', []);
+                try {
+                    return safeParse(localStorage.getItem(LOCAL_KEY) || '[]', []);
+                } catch {
+                    return [];
+                }
             }
 
             function setLocalSaved(list) {
-                localStorage.setItem(LOCAL_KEY, JSON.stringify(list));
+                try {
+                    localStorage.setItem(LOCAL_KEY, JSON.stringify(list));
+                } catch {
+                    // Storage unavailable (private mode, quota, disabled) — no-op.
+                }
             }
 
             function getLocalOnlyItems() {

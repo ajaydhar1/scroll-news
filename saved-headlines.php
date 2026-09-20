@@ -69,11 +69,19 @@ define('BASE_PATH', __DIR__);
   }
 
   function getSaved() {
-    return safeParse(localStorage.getItem(KEY) || '[]', []);
+    try {
+      return safeParse(localStorage.getItem(KEY) || '[]', []);
+    } catch {
+      return [];
+    }
   }
 
   function setSaved(list) {
-    localStorage.setItem(KEY, JSON.stringify(list));
+    try {
+      localStorage.setItem(KEY, JSON.stringify(list));
+    } catch {
+      // Storage unavailable (private mode, quota, disabled) — no-op.
+    }
   }
 
   function removeById(id) {
@@ -143,7 +151,11 @@ define('BASE_PATH', __DIR__);
   }
 
   document.getElementById('clearSavedBtn').addEventListener('click', () => {
-    localStorage.removeItem(KEY);
+    try {
+      localStorage.removeItem(KEY);
+    } catch {
+      // Storage unavailable — nothing to clear.
+    }
     render();
     window.dispatchEvent(new StorageEvent('storage', { key: KEY }));
   });

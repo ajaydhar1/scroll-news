@@ -345,11 +345,19 @@ if (!is_array($feedsData) || count($feedsData) === 0) {
     }
 
     function getSaved() {
-      return safeParse(localStorage.getItem(KEY) || '[]', []);
+      try {
+        return safeParse(localStorage.getItem(KEY) || '[]', []);
+      } catch {
+        return [];
+      }
     }
 
     function setSaved(list) {
-      localStorage.setItem(KEY, JSON.stringify(list));
+      try {
+        localStorage.setItem(KEY, JSON.stringify(list));
+      } catch {
+        // Storage unavailable (private mode, quota, disabled) — no-op.
+      }
     }
 
     // Stable ID so "same headline" toggles properly
