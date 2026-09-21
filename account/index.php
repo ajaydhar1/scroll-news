@@ -342,7 +342,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             </a>
                                             <span class="badge badge-success ml-1">New</span>
                                         </li>
-                                        <li>Publisher verification</li>
+                                        <li><a href="/account/publisher-verification.php" class="account-link">Publisher verification</a></li>
                                         <li>RSS feed submissions</li>
                                         <li>Article removals</li>
                                         <li>Creator profile</li>
