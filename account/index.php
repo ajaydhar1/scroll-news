@@ -37,6 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+$verifiedPublisher = null;
+$verifiedPublisherStmt = auth_db()->prepare("\n    SELECT p.id, p.domain, p.name\n    FROM publishers p\n    INNER JOIN publisher_users pu ON pu.publisher_id = p.id\n    WHERE pu.user_id = :user_id\n      AND pu.status = 'verified'\n    ORDER BY p.id\n    LIMIT 1\n");
+$verifiedPublisherStmt->execute([
+    ':user_id' => $userId,
+]);
+$verifiedPublisher = $verifiedPublisherStmt->fetch(PDO::FETCH_ASSOC) ?: null;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -343,6 +350,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <span class="badge badge-success ml-1">New</span>
                                         </li>
                                         <li><a href="/account/publisher-verification.php" class="account-link">Publisher verification</a></li>
+                                        <?php if ($verifiedPublisher): ?>
+                                            <li>
+                                                <a href="/account/publisher-dashboard.php?publisher_id=<?= (int) $verifiedPublisher['id']; ?>" class="account-link">
+                                                    Publisher Dashboard
+                                                </a>
+                                            </li>
+                                        <?php endif; ?>
                                         <li>RSS feed submissions</li>
                                         <li>Article removals</li>
                                         <li>Creator profile</li>

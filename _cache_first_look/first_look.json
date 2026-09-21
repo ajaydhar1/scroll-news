@@ -1,20 +1,38 @@
 {
-    "fetched_at": 1789595380,
+    "fetched_at": 1790013615,
     "feeds": [
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Paramount to Settle States’ Lawsuit, Clearing Way for Warner Bros. Merger",
+                    "url": "https://www.nytimes.com/2026/09/21/business/paramount-warner-bros-ellison.html",
+                    "ts": 1790013544,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "The Fuel That Feeds Europe’s Far Right: Nostalgia and Lost Pride",
+                    "url": "https://www.nytimes.com/2026/09/21/world/europe/germany-afd-far-right.html",
+                    "ts": 1790001931,
+                    "emo": "📰"
+                }
+            ]
+        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "AI already runs the farms, so we’re moving to the Moon",
-                    "url": "https://nypost.com/2026/09/16/opinion/ai-already-runs-the-farms-so-were-moving-to-the-moon/",
-                    "ts": 1789595094,
-                    "emo": "🧪"
+                    "title": "Disney woos visitors with $59 tickets as Universal, SeaWorld struggle with weaker attendance",
+                    "url": "https://nypost.com/2026/09/21/business/disney-woos-visitors-with-59-tickets-as-universal-seaworld-struggle-with-weaker-attendance/",
+                    "ts": 1790013407,
+                    "emo": "📰"
                 },
                 {
-                    "title": "California billionaire tax draws majority support in new poll — but there’s a big catch",
-                    "url": "https://nypost.com/2026/09/16/us-news/california-billionaire-tax-draws-majority-support-in-new-poll/",
-                    "ts": 1789594865,
+                    "title": "Jerry Jones’ bizarre celebration after Cowboys win: ‘Old man with money’",
+                    "url": "https://nypost.com/2026/09/21/sports/jerry-jones-bizarre-celebration-after-cowboys-win-old-man-with-money/",
+                    "ts": 1790013233,
                     "emo": "📰"
                 }
             ]
@@ -24,34 +42,16 @@
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Man in his 30s is arrested after teenage girl 'raped under bridge in daylight attack'",
-                    "url": "https://www.dailymail.com/news/article-16137229/Man-30s-arrested-teenage-girl-raped-bridge-daylight-attack.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1789594942,
-                    "emo": "🔥"
+                    "title": "Former Fox News producer Jennifer Eckhart dies by suicide at 36, six years after she accused network's former anchor Ed Henry of raping her",
+                    "url": "https://www.dailymail.com/media/article-16148987/jennifer-eckhart-fox-news-suicide.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1790013069,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Diddy's lawyers seek to withdraw as they accuse rapper of failure to pay and causing 'difficult' representation",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16136335/diddy-lawyers-drop-defamation-suit.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1789594846,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "Fed rate hike fails to calm troubled markets as Dow falls 600 points. Expect more sharp swings in stocks and bonds.",
-                    "url": "https://www.marketwatch.com/story/fed-rate-hike-fails-to-calm-troubled-markets-as-dow-falls-600-points-expect-more-sharp-swings-in-stocks-and-bonds-5ffb55fe?mod=mw_rss_topstories",
-                    "ts": 1789594800,
-                    "emo": "💰"
-                },
-                {
-                    "title": "Intel’s stock rises as investors hope memory chips can mark the next step in its turnaround",
-                    "url": "https://www.marketwatch.com/story/intels-stock-rises-as-investors-hope-memory-chips-can-mark-the-next-step-in-its-turnaround-a276608f?mod=mw_rss_topstories",
-                    "ts": 1789591980,
-                    "emo": "📰"
+                    "title": "When Saturday night TV was worth watching! As Strictly's revamp flops, the beloved shows from your childhood that don't exist anymore",
+                    "url": "https://www.dailymail.com/lifestyle/article-16147843/When-Saturday-night-TV-worth-watching-Strictlys-revamp-flops-beloved-shows-childhood-dont-exist-anymore.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1790013060,
+                    "emo": "🎭"
                 }
             ]
         },
@@ -60,51 +60,15 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "US-backed Israel-Morocco deal deepens Abraham Accords amid growing regional threats",
-                    "url": "https://www.foxnews.com/world/us-backed-israel-morocco-deal-deepens-abraham-accords-amid-growing-regional-threats",
-                    "ts": 1789594781,
-                    "emo": "🌍"
+                    "title": "Brandon Gill unloads on Democrats over illegal immigrant charged with raping teen: 'Collateral damage'",
+                    "url": "https://www.foxnews.com/politics/brandon-gill-unloads-democrats-illegal-immigrant-charged-raping-teen-collateral-damage",
+                    "ts": 1790012980,
+                    "emo": "🚨"
                 },
                 {
-                    "title": "Dermot Mulroney shares 'Young Guns' reunion photo with Emilio Estevez and original cast members",
-                    "url": "https://www.foxnews.com/entertainment/dermot-mulroney-shares-young-guns-reunion-photo-emilio-estevez-original-cast-members",
-                    "ts": 1789594423,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Trump demands 1% or lower interest rate after first Fed hike since 2023",
-                    "url": "https://www.cnbc.com/2026/09/16/trump-fed-interest-rate-warsh.html",
-                    "ts": 1789594138,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Analysis: How Trump could reignite the Fed independence fight after Warsh's rate hike",
-                    "url": "https://www.cnbc.com/2026/09/16/fed-interest-rates-kevin-warsh-trump.html",
-                    "ts": 1789592128,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "Rumors swirl around Xi Jinping health worries...",
-                    "url": "https://www.news.com.au/world/asia/c20a8d98b7ed85400c02f95fc22e9b33",
-                    "ts": 1789593756,
-                    "emo": "🧪"
-                },
-                {
-                    "title": "'He is not well'...",
-                    "url": "https://www.news.com.au/world/asia/c20a8d98b7ed85400c02f95fc22e9b33",
-                    "ts": 1789593756,
+                    "title": "Caesars Sportsbook Promo Code FOXNEWSDYW Unlocks 10x 100% Profit Boosts Ahead of Rams-Giants",
+                    "url": "https://www.foxnews.com/outkick-betting/caesars-sportsbook-promo-code-foxnewsdyw-unlocks-10x-100-profit-boosts-ahead-rams-giants",
+                    "ts": 1790012975,
                     "emo": "📰"
                 }
             ]
@@ -114,16 +78,52 @@
             "home": "https://thehill.com",
             "items": [
                 {
-                    "title": "Trump offers fiery response to Federal Reserve rate hike",
-                    "url": "https://thehill.com/homenews/administration/6093973-trump-demands-lower-rates-federal-reserve/",
-                    "ts": 1789592886,
+                    "title": "Ben Shapiro slams Bo French: JD Vance's family is Indian!  ",
+                    "url": "https://thehill.com/opinion/robbys-radar/6102197-bo-french-ut-racial-makeup/",
+                    "ts": 1790012962,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Fat Bear Week 2026 begins: What to know, how to vote",
+                    "url": "https://thehill.com/homenews/state-watch/6102183-fat-bear-week-2026-nps/",
+                    "ts": 1790012573,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "Meta’s stock is enjoying its best month in 13 years thanks to the company’s hot new AI assistant",
+                    "url": "https://www.marketwatch.com/story/metas-stock-is-enjoying-its-best-month-in-more-than-two-years-thanks-to-the-companys-hot-new-ai-assistant-bf106291?mod=mw_rss_topstories",
+                    "ts": 1790012700,
+                    "emo": "🧪"
+                },
+                {
+                    "title": "The future of retirement? Work until you die.",
+                    "url": "https://www.marketwatch.com/story/the-future-of-retirement-work-until-you-die-6d0e5341?mod=mw_rss_topstories",
+                    "ts": 1790010960,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Paramount and state AGs settle lawsuit, allowing Warner Bros. merger to proceed",
+                    "url": "https://www.cnbc.com/2026/09/21/paramount-reaches-settlement-over-warner-bros-merger.html",
+                    "ts": 1790012174,
                     "emo": "⚖️"
                 },
                 {
-                    "title": "More Americans say AI will hurt the environment than help it: Poll",
-                    "url": "https://thehill.com/policy/technology/6093816-americans-ai-negative-environmental-impacts-poll/",
-                    "ts": 1789592237,
-                    "emo": "🧪"
+                    "title": "AMD hits $1 trillion market cap for the first time as stock rides 5-day rally",
+                    "url": "https://www.cnbc.com/2026/09/21/amd-stock-1-trillion-value.html",
+                    "ts": 1790009260,
+                    "emo": "💰"
                 }
             ]
         },
@@ -132,52 +132,16 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Sony WH-1000XM6 headphones review: The brand's best noise cancellation yet",
-                    "url": "https://www.businessinsider.com/guides/tech/sony-wh-1000xm6-headphones-review",
-                    "ts": 1789591365,
-                    "emo": "📰"
+                    "title": "Celebrity deaths in 2026: Remembering the famous people we lost this year",
+                    "url": "https://www.businessinsider.com/celebrity-deaths-famous-people-who-died-2026",
+                    "ts": 1790011756,
+                    "emo": "🎭"
                 },
                 {
-                    "title": "Best Chewy promo codes in September 2026: Get a $25 gift card",
-                    "url": "https://www.businessinsider.com/guides/deals/best-chewy-promo-codes-coupons",
-                    "ts": 1789591197,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Fed Signals Another Rate Increase Could Be Coming",
-                    "url": "https://www.nytimes.com/2026/09/16/business/fed-interest-rates-dot-plot.html",
-                    "ts": 1789585966,
-                    "emo": "💰"
-                },
-                {
-                    "title": "Why the Fed Might Raise Interest Rates When Borrowing Costs Are Surging",
-                    "url": "https://www.nytimes.com/2026/09/16/business/economy/fed-interest-rates-borrowing-costs.html",
-                    "ts": 1789582764,
-                    "emo": "💰"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "Body found in search for missing three-year-old Noah Woods",
-                    "url": "https://www.bbc.co.uk/news/articles/cm93v1573vqro?at_medium=RSS&at_campaign=rss",
-                    "ts": 1789584609,
-                    "emo": "📰"
-                },
-                {
-                    "title": "'Grief can colour memory': Palace responds after Earl Spencer's claim in Diana book",
-                    "url": "https://www.bbc.co.uk/news/articles/c8e3rk47r4ego?at_medium=RSS&at_campaign=rss",
-                    "ts": 1789591590,
-                    "emo": "📰"
+                    "title": "Paramount clears the last major hurdle to buying Warner Bros. Discovery by settling the lawsuit brought by 12 states",
+                    "url": "https://www.businessinsider.com/paramount-skydance-lawsuit-settlement-warner-bros-discovery-deal-david-ellison-2026-9",
+                    "ts": 1790011586,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -186,16 +150,52 @@
             "home": "https://www.nbcnews.com",
             "items": [
                 {
-                    "title": "Fed raises interest rates for first time since 2023, defying Trump as inflation mounts",
-                    "url": "https://www.nbcnews.com/business/economy/fed-raises-rates-defying-trump-rcna598148",
-                    "ts": 1789581625,
-                    "emo": "⚖️"
+                    "title": "Paramount reaches deal with California, other states over Warner Bros. Discovery merger",
+                    "url": "https://www.nbcnews.com/business/media/paramount-reaches-settlement-states-warner-bros-discovery-merger-rcna598645",
+                    "ts": 1790011579,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Third victim identified as Los Angeles reels from deadly news helicopter crash",
-                    "url": "https://www.nbcnews.com/now/video/third-victim-identified-as-l-a-reels-from-deadly-news-helicopter-crash-269979205736",
-                    "ts": 1789580234,
+                    "title": "News networks refuse to provide pool coverage of White House after CNN was banned",
+                    "url": "https://www.nbcnews.com/now/video/news-networks-refuse-to-provide-pool-coverage-of-white-house-after-cnn-was-banned-270223429663",
+                    "ts": 1790007897,
                     "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "HOUTHIS ON THE MOVE...",
+                    "url": "https://www.nytimes.com/2026/09/20/world/middleeast/saudi-arabia-yemen-houthis-fighting.html?unlocked_article_code=1.C1E.psgL.z4tiI0ButqAI&smid=url-share",
+                    "ts": 1790009016,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Trump Caught in Dilemma Over Saudi Plea for Help...",
+                    "url": "https://www.nytimes.com/2026/09/20/us/politics/trump-yemen-houthis-red-sea-iran.html?unlocked_article_code=1.C1E.nzH-.PLE_VHHx3WIi&smid=url-share",
+                    "ts": 1790009016,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "Airlines criticise air traffic control as second glitch causes more disruption",
+                    "url": "https://www.bbc.co.uk/news/articles/cqp80p78mxx5o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1790008756,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Yemenis flee across Red Sea as Houthis and Saudi-backed forces escalate war",
+                    "url": "https://www.bbc.co.uk/news/articles/cw4gm7l742dmo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1790000056,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -204,16 +204,16 @@
             "home": "https://www.theguardian.com",
             "items": [
                 {
-                    "title": "Burnham warns of ‘difficult decisions’ in budget as inflation rises to 3.1%",
-                    "url": "https://www.theguardian.com/business/2026/sep/16/uk-inflation-rises-pressure-on-households-bank-of-england-interest-rates",
-                    "ts": 1789571869,
-                    "emo": "💰"
+                    "title": "Fears over interest rate rise and jobs send UK consumer confidence to three-year low",
+                    "url": "https://www.theguardian.com/business/2026/sep/21/interest-rate-rise-jobs-uk-consumer-confidence-budget",
+                    "ts": 1789992011,
+                    "emo": "📰"
                 },
                 {
-                    "title": "UK rents accelerate as London house prices fall, and inflation rises to 3.1% – as it happened",
-                    "url": "https://www.theguardian.com/business/live/2026/sep/16/uk-inflation-expected-to-have-risen-in-august-as-cost-of-living-squeeze-tightens-business-live",
-                    "ts": 1789567460,
-                    "emo": "💰"
+                    "title": "All the signs say another financial crisis is coming. Here’s why we need to prepare for it now | Larry Elliott",
+                    "url": "https://www.theguardian.com/commentisfree/2026/sep/21/financial-crisis-ai-oil-market-2008-crash-disruption",
+                    "ts": 1789974038,
+                    "emo": "📰"
                 }
             ]
         }
