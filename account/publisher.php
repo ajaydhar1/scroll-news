@@ -43,3 +43,67 @@ function publisher_verification_email(string $domain, string $url): string
         'This link expires in 24 hours and can only be used once.'
     );
 }
+
+// Same Google-hosted favicon service used for domain/publisher logos elsewhere on the site.
+function publisher_favicon_url(string $domain, int $size = 64): string
+{
+    return 'https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=' . rawurlencode('http://' . $domain) . '&size=' . $size;
+}
+
+function publisher_normalize_url(string $url): ?string
+{
+    $url = trim($url);
+
+    if ($url === '' || strlen($url) > 2048 || !filter_var($url, FILTER_VALIDATE_URL)) {
+        return null;
+    }
+
+    $scheme = strtolower((string) parse_url($url, PHP_URL_SCHEME));
+
+    if (!in_array($scheme, ['http', 'https'], true)) {
+        return null;
+    }
+
+    return $url;
+}
+
+function publisher_profile_url_fields(): array
+{
+    return [
+        'website_url' => 'Website',
+        'rss_url' => 'RSS Feed',
+        'x_url' => 'X (Twitter)',
+        'instagram_url' => 'Instagram',
+        'facebook_url' => 'Facebook',
+        'linkedin_url' => 'LinkedIn',
+        'youtube_url' => 'YouTube',
+        'tiktok_url' => 'TikTok',
+        'threads_url' => 'Threads',
+    ];
+}
+
+function publisher_find_verified(PDO $pdo, int $publisherId, int $userId): ?array
+{
+    $stmt = $pdo->prepare("SELECT p.id, p.domain, p.name FROM publishers p INNER JOIN publisher_users pu ON pu.publisher_id = p.id WHERE p.id = :publisher_id AND pu.user_id = :user_id AND pu.status = 'verified' LIMIT 1");
+    $stmt->execute([':publisher_id' => $publisherId, ':user_id' => $userId]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $row ?: null;
+}
+
+function publisher_empty_profile(): array
+{
+    return array_fill_keys(
+        array_merge(['description', 'location'], array_keys(publisher_profile_url_fields())),
+        null
+    );
+}
+
+function publisher_load_profile(PDO $pdo, int $publisherId): array
+{
+    $stmt = $pdo->prepare('SELECT description, location, website_url, rss_url, x_url, instagram_url, facebook_url, linkedin_url, youtube_url, tiktok_url, threads_url FROM publisher_profiles WHERE publisher_id = :publisher_id LIMIT 1');
+    $stmt->execute([':publisher_id' => $publisherId]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $row ?: publisher_empty_profile();
+}

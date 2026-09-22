@@ -23,3 +23,80 @@ body.account-page {
     color: white;
     padding: 4px;
 }
+
+.publisher-profile-panel {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.publisher-profile-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    object-fit: contain;
+    background: #fff;
+}
+
+html[data-ui-theme="dark"] .publisher-profile-panel {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.publisher-profile-modal-section {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #6c757d;
+    margin-bottom: 0.75rem;
+}
+
+.publisher-profile-modal-section:not(:first-child) {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+html[data-ui-theme="dark"] .publisher-profile-modal-section:not(:first-child) {
+    border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+/* .modal-content's flex-column only affects its direct child, which here is
+   the <form> wrapping header/body/footer — so the form itself must be the
+   flex column, letting .modal-body shrink and scroll while header/footer stay put. */
+#editProfileModal .modal-dialog {
+    display: flex;
+    max-height: calc(100vh - 3.5rem);
+}
+
+#editProfileModal .modal-content {
+    max-height: calc(100vh - 3.5rem);
+    overflow: hidden;
+}
+
+#editProfileModal .modal-content > form {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+#editProfileModal .modal-header,
+#editProfileModal .modal-footer {
+    flex-shrink: 0;
+}
+
+#editProfileModal .modal-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+@media (max-width: 575.98px) {
+    #editProfileModal .modal-dialog {
+        max-height: calc(100vh - 1rem);
+    }
+
+    #editProfileModal .modal-content {
+        max-height: calc(100vh - 1rem);
+    }
+}
