@@ -91,6 +91,81 @@ function publisher_find_verified(PDO $pdo, int $publisherId, int $userId): ?arra
     return $row ?: null;
 }
 
+// Normalizes a domain for hostname comparison: lowercase, strips a leading "www."
+function publisher_domain_for_matching(string $domain): string
+{
+    $domain = strtolower(trim($domain));
+
+    return preg_replace('/^www\./', '', $domain) ?? '';
+}
+
+// SQL expression that extracts a normalized (lowercase, no "www.") hostname from articles.url,
+// so publisher content can be matched by exact host rather than an unsafe substring/LIKE match.
+function publisher_article_host_sql_expr(): string
+{
+    return "regexp_replace(lower(regexp_replace(url, '^[a-zA-Z][a-zA-Z0-9+.-]*://(?:[^@/?#]*@)?([^/?#:]+).*$', '\\1')), '^www\\.', '')";
+}
+
+// Loads Content Statistics + the 5 most recent articles for a verified publisher's domain.
+// Returns [stats, articles] where stats = ['total_articles', 'analyzed_articles', 'latest_pub_date'].
+function publisher_load_content_overview(PDO $pdo, string $domain): array
+{
+    $hostExpr = publisher_article_host_sql_expr();
+
+    $stats = ['total_articles' => 0, 'analyzed_articles' => 0, 'latest_pub_date' => null];
+    $articles = [];
+
+    $statsStmt = $pdo->prepare("
+        SELECT COUNT(*) AS total_articles, COUNT(nlp) AS analyzed_articles, MAX(pub_date) AS latest_pub_date
+        FROM articles
+        WHERE deleted_at IS NULL AND url IS NOT NULL AND $hostExpr = :domain
+    ");
+    $statsStmt->execute([':domain' => $domain]);
+    $row = $statsStmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($row) {
+        $stats = [
+            'total_articles' => (int) $row['total_articles'],
+            'analyzed_articles' => (int) $row['analyzed_articles'],
+            'latest_pub_date' => $row['latest_pub_date'],
+        ];
+    }
+
+    if ($stats['total_articles'] > 0) {
+        $listStmt = $pdo->prepare("
+            SELECT id, url, title, pub_date, source_slug, nlp
+            FROM articles
+            WHERE deleted_at IS NULL AND url IS NOT NULL AND $hostExpr = :domain
+            ORDER BY pub_date DESC NULLS LAST
+            LIMIT 5
+        ");
+        $listStmt->execute([':domain' => $domain]);
+
+        foreach ($listStmt->fetchAll(PDO::FETCH_ASSOC) as $articleRow) {
+            $pubTs = $articleRow['pub_date'] ? strtotime((string) $articleRow['pub_date']) : false;
+            $category = $articleRow['source_slug'] ? ucfirst((string) $articleRow['source_slug']) : '';
+
+            // Same newsroom.php analyze link convention used on article cards elsewhere on the site.
+            $analyzeUrl = '/newsroom.php?' . http_build_query([
+                'url' => (string) $articleRow['url'],
+                'category' => $category,
+                'pub_date' => $pubTs !== false ? $pubTs : '',
+                'db' => 1,
+            ]);
+
+            $articles[] = [
+                'title' => $articleRow['title'],
+                'url' => $articleRow['url'],
+                'pub_date_human' => sn_format_pub_date($articleRow['pub_date']),
+                'is_analyzed' => !empty($articleRow['nlp']),
+                'analyze_url' => $analyzeUrl,
+            ];
+        }
+    }
+
+    return [$stats, $articles];
+}
+
 function publisher_empty_profile(): array
 {
     return array_fill_keys(

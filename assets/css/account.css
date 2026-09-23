@@ -42,6 +42,29 @@ html[data-ui-theme="dark"] .publisher-profile-panel {
     border-color: rgba(255, 255, 255, 0.12);
 }
 
+.publisher-stat-card,
+.publisher-article-card {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.publisher-stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.publisher-stat-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+html[data-ui-theme="dark"] .publisher-stat-card,
+html[data-ui-theme="dark"] .publisher-article-card {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
 .publisher-profile-modal-section {
     font-size: 0.8rem;
     text-transform: uppercase;

@@ -4,6 +4,7 @@ define('BASE_PATH', dirname(__DIR__));
 $theme_experiment_enabled = true;
 require_once BASE_PATH . '/auth/includes/require_auth.php';
 require_once __DIR__ . '/publisher.php';
+require_once BASE_PATH . '/core/___modules.php';
 
 $userId = (int) ($_SESSION['user_id'] ?? 0);
 $pdo = auth_db();
@@ -123,6 +124,21 @@ if ($openEditModal && $publisher) {
     }
 }
 
+$contentStats = ['total_articles' => 0, 'analyzed_articles' => 0, 'latest_pub_date' => null];
+$recentArticles = [];
+
+if ($publisher) {
+    $publisherDomain = publisher_domain_for_matching((string) $publisher['domain']);
+
+    if ($publisherDomain !== '') {
+        try {
+            [$contentStats, $recentArticles] = publisher_load_content_overview(getPdo(), $publisherDomain);
+        } catch (Throwable $e) {
+            error_log('Publisher content overview error: ' . $e->getMessage());
+        }
+    }
+}
+
 if (!$publisher) {
     http_response_code(403);
 }
@@ -234,9 +250,65 @@ if (!$publisher) {
                             </div>
                         </div>
 
+                        <h2 class="h5">Content Statistics</h2>
+                        <div class="row publisher-stats-row mb-4">
+                            <div class="col-6 col-md-4 mb-3">
+                                <div class="card publisher-stat-card h-100">
+                                    <div class="card-body text-center">
+                                        <div class="publisher-stat-value"><?= number_format($contentStats['total_articles']); ?></div>
+                                        <div class="publisher-stat-label text-muted">Total Articles</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 mb-3">
+                                <div class="card publisher-stat-card h-100">
+                                    <div class="card-body text-center">
+                                        <div class="publisher-stat-value"><?= number_format($contentStats['analyzed_articles']); ?></div>
+                                        <div class="publisher-stat-label text-muted">Analyzed Articles</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 mb-3">
+                                <div class="card publisher-stat-card h-100">
+                                    <div class="card-body text-center">
+                                        <div class="publisher-stat-value"><?= $contentStats['latest_pub_date'] ? publisher_h(sn_format_pub_date($contentStats['latest_pub_date'])) : '—'; ?></div>
+                                        <div class="publisher-stat-label text-muted">Latest Article</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="h5">Content Preview</h2>
+                        <?php if (!$recentArticles): ?>
+                            <p class="text-muted mb-4">No articles found for this publisher yet.</p>
+                        <?php else: ?>
+                            <div class="publisher-article-list mb-4">
+                                <?php foreach ($recentArticles as $article): ?>
+                                    <div class="card publisher-article-card mb-3">
+                                        <div class="card-body">
+                                            <h3 class="h6 mb-1"><?= publisher_h($article['title'] !== null && $article['title'] !== '' ? $article['title'] : '(untitled)'); ?></h3>
+                                            <p class="mb-2 text-muted small">
+                                                <?php if ($article['pub_date_human'] !== ''): ?>
+                                                    <?= publisher_h($article['pub_date_human']); ?>
+                                                <?php endif; ?>
+                                                <?php if ($article['is_analyzed']): ?>
+                                                    <span class="badge badge-success ml-1">Analyzed</span>
+                                                <?php else: ?>
+                                                    <span class="badge badge-secondary ml-1">Not analyzed</span>
+                                                <?php endif; ?>
+                                            </p>
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <a href="<?= publisher_h($article['url']); ?>" class="btn btn-secondary" target="_blank" rel="noopener">Read story</a>
+                                                <a href="<?= publisher_h($article['analyze_url']); ?>" class="btn btn-green btn-gray-border" data-loading>Analyze</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+
                         <h2 class="h5">Publisher Tools</h2>
                         <ul class="text-muted">
-                            <li>Content Statistics — Coming soon</li>
                             <li>Content Controls — Coming soon</li>
                             <li>Article Visibility — Coming soon</li>
                         </ul>

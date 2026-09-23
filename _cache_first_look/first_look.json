@@ -1,93 +1,21 @@
 {
-    "fetched_at": 1790013615,
+    "fetched_at": 1790183054,
     "feeds": [
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Paramount to Settle States’ Lawsuit, Clearing Way for Warner Bros. Merger",
-                    "url": "https://www.nytimes.com/2026/09/21/business/paramount-warner-bros-ellison.html",
-                    "ts": 1790013544,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "The Fuel That Feeds Europe’s Far Right: Nostalgia and Lost Pride",
-                    "url": "https://www.nytimes.com/2026/09/21/world/europe/germany-afd-far-right.html",
-                    "ts": 1790001931,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Disney woos visitors with $59 tickets as Universal, SeaWorld struggle with weaker attendance",
-                    "url": "https://nypost.com/2026/09/21/business/disney-woos-visitors-with-59-tickets-as-universal-seaworld-struggle-with-weaker-attendance/",
-                    "ts": 1790013407,
+                    "title": "Bruce Blakeman reveals his feelings about ex-wife’s $18K donation to Kathy Hochul’s campaign",
+                    "url": "https://nypost.com/2026/09/23/us-news/how-bruce-blakeman-feels-about-ex-wifes-kathy-hochul-campaign-donation/",
+                    "ts": 1790182930,
                     "emo": "📰"
                 },
                 {
-                    "title": "Jerry Jones’ bizarre celebration after Cowboys win: ‘Old man with money’",
-                    "url": "https://nypost.com/2026/09/21/sports/jerry-jones-bizarre-celebration-after-cowboys-win-old-man-with-money/",
-                    "ts": 1790013233,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Former Fox News producer Jennifer Eckhart dies by suicide at 36, six years after she accused network's former anchor Ed Henry of raping her",
-                    "url": "https://www.dailymail.com/media/article-16148987/jennifer-eckhart-fox-news-suicide.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1790013069,
-                    "emo": "📰"
-                },
-                {
-                    "title": "When Saturday night TV was worth watching! As Strictly's revamp flops, the beloved shows from your childhood that don't exist anymore",
-                    "url": "https://www.dailymail.com/lifestyle/article-16147843/When-Saturday-night-TV-worth-watching-Strictlys-revamp-flops-beloved-shows-childhood-dont-exist-anymore.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1790013060,
-                    "emo": "🎭"
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "Brandon Gill unloads on Democrats over illegal immigrant charged with raping teen: 'Collateral damage'",
-                    "url": "https://www.foxnews.com/politics/brandon-gill-unloads-democrats-illegal-immigrant-charged-raping-teen-collateral-damage",
-                    "ts": 1790012980,
-                    "emo": "🚨"
-                },
-                {
-                    "title": "Caesars Sportsbook Promo Code FOXNEWSDYW Unlocks 10x 100% Profit Boosts Ahead of Rams-Giants",
-                    "url": "https://www.foxnews.com/outkick-betting/caesars-sportsbook-promo-code-foxnewsdyw-unlocks-10x-100-profit-boosts-ahead-rams-giants",
-                    "ts": 1790012975,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Ben Shapiro slams Bo French: JD Vance's family is Indian!  ",
-                    "url": "https://thehill.com/opinion/robbys-radar/6102197-bo-french-ut-racial-makeup/",
-                    "ts": 1790012962,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Fat Bear Week 2026 begins: What to know, how to vote",
-                    "url": "https://thehill.com/homenews/state-watch/6102183-fat-bear-week-2026-nps/",
-                    "ts": 1790012573,
-                    "emo": "⚖️"
+                    "title": "Prince Harry returns to the US to cozy up the Clintons and warn of AI — only to be forced offstage",
+                    "url": "https://nypost.com/2026/09/23/us-news/prince-harry-returns-to-the-us-to-cozy-up-the-clintons-and-warn-of-ai-only-to-be-forced-offstage/",
+                    "ts": 1790182892,
+                    "emo": "🧪"
                 }
             ]
         },
@@ -96,15 +24,15 @@
             "home": "https://www.marketwatch.com",
             "items": [
                 {
-                    "title": "Meta’s stock is enjoying its best month in 13 years thanks to the company’s hot new AI assistant",
-                    "url": "https://www.marketwatch.com/story/metas-stock-is-enjoying-its-best-month-in-more-than-two-years-thanks-to-the-companys-hot-new-ai-assistant-bf106291?mod=mw_rss_topstories",
-                    "ts": 1790012700,
-                    "emo": "🧪"
+                    "title": "Social Security overpaid my 82-year-old mother by $20,000. What else is hiding in her finances?",
+                    "url": "https://www.marketwatch.com/story/she-gave-a-neighbor-2-000-social-security-overpaid-my-mother-82-by-20-000-what-else-is-hiding-in-her-finances-1b54977f?mod=mw_rss_topstories",
+                    "ts": 1790182800,
+                    "emo": "📰"
                 },
                 {
-                    "title": "The future of retirement? Work until you die.",
-                    "url": "https://www.marketwatch.com/story/the-future-of-retirement-work-until-you-die-6d0e5341?mod=mw_rss_topstories",
-                    "ts": 1790010960,
+                    "title": "Microsoft has ‘clearly turned the corner.’ How its stock can chart more gains.",
+                    "url": "https://www.marketwatch.com/story/microsoft-has-clearly-turned-the-corner-how-its-stock-can-chart-more-gains-b6156467?mod=mw_rss_topstories",
+                    "ts": 1790182680,
                     "emo": "📰"
                 }
             ]
@@ -114,70 +42,70 @@
             "home": "https://www.cnbc.com",
             "items": [
                 {
-                    "title": "Paramount and state AGs settle lawsuit, allowing Warner Bros. merger to proceed",
-                    "url": "https://www.cnbc.com/2026/09/21/paramount-reaches-settlement-over-warner-bros-merger.html",
-                    "ts": 1790012174,
-                    "emo": "⚖️"
+                    "title": "10-year Treasury yield leaps to fresh 19-year high after hot economic readings",
+                    "url": "https://www.cnbc.com/2026/09/23/treasury-yields-oil-inflation-fed.html",
+                    "ts": 1790182617,
+                    "emo": "📰"
                 },
                 {
-                    "title": "AMD hits $1 trillion market cap for the first time as stock rides 5-day rally",
-                    "url": "https://www.cnbc.com/2026/09/21/amd-stock-1-trillion-value.html",
-                    "ts": 1790009260,
-                    "emo": "💰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Celebrity deaths in 2026: Remembering the famous people we lost this year",
-                    "url": "https://www.businessinsider.com/celebrity-deaths-famous-people-who-died-2026",
-                    "ts": 1790011756,
-                    "emo": "🎭"
-                },
-                {
-                    "title": "Paramount clears the last major hurdle to buying Warner Bros. Discovery by settling the lawsuit brought by 12 states",
-                    "url": "https://www.businessinsider.com/paramount-skydance-lawsuit-settlement-warner-bros-discovery-deal-david-ellison-2026-9",
-                    "ts": 1790011586,
+                    "title": "Trump faces Xi as strains with allies complicate U.S. pressure on China",
+                    "url": "https://www.cnbc.com/2026/09/23/trump-xi-china-summit-allies.html",
+                    "ts": 1790182041,
                     "emo": "⚖️"
                 }
             ]
         },
         {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Paramount reaches deal with California, other states over Warner Bros. Discovery merger",
-                    "url": "https://www.nbcnews.com/business/media/paramount-reaches-settlement-states-warner-bros-discovery-merger-rcna598645",
-                    "ts": 1790011579,
-                    "emo": "📰"
+                    "title": "Argentina's president demands UN help with his country's 'national cause' of seizing the Falklands from Britain after Trump blanks Burnham's request to back UK sovereignty",
+                    "url": "https://www.dailymail.com/news/article-16153777/Trump-blanks-Burnham-Falklands-sovereignty-message.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1790182582,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "News networks refuse to provide pool coverage of White House after CNN was banned",
-                    "url": "https://www.nbcnews.com/now/video/news-networks-refuse-to-provide-pool-coverage-of-white-house-after-cnn-was-banned-270223429663",
-                    "ts": 1790007897,
+                    "title": "ANNABEL FENWICK ELLIOTT: I know women hate me. And there are two big, perfectly shaped and very pert reasons why...",
+                    "url": "https://www.dailymail.com/lifestyle/beauty/article-16153861/ANNABEL-FENWICK-ELLIOTT-women-hate-breasts-Sydney-Sweeney.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1790182311,
                     "emo": "📰"
                 }
             ]
         },
         {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "HOUTHIS ON THE MOVE...",
-                    "url": "https://www.nytimes.com/2026/09/20/world/middleeast/saudi-arabia-yemen-houthis-fighting.html?unlocked_article_code=1.C1E.psgL.z4tiI0ButqAI&smid=url-share",
-                    "ts": 1790009016,
+                    "title": "Travis Kelce reacts to Taylor Swift's viral 'that's my husband' moment during win over Colts",
+                    "url": "https://www.foxnews.com/outkick-sports/travis-kelce-reacts-taylor-swift-viral-thats-my-husband-moment-win-colts",
+                    "ts": 1790182543,
                     "emo": "📰"
                 },
                 {
-                    "title": "Trump Caught in Dilemma Over Saudi Plea for Help...",
-                    "url": "https://www.nytimes.com/2026/09/20/us/politics/trump-yemen-houthis-red-sea-iran.html?unlocked_article_code=1.C1E.nzH-.PLE_VHHx3WIi&smid=url-share",
-                    "ts": 1790009016,
-                    "emo": "⚖️"
+                    "title": "GOP challenger gets within single digits of blue-state gov despite Dem's massive advantage",
+                    "url": "https://www.foxnews.com/politics/gop-challenger-within-single-digits-blue-state-gov-despite-dem-massive-advantage",
+                    "ts": 1790182383,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Chicago mayor seeks to block data center expansion: ‘We are not for sale’",
+                    "url": "https://thehill.com/homenews/state-watch/6106716-chicago-mayor-seeks-to-block-data-center-expansion-we-are-not-for-sale/",
+                    "ts": 1790182331,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Bass trails Raman in Los Angeles mayor's race: Poll",
+                    "url": "https://thehill.com/homenews/campaign/6106533-raman-leads-bass-poll/",
+                    "ts": 1790181875,
+                    "emo": "📰"
                 }
             ]
         },
@@ -186,16 +114,70 @@
             "home": "https://www.bbc.com/news",
             "items": [
                 {
-                    "title": "Airlines criticise air traffic control as second glitch causes more disruption",
-                    "url": "https://www.bbc.co.uk/news/articles/cqp80p78mxx5o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1790008756,
+                    "title": "Home secretary says undetected migrant landings 'unacceptable'",
+                    "url": "https://www.bbc.co.uk/news/articles/cm5yjzj8l5k5o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1790181743,
                     "emo": "📰"
                 },
                 {
-                    "title": "Yemenis flee across Red Sea as Houthis and Saudi-backed forces escalate war",
-                    "url": "https://www.bbc.co.uk/news/articles/cw4gm7l742dmo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1790000056,
-                    "emo": "🔥"
+                    "title": "UK military jamming other nation's satellites to defend itself, BBC told",
+                    "url": "https://www.bbc.co.uk/news/articles/c32l8y8kygdvo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1790182871,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Surging yields and 7% mortgages: Investors and consumers are getting jittery as interest rates spike",
+                    "url": "https://www.businessinsider.com/stock-market-today-selloff-bond-yields-mortgage-rates-inflation-2026-9",
+                    "ts": 1790179536,
+                    "emo": "💰"
+                },
+                {
+                    "title": "A family of 5 left Brooklyn to travel in an $18,000 RV full time. See inside their custom space.",
+                    "url": "https://www.businessinsider.com/family-of-5-left-brooklyn-travel-in-rv-full-time-2026-9",
+                    "ts": 1790178714,
+                    "emo": "🧪"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "10-year yield leaps to 19-year high...",
+                    "url": "https://www.cnbc.com/2026/09/23/treasury-yields-oil-inflation-fed.html",
+                    "ts": 1790179116,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Mortgage rates surge above 7%...",
+                    "url": "https://www.msn.com/en-us/money/economy/us-fixed-30-year-mortgage-rate-jumps-to-7-12-mba-says/ar-AA2cOWxy",
+                    "ts": 1790179116,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Iranian president claims they are 'victims of terrorism' in United Nations speech",
+                    "url": "https://www.nbcnews.com/video/iranian-president-claims-they-are-victims-of-terrorism-in-united-nations-speech-270370373894",
+                    "ts": 1790178784,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Trump Welcomes Xi Jinping After UNGA Speech Threatening Iran",
+                    "url": "https://www.today.com/video/trump-welcomes-xi-jinping-after-unga-speech-threatening-iran-270353989626",
+                    "ts": 1790161775,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -204,15 +186,33 @@
             "home": "https://www.theguardian.com",
             "items": [
                 {
-                    "title": "Fears over interest rate rise and jobs send UK consumer confidence to three-year low",
-                    "url": "https://www.theguardian.com/business/2026/sep/21/interest-rate-rise-jobs-uk-consumer-confidence-budget",
-                    "ts": 1789992011,
+                    "title": "Three international bodies warn of risks of rising debt and soaring borrowing in major economies",
+                    "url": "https://www.theguardian.com/business/2026/sep/23/oecd-global-economy-resilient-iran-war",
+                    "ts": 1790155672,
                     "emo": "📰"
                 },
                 {
-                    "title": "All the signs say another financial crisis is coming. Here’s why we need to prepare for it now | Larry Elliott",
-                    "url": "https://www.theguardian.com/commentisfree/2026/sep/21/financial-crisis-ai-oil-market-2008-crash-disruption",
-                    "ts": 1789974038,
+                    "title": "Critics of UK government’s economic forecaster are ‘shooting the messenger’, say MPs",
+                    "url": "https://www.theguardian.com/business/2026/sep/23/obr-treasury-committee-shooting-messenger-mps-economic-forecaster-uk",
+                    "ts": 1790139616,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "How China’s Leader Plans to Win the Future With A.I.",
+                    "url": "https://www.nytimes.com/2026/09/23/world/asia/china-ai-economy-xi-jinping.html",
+                    "ts": 1790154009,
+                    "emo": "🌍"
+                },
+                {
+                    "title": "Hackers Say They Stole Thousands of Sensitive F.B.I. Personnel Records",
+                    "url": "https://www.nytimes.com/2026/09/23/us/politics/fbi-hack-shinyhunters-data.html",
+                    "ts": 1790181534,
                     "emo": "📰"
                 }
             ]
