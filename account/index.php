@@ -177,8 +177,8 @@ $communityTrailSharingEnabled = sn_community_trail_sharing_enabled(auth_db(), (i
                                 </div>
                             <?php endif; ?>
 
-                            <form method="post">
-                                <div class="row align-items-end">
+                            <form method="post" class="profile-information-form">
+                                <div class="row align-items-end profile-information-row">
                                     <div class="col-md-8">
                                         <label class="small text-muted mb-1">
                                             Display Name

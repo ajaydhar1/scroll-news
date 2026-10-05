@@ -19,6 +19,26 @@ body.account-page {
     text-decoration: underline;
 }
 
+.profile-information-form {
+    max-width: 760px;
+}
+
+.profile-information-row {
+    margin-right: -6px;
+    margin-left: -6px;
+}
+
+.profile-information-row > [class*="col-"] {
+    padding-right: 6px;
+    padding-left: 6px;
+}
+
+@media (max-width: 767.98px) {
+    .profile-information-row > [class*="col-"] + [class*="col-"] {
+        margin-top: 0.5rem;
+    }
+}
+
 .badges .badge {
     color: white;
     padding: 4px;
