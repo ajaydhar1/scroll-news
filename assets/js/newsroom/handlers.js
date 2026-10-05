@@ -258,7 +258,7 @@ function applyWiki(wikiResp) {
         $(this).attr("data-hashtext", $(this).text());
     });
 
-    $(".topics").attr("data-step","11");
+    $(".topics").attr("data-step","13");
     $(".topics").attr("data-intro","Dimensions of this story. Connect some of these dots with each other and across other stories to develop a mental model of the world.");
 
 
