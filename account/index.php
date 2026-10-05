@@ -44,6 +44,10 @@ $verifiedPublisherStmt->execute([
 ]);
 $verifiedPublisher = $verifiedPublisherStmt->fetch(PDO::FETCH_ASSOC) ?: null;
 
+$memberSinceStmt = auth_db()->prepare('SELECT created_at FROM users WHERE id = :user_id LIMIT 1');
+$memberSinceStmt->execute([':user_id' => $userId]);
+$memberSince = $memberSinceStmt->fetchColumn();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +57,7 @@ $verifiedPublisher = $verifiedPublisherStmt->fetch(PDO::FETCH_ASSOC) ?: null;
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Manage your Scroll News account, saved articles, reading history, and personalization settings." />
+    <meta name="description" content="Manage your Scroll News account, saved headlines, reading history, and News Trails." />
     <meta name="author" content="Scroll News" />
     <title>Account — Scroll News</title>
 
@@ -123,7 +127,7 @@ $verifiedPublisher = $verifiedPublisherStmt->fetch(PDO::FETCH_ASSOC) ?: null;
                             </span>
 
                             <span class="badge bg-dark">
-                                📅 Member Since May 2026
+                                📅 Member Since <?= $memberSince ? htmlspecialchars(date('F Y', strtotime($memberSince)), ENT_QUOTES, 'UTF-8') : 'Unknown' ?>
                             </span>
 
                             <span class="badge bg-primary">
@@ -133,7 +137,7 @@ $verifiedPublisher = $verifiedPublisherStmt->fetch(PDO::FETCH_ASSOC) ?: null;
                     </header>
 
                     <div class="alert alert-success auth-alert" role="alert">
-                        Signed in securely. Account features are being connected.
+                        Your account settings and reader activity tools are ready to use. Publisher tools are available to verified publishers.
                     </div>
 
                     <div class="card border-0 shadow-sm mb-3">
@@ -213,19 +217,6 @@ $verifiedPublisher = $verifiedPublisherStmt->fetch(PDO::FETCH_ASSOC) ?: null;
                                         ]);
                                         $lastSession = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                                        $stmt = $pdo->prepare("
-                                            SELECT created_at
-                                            FROM users
-                                            WHERE id = :user_id
-                                            LIMIT 1
-                                        ");
-                                        $stmt->execute([
-                                            ':user_id' => $userId,
-                                        ]);
-
-                                        $userAccount = $stmt->fetch(PDO::FETCH_ASSOC);
-                                        $memberSince = $userAccount['created_at'] ?? null;
-
                                         function h($value): string
                                         {
                                             return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8');
@@ -284,7 +275,6 @@ $verifiedPublisher = $verifiedPublisherStmt->fetch(PDO::FETCH_ASSOC) ?: null;
                                         </li>
                                         <li><a href="/auth/change-password.php" class="account-link">Change password</a></li>
                                     </ul>
-                                    <button class="btn btn-outline-secondary btn-sm" disabled>Connected</button>
                                 </div>
                             </div>
                         </div>
@@ -306,7 +296,6 @@ $verifiedPublisher = $verifiedPublisherStmt->fetch(PDO::FETCH_ASSOC) ?: null;
                                         <li><a href="/account/shuffle-history.php" class="account-link" data-loading>Shuffle history</a></li>
                                         <li><a href="/control-room.php" class="account-link">Your news pattern</a></li>
                                     </ul>
-                                    <button class="btn btn-outline-secondary btn-sm" disabled>Connected</button>
                                 </div>
                             </div>
                         </div>
@@ -327,7 +316,6 @@ $verifiedPublisher = $verifiedPublisherStmt->fetch(PDO::FETCH_ASSOC) ?: null;
                                         <li><a href="/news-trails.php?base=community" class="account-link" data-loading>Community Trails</a></li>
                                         <li><a href="/news-trails.php" class="account-link" data-loading>Signal paths through the news</a></li>
                                     </ul>
-                                    <button class="btn btn-outline-secondary btn-sm" disabled>Connected</button>
                                 </div>
                             </div>
                         </div>
@@ -337,10 +325,10 @@ $verifiedPublisher = $verifiedPublisherStmt->fetch(PDO::FETCH_ASSOC) ?: null;
                                 <div class="card-body">
                                     <h2 class="h5 mb-2">
                                         <i class="fa-solid fa-tower-broadcast mr-2"></i>Publisher Tools
-                                        <span class="badge badge-light ml-1">Coming soon</span>
+                                        <span class="badge badge-success ml-1">Core tools available</span>
                                     </h2>
                                     <p class="text-muted mb-2">
-                                        Manage feeds, publisher verification, content rights, and distribution tools.
+                                        Verify publisher access, edit your publisher profile, and preview ingested articles.
                                     </p>
                                     <ul class="text-muted mb-3">
                                         <li>
@@ -357,11 +345,10 @@ $verifiedPublisher = $verifiedPublisherStmt->fetch(PDO::FETCH_ASSOC) ?: null;
                                                 </a>
                                             </li>
                                         <?php endif; ?>
-                                        <li>RSS feed submissions</li>
-                                        <li>Article removals</li>
-                                        <li>Creator profile</li>
+                                        <li>Feed onboarding and corrections/removal support through Publisher Pro</li>
+                                        <li>Self-service feed submissions and article controls are not available yet</li>
+                                        <li>Public publisher profile pages are not available yet</li>
                                     </ul>
-                                    <button class="btn btn-outline-secondary btn-sm" disabled>Coming Soon</button>
                                 </div>
                             </div>
                         </div>
