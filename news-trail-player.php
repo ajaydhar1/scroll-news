@@ -4,6 +4,7 @@ define('BASE_PATH', __DIR__);
 $theme_experiment_enabled = true;
 
 require_once BASE_PATH . "/core/___modules.php";
+require_once BASE_PATH . '/core/community_trail_privacy.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -68,7 +69,7 @@ $endDate = date('Y-m-d H:i:s', strtotime($trailDate . ' +1 day'));
 
 // Get user id from trail id
 $userStmt = $pdo->prepare("
-    SELECT id
+    SELECT id, email
     FROM users
     WHERE public_trail_key = :trail_user
       AND deleted_at IS NULL
@@ -87,6 +88,24 @@ if (!$trailOwner) {
 }
 
 $trailUserId = (int) $trailOwner['id'];
+$sessionUserId = isset($_SESSION['user_id']) && is_numeric($_SESSION['user_id'])
+    ? (int) $_SESSION['user_id']
+    : null;
+
+if (!sn_trail_playback_authorized($pdo, $base, $trailUserId, (string) $trailOwner['email'], $sessionUserId)) {
+    http_response_code(404);
+    exit('Trail not found.');
+}
+
+if ($base === 'community' && !sn_community_trail_date_is_recent($trailDate)) {
+    http_response_code(404);
+    exit('Trail not found.');
+}
+
+$communityReadDateFilter = $base === 'community' ? "AND viewed_at >= NOW() - INTERVAL '2 months'" : '';
+$communitySavedDateFilter = $base === 'community' ? "AND saved_at >= NOW() - INTERVAL '2 months'" : '';
+$communitySearchDateFilter = $base === 'community' ? "AND created_at >= NOW() - INTERVAL '2 months'" : '';
+$communityShuffleDateFilter = $base === 'community' ? "AND ss.created_at >= NOW() - INTERVAL '2 months'" : '';
 
 // get trail links
 // get trail links
@@ -105,6 +124,7 @@ $stmt = $pdo->prepare("
           AND deleted_at IS NULL
           AND url IS NOT NULL
           AND url <> ''
+          $communityReadDateFilter
           AND (viewed_at - INTERVAL '4 hours')::date = :trail_date
 
         UNION ALL
@@ -122,6 +142,7 @@ $stmt = $pdo->prepare("
           AND deleted_at IS NULL
           AND headline_url IS NOT NULL
           AND headline_url <> ''
+          $communitySavedDateFilter
           AND (saved_at - INTERVAL '4 hours')::date = :trail_date
 
         UNION ALL
@@ -144,6 +165,7 @@ $stmt = $pdo->prepare("
             AND shuffle_session_uuid IS NULL
             AND query IS NOT NULL
             AND query <> ''
+            $communitySearchDateFilter
             AND (created_at - INTERVAL '4 hours')::date = :trail_date
 
         UNION ALL
@@ -176,6 +198,7 @@ $stmt = $pdo->prepare("
         WHERE ss.user_id = :user_id
           AND ss.deleted_at IS NULL
           AND ss.source_context IN ('search_results', 'browse_news_modal')
+          $communityShuffleDateFilter
           AND (ss.created_at - INTERVAL '4 hours')::date = :trail_date
     ),
 
@@ -199,6 +222,11 @@ $stmt->execute([
 ]);
 
 $trailItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+if ($base === 'community' && count($trailItems) < 3) {
+    http_response_code(404);
+    exit('Trail not found.');
+}
 
 $seenTrailUrls = [];
 $dedupedTrailItems = [];

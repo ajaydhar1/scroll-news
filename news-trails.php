@@ -4,6 +4,7 @@ define('BASE_PATH', __DIR__);
 $theme_experiment_enabled = true;
 
 require_once BASE_PATH . "/core/___modules.php";
+require_once BASE_PATH . '/core/community_trail_privacy.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -13,9 +14,28 @@ $pdo = _pdo_or_null();
 //$currentUser = current_user() ?? null;
 $currentUserId = $_SESSION['user_id'] ?? null;
 
-$editorEmails = [
-    'ajaytest2@sharklasers.com',
-];
+$editorEmails = sn_community_trail_editor_emails();
+
+$communitySharingEnabled = false;
+if ($pdo && $currentUserId) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'update_community_trail_sharing') {
+        if (!hash_equals(sn_community_trail_csrf_token(), (string) ($_POST['csrf_token'] ?? ''))) {
+            http_response_code(403);
+            exit('Invalid request token.');
+        }
+
+        sn_set_community_trail_sharing(
+            $pdo,
+            (int) $currentUserId,
+            ($_POST['community_trail_sharing'] ?? '') === '1'
+        );
+
+        header('Location: /news-trails.php?base=community&sharing_updated=1');
+        exit;
+    }
+
+    $communitySharingEnabled = sn_community_trail_sharing_enabled($pdo, (int) $currentUserId);
+}
 
 $activeBase = $_GET['base'] ?? 'all';
 
@@ -74,6 +94,8 @@ function fetchTrails(PDO $pdo, string $base, ?int $currentUserId, array $editorE
             $conditions[] = 'u.id <> :current_user_id';
             $params[':current_user_id'] = $currentUserId;
         }
+
+        $conditions[] = 'u.community_trail_sharing IS TRUE';
 
         $where = !empty($conditions)
             ? 'WHERE ' . implode(' AND ', $conditions)
@@ -497,6 +519,28 @@ function renderEmptyState(
         <?php if ($activeBase === 'all' || $activeBase === 'community'): ?>
             <section class="mb-5">
                 <h2 class="h5 mb-3"><i class="fa-solid fa-users mr-2"></i> Community Trails</h2>
+                <div class="border rounded p-3 mb-4 bg-light">
+                    <h3 class="h6 mb-2">Community Trail sharing</h3>
+                    <p class="text-muted mb-3">
+                        When enabled, other visitors can see your Community Trails, including activity dates and counts, opened or saved article titles and links, search queries, and shuffle activity. A portion of your display name may appear. Your account email is not shown as a profile field, but information you include in a search query or article link may be visible.
+                    </p>
+                    <?php if ($currentUserId): ?>
+                        <?php if (isset($_GET['sharing_updated'])): ?>
+                            <div class="alert alert-success py-2" role="status">Your Community Trail sharing preference was updated.</div>
+                        <?php endif; ?>
+                        <form method="post" action="/news-trails.php?base=community" class="mb-0">
+                            <input type="hidden" name="action" value="update_community_trail_sharing" />
+                            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(sn_community_trail_csrf_token(), ENT_QUOTES, 'UTF-8') ?>" />
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="communityTrailSharing" name="community_trail_sharing" value="1" <?= $communitySharingEnabled ? 'checked' : '' ?> />
+                                <label class="form-check-label" for="communityTrailSharing">Allow my Community Trails to be visible to other visitors</label>
+                            </div>
+                            <button type="submit" class="btn btn-outline-primary btn-sm">Save preference</button>
+                        </form>
+                    <?php else: ?>
+                        <p class="mb-0"><a href="/auth/login.php">Sign in</a> to manage whether your activity can appear in Community Trails.</p>
+                    <?php endif; ?>
+                </div>
                 <div class="row">
                     <?php if (!empty($communityTrails)): ?>
                         <?php foreach ($communityTrails as $trail): ?>

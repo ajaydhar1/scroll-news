@@ -115,7 +115,7 @@ require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
                 <header class="mb-5">
                     <h1 class="mb-3">Privacy Policy</h1>
                     <p class="text-muted mb-0">
-                    <strong>Last Updated:</strong> August 1, 2025
+                    <strong>Last Updated:</strong> October 5, 2026
                     </p>
                 </header>
 
@@ -129,12 +129,10 @@ require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
                 <section class="mb-5">
                     <h4 class="fw-bold mb-3">1. Data We Collect</h4>
                     <p>
-                    We do <strong>not</strong> collect personal information such as names or email
-                    addresses at this time.
+                    When you create an account, Scroll News stores your email address and any display name you provide, along with account activity such as reading history, saved headlines, searches, and shuffle sessions.
                     </p>
                     <p>
-                    We may use basic, non-personal analytics to understand general site usage,
-                    including page views, device type, and browser information.
+                    Community Trail sharing is off by default. If you turn it on in your account or on the News Trails page, other visitors may view your Community Trails, including activity dates and counts, article titles and links from reading or saved activity, search queries, and shuffle activity. A portion of your display name may appear with a trail; your account email and internal account ID are not shown as profile fields. Information you include in a search query or article link may still be visible. Turning sharing off prevents your Community Trails from being listed or played publicly.
                     </p>
                 </section>
 

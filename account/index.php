@@ -5,11 +5,28 @@ $theme_experiment_enabled = true;
 
 require_once __DIR__ . '/../auth/includes/require_auth.php';
 require_once __DIR__ . '/../auth/includes/auth_db.php';
+require_once BASE_PATH . '/core/community_trail_privacy.php';
 
 $userEmail = $_SESSION['user_email'] ?? '';
 $displayName = $_SESSION['display_name'] ?? '';
 $userId = $_SESSION['user_id'] ?? null;
 
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'update_community_trail_sharing') {
+    if (!hash_equals(sn_community_trail_csrf_token(), (string) ($_POST['csrf_token'] ?? ''))) {
+        http_response_code(403);
+        exit('Invalid request token.');
+    }
+
+    sn_set_community_trail_sharing(
+        auth_db(),
+        (int) $userId,
+        ($_POST['community_trail_sharing'] ?? '') === '1'
+    );
+
+    header('Location: /account/?trail_sharing_updated=1');
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -47,6 +64,7 @@ $verifiedPublisher = $verifiedPublisherStmt->fetch(PDO::FETCH_ASSOC) ?: null;
 $memberSinceStmt = auth_db()->prepare('SELECT created_at FROM users WHERE id = :user_id LIMIT 1');
 $memberSinceStmt->execute([':user_id' => $userId]);
 $memberSince = $memberSinceStmt->fetchColumn();
+$communityTrailSharingEnabled = sn_community_trail_sharing_enabled(auth_db(), (int) $userId);
 
 ?>
 <!DOCTYPE html>
@@ -316,6 +334,24 @@ $memberSince = $memberSinceStmt->fetchColumn();
                                         <li><a href="/news-trails.php?base=community" class="account-link" data-loading>Community Trails</a></li>
                                         <li><a href="/news-trails.php" class="account-link" data-loading>Signal paths through the news</a></li>
                                     </ul>
+                                    <div class="border rounded p-3 bg-light">
+                                        <h3 class="h6 mb-2">Community Trail sharing</h3>
+                                        <p class="text-muted small mb-3">
+                                            When enabled, other visitors can see your Community Trails, including activity dates and counts, opened or saved article titles and links, search queries, and shuffle activity. A portion of your display name may appear. Your account email is not shown as a profile field, but information you include in a search query or article link may be visible.
+                                        </p>
+                                        <?php if (isset($_GET['trail_sharing_updated'])): ?>
+                                            <div class="alert alert-success py-2" role="status">Your Community Trail sharing preference was updated.</div>
+                                        <?php endif; ?>
+                                        <form method="post" action="/account/" class="mb-0">
+                                            <input type="hidden" name="action" value="update_community_trail_sharing" />
+                                            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(sn_community_trail_csrf_token(), ENT_QUOTES, 'UTF-8') ?>" />
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="accountCommunityTrailSharing" name="community_trail_sharing" value="1" <?= $communityTrailSharingEnabled ? 'checked' : '' ?> />
+                                                <label class="form-check-label" for="accountCommunityTrailSharing">Allow my Community Trails to be visible to other visitors</label>
+                                            </div>
+                                            <button type="submit" class="btn btn-outline-primary btn-sm">Save preference</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

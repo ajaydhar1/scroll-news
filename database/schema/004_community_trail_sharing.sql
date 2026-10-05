@@ -1,0 +1,2 @@
+ALTER TABLE users
+ADD COLUMN community_trail_sharing BOOLEAN NOT NULL DEFAULT FALSE;
