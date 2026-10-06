@@ -160,39 +160,6 @@ function build_search_url(?string $paramsJson, string $fallbackQuery): string
     <link href="/assets/css/account.css?v=<?= filemtime(BASE_PATH . '/assets/css/account.css') ?>" rel="stylesheet" />
 
     <style>
-        .reading-history-header {
-            background:
-                radial-gradient(circle at top left, rgba(32, 170, 89, 0.18), transparent 32%),
-                radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.06), transparent 28%),
-                linear-gradient(135deg, #1d2125 0%, #2a2f35 55%, #343a40 100%);
-
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 1rem;
-            padding: 1.5rem;
-
-            color: #f8f9fa;
-        }
-
-        .reading-history-header .text-muted {
-            color: rgba(255, 255, 255, 0.72) !important;
-        }
-
-        .reading-history-header h1 {
-            color: #ffffff;
-        }
-
-        .reading-history-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 999px;
-            background: rgba(32, 170, 89, 0.12);
-            color: #198754;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-        }
-
         .history-card {
             transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
@@ -287,26 +254,21 @@ function build_search_url(?string $paramsJson, string $fallbackQuery): string
             <div class="auth-card card border-0 rounded-3">
                 <div class="card-body">
 
-                    <div class="reading-history-header mb-4 d-flex justify-content-between align-items-start flex-wrap">
-                        <div>
-                            <div class="reading-history-icon mb-2">
-                                <i class="fas fa-search"></i>
-                            </div>
-                            <h1 class="mb-2">Search History</h1>
-                            <p class="text-muted mb-0">
-                                Review, rerun, or delete searches from your Scroll News account.
-                            </p>
-                        </div>
+                    <header class="sn-page-header">
+                        <h1>Search History</h1>
+                        <p>Review, rerun, or delete searches from your Scroll News account.</p>
+                    </header>
 
-                        <?php if ($total > 0): ?>
-                            <form method="post" class="mt-3 mt-md-0" onsubmit="return confirm('Clear all search history? This cannot be undone.');">
+                    <?php if ($total > 0): ?>
+                        <div class="account-page-toolbar account-page-toolbar--end mb-3">
+                            <form method="post" onsubmit="return confirm('Clear all search history? This cannot be undone.');">
                                 <input type="hidden" name="action" value="clear_all">
-                                <button type="submit" class="btn btn-outline-light btn-sm">
+                                <button type="submit" class="btn btn-outline-secondary btn-sm account-page-toolbar__button">
                                     Clear all history
                                 </button>
                             </form>
-                        <?php endif; ?>
-                    </div>
+                        </div>
+                    <?php endif; ?>
 
                     <?php if ($errorMsg): ?>
                         <div class="alert alert-danger">

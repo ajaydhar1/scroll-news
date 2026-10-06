@@ -611,15 +611,9 @@ function renderEmptyState(
 
     <main class="container py-5">
 
-        <header class="mb-5 text-center">
-            <h1 class="h2 mb-2"><i class="fa-solid fa-route mr-1"></i> News Trails</h1>
-            <div class="row justify-content-center">
-                <div class="col-lg-5">
-                    <p class="text-muted mb-0">
-                        Move through grouped news journeys built from reading history, saved headlines, searches, and shuffles.
-                    </p>
-                </div>
-            </div>
+        <header class="sn-page-header sn-page-header--no-toolbar">
+            <h1>News Trails</h1>
+            <p>Move through grouped news journeys built from reading history, saved headlines, searches, and shuffles.</p>
         </header>
 
         <?php if ($activeBase === 'all' || $activeBase === 'personal'): ?>

@@ -19,6 +19,81 @@ body.account-page {
     text-decoration: underline;
 }
 
+.sn-page-header {
+    margin-bottom: 1.5rem;
+}
+
+.sn-page-header--no-toolbar {
+    margin-bottom: 2rem;
+}
+
+.sn-page-header::before {
+    content: "";
+    display: block;
+    width: 1.75rem;
+    height: 3px;
+    margin-bottom: 0.75rem;
+    border-radius: 2px;
+    background: #20aa59;
+}
+
+.sn-page-header h1 {
+    margin: 0 0 0.5rem;
+    color: #212529;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.sn-page-header p {
+    max-width: 60ch;
+    margin: 0;
+    color: #5f6b72;
+    font-size: 1rem;
+    line-height: 1.45;
+}
+
+.account-page-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+}
+
+.account-page-toolbar__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin-left: auto;
+}
+
+.account-page-toolbar__button {
+    display: inline-flex;
+    min-width: 8rem;
+    min-height: 31px;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.account-page-toolbar--end {
+    justify-content: flex-end;
+}
+
+.account-page-toolbar__summary,
+.account-page-toolbar__count {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+@media (max-width: 575.98px) {
+    .account-page-toolbar {
+        align-items: flex-start;
+    }
+}
+
 .profile-information-form {
     max-width: 760px;
 }

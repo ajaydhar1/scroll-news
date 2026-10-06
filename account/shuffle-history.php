@@ -146,37 +146,6 @@ function shuffle_view_url(array $row): string
     <link href="/assets/css/account.css?v=<?= filemtime(BASE_PATH . '/assets/css/account.css') ?>" rel="stylesheet" />
 
     <style>
-        .shuffle-history-header {
-            background:
-                radial-gradient(circle at top left, rgba(32, 170, 89, 0.18), transparent 32%),
-                radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.06), transparent 28%),
-                linear-gradient(135deg, #1d2125 0%, #2a2f35 55%, #343a40 100%);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            color: #f8f9fa;
-        }
-
-        .shuffle-history-header .text-muted {
-            color: rgba(255, 255, 255, 0.72) !important;
-        }
-
-        .shuffle-history-header h1 {
-            color: #ffffff;
-        }
-
-        .shuffle-history-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 999px;
-            background: rgba(32, 170, 89, 0.12);
-            color: #198754;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-        }
-
         .shuffle-history-card {
             transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
@@ -202,49 +171,25 @@ function shuffle_view_url(array $row): string
         <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
         <div class="container py-4">
-            <div class="row">
-                <div class="col-lg-9 mx-auto">
+                    <header class="sn-page-header">
+                        <h1>Shuffle History</h1>
+                        <p>Revisit AI-powered shuffle sessions from Search and Browse News.</p>
+                    </header>
 
-                    <div class="shuffle-history-header mb-4">
-                        <div class="d-flex flex-wrap justify-content-between align-items-start">
-
-                            <div class="d-flex align-items-start">
-                                <div class="shuffle-history-icon mr-3">
-                                    <i class="fas fa-random"></i>
-                                </div>
-
-                                <div>
-                                    <p class="text-muted small mb-1">Your discovery history</p>
-
-                                    <h1 class="h3 mb-2">Shuffle History</h1>
-
-                                    <p class="text-muted mb-0">
-                                        Revisit AI-powered shuffle sessions from Search and Browse News.
-                                    </p>
-
-                                    <?php if ($search !== ''): ?>
-                                        <div class="small text-muted mt-2">
-                                            Search results for
-                                            <strong>
-                                                "<?= htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>"
-                                            </strong>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
+                    <div class="account-page-toolbar mb-3">
+                        <?php if ($search !== ''): ?>
+                            <div class="account-page-toolbar__summary">
+                                Search results for <strong>"<?= htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>"</strong>
                             </div>
-
-                            <div class="mt-3 mt-md-0 text-md-right">
-                                <button class="btn btn-outline-secondary btn-sm" disabled>
-                                    <i class="fa-solid fa-trash-can mr-1"></i>
-                                    Clear History
-                                </button>
-
-                                <div class="text-muted small mt-2">
-                                    <?= number_format($totalSessions) ?>
-                                    shuffle session<?= $totalSessions === 1 ? '' : 's' ?>
-                                </div>
+                        <?php endif; ?>
+                        <div class="account-page-toolbar__actions">
+                            <button class="btn btn-outline-secondary btn-sm account-page-toolbar__button" disabled>
+                                <i class="fa-solid fa-trash-can mr-1"></i>
+                                Clear History
+                            </button>
+                            <div class="account-page-toolbar__count">
+                                <?= number_format($totalSessions) ?> shuffle session<?= $totalSessions === 1 ? '' : 's' ?>
                             </div>
-
                         </div>
                     </div>
 
@@ -393,8 +338,6 @@ function shuffle_view_url(array $row): string
                         <a href="/auth/logout.php" class="btn btn-outline-secondary btn-sm">Sign Out</a>
                     </div>
 
-                </div>
-            </div>
         </div>
 
         <?php require_once BASE_PATH . '/views/partials/___footer.php'; ?>

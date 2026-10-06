@@ -166,39 +166,6 @@ function pageUrl(int $page): string
     <link href="/assets/css/account.css?v=<?= filemtime(BASE_PATH . '/assets/css/account.css') ?>" rel="stylesheet" />
 
     <style>
-        .reading-history-header {
-            background:
-                radial-gradient(circle at top left, rgba(32, 170, 89, 0.18), transparent 32%),
-                radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.06), transparent 28%),
-                linear-gradient(135deg, #1d2125 0%, #2a2f35 55%, #343a40 100%);
-
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 1rem;
-            padding: 1.5rem;
-
-            color: #f8f9fa;
-        }
-
-        .reading-history-header .text-muted {
-            color: rgba(255, 255, 255, 0.72) !important;
-        }
-
-        .reading-history-header h1 {
-            color: #ffffff;
-        }
-
-        .reading-history-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 999px;
-            background: rgba(32, 170, 89, 0.12);
-            color: #198754;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-        }
-
         .history-card {
             transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
@@ -299,37 +266,27 @@ function pageUrl(int $page): string
             <div class="auth-card card border-0 rounded-3">
                 <div class="card-body">
 
-                    <div class="reading-history-header mb-4">
-                        <div class="d-flex flex-wrap justify-content-between align-items-start">
-                            <div class="d-flex align-items-start">
-                                <div class="reading-history-icon mr-3">
-                                    <i class="fa-solid fa-clock-rotate-left"></i>
-                                </div>
-                                <div>
-                                    <p class="text-muted small mb-1">Your Activity</p>
-                                    <h1 class="h3 mb-2">Reading History</h1>
-                                    <p class="text-muted mb-0">
-                                        Articles you’ve opened across Scroll News. Publisher and Newsroom views are saved here.
-                                    </p>
-                                    <?php if ($hasSearch): ?>
-                                        <div class="small text-muted mt-2">
-                                            Search results for <strong>"<?= h($q) ?>"</strong>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
+                    <header class="sn-page-header">
+                        <h1>Reading History</h1>
+                        <p>Articles you’ve opened across Scroll News. Publisher and Newsroom views are saved here.</p>
+                    </header>
 
-                            <div class="mt-3 mt-md-0 text-md-right">
-                                <button class="btn btn-outline-secondary btn-sm" disabled>
-                                    <i class="fa-solid fa-trash-can mr-1"></i> Clear History
-                                </button>
-                                <div class="text-muted small mt-2">
-                                    <?php if ($hasSearch): ?>
-                                        Showing <?= number_format($totalItems) ?> result<?= $totalItems === 1 ? '' : 's' ?>
-                                    <?php else: ?>
-                                        <?= number_format($totalItems) ?> saved article<?= $totalItems === 1 ? '' : 's' ?>
-                                    <?php endif; ?>
-                                </div>
+                    <div class="account-page-toolbar mb-3">
+                        <?php if ($hasSearch): ?>
+                            <div class="account-page-toolbar__summary">
+                                Search results for <strong>"<?= h($q) ?>"</strong>
+                            </div>
+                        <?php endif; ?>
+                        <div class="account-page-toolbar__actions">
+                            <button class="btn btn-outline-secondary btn-sm account-page-toolbar__button" disabled>
+                                <i class="fa-solid fa-trash-can mr-1"></i> Clear History
+                            </button>
+                            <div class="account-page-toolbar__count">
+                                <?php if ($hasSearch): ?>
+                                    Showing <?= number_format($totalItems) ?> result<?= $totalItems === 1 ? '' : 's' ?>
+                                <?php else: ?>
+                                    <?= number_format($totalItems) ?> saved article<?= $totalItems === 1 ? '' : 's' ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
