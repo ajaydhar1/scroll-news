@@ -407,7 +407,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             </li>
                                             <li>
                                                 <i class="fa-solid fa-check"></i>
-                                                Publisher profile preparation as profiles become available
+                                                Publisher Profiles are live; Publisher Pro supports publisher verification, profile setup, and attribution review.
                                             </li>
                                             <li>
                                                 <i class="fa-solid fa-check"></i>

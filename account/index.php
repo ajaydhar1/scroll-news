@@ -383,7 +383,7 @@ $communityTrailSharingEnabled = sn_community_trail_sharing_enabled(auth_db(), (i
                                         <?php endif; ?>
                                         <li>Feed onboarding and corrections/removal support through Publisher Pro</li>
                                         <li>Self-service feed submissions and article controls are not available yet</li>
-                                        <li>Public publisher profile pages are not available yet</li>
+                                        <li>Public Publisher Profiles are live and show publisher details and recent articles.</li>
                                     </ul>
                                 </div>
                             </div>
