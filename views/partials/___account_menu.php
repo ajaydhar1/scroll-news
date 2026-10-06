@@ -13,6 +13,24 @@ if ($displayName !== '') {
 
 $initial = strtoupper(substr($firstName ?: $email ?: 'U', 0, 1));
 
+$verifiedPublisher = null;
+
+try {
+    $verifiedPublisherStmt = auth_db()->prepare("
+        SELECT p.id
+        FROM publishers p
+        INNER JOIN publisher_users pu ON pu.publisher_id = p.id
+        WHERE pu.user_id = :user_id
+          AND pu.status = 'verified'
+        ORDER BY p.id
+        LIMIT 1
+    ");
+    $verifiedPublisherStmt->execute([':user_id' => $currentUser['id'] ?? null]);
+    $verifiedPublisher = $verifiedPublisherStmt->fetch(PDO::FETCH_ASSOC) ?: null;
+} catch (Throwable $e) {
+    error_log('Account menu publisher lookup failed: ' . $e->getMessage());
+}
+
 ?>
 
 <div class="nav-item dropdown account-nav-item">
@@ -53,21 +71,14 @@ $initial = strtoupper(substr($firstName ?: $email ?: 'U', 0, 1));
 
         <div class="dropdown-divider"></div>
 
+        <div class="account-mega-section-label">Library</div>
+
         <div class="account-mega-grid">
 
-            <a class="account-mega-link" href="/account/">
-                <i class="fa-solid fa-gauge-high"></i>
+            <a class="account-mega-link" href="/account/saved-headlines.php" data-loading>
+                <i class="fa-regular fa-bookmark"></i>
                 <span>
-                    <strong>Dashboard</strong>
-                    <small>Account overview</small>
-                </span>
-            </a>
-
-            <a class="account-mega-link" href="/auth/change-password.php">
-                <i class="fa-solid fa-lock"></i>
-                <span>
-                    <strong>Password</strong>
-                    <small>Change login password</small>
+                    <strong>Saved Headlines</strong>
                 </span>
             </a>
 
@@ -75,15 +86,6 @@ $initial = strtoupper(substr($firstName ?: $email ?: 'U', 0, 1));
                 <i class="fa-solid fa-book-open-reader"></i>
                 <span>
                     <strong>Reading History</strong>
-                    <small>Articles you opened</small>
-                </span>
-            </a>
-
-            <a class="account-mega-link" href="/account/saved-headlines.php" data-loading>
-                <i class="fa-regular fa-bookmark"></i>
-                <span>
-                    <strong>Saved Headlines</strong>
-                    <small>Your bookmarked stories</small>
                 </span>
             </a>
 
@@ -91,7 +93,6 @@ $initial = strtoupper(substr($firstName ?: $email ?: 'U', 0, 1));
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <span>
                     <strong>Search History</strong>
-                    <small>Past news searches</small>
                 </span>
             </a>
 
@@ -103,21 +104,57 @@ $initial = strtoupper(substr($firstName ?: $email ?: 'U', 0, 1));
                 </span>
             </a>
 
-            <a class="account-mega-link" href="/news-trails.php" data-loading>
+            <a class="account-mega-link" href="/news-trails.php?base=personal" data-loading>
                 <i class="fa-solid fa-route"></i>
                 <span>
-                    <strong>News Trails</strong>
-                    <small>Explore connected stories</small>
+                    <strong>My Trails</strong>
+                    <small>Your personal News Trails</small>
                 </span>
             </a>
 
-            <a class="account-mega-link" href="/publisher-pro/">
-                <i class="fa-solid fa-tower-broadcast"></i>
+        </div>
+
+        <div class="dropdown-divider"></div>
+
+        <div class="account-mega-grid">
+
+            <a class="account-mega-link" href="/account/">
+                <i class="fa-solid fa-gear"></i>
                 <span>
-                    <strong>Publisher Pro</strong>
-                    <small>Publisher onboarding</small>
+                    <strong>Account Settings</strong>
                 </span>
             </a>
+
+            <a class="account-mega-link" href="/auth/change-password.php">
+                <i class="fa-solid fa-lock"></i>
+                <span>
+                    <strong>Password</strong>
+                </span>
+            </a>
+
+        </div>
+
+        <div class="dropdown-divider"></div>
+
+        <div class="account-mega-grid">
+
+            <?php if ($verifiedPublisher): ?>
+                <a class="account-mega-link" href="/account/publisher-dashboard.php?publisher_id=<?= (int) $verifiedPublisher['id'] ?>">
+                    <i class="fa-solid fa-tower-broadcast"></i>
+                    <span>
+                        <strong>Publisher Dashboard</strong>
+                        <small>Manage your publication</small>
+                    </span>
+                </a>
+            <?php else: ?>
+                <a class="account-mega-link" href="/publisher-pro/">
+                    <i class="fa-solid fa-tower-broadcast"></i>
+                    <span>
+                        <strong>Publisher Pro</strong>
+                        <small>Apply for publisher tools</small>
+                    </span>
+                </a>
+            <?php endif; ?>
 
         </div>
 
