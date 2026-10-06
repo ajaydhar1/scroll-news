@@ -376,7 +376,7 @@ $communityTrailSharingEnabled = sn_community_trail_sharing_enabled(auth_db(), (i
                                         <li><a href="/account/publisher-verification.php" class="account-link">Publisher verification</a></li>
                                         <?php if ($verifiedPublisher): ?>
                                             <li>
-                                                <a href="/account/publisher-dashboard.php?publisher_id=<?= (int) $verifiedPublisher['id']; ?>" class="account-link">
+                                                <a href="/account/publisher-dashboard.php?publisher_id=<?= (int) $verifiedPublisher['id']; ?>" class="account-link" data-loading>
                                                     Publisher Dashboard
                                                 </a>
                                             </li>

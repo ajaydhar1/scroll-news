@@ -139,7 +139,7 @@ try {
         <div class="account-mega-grid">
 
             <?php if ($verifiedPublisher): ?>
-                <a class="account-mega-link" href="/account/publisher-dashboard.php?publisher_id=<?= (int) $verifiedPublisher['id'] ?>">
+                <a class="account-mega-link" href="/account/publisher-dashboard.php?publisher_id=<?= (int) $verifiedPublisher['id'] ?>" data-loading>
                     <i class="fa-solid fa-tower-broadcast"></i>
                     <span>
                         <strong>Publisher Dashboard</strong>
