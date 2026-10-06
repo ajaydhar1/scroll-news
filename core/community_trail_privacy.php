@@ -68,6 +68,20 @@ function sn_community_trail_date_is_recent(string $trailDate, ?DateTimeImmutable
     return $date >= $cutoff && $date <= $today;
 }
 
+// Shared by trail cards and the player: only the first word of the display name is ever shown.
+function sn_trail_first_name(?string $displayName): string
+{
+    $name = trim((string) $displayName);
+
+    if ($name === '') {
+        return 'Reader';
+    }
+
+    $parts = preg_split('/\s+/', $name);
+
+    return $parts[0] ?? 'Reader';
+}
+
 function sn_community_trail_csrf_token(): string
 {
     if (empty($_SESSION['community_trail_csrf'])) {

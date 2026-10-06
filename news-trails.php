@@ -51,11 +51,23 @@ $personalLimit = $isFilteredView ? 18 : 6;
 $editorLimit = $isFilteredView ? 18 : 6;
 $communityLimit = $isFilteredView ? 24 : 9;
 
-function fetchTrails(PDO $pdo, string $base, ?int $currentUserId, array $editorEmails): array
-{
+// $fullHistory drops the 2-month SQL window for personal/editors; community always keeps it.
+function fetchTrails(
+    PDO $pdo,
+    string $base,
+    ?int $currentUserId,
+    array $editorEmails,
+    bool $fullHistory = false,
+    ?int $limit = null,
+    int $offset = 0
+): array {
     $params = [
         ':min_records' => 3,
     ];
+
+    $windowed = !($fullHistory && $base !== 'community');
+    $win = static fn(string $col): string => $windowed ? "AND {$col} >= NOW() - INTERVAL '2 months'" : '';
+    $paging = $limit !== null ? 'LIMIT ' . max(1, $limit) . ' OFFSET ' . max(0, $offset) : '';
 
     $where = '';
 
@@ -110,8 +122,8 @@ function fetchTrails(PDO $pdo, string $base, ?int $currentUserId, array $editorE
                 'reading' AS activity_type,
                 url AS item_url
             FROM user_reading_history
-            WHERE viewed_at >= NOW() - INTERVAL '2 months'
-            AND deleted_at IS NULL
+            WHERE deleted_at IS NULL
+            {$win('viewed_at')}
             AND url IS NOT NULL
             AND url <> ''
 
@@ -123,8 +135,8 @@ function fetchTrails(PDO $pdo, string $base, ?int $currentUserId, array $editorE
                 'saved' AS activity_type,
                 headline_url AS item_url
             FROM user_saved_headlines
-            WHERE saved_at >= NOW() - INTERVAL '2 months'
-            AND deleted_at IS NULL
+            WHERE deleted_at IS NULL
+            {$win('saved_at')}
             AND headline_url IS NOT NULL
             AND headline_url <> ''
 
@@ -140,8 +152,8 @@ function fetchTrails(PDO $pdo, string $base, ?int $currentUserId, array $editorE
                 '&deep_dive=' || COALESCE(params_json->>'deep_dive', '') ||
                 '&high_signal=' || COALESCE(params_json->>'high_signal', '') AS item_url
             FROM user_search_history
-            WHERE created_at >= NOW() - INTERVAL '2 months'
-            AND deleted_at IS NULL
+            WHERE deleted_at IS NULL
+            {$win('created_at')}
             AND shuffle_session_uuid IS NULL
             AND query IS NOT NULL
             AND query <> ''
@@ -160,8 +172,8 @@ function fetchTrails(PDO $pdo, string $base, ?int $currentUserId, array $editorE
                     ELSE NULL
                 END AS item_url
             FROM shuffle_sessions ss
-            WHERE ss.created_at >= NOW() - INTERVAL '2 months'
-            AND ss.deleted_at IS NULL
+            WHERE ss.deleted_at IS NULL
+            {$win('ss.created_at')}
             AND ss.source_context IN ('search_results', 'browse_news_modal')
         ),
 
@@ -180,25 +192,34 @@ function fetchTrails(PDO $pdo, string $base, ?int $currentUserId, array $editorE
         SELECT
             u.id AS user_id,
             u.public_trail_key,
-            COALESCE(NULLIF(u.display_name, ''), 'Scroll News Reader') AS display_name,
+            u.display_name,
             a.trail_date,
             COUNT(*) AS total_records,
             COUNT(*) FILTER (WHERE a.activity_type = 'reading') AS reading_count,
             COUNT(*) FILTER (WHERE a.activity_type = 'saved') AS saved_count,
             COUNT(*) FILTER (WHERE a.activity_type = 'search') AS search_count,
-            COUNT(*) FILTER (WHERE a.activity_type = 'shuffle') AS shuffle_count
+            COUNT(*) FILTER (WHERE a.activity_type = 'shuffle') AS shuffle_count,
+            COUNT(*) OVER () AS total_trails
         FROM activity a
         JOIN users u ON u.id = a.user_id
         {$where}
         GROUP BY u.id, u.public_trail_key, u.display_name, a.trail_date
         HAVING COUNT(*) >= :min_records
-        ORDER BY a.trail_date DESC, total_records DESC
+        ORDER BY a.trail_date DESC, total_records DESC, u.id ASC
+        {$paging}
     ";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function fetchTrailTotal(PDO $pdo, string $base, ?int $currentUserId, array $editorEmails): int
+{
+    $rows = fetchTrails($pdo, $base, $currentUserId, $editorEmails, true, 1, 0);
+
+    return (int) ($rows[0]['total_trails'] ?? 0);
 }
 
 function selectTrailCards(array $trails, int $limit = 6): array
@@ -228,26 +249,118 @@ function selectTrailCards(array $trails, int $limit = 6): array
 $personalTrails = [];
 $editorTrails = [];
 $communityTrails = [];
+$hasMore = ['personal' => false, 'editors' => false, 'community' => false];
+
+$trailsPerPage = 18;
+$page = max(1, (int) ($_GET['page'] ?? 1));
+$totalPages = 1;
+
+// Filtered views: full collection, newest-first, paginated. Main page: windowed shuffled preview.
+function loadTrailSection(
+    PDO $pdo,
+    string $base,
+    ?int $currentUserId,
+    array $editorEmails,
+    bool $isFilteredView,
+    int $previewLimit,
+    int $perPage,
+    int &$page,
+    int &$totalPages,
+    array &$hasMore
+): array {
+    if ($base === 'personal' && !$currentUserId) {
+        return [];
+    }
+
+    $total = fetchTrailTotal($pdo, $base, $currentUserId, $editorEmails);
+
+    if ($isFilteredView) {
+        $totalPages = max(1, (int) ceil($total / $perPage));
+        $page = min($page, $totalPages);
+
+        return fetchTrails($pdo, $base, $currentUserId, $editorEmails, true, $perPage, ($page - 1) * $perPage);
+    }
+
+    $preview = selectTrailCards(fetchTrails($pdo, $base, $currentUserId, $editorEmails), $previewLimit);
+    $hasMore[$base] = $total > count($preview);
+
+    return $preview;
+}
 
 if ($activeBase === 'all' || $activeBase === 'personal') {
-    $personalTrails = selectTrailCards(
-        fetchTrails($pdo, 'personal', $currentUserId, $editorEmails),
-        $personalLimit
-    );
+    $personalTrails = loadTrailSection($pdo, 'personal', $currentUserId, $editorEmails, $isFilteredView, $personalLimit, $trailsPerPage, $page, $totalPages, $hasMore);
 }
 
 if ($activeBase === 'all' || $activeBase === 'editors') {
-    $editorTrails = selectTrailCards(
-        fetchTrails($pdo, 'editors', $currentUserId, $editorEmails),
-        $editorLimit
-    );
+    $editorTrails = loadTrailSection($pdo, 'editors', $currentUserId, $editorEmails, $isFilteredView, $editorLimit, $trailsPerPage, $page, $totalPages, $hasMore);
 }
 
 if ($activeBase === 'all' || $activeBase === 'community') {
-    $communityTrails = selectTrailCards(
-        fetchTrails($pdo, 'community', $currentUserId, $editorEmails),
-        $communityLimit
-    );
+    $communityTrails = loadTrailSection($pdo, 'community', $currentUserId, $editorEmails, $isFilteredView, $communityLimit, $trailsPerPage, $page, $totalPages, $hasMore);
+}
+
+function trailPageUrl(string $base, int $page): string
+{
+    return '/news-trails.php?' . http_build_query(['base' => $base, 'page' => $page]);
+}
+
+function renderTrailPagination(string $base, int $page, int $totalPages): void
+{
+    if ($totalPages <= 1) {
+        return;
+    }
+
+    $radius = 2;
+    $startPage = max(1, $page - $radius);
+    $endPage = min($totalPages, $page + $radius);
+    $h = static fn($v): string => htmlspecialchars((string) $v, ENT_QUOTES, 'UTF-8');
+?>
+    <nav class="sn-archive-pagination mt-4" aria-label="News Trails pagination">
+        <ul class="pagination justify-content-center flex-wrap">
+            <li class="page-item <?= $page <= 1 ? 'disabled' : '' ?>">
+                <a class="page-link"
+                    href="<?= $page > 1 ? $h(trailPageUrl($base, $page - 1)) : '#' ?>"
+                    aria-label="Previous"
+                    <?= $page > 1 ? 'data-loading' : 'tabindex="-1" aria-disabled="true"' ?>>
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+
+            <?php if ($startPage > 1): ?>
+                <li class="page-item">
+                    <a class="page-link" href="<?= $h(trailPageUrl($base, 1)) ?>" data-loading>1</a>
+                </li>
+                <?php if ($startPage > 2): ?>
+                    <li class="page-item disabled"><span class="page-link">…</span></li>
+                <?php endif; ?>
+            <?php endif; ?>
+
+            <?php for ($p = $startPage; $p <= $endPage; $p++): ?>
+                <li class="page-item <?= $p === $page ? 'active' : '' ?>">
+                    <a class="page-link" href="<?= $h(trailPageUrl($base, $p)) ?>" data-loading><?= $p ?></a>
+                </li>
+            <?php endfor; ?>
+
+            <?php if ($endPage < $totalPages): ?>
+                <?php if ($endPage < $totalPages - 1): ?>
+                    <li class="page-item disabled"><span class="page-link">…</span></li>
+                <?php endif; ?>
+                <li class="page-item">
+                    <a class="page-link" href="<?= $h(trailPageUrl($base, $totalPages)) ?>" data-loading><?= $totalPages ?></a>
+                </li>
+            <?php endif; ?>
+
+            <li class="page-item <?= $page >= $totalPages ? 'disabled' : '' ?>">
+                <a class="page-link"
+                    href="<?= $page < $totalPages ? $h(trailPageUrl($base, $page + 1)) : '#' ?>"
+                    aria-label="Next"
+                    <?= $page < $totalPages ? 'data-loading' : 'tabindex="-1" aria-disabled="true"' ?>>
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+<?php
 }
 
 function renderTrailCard(array $trail, string $base): void
@@ -258,14 +371,7 @@ function renderTrailCard(array $trail, string $base): void
         'trail_date' => $trail['trail_date'],
     ]);
 
-    $displayName = trim($trail['display_name'] ?? '');
-
-    $firstName = 'Reader';
-
-    if ($displayName !== '') {
-        $parts = preg_split('/\s+/', $displayName);
-        $firstName = $parts[0] ?? 'Reader';
-    }
+    $firstName = sn_trail_first_name($trail['display_name'] ?? '');
 ?>
 
     <div class="col-md-6 col-xl-4 mb-3">
@@ -430,6 +536,21 @@ function renderEmptyState(
             color: #6c757d;
             opacity: 0.85;
         }
+
+        .sn-archive-pagination .pagination {
+            gap: 0.2rem;
+        }
+
+        .sn-archive-pagination .page-link {
+            border-radius: 999px;
+            min-width: 42px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .sn-archive-pagination .page-item.active .page-link {
+            box-shadow: 0 4px 14px rgba(0, 0, 0, .12);
+        }
     </style>
 
 </head>
@@ -485,7 +606,9 @@ function renderEmptyState(
 
                 </div>
 
-                <?php if ($currentUserId && count($personalTrails) >= $personalLimit): ?>
+                <?php if ($isFilteredView): ?>
+                    <?php renderTrailPagination('personal', $page, $totalPages); ?>
+                <?php elseif ($currentUserId && $hasMore['personal']): ?>
                     <a href="/news-trails.php?base=personal" class="small">
                         View more personal trails
                     </a>
@@ -510,7 +633,9 @@ function renderEmptyState(
                         ); ?>
                     <?php endif; ?>
                 </div>
-                <?php if (count($editorTrails) > 0): ?>
+                <?php if ($isFilteredView): ?>
+                    <?php renderTrailPagination('editors', $page, $totalPages); ?>
+                <?php elseif ($hasMore['editors']): ?>
                     <a href="/news-trails.php?base=editors" class="small">View more editor trails</a>
                 <?php endif; ?>
             </section>
@@ -554,7 +679,9 @@ function renderEmptyState(
                         ); ?>
                     <?php endif; ?>
                 </div>
-                <?php if (count($communityTrails) > 0): ?>
+                <?php if ($isFilteredView): ?>
+                    <?php renderTrailPagination('community', $page, $totalPages); ?>
+                <?php elseif ($hasMore['community']): ?>
                     <a href="/news-trails.php?base=community" class="small">View more community trails</a>
                 <?php endif; ?>
             </section>

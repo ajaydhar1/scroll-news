@@ -69,7 +69,7 @@ $endDate = date('Y-m-d H:i:s', strtotime($trailDate . ' +1 day'));
 
 // Get user id from trail id
 $userStmt = $pdo->prepare("
-    SELECT id, email
+    SELECT id, email, display_name
     FROM users
     WHERE public_trail_key = :trail_user
       AND deleted_at IS NULL
@@ -257,6 +257,10 @@ foreach ($trailItems as $index => &$item) {
 }
 unset($item);
 
+$trailCategoryLabel = ['personal' => 'Personal Trail', 'editors' => 'Editor Trail', 'community' => 'Community Trail'][$base];
+$trailOwnerLabel = sn_trail_first_name($trailOwner['display_name'] ?? '') . '’s Trail';
+$trailDateLabel = date('F j, Y', strtotime($trailDate));
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -359,6 +363,17 @@ unset($item);
             color: rgba(255, 255, 255, 0.68);
         }
 
+        .trail-header-label {
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .trail-header-meta {
+            min-width: 0;
+            overflow-wrap: anywhere;
+            line-height: 1.35;
+        }
+
         .trail-iframe-wrap {
             width: 100%;
             height: min(72vh, 760px);
@@ -406,7 +421,13 @@ unset($item);
                 <div class="trail-player-card bg-dark text-white rounded shadow-sm p-3">
 
                     <div class="trail-meta mb-3">
-                        <div class="small text-uppercase text-muted-light">News Trail</div>
+                        <div class="trail-header d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-start mb-2">
+                            <div class="small text-uppercase text-muted-light mb-1 mb-sm-0 mr-sm-3 trail-header-label">News Trail</div>
+                            <div class="small text-muted-light text-sm-right trail-header-meta">
+                                <div><?= htmlspecialchars($trailCategoryLabel, ENT_QUOTES, 'UTF-8') ?></div>
+                                <div class="text-white-50"><?= htmlspecialchars($trailOwnerLabel, ENT_QUOTES, 'UTF-8') ?> · <?= htmlspecialchars($trailDateLabel, ENT_QUOTES, 'UTF-8') ?></div>
+                            </div>
+                        </div>
                         <h1 id="trailTitle" class="h4 mb-1">Loading trail...</h1>
                         <div id="trailItemMeta" class="small text-muted-light"></div>
                     </div>
