@@ -1,182 +1,20 @@
 {
-    "fetched_at": 1791282534,
+    "fetched_at": 1791308376,
     "feeds": [
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Woman dies, baby critically injured after they were allegedly thrown from Bronx apartment block: reports",
-                    "url": "https://nypost.com/2026/10/06/us-news/woman-dies-baby-critically-injured-after-they-were-allegedly-thrown-from-bronx-apartment-block-reports/",
-                    "ts": 1791282508,
+                    "title": "Sebastian Maniscalco, SiriusXM seem unmoved by comics’ pay pleas",
+                    "url": "https://pagesix.com/2026/10/06/society/sebastian-maniscalco-siriusxm-seem-unmoved-by-comics-pay-pleas/",
+                    "ts": 1791308261,
                     "emo": "📰"
                 },
                 {
-                    "title": "Under-par prices: Swing for October Prime Day golf deals on balls, gear and more",
-                    "url": "https://nypost.com/shopping/amazon-prime-big-deal-days-golf-deals-october-2026/",
-                    "ts": 1791281700,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Melinda Messenger's transformation from lads' mag favourite to wellness guru as the former blonde bombshell, 55, embraces her silver siren era",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16176003/Melinda-Messenger-transformation-lads-mag-wellness.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791282419,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Russian media claims a second victim has died from 'plague outbreak' at infection zone hospital as Kremlin scrambles to cover up details",
-                    "url": "https://www.dailymail.com/news/article-16186315/Russian-media-claims-second-victim-died-plague-outbreak-infection-zone-hospital-Kremlin-scrambles-cover-details.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791282386,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "PNEUMONIC PLAGUE SHAKING RUSSIA...",
-                    "url": "https://www.cnbc.com/2026/10/05/russia-plague-suspected-case-irkutsk.html",
-                    "ts": 1791282336,
-                    "emo": "🌍"
-                },
-                {
-                    "title": "Moscow accused of covering up...",
-                    "url": "https://www.telegraph.co.uk/world-news/2026/10/05/russian-researcher-dies-plague-released-lab-accident/",
-                    "ts": 1791282336,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "Battle over Daylight Saving Time erupts as push to stop changing clocks hits Senate wall",
-                    "url": "https://www.foxnews.com/politics/battle-over-daylight-saving-time-erupts-push-stop-changing-clocks-hits-senate-wall",
-                    "ts": 1791281703,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "President Trump endorses Wyoming's secretary of state for US House of Representatives",
-                    "url": "https://www.foxnews.com/politics/president-trump-endorses-wyomings-secretary-state-us-house-representatives",
-                    "ts": 1791281498,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "‘People in the U.S. need to wake up’: As a mortgage loan officer, I rejected wealthy couples due to overspending. We’re all heading for trouble.",
-                    "url": "https://www.marketwatch.com/story/people-in-the-u-s-need-to-wake-up-as-a-mortgage-loan-officer-i-rejected-wealthy-couples-due-to-overspending-were-all-heading-for-trouble-6a52e04e?mod=mw_rss_topstories",
-                    "ts": 1791281700,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Should I put my nest egg in a 30-year Treasury bond?",
-                    "url": "https://www.marketwatch.com/story/should-i-put-my-nest-egg-in-a-30-year-treasury-bond-89db6e09?mod=mw_rss_topstories",
-                    "ts": 1791280800,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "Former German spy chief arrested for espionage and treason",
-                    "url": "https://www.bbc.co.uk/news/articles/c58jzyer1kr0o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791281142,
-                    "emo": "📰"
-                },
-                {
-                    "title": "'Ghost particles' from space telescope wins physics Nobel",
-                    "url": "https://www.bbc.co.uk/news/articles/cq203mymlvkeo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791282239,
-                    "emo": "🧪"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Trump's Golden Dome faces headwinds with funding uncertain",
-                    "url": "https://thehill.com/policy/defense/6127776-golden-dome-missile-funding-crisis/",
-                    "ts": 1791280800,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Alito's first book pushes conservative justice into spotlight",
-                    "url": "https://thehill.com/regulation/court-battles/6130540-justice-samuel-alito-supreme-court-book/",
-                    "ts": 1791280800,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Some early users are deleting personal AI agents, citing privacy scares and blunders",
-                    "url": "https://www.businessinsider.com/early-users-delete-personal-ai-agents-privacy-scares-blunders-2026-10",
-                    "ts": 1791279195,
-                    "emo": "🧪"
-                },
-                {
-                    "title": "Home prices are dropping the most in these 12 metro areas as inventory piles up",
-                    "url": "https://www.businessinsider.com/where-are-home-prices-falling-cities-housing-market-mortgage-rates-2026-10",
-                    "ts": 1791279001,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Republicans fight red-state midterm chaos with hundreds of millions in late money",
-                    "url": "https://www.nbcnews.com/politics/2026-election/republicans-fight-red-state-midterm-chaos-hundreds-millions-late-money-rcna601675",
-                    "ts": 1791277200,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Local officials weigh in on political polarization",
-                    "url": "https://www.nbcnews.com/video/local-officials-weigh-in-on-political-polarization-270964293785",
-                    "ts": 1791037339,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Trump allows cheaper, dyed diesel on highways to blunt historic fuel-cost spike ahead of midterms",
-                    "url": "https://www.cnbc.com/2026/10/06/us-diesel-fuel-prices-iran-ukraine-energy-crisis-.html",
-                    "ts": 1791270336,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Paramount's hard-fought takeover of Warner Bros. Discovery closes Tuesday. Here's how we got here",
-                    "url": "https://www.cnbc.com/2026/10/06/paramount-wbd-deal-timeline.html",
-                    "ts": 1791280801,
+                    "title": "Sebastian Maniscalco, SiriusXM seem unmoved by comics’ pay pleas",
+                    "url": "https://pagesix.com/2026/10/06/society/sebastian-maniscalco-siriusxm-seem-unmoved-by-comics-pay-pleas/",
+                    "ts": 1791308261,
                     "emo": "📰"
                 }
             ]
@@ -188,13 +26,175 @@
                 {
                     "title": "Strikes, Barricades and Fiscal Turmoil: An Autumn of Discontent Grips France",
                     "url": "https://www.nytimes.com/2026/10/06/world/europe/france-crisis-autumn-discontent.html",
-                    "ts": 1791259274,
+                    "ts": 1791308227,
                     "emo": "📰"
                 },
                 {
-                    "title": "Demonstrators Rally Across France as School Protests Escalate",
-                    "url": "https://www.nytimes.com/2026/10/06/world/europe/france-student-strikes-protests.html",
-                    "ts": 1791281127,
+                    "title": "Potential Iranian Drone Attack Led to Exit of U.S. Bombers From U.K. Air Base RAF Fairford",
+                    "url": "https://www.nytimes.com/2026/10/05/us/politics/iran-drone-attack-us-uk-base-fairford.html",
+                    "ts": 1791260280,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "Michael Douglas unveils ANOTHER on-set affair with Basic Instinct co-star... after Kathleen Turner bombshell",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16187165/michael-douglas-unveils-set-fling-basic-instinct-star-kathleen-turner-affair-bombshell.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791308140,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Trump blames French student riots on 'mass migration' and says 'this isn't about schools, it's about Islam wanting to take over'",
+                    "url": "https://www.dailymail.com/news/article-16187703/Trump-blames-French-student-riots-mass-migration.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791308067,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Dre Greenlaw's Sean Payton beef exposes another side of the NFL's most overrated head coach",
+                    "url": "https://www.foxnews.com/outkick-sports/dre-greenlaw-sean-payton-beef-exposes-nfl-most-overrated-head-coach",
+                    "ts": 1791307815,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Biden-era FBI’s ‘Nixonian’ Trump family surveillance draws scrutiny from unlikely corner",
+                    "url": "https://www.foxnews.com/politics/biden-era-fbis-nixonian-trump-family-surveillance-draws-scrutiny-from-unlikely-corner",
+                    "ts": 1791306587,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "Loneliness and social isolation can take six years off your life",
+                    "url": "https://www.marketwatch.com/story/loneliness-and-social-isolation-can-take-six-years-off-your-life-496af256?mod=mw_rss_topstories",
+                    "ts": 1791307080,
+                    "emo": "📰"
+                },
+                {
+                    "title": "These 5 chip stocks are cheaper than the S&P 500 — and offer faster growth",
+                    "url": "https://www.marketwatch.com/story/these-5-chip-stocks-are-cheaper-than-the-s-p-500-and-offer-faster-growth-f8ab4386?mod=mw_rss_topstories",
+                    "ts": 1791302220,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Trump won't reimburse government for controversial ads",
+                    "url": "https://thehill.com/homenews/administration/6131835-donald-trump-political-ads-taxpayer-money/",
+                    "ts": 1791306279,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "With SAVE Act fail, Republicans snatch failure from the jaws of success",
+                    "url": "https://thehill.com/opinion/congress-blog/6130070-save-america-act-failure/",
+                    "ts": 1791306000,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Trade deficit hits $105.6 billion, widest since just before Trump tariffs enacted last year",
+                    "url": "https://www.cnbc.com/2026/10/06/trade-deficit-hits-105point6-billion-widest-since-just-before-trump-tariffs-enacted-last-year.html",
+                    "ts": 1791301942,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Rebounding oil exports through Strait of Hormuz are vulnerable to stepped-up Iranian tanker attacks",
+                    "url": "https://www.cnbc.com/2026/10/06/crude-oil-tanker-strait-hormuz-iran-attack.html",
+                    "ts": 1791303550,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "Watch: At the scene of student protests in Lille",
+                    "url": "https://www.bbc.co.uk/news/videos/cwzd650e2jqdo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791298976,
+                    "emo": "📰"
+                },
+                {
+                    "title": "British national arrested in connection with RAF Fairford incident",
+                    "url": "https://www.bbc.co.uk/news/articles/cqlye0xd72wdo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791299038,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "The best Apple Prime Day deals include $70 off AirPods Pro 3 and $50 off the brand-new Apple Watch Series 12",
+                    "url": "https://www.businessinsider.com/guides/deals/apple-prime-day-deals-2026-10",
+                    "ts": 1791295924,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Leaving the US overnight felt like a 'bad dream'",
+                    "url": "https://www.businessinsider.com/h1b-visa-hopeful-india-moved-to-germany-2026-10",
+                    "ts": 1791295589,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "UPDATE: PNEUMONIC PLAGUE SHAKING RUSSIA...",
+                    "url": "https://www.axios.com/2026/10/06/missing-details-us-plague-response",
+                    "ts": 1791294756,
+                    "emo": "🌍"
+                },
+                {
+                    "title": "SECOND VICTIM DIES?",
+                    "url": "https://www.dailystar.co.uk/news/latest-news/black-death-plague-kills-second-37739872",
+                    "ts": 1791294756,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Trump Hits 4 States in 5 Days in Final Push to November Midterms",
+                    "url": "https://www.today.com/video/trump-calls-iran-war-a-small-price-to-pay-drawing-backlash-271104069846",
+                    "ts": 1791285290,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Local officials weigh in on political polarization",
+                    "url": "https://www.nbcnews.com/video/local-officials-weigh-in-on-political-polarization-270964293785",
+                    "ts": 1791037339,
                     "emo": "📰"
                 }
             ]

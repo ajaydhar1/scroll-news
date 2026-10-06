@@ -28,13 +28,13 @@ require_once __DIR__ . '/../../auth/includes/auth_bootstrap.php';
                 </button>
             </div>
             <div class="col-lg-4 my-3 my-lg-0">
-                <a data-step="2" data-intro="Click here to see our control room — a personalized intelligence layer that visualizes your reading patterns, engagement signals, and news behavior over time." class="btn btn-black btn-social mx-2" title="Control Room" href="/control-room.php">⌘</a>
-                <a data-step="3" data-intro="Click here for a feed of fresh articles analyzed and indexed by Scroll News." class="btn btn-black btn-social mx-2" title="Scroll Archive" href="/scroll-archive.php" data-loading>📜</a>
-                <a data-step="1" data-intro="Welcome to the Scroll News newsroom! Here we provide analytics for the latest news stories. Click this play button to stumble through trending articles." class="btn btn-green btn-social mx-2" title="Stumble through articles" href="/newsroom.php" onclick="trackStumbleClick('top_nav')" data-loading>▶</a>
+                <a data-step="2" data-intro="Click here to see our control room — a personalized intelligence layer that visualizes your reading patterns, engagement signals, and news behavior over time." class="btn btn-black btn-social mx-2" title="Control Room" aria-label="Control Room" href="/control-room.php"><i class="fas fa-sliders-h" aria-hidden="true"></i></a>
+                <a data-step="3" data-intro="Click here for a feed of fresh articles analyzed and indexed by Scroll News." class="btn btn-black btn-social mx-2" title="Archive" aria-label="Archive" href="/scroll-archive.php" data-loading>📜</a>
+                <a data-step="1" data-intro="Welcome to the Scroll News newsroom! Here we provide analytics for the latest news stories. Click this play button to stumble through trending articles." class="btn btn-green btn-social mx-2 stumble-nav-link" title="Stumble through articles" aria-label="Stumble through articles" href="/newsroom.php" onclick="trackStumbleClick('top_nav')" data-loading>▶<span class="stumble-nav-label">Stumble</span></a>
                 <a data-step="4" data-intro="Browse grouped reading sessions built from saved headlines, searches, reading history, and shuffles." class="btn btn-black btn-social mx-2"
                     href="/news-trails.php"
-                    title="Trails"
-                    aria-label="Trails" data-loading>
+                    title="News Trails"
+                    aria-label="News Trails" data-loading>
                     🧭
                 </a>
                 <button data-step="5" data-intro="Switch between the site's visual themes." class="btn btn-black btn-social mx-2 theme-toggle" id="themeToggle" type="button" aria-label="Switch to Dark City theme" title="Switch to Dark City theme" aria-pressed="false">
@@ -63,7 +63,7 @@ require_once __DIR__ . '/../../auth/includes/auth_bootstrap.php';
                 <?php else: ?>
                     <div class="nav-item d-flex align-items-center gap-2">
                         <a class="btn btn-green btn-sm" href="/auth/login.php">
-                            Login
+                            Sign in
                         </a>
                     </div>
                 <?php endif; ?>

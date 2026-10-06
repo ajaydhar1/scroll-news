@@ -380,23 +380,25 @@ function renderTrailCard(array $trail, string $base): void
                 <?= htmlspecialchars(ucfirst($base), ENT_QUOTES, 'UTF-8') ?> Trail
             </div>
 
-            <h3 class="h6 mb-2">
+            <h3 class="trail-card-name mb-1">
                 <?= htmlspecialchars($firstName, ENT_QUOTES, 'UTF-8') ?>’s Trail
             </h3>
 
-            <div class="text-muted small mb-3">
+            <div class="trail-card-date text-muted mb-3">
                 <?= htmlspecialchars(date('F j, Y', strtotime($trail['trail_date'])), ENT_QUOTES, 'UTF-8') ?>
             </div>
 
             <div class="trail-meta small mb-3">
-                <?= (int) $trail['total_records'] ?> records ·
-                <?= (int) $trail['reading_count'] ?> reads ·
-                <?= (int) $trail['saved_count'] ?> saved ·
-                <?= (int) $trail['search_count'] ?> searches ·
-                <?= (int) $trail['shuffle_count'] ?> shuffles
+                <div class="trail-meta-total"><?= (int) $trail['total_records'] ?> records</div>
+                <div class="trail-meta-activities">
+                    <strong><?= (int) $trail['reading_count'] ?></strong> reads ·
+                    <strong><?= (int) $trail['saved_count'] ?></strong> saved ·
+                    <strong><?= (int) $trail['search_count'] ?></strong> searches ·
+                    <strong><?= (int) $trail['shuffle_count'] ?></strong> shuffles
+                </div>
             </div>
 
-            <a href="<?= htmlspecialchars($url, ENT_QUOTES, 'UTF-8') ?>" class="btn btn-green btn-sm" data-loading>
+            <a href="<?= htmlspecialchars($url, ENT_QUOTES, 'UTF-8') ?>" class="trail-card-action btn btn-green btn-sm" data-loading>
                 <i class="fa-solid fa-play mr-1"></i> Open Trail
             </a>
         </div>
@@ -537,6 +539,53 @@ function renderEmptyState(
             opacity: 0.85;
         }
 
+        .trail-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .trail-card-name {
+            color: #212529;
+            font-size: 1.0625rem;
+            font-weight: 600;
+            line-height: 1.35;
+        }
+
+        .trail-card-date {
+            font-size: 0.875rem;
+        }
+
+        .trail-meta-total {
+            color: #343a40;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.125rem;
+        }
+
+        .trail-meta-activities {
+            color: #6c757d;
+            font-size: 0.8125rem;
+            line-height: 1.5;
+        }
+
+        .trail-meta-activities strong {
+            color: #495057;
+            font-weight: 600;
+        }
+
+        .trail-card-action {
+            align-self: flex-start;
+            margin-top: auto;
+        }
+
+        .editor-trails-section {
+            background-color: #f1f8f7;
+        }
+
+        .editor-trails-heading .fa-newspaper {
+            color: #00bfa6;
+        }
+
         .sn-archive-pagination .pagination {
             gap: 0.2rem;
         }
@@ -618,8 +667,8 @@ function renderEmptyState(
         <?php endif; ?>
 
         <?php if ($activeBase === 'all' || $activeBase === 'editors'): ?>
-            <section class="bg-dark p-4 mb-5">
-                <h2 class="h5 mb-3 text-white"><i class="fa-solid fa-newspaper mr-2"></i> Editor Trails</h2>
+            <section class="editor-trails-section p-4 mb-5">
+                <h2 class="editor-trails-heading h5 mb-3"><i class="fa-solid fa-newspaper mr-2"></i> Editor Trails</h2>
                 <div class="row">
                     <?php if (!empty($editorTrails)): ?>
                         <?php foreach ($editorTrails as $trail): ?>

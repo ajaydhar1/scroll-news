@@ -30,6 +30,22 @@
   }
 }
 
+.stumble-nav-label {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .sn-top-nav .stumble-nav-link {
+    width: auto;
+    padding: 0 0.5rem;
+  }
+
+  .sn-top-nav .stumble-nav-label {
+    display: inline;
+    margin-left: 0.35rem;
+  }
+}
+
 @media (min-width: 1200px) {
 
   .container-xl,
