@@ -1,0 +1,150 @@
+/* ==== NLP DASHBOARD LIGHT SaaS (Newsroom + Textroom) ====
+   Requires the shared layer (assets/css/light-saas.css) and body.sn-light-saas.
+   Newsroom trail-player mode never gets the body class, so it is unaffected.
+   Revert: remove this <link> and the sn-light-saas body class from newsroom.php / textroom.php. */
+
+/* S1 workspace around the dashboard cards */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page #analytics {
+    padding: 0.75rem 0.75rem 0.25rem;
+    background: var(--sn-l-s1);
+    border: 1px solid var(--sn-l-border);
+    border-radius: var(--sn-l-r-xl);
+}
+
+/* S2 cards (shared rule) with S3 header strips */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page #side-by-side-panel .card-header {
+    background: var(--sn-l-s3) !important;
+    border-bottom: 1px solid var(--sn-l-border-soft);
+    border-radius: var(--sn-l-r-lg) var(--sn-l-r-lg) 0 0;
+    color: var(--sn-l-text);
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page #side-by-side-panel .card-header h5,
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page #side-by-side-panel .card-header h5.m-0.font-weight-bold {
+    color: var(--sn-l-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* Links inside cards use the accessible teal; icon links keep their inline colours */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page #side-by-side-panel .card a:not(.btn) {
+    color: var(--sn-l-link);
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page #side-by-side-panel .card a:not(.btn):hover {
+    color: var(--sn-l-link-hover);
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page #side-by-side-panel span#hash-icons {
+    background: var(--sn-l-s3);
+    border: 1px solid var(--sn-l-border-soft);
+    border-radius: var(--sn-l-r-md);
+    padding: 2px 6px;
+}
+
+/* Emotional Reaction: S3 track */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-emo-bar {
+    background: var(--sn-l-s3);
+    border-color: var(--sn-l-border-soft);
+}
+
+/* Sentiment: the selected label carries an inline black pill */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page #sentiment span[style*="background"] {
+    background: var(--sn-l-text) !important;
+    border-radius: var(--sn-l-r-md) !important;
+}
+
+/* Loading skeleton */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .analytics-loader {
+    border-color: var(--sn-l-border-soft);
+    border-radius: var(--sn-l-r-lg);
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sk-card {
+    border-color: var(--sn-l-border-soft);
+    border-radius: var(--sn-l-r-lg);
+    background: linear-gradient(90deg, var(--sn-l-s3) 25%, var(--sn-l-s1) 50%, var(--sn-l-s3) 75%);
+    background-size: 200% 100%;
+}
+
+/* Primary action in the Newsroom page header: Scroll News teal instead of the theme yellow */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .btn.btn-primary.btn-rectangle {
+    background-color: var(--sn-l-accent);
+    border-color: #00a890;
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .btn.btn-primary.btn-rectangle:hover,
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .btn.btn-primary.btn-rectangle:focus {
+    background-color: #11d0b5;
+    border-color: #00a890;
+}
+
+@media (max-width: 575.98px) {
+    html:not([data-ui-theme="dark"]) body.sn-light-saas .page #analytics {
+        padding: 0.5rem 0.5rem 0;
+    }
+}
+
+/* ==== Textroom: compact S1 page header and two-pane text ==== */
+html:not([data-ui-theme="dark"]) body.textroom-page header.masthead {
+    padding: 1.5rem 0 0 !important;
+    background-image: none !important;
+}
+
+html:not([data-ui-theme="dark"]) body.textroom-page header.masthead .container.cover-img {
+    padding: 1.1rem 1.5rem !important;
+    background: var(--sn-l-s1) !important;
+    border: 1px solid var(--sn-l-border);
+    border-top: 3px solid var(--sn-l-accent);
+    border-radius: var(--sn-l-r-xl);
+    color: var(--sn-l-text);
+    text-align: center;
+}
+
+html:not([data-ui-theme="dark"]) body.textroom-page header.masthead .text-muted {
+    font-size: 0.9rem !important;
+    font-weight: 400;
+}
+
+html:not([data-ui-theme="dark"]) body.textroom-page header.masthead .masthead-heading {
+    margin-bottom: 0 !important;
+    color: var(--sn-l-text);
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+}
+
+html:not([data-ui-theme="dark"]) body.textroom-page #side-by-side-panel h2 {
+    color: var(--sn-l-text);
+    font-size: 1.15rem;
+}
+
+html:not([data-ui-theme="dark"]) body.textroom-page #side-by-side-panel .panel[style*="border-right"] {
+    border-right: 1px solid var(--sn-l-border-soft) !important;
+}
+
+html:not([data-ui-theme="dark"]) body.textroom-page #side-by-side-panel .card-body p {
+    line-height: 1.65;
+}
+
+/* ==== Newsroom: image-led hero stays an intentional dark slab ==== */
+html:not([data-ui-theme="dark"]) body.newsroom-page .page header.masthead {
+    border-radius: var(--sn-l-r-xl);
+    overflow: hidden;
+}
+
+html:not([data-ui-theme="dark"]) body.newsroom-page .page header.masthead .container.cover-img {
+    background: rgba(15, 26, 24, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--sn-l-r-lg);
+}
+
+/* Shared muted-text rule must not turn the hero's date dark-on-dark */
+html:not([data-ui-theme="dark"]) body.newsroom-page .page header.masthead .text-muted {
+    color: rgba(255, 255, 255, 0.72) !important;
+}
+
+html:not([data-ui-theme="dark"]) body.newsroom-page .page span.link {
+    color: var(--sn-l-muted);
+    font-size: 0.85rem;
+}

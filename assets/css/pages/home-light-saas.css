@@ -1,0 +1,476 @@
+/* ==== HOMEPAGE LIGHT SaaS (page-specific layer) ====
+   Requires the shared layer (assets/css/light-saas.css, body.sn-light-saas) for tokens and common surfaces.
+   Revert: remove the "home-light-saas" and "light-saas" <link>s and the sn-light-saas body class in index.php
+   (the .sn-intel-workspace wrapper div is unstyled without them). */
+
+/* Homepage elements that keep their previous 16px-derived sizes under the 15px base */
+html:not([data-ui-theme="dark"]) body.home-page #playlists,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-btn,
+html:not([data-ui-theme="dark"]) body.home-page #first-look .firstlook-title,
+html:not([data-ui-theme="dark"]) body.home-page #first-look .firstlook-more {
+    font-size: 16px;
+}
+
+/* ==== Final cleanup: tagline size, Intel "Read story" button, Story Hub outline hover ==== */
+html:not([data-ui-theme="dark"]) body.home-page header.masthead .masthead-subheading {
+    font-size: 20px;
+}
+
+/* Intel "Read story" uses the existing btn-secondary look (as Story Hub previews do); markup is shared with publisher-profile.php so this stays CSS-only */
+html:not([data-ui-theme="dark"]) body.home-page .page .news-intel-panel .btn-group > a.btn-outline-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .page .news-intel-panel .btn-group > a.btn-outline-secondary:hover,
+html:not([data-ui-theme="dark"]) body.home-page .page .news-intel-panel .btn-group > a.btn-outline-secondary:focus {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .page .news-intel-panel .btn-group > a.btn-outline-secondary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5) !important;
+}
+
+/* Story Hub outline buttons: the muted text colour above must not survive hover/focus/active */
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .btn-outline-secondary:hover,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .btn-outline-secondary:focus,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .btn-outline-secondary:active {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+/* ==== Headline tier: primary item/headline text is 15px across homepage news surfaces ==== */
+html:not([data-ui-theme="dark"]) body.home-page .page .news-intel-panel .intel-article-list .intel-article-item a.headline-link,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-headlines a.sn-headline-link,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .story-title,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .story-preview-text .headline-link,
+html:not([data-ui-theme="dark"]) body.home-page .page #first-look .firstlook-item a,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card .sn-title {
+    font-size: 15px;
+}
+
+/* Canvas */
+html:not([data-ui-theme="dark"]) body.home-page header.masthead,
+html:not([data-ui-theme="dark"]) body.home-page .reading-modes-section {
+    background: var(--sn-l-s0) !important;
+    color: var(--sn-l-text) !important;
+}
+
+/* Text hierarchy */
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-meta,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-emobar-label,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-emobar-value,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .panel-subtitle,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .section-label {
+    color: var(--sn-l-muted) !important;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .panel-title,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .power-center .entity-name,
+html:not([data-ui-theme="dark"]) body.home-page .page section.py-5 h3 {
+    color: var(--sn-l-text) !important;
+}
+
+/* Teal text links use the darker accessible teal; buttons and accents keep brand teal */
+html:not([data-ui-theme="dark"]) body.home-page .page .news-intel-panel .intel-article-list .intel-article-item a.headline-link,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-headlines a.headline-link {
+    color: var(--sn-l-link) !important;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .page .news-intel-panel .intel-article-list .intel-article-item a.headline-link:hover,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-headlines a.headline-link:hover {
+    color: var(--sn-l-link-hover) !important;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-headlines a.sn-headline-link,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories a.story-meta-link {
+    color: var(--sn-l-link);
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-time-marker,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .story-weight,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .cooccurrence-label,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .mini-meta,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .story-weight .window,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .btn-outline-secondary {
+    color: var(--sn-l-muted);
+}
+
+/* S3: insets nested in cards */
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .power-center {
+    background: var(--sn-l-s3) !important;
+    border: 1px solid var(--sn-l-border-soft);
+    border-radius: var(--sn-l-r-md);
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .story-card {
+    background: var(--sn-l-s3);
+    border: 1px solid var(--sn-l-border-soft);
+    border-radius: var(--sn-l-r-md);
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .page .news-intel-panel .nlp-chip {
+    background: #e6ece9 !important;
+    color: #33453f !important;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .page .news-intel-panel .nlp-chip-frame {
+    background: rgba(0, 191, 166, 0.14) !important;
+    color: #005f4f !important;
+}
+
+/* Scroll strip image cards */
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card {
+    background: var(--sn-l-s2) !important;
+    border: 1px solid var(--sn-l-border);
+    border-radius: var(--sn-l-r-lg);
+    box-shadow: var(--sn-l-shadow);
+    color: var(--sn-l-text);
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card:hover,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card:focus-visible {
+    box-shadow: var(--sn-l-shadow-hover);
+}
+
+/* Newsroom module screenshots */
+html:not([data-ui-theme="dark"]) body.home-page #portfolio .portfolio-item {
+    background: var(--sn-l-s2);
+    border: 1px solid var(--sn-l-border);
+    border-radius: var(--sn-l-r-lg);
+    box-shadow: var(--sn-l-shadow);
+    overflow: hidden;
+    transition: box-shadow 0.15s ease;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #portfolio .portfolio-item:hover {
+    box-shadow: var(--sn-l-shadow-hover);
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #portfolio .portfolio-item img {
+    display: block;
+    width: 100%;
+}
+
+/* Caption is an S3 strip so the screenshot stays the focus */
+html:not([data-ui-theme="dark"]) body.home-page #portfolio .portfolio-item .portfolio-caption {
+    padding: 0.7rem 1rem;
+    background-color: var(--sn-l-s3) !important;
+    border-top: 1px solid var(--sn-l-border-soft);
+    color: var(--sn-l-text);
+    text-align: left;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #portfolio .portfolio-item .portfolio-caption .portfolio-caption-heading {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* Category pills: quiet segmented chips (nav link treatment) */
+html:not([data-ui-theme="dark"]) body.home-page .sn-categories-title {
+    color: var(--sn-l-muted);
+    opacity: 1;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .sn-categories-pills {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.2rem;
+    max-width: 100%;
+    padding: 0.25rem;
+    background: var(--sn-l-s2);
+    border: 1px solid var(--sn-l-border);
+    border-radius: var(--sn-l-r-md);
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .sn-categories-pills .btn.btn-dark {
+    margin: 0 !important;
+    padding: 0.45rem 0.8rem;
+    background: transparent;
+    border: 0;
+    border-radius: var(--sn-l-r-sm);
+    color: #294841;
+    font: 600 0.79rem/1.15 "Montserrat", "Open Sans", sans-serif;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .sn-categories-pills .btn.btn-dark:hover,
+html:not([data-ui-theme="dark"]) body.home-page .sn-categories-pills .btn.btn-dark:focus-visible {
+    background: rgba(0, 191, 166, 0.1);
+    color: var(--sn-l-link);
+    outline: none;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .sn-categories-pills .btn.btn-dark:focus-visible {
+    box-shadow: 0 0 0 2px rgba(0, 191, 166, 0.35) !important;
+}
+
+/* Playlist select */
+html:not([data-ui-theme="dark"]) body.home-page #playlists label {
+    color: var(--sn-l-text);
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #playlists select {
+    background: var(--sn-l-s2);
+    border: 1px solid var(--sn-l-border);
+    border-radius: var(--sn-l-r-md);
+    color: var(--sn-l-text);
+}
+
+/* ==== Intelligence workspace (S1): News Intelligence + Active Stories + First Look ==== */
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-intel-workspace {
+    margin: 1.5rem 1rem 2.5rem;
+    padding: 0.5rem 0 1.25rem;
+    background: var(--sn-l-s1);
+    border: 1px solid var(--sn-l-border);
+    border-top: 3px solid var(--sn-l-accent);
+    border-radius: var(--sn-l-r-xl);
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-intel-workspace .news-intel-panel.bg-light-2 {
+    background: transparent !important;
+    padding: 1.5rem 0 0.25rem;
+}
+
+/* News Intelligence columns: lighter than the lead panel (hairline, no shadow) */
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-intel-workspace .news-intel-panel .card.intel-card {
+    box-shadow: none !important;
+    border-color: var(--sn-l-border) !important;
+}
+
+/* Active Headlines: S3 inset inside the first Intel card */
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-intel-workspace .sn-card-active-headlines {
+    padding: 0.75rem 0.9rem;
+    background: var(--sn-l-s3);
+    border: 1px solid var(--sn-l-border-soft);
+    border-radius: var(--sn-l-r-md);
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-intel-workspace .sn-headline-item + .sn-headline-item {
+    border-top-color: var(--sn-l-border-soft);
+}
+
+/* Active Stories: primary product surface (hairline section divider, shadow and accent rule) */
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-intel-workspace > .container-fluid.mt-4 {
+    margin-top: 0.75rem !important;
+    margin-bottom: 0 !important;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-top: 1px solid var(--sn-l-border-soft);
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-intel-workspace .sn-card-active-stories {
+    border-top: 2px solid var(--sn-l-accent) !important;
+}
+
+/* First Look: keeps its dark identity, harmonised with workspace radius, border and spacing */
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-intel-workspace #first-look {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--sn-l-border-soft);
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #first-look .firstlook-box {
+    margin-top: 0;
+    background: linear-gradient(160deg, #1b2431 0%, #111720 100%);
+    border: 1px solid #0d131b;
+    border-radius: var(--sn-l-r-lg);
+    box-shadow: none;
+    backdrop-filter: none;
+    color: #fff;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #first-look .firstlook-col {
+    border-radius: var(--sn-l-r-md);
+}
+
+/* ==== Below-workspace sections: shared rhythm and heading style ==== */
+html:not([data-ui-theme="dark"]) body.home-page #services,
+html:not([data-ui-theme="dark"]) body.home-page #portfolio,
+html:not([data-ui-theme="dark"]) body.home-page #story,
+html:not([data-ui-theme="dark"]) body.home-page #team {
+    padding: 3.5rem 0;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #services h2.section-heading,
+html:not([data-ui-theme="dark"]) body.home-page #portfolio h2.section-heading,
+html:not([data-ui-theme="dark"]) body.home-page #story h2.section-heading,
+html:not([data-ui-theme="dark"]) body.home-page #team h2.section-heading,
+html:not([data-ui-theme="dark"]) body.home-page .sn-section h2.section-heading {
+    margin-bottom: 0.5rem;
+    color: var(--sn-l-text);
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #services h3.section-subheading,
+html:not([data-ui-theme="dark"]) body.home-page #portfolio h3.section-subheading,
+html:not([data-ui-theme="dark"]) body.home-page #story h3.section-subheading {
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 576px) {
+    html:not([data-ui-theme="dark"]) body.home-page .sn-section {
+        padding: 3.5rem 0;
+    }
+}
+
+/* Features: one S1 capability surface, hairline-divided columns */
+html:not([data-ui-theme="dark"]) body.home-page #services .row {
+    margin: 0;
+    background: var(--sn-l-s1);
+    border: 1px solid var(--sn-l-border);
+    border-radius: var(--sn-l-r-xl);
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #services .row > [class*="col-"] {
+    padding: 1.5rem 1.25rem;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #services .row > [class*="col-"] + [class*="col-"] {
+    border-top: 1px solid var(--sn-l-border-soft);
+}
+
+@media (min-width: 768px) {
+    html:not([data-ui-theme="dark"]) body.home-page #services .row > [class*="col-"] + [class*="col-"] {
+        border-top: 0;
+        border-left: 1px solid var(--sn-l-border-soft);
+    }
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #services .fa-stack {
+    font-size: 1.75rem;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #services h4 {
+    margin: 0.75rem 0 0 !important;
+    color: var(--sn-l-text);
+    font-size: 1rem;
+}
+
+/* Our Story: secondary context, smaller photos and quieter type; timeline concept unchanged */
+html:not([data-ui-theme="dark"]) body.home-page #story .timeline:before {
+    left: 28px;
+    background-color: var(--sn-l-border);
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #story .timeline > li {
+    min-height: 56px;
+    margin-bottom: 2rem;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #story .timeline > li .timeline-image {
+    left: 0;
+    width: 56px;
+    height: 56px;
+    margin-left: 0;
+    border: 2px solid var(--sn-l-s0);
+    box-shadow: 0 0 0 1px var(--sn-l-border);
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #story .timeline > li .timeline-image h4 {
+    margin-top: 0;
+    font-size: 9px;
+    line-height: 11px;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #story .timeline > li .timeline-panel,
+html:not([data-ui-theme="dark"]) body.home-page #story .timeline > li.timeline-inverted > .timeline-panel {
+    padding: 0 0 0 76px;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #story .timeline .timeline-heading h4 {
+    margin-bottom: 0.15rem;
+    color: var(--sn-l-muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #story .timeline .timeline-heading h4.subheading {
+    color: var(--sn-l-text);
+    font-size: 1rem;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #story .timeline .timeline-body > p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+    html:not([data-ui-theme="dark"]) body.home-page #story .timeline:before {
+        left: 50%;
+    }
+
+    html:not([data-ui-theme="dark"]) body.home-page #story .timeline > li .timeline-image {
+        left: 50%;
+        margin-left: -28px;
+    }
+
+    html:not([data-ui-theme="dark"]) body.home-page #story .timeline > li .timeline-panel {
+        width: 45%;
+        padding: 0 1.75rem 0 0;
+        text-align: right;
+    }
+
+    html:not([data-ui-theme="dark"]) body.home-page #story .timeline > li.timeline-inverted > .timeline-panel {
+        padding: 0 0 0 1.75rem;
+        text-align: left;
+    }
+}
+
+/* Meet the Team: compact avatars, hairline outline social actions */
+html:not([data-ui-theme="dark"]) body.home-page #team .team-member {
+    margin-bottom: 1.5rem;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #team .team-member img {
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid var(--sn-l-border);
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #team .team-member h4 {
+    margin-top: 0.9rem;
+    font-size: 1rem;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #team .team-member p.text-muted {
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #team .team-member .btn.btn-social {
+    width: 2rem;
+    height: 2rem;
+    margin: 0 0.2rem !important;
+    background: transparent;
+    border: 1px solid var(--sn-l-border);
+    border-radius: var(--sn-l-r-md);
+    box-shadow: none !important;
+    color: var(--sn-l-link);
+    font-size: 0.85rem;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #team .team-member .btn.btn-social:hover,
+html:not([data-ui-theme="dark"]) body.home-page #team .team-member .btn.btn-social:focus-visible {
+    background: rgba(0, 191, 166, 0.1);
+    border-color: var(--sn-l-accent);
+    color: var(--sn-l-link-hover);
+    outline: none;
+}
+
+@media (max-width: 575.98px) {
+    html:not([data-ui-theme="dark"]) body.home-page .page .sn-intel-workspace {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+}
+
+/* ==== END HOMEPAGE LIGHT SaaS EXPERIMENT ==== */

@@ -94,6 +94,9 @@ $title = mb_substr(preg_replace('/\s+/', ' ', $text), 0, 80);
         <link id="mindpour-theme" href="/assets/css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/mindpour.css'); ?>" rel="stylesheet" />
         <link id="dark-theme" href="/assets/css/dark.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark.css'); ?>" rel="stylesheet" />
         <link id="dark-typography-theme" href="/assets/css/dark-typography.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark-typography.css'); ?>" rel="stylesheet" />
+        <!-- LIGHT SaaS: remove these two links and the sn-light-saas body class to revert -->
+        <link href="/assets/css/light-saas.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/light-saas.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/pages/nlp-dashboard-light-saas.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/nlp-dashboard-light-saas.css'); ?>" rel="stylesheet" />
 
         <script src="/assets/js/dark-theme.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/dark-theme.js'); ?>"></script>
 
@@ -103,7 +106,7 @@ $title = mb_substr(preg_replace('/\s+/', ' ', $text), 0, 80);
         <link rel="stylesheet" href="/assets/css/jquery.fancybox.min.css"/>
 
     </head>
-    <body id="page-top">
+    <body id="page-top" class="sn-light-saas textroom-page">
 
         <!-- Blurred overlay -->
         <div class="blur-layer"></div>
@@ -178,7 +181,7 @@ $title = mb_substr(preg_replace('/\s+/', ' ', $text), 0, 80);
                                             </div>
                                             <!-- Card Body -->
                                             <div class="card-body">
-                                                <p><?= $text ?></p>
+                                                <p><?= htmlspecialchars($text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -215,7 +218,7 @@ $title = mb_substr(preg_replace('/\s+/', ' ', $text), 0, 80);
         <script>
             window.TEXTROOM = {
                 fromDb: false,
-                text: <?= json_encode($text ?? '') ?>
+                text: <?= json_encode($text ?? '', JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>
             };
         </script>
 

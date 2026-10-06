@@ -1,21 +1,21 @@
 {
-    "fetched_at": 1791315001,
+    "fetched_at": 1791327149,
     "feeds": [
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Four Afghans who fled UK in back of a lorry after gang-raping teenage girl they groomed with vodka and cigarettes are jailed",
-                    "url": "https://www.dailymail.com/news/article-16186551/Four-Afghans-fled-UK-lorry-gang-raping-teenage-girl-groomed-vodka-cigarettes-jailed.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791314947,
+                    "title": "Beauty pageant queen dies aged 22 after being struck by lightning",
+                    "url": "https://www.dailymail.com/lifestyle/article-16187487/beauty-pageant-queen-dies-age-22-struck-lightning.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791327088,
                     "emo": "📰"
                 },
                 {
-                    "title": "England vs Czech Republic - Nations League LIVE: Harry Kane converts fabulous team goal to double Three Lions' lead after disastrous own goal from ex-Premier League star put hosts ahead",
-                    "url": "https://www.dailymail.com/sport/football/article-16186223/England-vs-Czech-Republic-Nations-League-LIVE.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791314906,
-                    "emo": "🔥"
+                    "title": "Emma Stone brings A-list glamour to the Louis Vuitton show in a daring blue suit alongside fellow actresses Zendaya and  Ana de Armas as Paris Fashion Week draws to a close",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16187749/Chlo-Grace-Moretz-turns-heads-Gilded-Age-inspired-collar-crop-joins-Emma-Stone-Zendaya-Louis-Vuitton-Paris-Fashion-Week.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791326965,
+                    "emo": "🎭"
                 }
             ]
         },
@@ -24,15 +24,159 @@
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Russia’s neighbors step up infection control measures after possible plague outbreak",
-                    "url": "https://nypost.com/2026/10/06/world-news/russias-neighbors-step-up-infection-control-measures-after-possible-plague-outbreak/",
-                    "ts": 1791314938,
-                    "emo": "🌍"
+                    "title": "Florida teen strangled to death after shirt gets caught on playground slide screw: family",
+                    "url": "https://nypost.com/2026/10/06/us-news/florida-teen-strangled-to-death-after-shirt-gets-caught-on-playground-slide-screw-family/",
+                    "ts": 1791327073,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Ex-DSA pol William Lawrence stunned in debate when rival brings up his death wish for Joe Manchin",
-                    "url": "https://nypost.com/2026/10/06/us-news/ex-dsa-pol-william-lawrence-stunned-in-debate-when-rival-brings-up-his-death-wish-for-joe-manchin/",
-                    "ts": 1791314916,
+                    "title": "Dodgers Tyler Glasnow goes full NSFW with 3-word reaction ahead of clash with Braves",
+                    "url": "https://nypost.com/2026/10/06/sports/tyler-glasnow-gives-a-3-word-response-ahead-of-clash-with-braves/",
+                    "ts": 1791326991,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Dan Dakich calls Deion Sanders' Colorado program a 'Trojan horse': 'This is a s— show'",
+                    "url": "https://www.foxnews.com/outkick-sports/dan-dakich-calls-deion-sanders-colorado-program-trojan-horse-s-show",
+                    "ts": 1791325954,
+                    "emo": "🎭"
+                },
+                {
+                    "title": "Costco rolls out new Disneyland ticket deal but there's a catch for parkgoers",
+                    "url": "https://www.foxnews.com/travel/costco-rolls-out-new-disneyland-ticket-deal-theres-catch-parkgoers",
+                    "ts": 1791325911,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Trump admin revamps price transparency",
+                    "url": "https://thehill.com/newsletters/healthcare/6132791-trump-admin-revamps-price-transparency/",
+                    "ts": 1791325730,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Trump: Government will take massive stake in 'next generation' submarine shipyard",
+                    "url": "https://thehill.com/policy/defense/6132760-trump-taxpayers-stake-maryland-shipyard/",
+                    "ts": 1791325256,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Chart: A look at the S&P 500's remarkable and defiant trip to a new record",
+                    "url": "https://www.cnbc.com/2026/10/06/chart-a-look-at-the-sp-500s-remarkable-and-defiant-trip-a-new-record.html",
+                    "ts": 1791325381,
+                    "emo": "💰"
+                },
+                {
+                    "title": "Trump hedges on paying back government for ads that already aired",
+                    "url": "https://www.cnbc.com/2026/10/05/trump-ads-election.html",
+                    "ts": 1791322352,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "UPDATE: Dems have a 61% chance of controlling the Senate...",
+                    "url": "https://votehub.com/2026-forecast/senate/",
+                    "ts": 1791324276,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "86% chance of winning the House...",
+                    "url": "https://votehub.com/2026-forecast/house/",
+                    "ts": 1791324276,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "The S&P 500 is back in record territory as the ‘Magnificent Seven’ ride to the rescue",
+                    "url": "https://www.marketwatch.com/story/the-s-p-500-is-back-in-record-territory-as-the-magnificent-seven-ride-to-the-rescue-e062724d?mod=mw_rss_topstories",
+                    "ts": 1791323520,
+                    "emo": "💰"
+                },
+                {
+                    "title": "My brother-in-law convinced his parents to sign over their home and life savings to buy a $3 million compound. Do I intervene?",
+                    "url": "https://www.marketwatch.com/story/my-brother-in-law-convinced-his-parents-to-sign-over-their-home-and-savings-to-buy-a-3-million-compound-do-i-intervene-03fb96b7?mod=mw_rss_topstories",
+                    "ts": 1791321300,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Prime Day travel deals on stylish clothes, comfortable shoes, and more essentials for your next trip",
+                    "url": "https://www.businessinsider.com/guides/deals/prime-day-travel-deals-2026-10",
+                    "ts": 1791323016,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Everything Florence Pugh has worn in 2026, ranked from least to most daring",
+                    "url": "https://www.businessinsider.com/florence-pugh-daring-outfits-ranked-2026",
+                    "ts": 1791322670,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Justice Dept. Turns to Partisans and Conspiracists to Fill Depleted Ranks",
+                    "url": "https://www.nytimes.com/2026/10/06/us/politics/justice-department-civil-rights-division.html",
+                    "ts": 1791321163,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Wrongly Indicted Man Seeks Inquiry of Official Conduct in Reflecting Pool Case",
+                    "url": "https://www.nytimes.com/2026/10/06/us/politics/reflecting-pool-vandalism-case.html",
+                    "ts": 1791318772,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Christa Pike is awake and speaking after failed execution, lawyers say",
+                    "url": "https://www.nbcnews.com/news/us-news/christa-pike-awake-speaking-failed-execution-attempt-lawyer-says-rcna601970",
+                    "ts": 1791320192,
+                    "emo": "📰"
+                },
+                {
+                    "title": "NBC’s Steve Kornacki Breaks Down Where Midterm Numbers Stand",
+                    "url": "https://www.today.com/video/kornacki-battleground-states-to-watch-in-crucial-2026-midterm-271104581554",
+                    "ts": 1791285522,
                     "emo": "📰"
                 }
             ]
@@ -52,150 +196,6 @@
                     "url": "https://www.bbc.co.uk/news/videos/crgj97n2x1j4o?at_medium=RSS&at_campaign=rss",
                     "ts": 1791313277,
                     "emo": "🚨"
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "Trump, Waltz link France riots to mass immigration as thousands are arrested",
-                    "url": "https://www.foxnews.com/world/trump-waltz-link-france-riots-mass-immigration-thousands-arrested",
-                    "ts": 1791314477,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Former All-Star pitcher 'Sudden' Sam McDowell dead at 84",
-                    "url": "https://www.foxnews.com/outkick-sports/former-all-star-pitcher-sudden-sam-mcdowell-dead-84",
-                    "ts": 1791314135,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "Trump waives rules on red-dyed diesel, but local tax and other concerns remain",
-                    "url": "https://www.marketwatch.com/story/trump-waives-rules-on-red-dyed-diesel-but-local-tax-and-other-concerns-remain-f6b448c8?mod=mw_rss_topstories",
-                    "ts": 1791314040,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "‘Trump accounts’ could force MAGA children to own New York Times stock",
-                    "url": "https://www.marketwatch.com/story/trump-accounts-could-force-maga-children-to-own-new-york-times-stock-46177c96?mod=mw_rss_topstories",
-                    "ts": 1791311940,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Democratic senator says Pentagon denied him access to US base in Qatar 'to hide the costs' of Iran war",
-                    "url": "https://thehill.com/policy/defense/6132165-murphy-qatar-iran-war-pentagon/",
-                    "ts": 1791313347,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Watch live: Trump to unveil major investment in Baltimore submarine shipyard",
-                    "url": "https://thehill.com/video-clips/6131726-watch-live-donald-trump-submarine-investment-baltimore-shipyard/",
-                    "ts": 1791313200,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "UPDATE: Dems have a 61% chance of controlling the Senate...",
-                    "url": "https://votehub.com/2026-forecast/senate/",
-                    "ts": 1791313116,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "86% chance of winning the House...",
-                    "url": "https://votehub.com/2026-forecast/house/",
-                    "ts": 1791313116,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Why Saudi Arabia’s Last War in Yemen Turned Into a Quagmire",
-                    "url": "https://www.nytimes.com/2026/10/05/world/middleeast/saudi-arabia-war-yemen-houthis-quagmire.html",
-                    "ts": 1791311031,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Wrongly Indicted Man Seeks Inquiry of Official Conduct in Reflecting Pool Case",
-                    "url": "https://www.nytimes.com/2026/10/06/us/politics/reflecting-pool-vandalism-case.html",
-                    "ts": 1791304694,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "The Anthropic researcher-turned-whistleblower says he was 'working to automate' himself",
-                    "url": "https://www.businessinsider.com/former-anthropic-openai-jacob-coxon-self-automatation-research-work-2026-10",
-                    "ts": 1791307758,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Leaked audio: What David Ellison told employees at the first Skydance town hall",
-                    "url": "https://www.businessinsider.com/leaked-audio-what-david-ellison-told-skydance-employees-town-hall-2026-10",
-                    "ts": 1791307138,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Trade deficit hits $105.6 billion, widest since just before Trump tariffs enacted last year",
-                    "url": "https://www.cnbc.com/2026/10/06/trade-deficit-hits-105point6-billion-widest-since-just-before-trump-tariffs-enacted-last-year.html",
-                    "ts": 1791301942,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Rebounding oil exports through Strait of Hormuz are vulnerable to stepped-up Iranian tanker attacks",
-                    "url": "https://www.cnbc.com/2026/10/06/crude-oil-tanker-strait-hormuz-iran-attack.html",
-                    "ts": 1791303550,
-                    "emo": "💰"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Trump Hits 4 States in 5 Days in Final Push to November Midterms",
-                    "url": "https://www.today.com/video/trump-calls-iran-war-a-small-price-to-pay-drawing-backlash-271104069846",
-                    "ts": 1791285290,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "NBC’s Steve Kornacki Breaks Down Where Midterm Numbers Stand",
-                    "url": "https://www.today.com/video/kornacki-battleground-states-to-watch-in-crucial-2026-midterm-271104581554",
-                    "ts": 1791285522,
-                    "emo": "📰"
                 }
             ]
         },

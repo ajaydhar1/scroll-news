@@ -98,6 +98,9 @@ exit;
         <link id="mindpour-theme" href="/assets/css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/mindpour.css'); ?>" rel="stylesheet" />
         <link id="dark-theme" href="/assets/css/dark.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark.css'); ?>" rel="stylesheet" />
         <link id="dark-typography-theme" href="/assets/css/dark-typography.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark-typography.css'); ?>" rel="stylesheet" />
+        <!-- LIGHT SaaS: remove these two links and the sn-light-saas body class to revert -->
+        <link href="/assets/css/light-saas.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/light-saas.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/pages/nlp-dashboard-light-saas.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/nlp-dashboard-light-saas.css'); ?>" rel="stylesheet" />
 
         <script src="/assets/js/dark-theme.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/dark-theme.js'); ?>"></script>
     <?php endif; ?>
@@ -127,7 +130,7 @@ exit;
 
 </head>
 
-<body id="page-top">
+<body id="page-top"<?= $isTrailPlayer ? '' : ' class="sn-light-saas newsroom-page"' ?>>
 
     <!-- Blurred overlay -->
     <div class="blur-layer"></div>

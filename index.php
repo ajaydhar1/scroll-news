@@ -120,12 +120,15 @@ require_once BASE_PATH . "/core/___modules.php";
     <link href="/assets/css/panels/news-intel-panel.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/news-intel-panel.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/panels/active-stories.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/active-stories.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/panels/scroll-strip.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/scroll-strip.css'); ?>" rel="stylesheet" />
+    <!-- HOMEPAGE LIGHT SaaS EXPERIMENT: remove these two lines and the sn-light-saas body class to revert -->
+    <link id="light-saas" href="/assets/css/light-saas.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/light-saas.css'); ?>" rel="stylesheet" />
+    <link id="home-light-saas" href="/assets/css/pages/home-light-saas.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/home-light-saas.css'); ?>" rel="stylesheet" />
 
     <link href="/assets/css/lightbox.css" rel="stylesheet" />
 
 </head>
 
-<body id="page-top" class="home-page">
+<body id="page-top" class="home-page sn-light-saas">
 
     <!-- Blurred overlay -->
     <div class="blur-layer"></div>
@@ -317,6 +320,9 @@ require_once BASE_PATH . "/core/___modules.php";
 
         ?>
 
+        <!-- Intelligence workspace wrapper (light SaaS experiment grouping; harmless without the experiment CSS) -->
+        <div class="sn-intel-workspace">
+
         <!-- News Intelligence Panel-->
         <?php
         render_home_panel(
@@ -346,6 +352,8 @@ require_once BASE_PATH . "/core/___modules.php";
 
         <!-- First Look-->
         <?php include BASE_PATH . '/views/home/panels/___first_look.php'; ?>
+
+        </div><!-- /.sn-intel-workspace -->
 
         <?php include BASE_PATH . '/views/home/partials/___home_features.php'; ?>
         <?php include BASE_PATH . '/views/home/partials/___home_modules.php'; ?>

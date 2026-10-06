@@ -1,0 +1,174 @@
+/* ==== SCROLL ARCHIVE LIGHT SaaS ====
+   Requires the shared layer (assets/css/light-saas.css) and body.sn-light-saas on scroll-archive.php.
+   The staggered day-row offsets and horizontal tracks are left exactly as scroll-archive.css defines them.
+   Revert: remove this <link>, the shared <link> and the sn-light-saas body class. */
+
+/* Header */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-archive-header h2.section-heading {
+    color: var(--sn-l-text);
+    font-size: 1.35rem;
+    letter-spacing: 0.08em;
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-archive-header p {
+    color: var(--sn-l-muted) !important;
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .view-history {
+    color: var(--sn-l-link);
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .view-history:hover {
+    color: var(--sn-l-link-hover);
+}
+
+/* Filter bar: three contiguous S2 segments on desktop */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-history-filters .filter-col {
+    margin-bottom: 0.5rem !important;
+    padding: 0.7rem 1rem 0.9rem;
+    background: var(--sn-l-s2) !important;
+    border: 1px solid var(--sn-l-border);
+    border-radius: var(--sn-l-r-md);
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-history-filters label {
+    color: var(--sn-l-muted) !important;
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-history-filters .form-control {
+    background: var(--sn-l-s1);
+    border: 1px solid var(--sn-l-border);
+    border-radius: var(--sn-l-r-md);
+    color: var(--sn-l-text);
+}
+
+@media (min-width: 768px) {
+    html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-history-filters .filter-col {
+        margin-bottom: 0 !important;
+        border-radius: 0;
+    }
+
+    html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-history-filters .filter-col + .filter-col {
+        border-left-width: 0;
+    }
+
+    html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-history-filters .filter-col:first-child {
+        border-radius: var(--sn-l-r-lg) 0 0 var(--sn-l-r-lg);
+    }
+
+    html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-history-filters .filter-col:last-child {
+        border-radius: 0 var(--sn-l-r-lg) var(--sn-l-r-lg) 0;
+    }
+}
+
+/* Day rows: hairline divider and a quiet typographic header (no wrapper surface) */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .day-row {
+    border-bottom-color: var(--sn-l-border-soft);
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .day-title {
+    color: var(--sn-l-text);
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .day-meta {
+    color: var(--sn-l-muted);
+}
+
+/* Article cards: S2 with a hairline and a barely-there shadow; nav shadow on hover only */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .article-card {
+    background: var(--sn-l-s2) !important;
+    border: 1px solid var(--sn-l-border);
+    border-radius: var(--sn-l-r-lg);
+    box-shadow: 0 1px 2px rgba(18, 39, 34, 0.05);
+    color: var(--sn-l-text);
+    transition: box-shadow 0.15s ease;
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .article-card:hover {
+    box-shadow: var(--sn-l-shadow);
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .article-image-wrap {
+    background: var(--sn-l-s3);
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .article-title {
+    color: var(--sn-l-text);
+    font-size: 15px;
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .article-meta {
+    color: var(--sn-l-muted) !important;
+}
+
+/* Actions: outlined teal "Analyze" (brand teal accent) and a dark-teal text link */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page a.btn.btn-outline-primary.btn-analyze {
+    border: 1px solid var(--sn-l-accent);
+    border-radius: var(--sn-l-r-md);
+    color: var(--sn-l-text) !important;
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page a.btn.btn-outline-primary.btn-analyze:hover {
+    background: var(--sn-l-accent);
+    color: #082d27 !important;
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .link-read {
+    color: var(--sn-l-link);
+}
+
+/* NLP extras on the cards */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-hashtag-chip {
+    background: var(--sn-l-s3);
+    border-color: var(--sn-l-border-soft);
+    color: #33453f;
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-hashtag-chip:hover {
+    background: rgba(0, 191, 166, 0.12);
+    border-color: rgba(0, 191, 166, 0.35);
+    color: var(--sn-l-link-hover);
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-sentiment,
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-emotion-label,
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-emotion-value {
+    color: var(--sn-l-muted);
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-emotion-bar-track {
+    background: var(--sn-l-s3);
+}
+
+/* Track arrows */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .scroll-btn {
+    background: var(--sn-l-s2);
+    border: 1px solid var(--sn-l-border);
+    box-shadow: 0 1px 3px rgba(18, 39, 34, 0.15);
+    color: var(--sn-l-text);
+}
+
+/* Pagination */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-archive-pagination .page-link {
+    border: 1px solid var(--sn-l-border);
+    border-radius: var(--sn-l-r-md);
+    background: var(--sn-l-s2);
+    color: var(--sn-l-link);
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-archive-pagination .page-link:hover {
+    background: rgba(0, 191, 166, 0.1);
+    color: var(--sn-l-link-hover);
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-archive-pagination .page-item.active .page-link {
+    background: var(--sn-l-accent);
+    border-color: #00a890;
+    box-shadow: none;
+    color: #082d27;
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .sn-archive-pagination .page-item.disabled .page-link {
+    background: var(--sn-l-s3);
+    color: var(--sn-l-muted);
+}

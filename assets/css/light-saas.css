@@ -1,0 +1,100 @@
+/* ==== SHARED LIGHT SaaS LAYER ====
+   Opt-in via body.sn-light-saas; applies to the light (Mindpour) theme only, dark theme is untouched.
+   Surface levels: S0 canvas > S1 section surface > S2 raised card > S3 inset. Tokens derive from product-nav.css.
+   Page-specific rules live in pages/*-light-saas.css. Revert a page: remove its sn-light-saas body class and these <link>s. */
+
+html:has(> body.sn-light-saas):not([data-ui-theme="dark"]) {
+    background-image: none !important;
+    background-color: #eef2f0 !important;
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas {
+    /* Surfaces */
+    --sn-l-s0: #eef2f0;
+    --sn-l-s1: #f8faf9;
+    --sn-l-s2: #ffffff;
+    --sn-l-s3: #f0f4f2;
+    --sn-l-band: #e6ece9;
+
+    /* Green-neutral borders (nav: rgba(23,60,53,.12-.2)) */
+    --sn-l-border: rgba(23, 60, 53, 0.14);
+    --sn-l-border-soft: rgba(23, 60, 53, 0.08);
+
+    /* Text */
+    --sn-l-text: #17302b;
+    --sn-l-muted: #54645f;
+    --sn-l-link: #067466;
+    --sn-l-link-hover: #04554b;
+    --sn-l-accent: #00bfa6;
+
+    /* Radius scale */
+    --sn-l-r-sm: 4px;
+    --sn-l-r-md: 6px;
+    --sn-l-r-lg: 8px;
+    --sn-l-r-xl: 12px;
+
+    /* Shadows: one soft nav-style shadow, one hover step */
+    --sn-l-shadow: 0 5px 18px rgba(18, 39, 34, 0.07);
+    --sn-l-shadow-hover: 0 8px 24px rgba(18, 39, 34, 0.12);
+
+    background-color: var(--sn-l-s0);
+    color: var(--sn-l-text);
+    font-size: 15px;
+}
+
+/* Base is 15px; these keep their previous 16px-derived sizes (nav, badges, secondary labels) */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .sn-product-nav-shell {
+    font-size: 16px;
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .badge.small,
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .badge {
+    font-size: 12px;
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .text-muted.small {
+    font-size: 12.8px;
+}
+
+/* Canvas and bands */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .blur-layer {
+    display: none;
+}
+
+/* Pages whose <body> carries a bg-light-* class (Mindpour makes it a translucent black wash) */
+html:not([data-ui-theme="dark"]) body.sn-light-saas[class*="bg-light"] {
+    background: var(--sn-l-s0) !important;
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .bg-light-2,
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .bg-light-3,
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .bg-light-4 {
+    background: var(--sn-l-s0) !important;
+    color: var(--sn-l-text) !important;
+}
+
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page section.bg-light {
+    background: var(--sn-l-band) !important;
+    border-top: 1px solid var(--sn-l-border-soft);
+    border-bottom: 1px solid var(--sn-l-border-soft);
+}
+
+/* Footer wrapper: the bg-dark spacer under the footer */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page > .bg-dark {
+    background-color: var(--sn-l-s0) !important;
+}
+
+/* Muted text */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .text-muted {
+    color: var(--sn-l-muted) !important;
+}
+
+/* S2: raised cards */
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .card,
+html:not([data-ui-theme="dark"]) body.sn-light-saas .page .card.intel-card {
+    background: var(--sn-l-s2) !important;
+    border: 1px solid var(--sn-l-border) !important;
+    border-radius: var(--sn-l-r-lg);
+    box-shadow: var(--sn-l-shadow) !important;
+    color: var(--sn-l-text);
+}

@@ -186,9 +186,12 @@ if (!$pdo) {
         <script src="/assets/js/dark-theme.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/dark-theme.js'); ?>"></script>
 
         <link href="/assets/css/pages/scroll-archive.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/scroll-archive.css'); ?>" rel="stylesheet" />
+        <!-- LIGHT SaaS: remove these two links and the sn-light-saas body class to revert -->
+        <link href="/assets/css/light-saas.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/light-saas.css'); ?>" rel="stylesheet" />
+        <link href="/assets/css/pages/scroll-archive-light-saas.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/scroll-archive-light-saas.css'); ?>" rel="stylesheet" />
 
     </head>
-    <body id="page-top" class="bg-light-3">
+    <body id="page-top" class="bg-light-3 sn-light-saas">
 
         <!-- Blurred overlay -->
         <div class="blur-layer"></div>
