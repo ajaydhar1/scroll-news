@@ -28,7 +28,7 @@ require_once __DIR__ . '/../../auth/includes/auth_bootstrap.php';
         <div class="collapse sn-product-collapse" id="snProductNavCollapse">
             <ul class="sn-product-links">
                 <li class="sn-product-item sn-product-stumble-item">
-                    <a class="sn-product-link sn-product-stumble" href="/newsroom.php" onclick="trackStumbleClick('top_nav_product')" data-loading>
+                    <a data-step="1" data-intro="Welcome to the Scroll News newsroom! Here we provide analytics for the latest news stories. Click this play button to stumble through trending articles." class="sn-product-link sn-product-stumble" href="/newsroom.php" onclick="trackStumbleClick('top_nav_product')" data-loading>
                         <i class="fas fa-play" aria-hidden="true"></i>
                         <span>Stumble</span>
                     </a>
