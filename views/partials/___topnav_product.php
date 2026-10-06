@@ -128,9 +128,20 @@ require_once __DIR__ . '/../../auth/includes/auth_bootstrap.php';
 
         window.addEventListener('pageshow', hide);
         document.addEventListener('click', function(event) {
-            if (event.target.closest('#snProductNavCollapse [data-loading], .sn-product-brand[data-loading]')) {
-                show();
+            const el = event.target.closest('[data-loading]');
+            if (!el || event.defaultPrevented) return;
+            if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+
+            const link = el.closest('a');
+            if (link) {
+                const target = link.getAttribute('target');
+                if (target && target !== '_self') return;
+                if (link.hasAttribute('download')) return;
+                const href = link.getAttribute('href') || '';
+                // In-page anchors don't unload the page, so the overlay would never clear.
+                if (href === '' || href.charAt(0) === '#') return;
             }
+            show();
         });
 
         syncThemeIcon();

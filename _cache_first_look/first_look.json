@@ -1,39 +1,93 @@
 {
-    "fetched_at": 1791313860,
+    "fetched_at": 1791315001,
     "feeds": [
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "Myles Garrett’s girlfriend Chloe Kim reveals life-changing diagnosis after ‘struggling’ for years",
-                    "url": "https://nypost.com/2026/10/06/sports/myles-garretts-girlfriend-chloe-kim-reveals-adhd-diagnosis/",
-                    "ts": 1791313817,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Jane Austen popcorn bucket sparks buying frenzy, debate among lit purists: ‘Where I draw the line.’",
-                    "url": "https://nypost.com/2026/10/06/lifestyle/jane-austen-popcorn-bucket-sparks-buying-frenzy/",
-                    "ts": 1791313685,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "England vs Czech Republic - Nations League LIVE: Trent Alexander-Arnold comes close with long-range free-kick as Three Lions search for opener on Harry Kane's milestone night",
-                    "url": "https://www.dailymail.com/sport/football/article-16186223/England-vs-Czech-Republic-Nations-League-LIVE.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791313627,
-                    "emo": "🔥"
+                    "title": "Four Afghans who fled UK in back of a lorry after gang-raping teenage girl they groomed with vodka and cigarettes are jailed",
+                    "url": "https://www.dailymail.com/news/article-16186551/Four-Afghans-fled-UK-lorry-gang-raping-teenage-girl-groomed-vodka-cigarettes-jailed.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791314947,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Childminder who left 27 children in her home alone and unsupervised pleads guilty to neglect",
-                    "url": "https://www.dailymail.com/news/article-16187497/Childminder-unsupervised-guilty-neglect.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791313525,
+                    "title": "England vs Czech Republic - Nations League LIVE: Harry Kane converts fabulous team goal to double Three Lions' lead after disastrous own goal from ex-Premier League star put hosts ahead",
+                    "url": "https://www.dailymail.com/sport/football/article-16186223/England-vs-Czech-Republic-Nations-League-LIVE.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791314906,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "Russia’s neighbors step up infection control measures after possible plague outbreak",
+                    "url": "https://nypost.com/2026/10/06/world-news/russias-neighbors-step-up-infection-control-measures-after-possible-plague-outbreak/",
+                    "ts": 1791314938,
+                    "emo": "🌍"
+                },
+                {
+                    "title": "Ex-DSA pol William Lawrence stunned in debate when rival brings up his death wish for Joe Manchin",
+                    "url": "https://nypost.com/2026/10/06/us-news/ex-dsa-pol-william-lawrence-stunned-in-debate-when-rival-brings-up-his-death-wish-for-joe-manchin/",
+                    "ts": 1791314916,
                     "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "Three arrested after raid on gang accused of helping migrants pretend to be gay to get asylum",
+                    "url": "https://www.bbc.co.uk/news/articles/cmp3gnd1e4gyo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791314708,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Watch: Police raid on gang behind fake gay asylum claims",
+                    "url": "https://www.bbc.co.uk/news/videos/crgj97n2x1j4o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791313277,
+                    "emo": "🚨"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Trump, Waltz link France riots to mass immigration as thousands are arrested",
+                    "url": "https://www.foxnews.com/world/trump-waltz-link-france-riots-mass-immigration-thousands-arrested",
+                    "ts": 1791314477,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Former All-Star pitcher 'Sudden' Sam McDowell dead at 84",
+                    "url": "https://www.foxnews.com/outkick-sports/former-all-star-pitcher-sudden-sam-mcdowell-dead-84",
+                    "ts": 1791314135,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "Trump waives rules on red-dyed diesel, but local tax and other concerns remain",
+                    "url": "https://www.marketwatch.com/story/trump-waives-rules-on-red-dyed-diesel-but-local-tax-and-other-concerns-remain-f6b448c8?mod=mw_rss_topstories",
+                    "ts": 1791314040,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "‘Trump accounts’ could force MAGA children to own New York Times stock",
+                    "url": "https://www.marketwatch.com/story/trump-accounts-could-force-maga-children-to-own-new-york-times-stock-46177c96?mod=mw_rss_topstories",
+                    "ts": 1791311940,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -56,24 +110,6 @@
             ]
         },
         {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "Suspects wanted for stabbing of off-duty NYPD detective are illegal aliens with long criminal histories",
-                    "url": "https://www.foxnews.com/us/suspects-wanted-stabbing-off-duty-nypd-detective-illegal-aliens-long-criminal-histories",
-                    "ts": 1791313299,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Fanatics Sportsbook Promo Code FOXNEWS350: Bet $20, Get $350 on Braves vs Dodgers",
-                    "url": "https://www.foxnews.com/outkick-betting/fanatics-sportsbook-promo-code-foxnews350-bet-20-get-350-braves-vs-dodgers",
-                    "ts": 1791313240,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
@@ -92,24 +128,6 @@
             ]
         },
         {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "‘Trump accounts’ could force MAGA children to own New York Times stock",
-                    "url": "https://www.marketwatch.com/story/trump-accounts-could-force-maga-children-to-own-new-york-times-stock-46177c96?mod=mw_rss_topstories",
-                    "ts": 1791311940,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "My wife never went back to work after raising our kids. Do I have to share my retirement savings 50/50?",
-                    "url": "https://www.marketwatch.com/story/my-wife-never-went-back-to-work-after-raising-our-kids-do-i-have-to-share-my-retirement-savings-50-50-f0727f82?mod=mw_rss_topstories",
-                    "ts": 1791311400,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
             "name": "NYT",
             "home": "https://www.nytimes.com",
             "items": [
@@ -120,27 +138,9 @@
                     "emo": "🔥"
                 },
                 {
-                    "title": "Strikes, Barricades and Fiscal Turmoil: An Autumn of Discontent Grips France",
-                    "url": "https://www.nytimes.com/2026/10/06/world/europe/france-protests-social-welfare-election.html",
-                    "ts": 1791308227,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "Tear gas in Paris and Marseille as school protests grow across France",
-                    "url": "https://www.bbc.co.uk/news/articles/c8x23706pvz3o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791309799,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Watch: At the scene of student protests in Lille",
-                    "url": "https://www.bbc.co.uk/news/videos/cwzd650e2jqdo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791298976,
+                    "title": "Wrongly Indicted Man Seeks Inquiry of Official Conduct in Reflecting Pool Case",
+                    "url": "https://www.nytimes.com/2026/10/06/us/politics/reflecting-pool-vandalism-case.html",
+                    "ts": 1791304694,
                     "emo": "📰"
                 }
             ]
