@@ -1,20 +1,110 @@
 {
-    "fetched_at": 1791308376,
+    "fetched_at": 1791313860,
     "feeds": [
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Sebastian Maniscalco, SiriusXM seem unmoved by comics’ pay pleas",
-                    "url": "https://pagesix.com/2026/10/06/society/sebastian-maniscalco-siriusxm-seem-unmoved-by-comics-pay-pleas/",
-                    "ts": 1791308261,
+                    "title": "Myles Garrett’s girlfriend Chloe Kim reveals life-changing diagnosis after ‘struggling’ for years",
+                    "url": "https://nypost.com/2026/10/06/sports/myles-garretts-girlfriend-chloe-kim-reveals-adhd-diagnosis/",
+                    "ts": 1791313817,
                     "emo": "📰"
                 },
                 {
-                    "title": "Sebastian Maniscalco, SiriusXM seem unmoved by comics’ pay pleas",
-                    "url": "https://pagesix.com/2026/10/06/society/sebastian-maniscalco-siriusxm-seem-unmoved-by-comics-pay-pleas/",
-                    "ts": 1791308261,
+                    "title": "Jane Austen popcorn bucket sparks buying frenzy, debate among lit purists: ‘Where I draw the line.’",
+                    "url": "https://nypost.com/2026/10/06/lifestyle/jane-austen-popcorn-bucket-sparks-buying-frenzy/",
+                    "ts": 1791313685,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "England vs Czech Republic - Nations League LIVE: Trent Alexander-Arnold comes close with long-range free-kick as Three Lions search for opener on Harry Kane's milestone night",
+                    "url": "https://www.dailymail.com/sport/football/article-16186223/England-vs-Czech-Republic-Nations-League-LIVE.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791313627,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Childminder who left 27 children in her home alone and unsupervised pleads guilty to neglect",
+                    "url": "https://www.dailymail.com/news/article-16187497/Childminder-unsupervised-guilty-neglect.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791313525,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Democratic senator says Pentagon denied him access to US base in Qatar 'to hide the costs' of Iran war",
+                    "url": "https://thehill.com/policy/defense/6132165-murphy-qatar-iran-war-pentagon/",
+                    "ts": 1791313347,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Watch live: Trump to unveil major investment in Baltimore submarine shipyard",
+                    "url": "https://thehill.com/video-clips/6131726-watch-live-donald-trump-submarine-investment-baltimore-shipyard/",
+                    "ts": 1791313200,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Suspects wanted for stabbing of off-duty NYPD detective are illegal aliens with long criminal histories",
+                    "url": "https://www.foxnews.com/us/suspects-wanted-stabbing-off-duty-nypd-detective-illegal-aliens-long-criminal-histories",
+                    "ts": 1791313299,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Fanatics Sportsbook Promo Code FOXNEWS350: Bet $20, Get $350 on Braves vs Dodgers",
+                    "url": "https://www.foxnews.com/outkick-betting/fanatics-sportsbook-promo-code-foxnews350-bet-20-get-350-braves-vs-dodgers",
+                    "ts": 1791313240,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "UPDATE: Dems have a 61% chance of controlling the Senate...",
+                    "url": "https://votehub.com/2026-forecast/senate/",
+                    "ts": 1791313116,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "86% chance of winning the House...",
+                    "url": "https://votehub.com/2026-forecast/house/",
+                    "ts": 1791313116,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "‘Trump accounts’ could force MAGA children to own New York Times stock",
+                    "url": "https://www.marketwatch.com/story/trump-accounts-could-force-maga-children-to-own-new-york-times-stock-46177c96?mod=mw_rss_topstories",
+                    "ts": 1791311940,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "My wife never went back to work after raising our kids. Do I have to share my retirement savings 50/50?",
+                    "url": "https://www.marketwatch.com/story/my-wife-never-went-back-to-work-after-raising-our-kids-do-i-have-to-share-my-retirement-savings-50-50-f0727f82?mod=mw_rss_topstories",
+                    "ts": 1791311400,
                     "emo": "📰"
                 }
             ]
@@ -24,87 +114,51 @@
             "home": "https://www.nytimes.com",
             "items": [
                 {
+                    "title": "Why Saudi Arabia’s Last War in Yemen Turned Into a Quagmire",
+                    "url": "https://www.nytimes.com/2026/10/05/world/middleeast/saudi-arabia-war-yemen-houthis-quagmire.html",
+                    "ts": 1791311031,
+                    "emo": "🔥"
+                },
+                {
                     "title": "Strikes, Barricades and Fiscal Turmoil: An Autumn of Discontent Grips France",
-                    "url": "https://www.nytimes.com/2026/10/06/world/europe/france-crisis-autumn-discontent.html",
+                    "url": "https://www.nytimes.com/2026/10/06/world/europe/france-protests-social-welfare-election.html",
                     "ts": 1791308227,
                     "emo": "📰"
-                },
-                {
-                    "title": "Potential Iranian Drone Attack Led to Exit of U.S. Bombers From U.K. Air Base RAF Fairford",
-                    "url": "https://www.nytimes.com/2026/10/05/us/politics/iran-drone-attack-us-uk-base-fairford.html",
-                    "ts": 1791260280,
-                    "emo": "🔥"
                 }
             ]
         },
         {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
             "items": [
                 {
-                    "title": "Michael Douglas unveils ANOTHER on-set affair with Basic Instinct co-star... after Kathleen Turner bombshell",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16187165/michael-douglas-unveils-set-fling-basic-instinct-star-kathleen-turner-affair-bombshell.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791308140,
+                    "title": "Tear gas in Paris and Marseille as school protests grow across France",
+                    "url": "https://www.bbc.co.uk/news/articles/c8x23706pvz3o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791309799,
                     "emo": "📰"
                 },
                 {
-                    "title": "Trump blames French student riots on 'mass migration' and says 'this isn't about schools, it's about Islam wanting to take over'",
-                    "url": "https://www.dailymail.com/news/article-16187703/Trump-blames-French-student-riots-mass-migration.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791308067,
-                    "emo": "⚖️"
+                    "title": "Watch: At the scene of student protests in Lille",
+                    "url": "https://www.bbc.co.uk/news/videos/cwzd650e2jqdo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791298976,
+                    "emo": "📰"
                 }
             ]
         },
         {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Dre Greenlaw's Sean Payton beef exposes another side of the NFL's most overrated head coach",
-                    "url": "https://www.foxnews.com/outkick-sports/dre-greenlaw-sean-payton-beef-exposes-nfl-most-overrated-head-coach",
-                    "ts": 1791307815,
+                    "title": "The Anthropic researcher-turned-whistleblower says he was 'working to automate' himself",
+                    "url": "https://www.businessinsider.com/former-anthropic-openai-jacob-coxon-self-automatation-research-work-2026-10",
+                    "ts": 1791307758,
                     "emo": "📰"
                 },
                 {
-                    "title": "Biden-era FBI’s ‘Nixonian’ Trump family surveillance draws scrutiny from unlikely corner",
-                    "url": "https://www.foxnews.com/politics/biden-era-fbis-nixonian-trump-family-surveillance-draws-scrutiny-from-unlikely-corner",
-                    "ts": 1791306587,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "Loneliness and social isolation can take six years off your life",
-                    "url": "https://www.marketwatch.com/story/loneliness-and-social-isolation-can-take-six-years-off-your-life-496af256?mod=mw_rss_topstories",
-                    "ts": 1791307080,
-                    "emo": "📰"
-                },
-                {
-                    "title": "These 5 chip stocks are cheaper than the S&P 500 — and offer faster growth",
-                    "url": "https://www.marketwatch.com/story/these-5-chip-stocks-are-cheaper-than-the-s-p-500-and-offer-faster-growth-f8ab4386?mod=mw_rss_topstories",
-                    "ts": 1791302220,
-                    "emo": "💰"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Trump won't reimburse government for controversial ads",
-                    "url": "https://thehill.com/homenews/administration/6131835-donald-trump-political-ads-taxpayer-money/",
-                    "ts": 1791306279,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "With SAVE Act fail, Republicans snatch failure from the jaws of success",
-                    "url": "https://thehill.com/opinion/congress-blog/6130070-save-america-act-failure/",
-                    "ts": 1791306000,
+                    "title": "Leaked audio: What David Ellison told employees at the first Skydance town hall",
+                    "url": "https://www.businessinsider.com/leaked-audio-what-david-ellison-told-skydance-employees-town-hall-2026-10",
+                    "ts": 1791307138,
                     "emo": "📰"
                 }
             ]
@@ -128,60 +182,6 @@
             ]
         },
         {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "Watch: At the scene of student protests in Lille",
-                    "url": "https://www.bbc.co.uk/news/videos/cwzd650e2jqdo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791298976,
-                    "emo": "📰"
-                },
-                {
-                    "title": "British national arrested in connection with RAF Fairford incident",
-                    "url": "https://www.bbc.co.uk/news/articles/cqlye0xd72wdo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791299038,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "The best Apple Prime Day deals include $70 off AirPods Pro 3 and $50 off the brand-new Apple Watch Series 12",
-                    "url": "https://www.businessinsider.com/guides/deals/apple-prime-day-deals-2026-10",
-                    "ts": 1791295924,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Leaving the US overnight felt like a 'bad dream'",
-                    "url": "https://www.businessinsider.com/h1b-visa-hopeful-india-moved-to-germany-2026-10",
-                    "ts": 1791295589,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "UPDATE: PNEUMONIC PLAGUE SHAKING RUSSIA...",
-                    "url": "https://www.axios.com/2026/10/06/missing-details-us-plague-response",
-                    "ts": 1791294756,
-                    "emo": "🌍"
-                },
-                {
-                    "title": "SECOND VICTIM DIES?",
-                    "url": "https://www.dailystar.co.uk/news/latest-news/black-death-plague-kills-second-37739872",
-                    "ts": 1791294756,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
             "name": "NBC",
             "home": "https://www.nbcnews.com",
             "items": [
@@ -192,9 +192,9 @@
                     "emo": "⚖️"
                 },
                 {
-                    "title": "Local officials weigh in on political polarization",
-                    "url": "https://www.nbcnews.com/video/local-officials-weigh-in-on-political-polarization-270964293785",
-                    "ts": 1791037339,
+                    "title": "NBC’s Steve Kornacki Breaks Down Where Midterm Numbers Stand",
+                    "url": "https://www.today.com/video/kornacki-battleground-states-to-watch-in-crucial-2026-midterm-271104581554",
+                    "ts": 1791285522,
                     "emo": "📰"
                 }
             ]

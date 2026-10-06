@@ -1,4 +1,4 @@
-html[data-ui-theme="dark"] {
+﻿html[data-ui-theme="dark"] {
     background-image: url(../img/dark-city.gif) !important;
 }
 
@@ -252,3 +252,87 @@ html[data-ui-theme="dark"] #browseNewsModal .card {
 html[data-ui-theme="dark"] #browseNewsModal .card-text.text-muted {
     color: #6c757d !important;
 }
+
+/* ==== SHARED DARK SURFACE SYSTEM (charcoal canvas, solid cards) — delete this block to revert ==== */
+html[data-ui-theme="dark"] {
+    --sn-canvas: #1f2328;
+    --sn-band: #23282e;
+    --sn-surface: #2a2f36;
+    --sn-surface-raised: #30363d;
+    --sn-border: rgba(255, 255, 255, 0.08);
+    --sn-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.18);
+    --sn-muted: #a9b1ba;
+    background-image: none !important;
+    background-color: var(--sn-canvas) !important;
+}
+
+html[data-ui-theme="dark"] body,
+html[data-ui-theme="dark"] body.bg-light-3 {
+    background-color: var(--sn-canvas) !important;
+}
+
+html[data-ui-theme="dark"] .reading-modes-section,
+html[data-ui-theme="dark"] .page .bg-light-2 {
+    background-color: var(--sn-canvas) !important;
+}
+
+html[data-ui-theme="dark"] .page .bg-light,
+html[data-ui-theme="dark"] .page .bg-light-3,
+html[data-ui-theme="dark"] .page .bg-light-4 {
+    background-color: var(--sn-band) !important;
+}
+
+html[data-ui-theme="dark"] .page .card,
+html[data-ui-theme="dark"] .page .card.intel-card,
+html[data-ui-theme="dark"] .page .article-card,
+html[data-ui-theme="dark"] .page #analytics .card,
+html[data-ui-theme="dark"] .page .sn-card-active-headlines {
+    background: var(--sn-surface) !important;
+    border: 1px solid var(--sn-border) !important;
+    box-shadow: var(--sn-shadow);
+}
+
+html[data-ui-theme="dark"] .page .card .text-muted,
+html[data-ui-theme="dark"] .page .sn-card-active-headlines .text-muted {
+    color: var(--sn-muted) !important;
+}
+
+html[data-ui-theme="dark"] .page .sn-card {
+    border: 1px solid var(--sn-border);
+    box-shadow: var(--sn-shadow);
+}
+
+/* Gray-on-gray controls that fell below 4.5:1 on the solid surface */
+html[data-ui-theme="dark"] .page .card .btn-outline-secondary,
+html[data-ui-theme="dark"] .page .sn-card-active-headlines .btn-outline-secondary {
+    color: var(--sn-muted);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+html[data-ui-theme="dark"] .page .card .btn-outline-secondary:hover {
+    color: #fff;
+}
+
+html[data-ui-theme="dark"] .page .sn-time-marker,
+html[data-ui-theme="dark"] .page .article-card .sn-sentiment-label {
+    color: var(--sn-muted);
+}
+
+/* Scroll Archive filter panel */
+html[data-ui-theme="dark"] .page .filter-col {
+    background: var(--sn-surface) !important;
+    border: 1px solid var(--sn-border);
+    box-shadow: var(--sn-shadow);
+}
+
+html[data-ui-theme="dark"] .page .card-header {
+    background: var(--sn-surface-raised) !important;
+    border-bottom: 1px solid var(--sn-border);
+    color: #e6e9ed;
+}
+
+html[data-ui-theme="dark"] .page .card-header h5,
+html[data-ui-theme="dark"] .page .card-header h5.m-0.font-weight-bold {
+    color: #e6e9ed !important;
+}
+/* ==== END SHARED DARK SURFACE SYSTEM ==== */
