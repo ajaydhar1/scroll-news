@@ -1,56 +1,20 @@
 {
-    "fetched_at": 1791260645,
+    "fetched_at": 1791282534,
     "feeds": [
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Potential Iranian Drone Attack Led to Exit of U.S. Aircraft From British Air Base",
-                    "url": "https://www.nytimes.com/2026/10/05/us/politics/iran-drone-attack-threat.html",
-                    "ts": 1791260280,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Strikes, Barricades and Fiscal Turmoil: An Autumn of Discontent Grips France",
-                    "url": "https://www.nytimes.com/2026/10/06/world/europe/france-crisis-autumn-discontent.html",
-                    "ts": 1791259274,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Steve Gleason makes emotional return to Superdome to celebrate legendary blocked punt",
-                    "url": "https://nypost.com/2026/10/06/sports/steve-gleason-makes-return-to-superdome-to-celebrate-blocked-punt/",
-                    "ts": 1791260048,
+                    "title": "Woman dies, baby critically injured after they were allegedly thrown from Bronx apartment block: reports",
+                    "url": "https://nypost.com/2026/10/06/us-news/woman-dies-baby-critically-injured-after-they-were-allegedly-thrown-from-bronx-apartment-block-reports/",
+                    "ts": 1791282508,
                     "emo": "📰"
                 },
                 {
-                    "title": "Aaron Boone’s toughest decision immediately backfired in Yankees’ Game 2 debacle",
-                    "url": "https://nypost.com/2026/10/06/sports/aaron-boones-third-base-decision-backfired-in-yankees-game-2-debacle/",
-                    "ts": 1791260024,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "Falcons turn primetime doubters into believers behind Bijan Robinson's back-to-back masterpieces",
-                    "url": "https://www.foxnews.com/outkick-sports/falcons-turn-primetime-doubters-believers-bijan-robinson-back-to-back-masterpieces",
-                    "ts": 1791259293,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Rays capitalize on four Yankees errors to take commanding 2-0 ALDS lead",
-                    "url": "https://www.foxnews.com/outkick-sports/rays-capitalize-four-yankees-errors-take-commanding-2-0-alds-lead",
-                    "ts": 1791258410,
+                    "title": "Under-par prices: Swing for October Prime Day golf deals on balls, gear and more",
+                    "url": "https://nypost.com/shopping/amazon-prime-big-deal-days-golf-deals-october-2026/",
+                    "ts": 1791281700,
                     "emo": "📰"
                 }
             ]
@@ -60,15 +24,15 @@
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Trump approves military firing squad for 'jihadist' Army sergeant major who massacred 13 at Fort Hood",
-                    "url": "https://www.dailymail.com/news/article-16185579/Trump-Nidal-Hasan-death-firing-squad-fort-hood.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791258264,
-                    "emo": "⚖️"
+                    "title": "Melinda Messenger's transformation from lads' mag favourite to wellness guru as the former blonde bombshell, 55, embraces her silver siren era",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16176003/Melinda-Messenger-transformation-lads-mag-wellness.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791282419,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Victoria Beckham is pouring over £2million into launching daughter Harper's skincare brand H7B Ltd - and it's still a year away from making its first sale",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16184695/Victoria-Beckham-pouring-2million-launching-daughter-Harpers-skincare-brand-H7B-year-away-making-sale.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791258194,
+                    "title": "Russian media claims a second victim has died from 'plague outbreak' at infection zone hospital as Kremlin scrambles to cover up details",
+                    "url": "https://www.dailymail.com/news/article-16186315/Russian-media-claims-second-victim-died-plague-outbreak-infection-zone-hospital-Kremlin-scrambles-cover-details.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791282386,
                     "emo": "📰"
                 }
             ]
@@ -80,68 +44,32 @@
                 {
                     "title": "PNEUMONIC PLAGUE SHAKING RUSSIA...",
                     "url": "https://www.cnbc.com/2026/10/05/russia-plague-suspected-case-irkutsk.html",
-                    "ts": 1791256236,
+                    "ts": 1791282336,
                     "emo": "🌍"
                 },
                 {
                     "title": "Moscow accused of covering up...",
                     "url": "https://www.telegraph.co.uk/world-news/2026/10/05/russian-researcher-dies-plague-released-lab-accident/",
-                    "ts": 1791256236,
+                    "ts": 1791282336,
                     "emo": "📰"
                 }
             ]
         },
         {
-            "name": "The Hill",
-            "home": "https://thehill.com",
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Tillis says Trump impeachment over Jan 6 was 'weighty,' a 'vote of no confidence'",
-                    "url": "https://thehill.com/homenews/senate/6130895-tillis-trump-impeachment-snap-trial/",
-                    "ts": 1791255203,
+                    "title": "Battle over Daylight Saving Time erupts as push to stop changing clocks hits Senate wall",
+                    "url": "https://www.foxnews.com/politics/battle-over-daylight-saving-time-erupts-push-stop-changing-clocks-hits-senate-wall",
+                    "ts": 1791281703,
                     "emo": "⚖️"
                 },
                 {
-                    "title": "Trump says he will pay for 'Patriotic Ads' himself after facing backlash from Democrats",
-                    "url": "https://thehill.com/homenews/administration/6130848-trump-to-pay-patriotic-ads-backlash/",
-                    "ts": 1791251931,
+                    "title": "President Trump endorses Wyoming's secretary of state for US House of Representatives",
+                    "url": "https://www.foxnews.com/politics/president-trump-endorses-wyomings-secretary-state-us-house-representatives",
+                    "ts": 1791281498,
                     "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Trump offers U.S. help to Russia after plague death; WHO assesses the situation as low risk",
-                    "url": "https://www.cnbc.com/2026/10/06/russia-plague-death-trump-offers-us-help.html",
-                    "ts": 1791251252,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "World Bank warns of AI concentration risks as it lifts East Asia and Pacific growth outlook to 4.5%",
-                    "url": "https://www.cnbc.com/2026/10/06/world-bank-east-asia-growth-inflation-ai-exports-.html",
-                    "ts": 1791259644,
-                    "emo": "🧪"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Best streaming services (2026)",
-                    "url": "https://www.businessinsider.com/guides/streaming/best-streaming-services",
-                    "ts": 1791247512,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Elon Musk is a trillionaire again",
-                    "url": "https://www.businessinsider.com/elon-musk-regains-trillionaire-status-spacex-stock-price-rise-2026-10",
-                    "ts": 1791247163,
-                    "emo": "📰"
                 }
             ]
         },
@@ -152,13 +80,13 @@
                 {
                     "title": "‘People in the U.S. need to wake up’: As a mortgage loan officer, I rejected wealthy couples due to overspending. We’re all heading for trouble.",
                     "url": "https://www.marketwatch.com/story/people-in-the-u-s-need-to-wake-up-as-a-mortgage-loan-officer-i-rejected-wealthy-couples-due-to-overspending-were-all-heading-for-trouble-6a52e04e?mod=mw_rss_topstories",
-                    "ts": 1791243000,
+                    "ts": 1791281700,
                     "emo": "📰"
                 },
                 {
-                    "title": "‘The pain was excruciating’: A friend in her 80s fell down her basement stairs. Could it have been avoided?",
-                    "url": "https://www.marketwatch.com/story/the-pain-was-excruciating-a-friend-in-her-80s-fell-down-her-basement-stairs-could-it-have-been-avoided-ce105db6?mod=mw_rss_topstories",
-                    "ts": 1791241200,
+                    "title": "Should I put my nest egg in a 30-year Treasury bond?",
+                    "url": "https://www.marketwatch.com/story/should-i-put-my-nest-egg-in-a-30-year-treasury-bond-89db6e09?mod=mw_rss_topstories",
+                    "ts": 1791280800,
                     "emo": "📰"
                 }
             ]
@@ -168,15 +96,51 @@
             "home": "https://www.bbc.com/news",
             "items": [
                 {
-                    "title": "Trump says 'threat' led US to pull bombers from RAF Fairford",
-                    "url": "https://www.bbc.co.uk/news/articles/cwj3413e5m1lo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791236782,
+                    "title": "Former German spy chief arrested for espionage and treason",
+                    "url": "https://www.bbc.co.uk/news/articles/c58jzyer1kr0o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791281142,
+                    "emo": "📰"
+                },
+                {
+                    "title": "'Ghost particles' from space telescope wins physics Nobel",
+                    "url": "https://www.bbc.co.uk/news/articles/cq203mymlvkeo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791282239,
+                    "emo": "🧪"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Trump's Golden Dome faces headwinds with funding uncertain",
+                    "url": "https://thehill.com/policy/defense/6127776-golden-dome-missile-funding-crisis/",
+                    "ts": 1791280800,
                     "emo": "⚖️"
                 },
                 {
-                    "title": "What prompted the US bombers to leave RAF Fairford?",
-                    "url": "https://www.bbc.co.uk/news/articles/ck87z09xe82qo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791237446,
+                    "title": "Alito's first book pushes conservative justice into spotlight",
+                    "url": "https://thehill.com/regulation/court-battles/6130540-justice-samuel-alito-supreme-court-book/",
+                    "ts": 1791280800,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Some early users are deleting personal AI agents, citing privacy scares and blunders",
+                    "url": "https://www.businessinsider.com/early-users-delete-personal-ai-agents-privacy-scares-blunders-2026-10",
+                    "ts": 1791279195,
+                    "emo": "🧪"
+                },
+                {
+                    "title": "Home prices are dropping the most in these 12 metro areas as inventory piles up",
+                    "url": "https://www.businessinsider.com/where-are-home-prices-falling-cities-housing-market-mortgage-rates-2026-10",
+                    "ts": 1791279001,
                     "emo": "📰"
                 }
             ]
@@ -186,16 +150,52 @@
             "home": "https://www.nbcnews.com",
             "items": [
                 {
-                    "title": "Cornell students protest handling of alleged 2024 sexual assault ",
-                    "url": "https://www.nbcnews.com/video/cornell-students-protest-handling-of-alleged-2024-sexual-assault-271067205753",
-                    "ts": 1791235784,
+                    "title": "Republicans fight red-state midterm chaos with hundreds of millions in late money",
+                    "url": "https://www.nbcnews.com/politics/2026-election/republicans-fight-red-state-midterm-chaos-hundreds-millions-late-money-rcna601675",
+                    "ts": 1791277200,
                     "emo": "📰"
                 },
                 {
-                    "title": "After bipartisan criticism, Trump says taxpayers’ dollars will no longer be used for TV ads promoting him",
-                    "url": "https://www.nbcnews.com/politics/donald-trump/taxpayer-dollars-super-pac-tv-ads-promoting-president-maga-inc-rcna601772",
-                    "ts": 1791247330,
+                    "title": "Local officials weigh in on political polarization",
+                    "url": "https://www.nbcnews.com/video/local-officials-weigh-in-on-political-polarization-270964293785",
+                    "ts": 1791037339,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Trump allows cheaper, dyed diesel on highways to blunt historic fuel-cost spike ahead of midterms",
+                    "url": "https://www.cnbc.com/2026/10/06/us-diesel-fuel-prices-iran-ukraine-energy-crisis-.html",
+                    "ts": 1791270336,
                     "emo": "⚖️"
+                },
+                {
+                    "title": "Paramount's hard-fought takeover of Warner Bros. Discovery closes Tuesday. Here's how we got here",
+                    "url": "https://www.cnbc.com/2026/10/06/paramount-wbd-deal-timeline.html",
+                    "ts": 1791280801,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Strikes, Barricades and Fiscal Turmoil: An Autumn of Discontent Grips France",
+                    "url": "https://www.nytimes.com/2026/10/06/world/europe/france-crisis-autumn-discontent.html",
+                    "ts": 1791259274,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Demonstrators Rally Across France as School Protests Escalate",
+                    "url": "https://www.nytimes.com/2026/10/06/world/europe/france-student-strikes-protests.html",
+                    "ts": 1791281127,
+                    "emo": "📰"
                 }
             ]
         },
