@@ -569,7 +569,7 @@ try {
 
                                   if ($publisherDomain) {
                                       $faviconUrl = "https://www.google.com/s2/favicons?sz=64&domain={$publisherDomain}";
-                                      $publisherAnalysisUrl = "/analysis.php?context=pub&value=" . urlencode($publisherDomain) . "&w=30d";
+                                      $publisherAnalysisUrl = sn_publisher_profile_url($publisherDomain) ?: '#';
                                   }
                               }
 

@@ -319,8 +319,7 @@ if (!function_exists('canonEntityListFromNlp')) {
         <td class="sn-domain-cell">
           <?php if (!empty($domain)): ?>
             <?php
-              $domainValue = urlencode(strtolower($domain));
-              $internalUrl = "/analysis.php?context=pub&value={$domainValue}&w=7d";
+              $internalUrl = sn_publisher_profile_url($domain) ?: '#';
             ?>
             <a
               href="<?= htmlspecialchars($internalUrl, ENT_QUOTES, 'UTF-8') ?>"

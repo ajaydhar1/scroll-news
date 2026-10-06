@@ -1,5 +1,7 @@
 <?php
-define('BASE_PATH', __DIR__);
+if (!defined('BASE_PATH')) {
+    define('BASE_PATH', __DIR__);
+}
 $theme_experiment_enabled = true;
 require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
 ?>

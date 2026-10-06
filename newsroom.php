@@ -175,7 +175,7 @@ exit;
                                 <?php if (array_key_exists($_GET['category'], $rss_feeds)): ?>
                                     <div class="mb-2" style="font-size: 1.25rem;"><strong><a href="" class="category-link" data-category="<?= $_GET['category'] ?>" data-category-url="<?= $rss_feeds[$_GET['category']] ?>">#<?= $_GET['category'] ?></a></strong></div>
                                 <?php endif; ?>
-                                <div class="masthead-subheading mb-1"><a href="<?= $pub_link ?>" target="_blank" class="bright-link-hover"><?php echo $pub; ?></a></div>
+                                <div class="masthead-subheading mb-1"><a href="<?= htmlspecialchars(sn_publisher_profile_url((string) $domain) ?: '#', ENT_QUOTES, 'UTF-8') ?>" class="bright-link-hover"><?php echo $pub; ?></a></div>
                                 <div class="mb-2 text-muted" style="font-size: 1.25rem;"><strong><?php if (isset($_GET['pub_date'])) {
                                                                                                         echo format_news_date($_GET["pub_date"]);
                                                                                                     } ?></strong></div>

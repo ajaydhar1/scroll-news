@@ -550,18 +550,14 @@ function shuffle_view_url(array $row): string
 
                                     <p class="card-text text-muted mb-1">
 
+                                    <a href="/publisher-profile.php?domain=${encodeURIComponent((article.publisher || "").toLowerCase().replace(/^www\./, ""))}" data-loading>
                                         <img src="${faviconUrl}"
-                                             alt="${encodedPub} logo"
-                                             class="sn-favicon">
+                                                alt="${encodedPub} logo"
+                                                class="sn-favicon">
+                                        <small>${article.publisher || ""}</small>
+                                    </a>
 
-                                        <small>
-                                            <a target="_blank"
-                                               href="https://${article.publisher || ""}">
-
-                                                ${article.publisher || ""}
-
-                                            </a>
-
+                                    <small>
                                             ${article.pubDate
                                                 ? " • " + timeElapsedString(article.pubDate)
                                                 : ""}

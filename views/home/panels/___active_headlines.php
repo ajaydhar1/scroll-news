@@ -358,6 +358,10 @@ $activeHeadlines = scrollnews_fetch_active_headlines();
                         <?php if (!empty($headline['pub_human'])): ?>
                             <div class="sn-headline-meta d-flex align-items-center gap-1 flex-wrap">
 
+                                <a href="<?= htmlspecialchars(sn_publisher_profile_url('nbcnews.com') ?: '#', ENT_QUOTES, 'UTF-8') ?>"
+                                   class="d-inline-flex align-items-center gap-1"
+                                   style="color: inherit; text-decoration: none;"
+                                   data-loading>
                                 <!-- NBC Favicon -->
                                 <img src="https://www.google.com/s2/favicons?sz=64&domain=nbcnews.com"
                                     alt="NBC News"
@@ -368,6 +372,7 @@ $activeHeadlines = scrollnews_fetch_active_headlines();
                                 <span class="sn-headline-source">
                                     <?php echo htmlspecialchars($headline['source'], ENT_QUOTES, 'UTF-8'); ?>
                                 </span>
+                                </a>
 
                                 ·
 

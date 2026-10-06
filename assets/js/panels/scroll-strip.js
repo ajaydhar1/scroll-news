@@ -240,7 +240,7 @@
             <img src="${image}" alt="${safeTitle}"
                  onerror="this.src = '/assets/img/news-placeholder.jpg';"
                  loading="lazy" decoding="async">
-            <span class="sn-badge">
+            <span class="sn-badge" role="link" tabindex="0" data-publisher-href="/publisher-profile.php?domain=${encodeURIComponent(String(domainOrSource).toLowerCase().replace(/^www\./, ""))}">
               <img src="${faviconUrl}" alt="${safeText(domainOrSource)} logo" class="sn-favicon">
               ${safeText(domainOrSource)}
             </span>
@@ -262,6 +262,20 @@
     }).join("");
 
     // Horizontal wheel scroll (desktop)
+    if (!strip.dataset.publisherBound) {
+      strip.dataset.publisherBound = "1";
+      // The card is itself an <a>, so the publisher badge navigates via script instead of a nested anchor.
+      const openPublisher = (e) => {
+        const badge = e.target.closest(".sn-badge[data-publisher-href]");
+        if (!badge) return;
+        if (e.type === "keydown" && e.key !== "Enter") return;
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = badge.dataset.publisherHref;
+      };
+      strip.addEventListener("click", openPublisher);
+      strip.addEventListener("keydown", openPublisher);
+    }
     strip.addEventListener("wheel", (e) => {
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         strip.scrollLeft += e.deltaY * 0.9;

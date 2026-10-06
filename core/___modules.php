@@ -4,6 +4,7 @@ require_once __DIR__ . '/config/interest.php';
 require_once __DIR__ . '/utils/___sentiment.php';
 require_once __DIR__ . '/utils/___emotions.php';
 require_once __DIR__ . '/config/sentiment_thresholds.php';
+require_once __DIR__ . '/utils/___publisher_links.php';
 require_once __DIR__ . '/render/___render.php';
 
 $localConfig = __DIR__ . '/config/local.php';
@@ -12,7 +13,7 @@ if (file_exists($localConfig)) {
     require_once $localConfig;
 }
 
-$CACHE_VER = 'v13';
+$CACHE_VER = 'v14';
 
 date_default_timezone_set('America/New_York');
 

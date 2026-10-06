@@ -300,7 +300,7 @@ function sn_render_article_card(array $vm, array $opts = []): void {
 
             <div class="sn-search-meta small text-muted mb-3 d-flex align-items-center">
                 <?php if ($faviconUrl): ?>
-                    <a href="https://<?= htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>" target="_blank" rel="noopener noreferrer">
+                    <a href="<?= htmlspecialchars(sn_publisher_profile_url($domain) ?: '#', ENT_QUOTES, 'UTF-8'); ?>" data-loading>
                         <img
                             src="<?= htmlspecialchars($faviconUrl, ENT_QUOTES, 'UTF-8'); ?>"
                             alt="<?= htmlspecialchars($domain ?: $feedHuman ?: 'Site', ENT_QUOTES, 'UTF-8'); ?> logo"
@@ -328,7 +328,7 @@ function sn_render_article_card(array $vm, array $opts = []): void {
 
                     <?php if ($domain): ?>
                         <?php if ($pubHuman || $feedHuman): ?> • <?php endif; ?>
-                        <a href="https://<?= htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>" target="_blank" rel="noopener noreferrer">
+                        <a href="<?= htmlspecialchars(sn_publisher_profile_url($domain) ?: '#', ENT_QUOTES, 'UTF-8'); ?>" data-loading>
                             <?= htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>
                         </a>
                     <?php endif; ?>
@@ -487,10 +487,9 @@ function sn_render_article_card_archive(array $vm, array $opts = []): void {
             />
 
             <?php if ($domain): ?>
-                <a href="https://<?= htmlspecialchars($domain, ENT_QUOTES, 'UTF-8'); ?>"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="domain-chip-link">
+                <a href="<?= htmlspecialchars(sn_publisher_profile_url($domain) ?: '#', ENT_QUOTES, 'UTF-8'); ?>"
+                   class="domain-chip-link"
+                   data-loading>
                     <div class="domain-chip">
                         <?php if ($favicon): ?>
                             <img class="pub-favicon"
@@ -707,7 +706,7 @@ function scroll_render_article_intel_item(array $article, array $opts = []): str
     // Publisher analysis link
     $publisherSearchUrl = '';
     if ($publisherDomain !== '') {
-        $publisherSearchUrl = "/analysis.php?context=pub&value=" . urlencode($publisherDomain) . "&w=7d";
+        $publisherSearchUrl = sn_publisher_profile_url($publisherDomain) ?: '#';
     }
 
     // Badge links

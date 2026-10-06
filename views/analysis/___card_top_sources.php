@@ -55,9 +55,7 @@ foreach ($sources as $r) {
           $analyzeUrl = $analysisHref('pub', $domain);
           $faviconUrl = favicon_for_domain($domain);
 
-          $href = preg_match('#^https?://#', $domain)
-              ? $domain
-              : 'https://' . $domain;
+          $href = sn_publisher_profile_url($domain) ?: '#';
 
           $pct = (string)($r['pct'] ?? '');
       ?>
@@ -67,9 +65,8 @@ foreach ($sources as $r) {
 
                   <a
                       href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
-                      target="_blank"
-                      rel="noopener noreferrer"
                       class="sn-domain-link"
+                      data-loading
                   >
                       <?php if ($faviconUrl): ?>
                           <img
@@ -99,10 +96,9 @@ foreach ($sources as $r) {
                   </a>
 
                   <a class="sn-btn"
-                     href="<?= htmlspecialchars('https://' . $domain, ENT_QUOTES, 'UTF-8') ?>"
+                     href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
                      title="View publisher"
-                     target="_blank"
-                     rel="noopener noreferrer">
+                     data-loading>
                       📰
                   </a>
 

@@ -97,9 +97,11 @@ function fetchRSSArticles(feedUrl, category) {
                 <div class="card-body d-flex flex-column">
                   <h4 class="card-title mb-2">${article.title || ""}</h4>
                   <p class="card-text text-muted mb-1">
-                    <img src="${faviconUrl}" alt="${encodedPub} logo" class="sn-favicon">
+                    <a href="/publisher-profile.php?domain=${encodeURIComponent((article.publisher || "").toLowerCase().replace(/^www\./, ""))}" data-loading>
+                      <img src="${faviconUrl}" alt="${encodedPub} logo" class="sn-favicon">
+                      <small>${article.publisher || ""}</small>
+                    </a>
                     <small>
-                      <a target="_blank" href="https://${article.publisher || ""}">${article.publisher || ""}</a>
                       ${article.pubDate ? " • " + timeElapsedString(article.pubDate) : ""}
                     </small>
                   </p>
