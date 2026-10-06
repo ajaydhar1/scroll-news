@@ -223,11 +223,15 @@
 }
 
 .sn-product-account .account-nav-toggle {
-  color: #294841;
+  color: #212529;
 }
 
 .sn-product-account .account-nav-menu {
   z-index: 1040;
+}
+
+.sn-product-account .account-mega-menu .text-muted {
+  color: #6c757d !important;
 }
 
 .sn-product-sign-in {
@@ -346,7 +350,7 @@ html[data-ui-theme="dark"] .sn-product-brand,
 html[data-ui-theme="dark"] .sn-product-toggler,
 html[data-ui-theme="dark"] .sn-product-link,
 html[data-ui-theme="dark"] .sn-product-account .account-nav-toggle {
-  color: #dcebe7;
+  color: #f4f7f7;
 }
 
 html[data-ui-theme="dark"] .sn-product-brand:hover,
@@ -378,6 +382,10 @@ html[data-ui-theme="dark"] .sn-product-item .dropdown-item:focus {
 html[data-ui-theme="dark"] .sn-product-theme-item,
 html[data-ui-theme="dark"] .sn-product-account {
   border-color: rgba(235, 246, 243, 0.2);
+}
+
+html[data-ui-theme="dark"] .sn-product-account .account-mega-menu .text-muted {
+  color: #c2ccce !important;
 }
 
 .sn-product-footer-experiment {
