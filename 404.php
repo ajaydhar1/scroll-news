@@ -77,7 +77,7 @@ require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
     <body id="page-top" class="bg-dark">
 
         <!-- Top nav-->
-        <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
         <!-- 404 Content -->
         <section class="page-section" id="services" style="padding: 4rem 0;">

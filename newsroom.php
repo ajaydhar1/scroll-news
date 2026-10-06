@@ -135,7 +135,7 @@ exit;
     <div class="page">
 
         <!-- Top nav-->
-        <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
         <div class="text-center my-3">
             <h2>🧠 NLP Dashboard</h2>

@@ -95,7 +95,7 @@ $theme_experiment_enabled = true;
         <div class="page">
 
             <!-- Top nav-->
-            <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
+            <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
             <!-- Content area -->
             <div class="container my-5">

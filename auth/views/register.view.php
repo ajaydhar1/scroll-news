@@ -115,7 +115,7 @@ unset($_SESSION['old']);
     <div class="page">
 
         <!-- Top nav-->
-        <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
         <!-- Content area -->
         <div class="auth-shell container my-5">

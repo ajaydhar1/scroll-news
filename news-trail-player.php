@@ -395,7 +395,7 @@ $trailDateLabel = date('F j, Y', strtotime($trailDate));
 <body id="page-top" class="auth-page account-page">
 
     <!-- Top nav-->
-    <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
+    <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
     <main class="container py-5">
 

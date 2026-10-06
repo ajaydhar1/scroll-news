@@ -199,7 +199,7 @@ function shuffle_view_url(array $row): string
 
     <div class="page">
 
-        <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
         <div class="container py-4">
             <div class="row">

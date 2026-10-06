@@ -133,7 +133,7 @@ require_once BASE_PATH . "/core/___modules.php";
     <div class="page">
 
         <!-- Top nav-->
-        <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
         <!-- Masthead-->
         <header class="masthead bg-light-2">

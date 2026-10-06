@@ -1,5 +1,5 @@
 <div class="bg-dark mt-4 control-footer-wrap">      
-    <footer class="footer footer-bottom bg-white py-4">
+    <footer class="footer footer-bottom bg-white py-4 sn-product-footer-experiment">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-4 text-lg-left">Copyright © Scroll News <?= date('Y') ?></div>

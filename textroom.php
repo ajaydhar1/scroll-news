@@ -111,7 +111,7 @@ $title = mb_substr(preg_replace('/\s+/', ' ', $text), 0, 80);
         <div class="page">
 
             <!-- Top nav-->        
-            <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
+            <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
             <!-- Masthead-->
             <header class="masthead" style="background-image: url(<?php echo $img; ?>)">

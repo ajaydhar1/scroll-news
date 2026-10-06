@@ -357,7 +357,7 @@ $shouldSaveSearchShuffle =
     </div>
 
     <!-- Top nav-->
-    <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
+    <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
     <!-- Main content section, reusing services section styling -->
     <section class="page-section" id="services" style="padding: 4rem 0;">

@@ -196,7 +196,7 @@ if (!$pdo) {
         <div class="page">
 
             <!-- Top nav-->        
-            <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
+            <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
             <!-- Daily Scroll Archive -->
             <section class="page-section" id="" style="padding: 4rem 0;">

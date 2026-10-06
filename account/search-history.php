@@ -281,7 +281,7 @@ function build_search_url(?string $paramsJson, string $fallbackQuery): string
 
     <div class="page">
 
-        <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
         <div class="auth-shell container my-5">
             <div class="auth-card card border-0 rounded-3">

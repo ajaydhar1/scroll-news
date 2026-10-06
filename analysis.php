@@ -197,8 +197,8 @@ try {
 </head>
 <body class="analysis-page">
 
-  <!-- Top nav-->        
-  <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
+    <!-- Top nav-->
+    <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
   <div class="container-fluid">
 

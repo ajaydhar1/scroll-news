@@ -123,7 +123,7 @@ $websiteUrl = $websiteUrl ?: 'https://' . $domain;
 </head>
 <body id="page-top" class="bg-dark">
     <div class="page">
-        <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
         <main class="container my-5 text-light">
             <div class="card publisher-profile-panel mb-4">

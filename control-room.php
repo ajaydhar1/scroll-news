@@ -70,7 +70,7 @@ require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
         </video>
 
         <!-- Top nav-->
-        <?php require_once BASE_PATH . '/views/partials/___topnav_full.php'; ?>
+        <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
         <div class="content">
             <div class="control-room-overlay">
