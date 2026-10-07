@@ -6,7 +6,7 @@
             <h3 class="section-subheading text-muted"> <!--Lorem ipsum dolor sit amet consectetur.--></h3>
         </div>
         <div class="row justify-content-center">
-            <div class="col-lg-4 col-sm-6 mb-4">
+            <div class="col-lg-3 col-sm-6 mb-4">
                 <!-- Portfolio item 1-->
                 <div class="portfolio-item">
                     <a href="assets/img/portfolio/analyze-article.jpg" data-toggle="modal" data-target="#analyzeModal">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6 mb-4">
+            <div class="col-lg-3 col-sm-6 mb-4">
                 <!-- Portfolio item 2-->
                 <div class="portfolio-item">
                     <a href="assets/img/portfolio/browse-news.jpg" data-toggle="modal" data-target="#browseNewsModal">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+            <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
                 <!-- Portfolio item 4-->
                 <div class="portfolio-item">
                     <a href="/newsroom.php" data-loading>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6 mb-4">
+            <div class="col-lg-3 col-sm-6 mb-4">
                 <!-- Portfolio item 3-->
                 <div class="portfolio-item">
                     <a href="search.php?q=Trump&range=all&mode=classic&deep_dive=&high_signal=" data-loading>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
+            <div class="col-lg-3 col-sm-6 mb-4 mb-sm-0">
                 <!-- Portfolio item 5-->
                 <div class="portfolio-item">
                     <a href="scroll-archive.php" data-loading>
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-3 col-sm-6">
                 <!-- Portfolio item 6-->
                 <div class="portfolio-item">
                     <a href="analysis.php?context=category&value=politics&w=7d" data-loading>
@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-3 col-sm-6">
                 <!-- Portfolio item 6-->
                 <div class="portfolio-item">
                     <a href="/news-trails.php" data-loading>
