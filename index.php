@@ -138,6 +138,8 @@ require_once BASE_PATH . "/core/___modules.php";
         <!-- Top nav-->
         <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
+        <!-- INTRO ATMOSPHERE EXPERIMENT: remove this wrapper div (and its closing tag) to revert -->
+        <div class="sn-intro-atmosphere">
         <!-- Masthead-->
         <header class="masthead bg-light-2">
             <div class="container">
@@ -280,6 +282,7 @@ require_once BASE_PATH . "/core/___modules.php";
                 </div>
             </div>
         </section>
+        </div><!-- /.sn-intro-atmosphere -->
 
 
         <?php

@@ -474,3 +474,127 @@ html:not([data-ui-theme="dark"]) body.home-page #team .team-member .btn.btn-soci
 }
 
 /* ==== END HOMEPAGE LIGHT SaaS EXPERIMENT ==== */
+
+/* ==== Intro atmosphere experiment (masthead + Reading Modes + categories) ====
+   Revert: delete this block and the .sn-intro-atmosphere wrapper div in index.php. */
+html:not([data-ui-theme="dark"]) body.home-page .sn-intro-atmosphere {
+    position: relative;
+    isolation: isolate;
+    background: var(--sn-l-s0);
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-intro-atmosphere header.masthead,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-intro-atmosphere .reading-modes-section,
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-intro-atmosphere > section.bg-light-2 {
+    background: transparent !important;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page .sn-intro-atmosphere::before,
+html:not([data-ui-theme="dark"]) body.home-page .sn-intro-atmosphere::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Teal radial illumination, strongest behind the headline */
+html:not([data-ui-theme="dark"]) body.home-page .sn-intro-atmosphere::before {
+    background: radial-gradient(ellipse 75% 65% at 50% 8%, rgba(20, 184, 166, 0.20) 0%, rgba(20, 184, 166, 0.09) 40%, rgba(20, 184, 166, 0) 100%);
+}
+
+/* Faint grid, masked so it fades out down the region */
+html:not([data-ui-theme="dark"]) body.home-page .sn-intro-atmosphere::after {
+    background-image:
+        linear-gradient(to right, rgba(15, 118, 110, 0.10) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 118, 110, 0.10) 1px, transparent 1px);
+    background-size: 56px 56px;
+    background-position: center top;
+    -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 0%, #000 0%, transparent 100%);
+    mask-image: radial-gradient(ellipse 60% 55% at 50% 0%, #000 0%, transparent 100%);
+}
+
+/* ==== Chapter atmosphere experiment (Our Story) ====
+   Revert: delete this block. */
+html:not([data-ui-theme="dark"]) body.home-page #story {
+    position: relative;
+    isolation: isolate;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #story::before,
+html:not([data-ui-theme="dark"]) body.home-page #story::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Soft teal light, strongest behind the heading */
+html:not([data-ui-theme="dark"]) body.home-page #story::before {
+    background: radial-gradient(ellipse 75% 55% at 50% 8%, rgba(20, 184, 166, 0.19) 0%, rgba(20, 184, 166, 0.085) 45%, rgba(20, 184, 166, 0) 100%);
+}
+
+/* Teal grid, upper/central only, fading in every direction */
+html:not([data-ui-theme="dark"]) body.home-page #story::after {
+    background-image:
+        linear-gradient(to right, rgba(15, 118, 110, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 118, 110, 0.08) 1px, transparent 1px);
+    background-size: 72px 72px;
+    background-position: center top;
+    -webkit-mask-image: radial-gradient(ellipse 50% 38% at 50% 22%, #000 0%, transparent 100%);
+    mask-image: radial-gradient(ellipse 50% 38% at 50% 22%, #000 0%, transparent 100%);
+}
+
+/* ==== Dark-mode atmosphere (intro + Our Story) ====
+   Revert: delete this block. Tuned for the dark canvas (--sn-canvas); light-mode rules above are independent. */
+html[data-ui-theme="dark"] body.home-page .sn-intro-atmosphere,
+html[data-ui-theme="dark"] body.home-page #story {
+    position: relative;
+    isolation: isolate;
+}
+
+html[data-ui-theme="dark"] body.home-page .page .sn-intro-atmosphere header.masthead,
+html[data-ui-theme="dark"] body.home-page .page .sn-intro-atmosphere .reading-modes-section,
+html[data-ui-theme="dark"] body.home-page .page .sn-intro-atmosphere > section.bg-light-2 {
+    background: transparent !important;
+}
+
+html[data-ui-theme="dark"] body.home-page .sn-intro-atmosphere::before,
+html[data-ui-theme="dark"] body.home-page .sn-intro-atmosphere::after,
+html[data-ui-theme="dark"] body.home-page #story::before,
+html[data-ui-theme="dark"] body.home-page #story::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+html[data-ui-theme="dark"] body.home-page .sn-intro-atmosphere::before {
+    background: radial-gradient(ellipse 75% 65% at 50% 8%, rgba(32, 178, 160, 0.17) 0%, rgba(32, 178, 160, 0.07) 40%, rgba(32, 178, 160, 0) 100%);
+}
+
+html[data-ui-theme="dark"] body.home-page .sn-intro-atmosphere::after {
+    background-image:
+        linear-gradient(to right, rgba(110, 231, 214, 0.065) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(110, 231, 214, 0.065) 1px, transparent 1px);
+    background-size: 56px 56px;
+    background-position: center top;
+    -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 0%, #000 0%, transparent 100%);
+    mask-image: radial-gradient(ellipse 60% 55% at 50% 0%, #000 0%, transparent 100%);
+}
+
+html[data-ui-theme="dark"] body.home-page #story::before {
+    background: radial-gradient(ellipse 75% 55% at 50% 8%, rgba(32, 178, 160, 0.15) 0%, rgba(32, 178, 160, 0.065) 45%, rgba(32, 178, 160, 0) 100%);
+}
+
+html[data-ui-theme="dark"] body.home-page #story::after {
+    background-image:
+        linear-gradient(to right, rgba(110, 231, 214, 0.055) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(110, 231, 214, 0.055) 1px, transparent 1px);
+    background-size: 72px 72px;
+    background-position: center top;
+    -webkit-mask-image: radial-gradient(ellipse 50% 38% at 50% 22%, #000 0%, transparent 100%);
+    mask-image: radial-gradient(ellipse 50% 38% at 50% 22%, #000 0%, transparent 100%);
+}

@@ -1,38 +1,56 @@
 {
-    "fetched_at": 1791327149,
+    "fetched_at": 1791335169,
     "feeds": [
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Beauty pageant queen dies aged 22 after being struck by lightning",
-                    "url": "https://www.dailymail.com/lifestyle/article-16187487/beauty-pageant-queen-dies-age-22-struck-lightning.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791327088,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Emma Stone brings A-list glamour to the Louis Vuitton show in a daring blue suit alongside fellow actresses Zendaya and  Ana de Armas as Paris Fashion Week draws to a close",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16187749/Chlo-Grace-Moretz-turns-heads-Gilded-Age-inspired-collar-crop-joins-Emma-Stone-Zendaya-Louis-Vuitton-Paris-Fashion-Week.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791326965,
-                    "emo": "🎭"
-                }
-            ]
-        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Florida teen strangled to death after shirt gets caught on playground slide screw: family",
-                    "url": "https://nypost.com/2026/10/06/us-news/florida-teen-strangled-to-death-after-shirt-gets-caught-on-playground-slide-screw-family/",
-                    "ts": 1791327073,
+                    "title": "Rowan Henchy’s VRT Awards 2026 red carpet look is ‘all Brooke Shields’",
+                    "url": "https://pagesix.com/2026/10/06/style/rowan-henchys-vrt-awards-2026-red-carpet-look-is-all-brooke-shields/",
+                    "ts": 1791335086,
                     "emo": "📰"
                 },
                 {
-                    "title": "Dodgers Tyler Glasnow goes full NSFW with 3-word reaction ahead of clash with Braves",
-                    "url": "https://nypost.com/2026/10/06/sports/tyler-glasnow-gives-a-3-word-response-ahead-of-clash-with-braves/",
-                    "ts": 1791326991,
+                    "title": "Rowan Henchy’s VRT Awards 2026 red carpet look is ‘all Brooke Shields’",
+                    "url": "https://pagesix.com/2026/10/06/style/rowan-henchys-vrt-awards-2026-red-carpet-look-is-all-brooke-shields/",
+                    "ts": 1791335086,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "Student union warns France riots 'WILL intensify' if they are 'not listened to' despite days of violent clashes and 256,000 taking to the streets on Tuesday alone",
+                    "url": "https://www.dailymail.com/news/article-16188639/Student-union-warns-France-riots-intensify.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791334963,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Lionel Messi fights back tears before creating two goals as Argentina pays incredible tribute to soccer hero in his final game for his country",
+                    "url": "https://www.dailymail.com/sport/football/article-16188517/lionel-messi-argentina-retirement-buenos-aires.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791334667,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "UPDATE: Dems have a 61% chance of controlling the Senate...",
+                    "url": "https://votehub.com/2026-forecast/senate/",
+                    "ts": 1791334896,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "86% chance of winning the House...",
+                    "url": "https://votehub.com/2026-forecast/house/",
+                    "ts": 1791334896,
                     "emo": "📰"
                 }
             ]
@@ -42,15 +60,69 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Dan Dakich calls Deion Sanders' Colorado program a 'Trojan horse': 'This is a s— show'",
-                    "url": "https://www.foxnews.com/outkick-sports/dan-dakich-calls-deion-sanders-colorado-program-trojan-horse-s-show",
-                    "ts": 1791325954,
-                    "emo": "🎭"
+                    "title": "Hurricane Isaias threatens Georgia vs. Alabama SEC showdown as Trump plans Tuscaloosa visit",
+                    "url": "https://www.foxnews.com/outkick-sports/hurricane-isaias-threatens-georgia-vs-alabama-sec-showdown-trump-plans-tuscaloosa-visit",
+                    "ts": 1791334883,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "Costco rolls out new Disneyland ticket deal but there's a catch for parkgoers",
-                    "url": "https://www.foxnews.com/travel/costco-rolls-out-new-disneyland-ticket-deal-theres-catch-parkgoers",
-                    "ts": 1791325911,
+                    "title": "'The View' co-host Ana Navarro offers one key reason for why she still identifies as a Republican",
+                    "url": "https://www.foxnews.com/media/view-cohost-ana-navarro-offers-key-reason-why-she-still-identifies-republican",
+                    "ts": 1791334747,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "US death row inmate Christa Pike awake and speaking after failed execution, lawyers say",
+                    "url": "https://www.bbc.co.uk/news/articles/c8kgezxn54qko?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791334619,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Three arrested after raid on gang accused of helping migrants pretend to be gay to get asylum",
+                    "url": "https://www.bbc.co.uk/news/articles/cmp3gnd1e4gyo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791314708,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Justice Dept. Turns to Partisans and Conspiracists to Fill Depleted Ranks",
+                    "url": "https://www.nytimes.com/2026/10/06/us/politics/justice-department-civil-rights-division.html",
+                    "ts": 1791334329,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Wrongly Indicted Man Seeks Inquiry of Official Conduct in Reflecting Pool Case",
+                    "url": "https://www.nytimes.com/2026/10/06/us/politics/reflecting-pool-vandalism-case.html",
+                    "ts": 1791318773,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Susan Collins and Troy Jackson clash over Trump and seniority in Maine’s first Senate debate",
+                    "url": "https://www.nbcnews.com/politics/2026-election/susan-collins-troy-jackson-clash-trump-seniority-maines-first-senate-d-rcna601346",
+                    "ts": 1791333316,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "NBC’s Steve Kornacki Breaks Down Where Midterm Numbers Stand",
+                    "url": "https://www.today.com/video/kornacki-battleground-states-to-watch-in-crucial-2026-midterm-271104581554",
+                    "ts": 1791285522,
                     "emo": "📰"
                 }
             ]
@@ -60,16 +132,52 @@
             "home": "https://thehill.com",
             "items": [
                 {
-                    "title": "Trump admin revamps price transparency",
-                    "url": "https://thehill.com/newsletters/healthcare/6132791-trump-admin-revamps-price-transparency/",
-                    "ts": 1791325730,
-                    "emo": "⚖️"
+                    "title": "Plague in Russia sparks concern, COVID-19 pandemic memories: 5 things to know",
+                    "url": "https://thehill.com/policy/healthcare/6132881-russia-lab-worker-plague-death-facts/",
+                    "ts": 1791331835,
+                    "emo": "🧪"
                 },
                 {
-                    "title": "Trump: Government will take massive stake in 'next generation' submarine shipyard",
-                    "url": "https://thehill.com/policy/defense/6132760-trump-taxpayers-stake-maryland-shipyard/",
-                    "ts": 1791325256,
-                    "emo": "⚖️"
+                    "title": "Planned Parenthood Votes adds $1M to ad campaigns in Maine, Michigan",
+                    "url": "https://thehill.com/homenews/campaign/6132846-planned-parenthood-votes-senate-ads/",
+                    "ts": 1791328967,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "The best Prime Day men's shoe deals on comfortable sneakers, loafers, and more",
+                    "url": "https://www.businessinsider.com/guides/deals/prime-day-mens-shoe-deals-2026-10",
+                    "ts": 1791331284,
+                    "emo": "📰"
+                },
+                {
+                    "title": "132 best Prime Day deals 2026: Apple, Dyson, Breville, Ninja, Sony, and more",
+                    "url": "https://www.businessinsider.com/guides/deals/prime-day-deals-2026-10-6",
+                    "ts": 1791330436,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "My brother-in-law convinced his parents to sign over their home and life savings to buy a $3 million compound. Do I intervene?",
+                    "url": "https://www.marketwatch.com/story/my-brother-in-law-convinced-his-parents-to-sign-over-their-home-and-savings-to-buy-a-3-million-compound-do-i-intervene-03fb96b7?mod=mw_rss_topstories",
+                    "ts": 1791327240,
+                    "emo": "📰"
+                },
+                {
+                    "title": "The S&P 500 is back in record territory as the ‘Magnificent Seven’ ride to the rescue",
+                    "url": "https://www.marketwatch.com/story/the-s-p-500-is-back-in-record-territory-as-the-magnificent-seven-ride-to-the-rescue-e062724d?mod=mw_rss_topstories",
+                    "ts": 1791323520,
+                    "emo": "💰"
                 }
             ]
         },
@@ -88,114 +196,6 @@
                     "url": "https://www.cnbc.com/2026/10/05/trump-ads-election.html",
                     "ts": 1791322352,
                     "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "UPDATE: Dems have a 61% chance of controlling the Senate...",
-                    "url": "https://votehub.com/2026-forecast/senate/",
-                    "ts": 1791324276,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "86% chance of winning the House...",
-                    "url": "https://votehub.com/2026-forecast/house/",
-                    "ts": 1791324276,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "The S&P 500 is back in record territory as the ‘Magnificent Seven’ ride to the rescue",
-                    "url": "https://www.marketwatch.com/story/the-s-p-500-is-back-in-record-territory-as-the-magnificent-seven-ride-to-the-rescue-e062724d?mod=mw_rss_topstories",
-                    "ts": 1791323520,
-                    "emo": "💰"
-                },
-                {
-                    "title": "My brother-in-law convinced his parents to sign over their home and life savings to buy a $3 million compound. Do I intervene?",
-                    "url": "https://www.marketwatch.com/story/my-brother-in-law-convinced-his-parents-to-sign-over-their-home-and-savings-to-buy-a-3-million-compound-do-i-intervene-03fb96b7?mod=mw_rss_topstories",
-                    "ts": 1791321300,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Prime Day travel deals on stylish clothes, comfortable shoes, and more essentials for your next trip",
-                    "url": "https://www.businessinsider.com/guides/deals/prime-day-travel-deals-2026-10",
-                    "ts": 1791323016,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Everything Florence Pugh has worn in 2026, ranked from least to most daring",
-                    "url": "https://www.businessinsider.com/florence-pugh-daring-outfits-ranked-2026",
-                    "ts": 1791322670,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Justice Dept. Turns to Partisans and Conspiracists to Fill Depleted Ranks",
-                    "url": "https://www.nytimes.com/2026/10/06/us/politics/justice-department-civil-rights-division.html",
-                    "ts": 1791321163,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Wrongly Indicted Man Seeks Inquiry of Official Conduct in Reflecting Pool Case",
-                    "url": "https://www.nytimes.com/2026/10/06/us/politics/reflecting-pool-vandalism-case.html",
-                    "ts": 1791318772,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Christa Pike is awake and speaking after failed execution, lawyers say",
-                    "url": "https://www.nbcnews.com/news/us-news/christa-pike-awake-speaking-failed-execution-attempt-lawyer-says-rcna601970",
-                    "ts": 1791320192,
-                    "emo": "📰"
-                },
-                {
-                    "title": "NBC’s Steve Kornacki Breaks Down Where Midterm Numbers Stand",
-                    "url": "https://www.today.com/video/kornacki-battleground-states-to-watch-in-crucial-2026-midterm-271104581554",
-                    "ts": 1791285522,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "Three arrested after raid on gang accused of helping migrants pretend to be gay to get asylum",
-                    "url": "https://www.bbc.co.uk/news/articles/cmp3gnd1e4gyo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791314708,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Watch: Police raid on gang behind fake gay asylum claims",
-                    "url": "https://www.bbc.co.uk/news/videos/crgj97n2x1j4o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791313277,
-                    "emo": "🚨"
                 }
             ]
         },
