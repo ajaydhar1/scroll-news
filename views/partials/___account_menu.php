@@ -134,21 +134,7 @@ try {
 
         </div>
 
-        <?php if ($verifiedPublisher): ?>
-            <div class="dropdown-divider"></div>
-
-            <div class="account-mega-grid">
-                <a class="account-mega-link" href="/account/publisher-dashboard.php?publisher_id=<?= (int) $verifiedPublisher['id'] ?>" data-loading>
-                    <i class="fa-solid fa-tower-broadcast"></i>
-                    <span>
-                        <strong>Publisher Dashboard</strong>
-                        <small>Manage your publication</small>
-                    </span>
-                </a>
-            </div>
-
-            <div class="dropdown-divider"></div>
-        <?php endif; ?>
+        <div class="dropdown-divider"></div>
 
         <a class="dropdown-item text-danger" href="/auth/logout.php">
             <i class="fa-solid fa-right-from-bracket mr-2"></i> Sign Out
