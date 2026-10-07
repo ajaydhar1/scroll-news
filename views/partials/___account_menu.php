@@ -134,11 +134,10 @@ try {
 
         </div>
 
-        <div class="dropdown-divider"></div>
+        <?php if ($verifiedPublisher): ?>
+            <div class="dropdown-divider"></div>
 
-        <div class="account-mega-grid">
-
-            <?php if ($verifiedPublisher): ?>
+            <div class="account-mega-grid">
                 <a class="account-mega-link" href="/account/publisher-dashboard.php?publisher_id=<?= (int) $verifiedPublisher['id'] ?>" data-loading>
                     <i class="fa-solid fa-tower-broadcast"></i>
                     <span>
@@ -146,19 +145,10 @@ try {
                         <small>Manage your publication</small>
                     </span>
                 </a>
-            <?php else: ?>
-                <a class="account-mega-link" href="/publisher-pro/">
-                    <i class="fa-solid fa-tower-broadcast"></i>
-                    <span>
-                        <strong>Publisher Pro</strong>
-                        <small>Apply for publisher tools</small>
-                    </span>
-                </a>
-            <?php endif; ?>
+            </div>
 
-        </div>
-
-        <div class="dropdown-divider"></div>
+            <div class="dropdown-divider"></div>
+        <?php endif; ?>
 
         <a class="dropdown-item text-danger" href="/auth/logout.php">
             <i class="fa-solid fa-right-from-bracket mr-2"></i> Sign Out

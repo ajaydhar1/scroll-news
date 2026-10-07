@@ -155,55 +155,57 @@ $communityTrailSharingEnabled = sn_community_trail_sharing_enabled(auth_db(), (i
                     </header>
 
                     <div class="alert alert-success auth-alert" role="alert">
-                        Your account settings and reader activity tools are ready to use. Publisher tools are available to verified publishers.
-                    </div>
-
-                    <div class="card border-0 shadow-sm mb-3">
-                        <div class="card-body">
-                            <h2 class="h5 mb-2">
-                                <i class="fa-solid fa-id-card mr-2"></i>Profile Information
-                            </h2>
-
-                            <p class="text-muted mb-3">
-                                Update the name associated with your Scroll News account.
-                            </p>
-
-                            <?php if (isset($_GET['updated'])): ?>
-                                <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
-                                    <strong>Success!</strong> Your display name has been updated.
-                                    <button type="button" class="close" data-dismiss="alert">
-                                        <span>&times;</span>
-                                    </button>
-                                </div>
-                            <?php endif; ?>
-
-                            <form method="post" class="profile-information-form">
-                                <div class="row align-items-end profile-information-row">
-                                    <div class="col-md-8">
-                                        <label class="small text-muted mb-1">
-                                            Display Name
-                                        </label>
-
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            name="display_name"
-                                            value="<?= htmlspecialchars($currentUser['display_name'] ?? '') ?>"
-                                            maxlength="100">
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <button type="submit"
-                                            class="btn btn-primary btn-block" data-loading>
-                                            Save Changes
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                        Your account settings and reader activity tools are ready to use.
                     </div>
 
                     <div class="row">
+
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <h2 class="h5 mb-2">
+                                        <i class="fa-solid fa-id-card mr-2"></i>Profile Information
+                                    </h2>
+
+                                    <p class="text-muted mb-3">
+                                        Update the name associated with your Scroll News account.
+                                    </p>
+
+                                    <?php if (isset($_GET['updated'])): ?>
+                                        <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+                                            <strong>Success!</strong> Your display name has been updated.
+                                            <button type="button" class="close" data-dismiss="alert">
+                                                <span>&times;</span>
+                                            </button>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <form method="post" class="profile-information-form">
+                                        <div class="row align-items-end profile-information-row">
+                                            <div class="col-md-8">
+                                                <label class="small text-muted mb-1">
+                                                    Display Name
+                                                </label>
+
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    name="display_name"
+                                                    value="<?= htmlspecialchars($currentUser['display_name'] ?? '') ?>"
+                                                    maxlength="100">
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <button type="submit"
+                                                    class="btn btn-primary btn-block" data-loading>
+                                                    Save Changes
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="col-md-6 mb-3">
                             <div class="card h-100 border-0 shadow-sm">
@@ -298,28 +300,7 @@ $communityTrailSharingEnabled = sn_community_trail_sharing_enabled(auth_db(), (i
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <div class="card h-100 border-0 shadow-sm">
-                                <div class="card-body">
-                                    <h2 class="h5 mb-2">
-                                        <i class="fa-solid fa-wave-square mr-2"></i>Your Activity
-                                        <span class="badge badge-dark ml-1">New</span>
-                                    </h2>
-                                    <p class="text-muted mb-2">
-                                        Saved articles, searches, and your reading history.
-                                    </p>
-                                    <ul class="text-muted mb-3">
-                                        <li><a href="/account/saved-headlines.php" class="account-link" data-loading>Saved headlines</a></li>
-                                        <li><a href="/account/reading-history.php" class="account-link" data-loading>Reading history</a></li>
-                                        <li><a href="/account/search-history.php" class="account-link" data-loading>Search history</a></li>
-                                        <li><a href="/account/shuffle-history.php" class="account-link" data-loading>Shuffle history</a></li>
-                                        <li><a href="/control-room.php" class="account-link">Your news pattern</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <div class="card h-100 border-0 shadow-sm">
+                            <div class="card border-0 shadow-sm">
                                 <div class="card-body">
                                     <h2 class="h5 mb-2">
                                         <i class="fa-solid fa-route mr-2"></i>News Trails
@@ -360,30 +341,18 @@ $communityTrailSharingEnabled = sn_community_trail_sharing_enabled(auth_db(), (i
                             <div class="card h-100 border-0 shadow-sm">
                                 <div class="card-body">
                                     <h2 class="h5 mb-2">
-                                        <i class="fa-solid fa-tower-broadcast mr-2"></i>Publisher Tools
-                                        <span class="badge badge-success ml-1">Core tools available</span>
+                                        <i class="fa-solid fa-wave-square mr-2"></i>Your Activity
+                                        <span class="badge badge-dark ml-1">New</span>
                                     </h2>
                                     <p class="text-muted mb-2">
-                                        Verify publisher access, edit your publisher profile, and preview ingested articles.
+                                        Saved articles, searches, and your reading history.
                                     </p>
                                     <ul class="text-muted mb-3">
-                                        <li>
-                                            <a href="/publisher-pro/" class="account-link">
-                                                <strong>Publisher Pro</strong>
-                                            </a>
-                                            <span class="badge badge-success ml-1">New</span>
-                                        </li>
-                                        <li><a href="/account/publisher-verification.php" class="account-link">Publisher verification</a></li>
-                                        <?php if ($verifiedPublisher): ?>
-                                            <li>
-                                                <a href="/account/publisher-dashboard.php?publisher_id=<?= (int) $verifiedPublisher['id']; ?>" class="account-link" data-loading>
-                                                    Publisher Dashboard
-                                                </a>
-                                            </li>
-                                        <?php endif; ?>
-                                        <li>Feed onboarding and corrections/removal support through Publisher Pro</li>
-                                        <li>Self-service feed submissions and article controls are not available yet</li>
-                                        <li>Public Publisher Profiles are live and show publisher details and recent articles.</li>
+                                        <li><a href="/account/saved-headlines.php" class="account-link" data-loading>Saved headlines</a></li>
+                                        <li><a href="/account/reading-history.php" class="account-link" data-loading>Reading history</a></li>
+                                        <li><a href="/account/search-history.php" class="account-link" data-loading>Search history</a></li>
+                                        <li><a href="/account/shuffle-history.php" class="account-link" data-loading>Shuffle history</a></li>
+                                        <li><a href="/control-room.php" class="account-link">Your news pattern</a></li>
                                     </ul>
                                 </div>
                             </div>
