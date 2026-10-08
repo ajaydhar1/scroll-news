@@ -19,6 +19,47 @@ body.account-page {
     text-decoration: underline;
 }
 
+.activity-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+}
+
+.activity-stat {
+    min-width: 0;
+    padding: 0.6rem 0.7rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 0.35rem;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.activity-stat__value,
+.activity-stat__label {
+    display: block;
+}
+
+.activity-stat__value {
+    color: #212529;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.activity-stat__label {
+    margin-top: 0.2rem;
+    color: #6c757d;
+    font-size: 0.75rem;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+}
+
+.activity-resume__title {
+    display: inline-block;
+    max-width: 100%;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
 .sn-page-header {
     margin-bottom: 1.5rem;
 }

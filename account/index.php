@@ -66,6 +66,98 @@ $memberSinceStmt->execute([':user_id' => $userId]);
 $memberSince = $memberSinceStmt->fetchColumn();
 $communityTrailSharingEnabled = sn_community_trail_sharing_enabled(auth_db(), (int) $userId);
 
+$activityStats = null;
+$recentArticle = null;
+$activityLoadError = false;
+
+try {
+    $activityStmt = auth_db()->prepare(<<<'SQL'
+        WITH account_user AS (
+            SELECT CAST(:user_id AS BIGINT) AS id
+        )
+        SELECT
+            (
+                SELECT COUNT(DISTINCT reading.url)
+                FROM user_reading_history reading
+                WHERE reading.user_id = account_user.id
+                  AND reading.deleted_at IS NULL
+            ) AS articles_read,
+            (
+                SELECT COUNT(*)
+                FROM user_saved_headlines saved
+                WHERE saved.user_id = account_user.id
+                  AND saved.deleted_at IS NULL
+            ) AS saved_headlines,
+            (
+                SELECT COUNT(*)
+                FROM user_search_history searches
+                WHERE searches.user_id = account_user.id
+                  AND searches.deleted_at IS NULL
+            ) AS searches,
+            (
+                SELECT COUNT(*)
+                FROM shuffle_sessions shuffles
+                WHERE shuffles.user_id = account_user.id
+                  AND shuffles.deleted_at IS NULL
+            ) AS shuffles,
+            recent_read.url AS recent_url,
+            recent_read.title AS recent_title,
+            recent_read.source AS recent_source
+        FROM account_user
+        LEFT JOIN LATERAL (
+            SELECT url, title, source
+            FROM user_reading_history
+            WHERE user_id = account_user.id
+              AND deleted_at IS NULL
+            ORDER BY viewed_at DESC NULLS LAST, id DESC
+            LIMIT 1
+        ) recent_read ON TRUE
+        SQL);
+    $activityStmt->execute([':user_id' => (int) $userId]);
+    $activityData = $activityStmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($activityData) {
+        $activityStats = [
+            'articles_read' => (int) $activityData['articles_read'],
+            'saved_headlines' => (int) $activityData['saved_headlines'],
+            'searches' => (int) $activityData['searches'],
+            'shuffles' => (int) $activityData['shuffles'],
+        ];
+
+        if (!empty($activityData['recent_url'])) {
+            $recentArticle = [
+                'url' => trim((string) $activityData['recent_url']),
+                'title' => trim((string) ($activityData['recent_title'] ?? '')),
+                'source' => trim((string) ($activityData['recent_source'] ?? '')),
+            ];
+        }
+    }
+} catch (Throwable $e) {
+    error_log('Account activity summary error: ' . $e->getMessage());
+    $activityLoadError = true;
+}
+
+$recentArticleUrl = $recentArticle['url'] ?? '';
+$recentArticleUrlHasControls = preg_match('/[\x00-\x1F\x7F]|%(?:0[0-9a-f]|1[0-9a-f]|7f)/i', $recentArticleUrl) === 1;
+$recentArticleUrlHasMalformedEncoding = preg_match('/%(?![0-9a-f]{2})/i', $recentArticleUrl) === 1;
+$recentArticleIsInternalUrl = false;
+$recentArticleIsExternalUrl = false;
+
+if ($recentArticle && !$recentArticleUrlHasControls && !$recentArticleUrlHasMalformedEncoding) {
+    if (str_starts_with($recentArticleUrl, '/') && !str_starts_with($recentArticleUrl, '//')) {
+        $recentArticleIsInternalUrl = filter_var(
+            'https://scrollnews.ai' . $recentArticleUrl,
+            FILTER_VALIDATE_URL
+        ) !== false;
+    } else {
+        $recentArticleScheme = strtolower((string) parse_url($recentArticleUrl, PHP_URL_SCHEME));
+        $recentArticleIsExternalUrl = in_array($recentArticleScheme, ['http', 'https'], true)
+            && filter_var($recentArticleUrl, FILTER_VALIDATE_URL) !== false;
+    }
+}
+
+$recentArticleUrlIsSafe = $recentArticleIsInternalUrl || $recentArticleIsExternalUrl;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -300,7 +392,7 @@ $communityTrailSharingEnabled = sn_community_trail_sharing_enabled(auth_db(), (i
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <div class="card border-0 shadow-sm">
+                            <div class="card h-100 border-0 shadow-sm">
                                 <div class="card-body">
                                     <h2 class="h5 mb-2">
                                         <i class="fa-solid fa-route mr-2"></i>News Trails
@@ -347,6 +439,24 @@ $communityTrailSharingEnabled = sn_community_trail_sharing_enabled(auth_db(), (i
                                     <p class="text-muted mb-2">
                                         Saved articles, searches, and your reading history.
                                     </p>
+                                    <div class="activity-stat-grid mb-3" aria-label="Recent activity statistics">
+                                        <div class="activity-stat">
+                                            <span class="activity-stat__value"><?= $activityStats !== null ? number_format($activityStats['articles_read']) : '&mdash;' ?></span>
+                                            <span class="activity-stat__label">Articles Read</span>
+                                        </div>
+                                        <div class="activity-stat">
+                                            <span class="activity-stat__value"><?= $activityStats !== null ? number_format($activityStats['saved_headlines']) : '&mdash;' ?></span>
+                                            <span class="activity-stat__label">Saved Headlines</span>
+                                        </div>
+                                        <div class="activity-stat">
+                                            <span class="activity-stat__value"><?= $activityStats !== null ? number_format($activityStats['searches']) : '&mdash;' ?></span>
+                                            <span class="activity-stat__label">Searches</span>
+                                        </div>
+                                        <div class="activity-stat">
+                                            <span class="activity-stat__value"><?= $activityStats !== null ? number_format($activityStats['shuffles']) : '&mdash;' ?></span>
+                                            <span class="activity-stat__label">Shuffles</span>
+                                        </div>
+                                    </div>
                                     <ul class="text-muted mb-3">
                                         <li><a href="/account/saved-headlines.php" class="account-link" data-loading>Saved headlines</a></li>
                                         <li><a href="/account/reading-history.php" class="account-link" data-loading>Reading history</a></li>
@@ -354,6 +464,29 @@ $communityTrailSharingEnabled = sn_community_trail_sharing_enabled(auth_db(), (i
                                         <li><a href="/account/shuffle-history.php" class="account-link" data-loading>Shuffle history</a></li>
                                         <li><a href="/control-room.php" class="account-link">Your news pattern</a></li>
                                     </ul>
+                                    <div class="activity-resume border-top pt-3 mb-3">
+                                        <h3 class="h6 mb-2">Continue reading</h3>
+                                        <?php if ($activityLoadError): ?>
+                                            <p class="text-muted small mb-0" role="status">Activity is temporarily unavailable.</p>
+                                        <?php elseif ($recentArticle): ?>
+                                            <?php if ($recentArticleUrlIsSafe): ?>
+                                                <a class="activity-resume__title" href="<?= h($recentArticle['url']) ?>" data-loading<?= $recentArticleIsExternalUrl ? ' target="_blank" rel="noopener noreferrer"' : '' ?>>
+                                                    <?= h($recentArticle['title'] !== '' ? $recentArticle['title'] : 'Untitled article') ?>
+                                                </a>
+                                            <?php else: ?>
+                                                <span class="activity-resume__title">
+                                                    <?= h($recentArticle['title'] !== '' ? $recentArticle['title'] : 'Untitled article') ?>
+                                                </span>
+                                                <p class="text-muted small mb-0">The saved article link is unavailable.</p>
+                                            <?php endif; ?>
+                                            <?php if ($recentArticle['source'] !== ''): ?>
+                                                <div class="text-muted small mt-1"><?= h($recentArticle['source']) ?></div>
+                                            <?php endif; ?>
+                                        <?php else: ?>
+                                            <p class="text-muted small mb-0">No reading history yet.</p>
+                                        <?php endif; ?>
+                                    </div>
+                            
                                 </div>
                             </div>
                         </div>
