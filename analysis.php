@@ -154,7 +154,7 @@ try {
   if ($context === 'sent') $val = ucfirst(strtolower($val));
 
   // Final title
-  $pageTitle = "{$ctxLabel}: {$val} · {$wLabel} · {$corpusCount} articles · Text & Content Analysis";
+  $pageTitle = 'Trends | Scroll News';
   ?>
   <title><?= htmlspecialchars($pageTitle) ?></title>
 
@@ -206,7 +206,7 @@ try {
       $context_label = ($context === 'topic') ? 'narrative frame' : $context;
       ?>
 
-      <h1 style="margin:0 0 6px 0;" class="text-center mt-3">Text & Content Analysis</h1>
+      <h1 style="margin:0 0 6px 0;" class="text-center mt-3">Trends</h1>
       <div class="note text-center">
       Context:
       <strong><?= htmlspecialchars($context_label) ?></strong>
