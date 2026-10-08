@@ -1,21 +1,39 @@
 {
-    "fetched_at": 1791426612,
+    "fetched_at": 1791427867,
     "feeds": [
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Ronald Acuña Jr. showered with boos in potential final at-bat with Braves",
-                    "url": "https://nypost.com/2026/10/07/sports/ronald-acuna-jr-showered-with-boos-in-potential-final-at-bat-with-braves/",
-                    "ts": 1791426244,
+                    "title": "‘Cornell 7’ drama proves the campus-rape panic is a farce — and college women know it",
+                    "url": "https://nypost.com/2026/10/07/opinion/cornell-7-drama-proves-the-campus-rape-panic-is-a-farce-and-women-know-it/",
+                    "ts": 1791427847,
                     "emo": "📰"
                 },
                 {
-                    "title": "Anthony Volpe’s homer overturned in Yankee Stadium fan controversy",
-                    "url": "https://nypost.com/2026/10/07/sports/anthony-volpes-homer-overturned-in-yankee-stadium-fan-controversy/",
-                    "ts": 1791426172,
+                    "title": "Miranda Devine: The far-left is pushing its most nonsensical anti-Trump hoax yet. It will only hurt Dems in the midterms",
+                    "url": "https://nypost.com/2026/10/07/opinion/miranda-devine-the-far-left-is-pushing-its-most-nonsensical-anti-trump-hoax-yet-it-will-only-hurt-dems-in-the-midterms/",
+                    "ts": 1791427534,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "FDA: mifepristone review won't be done until March",
+                    "url": "https://thehill.com/policy/healthcare/6135515-fda-mifepristone-abortion-pill-review-delay/",
+                    "ts": 1791426810,
                     "emo": "📰"
+                },
+                {
+                    "title": "Turek, Hinson spar in first Iowa Senate debate: 3 takeaways",
+                    "url": "https://thehill.com/homenews/campaign/6135522-turek-hinson-spar-in-first-iowa-senate-debate-3-takeaways/",
+                    "ts": 1791426680,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -34,6 +52,24 @@
                     "url": "https://www.dailymail.com/news/article-16191805/Met-Police-stolen-phones-arrests-Lawless-Londons.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
                     "ts": 1791425099,
                     "emo": "🚨"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Trump appears to reframe 'let them hit’ comment during San Antonio rally",
+                    "url": "https://www.nbcnews.com/video/trump-appears-to-reframe-let-them-hit-comment-during-san-antonio-rally-271226437732",
+                    "ts": 1791425318,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "DNC sues administration over taxpayer-funded pro-Trump TV ads",
+                    "url": "https://www.nbcnews.com/politics/2026-election/dnc-sues-administration-taxpayer-funded-trump-tv-ads-rcna602156",
+                    "ts": 1791409727,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -110,24 +146,6 @@
             ]
         },
         {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Trump doubles down on California comments: 'Let them hit San Diego, let them hit Los Angeles'",
-                    "url": "https://thehill.com/homenews/administration/6135448-trump-threatened-la-san-diego/",
-                    "ts": 1791421054,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Trump to award National Medal of Science to Elon Musk",
-                    "url": "https://thehill.com/homenews/administration/6135421-trump-awards-national-medal-science/",
-                    "ts": 1791420478,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
             "name": "BBC",
             "home": "https://www.bbc.com/news",
             "items": [
@@ -142,24 +160,6 @@
                     "url": "https://www.bbc.co.uk/news/videos/cw99zxxx891yo?at_medium=RSS&at_campaign=rss",
                     "ts": 1791403265,
                     "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "DNC sues administration over taxpayer-funded pro-Trump TV ads",
-                    "url": "https://www.nbcnews.com/politics/2026-election/dnc-sues-administration-taxpayer-funded-trump-tv-ads-rcna602156",
-                    "ts": 1791409727,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Florida poll: Republicans lead in the races for governor and Senate",
-                    "url": "https://www.nbcnews.com/politics/2026-election/florida-poll-republicans-lead-races-governor-senate-rcna601342",
-                    "ts": 1791367241,
-                    "emo": "⚖️"
                 }
             ]
         },
