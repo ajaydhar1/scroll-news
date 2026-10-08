@@ -2,6 +2,10 @@ body.account-page {
     background: linear-gradient(to bottom, #eef1f4, #e8edf1);
 }
 
+.account-page .auth-shell {
+    margin-top: 2.5rem !important;
+}
+
 .auth-card .text-muted {
     color: #6c757d !important;
 }
