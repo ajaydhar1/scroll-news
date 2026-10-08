@@ -1,165 +1,39 @@
 {
-    "fetched_at": 1791337177,
+    "fetched_at": 1791426612,
     "feeds": [
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Lionel Messi's final night of magic! Argentina icon scores on emotional Buenos Aires farewell... as his family watch on",
-                    "url": "https://www.dailymail.com/sport/football/article-16188517/lionel-messi-argentina-retirement-buenos-aires.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791336998,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Germany's top former spy leaked British secrets, MI6 fears",
-                    "url": "https://www.dailymail.com/news/article-16188671/Germany-former-spy-leaked-British-secrets-MI6-fears.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791336898,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Luann de Lesseps debuts ‘naughty’ new single at the 2026 VRT Awards",
-                    "url": "https://pagesix.com/2026/10/06/entertainment/luann-de-lesseps-debuts-new-single-to-all-the-boys-at-2026-vrt-awards/",
-                    "ts": 1791336981,
+                    "title": "Ronald Acuña Jr. showered with boos in potential final at-bat with Braves",
+                    "url": "https://nypost.com/2026/10/07/sports/ronald-acuna-jr-showered-with-boos-in-potential-final-at-bat-with-braves/",
+                    "ts": 1791426244,
                     "emo": "📰"
                 },
                 {
-                    "title": "Luann de Lesseps debuts ‘naughty’ new single at the 2026 VRT Awards",
-                    "url": "https://pagesix.com/2026/10/06/entertainment/luann-de-lesseps-debuts-new-single-to-all-the-boys-at-2026-vrt-awards/",
-                    "ts": 1791336981,
+                    "title": "Anthony Volpe’s homer overturned in Yankee Stadium fan controversy",
+                    "url": "https://nypost.com/2026/10/07/sports/anthony-volpes-homer-overturned-in-yankee-stadium-fan-controversy/",
+                    "ts": 1791426172,
                     "emo": "📰"
                 }
             ]
         },
         {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Former TV anchor who pleaded guilty to killing mother last Halloween gets life sentence",
-                    "url": "https://www.foxnews.com/us/former-tv-anchor-pleaded-guilty-killing-mother-last-halloween-life-sentence",
-                    "ts": 1791336736,
-                    "emo": "🎭"
-                },
-                {
-                    "title": "Woman allegedly stabs girl after SUV hits semi as soldiers step in to stop horrific roadside attack",
-                    "url": "https://www.foxnews.com/us/woman-allegedly-stabs-girl-after-suv-hits-semi-soldiers-step-stop-roadside-horrific-attack",
-                    "ts": 1791335305,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "UPDATE: Dems have a 61% chance of controlling the Senate...",
-                    "url": "https://votehub.com/2026-forecast/senate/",
-                    "ts": 1791334896,
+                    "title": "Trump weighs huge strike on Iran to show voters bold display of US power before crucial midterm elections, report says",
+                    "url": "https://www.dailymail.com/news/article-16191579/Trump-weighs-huge-strike-Iran-midterms.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791425411,
                     "emo": "⚖️"
                 },
                 {
-                    "title": "86% chance of winning the House...",
-                    "url": "https://votehub.com/2026-forecast/house/",
-                    "ts": 1791334896,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "US death row inmate Christa Pike awake and speaking after failed execution, lawyers say",
-                    "url": "https://www.bbc.co.uk/news/articles/c8kgezxn54qko?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791334619,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Three arrested after raid on gang accused of helping migrants pretend to be gay to get asylum",
-                    "url": "https://www.bbc.co.uk/news/articles/cmp3gnd1e4gyo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791314708,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Justice Dept. Turns to Partisans and Conspiracists to Fill Depleted Ranks",
-                    "url": "https://www.nytimes.com/2026/10/06/us/politics/justice-department-civil-rights-division.html",
-                    "ts": 1791334329,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Wrongly Indicted Man Seeks Inquiry of Official Conduct in Reflecting Pool Case",
-                    "url": "https://www.nytimes.com/2026/10/06/us/politics/reflecting-pool-vandalism-case.html",
-                    "ts": 1791318773,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Susan Collins and Troy Jackson clash over Trump and seniority in Maine’s first Senate debate",
-                    "url": "https://www.nbcnews.com/politics/2026-election/susan-collins-troy-jackson-clash-trump-seniority-maines-first-senate-d-rcna601346",
-                    "ts": 1791333316,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "NBC’s Steve Kornacki Breaks Down Where Midterm Numbers Stand",
-                    "url": "https://www.today.com/video/kornacki-battleground-states-to-watch-in-crucial-2026-midterm-271104581554",
-                    "ts": 1791285522,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Plague in Russia sparks concern, COVID-19 pandemic memories: 5 things to know",
-                    "url": "https://thehill.com/policy/healthcare/6132881-russia-lab-worker-plague-death-facts/",
-                    "ts": 1791331835,
-                    "emo": "🧪"
-                },
-                {
-                    "title": "Planned Parenthood Votes adds $1M to ad campaigns in Maine, Michigan",
-                    "url": "https://thehill.com/homenews/campaign/6132846-planned-parenthood-votes-senate-ads/",
-                    "ts": 1791328967,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "The best Prime Day men's shoe deals on comfortable sneakers, loafers, and more",
-                    "url": "https://www.businessinsider.com/guides/deals/prime-day-mens-shoe-deals-2026-10",
-                    "ts": 1791331284,
-                    "emo": "📰"
-                },
-                {
-                    "title": "132 best Prime Day deals 2026: Apple, Dyson, Breville, Ninja, Sony, and more",
-                    "url": "https://www.businessinsider.com/guides/deals/prime-day-deals-2026-10-6",
-                    "ts": 1791330436,
-                    "emo": "📰"
+                    "title": "Met Police seizes hundreds of stolen phones and arrests more than 700 people in its 'largest ever crackdown' on Lawless London's device thieves",
+                    "url": "https://www.dailymail.com/news/article-16191805/Met-Police-stolen-phones-arrests-Lawless-Londons.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791425099,
+                    "emo": "🚨"
                 }
             ]
         },
@@ -170,14 +44,122 @@
                 {
                     "title": "My brother-in-law convinced his parents to sign over their home and life savings to buy a $3 million compound. Do I intervene?",
                     "url": "https://www.marketwatch.com/story/my-brother-in-law-convinced-his-parents-to-sign-over-their-home-and-savings-to-buy-a-3-million-compound-do-i-intervene-03fb96b7?mod=mw_rss_topstories",
-                    "ts": 1791327240,
+                    "ts": 1791424800,
                     "emo": "📰"
                 },
                 {
-                    "title": "The S&P 500 is back in record territory as the ‘Magnificent Seven’ ride to the rescue",
-                    "url": "https://www.marketwatch.com/story/the-s-p-500-is-back-in-record-territory-as-the-magnificent-seven-ride-to-the-rescue-e062724d?mod=mw_rss_topstories",
-                    "ts": 1791323520,
-                    "emo": "💰"
+                    "title": "‘He grew up wealthy’: My husband inherited $3 million. He wants a vacation home. I want to save for retirement. Who’s right?",
+                    "url": "https://www.marketwatch.com/story/he-grew-up-wealthy-my-husband-inherited-3-million-he-wants-a-vacation-home-i-want-to-save-for-retirement-a240f0d8?mod=mw_rss_topstories",
+                    "ts": 1791423900,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Ken Paxton calls out James Talarico's 11-day absence at Trump rally, prompting response from campaign",
+                    "url": "https://www.foxnews.com/politics/ken-paxton-calls-james-talarico-11-day-absence-trump-rally-prompting-response-campaign",
+                    "ts": 1791423313,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Los Angeles Dodgers are back in the NLCS for third straight season after win over Atlanta Braves",
+                    "url": "https://www.foxnews.com/outkick-sports/los-angeles-dodgers-back-nlcs-third-straight-season-4-1-win-atlanta-braves",
+                    "ts": 1791422851,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "My Dyson Airwrap is on sale for the lowest price of the year",
+                    "url": "https://www.businessinsider.com/guides/deals/dyson-airwrap-prime-day-deal-2026-10",
+                    "ts": 1791423281,
+                    "emo": "📰"
+                },
+                {
+                    "title": "October Prime Day ends tonight: The best cookware deals, up to 40% off",
+                    "url": "https://www.businessinsider.com/guides/deals/prime-day-cookware-deals-2026-10",
+                    "ts": 1791422666,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "SHOCK: Arizona congressional candidate says she was attacked, raped while fixing campaign signs...",
+                    "url": "https://www.phoenixnewtimes.com/news/congressional-candidate-is-raped-while-repairing-her-campaign-signs-40705248/",
+                    "ts": 1791422556,
+                    "emo": "📰"
+                },
+                {
+                    "title": "WSJ: GUILFOYLE BEGGED DONOR FOR $100K",
+                    "url": "https://www.wsj.com/politics/policy/guilfoyle-amex-donor-100-000-0e02cdc3",
+                    "ts": 1791422556,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Trump doubles down on California comments: 'Let them hit San Diego, let them hit Los Angeles'",
+                    "url": "https://thehill.com/homenews/administration/6135448-trump-threatened-la-san-diego/",
+                    "ts": 1791421054,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Trump to award National Medal of Science to Elon Musk",
+                    "url": "https://thehill.com/homenews/administration/6135421-trump-awards-national-medal-science/",
+                    "ts": 1791420478,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "Christa Pike 'angry and confused' after failed execution, lawyers say",
+                    "url": "https://www.bbc.co.uk/news/articles/c617kdle01k9o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791409881,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Watch: What we know about Christa Pike's ‘shock’ recovery in hospital",
+                    "url": "https://www.bbc.co.uk/news/videos/cw99zxxx891yo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791403265,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "DNC sues administration over taxpayer-funded pro-Trump TV ads",
+                    "url": "https://www.nbcnews.com/politics/2026-election/dnc-sues-administration-taxpayer-funded-trump-tv-ads-rcna602156",
+                    "ts": 1791409727,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Florida poll: Republicans lead in the races for governor and Senate",
+                    "url": "https://www.nbcnews.com/politics/2026-election/florida-poll-republicans-lead-races-governor-senate-rcna601342",
+                    "ts": 1791367241,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -186,16 +168,34 @@
             "home": "https://www.cnbc.com",
             "items": [
                 {
-                    "title": "Chart: A look at the S&P 500's remarkable and defiant trip to a new record",
-                    "url": "https://www.cnbc.com/2026/10/06/chart-a-look-at-the-sp-500s-remarkable-and-defiant-trip-a-new-record.html",
-                    "ts": 1791325381,
+                    "title": "Fed officials see another hike coming, but no sign as to when, minutes show",
+                    "url": "https://www.cnbc.com/2026/10/07/fed-officials-see-another-hike-coming-but-no-sign-as-to-when-minutes-show.html",
+                    "ts": 1791398556,
                     "emo": "💰"
                 },
                 {
-                    "title": "Trump hedges on paying back government for ads that already aired",
-                    "url": "https://www.cnbc.com/2026/10/05/trump-ads-election.html",
-                    "ts": 1791322352,
+                    "title": "Samsung forecasts record third-quarter profit of $80 billion as AI boom fuels chip demand",
+                    "url": "https://www.cnbc.com/2026/10/08/samsung-q3-earnings.html",
+                    "ts": 1791420683,
+                    "emo": "🧪"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "From Iran to the U.K., Trump Is Being Forced Into Retreat",
+                    "url": "https://www.nytimes.com/2026/10/07/us/politics/trump-iran-retreat.html",
+                    "ts": 1791395753,
                     "emo": "⚖️"
+                },
+                {
+                    "title": "Rubio Urges Europe to Awaken From ‘Slumber’ and Uphold Western Dominance",
+                    "url": "https://www.nytimes.com/2026/10/07/world/europe/rubio-greece-defense-immigration.html",
+                    "ts": 1791402897,
+                    "emo": "📰"
                 }
             ]
         },
@@ -204,16 +204,16 @@
             "home": "https://www.theguardian.com",
             "items": [
                 {
-                    "title": "Average five-year fixed mortgage rate hits 6% for first time in three years",
-                    "url": "https://www.theguardian.com/money/2026/oct/05/five-year-fixed-mortgage-rate-banks-building-societies",
-                    "ts": 1791200377,
+                    "title": "Badenoch’s inheritance tax gambit makes no economic sense | Heather Stewart",
+                    "url": "https://www.theguardian.com/politics/2026/oct/07/badenochs-inheritance-tax-gambit-makes-no-economic-sense",
+                    "ts": 1791393412,
                     "emo": "📰"
                 },
                 {
-                    "title": "UK reviewing whether to impose tariffs on Chinese car imports to align with EU",
-                    "url": "https://www.theguardian.com/business/2026/oct/05/uk-tariffs-chinese-car-imports-eu-manufacturing",
-                    "ts": 1791200266,
-                    "emo": "🌍"
+                    "title": "Beware rightwing economic myths such as ‘maxing out the nation’s credit card’ | Letters",
+                    "url": "https://www.theguardian.com/business/2026/oct/07/beware-rightwing-economic-myths-such-as-maxing-out-the-nations-credit-card",
+                    "ts": 1791392460,
+                    "emo": "📰"
                 }
             ]
         }

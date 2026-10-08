@@ -153,6 +153,14 @@ require_once BASE_PATH . "/core/___modules.php";
                         Launch Newsroom
                     </a>
 
+                    <?php if (!empty($_SESSION['user_id'])): ?>
+                        <a class="btn btn-outline-secondary btn-lg btn-rectangle d-block d-md-inline-block btn-width-mobile-75 mx-auto mb-3 mb-md-0 mr-md-2"
+                            href="/news-trails.php"
+                            data-loading>
+                            Explore News Trails
+                        </a>
+                    <?php endif; ?>
+
                     <?php if (empty($_SESSION['user_id'])): ?>
                         <a class="btn btn-dark btn-dark-clean btn-lg btn-rectangle js-scroll-trigger d-block d-md-inline-block btn-width-mobile-75 w-md-auto mx-auto mb-3 mb-sm-0 mr-md-2"
                             href="/auth/register.php">
