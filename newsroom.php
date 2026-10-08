@@ -141,7 +141,7 @@ exit;
         <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
         <div class="text-center my-3">
-            <h2>🧠 NLP Dashboard</h2>
+            <h2><?= $isTrailPlayer ? 'Article analysis' : '🧠 NLP Dashboard' ?></h2>
 
             <?php if (!$isTrailPlayer): ?>
                 <button class="btn btn-small btn-primary btn-rectangle" style="color: black; box-shadow: none !important;" onclick="introJs().setOptions({highlightClass: 'custom-highlight', overlayOpacity: 0.5}).start();"><i class="fa fa-play-circle" style=""></i><span>&nbsp;&nbsp;&nbsp;Guide</span></button>
@@ -149,9 +149,11 @@ exit;
 
         </div>
 
-        <div class="container-fluid text-center">
-            <span class="link"><?= $url ?></span>
-        </div>
+        <?php if (!$isTrailPlayer): ?>
+            <div class="container-fluid text-center">
+                <span class="link"><?= $url ?></span>
+            </div>
+        <?php endif; ?>
 
         <?php if (isset($_GET['error']) && $_GET['error'] == '1'): ?>
             <div class="container-fluid mt-4">
@@ -238,6 +240,7 @@ exit;
                                         }
                                     }
                                     ?>
+                                    <?php if (!$isTrailPlayer): ?>
                                     <a class="btn btn-outline-secondary btn-lg btn-rectangle js-scroll-trigger d-block d-md-inline-block btn-width-mobile-75 w-md-auto mx-auto mb-3" target='_blank' href="<?php echo $url; ?>" style="color: white; border-color: transparent;"
                                         data-article-url="<?= htmlspecialchars($url) ?>"
                                         data-article-title="<?= htmlspecialchars($title) ?>"
@@ -245,6 +248,7 @@ exit;
                                         data-article-image="<?= htmlspecialchars($img ?? '') ?>"
                                         data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
                                         data-article-kind="external">Go to Story</a>
+                                    <?php endif; ?>
                                 </div>
                                 <?php if (!empty($badges)) : ?>
                                     <div class="scroll-article-badges justify-content-center mt-2">

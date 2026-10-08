@@ -1,21 +1,39 @@
 {
-    "fetched_at": 1791427867,
+    "fetched_at": 1791429590,
     "feeds": [
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "The euro's in freefall. France is going bust - fast. What a time for Andy Burnham to plot to rejoin the EU: ALEX BRUMMER",
+                    "url": "https://www.dailymail.com/debate/article-16191439/euros-France-bust-Andy-Burnham-EU-ALEX-BRUMMER.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791429460,
+                    "emo": "🌍"
+                },
+                {
+                    "title": "Former CDC director questions whether Russian researcher was working with 'manipulated' strain of plague before death",
+                    "url": "https://www.dailymail.com/health/article-16190217/ex-cdc-director-russia-plague-manipulated-strain.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791429302,
+                    "emo": "🧪"
+                }
+            ]
+        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "‘Cornell 7’ drama proves the campus-rape panic is a farce — and college women know it",
-                    "url": "https://nypost.com/2026/10/07/opinion/cornell-7-drama-proves-the-campus-rape-panic-is-a-farce-and-women-know-it/",
-                    "ts": 1791427847,
+                    "title": "Yankees’ season ends in disappointment again as Rays sweep ALDS",
+                    "url": "https://nypost.com/2026/10/07/sports/yankees-season-ends-in-disappointment-again-as-rays-sweep-alds/",
+                    "ts": 1791429338,
                     "emo": "📰"
                 },
                 {
-                    "title": "Miranda Devine: The far-left is pushing its most nonsensical anti-Trump hoax yet. It will only hurt Dems in the midterms",
-                    "url": "https://nypost.com/2026/10/07/opinion/miranda-devine-the-far-left-is-pushing-its-most-nonsensical-anti-trump-hoax-yet-it-will-only-hurt-dems-in-the-midterms/",
-                    "ts": 1791427534,
-                    "emo": "⚖️"
+                    "title": "Jake Peavy puts musical chops on display with NLDS Game 4 national anthem",
+                    "url": "https://nypost.com/2026/10/07/sports/jake-peavy-puts-musical-chops-on-display-with-nlds-game-4-national-anthem/",
+                    "ts": 1791428635,
+                    "emo": "📰"
                 }
             ]
         },
@@ -24,34 +42,34 @@
             "home": "https://thehill.com",
             "items": [
                 {
-                    "title": "FDA: mifepristone review won't be done until March",
-                    "url": "https://thehill.com/policy/healthcare/6135515-fda-mifepristone-abortion-pill-review-delay/",
-                    "ts": 1791426810,
+                    "title": "Shapiro, Garrity clash on data centers, measles response in Pennsylvania governor debate: 4 takeaways",
+                    "url": "https://thehill.com/homenews/campaign/6135511-shapiro-garrity-debate-takeaways/",
+                    "ts": 1791427823,
                     "emo": "📰"
                 },
                 {
-                    "title": "Turek, Hinson spar in first Iowa Senate debate: 3 takeaways",
-                    "url": "https://thehill.com/homenews/campaign/6135522-turek-hinson-spar-in-first-iowa-senate-debate-3-takeaways/",
-                    "ts": 1791426680,
-                    "emo": "⚖️"
+                    "title": "FDA: Mifepristone review won't be done until March",
+                    "url": "https://thehill.com/policy/healthcare/6135515-fda-mifepristone-abortion-pill-review-delay/",
+                    "ts": 1791426810,
+                    "emo": "📰"
                 }
             ]
         },
         {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Trump weighs huge strike on Iran to show voters bold display of US power before crucial midterm elections, report says",
-                    "url": "https://www.dailymail.com/news/article-16191579/Trump-weighs-huge-strike-Iran-midterms.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791425411,
-                    "emo": "⚖️"
+                    "title": "Lime's CEO shares how he overcame a stroke to take his company to a $1.7 billion IPO",
+                    "url": "https://www.businessinsider.com/lime-ceo-wayne-ting-discusses-stroke-recovery-ipo-journey-2026-10",
+                    "ts": 1791427211,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Met Police seizes hundreds of stolen phones and arrests more than 700 people in its 'largest ever crackdown' on Lawless London's device thieves",
-                    "url": "https://www.dailymail.com/news/article-16191805/Met-Police-stolen-phones-arrests-Lawless-Londons.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791425099,
-                    "emo": "🚨"
+                    "title": "Final October Amazon Prime Day 2026 deals are way better than I expected: Apple, Ninja, Samsung, Breville",
+                    "url": "https://www.businessinsider.com/guides/deals/prime-day-deals-2026-10-7",
+                    "ts": 1791426345,
+                    "emo": "📰"
                 }
             ]
         },
@@ -60,15 +78,15 @@
             "home": "https://www.nbcnews.com",
             "items": [
                 {
-                    "title": "Trump appears to reframe 'let them hit’ comment during San Antonio rally",
-                    "url": "https://www.nbcnews.com/video/trump-appears-to-reframe-let-them-hit-comment-during-san-antonio-rally-271226437732",
-                    "ts": 1791425318,
+                    "title": "Trump dominates the Iowa Senate debate from afar",
+                    "url": "https://www.nbcnews.com/politics/2026-election/trump-dominates-iowa-senate-debate-afar-hinson-turek-rcna602129",
+                    "ts": 1791426340,
                     "emo": "⚖️"
                 },
                 {
-                    "title": "DNC sues administration over taxpayer-funded pro-Trump TV ads",
-                    "url": "https://www.nbcnews.com/politics/2026-election/dnc-sues-administration-taxpayer-funded-trump-tv-ads-rcna602156",
-                    "ts": 1791409727,
+                    "title": "Trump appears to reframe 'let them hit’ comment during San Antonio rally",
+                    "url": "https://www.nbcnews.com/video/trump-appears-to-reframe-let-them-hit-comment-during-san-antonio-rally-271226437732",
+                    "ts": 1791425318,
                     "emo": "⚖️"
                 }
             ]
@@ -105,24 +123,6 @@
                     "title": "Los Angeles Dodgers are back in the NLCS for third straight season after win over Atlanta Braves",
                     "url": "https://www.foxnews.com/outkick-sports/los-angeles-dodgers-back-nlcs-third-straight-season-4-1-win-atlanta-braves",
                     "ts": 1791422851,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "My Dyson Airwrap is on sale for the lowest price of the year",
-                    "url": "https://www.businessinsider.com/guides/deals/dyson-airwrap-prime-day-deal-2026-10",
-                    "ts": 1791423281,
-                    "emo": "📰"
-                },
-                {
-                    "title": "October Prime Day ends tonight: The best cookware deals, up to 40% off",
-                    "url": "https://www.businessinsider.com/guides/deals/prime-day-cookware-deals-2026-10",
-                    "ts": 1791422666,
                     "emo": "📰"
                 }
             ]
@@ -174,10 +174,10 @@
                     "emo": "💰"
                 },
                 {
-                    "title": "Samsung forecasts record third-quarter profit of $80 billion as AI boom fuels chip demand",
-                    "url": "https://www.cnbc.com/2026/10/08/samsung-q3-earnings.html",
-                    "ts": 1791420683,
-                    "emo": "🧪"
+                    "title": "Elon Musk blames Indian 'oligarchs' for stalling Starlink launch",
+                    "url": "https://www.cnbc.com/2026/10/08/elon-musk-starlink-spacex-jio-airtel-india.html",
+                    "ts": 1791428134,
+                    "emo": "📰"
                 }
             ]
         },

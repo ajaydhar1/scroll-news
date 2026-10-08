@@ -34,13 +34,6 @@ function normalize_trail_url(string $url): string
     return $scheme . '://' . $host . $path . $query;
 }
 
-function add_query_params(string $url, array $params): string
-{
-    $separator = str_contains($url, '?') ? '&' : '?';
-
-    return $url . $separator . http_build_query($params);
-}
-
 $pdo = _pdo_or_null();
 
 $base = $_GET['base'] ?? 'personal';
@@ -251,9 +244,42 @@ foreach ($trailItems as $item) {
 $trailItems = $dedupedTrailItems;
 
 foreach ($trailItems as $index => &$item) {
-    $item['player_url'] = add_query_params($item['url'], [
-        'context' => 'trail-player',
-    ]);
+    if (in_array($item['activity_type'] ?? '', ['reading', 'saved'], true)) {
+        $publisherUrl = trim((string) $item['url']);
+        $legacyParams = [];
+        $storedUrlParts = parse_url($publisherUrl);
+
+        if (is_array($storedUrlParts) && preg_match('~(?:^|/)newsroom\.php$~', $storedUrlParts['path'] ?? '')) {
+            parse_str($storedUrlParts['query'] ?? '', $legacyParams);
+            $legacyPublisherUrl = trim((string) ($legacyParams['url'] ?? ''));
+
+            if (preg_match('~^https?://~i', $legacyPublisherUrl)) {
+                $publisherUrl = $legacyPublisherUrl;
+            }
+        }
+
+        if (preg_match('~^https?://~i', $publisherUrl)) {
+            $playerParams = [
+                'url' => $publisherUrl,
+                'context' => 'trail-player',
+            ];
+
+            foreach (['category', 'pub_date', 'db'] as $parameter) {
+                if (!empty($legacyParams[$parameter])) {
+                    $playerParams[$parameter] = $legacyParams[$parameter];
+                }
+            }
+
+            if (empty($playerParams['pub_date']) && !empty($item['pub_date'])) {
+                $playerParams['pub_date'] = $item['pub_date'];
+            }
+
+            $item['publisher_url'] = $publisherUrl;
+            $item['player_url'] = '/newsroom.php?' . http_build_query($playerParams);
+        } else {
+            $item['publisher_url'] = $item['url'];
+        }
+    }
 }
 unset($item);
 
@@ -352,115 +378,74 @@ $trailDateLabel = date('F j, Y', strtotime($trailDate));
 
     <link href="/assets/css/auth.css?v=<?= filemtime(BASE_PATH . '/assets/css/auth.css') ?>" rel="stylesheet" />
     <link href="/assets/css/account.css?v=<?= filemtime(BASE_PATH . '/assets/css/account.css') ?>" rel="stylesheet" />
-
-    <style>
-        .trail-player-preview img {
-            border-radius: 1rem;
-            overflow: hidden;
-        }
-
-        .text-muted-light {
-            color: rgba(255, 255, 255, 0.68);
-        }
-
-        .trail-header-label {
-            flex-shrink: 0;
-            white-space: nowrap;
-        }
-
-        .trail-header-meta {
-            min-width: 0;
-            overflow-wrap: anywhere;
-            line-height: 1.35;
-        }
-
-        .trail-iframe-wrap {
-            width: 100%;
-            height: min(72vh, 760px);
-            background: #111;
-            border-radius: 0.75rem;
-            overflow: hidden;
-        }
-
-        .trail-iframe-wrap iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            background: #fff;
-        }
-    </style>
+    <link href="/assets/css/pages/news-trail-player.css?v=<?= filemtime(BASE_PATH . '/assets/css/pages/news-trail-player.css') ?>" rel="stylesheet" />
 
 </head>
 
-<body id="page-top" class="auth-page account-page">
+<body id="page-top" class="auth-page account-page trail-player-page">
 
     <!-- Top nav-->
     <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
-    <main class="container py-5">
-
-        <div class="row justify-content-center">
-            <div class="col-xl-9">
-
-                <div class="text-center mb-5">
-
-                    <header class="mb-5 text-center">
-                        <h1 class="h2 mb-2"><i class="fa-solid fa-route mr-1"></i> News Trail Player</h1>
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <p class="text-muted mb-0">
-                                    Play back a personalized news journey built from reading history,
-                                    saved headlines, searches, and shuffles.
-                                </p>
-                            </div>
+    <main class="trail-player-main">
+        <section class="trail-player" aria-label="News trail playback">
+            <header class="trail-player-header">
+                <div class="trail-context">
+                    <div class="trail-context-primary">
+                        <span class="trail-context-mark" aria-hidden="true">↗</span>
+                        <div>
+                            <div class="trail-context-kicker"><?= htmlspecialchars($trailCategoryLabel, ENT_QUOTES, 'UTF-8') ?></div>
+                            <h1 class="trail-context-owner"><?= htmlspecialchars($trailOwnerLabel, ENT_QUOTES, 'UTF-8') ?></h1>
                         </div>
-                    </header>
-
+                    </div>
+                    <time class="trail-context-date" datetime="<?= htmlspecialchars($trailDate, ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars($trailDateLabel, ENT_QUOTES, 'UTF-8') ?></time>
                 </div>
 
-                <div class="trail-player-card bg-dark text-white rounded shadow-sm p-3">
-
-                    <div class="trail-meta mb-3">
-                        <div class="trail-header d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-start mb-2">
-                            <div class="small text-uppercase text-muted-light mb-1 mb-sm-0 mr-sm-3 trail-header-label">News Trail</div>
-                            <div class="small text-muted-light text-sm-right trail-header-meta">
-                                <div><?= htmlspecialchars($trailCategoryLabel, ENT_QUOTES, 'UTF-8') ?></div>
-                                <div class="text-white-50"><?= htmlspecialchars($trailOwnerLabel, ENT_QUOTES, 'UTF-8') ?> · <?= htmlspecialchars($trailDateLabel, ENT_QUOTES, 'UTF-8') ?></div>
-                            </div>
-                        </div>
-                        <h1 id="trailTitle" class="h4 mb-1">Loading trail...</h1>
-                        <div id="trailItemMeta" class="small text-muted-light"></div>
-                    </div>
-
-                    <div class="trail-iframe-wrap mb-3">
-                        <iframe
-                            id="trailFrame"
-                            src=""
-                            title="News Trail article"
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"
-                            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
-                    </div>
-
-                    <div class="trail-controls d-flex justify-content-between align-items-center gap-2">
-                        <button id="prevTrailItem" class="btn btn-outline-light btn-sm">
-                            ← Previous
-                        </button>
-
-                        <a id="openOriginal" class="btn btn-success btn-sm" href="#" target="_blank" rel="noopener">
-                            Open Original
-                        </a>
-
-                        <button id="nextTrailItem" class="btn btn-outline-light btn-sm">
-                            Next →
-                        </button>
-                    </div>
-
+                <div class="trail-item-heading">
+                    <div class="trail-item-type" id="trailActivityLabel">Trail item</div>
+                    <h2 id="trailTitle">Loading trail...</h2>
+                    <div id="trailItemMeta" class="trail-item-meta"></div>
+                    <a id="openOriginal" class="trail-primary-action" href="#" target="_blank" rel="noopener" hidden></a>
                 </div>
 
+                <div class="trail-progress" aria-label="Trail progress">
+                    <div class="trail-progress-label" id="trailPosition">Item 0 of <?= count($trailItems) ?></div>
+                    <div class="trail-progress-track" id="trailProgress" role="progressbar" aria-label="Current item in trail" aria-valuemin="0" aria-valuemax="<?= count($trailItems) ?>" aria-valuenow="0">
+                        <span id="trailProgressFill"></span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="trail-iframe-wrap" id="trailFrameWrap">
+                <iframe
+                    id="trailFrame"
+                    src=""
+                    title="Scroll News article analysis"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
             </div>
-        </div>
 
+            <section class="trail-activity-panel" id="trailActivityPanel" aria-live="polite" hidden>
+                <div class="trail-activity-symbol" id="trailActivitySymbol" aria-hidden="true"></div>
+                <div class="trail-activity-copy">
+                    <div class="trail-activity-eyebrow" id="trailEventLabel"></div>
+                    <h3 id="trailEventTitle"></h3>
+                    <p id="trailEventSummary"></p>
+                    <a id="trailEventAction" class="trail-primary-action" href="#" target="_blank" rel="noopener"></a>
+                </div>
+            </section>
+
+            <nav class="trail-controls" aria-label="Trail item navigation">
+                <button id="prevTrailItem" class="trail-nav-button" type="button" aria-label="Previous trail item">
+                    <span aria-hidden="true">←</span><span>Previous</span>
+                </button>
+                <span class="trail-controls-position" id="trailControlsPosition">0 / <?= count($trailItems) ?></span>
+                <button id="nextTrailItem" class="trail-nav-button trail-nav-next" type="button" aria-label="Next trail item">
+                    <span>Next</span><span aria-hidden="true">→</span>
+                </button>
+            </nav>
+        </section>
     </main>
 
     <!-- Footer-->
@@ -475,68 +460,8 @@ $trailDateLabel = date('F j, Y', strtotime($trailDate));
     <!-- Theme -->
     <script src="/assets/js/scripts.js" defer></script>
 
-    <script>
-        window.scrollNewsTrailItems = <?= json_encode($trailItems, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>;
-        window.scrollNewsTrailMeta = {
-            base: <?= json_encode($base); ?>,
-            trailUser: <?= json_encode($trailUser); ?>,
-            trailDate: <?= json_encode($trailDate); ?>,
-            itemCount: <?= count($trailItems); ?>
-        };
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const trailItems = window.scrollNewsTrailItems || [];
-            let currentIndex = 0;
-
-            const frame = document.getElementById('trailFrame');
-            const title = document.getElementById('trailTitle');
-            const meta = document.getElementById('trailItemMeta');
-            const openOriginal = document.getElementById('openOriginal');
-            const prevBtn = document.getElementById('prevTrailItem');
-            const nextBtn = document.getElementById('nextTrailItem');
-
-            function renderTrailItem() {
-                if (!trailItems.length) {
-                    title.textContent = 'No trail items found';
-                    meta.textContent = '';
-                    frame.removeAttribute('src');
-                    openOriginal.href = '#';
-                    prevBtn.disabled = true;
-                    nextBtn.disabled = true;
-                    return;
-                }
-
-                const item = trailItems[currentIndex];
-
-                title.textContent = item.title || 'Untitled article';
-                meta.textContent = `${currentIndex + 1} of ${trailItems.length} · ${item.source || 'Unknown source'}${item.pub_date ? ' · ' + item.pub_date : ''}`;
-
-                frame.src = item.player_url || item.url;
-                openOriginal.href = item.url;
-
-                prevBtn.disabled = currentIndex === 0;
-                nextBtn.disabled = currentIndex === trailItems.length - 1;
-            }
-
-            prevBtn.addEventListener('click', function() {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                    renderTrailItem();
-                }
-            });
-
-            nextBtn.addEventListener('click', function() {
-                if (currentIndex < trailItems.length - 1) {
-                    currentIndex++;
-                    renderTrailItem();
-                }
-            });
-
-            renderTrailItem();
-        });
-    </script>
+    <script type="application/json" id="trailItemsData"><?= json_encode($trailItems, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?></script>
+    <script src="/assets/js/pages/news-trail-player.js?v=<?= filemtime(BASE_PATH . '/assets/js/pages/news-trail-player.js') ?>" defer></script>
 </body>
 
 </html>
