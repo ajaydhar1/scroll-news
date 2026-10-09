@@ -1,200 +1,20 @@
 {
-    "fetched_at": 1791429590,
+    "fetched_at": 1791543576,
     "feeds": [
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "The euro's in freefall. France is going bust - fast. What a time for Andy Burnham to plot to rejoin the EU: ALEX BRUMMER",
-                    "url": "https://www.dailymail.com/debate/article-16191439/euros-France-bust-Andy-Burnham-EU-ALEX-BRUMMER.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791429460,
-                    "emo": "🌍"
-                },
-                {
-                    "title": "Former CDC director questions whether Russian researcher was working with 'manipulated' strain of plague before death",
-                    "url": "https://www.dailymail.com/health/article-16190217/ex-cdc-director-russia-plague-manipulated-strain.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791429302,
-                    "emo": "🧪"
-                }
-            ]
-        },
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "Yankees’ season ends in disappointment again as Rays sweep ALDS",
-                    "url": "https://nypost.com/2026/10/07/sports/yankees-season-ends-in-disappointment-again-as-rays-sweep-alds/",
-                    "ts": 1791429338,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Jake Peavy puts musical chops on display with NLDS Game 4 national anthem",
-                    "url": "https://nypost.com/2026/10/07/sports/jake-peavy-puts-musical-chops-on-display-with-nlds-game-4-national-anthem/",
-                    "ts": 1791428635,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Shapiro, Garrity clash on data centers, measles response in Pennsylvania governor debate: 4 takeaways",
-                    "url": "https://thehill.com/homenews/campaign/6135511-shapiro-garrity-debate-takeaways/",
-                    "ts": 1791427823,
-                    "emo": "📰"
-                },
-                {
-                    "title": "FDA: Mifepristone review won't be done until March",
-                    "url": "https://thehill.com/policy/healthcare/6135515-fda-mifepristone-abortion-pill-review-delay/",
-                    "ts": 1791426810,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Lime's CEO shares how he overcame a stroke to take his company to a $1.7 billion IPO",
-                    "url": "https://www.businessinsider.com/lime-ceo-wayne-ting-discusses-stroke-recovery-ipo-journey-2026-10",
-                    "ts": 1791427211,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Final October Amazon Prime Day 2026 deals are way better than I expected: Apple, Ninja, Samsung, Breville",
-                    "url": "https://www.businessinsider.com/guides/deals/prime-day-deals-2026-10-7",
-                    "ts": 1791426345,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Trump dominates the Iowa Senate debate from afar",
-                    "url": "https://www.nbcnews.com/politics/2026-election/trump-dominates-iowa-senate-debate-afar-hinson-turek-rcna602129",
-                    "ts": 1791426340,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Trump appears to reframe 'let them hit’ comment during San Antonio rally",
-                    "url": "https://www.nbcnews.com/video/trump-appears-to-reframe-let-them-hit-comment-during-san-antonio-rally-271226437732",
-                    "ts": 1791425318,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "My brother-in-law convinced his parents to sign over their home and life savings to buy a $3 million compound. Do I intervene?",
-                    "url": "https://www.marketwatch.com/story/my-brother-in-law-convinced-his-parents-to-sign-over-their-home-and-savings-to-buy-a-3-million-compound-do-i-intervene-03fb96b7?mod=mw_rss_topstories",
-                    "ts": 1791424800,
-                    "emo": "📰"
-                },
-                {
-                    "title": "‘He grew up wealthy’: My husband inherited $3 million. He wants a vacation home. I want to save for retirement. Who’s right?",
-                    "url": "https://www.marketwatch.com/story/he-grew-up-wealthy-my-husband-inherited-3-million-he-wants-a-vacation-home-i-want-to-save-for-retirement-a240f0d8?mod=mw_rss_topstories",
-                    "ts": 1791423900,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "Fox",
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Ken Paxton calls out James Talarico's 11-day absence at Trump rally, prompting response from campaign",
-                    "url": "https://www.foxnews.com/politics/ken-paxton-calls-james-talarico-11-day-absence-trump-rally-prompting-response-campaign",
-                    "ts": 1791423313,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Los Angeles Dodgers are back in the NLCS for third straight season after win over Atlanta Braves",
-                    "url": "https://www.foxnews.com/outkick-sports/los-angeles-dodgers-back-nlcs-third-straight-season-4-1-win-atlanta-braves",
-                    "ts": 1791422851,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "SHOCK: Arizona congressional candidate says she was attacked, raped while fixing campaign signs...",
-                    "url": "https://www.phoenixnewtimes.com/news/congressional-candidate-is-raped-while-repairing-her-campaign-signs-40705248/",
-                    "ts": 1791422556,
+                    "title": "JONATHAN TURLEY: France's free speech crackdown shows what happens when politicians define truth",
+                    "url": "https://www.foxnews.com/opinion/jonathan-turley-frances-free-speech-crackdown-shows-what-happens-when-politicians-define-truth",
+                    "ts": 1791550800,
                     "emo": "📰"
                 },
                 {
-                    "title": "WSJ: GUILFOYLE BEGGED DONOR FOR $100K",
-                    "url": "https://www.wsj.com/politics/policy/guilfoyle-amex-donor-100-000-0e02cdc3",
-                    "ts": 1791422556,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "Christa Pike 'angry and confused' after failed execution, lawyers say",
-                    "url": "https://www.bbc.co.uk/news/articles/c617kdle01k9o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791409881,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Watch: What we know about Christa Pike's ‘shock’ recovery in hospital",
-                    "url": "https://www.bbc.co.uk/news/videos/cw99zxxx891yo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791403265,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Fed officials see another hike coming, but no sign as to when, minutes show",
-                    "url": "https://www.cnbc.com/2026/10/07/fed-officials-see-another-hike-coming-but-no-sign-as-to-when-minutes-show.html",
-                    "ts": 1791398556,
-                    "emo": "💰"
-                },
-                {
-                    "title": "Elon Musk blames Indian 'oligarchs' for stalling Starlink launch",
-                    "url": "https://www.cnbc.com/2026/10/08/elon-musk-starlink-spacex-jio-airtel-india.html",
-                    "ts": 1791428134,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "From Iran to the U.K., Trump Is Being Forced Into Retreat",
-                    "url": "https://www.nytimes.com/2026/10/07/us/politics/trump-iran-retreat.html",
-                    "ts": 1791395753,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Rubio Urges Europe to Awaken From ‘Slumber’ and Uphold Western Dominance",
-                    "url": "https://www.nytimes.com/2026/10/07/world/europe/rubio-greece-defense-immigration.html",
-                    "ts": 1791402897,
+                    "title": "US Attorney calls out 'loud-mouth' California Dems as feds step in with Skid Row drug bust: 'They're lunatics'",
+                    "url": "https://www.foxnews.com/politics/us-attorney-calls-out-loud-mouth-california-dems-feds-step-skid-row-drug-bust-lunatics",
+                    "ts": 1791540805,
                     "emo": "📰"
                 }
             ]
@@ -204,15 +24,195 @@
             "home": "https://www.theguardian.com",
             "items": [
                 {
-                    "title": "Badenoch’s inheritance tax gambit makes no economic sense | Heather Stewart",
-                    "url": "https://www.theguardian.com/politics/2026/oct/07/badenochs-inheritance-tax-gambit-makes-no-economic-sense",
-                    "ts": 1791393412,
+                    "title": "Oil prices fall as Trump pauses Iran attacks, China restarts fuel exports – business live",
+                    "url": "https://www.theguardian.com/business/live/2026/oct/09/oil-prices-crude-brent-trump-iran-us-war-midterm-elections-stocks-bonds-business-live",
+                    "ts": 1791543471,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Send us your questions on how the US economy is shaping the midterm elections",
+                    "url": "https://www.theguardian.com/business/2026/oct/08/economy-midterm-elections-tell-us",
+                    "ts": 1791470750,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "Celebrity plastic surgeon is executed in front of customers in Marbella clinic after 'threats from a disgruntled customer' as Swedish 'teen hitman' is arrested",
+                    "url": "https://www.dailymail.com/news/article-16195437/Celebrity-plastic-surgeon-executed-customers-Marbella-clinic-threats-disgruntled-customer-Swedish-teen-hitman-arrested.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791543450,
+                    "emo": "🎭"
+                },
+                {
+                    "title": "Andrew Mountbatten-Windsor receives £302,000 in compensation as he surrenders lease on Royal Lodge 50 years early and pays £1.8million for repairs",
+                    "url": "https://www.dailymail.com/news/article-16195837/Andrew-Mountbatten-Windsor-handed-300-000-surrendering-lease-crumbling-Royal-Lodge.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791543428,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "Polanski vows to stay on as Green leader as criticism mounts",
+                    "url": "https://www.bbc.co.uk/news/articles/cmewe5lvl2rqo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791543394,
                     "emo": "📰"
                 },
                 {
-                    "title": "Beware rightwing economic myths such as ‘maxing out the nation’s credit card’ | Letters",
-                    "url": "https://www.theguardian.com/business/2026/oct/07/beware-rightwing-economic-myths-such-as-maxing-out-the-nations-credit-card",
-                    "ts": 1791392460,
+                    "title": "Chris Mason: Questions remain for Green Party leader Zack Polanski",
+                    "url": "https://www.bbc.co.uk/news/videos/cxly4jy042eno?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791527953,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "AOC calls for ‘full and independent investigation’ into Bronx ICE shooting — while blaming Target for aiding feds",
+                    "url": "https://nypost.com/2026/10/09/us-news/aoc-calls-for-full-and-independent-investigation-into-bronx-ice-shooting/",
+                    "ts": 1791543162,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Mike Collins fends off claims he’s a ‘bigot,’ slams ‘trust fund kid’ Jon Ossoff in Georgia Senate debate",
+                    "url": "https://nypost.com/2026/10/09/us-news/mike-collins-fends-off-claims-hes-a-bigot-slams-trust-fund-kid-jon-ossoff-in-georgia-senate-debate/",
+                    "ts": 1791542658,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Delta Air Lines cuts 2026 forecast on fuel surge, but CEO says demand is still strong",
+                    "url": "https://www.cnbc.com/2026/10/09/delta-air-lines-dal-q3-2026-earnings.html",
+                    "ts": 1791542860,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Pilot killed in attacks by Iran-backed Houthis on Riyadh airport; Saudi-led coalition vows 'firm' response",
+                    "url": "https://www.cnbc.com/2026/10/09/saudi-us-iran-war-trump-hormuz.html",
+                    "ts": 1791542262,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "I’m a 68-year-old widow and give money to my two adult children. Am I putting my retirement at risk?",
+                    "url": "https://www.marketwatch.com/story/im-a-68-year-old-widow-my-two-adult-children-keep-asking-me-for-money-are-they-taking-advantage-of-me-f725374e?mod=mw_rss_topstories",
+                    "ts": 1791540900,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Is iPhone 18 demand cooling off? Here’s how deep Apple reportedly is cutting component orders",
+                    "url": "https://www.marketwatch.com/story/is-iphone-18-demand-cooling-off-heres-how-deep-apple-reportedly-is-cutting-component-orders-a44244ee?mod=mw_rss_topstories",
+                    "ts": 1791540240,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "KING OF DEBT: Budget Deficit Jumps $2 Trillion...",
+                    "url": "https://www.wsj.com/politics/policy/u-s-deficit-clocks-in-just-under-2-trillion-7e8e9eb3",
+                    "ts": 1791540636,
+                    "emo": "📰"
+                },
+                {
+                    "title": "HEGSETH TO LIVESTREAM EXECUTION",
+                    "url": "https://apnews.com/article/fort-hood-shooter-execution-pentagon-818853afc1be5c70fe41c5b781a8d559",
+                    "ts": 1791540636,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Hinson leads Iowa Senate contest as Sand holds edge for governor: Poll",
+                    "url": "https://thehill.com/homenews/campaign/6134008-iowa-hinson-turek-lahn-sand-poll/",
+                    "ts": 1791540000,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Millions of children auto-enrolled in 'Trump Accounts': What to know",
+                    "url": "https://thehill.com/business/6137340-trump-accounts-auto-enrollment-children/",
+                    "ts": 1791540000,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "3 rules for making money on Airbnb, from a short-term-rental owner who built a business by optimizing revenue",
+                    "url": "https://www.businessinsider.com/how-to-run-a-successful-airbnb-short-term-rental-strategies-2026-10",
+                    "ts": 1791538201,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Walmart reverses an earlier limit on the height of order fulfillment carts in stores",
+                    "url": "https://www.businessinsider.com/walmart-stores-reversing-bin-limit-for-online-order-carts-2026-10",
+                    "ts": 1791537781,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Food pantries overwhelmed by Trump cuts",
+                    "url": "https://www.nbcnews.com/news/us-news/west-virginia-hunger-trump-cuts-food-stamps-gas-prices-iran-rcna601637",
+                    "ts": 1791536443,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Sparks fly as Abdul El-Sayed and Mike Rogers face off in first Michigan Senate debate",
+                    "url": "https://www.nbcnews.com/politics/2026-election/sparks-fly-abdul-el-sayed-mike-rogers-first-michigan-senate-debate-rcna599866",
+                    "ts": 1791506551,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "How Trump’s Revenge Campaign Descended Into Turmoil",
+                    "url": "https://www.nytimes.com/2026/10/09/us/politics/trump-grand-conspiracy.html",
+                    "ts": 1791536432,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "The 2026 Nobel Peace Prize Winner, and the Pentagon’s Plan to Livestream an Execution",
+                    "url": "https://www.nytimes.com/2026/10/09/podcasts/the-headlines/nobel-peace-prize-livestream-execution.html",
+                    "ts": 1791540006,
                     "emo": "📰"
                 }
             ]

@@ -333,7 +333,34 @@
   }
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 767.98px) {
+  .sn-product-nav-shell.sticky-top {
+    box-sizing: border-box;
+    max-height: calc(100vh - 1px);
+    max-height: calc(100dvh - 1px);
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+  }
+
+  .sn-product-account .account-nav-item {
+    width: 100%;
+  }
+
+  .sn-product-account .account-nav-menu {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 100%;
+    max-width: 100%;
+    margin: 0.15rem 0 0;
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) and (orientation: portrait) {
   .sn-product-nav-shell.sticky-top {
     position: static !important;
     top: auto !important;

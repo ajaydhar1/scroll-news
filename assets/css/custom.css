@@ -22,14 +22,6 @@
   color: var(--brand-color);
 }
 
-/* Disable sticky on small screens */
-@media (max-width: 991.98px) {
-  .sn-top-nav.sticky-top {
-    position: static !important;
-    top: auto !important;
-  }
-}
-
 .stumble-nav-label {
   display: none;
 }
@@ -694,7 +686,12 @@ blockquote::before {
   scroll-margin-top: 100px;
 }
 
-@media (max-width: 991.98px) {
+@media (min-width: 768px) and (max-width: 991.98px) and (orientation: portrait) {
+  .sn-top-nav.sticky-top {
+    position: static !important;
+    top: auto !important;
+  }
+
   #first-look {
     scroll-margin-top: 0;
   }
