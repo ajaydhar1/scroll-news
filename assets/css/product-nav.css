@@ -302,21 +302,6 @@
     width: 100%;
   }
 
-  .sn-product-item .dropdown-menu {
-    position: static !important;
-    top: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    left: auto !important;
-    transform: none !important;
-    will-change: auto !important;
-    float: none;
-    width: 100%;
-    margin: 0.15rem 0 0.25rem;
-    border: 0;
-    box-shadow: none;
-  }
-
   .sn-product-theme-item {
     margin: 0.4rem 0 0;
     padding: 0.35rem 0 0;
@@ -330,6 +315,80 @@
     padding: 0.5rem 0 0;
     border-top: 1px solid rgba(23, 60, 53, 0.14);
     border-left: 0;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1199.98px) {
+  .sn-product-toggler {
+    display: none;
+  }
+
+  .sn-product-nav {
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .sn-product-collapse {
+    display: flex !important;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: space-between;
+    width: auto;
+    min-width: 0;
+    padding: 0;
+  }
+
+  .sn-product-links {
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.2rem;
+  }
+
+  .sn-product-item {
+    width: auto;
+  }
+
+  .sn-product-theme-item {
+    margin-top: 0;
+    margin-left: 0.15rem;
+    padding-top: 0;
+    padding-left: 0.25rem;
+    border-top: 0;
+    border-left: 1px solid rgba(23, 60, 53, 0.18);
+  }
+
+  .sn-product-link {
+    width: auto;
+    justify-content: center;
+    padding: 0.55rem 0.68rem;
+    font-size: 0.79rem;
+  }
+
+  .sn-product-account {
+    justify-content: flex-end;
+    margin: 0 0 0 0.45rem;
+    padding: 0 0 0 0.8rem;
+    border-top: 0;
+    border-left: 1px solid rgba(23, 60, 53, 0.18);
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .sn-product-item .dropdown-menu {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    will-change: auto !important;
+    float: none;
+    width: 100%;
+    margin: 0.15rem 0 0.25rem;
+    border: 0;
+    box-shadow: none;
   }
 }
 

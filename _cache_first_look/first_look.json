@@ -1,5 +1,5 @@
 {
-    "fetched_at": 1791543576,
+    "fetched_at": 1791544819,
     "feeds": [
         {
             "name": "Fox",
@@ -12,27 +12,9 @@
                     "emo": "📰"
                 },
                 {
-                    "title": "US Attorney calls out 'loud-mouth' California Dems as feds step in with Skid Row drug bust: 'They're lunatics'",
-                    "url": "https://www.foxnews.com/politics/us-attorney-calls-out-loud-mouth-california-dems-feds-step-skid-row-drug-bust-lunatics",
-                    "ts": 1791540805,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "The Guardian",
-            "home": "https://www.theguardian.com",
-            "items": [
-                {
-                    "title": "Oil prices fall as Trump pauses Iran attacks, China restarts fuel exports – business live",
-                    "url": "https://www.theguardian.com/business/live/2026/oct/09/oil-prices-crude-brent-trump-iran-us-war-midterm-elections-stocks-bonds-business-live",
-                    "ts": 1791543471,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Send us your questions on how the US economy is shaping the midterm elections",
-                    "url": "https://www.theguardian.com/business/2026/oct/08/economy-midterm-elections-tell-us",
-                    "ts": 1791470750,
+                    "title": "WWE's Michael Cole refuses to dip his toe into political waters, bucking trend among sports broadcasters",
+                    "url": "https://www.foxnews.com/outkick-sports/wwe-michael-cole-refuses-dip-toe-political-waters-bucking-trend-sports-broadcasters",
+                    "ts": 1791543751,
                     "emo": "📰"
                 }
             ]
@@ -42,15 +24,33 @@
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Celebrity plastic surgeon is executed in front of customers in Marbella clinic after 'threats from a disgruntled customer' as Swedish 'teen hitman' is arrested",
-                    "url": "https://www.dailymail.com/news/article-16195437/Celebrity-plastic-surgeon-executed-customers-Marbella-clinic-threats-disgruntled-customer-Swedish-teen-hitman-arrested.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791543450,
-                    "emo": "🎭"
+                    "title": "Enzo Maresca refuses to fully commit to staying at Man City if they are relegated - LIVE: Manager insists titles are NOT tainted as calls grow for 'relentless' punishing",
+                    "url": "https://www.dailymail.com/sport/football/article-16195413/manchester-city-guilty-premier-league-reaction.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791544752,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "Andrew Mountbatten-Windsor receives £302,000 in compensation as he surrenders lease on Royal Lodge 50 years early and pays £1.8million for repairs",
-                    "url": "https://www.dailymail.com/news/article-16195837/Andrew-Mountbatten-Windsor-handed-300-000-surrendering-lease-crumbling-Royal-Lodge.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791543428,
+                    "title": "Adidas sues popular Aussie brand White Fox over its four-stripe design - arguing it is too easily confused with sports giant's trademark three-stripe look",
+                    "url": "https://www.dailymail.com/news/article-16195325/Adidas-sues-White-Fox-stripe-design-trademark.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791544477,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "I love spending time with my friends, but it's hard to catch up in a loud restaurant or bar. Enter: saunas.",
+                    "url": "https://www.businessinsider.com/sauna-with-friends-social-activity-2026-10",
+                    "ts": 1791544741,
+                    "emo": "📰"
+                },
+                {
+                    "title": "New status symbols are taking over this fall. Here's what you'll see everywhere.",
+                    "url": "https://www.businessinsider.com/fall-fashion-trends-status-symbols-2026-10",
+                    "ts": 1791543661,
                     "emo": "📰"
                 }
             ]
@@ -62,7 +62,7 @@
                 {
                     "title": "Polanski vows to stay on as Green leader as criticism mounts",
                     "url": "https://www.bbc.co.uk/news/articles/cmewe5lvl2rqo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791543394,
+                    "ts": 1791544538,
                     "emo": "📰"
                 },
                 {
@@ -74,20 +74,74 @@
             ]
         },
         {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "My husband inherited $3 million. He wants a vacation home, but I want to save for retirement. Who’s right?",
+                    "url": "https://www.marketwatch.com/story/he-grew-up-wealthy-my-husband-inherited-3-million-he-wants-a-vacation-home-i-want-to-save-for-retirement-a240f0d8?mod=mw_rss_topstories",
+                    "ts": 1791544500,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Aging bull: Why the four-year old stock-market rally can still pack a punch",
+                    "url": "https://www.marketwatch.com/story/aging-bull-why-the-four-year-old-stock-market-rally-can-still-pack-a-punch-d1271631?mod=mw_rss_topstories",
+                    "ts": 1791543720,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "The Guardian",
+            "home": "https://www.theguardian.com",
+            "items": [
+                {
+                    "title": "Send us your questions for economist Isabella Weber on inflation and affordability",
+                    "url": "https://www.theguardian.com/business/2026/oct/09/send-us-your-questions-for-economist-isabella-weber-on-inflation-and-affordability",
+                    "ts": 1791544135,
+                    "emo": "💰"
+                },
+                {
+                    "title": "Oil prices fall as Trump pauses Iran attacks, China restarts fuel exports – business live",
+                    "url": "https://www.theguardian.com/business/live/2026/oct/09/oil-prices-crude-brent-trump-iran-us-war-midterm-elections-stocks-bonds-business-live",
+                    "ts": 1791544204,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Why the young are restless: Their college degrees aren't paying off",
+                    "url": "https://thehill.com/opinion/finance/6136539-college-grad-debt-ai-impact/",
+                    "ts": 1791543600,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Hinson leads Iowa Senate contest as Sand holds edge for governor: Poll",
+                    "url": "https://thehill.com/homenews/campaign/6134008-iowa-hinson-turek-lahn-sand-poll/",
+                    "ts": 1791540000,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "AOC calls for ‘full and independent investigation’ into Bronx ICE shooting — while blaming Target for aiding feds",
-                    "url": "https://nypost.com/2026/10/09/us-news/aoc-calls-for-full-and-independent-investigation-into-bronx-ice-shooting/",
-                    "ts": 1791543162,
-                    "emo": "🔥"
+                    "title": "Why prediction market execs could face an existential threat in Supreme Court",
+                    "url": "https://nypost.com/2026/10/09/business/why-prediction-market-execs-could-face-an-existential-threat-in-supreme-court/",
+                    "ts": 1791543600,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "Mike Collins fends off claims he’s a ‘bigot,’ slams ‘trust fund kid’ Jon Ossoff in Georgia Senate debate",
-                    "url": "https://nypost.com/2026/10/09/us-news/mike-collins-fends-off-claims-hes-a-bigot-slams-trust-fund-kid-jon-ossoff-in-georgia-senate-debate/",
-                    "ts": 1791542658,
-                    "emo": "⚖️"
+                    "title": "Left-wing politician Hitler Mussolini becomes mayor of Peruvian small town",
+                    "url": "https://nypost.com/2026/10/09/world-news/peruvian-left-wing-politician-hitler-mussolini-becomes-mayor-of-small-town/",
+                    "ts": 1791543586,
+                    "emo": "📰"
                 }
             ]
         },
@@ -110,24 +164,6 @@
             ]
         },
         {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "I’m a 68-year-old widow and give money to my two adult children. Am I putting my retirement at risk?",
-                    "url": "https://www.marketwatch.com/story/im-a-68-year-old-widow-my-two-adult-children-keep-asking-me-for-money-are-they-taking-advantage-of-me-f725374e?mod=mw_rss_topstories",
-                    "ts": 1791540900,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Is iPhone 18 demand cooling off? Here’s how deep Apple reportedly is cutting component orders",
-                    "url": "https://www.marketwatch.com/story/is-iphone-18-demand-cooling-off-heres-how-deep-apple-reportedly-is-cutting-component-orders-a44244ee?mod=mw_rss_topstories",
-                    "ts": 1791540240,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
@@ -141,42 +177,6 @@
                     "title": "HEGSETH TO LIVESTREAM EXECUTION",
                     "url": "https://apnews.com/article/fort-hood-shooter-execution-pentagon-818853afc1be5c70fe41c5b781a8d559",
                     "ts": 1791540636,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Hinson leads Iowa Senate contest as Sand holds edge for governor: Poll",
-                    "url": "https://thehill.com/homenews/campaign/6134008-iowa-hinson-turek-lahn-sand-poll/",
-                    "ts": 1791540000,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Millions of children auto-enrolled in 'Trump Accounts': What to know",
-                    "url": "https://thehill.com/business/6137340-trump-accounts-auto-enrollment-children/",
-                    "ts": 1791540000,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "3 rules for making money on Airbnb, from a short-term-rental owner who built a business by optimizing revenue",
-                    "url": "https://www.businessinsider.com/how-to-run-a-successful-airbnb-short-term-rental-strategies-2026-10",
-                    "ts": 1791538201,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Walmart reverses an earlier limit on the height of order fulfillment carts in stores",
-                    "url": "https://www.businessinsider.com/walmart-stores-reversing-bin-limit-for-online-order-carts-2026-10",
-                    "ts": 1791537781,
                     "emo": "📰"
                 }
             ]
@@ -212,7 +212,7 @@
                 {
                     "title": "The 2026 Nobel Peace Prize Winner, and the Pentagon’s Plan to Livestream an Execution",
                     "url": "https://www.nytimes.com/2026/10/09/podcasts/the-headlines/nobel-peace-prize-livestream-execution.html",
-                    "ts": 1791540006,
+                    "ts": 1791543610,
                     "emo": "📰"
                 }
             ]
