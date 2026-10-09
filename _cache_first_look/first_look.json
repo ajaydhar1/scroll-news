@@ -1,38 +1,20 @@
 {
-    "fetched_at": 1791570502,
+    "fetched_at": 1791576220,
     "feeds": [
         {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
             "items": [
                 {
-                    "title": "Moment university student, 19, lets 'sexually obsessed' stepdad into her halls with his head covered by blanket before he allegedly strangled her",
-                    "url": "https://www.dailymail.com/crime-desk/article-16197187/Moment-university-student-19-lets-sexually-obsessed-stepfather-halls-head-covered-blanket.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791570464,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Cornell Jane Doe's lawyer trashes new texts that suggest alleged gang-rape was consensual and says she was suffering from 'delayed recognition' when she sent them",
-                    "url": "https://www.dailymail.com/news/article-16196553/Cornell-Jane-Doe-text-messages-frat-rape-attorney.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791570292,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "Marco Rubio announces sweeping financial sanctions against the International Criminal Court",
-                    "url": "https://www.foxnews.com/politics/marco-rubio-announces-sweeping-financial-sanctions-international-criminal-court",
-                    "ts": 1791570303,
+                    "title": "Trump strikes deal with Putin to supply Russian diesel to U.S. and global markets",
+                    "url": "https://www.cnbc.com/2026/10/09/trump-putin-russian-diesel-us-global-markets.html",
+                    "ts": 1791576183,
                     "emo": "⚖️"
                 },
                 {
-                    "title": "South Carolina fitness trainer's cause of death made public as coroner defends husband",
-                    "url": "https://www.foxnews.com/us/south-carolina-fitness-trainer-cause-death-made-public-coroner-defends-husband",
-                    "ts": 1791570207,
+                    "title": "Americans' debt problems are flashing a warning not seen since the Great Recession",
+                    "url": "https://www.cnbc.com/2026/10/09/american-debt-delinquency.html",
+                    "ts": 1791573504,
                     "emo": "📰"
                 }
             ]
@@ -42,15 +24,51 @@
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Klay Thompson’s dating life gets ex-teammate’s praise after MeganThee Stallion split",
-                    "url": "https://nypost.com/2026/10/09/sports/klay-thompson-ex-teammate-hypes-dating-game-megan-thee-stallion-breakup/",
-                    "ts": 1791570281,
+                    "title": "Highest-paid college major is math at Duke University—with grads earning an eye-popping salary",
+                    "url": "https://nypost.com/2026/10/09/us-news/highest-paid-college-major-is-math-at-duke-university/",
+                    "ts": 1791576183,
                     "emo": "📰"
                 },
                 {
-                    "title": "Bobbi Brown’s new Jones Road makeup kit offers a ‘complete look in one bag,’ and it’s guaranteed to sell out",
-                    "url": "https://pagesix.com/2026/10/09/style/the-jones-road-bobbi-kit-6-is-a-complete-look-in-one-bag-and-guaranteed-to-sell-out/",
-                    "ts": 1791570253,
+                    "title": "Stream It Or Skip It: ‘Take Charge Of My Heart’ On Netflix, A Romcom Where A Woman Who Is Electrified Meets A Man Who Needs His Artificial Heart Jump-Started",
+                    "url": "https://decider.com/2026/10/09/take-charge-of-my-heart-netflix-review-stream-or-skip/",
+                    "ts": 1791576000,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "Celebrity Traitors: Julie Hesmondhalgh is the third star banished during intense round table after traitors murdered their 'biggest threat'",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16197323/Celebrity-Traitors-star-Bella-Ramsey-murdered-Maya-Jama-says-theyre-biggest-threat-Professor-Hannah-Frys-recruitment-rouses-suspicion.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791576087,
+                    "emo": "🎭"
+                },
+                {
+                    "title": "Bank tax raid could spark exodus, City warns Healey",
+                    "url": "https://www.dailymail.com/money/markets/article-16197071/Bank-tax-raid-spark-exodus-City-warns-Healey.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791576045,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Sophie Cunningham's insufferable ex-teammate mouths off but can't make a shot, ref lowers his shoulder & Ditka",
+                    "url": "https://www.foxnews.com/outkick-sports/sophie-cunningham-insufferable-ex-teammate-mouths-off-cant-make-shot-ref-lowers-shoulder-ditka",
+                    "ts": 1791575658,
+                    "emo": "📰"
+                },
+                {
+                    "title": "FOX readers can get 5 pounds of bulk Halloween candy for $20 with free shipping",
+                    "url": "https://www.foxnews.com/deals/halloween-bulk-candy-deal",
+                    "ts": 1791575516,
                     "emo": "📰"
                 }
             ]
@@ -60,16 +78,52 @@
             "home": "https://www.marketwatch.com",
             "items": [
                 {
-                    "title": "As AT&T, Verizon and T-Mobile shares fall, Wall Street assesses the growing SpaceX threat",
-                    "url": "https://www.marketwatch.com/story/as-at-t-verizon-and-t-mobile-shares-fall-wall-street-assesses-the-growing-spacex-threat-e869ef9e?mod=mw_rss_topstories",
-                    "ts": 1791569760,
+                    "title": "Country music star Zach Bryan buys $18 million, 40-acre Tennessee estate after getting married",
+                    "url": "https://www.marketwatch.com/story/country-music-star-zach-bryan-buys-18-million-40-acre-tennessee-estate-after-getting-married-cb4d20eb?mod=mw_rss_topstories",
+                    "ts": 1791575280,
+                    "emo": "🎭"
+                },
+                {
+                    "title": "Elon Musk is now richer than any American ever — and it’s not even close",
+                    "url": "https://www.marketwatch.com/story/elon-musk-is-now-richer-than-any-american-ever-and-its-not-even-close-58f31401?mod=mw_rss_topstories",
+                    "ts": 1791572640,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "7.7 MAG QUAKE PANAMA... DEVELOPING...",
+                    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u18k/executive",
+                    "ts": 1791575016,
                     "emo": "📰"
                 },
                 {
-                    "title": "Microsoft is nearing a big milestone that solidifies its revival",
-                    "url": "https://www.marketwatch.com/story/microsoft-is-nearing-a-big-milestone-that-solidifies-its-revival-580d1ba8?mod=mw_rss_topstories",
-                    "ts": 1791569160,
+                    "title": "NEAR CANAL...",
+                    "url": "https://www.the-sun.com/news/17122388/",
+                    "ts": 1791575016,
                     "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Private Medicare Plans Are Raising Costs And Forcing Millions To Find New Insurance",
+                    "url": "https://www.nytimes.com/2026/10/09/business/medicare-private-health-care-costs.html",
+                    "ts": 1791574879,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Kansas Senate Race Is a Surprising New Midterm Fight",
+                    "url": "https://www.nytimes.com/2026/10/09/us/politics/kansas-senate-race-adam-hamilton-roger-marshall.html",
+                    "ts": 1791573784,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -78,16 +132,34 @@
             "home": "https://thehill.com",
             "items": [
                 {
-                    "title": "Ossoff: Hegseth 'deeply unwell'",
-                    "url": "https://thehill.com/policy/defense/6139331-jon-ossoff-pete-hegseth-public-execution/",
-                    "ts": 1791569170,
+                    "title": "Kelly calls to remove Hegseth 'immediately' over public execution plan",
+                    "url": "https://thehill.com/homenews/6139403-kelly-demands-hegseth-removal-public-execution/",
+                    "ts": 1791573933,
                     "emo": "📰"
                 },
                 {
-                    "title": "Ocasio-Cortez set to rally for El-Sayed in Michigan",
-                    "url": "https://thehill.com/homenews/campaign/6139306-ocasio-cortez-el-sayed-michigan-campaign/",
-                    "ts": 1791568975,
+                    "title": "Southwest Airlines says 'brief' system outage affected boarding, checked bags",
+                    "url": "https://thehill.com/policy/transportation/6138775-southwest-airlines-brief-outage-boarding-bags-issues/",
+                    "ts": 1791573324,
                     "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Trump eases Russia sanctions, says Putin will release diesel amid massive price spike",
+                    "url": "https://www.nbcnews.com/business/energy/trump-putin-diesel-prices-rcna602566",
+                    "ts": 1791572181,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Food pantries overwhelmed by Trump cuts",
+                    "url": "https://www.nbcnews.com/news/us-news/west-virginia-hunger-trump-cuts-food-stamps-gas-prices-iran-rcna601637",
+                    "ts": 1791536443,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -98,50 +170,14 @@
                 {
                     "title": "US unveils sanctions on ICC in move court condemns as 'assault on rule of law'",
                     "url": "https://www.bbc.co.uk/news/articles/cj20vkkx3rdvo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791567783,
+                    "ts": 1791571210,
                     "emo": "⚖️"
                 },
                 {
-                    "title": "Polanski vows to stay on as Green leader as he faces criticism after by-election defeat",
-                    "url": "https://www.bbc.co.uk/news/articles/cmewe5lvl2rqo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791559014,
+                    "title": "Trump announces deal with Putin to release Russian diesel",
+                    "url": "https://www.bbc.co.uk/news/articles/cm1dwgr666wno?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791574327,
                     "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "How Trump’s Revenge Campaign Descended Into Turmoil",
-                    "url": "https://www.nytimes.com/2026/10/09/us/politics/trump-grand-conspiracy.html",
-                    "ts": 1791567131,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Trump Announces White House Inquiry Into Fed Governor Lisa Cook",
-                    "url": "https://www.nytimes.com/2026/10/09/business/trump-lisa-cook-fed.html",
-                    "ts": 1791561394,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "KING OF DEBT: Budget Deficit Jumps $2 Trillion...",
-                    "url": "https://www.wsj.com/politics/policy/u-s-deficit-clocks-in-just-under-2-trillion-7e8e9eb3",
-                    "ts": 1791567096,
-                    "emo": "📰"
-                },
-                {
-                    "title": "CAT 3 GULF",
-                    "url": "https://apnews.com/article/hurricane-isaias-landfall-gulf-alabama-mississippi-919a46d4bd705726b4e57f18ce677ac5",
-                    "ts": 1791567096,
-                    "emo": "📰"
                 }
             ]
         },
@@ -150,34 +186,16 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Celebrity deaths in 2026: Remembering the famous people we lost this year",
-                    "url": "https://www.businessinsider.com/celebrity-deaths-famous-people-who-died-2026",
-                    "ts": 1791566261,
-                    "emo": "🎭"
-                },
-                {
-                    "title": "The release of Sarah J. Maas' 6th 'ACOTAR' book is just weeks away. Here's everything we know.",
-                    "url": "https://www.businessinsider.com/sarah-j-maas-acotar-book-6-release-date-plot-details",
-                    "ts": 1791566185,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Americans' debt problems are flashing a warning not seen since the Great Recession",
-                    "url": "https://www.cnbc.com/2026/10/09/american-debt-delinquency.html",
-                    "ts": 1791562241,
+                    "title": "Best Samsung TVs in 2026",
+                    "url": "https://www.businessinsider.com/guides/tech/best-samsung-tvs",
+                    "ts": 1791567962,
                     "emo": "📰"
                 },
                 {
-                    "title": "Trump appoints committee to investigate statements by the Fed's Lisa Cook",
-                    "url": "https://www.cnbc.com/2026/10/09/fed-lisa-cook-trump.html",
-                    "ts": 1791568584,
-                    "emo": "⚖️"
+                    "title": "My honest EBY review after weeks of testing the bras and underwear",
+                    "url": "https://www.businessinsider.com/guides/style/eby-bra-underwear-review",
+                    "ts": 1791567522,
+                    "emo": "📰"
                 }
             ]
         },
@@ -196,24 +214,6 @@
                     "url": "https://www.theguardian.com/business/live/2026/oct/09/oil-prices-crude-brent-trump-iran-us-war-midterm-elections-stocks-bonds-business-live",
                     "ts": 1791555126,
                     "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Food pantries overwhelmed by Trump cuts",
-                    "url": "https://www.nbcnews.com/news/us-news/west-virginia-hunger-trump-cuts-food-stamps-gas-prices-iran-rcna601637",
-                    "ts": 1791536443,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Mike Ditka, legendary Chicago Bears coach, dies at 86",
-                    "url": "https://www.nbcnews.com/sports/nfl/mike-ditka-legendary-chicago-bears-coach-dies-86-rcna602517",
-                    "ts": 1791559491,
-                    "emo": "📰"
                 }
             ]
         }

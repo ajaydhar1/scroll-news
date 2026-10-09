@@ -6,7 +6,7 @@
             <!--<h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>-->
         </div>
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <div class="team-member">
                     <img class="mx-auto rounded-circle" src="assets/img/team/parveen-anand.jpg" alt="Illustrated headshot of Parveen Anand, Lead Developer" />
                     <h4>Parveen Anand</h4>
@@ -16,17 +16,27 @@
                     <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <div class="team-member">
                     <img class="mx-auto rounded-circle" src="assets/img/team/matt-elsher.jpg" alt="Illustrated headshot of Matt Elsher, Product Manager" />
                     <h4>Matt Elsher</h4>
                     <p class="text-muted">Product Manager</p>
-                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Matt Elsher Twitter Profile"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Matt Elsher Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Matt Elsher LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
+                <div class="team-member">
+                    <img class="mx-auto rounded-circle" src="assets/img/team/elliot-morrison.jpg" alt="Illustrated headshot of Matt Elsher, Product Manager" />
+                    <h4>Elliot Morrison</h4>
+                    <p class="text-muted">Discovery Editor</p>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Elliot Morrison Twitter Profile"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Elliot Morrison Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Elliot Morrison LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3">
                 <div class="team-member">
                     <img class="mx-auto rounded-circle" src="assets/img/team/diana-keri.jpg" alt="Illustrated headshot of Diana Keri, Lead Marketer" />
                     <h4>Diana Keri</h4>
