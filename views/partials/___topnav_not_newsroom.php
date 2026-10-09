@@ -6,7 +6,7 @@
         <style>
           .loading-overlay{
             position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
-            background:rgba(255,255,255,0.82); z-index:2000; backdrop-filter:saturate(120%) blur(2px);
+            background:rgba(255,255,255,0.82); z-index:2000;
           }
           .loading-spinner{
             width:48px; height:48px; border:4px solid #e5e7eb; border-top-color:#0d6efd;

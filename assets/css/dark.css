@@ -4,13 +4,13 @@
 
 @-moz-document url-prefix() {
   html[data-ui-theme="dark"] {
-    background-image: url(../img/dark-city-blurred.png);
+        background-image: url(../img/dark-city.gif);
   }
 }
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   html[data-ui-theme="dark"] {
-    background-image: url(../img/dark-city-blurred.png);
+        background-image: url(../img/dark-city.gif);
   }
 }
 
@@ -19,8 +19,6 @@ html[data-ui-theme="dark"] .sn-top-nav {
     border-bottom: 1px solid rgba(255, 255, 255, 0.14);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.24);
     color: #f4f7f7;
-    backdrop-filter: saturate(125%) blur(18px);
-    -webkit-backdrop-filter: saturate(125%) blur(18px);
 }
 
 html[data-ui-theme="dark"] .sn-top-nav h5 a,
@@ -146,7 +144,7 @@ html[data-ui-theme="dark"] .theme-toggle span {
 
 @media (prefers-reduced-motion: reduce) {
     html[data-ui-theme="dark"] {
-        background-image: url(../img/mind-pour_00_blur_35.jpg) !important;
+        background-image: url(../img/mind-pour_00.jpg) !important;
     }
 }
 

@@ -495,7 +495,6 @@ a.nlp-chip.nlp-chip-frame:hover {
   justify-content: center;
   background: rgba(255, 255, 255, 0.82);
   z-index: 2000;
-  backdrop-filter: saturate(120%) blur(2px);
 }
 
 .loading-spinner {

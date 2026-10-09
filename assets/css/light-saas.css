@@ -57,10 +57,6 @@ html:not([data-ui-theme="dark"]) body.sn-light-saas .page .text-muted.small {
 }
 
 /* Canvas and bands */
-html:not([data-ui-theme="dark"]) body.sn-light-saas .blur-layer {
-    display: none;
-}
-
 /* Pages whose <body> carries a bg-light-* class (Mindpour makes it a translucent black wash) */
 html:not([data-ui-theme="dark"]) body.sn-light-saas[class*="bg-light"] {
     background: var(--sn-l-s0) !important;

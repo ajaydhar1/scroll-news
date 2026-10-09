@@ -132,9 +132,6 @@ exit;
 
 <body id="page-top"<?= $isTrailPlayer ? '' : ' class="sn-light-saas newsroom-page"' ?>>
 
-    <!-- Blurred overlay -->
-    <div class="blur-layer"></div>
-
     <div class="page">
 
         <!-- Top nav-->

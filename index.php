@@ -130,9 +130,6 @@ require_once BASE_PATH . "/core/___modules.php";
 
 <body id="page-top" class="home-page sn-light-saas">
 
-    <!-- Blurred overlay -->
-    <div class="blur-layer"></div>
-
     <div class="page">
 
         <!-- Top nav-->

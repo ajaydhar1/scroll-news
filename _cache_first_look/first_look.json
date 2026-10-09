@@ -1,20 +1,74 @@
 {
-    "fetched_at": 1791568128,
+    "fetched_at": 1791570502,
     "feeds": [
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "Moment university student, 19, lets 'sexually obsessed' stepdad into her halls with his head covered by blanket before he allegedly strangled her",
+                    "url": "https://www.dailymail.com/crime-desk/article-16197187/Moment-university-student-19-lets-sexually-obsessed-stepfather-halls-head-covered-blanket.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791570464,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Cornell Jane Doe's lawyer trashes new texts that suggest alleged gang-rape was consensual and says she was suffering from 'delayed recognition' when she sent them",
+                    "url": "https://www.dailymail.com/news/article-16196553/Cornell-Jane-Doe-text-messages-frat-rape-attorney.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791570292,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Marco Rubio announces sweeping financial sanctions against the International Criminal Court",
+                    "url": "https://www.foxnews.com/politics/marco-rubio-announces-sweeping-financial-sanctions-international-criminal-court",
+                    "ts": 1791570303,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "South Carolina fitness trainer's cause of death made public as coroner defends husband",
+                    "url": "https://www.foxnews.com/us/south-carolina-fitness-trainer-cause-death-made-public-coroner-defends-husband",
+                    "ts": 1791570207,
+                    "emo": "📰"
+                }
+            ]
+        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Ryan Reynolds makes desperate attempt to save Blake Lively’s reputation in shocking private text messages",
-                    "url": "https://pagesix.com/2026/10/09/celebrity-news/ryan-reynolds-made-attempt-to-save-wife-blake-livelys-reputation-in-private-text-messages/",
-                    "ts": 1791567987,
+                    "title": "Klay Thompson’s dating life gets ex-teammate’s praise after MeganThee Stallion split",
+                    "url": "https://nypost.com/2026/10/09/sports/klay-thompson-ex-teammate-hypes-dating-game-megan-thee-stallion-breakup/",
+                    "ts": 1791570281,
                     "emo": "📰"
                 },
                 {
-                    "title": "Ryan Reynolds makes desperate attempt to save Blake Lively’s reputation in shocking private text messages",
-                    "url": "https://pagesix.com/2026/10/09/celebrity-news/ryan-reynolds-made-attempt-to-save-wife-blake-livelys-reputation-in-private-text-messages/",
-                    "ts": 1791567987,
+                    "title": "Bobbi Brown’s new Jones Road makeup kit offers a ‘complete look in one bag,’ and it’s guaranteed to sell out",
+                    "url": "https://pagesix.com/2026/10/09/style/the-jones-road-bobbi-kit-6-is-a-complete-look-in-one-bag-and-guaranteed-to-sell-out/",
+                    "ts": 1791570253,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "As AT&T, Verizon and T-Mobile shares fall, Wall Street assesses the growing SpaceX threat",
+                    "url": "https://www.marketwatch.com/story/as-at-t-verizon-and-t-mobile-shares-fall-wall-street-assesses-the-growing-spacex-threat-e869ef9e?mod=mw_rss_topstories",
+                    "ts": 1791569760,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Microsoft is nearing a big milestone that solidifies its revival",
+                    "url": "https://www.marketwatch.com/story/microsoft-is-nearing-a-big-milestone-that-solidifies-its-revival-580d1ba8?mod=mw_rss_topstories",
+                    "ts": 1791569160,
                     "emo": "📰"
                 }
             ]
@@ -24,33 +78,15 @@
             "home": "https://thehill.com",
             "items": [
                 {
-                    "title": "Trump teases diesel announcement, big move from Vought",
-                    "url": "https://thehill.com/homenews/administration/6139293-trump-diesel-omb-russell-vought-announcements/",
-                    "ts": 1791567935,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "With nothing to lose, Republicans still put America last",
-                    "url": "https://thehill.com/opinion/international/6138235-gop-rejects-america-first-test/",
-                    "ts": 1791567000,
+                    "title": "Ossoff: Hegseth 'deeply unwell'",
+                    "url": "https://thehill.com/policy/defense/6139331-jon-ossoff-pete-hegseth-public-execution/",
+                    "ts": 1791569170,
                     "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Celebrity plastic surgeon is executed in front of customers in Marbella clinic after 'threats from a disgruntled customer' as Swedish 'teen hitman' is arrested",
-                    "url": "https://www.dailymail.com/news/article-16195437/Celebrity-plastic-surgeon-executed-customers-Marbella-clinic-threats-disgruntled-customer-Swedish-teen-hitman-arrested.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791567839,
-                    "emo": "🎭"
                 },
                 {
-                    "title": "Scarlett Moffatt gives birth! Gogglebox star reveals she's welcomed her second child with fiancé Scott Dobinson as she shares son's adorable name",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16197265/Scarlett-Moffatt-gives-birth-Gogglebox-star-second-child-fiance-Scott-Dobby-son-name.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791567719,
+                    "title": "Ocasio-Cortez set to rally for El-Sayed in Michigan",
+                    "url": "https://thehill.com/homenews/campaign/6139306-ocasio-cortez-el-sayed-michigan-campaign/",
+                    "ts": 1791568975,
                     "emo": "📰"
                 }
             ]
@@ -60,7 +96,7 @@
             "home": "https://www.bbc.com/news",
             "items": [
                 {
-                    "title": "US unveils sanctions on ICC in move court condems as 'assault on rule of law'",
+                    "title": "US unveils sanctions on ICC in move court condemns as 'assault on rule of law'",
                     "url": "https://www.bbc.co.uk/news/articles/cj20vkkx3rdvo?at_medium=RSS&at_campaign=rss",
                     "ts": 1791567783,
                     "emo": "⚖️"
@@ -70,42 +106,6 @@
                     "url": "https://www.bbc.co.uk/news/articles/cmewe5lvl2rqo?at_medium=RSS&at_campaign=rss",
                     "ts": 1791559014,
                     "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "AI chip stocks wobble even as investors get clarity on a key OpenAI issue",
-                    "url": "https://www.marketwatch.com/story/nvidia-and-micron-shares-bounce-as-investors-get-clarity-on-a-key-openai-matter-ba76ed20?mod=mw_rss_topstories",
-                    "ts": 1791567300,
-                    "emo": "💰"
-                },
-                {
-                    "title": "More evidence that broad-market index funds remain unbeatable, even in the era of AI stock-picking",
-                    "url": "https://www.marketwatch.com/story/more-evidence-that-broad-market-index-funds-remain-unbeatable-even-in-the-era-of-ai-stock-picking-3c61deac?mod=mw_rss_topstories",
-                    "ts": 1791564600,
-                    "emo": "💰"
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "Trump says Rogers 'completely obliterated' El-Sayed in debate",
-                    "url": "https://www.foxnews.com/politics/trump-says-rogers-completely-obliterated-el-sayed-debate",
-                    "ts": 1791567266,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Jerry Jones slams table after Dak Prescott throws critical late interception in brutal Cowboys loss",
-                    "url": "https://www.foxnews.com/outkick-sports/jerry-jones-slams-table-dak-prescott-throws-critical-late-interception-brutal-cowboys-loss",
-                    "ts": 1791564326,
-                    "emo": "📰"
                 }
             ]
         },
@@ -176,7 +176,7 @@
                 {
                     "title": "Trump appoints committee to investigate statements by the Fed's Lisa Cook",
                     "url": "https://www.cnbc.com/2026/10/09/fed-lisa-cook-trump.html",
-                    "ts": 1791562202,
+                    "ts": 1791568584,
                     "emo": "⚖️"
                 }
             ]

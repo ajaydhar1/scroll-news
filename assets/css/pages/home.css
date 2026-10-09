@@ -276,6 +276,63 @@ html[data-ui-theme="dark"] #playlists .watch-desk-player-frame {
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
 }
 
+html[data-ui-theme="dark"] body.home-page #team {
+    padding: 3.5rem 0;
+    background: #23282e !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: #edf2f2;
+}
+
+html[data-ui-theme="dark"] body.home-page #team h2.section-heading {
+    margin-bottom: 0.5rem;
+    color: #edf2f2;
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+}
+
+html[data-ui-theme="dark"] body.home-page #team .team-member {
+    margin-bottom: 1.5rem;
+}
+
+html[data-ui-theme="dark"] body.home-page #team .team-member img {
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+html[data-ui-theme="dark"] body.home-page #team .team-member h4 {
+    margin-top: 0.9rem;
+    color: #edf2f2;
+    font-size: 1rem;
+}
+
+html[data-ui-theme="dark"] body.home-page #team .team-member p.text-muted {
+    margin-bottom: 0.75rem;
+    color: #a9b1ba !important;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+html[data-ui-theme="dark"] body.home-page #team .team-member .btn.btn-social {
+    width: 2rem;
+    height: 2rem;
+    margin: 0 0.2rem !important;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 6px;
+    box-shadow: none !important;
+    color: #45d6bd;
+    font-size: 0.85rem;
+}
+
+html[data-ui-theme="dark"] body.home-page #team .team-member .btn.btn-social:hover,
+html[data-ui-theme="dark"] body.home-page #team .team-member .btn.btn-social:focus-visible {
+    background: rgba(69, 214, 189, 0.12);
+    border-color: #45d6bd;
+    color: #8ae9d8;
+}
+
 @media (max-width: 767.98px) {
     #playlists.watch-desk-section {
         padding: 2.5rem 0 2.75rem;

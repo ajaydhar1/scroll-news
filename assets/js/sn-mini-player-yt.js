@@ -403,7 +403,6 @@
   justify-content:center;
   border:1px solid rgba(23,213,255,.5);
   background: radial-gradient(circle at top, rgba(23,213,255,.16), rgba(5,7,20,.96));
-  backdrop-filter: blur(14px) saturate(1.2);
   box-shadow: 0 14px 40px rgba(3,6,25,.9);
   color:#f9fbff;
   cursor:pointer;

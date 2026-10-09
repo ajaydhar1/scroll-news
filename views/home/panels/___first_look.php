@@ -116,7 +116,6 @@ if (!is_array($feedsData) || count($feedsData) === 0) {
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, .10);
     background: rgba(10, 12, 20, .55);
-    backdrop-filter: blur(10px);
   }
 
   .firstlook-head {

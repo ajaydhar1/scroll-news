@@ -193,9 +193,6 @@ if (!$pdo) {
     </head>
     <body id="page-top" class="bg-light-3 sn-light-saas">
 
-        <!-- Blurred overlay -->
-        <div class="blur-layer"></div>
-
         <div class="page">
 
             <!-- Top nav-->        

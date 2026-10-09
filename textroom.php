@@ -108,9 +108,6 @@ $title = mb_substr(preg_replace('/\s+/', ' ', $text), 0, 80);
     </head>
     <body id="page-top" class="sn-light-saas textroom-page">
 
-        <!-- Blurred overlay -->
-        <div class="blur-layer"></div>
-
         <div class="page">
 
             <!-- Top nav-->        

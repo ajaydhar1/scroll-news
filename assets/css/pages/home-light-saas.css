@@ -70,8 +70,11 @@ html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .s
 }
 
 html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .panel-title,
-html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .power-center .entity-name,
-html:not([data-ui-theme="dark"]) body.home-page .page section.py-5 h3 {
+html:not([data-ui-theme="dark"]) body.home-page .page .sn-card-active-stories .power-center .entity-name {
+    color: var(--sn-l-text) !important;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page section.py-5 h3 {
     color: var(--sn-l-text) !important;
 }
 
@@ -279,7 +282,6 @@ html:not([data-ui-theme="dark"]) body.home-page #first-look .firstlook-box {
     border: 1px solid #0d131b;
     border-radius: var(--sn-l-r-lg);
     box-shadow: none;
-    backdrop-filter: none;
     color: #fff;
 }
 
@@ -293,6 +295,12 @@ html:not([data-ui-theme="dark"]) body.home-page #portfolio,
 html:not([data-ui-theme="dark"]) body.home-page #story,
 html:not([data-ui-theme="dark"]) body.home-page #team {
     padding: 3.5rem 0;
+}
+
+html:not([data-ui-theme="dark"]) body.home-page #team {
+    background: var(--sn-l-s1) !important;
+    border-top: 1px solid var(--sn-l-border-soft);
+    border-bottom: 1px solid var(--sn-l-border-soft);
 }
 
 html:not([data-ui-theme="dark"]) body.home-page #services h2.section-heading,
@@ -442,6 +450,7 @@ html:not([data-ui-theme="dark"]) body.home-page #team .team-member h4 {
 
 html:not([data-ui-theme="dark"]) body.home-page #team .team-member p.text-muted {
     margin-bottom: 0.75rem;
+    color: var(--sn-l-muted) !important;
     font-size: 0.85rem;
     line-height: 1.4;
 }

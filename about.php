@@ -89,9 +89,6 @@ $theme_experiment_enabled = true;
     </head>
     <body id="page-top">
 
-        <!-- Blurred overlay -->
-        <div class="blur-layer"></div>
-
         <div class="page">
 
             <!-- Top nav-->
