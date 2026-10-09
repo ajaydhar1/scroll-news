@@ -387,10 +387,10 @@ require_once BASE_PATH . "/core/___modules.php";
         <?php include BASE_PATH . '/views/home/partials/___home_team.php'; ?>
 
 
-        <!-- Trusted by creators text section -->
+        <!-- Bigger than your feed text section -->
         <section class="py-5">
             <div class="container text-center">
-                <h3 class="mb-0">Trusted by modern creators and teams</h3>
+                <h3 class="mb-0">The news is bigger than your feed.</h3>
             </div>
         </section>
         <!-- Contact-->

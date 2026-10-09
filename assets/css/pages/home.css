@@ -51,6 +51,260 @@ section#playlists {
     scroll-margin-top: 95px; /* Adjust the offset as needed */
 }
 
+#playlists.watch-desk-section {
+    --watch-desk-bg: #e6ece9;
+    --watch-desk-text: #17302b;
+    --watch-desk-muted: #54645f;
+    --watch-desk-border: rgba(23, 60, 53, 0.14);
+    --watch-desk-row: rgba(255, 255, 255, 0.58);
+    --watch-desk-row-hover: rgba(255, 255, 255, 0.9);
+    --watch-desk-active: #ffffff;
+    --watch-desk-accent: #067466;
+    padding: 3.5rem 0 3.75rem;
+    background: var(--watch-desk-bg);
+    border-top: 1px solid var(--watch-desk-border);
+    border-bottom: 1px solid var(--watch-desk-border);
+    color: var(--watch-desk-text);
+}
+
+#playlists .watch-desk-container {
+    max-width: 1320px;
+}
+
+#playlists .watch-desk-header {
+    margin-bottom: 1.75rem;
+}
+
+#playlists .watch-desk-eyebrow {
+    margin: 0 0 0.4rem;
+    color: var(--watch-desk-accent);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+#playlists .watch-desk-title {
+    margin: 0;
+    color: var(--watch-desk-text);
+    font-family: "Roboto Slab", Georgia, serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+#playlists .watch-desk-intro {
+    margin: 0.55rem 0 0;
+    color: var(--watch-desk-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+#playlists .watch-desk-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.72fr);
+    align-items: stretch;
+    gap: clamp(1.25rem, 2.5vw, 2.25rem);
+}
+
+#playlists .watch-desk-player {
+    min-width: 0;
+}
+
+#playlists .watch-desk-player-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    border-radius: 8px;
+    background: #090d0f;
+    box-shadow: 0 8px 24px rgba(18, 39, 34, 0.14);
+}
+
+#playlists .watch-desk-player-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+#playlists .watch-desk-rail {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+}
+
+#playlists .watch-desk-rail-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0 0 0.75rem;
+    border-bottom: 1px solid var(--watch-desk-border);
+}
+
+#playlists .watch-desk-rail-heading h3 {
+    margin: 0;
+    color: var(--watch-desk-text);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+#playlists .watch-desk-count {
+    flex: 0 0 auto;
+    color: var(--watch-desk-muted);
+    font-size: 0.75rem;
+}
+
+#playlists .watch-desk-channel-list {
+    display: flex;
+    max-height: 430px;
+    flex-direction: column;
+    gap: 0.35rem;
+    overflow-y: auto;
+    padding: 0.65rem 0.2rem 0.65rem 0;
+    scrollbar-color: var(--watch-desk-muted) transparent;
+    scrollbar-width: thin;
+}
+
+#playlists .watch-desk-channel {
+    display: grid;
+    width: 100%;
+    min-height: 52px;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background: var(--watch-desk-row);
+    color: var(--watch-desk-text);
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+    transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+#playlists .watch-desk-channel:hover {
+    border-color: var(--watch-desk-border);
+    background: var(--watch-desk-row-hover);
+}
+
+#playlists .watch-desk-channel[aria-pressed="true"] {
+    border-color: var(--watch-desk-accent);
+    background: var(--watch-desk-active);
+    box-shadow: inset 3px 0 0 var(--watch-desk-accent);
+}
+
+#playlists .watch-desk-channel-number {
+    color: var(--watch-desk-muted);
+    font-size: 0.68rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+}
+
+#playlists .watch-desk-channel-details {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+#playlists .watch-desk-channel-publisher {
+    overflow: hidden;
+    font-size: 0.86rem;
+    font-weight: 700;
+    line-height: 1.25;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#playlists .watch-desk-channel-program {
+    overflow: hidden;
+    color: var(--watch-desk-muted);
+    font-size: 0.75rem;
+    line-height: 1.25;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#playlists .watch-desk-channel:focus-visible,
+#playlists .watch-desk-source:focus-visible {
+    outline: 3px solid var(--watch-desk-accent) !important;
+    outline-offset: 2px;
+}
+
+#playlists .watch-desk-source-label {
+    margin: 0.5rem 0 0.35rem;
+    color: var(--watch-desk-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+#playlists .watch-desk-source {
+    width: 100%;
+    min-height: 42px;
+    padding: 0.45rem 0.65rem;
+    border: 1px solid var(--watch-desk-border);
+    border-radius: 5px;
+    background: var(--watch-desk-active);
+    color: var(--watch-desk-text);
+    font: inherit;
+}
+
+#playlists.is-enhanced .watch-desk-source-label,
+#playlists.is-enhanced .watch-desk-source {
+    display: none;
+}
+
+html[data-ui-theme="dark"] #playlists.watch-desk-section {
+    --watch-desk-bg: #23282e;
+    --watch-desk-text: #edf2f2;
+    --watch-desk-muted: #a9b1ba;
+    --watch-desk-border: rgba(255, 255, 255, 0.1);
+    --watch-desk-row: rgba(255, 255, 255, 0.035);
+    --watch-desk-row-hover: rgba(255, 255, 255, 0.075);
+    --watch-desk-active: #30363d;
+    --watch-desk-accent: #45d6bd;
+}
+
+html[data-ui-theme="dark"] #playlists .watch-desk-player-frame {
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 767.98px) {
+    #playlists.watch-desk-section {
+        padding: 2.5rem 0 2.75rem;
+    }
+
+    #playlists .watch-desk-header {
+        margin-bottom: 1.25rem;
+    }
+
+    #playlists .watch-desk-title {
+        font-size: 1.75rem;
+    }
+
+    #playlists .watch-desk-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.25rem;
+    }
+
+    #playlists .watch-desk-channel-list {
+        max-height: 300px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #playlists .watch-desk-channel {
+        transition: none;
+    }
+}
+
 .cta-group a.btn.btn-rectangle {
     box-shadow: none !important;
 }

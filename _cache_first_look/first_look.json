@@ -1,20 +1,38 @@
 {
-    "fetched_at": 1791544819,
+    "fetched_at": 1791568128,
     "feeds": [
         {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
+            "name": "NY Post",
+            "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "JONATHAN TURLEY: France's free speech crackdown shows what happens when politicians define truth",
-                    "url": "https://www.foxnews.com/opinion/jonathan-turley-frances-free-speech-crackdown-shows-what-happens-when-politicians-define-truth",
-                    "ts": 1791550800,
+                    "title": "Ryan Reynolds makes desperate attempt to save Blake Lively’s reputation in shocking private text messages",
+                    "url": "https://pagesix.com/2026/10/09/celebrity-news/ryan-reynolds-made-attempt-to-save-wife-blake-livelys-reputation-in-private-text-messages/",
+                    "ts": 1791567987,
                     "emo": "📰"
                 },
                 {
-                    "title": "WWE's Michael Cole refuses to dip his toe into political waters, bucking trend among sports broadcasters",
-                    "url": "https://www.foxnews.com/outkick-sports/wwe-michael-cole-refuses-dip-toe-political-waters-bucking-trend-sports-broadcasters",
-                    "ts": 1791543751,
+                    "title": "Ryan Reynolds makes desperate attempt to save Blake Lively’s reputation in shocking private text messages",
+                    "url": "https://pagesix.com/2026/10/09/celebrity-news/ryan-reynolds-made-attempt-to-save-wife-blake-livelys-reputation-in-private-text-messages/",
+                    "ts": 1791567987,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Trump teases diesel announcement, big move from Vought",
+                    "url": "https://thehill.com/homenews/administration/6139293-trump-diesel-omb-russell-vought-announcements/",
+                    "ts": 1791567935,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "With nothing to lose, Republicans still put America last",
+                    "url": "https://thehill.com/opinion/international/6138235-gop-rejects-america-first-test/",
+                    "ts": 1791567000,
                     "emo": "📰"
                 }
             ]
@@ -24,33 +42,15 @@
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Enzo Maresca refuses to fully commit to staying at Man City if they are relegated - LIVE: Manager insists titles are NOT tainted as calls grow for 'relentless' punishing",
-                    "url": "https://www.dailymail.com/sport/football/article-16195413/manchester-city-guilty-premier-league-reaction.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791544752,
-                    "emo": "🔥"
+                    "title": "Celebrity plastic surgeon is executed in front of customers in Marbella clinic after 'threats from a disgruntled customer' as Swedish 'teen hitman' is arrested",
+                    "url": "https://www.dailymail.com/news/article-16195437/Celebrity-plastic-surgeon-executed-customers-Marbella-clinic-threats-disgruntled-customer-Swedish-teen-hitman-arrested.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791567839,
+                    "emo": "🎭"
                 },
                 {
-                    "title": "Adidas sues popular Aussie brand White Fox over its four-stripe design - arguing it is too easily confused with sports giant's trademark three-stripe look",
-                    "url": "https://www.dailymail.com/news/article-16195325/Adidas-sues-White-Fox-stripe-design-trademark.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791544477,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "I love spending time with my friends, but it's hard to catch up in a loud restaurant or bar. Enter: saunas.",
-                    "url": "https://www.businessinsider.com/sauna-with-friends-social-activity-2026-10",
-                    "ts": 1791544741,
-                    "emo": "📰"
-                },
-                {
-                    "title": "New status symbols are taking over this fall. Here's what you'll see everywhere.",
-                    "url": "https://www.businessinsider.com/fall-fashion-trends-status-symbols-2026-10",
-                    "ts": 1791543661,
+                    "title": "Scarlett Moffatt gives birth! Gogglebox star reveals she's welcomed her second child with fiancé Scott Dobinson as she shares son's adorable name",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16197265/Scarlett-Moffatt-gives-birth-Gogglebox-star-second-child-fiance-Scott-Dobby-son-name.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791567719,
                     "emo": "📰"
                 }
             ]
@@ -60,16 +60,16 @@
             "home": "https://www.bbc.com/news",
             "items": [
                 {
-                    "title": "Polanski vows to stay on as Green leader as criticism mounts",
-                    "url": "https://www.bbc.co.uk/news/articles/cmewe5lvl2rqo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791544538,
-                    "emo": "📰"
+                    "title": "US unveils sanctions on ICC in move court condems as 'assault on rule of law'",
+                    "url": "https://www.bbc.co.uk/news/articles/cj20vkkx3rdvo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791567783,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "Chris Mason: Questions remain for Green Party leader Zack Polanski",
-                    "url": "https://www.bbc.co.uk/news/videos/cxly4jy042eno?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791527953,
-                    "emo": "📰"
+                    "title": "Polanski vows to stay on as Green leader as he faces criticism after by-election defeat",
+                    "url": "https://www.bbc.co.uk/news/articles/cmewe5lvl2rqo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791559014,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -78,16 +78,106 @@
             "home": "https://www.marketwatch.com",
             "items": [
                 {
-                    "title": "My husband inherited $3 million. He wants a vacation home, but I want to save for retirement. Who’s right?",
-                    "url": "https://www.marketwatch.com/story/he-grew-up-wealthy-my-husband-inherited-3-million-he-wants-a-vacation-home-i-want-to-save-for-retirement-a240f0d8?mod=mw_rss_topstories",
-                    "ts": 1791544500,
+                    "title": "AI chip stocks wobble even as investors get clarity on a key OpenAI issue",
+                    "url": "https://www.marketwatch.com/story/nvidia-and-micron-shares-bounce-as-investors-get-clarity-on-a-key-openai-matter-ba76ed20?mod=mw_rss_topstories",
+                    "ts": 1791567300,
+                    "emo": "💰"
+                },
+                {
+                    "title": "More evidence that broad-market index funds remain unbeatable, even in the era of AI stock-picking",
+                    "url": "https://www.marketwatch.com/story/more-evidence-that-broad-market-index-funds-remain-unbeatable-even-in-the-era-of-ai-stock-picking-3c61deac?mod=mw_rss_topstories",
+                    "ts": 1791564600,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Trump says Rogers 'completely obliterated' El-Sayed in debate",
+                    "url": "https://www.foxnews.com/politics/trump-says-rogers-completely-obliterated-el-sayed-debate",
+                    "ts": 1791567266,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Jerry Jones slams table after Dak Prescott throws critical late interception in brutal Cowboys loss",
+                    "url": "https://www.foxnews.com/outkick-sports/jerry-jones-slams-table-dak-prescott-throws-critical-late-interception-brutal-cowboys-loss",
+                    "ts": 1791564326,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "How Trump’s Revenge Campaign Descended Into Turmoil",
+                    "url": "https://www.nytimes.com/2026/10/09/us/politics/trump-grand-conspiracy.html",
+                    "ts": 1791567131,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Trump Announces White House Inquiry Into Fed Governor Lisa Cook",
+                    "url": "https://www.nytimes.com/2026/10/09/business/trump-lisa-cook-fed.html",
+                    "ts": 1791561394,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "KING OF DEBT: Budget Deficit Jumps $2 Trillion...",
+                    "url": "https://www.wsj.com/politics/policy/u-s-deficit-clocks-in-just-under-2-trillion-7e8e9eb3",
+                    "ts": 1791567096,
                     "emo": "📰"
                 },
                 {
-                    "title": "Aging bull: Why the four-year old stock-market rally can still pack a punch",
-                    "url": "https://www.marketwatch.com/story/aging-bull-why-the-four-year-old-stock-market-rally-can-still-pack-a-punch-d1271631?mod=mw_rss_topstories",
-                    "ts": 1791543720,
-                    "emo": "💰"
+                    "title": "CAT 3 GULF",
+                    "url": "https://apnews.com/article/hurricane-isaias-landfall-gulf-alabama-mississippi-919a46d4bd705726b4e57f18ce677ac5",
+                    "ts": 1791567096,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Celebrity deaths in 2026: Remembering the famous people we lost this year",
+                    "url": "https://www.businessinsider.com/celebrity-deaths-famous-people-who-died-2026",
+                    "ts": 1791566261,
+                    "emo": "🎭"
+                },
+                {
+                    "title": "The release of Sarah J. Maas' 6th 'ACOTAR' book is just weeks away. Here's everything we know.",
+                    "url": "https://www.businessinsider.com/sarah-j-maas-acotar-book-6-release-date-plot-details",
+                    "ts": 1791566185,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Americans' debt problems are flashing a warning not seen since the Great Recession",
+                    "url": "https://www.cnbc.com/2026/10/09/american-debt-delinquency.html",
+                    "ts": 1791562241,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Trump appoints committee to investigate statements by the Fed's Lisa Cook",
+                    "url": "https://www.cnbc.com/2026/10/09/fed-lisa-cook-trump.html",
+                    "ts": 1791562202,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -102,82 +192,10 @@
                     "emo": "💰"
                 },
                 {
-                    "title": "Oil prices fall as Trump pauses Iran attacks, China restarts fuel exports – business live",
+                    "title": "Oil prices fall as Trump pauses Iran attacks, China restarts fuel exports – as it happened",
                     "url": "https://www.theguardian.com/business/live/2026/oct/09/oil-prices-crude-brent-trump-iran-us-war-midterm-elections-stocks-bonds-business-live",
-                    "ts": 1791544204,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Why the young are restless: Their college degrees aren't paying off",
-                    "url": "https://thehill.com/opinion/finance/6136539-college-grad-debt-ai-impact/",
-                    "ts": 1791543600,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Hinson leads Iowa Senate contest as Sand holds edge for governor: Poll",
-                    "url": "https://thehill.com/homenews/campaign/6134008-iowa-hinson-turek-lahn-sand-poll/",
-                    "ts": 1791540000,
+                    "ts": 1791555126,
                     "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "Why prediction market execs could face an existential threat in Supreme Court",
-                    "url": "https://nypost.com/2026/10/09/business/why-prediction-market-execs-could-face-an-existential-threat-in-supreme-court/",
-                    "ts": 1791543600,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Left-wing politician Hitler Mussolini becomes mayor of Peruvian small town",
-                    "url": "https://nypost.com/2026/10/09/world-news/peruvian-left-wing-politician-hitler-mussolini-becomes-mayor-of-small-town/",
-                    "ts": 1791543586,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Delta Air Lines cuts 2026 forecast on fuel surge, but CEO says demand is still strong",
-                    "url": "https://www.cnbc.com/2026/10/09/delta-air-lines-dal-q3-2026-earnings.html",
-                    "ts": 1791542860,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Pilot killed in attacks by Iran-backed Houthis on Riyadh airport; Saudi-led coalition vows 'firm' response",
-                    "url": "https://www.cnbc.com/2026/10/09/saudi-us-iran-war-trump-hormuz.html",
-                    "ts": 1791542262,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "KING OF DEBT: Budget Deficit Jumps $2 Trillion...",
-                    "url": "https://www.wsj.com/politics/policy/u-s-deficit-clocks-in-just-under-2-trillion-7e8e9eb3",
-                    "ts": 1791540636,
-                    "emo": "📰"
-                },
-                {
-                    "title": "HEGSETH TO LIVESTREAM EXECUTION",
-                    "url": "https://apnews.com/article/fort-hood-shooter-execution-pentagon-818853afc1be5c70fe41c5b781a8d559",
-                    "ts": 1791540636,
-                    "emo": "📰"
                 }
             ]
         },
@@ -192,27 +210,9 @@
                     "emo": "⚖️"
                 },
                 {
-                    "title": "Sparks fly as Abdul El-Sayed and Mike Rogers face off in first Michigan Senate debate",
-                    "url": "https://www.nbcnews.com/politics/2026-election/sparks-fly-abdul-el-sayed-mike-rogers-first-michigan-senate-debate-rcna599866",
-                    "ts": 1791506551,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "How Trump’s Revenge Campaign Descended Into Turmoil",
-                    "url": "https://www.nytimes.com/2026/10/09/us/politics/trump-grand-conspiracy.html",
-                    "ts": 1791536432,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "The 2026 Nobel Peace Prize Winner, and the Pentagon’s Plan to Livestream an Execution",
-                    "url": "https://www.nytimes.com/2026/10/09/podcasts/the-headlines/nobel-peace-prize-livestream-execution.html",
-                    "ts": 1791543610,
+                    "title": "Mike Ditka, legendary Chicago Bears coach, dies at 86",
+                    "url": "https://www.nbcnews.com/sports/nfl/mike-ditka-legendary-chicago-bears-coach-dies-86-rcna602517",
+                    "ts": 1791559491,
                     "emo": "📰"
                 }
             ]
