@@ -1,0 +1,1001 @@
+html:has(body.how-page) {
+    background-image: none !important;
+    background-color: #f1f4f0 !important;
+}
+
+body.how-page {
+    --how-bg: #f1f4f0;
+    --how-surface: #fbfcfa;
+    --how-band: #e6ece8;
+    --how-ink: #172b27;
+    --how-muted: #52645e;
+    --how-line: #cbd6d0;
+    --how-accent: #007f70;
+    --how-accent-soft: #b9e5dc;
+    --how-coral: #bd5b48;
+    --how-gold: #a77b24;
+    --how-blue: #47768a;
+    margin: 0;
+    background: var(--how-bg) !important;
+    color: var(--how-ink) !important;
+    font-family: "Open Sans", "Montserrat", sans-serif;
+    line-height: 1.65;
+}
+
+html[data-ui-theme="dark"]:has(body.how-page) {
+    background-color: #101817 !important;
+}
+
+html[data-ui-theme="dark"] body.how-page {
+    --how-bg: #101817;
+    --how-surface: #182321;
+    --how-band: #1d2a27;
+    --how-ink: #eef4f1;
+    --how-muted: #b7c5bf;
+    --how-line: #394944;
+    --how-accent: #43d0b6;
+    --how-accent-soft: #244940;
+    --how-coral: #ed8c77;
+    --how-gold: #e2bf68;
+    --how-blue: #8ec4d4;
+}
+
+html[data-ui-theme="dark"] body.how-page .how-philosophy,
+html[data-ui-theme="dark"] body.how-page .how-frames {
+    color: var(--how-bg);
+}
+
+html[data-ui-theme="dark"] body.how-page .how-philosophy .how-index,
+html[data-ui-theme="dark"] body.how-page .how-philosophy h2,
+html[data-ui-theme="dark"] body.how-page .how-frames .how-index,
+html[data-ui-theme="dark"] body.how-page .how-frames h2 {
+    color: var(--how-bg);
+}
+
+html[data-ui-theme="dark"] body.how-page .how-philosophy h2 em,
+html[data-ui-theme="dark"] body.how-page .how-frames h2 em {
+    color: #007f70;
+}
+
+html[data-ui-theme="dark"] body.how-page .how-frame-card.frame-economy {
+    --frame-color: #80601c;
+}
+
+html[data-ui-theme="dark"] body.how-page .how-frame-card.frame-safety {
+    --frame-color: #27615b;
+}
+
+html[data-ui-theme="dark"] body.how-page .how-frame-card.frame-politics {
+    --frame-color: #984532;
+}
+
+html[data-ui-theme="dark"] body.how-page .how-philosophy-inner > p:last-child,
+html[data-ui-theme="dark"] body.how-page .how-frames-heading > p:not(.how-index),
+html[data-ui-theme="dark"] body.how-page .how-frame-caption,
+html[data-ui-theme="dark"] body.how-page .how-frames-footnote {
+    color: #52645e;
+}
+
+body.how-page .sn-product-nav-shell {
+    background: rgba(250, 252, 251, 0.97);
+}
+
+html[data-ui-theme="dark"] body.how-page .sn-product-nav-shell {
+    border-top-color: #00bfa6;
+    border-bottom-color: rgba(255, 255, 255, 0.14);
+    background: rgba(12, 22, 20, 0.97);
+}
+
+html[data-ui-theme="dark"] body.how-page .sn-product-brand,
+html[data-ui-theme="dark"] body.how-page .sn-product-link,
+html[data-ui-theme="dark"] body.how-page .sn-product-toggler,
+html[data-ui-theme="dark"] body.how-page .sn-product-theme {
+    color: #eaf3ef;
+}
+
+html[data-ui-theme="dark"] body.how-page .sn-product-item .dropdown-menu {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: #182321;
+}
+
+html[data-ui-theme="dark"] body.how-page .sn-product-item .dropdown-item {
+    color: #eaf3ef;
+}
+
+body.how-page .how-progress {
+    position: sticky;
+    top: var(--how-progress-top, 75px);
+    z-index: 1031;
+    height: 3px;
+    background: var(--how-line);
+}
+
+body.how-page .how-progress span {
+    display: block;
+    width: var(--story-progress, 10%);
+    height: 100%;
+    background: var(--how-accent);
+    transition: width 220ms ease-out;
+}
+
+body.how-page .how-story {
+    overflow: clip;
+    color: var(--how-ink);
+}
+
+body.how-page .how-scene {
+    position: relative;
+    padding: 112px 28px;
+    scroll-margin-top: 88px;
+}
+
+body.how-page .how-inner {
+    width: min(100%, 1120px);
+    margin: 0 auto;
+}
+
+body.how-page .how-opening {
+    min-height: min(760px, calc(100vh - 75px));
+    display: flex;
+    align-items: center;
+    padding-top: 88px;
+    padding-bottom: 96px;
+    background:
+        radial-gradient(ellipse at 84% 21%, rgba(0, 127, 112, 0.1), transparent 32%),
+        linear-gradient(135deg, var(--how-bg) 0%, var(--how-surface) 52%, var(--how-band) 100%);
+}
+
+html[data-ui-theme="dark"] body.how-page .how-opening {
+    background:
+        radial-gradient(ellipse at 84% 21%, rgba(67, 208, 182, 0.12), transparent 32%),
+        linear-gradient(135deg, var(--how-bg) 0%, var(--how-surface) 52%, var(--how-band) 100%);
+}
+
+body.how-page .how-opening-inner {
+    position: relative;
+}
+
+body.how-page .how-kicker,
+body.how-page .how-index {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 0 25px;
+    color: var(--how-accent);
+    font: 700 0.72rem/1.3 "Montserrat", "Open Sans", sans-serif;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+body.how-page .how-kicker span + span::before {
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    margin: 0 14px 4px 0;
+    background: var(--how-line);
+    content: "";
+}
+
+body.how-page .how-opening h1,
+body.how-page .how-scene h2 {
+    margin: 0;
+    color: var(--how-ink);
+    font: 400 58px/1.12 "Roboto Slab", Georgia, serif;
+}
+
+body.how-page .how-opening h1 {
+    max-width: 980px;
+}
+
+body.how-page .how-opening h1 em,
+body.how-page .how-scene h2 em,
+body.how-page .how-flow-close em {
+    color: var(--how-accent);
+    font-weight: 400;
+}
+
+body.how-page .how-deck {
+    max-width: 520px;
+    margin: 28px 0 0;
+    color: var(--how-muted);
+    font-size: 1.08rem;
+}
+
+body.how-page .how-scroll-cue {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 35px;
+    color: var(--how-accent);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+body.how-page .how-scroll-cue span {
+    display: inline-grid;
+    width: 30px;
+    height: 30px;
+    place-items: center;
+    border: 1px solid var(--how-line);
+    border-radius: 50%;
+}
+
+body.how-page .how-scroll-cue:hover,
+body.how-page .how-scroll-cue:focus-visible {
+    color: var(--how-ink);
+}
+
+body.how-page .how-opening-mark {
+    position: absolute;
+    right: 2px;
+    bottom: 5px;
+    display: flex;
+    gap: 12px;
+    color: var(--how-muted);
+    font: 700 0.62rem/1 "Montserrat", sans-serif;
+    letter-spacing: 0;
+}
+
+body.how-page .how-opening-mark span + span::before {
+    margin-right: 12px;
+    color: var(--how-accent);
+    content: "/";
+}
+
+body.how-page .how-two-column {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+    align-items: center;
+    gap: clamp(48px, 8vw, 120px);
+}
+
+body.how-page .how-scene h2 {
+    max-width: 680px;
+    font-size: 46px;
+}
+
+body.how-page .how-copy,
+body.how-page .how-copy p,
+body.how-page .how-frames-heading > p:not(.how-index) {
+    color: var(--how-muted);
+    font-size: 1rem;
+}
+
+body.how-page .how-copy {
+    max-width: 610px;
+    margin: 24px 0 0;
+}
+
+body.how-page .how-copy p {
+    margin: 0 0 16px;
+}
+
+body.how-page .how-lead {
+    color: var(--how-ink) !important;
+    font: 400 22px/1.5 "Roboto Slab", Georgia, serif !important;
+}
+
+body.how-page .how-wordline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin-top: 30px;
+    padding-top: 18px;
+    border-top: 1px solid var(--how-line);
+    color: var(--how-accent);
+    font: 700 0.75rem/1.4 "Montserrat", sans-serif;
+    text-transform: uppercase;
+}
+
+body.how-page .how-philosophy {
+    background: var(--how-ink);
+    color: var(--how-bg);
+}
+
+body.how-page .how-philosophy-inner {
+    max-width: 900px;
+    text-align: center;
+}
+
+body.how-page .how-philosophy .how-index {
+    justify-content: center;
+    color: var(--how-accent-soft);
+}
+
+body.how-page .how-philosophy h2 {
+    color: #f6faf7;
+    font-size: 50px;
+}
+
+body.how-page .how-philosophy h2 em {
+    color: #7fe0cb;
+}
+
+body.how-page .how-philosophy-inner > p:last-child {
+    max-width: 600px;
+    margin: 25px auto 0;
+    color: #d0ddd7;
+}
+
+body.how-page .how-sentiment-figure,
+body.how-page .how-entity-figure,
+body.how-page .how-time-figure,
+body.how-page .how-emotion-board {
+    margin: 0;
+    padding: 28px;
+    border: 1px solid var(--how-line);
+    background: var(--how-surface);
+}
+
+body.how-page .how-sentiment-figure figcaption,
+body.how-page .how-entity-figure figcaption {
+    margin-bottom: 25px;
+    color: var(--how-muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+body.how-page .how-sentiment-scale {
+    display: grid;
+    gap: 0;
+}
+
+body.how-page .how-sentiment-item {
+    display: grid;
+    grid-template-columns: 18px minmax(90px, 0.6fr) 1fr;
+    align-items: center;
+    gap: 13px;
+    min-height: 58px;
+    border-top: 1px solid var(--how-line);
+    color: var(--how-ink);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+body.how-page .how-sentiment-item small {
+    color: var(--how-muted);
+    font-size: 0.78rem;
+    font-weight: 400;
+}
+
+body.how-page .how-sentiment-dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--how-accent);
+}
+
+body.how-page .is-neutral .how-sentiment-dot { background: var(--how-gold); }
+body.how-page .is-negative .how-sentiment-dot { background: var(--how-coral); }
+
+body.how-page .how-caption {
+    margin: 20px 0 0;
+    color: var(--how-muted);
+    font-size: 0.76rem;
+    line-height: 1.6;
+}
+
+body.how-page .how-emotions {
+    background: var(--how-band);
+}
+
+body.how-page .how-emotion-board {
+    display: flex;
+    min-height: 240px;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+body.how-page .how-emotion-label {
+    display: inline-flex;
+    min-height: 45px;
+    align-items: center;
+    gap: 10px;
+    padding: 0 16px;
+    border: 1px solid var(--how-line);
+    background: var(--how-bg);
+    color: var(--how-ink);
+    font-size: 0.84rem;
+    font-weight: 700;
+}
+
+body.how-page .how-emotion-label::before {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--how-accent);
+    content: "";
+}
+
+body.how-page .emotion-angry::before { background: var(--how-coral); }
+body.how-page .emotion-ahah::before { background: var(--how-gold); }
+body.how-page .emotion-wow::before { background: var(--how-blue); }
+body.how-page .emotion-sad::before { background: #728d9a; }
+body.how-page .how-emotion-board .how-caption { flex-basis: 100%; text-align: center; }
+
+body.how-page .how-frames {
+    padding-top: 132px;
+    padding-bottom: 128px;
+    background: var(--how-ink);
+    color: #f6faf7;
+}
+
+body.how-page .how-frames-heading {
+    max-width: 760px;
+    margin: 0 auto 58px;
+    text-align: center;
+}
+
+body.how-page .how-frames .how-index { justify-content: center; color: #7fe0cb; }
+
+body.how-page .how-frames h2 {
+    color: #f6faf7;
+    font-size: 54px;
+}
+
+body.how-page .how-frames h2 em { color: #7fe0cb; }
+
+body.how-page .how-frames-heading > p:not(.how-index) {
+    max-width: 650px;
+    margin: 22px auto 0;
+    color: #c6d3cd;
+}
+
+body.how-page .how-frame-figure { margin: 0; }
+
+body.how-page .how-event-node {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: min(100%, 470px);
+    min-height: 112px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto 50px;
+    padding: 20px;
+    border: 1px solid rgba(127, 224, 203, 0.56);
+    background: #203a34;
+    text-align: center;
+}
+
+body.how-page .how-event-node span {
+    color: #9bb6ac;
+    font: 700 0.66rem/1.3 "Montserrat", sans-serif;
+    text-transform: uppercase;
+}
+
+body.how-page .how-event-node strong {
+    color: #f6faf7;
+    font: 400 19px/1.4 "Roboto Slab", Georgia, serif;
+}
+
+body.how-page .how-frame-branches {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+body.how-page .how-frame-branches::before {
+    position: absolute;
+    top: -26px;
+    right: 16.66%;
+    left: 16.66%;
+    height: 1px;
+    background: rgba(127, 224, 203, 0.62);
+    content: "";
+}
+
+body.how-page .how-frame-card {
+    position: relative;
+    min-height: 245px;
+    padding: 26px 25px;
+    border-top: 3px solid var(--frame-color);
+    background: #f4f7f3;
+    color: #172b27;
+}
+
+body.how-page .how-frame-card::before {
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    width: 1px;
+    height: 29px;
+    background: rgba(127, 224, 203, 0.62);
+    content: "";
+}
+
+body.how-page .frame-economy { --frame-color: #bb8d35; }
+body.how-page .frame-safety { --frame-color: #4a8a82; }
+body.how-page .frame-politics { --frame-color: #bd6652; }
+
+body.how-page .how-frame-label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0 0 22px;
+    color: var(--frame-color);
+    font: 700 0.76rem/1.3 "Montserrat", sans-serif;
+    text-transform: uppercase;
+}
+
+body.how-page .how-frame-label span {
+    color: #64746e;
+    font-size: 0.61rem;
+}
+
+body.how-page .how-frame-card h3 {
+    margin: 0 0 12px;
+    color: #172b27;
+    font: 400 22px/1.35 "Roboto Slab", Georgia, serif;
+}
+
+body.how-page .how-frame-card > p:last-child {
+    margin: 0;
+    color: #52645e;
+    font-size: 0.86rem;
+    line-height: 1.6;
+}
+
+body.how-page .how-frame-caption {
+    margin-top: 20px;
+    color: #c6d3cd;
+    font-size: 0.76rem;
+    text-align: center;
+}
+
+body.how-page .how-frames-footnote {
+    max-width: 680px;
+    margin: 44px auto 0;
+    color: #c6d3cd;
+    font: 400 19px/1.55 "Roboto Slab", Georgia, serif;
+    text-align: center;
+}
+
+body.how-page .how-entity-figure {
+    overflow: hidden;
+}
+
+body.how-page .how-entity-map {
+    position: relative;
+    display: grid;
+    min-height: 245px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    place-items: center;
+    gap: 22px;
+}
+
+body.how-page .how-entity-map::before,
+body.how-page .how-entity-map::after {
+    position: absolute;
+    z-index: 0;
+    background: var(--how-line);
+    content: "";
+}
+
+body.how-page .how-entity-map::before {
+    top: 50%;
+    left: 17%;
+    width: 66%;
+    height: 1px;
+}
+
+body.how-page .how-entity-map::after {
+    top: 17%;
+    left: 50%;
+    width: 1px;
+    height: 66%;
+}
+
+body.how-page .how-entity-node {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border: 1px solid var(--how-line);
+    background: var(--how-bg);
+    color: var(--how-ink);
+    font-size: 0.78rem;
+    text-align: center;
+}
+
+body.how-page .entity-center {
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+    min-height: 68px;
+    padding: 13px 20px;
+    border-color: var(--how-accent);
+    background: var(--how-accent-soft);
+    font-weight: 700;
+}
+
+body.how-page .entity-commuters { grid-column: 1; grid-row: 1; }
+body.how-page .entity-council { grid-column: 2; grid-row: 1; }
+body.how-page .entity-district { grid-column: 1 / 3; grid-row: 2; }
+
+body.how-page .how-time {
+    background: var(--how-band);
+}
+
+body.how-page .how-time-figure {
+    padding: 28px;
+    border-color: transparent;
+    background: var(--how-surface);
+}
+
+body.how-page .how-time-label {
+    margin: 0 0 22px;
+    color: var(--how-muted);
+    font-size: 0.76rem;
+    font-weight: 700;
+}
+
+body.how-page .how-time-option {
+    display: grid;
+    grid-template-columns: 44px minmax(30px, 1fr) minmax(110px, 1.6fr);
+    align-items: center;
+    gap: 12px;
+    min-height: 62px;
+    border-top: 1px solid var(--how-line);
+}
+
+body.how-page .how-time-option > span:first-child {
+    color: var(--how-accent);
+    font: 700 0.9rem/1 "Montserrat", sans-serif;
+}
+
+body.how-page .how-time-rule {
+    height: 1px;
+    background: var(--how-line);
+}
+
+body.how-page .how-time-option a {
+    color: var(--how-ink);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration-color: var(--how-accent);
+    text-underline-offset: 4px;
+}
+
+body.how-page .how-time-option a:hover,
+body.how-page .how-time-option a:focus-visible {
+    color: var(--how-accent);
+}
+
+body.how-page .how-flow-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: start;
+    column-gap: 90px;
+}
+
+body.how-page .how-flow-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--how-line);
+}
+
+body.how-page .how-flow-list li {
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    align-items: start;
+    gap: 15px;
+    padding: 17px 0;
+    border-bottom: 1px solid var(--how-line);
+    color: var(--how-ink);
+    font-size: 0.94rem;
+}
+
+body.how-page .how-flow-list li span {
+    color: var(--how-accent);
+    font: 700 0.72rem/1.8 "Montserrat", sans-serif;
+}
+
+body.how-page .how-flow-close {
+    grid-column: 1 / -1;
+    margin: 76px 0 0;
+    color: var(--how-ink);
+    font: 400 38px/1.3 "Roboto Slab", Georgia, serif;
+    text-align: center;
+}
+
+body.how-page .how-flow-benefits {
+    grid-column: 1 / -1;
+    max-width: 720px;
+    margin: 18px auto 0;
+    color: var(--how-muted);
+    text-align: center;
+}
+
+body.how-page .how-closing {
+    padding-top: 132px;
+    padding-bottom: 136px;
+    background:
+        linear-gradient(115deg, var(--how-band), var(--how-surface) 65%, var(--how-bg));
+}
+
+body.how-page .how-closing-inner {
+    max-width: 900px;
+    text-align: center;
+}
+
+body.how-page .how-closing .how-index { justify-content: center; }
+
+body.how-page .how-closing h2 {
+    font-size: 54px;
+}
+
+body.how-page .how-closing-inner > p:not(.how-index) {
+    max-width: 550px;
+    margin: 22px auto 0;
+    color: var(--how-muted);
+}
+
+body.how-page .how-launch {
+    display: inline-flex;
+    min-height: 54px;
+    align-items: center;
+    gap: 26px;
+    margin-top: 30px;
+    padding: 0 19px;
+    border: 1px solid var(--how-accent);
+    background: var(--how-accent);
+    color: #082d27;
+    font: 700 0.88rem/1 "Montserrat", sans-serif;
+    text-decoration: none;
+    transition: background-color 140ms ease, color 140ms ease;
+}
+
+body.how-page .how-launch:hover,
+body.how-page .how-launch:focus-visible {
+    background: transparent;
+    color: var(--how-accent);
+    text-decoration: none;
+}
+
+body.how-page :focus-visible {
+    outline: 3px solid var(--how-accent);
+    outline-offset: 4px;
+}
+
+body.how-page .bg-dark:has(> footer.sn-product-footer-experiment) {
+    height: auto !important;
+}
+
+html[data-ui-theme="dark"] body.how-page footer.sn-product-footer-experiment {
+    background: #182321 !important;
+    color: #eaf3ef !important;
+}
+
+html[data-ui-theme="dark"] body.how-page footer.sn-product-footer-experiment a {
+    color: #c5d3ce;
+}
+
+html[data-ui-theme="dark"] body.how-page footer.sn-product-footer-experiment a:hover {
+    color: #43d0b6;
+}
+
+body.how-page .how-reveal-ready [data-reveal]:not([data-visible="true"]) {
+    opacity: 0;
+    transform: translateY(14px);
+}
+
+body.how-page [data-reveal] {
+    transition: opacity 420ms ease, transform 420ms ease;
+}
+
+body.how-page [data-reveal][data-visible="true"] {
+    opacity: 1;
+    transform: none;
+}
+
+@media (max-width: 767px) {
+    body.how-page .sn-product-nav {
+        min-height: 64px;
+    }
+
+    body.how-page .how-progress {
+        top: var(--how-progress-top, 67px);
+    }
+
+    body.how-page .how-scene {
+        padding: 76px 22px;
+    }
+
+    body.how-page .how-opening {
+        min-height: min(700px, calc(100svh - 67px));
+        padding-top: 72px;
+        padding-bottom: 84px;
+    }
+
+    body.how-page .how-opening h1 {
+        font-size: 42px;
+        line-height: 1.18;
+    }
+
+    body.how-page .how-scene h2,
+    body.how-page .how-frames h2,
+    body.how-page .how-closing h2 {
+        font-size: 36px;
+        line-height: 1.2;
+    }
+
+    body.how-page .how-deck {
+        max-width: 440px;
+        font-size: 1rem;
+    }
+
+    body.how-page .how-opening-mark {
+        right: auto;
+        bottom: -43px;
+        left: 0;
+        gap: 8px;
+        font-size: 0.56rem;
+    }
+
+    body.how-page .how-opening-mark span + span::before {
+        margin-right: 8px;
+    }
+
+    body.how-page .how-two-column,
+    body.how-page .how-flow-inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
+    }
+
+    body.how-page .how-lead {
+        font-size: 19px !important;
+    }
+
+    body.how-page .how-philosophy h2 {
+        font-size: 35px;
+    }
+
+    body.how-page .how-sentiment-figure,
+    body.how-page .how-entity-figure,
+    body.how-page .how-time-figure,
+    body.how-page .how-emotion-board {
+        padding: 20px;
+    }
+
+    body.how-page .how-sentiment-item {
+        grid-template-columns: 16px minmax(74px, 0.65fr) 1fr;
+        gap: 9px;
+        font-size: 0.81rem;
+    }
+
+    body.how-page .how-sentiment-item small {
+        font-size: 0.7rem;
+    }
+
+    body.how-page .how-emotion-board {
+        min-height: 190px;
+        gap: 8px;
+    }
+
+    body.how-page .how-emotion-label {
+        min-height: 40px;
+        padding: 0 12px;
+        font-size: 0.78rem;
+    }
+
+    body.how-page .how-frames {
+        padding-top: 90px;
+        padding-bottom: 88px;
+    }
+
+    body.how-page .how-frames-heading {
+        margin-bottom: 40px;
+        text-align: left;
+    }
+
+    body.how-page .how-frames .how-index {
+        justify-content: flex-start;
+    }
+
+    body.how-page .how-frames-heading > p:not(.how-index) {
+        margin-left: 0;
+    }
+
+    body.how-page .how-event-node {
+        min-height: 96px;
+        margin-bottom: 30px;
+    }
+
+    body.how-page .how-frame-branches {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+        padding-left: 18px;
+    }
+
+    body.how-page .how-frame-branches::before {
+        top: 0;
+        right: auto;
+        bottom: 0;
+        left: 4px;
+        width: 1px;
+        height: auto;
+    }
+
+    body.how-page .how-frame-card {
+        min-height: auto;
+        padding: 22px;
+    }
+
+    body.how-page .how-frame-card::before {
+        top: 27px;
+        left: -15px;
+        width: 14px;
+        height: 1px;
+    }
+
+    body.how-page .how-frame-label {
+        margin-bottom: 13px;
+    }
+
+    body.how-page .how-frame-card h3 {
+        font-size: 20px;
+    }
+
+    body.how-page .how-frames-footnote {
+        margin-top: 30px;
+        font-size: 17px;
+        text-align: left;
+    }
+
+    body.how-page .how-entity-map {
+        min-height: 220px;
+        gap: 14px;
+    }
+
+    body.how-page .how-entity-node {
+        padding: 7px 9px;
+        font-size: 0.7rem;
+    }
+
+    body.how-page .how-time-option {
+        grid-template-columns: 38px minmax(18px, 0.7fr) minmax(104px, 1.5fr);
+        gap: 8px;
+    }
+
+    body.how-page .how-time-option a {
+        font-size: 0.75rem;
+    }
+
+    body.how-page .how-flow-close {
+        margin-top: 44px;
+        font-size: 29px;
+    }
+
+    body.how-page .how-closing {
+        padding-top: 90px;
+        padding-bottom: 96px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.how-page *,
+    body.how-page *::before,
+    body.how-page *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+    body.how-page .how-reveal-ready [data-reveal]:not([data-visible="true"]) {
+        opacity: 1;
+        transform: none;
+    }
+}

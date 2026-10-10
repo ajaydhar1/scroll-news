@@ -170,6 +170,9 @@ require_once BASE_PATH . "/core/___modules.php";
                         </a>
                     <?php endif; ?>
                 </div>
+                <p class="home-how-link-wrap">
+                    <a class="home-how-link" href="how-it-works.php">Discover how Scroll News works <span aria-hidden="true">↗</span></a>
+                </p>
             </div>
         </header>
 

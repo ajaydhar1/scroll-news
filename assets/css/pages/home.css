@@ -20,6 +20,48 @@ header.masthead .masthead-subheading {
     font-size: 1.5rem;
 }
 
+body.home-page header.masthead .home-how-link-wrap {
+    margin: 1.15rem 0 0;
+    text-align: center;
+}
+
+body.home-page header.masthead .home-how-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #067466;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.5;
+    text-decoration: none;
+    text-underline-offset: 4px;
+    transition: color 140ms ease, text-decoration-color 140ms ease;
+}
+
+body.home-page header.masthead .home-how-link:hover,
+body.home-page header.masthead .home-how-link:focus-visible {
+    color: #04554b;
+    text-decoration: underline;
+}
+
+body.home-page header.masthead .home-how-link:focus-visible {
+    outline: 2px solid #067466 !important;
+    outline-offset: 4px;
+}
+
+html[data-ui-theme="dark"] body.home-page header.masthead .home-how-link {
+    color: #43d0b6;
+}
+
+html[data-ui-theme="dark"] body.home-page header.masthead .home-how-link:hover,
+html[data-ui-theme="dark"] body.home-page header.masthead .home-how-link:focus-visible {
+    color: #8ce8d6;
+}
+
+html[data-ui-theme="dark"] body.home-page header.masthead .home-how-link:focus-visible {
+    outline: 2px solid #43d0b6 !important;
+}
+
 .timeline > li .timeline-image {
     background-color: var(--brand-color);
 }
