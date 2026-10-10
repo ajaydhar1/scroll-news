@@ -1,38 +1,56 @@
 {
-    "fetched_at": 1791658713,
+    "fetched_at": 1791661161,
     "feeds": [
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Shakespeare's Globe and National Space Academy are accused of 'discriminating' against private schools with two-tier pricing",
-                    "url": "https://www.dailymail.com/news/article-16198945/Shakespeares-Globe-National-Space-Academy-accused-discriminating-against-private-schools-two-tier-pricing.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791658519,
-                    "emo": "🧪"
-                },
-                {
-                    "title": "Moment 'hated' cycling vigilante dodges traffic jam by following police car on a 999 call",
-                    "url": "https://www.dailymail.com/news/article-16195377/Moment-hated-cycling-vigilante-dodges-traffic-jam-following-police-car-999-call.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791658356,
-                    "emo": "🚨"
-                }
-            ]
-        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "The clock is ticking on Aaron Judge’s entry into a dubious Yankees club",
-                    "url": "https://nypost.com/2026/10/10/sports/clock-is-ticking-on-aaron-judges-entry-into-dubious-yankees-club/",
-                    "ts": 1791658399,
-                    "emo": "⚖️"
+                    "title": "The communist despots who rejected the label —until they gained power",
+                    "url": "https://nypost.com/2026/10/10/us-news/fidel-future-dictators-socialist-denials-went-up-in-smoke/",
+                    "ts": 1791661090,
+                    "emo": "📰"
                 },
                 {
-                    "title": "VJ Edgecombe reveals he’d rather play for Bahamas at Olympics than win NBA Finals",
-                    "url": "https://nypost.com/2026/10/10/sports/vj-edgecombe-reveals-hed-rather-play-for-bahamas-at-olympics-than-win-nba-finals/",
-                    "ts": 1791658365,
+                    "title": "Mamdani snubs Brooklyn Columbus Day Parade, ghosts Queens organizers: ‘slap in the face’",
+                    "url": "https://nypost.com/2026/10/10/us-news/mamdani-snubs-brooklyn-columbus-day-parade-ghosts-queens-organizers/",
+                    "ts": 1791661077,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "Gangster legend and Kray Twins 'enforcer' Freddie Foreman dies aged 94",
+                    "url": "https://www.dailymail.com/crime-desk/article-16199231/gangster-legend-Kray-Twins-Freddie-Foreman-dies-94.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791660975,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Trump shuts down Pete Hegseth's giddy announcement on livestream of Fort Hood killer's execution as president says he alone will make the final call",
+                    "url": "https://www.dailymail.com/news/article-16199229/donald-trump-fort-hood-killer-execution-live.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791660797,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "WAR DAY 224: Saudi Closes Riyadh Airport After Damaging Houthi Attack...",
+                    "url": "https://www.wsj.com/world/middle-east/iran-backed-houthis-hit-saudi-capitals-airport-in-damaging-new-attack-d4c12236",
+                    "ts": 1791660516,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Missile strikes passenger terminal; Many wounded...",
+                    "url": "https://apnews.com/article/saudi-yemen-houthi-riyadh-airport-f0e0e6105f33400e37bb20bb9a8130af",
+                    "ts": 1791660516,
                     "emo": "📰"
                 }
             ]
@@ -42,15 +60,51 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Bill Maher mocks Mamdani for pivoting to Israel criticism in Oct. 7 tribute, calls it 'tone deaf'",
-                    "url": "https://www.foxnews.com/media/bill-maher-mocks-mamdani-pivoting-israel-criticism-oct-7-tribute-calls-tone-deaf",
-                    "ts": 1791657184,
-                    "emo": "🌍"
+                    "title": "Pat Sajak makes rare public appearance after stepping away from 'Wheel of Fortune'",
+                    "url": "https://www.foxnews.com/entertainment/pat-sajak-makes-rare-public-appearance-after-stepping-away-from-wheel-fortune",
+                    "ts": 1791660422,
+                    "emo": "📰"
                 },
                 {
-                    "title": "President Trump blasts Nobel Peace Prize snub with blistering list of accomplishments: 'WOW!'",
-                    "url": "https://www.foxnews.com/politics/president-trump-blasts-nobel-peace-prize-snub-blistering-list-accomplishments-wow",
-                    "ts": 1791656887,
+                    "title": "Watch as OutKick's Trey Wallace braves Hurricane Isaias' before Alabama-Georgia showdown in Tuscaloosa",
+                    "url": "https://www.foxnews.com/outkick-sports/outkick-trey-wallace-braves-hurricane-isaias-alabama-georgia-showdown-tuscaloosa",
+                    "ts": 1791660120,
+                    "emo": "🌪️"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "Man dies after tiger attack at wildlife park",
+                    "url": "https://www.bbc.co.uk/news/articles/c6n9r3n7858zo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791659399,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "'Time for Ukraine to get new president,' says Trump after Zelensky condemns diesel deal",
+                    "url": "https://www.bbc.co.uk/news/articles/cqe8r5l7n92jo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791660508,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Congress should seal eligible records that keep Americans out of work",
+                    "url": "https://thehill.com/opinion/criminal-justice/6139594-congress-clean-slate-act/",
+                    "ts": 1791658800,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Trump rips Zelensky amid Russia diesel deal feud: 'I suggest they get a new leader'",
+                    "url": "https://thehill.com/homenews/administration/6140694-trump-defends-russian-diesel-deal/",
+                    "ts": 1791656764,
                     "emo": "⚖️"
                 }
             ]
@@ -74,24 +128,6 @@
             ]
         },
         {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Trump rips Zelensky amid Russia diesel deal feud: 'I suggest they get a new leader'",
-                    "url": "https://thehill.com/homenews/administration/6140694-trump-defends-russian-diesel-deal/",
-                    "ts": 1791656764,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "The fight for EPA workers' rights is a fight for the American public",
-                    "url": "https://thehill.com/opinion/congress-blog/labor/6139141-epa-union-contract-lawsuit/",
-                    "ts": 1791655200,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
             "name": "BusinessInsider",
             "home": "https://www.businessinsider.com",
             "items": [
@@ -105,42 +141,6 @@
                     "title": "I moved back to my boring hometown. As a parent, boring looks pretty good.",
                     "url": "https://www.businessinsider.com/returned-hometown-raising-children-family-support-2026-10",
                     "ts": 1791652441,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "Man dies after tiger attack at wildlife park",
-                    "url": "https://www.bbc.co.uk/news/articles/c6n9r3n7858zo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791655838,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "'Time for Ukraine to get new president,' says Trump after Zelensky condemns diesel deal",
-                    "url": "https://www.bbc.co.uk/news/articles/cqe8r5l7n92jo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791657383,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "WAR DAY 224: Loud blast at Riyadh airport as travellers evacuate...",
-                    "url": "https://www.yahoo.com/news/articles/loud-blast-heard-riyadh-airport-141257574.html",
-                    "ts": 1791653136,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "THE MORNING AFTER",
-                    "url": "https://www.foxweather.com/live-news/live-updates-hurricane-isaias-threatens-the-gulf-coast-with-dangerous-landfall-expected-tonight",
-                    "ts": 1791653136,
                     "emo": "📰"
                 }
             ]
@@ -174,9 +174,9 @@
                     "emo": "🌪️"
                 },
                 {
-                    "title": "Economic Pain and an Unpopular Trump Put G.O.P. on its Heels With Three Weeks to Go",
-                    "url": "https://www.nytimes.com/2026/10/10/us/politics/trump-inflation-midterms-republicans.html",
-                    "ts": 1791634233,
+                    "title": "Rebuking Ukraine Over Oil Strikes, Trump Says It Should ‘Get a New President’",
+                    "url": "https://www.nytimes.com/2026/10/10/world/europe/ukraine-russia-trump-diesel-talks.html",
+                    "ts": 1791660534,
                     "emo": "⚖️"
                 }
             ]

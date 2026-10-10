@@ -355,16 +355,14 @@
   // -------------------------
   // 5) IntroJS gating
   // -------------------------
-  function maybeRunIntro() {
-    const cfg = window.NEWSROOM || {};
-    const shouldRun = !!(cfg.intro && cfg.intro.shouldRun);
-    if (!shouldRun) return;
-
+  function startIntro() {
     if (typeof introJs !== 'function') return;
 
-    // Run once per page load
-    if (window.__snIntroRan) return;
-    window.__snIntroRan = true;
+    const stumbleTarget = qs('.sn-product-stumble[data-intro]');
+    const shouldHideStumble = stumbleTarget && stumbleTarget.getClientRects().length === 0;
+    const originalDisplay = stumbleTarget ? stumbleTarget.style.display : '';
+
+    if (shouldHideStumble) stumbleTarget.style.display = 'none';
 
     try {
       introJs()
@@ -373,7 +371,24 @@
           overlayOpacity: 0.5
         })
         .start();
-    } catch (_) {}
+    } catch (_) {
+    } finally {
+      if (shouldHideStumble) stumbleTarget.style.display = originalDisplay;
+    }
+  }
+
+  NS.startIntro = startIntro;
+
+  function maybeRunIntro() {
+    const cfg = window.NEWSROOM || {};
+    const shouldRun = !!(cfg.intro && cfg.intro.shouldRun);
+    if (!shouldRun || typeof introJs !== 'function') return;
+
+    // Run once per page load
+    if (window.__snIntroRan) return;
+    window.__snIntroRan = true;
+
+    startIntro();
   }
 
   // -------------------------

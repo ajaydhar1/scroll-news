@@ -151,7 +151,7 @@ exit;
             <h2><?= $isTrailPlayer ? 'Article analysis' : '🧠 NLP Dashboard' ?></h2>
 
             <?php if (!$isTrailPlayer): ?>
-                <button class="btn btn-small btn-primary btn-rectangle" style="color: black; box-shadow: none !important;" onclick="introJs().setOptions({highlightClass: 'custom-highlight', overlayOpacity: 0.5}).start();"><i class="fa fa-play-circle" style=""></i><span>&nbsp;&nbsp;&nbsp;Guide</span></button>
+                <button class="btn btn-small btn-primary btn-rectangle" style="color: black; box-shadow: none !important;" onclick="ScrollNews.startIntro();"><i class="fa fa-play-circle" style=""></i><span>&nbsp;&nbsp;&nbsp;Guide</span></button>
             <?php endif; ?>
 
         </div>
