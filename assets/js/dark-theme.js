@@ -4,6 +4,7 @@
     const STORAGE_KEY = 'scrollnews:ui-theme';
     const DARK_THEME = 'dark';
     const root = document.documentElement;
+    let transitionResetFrame = 0;
 
     function getTheme() {
         try {
@@ -13,26 +14,39 @@
         }
     }
 
-    function applyTheme(theme, persist) {
-        const activeTheme = theme === DARK_THEME ? DARK_THEME : 'mindpour';
-        root.dataset.uiTheme = activeTheme;
-
-        const mindpourStylesheet = document.getElementById('mindpour-theme');
-        const darkStylesheet = document.getElementById('dark-theme');
-        if (mindpourStylesheet) mindpourStylesheet.disabled = false;
-        if (darkStylesheet) darkStylesheet.disabled = activeTheme !== DARK_THEME;
-
+    function syncThemeControls(theme) {
+        const darkActive = theme === DARK_THEME;
         const toggle = document.getElementById('themeToggle');
         const icon = document.getElementById('themeToggleIcon');
         if (toggle) {
-            const darkActive = activeTheme === DARK_THEME;
             toggle.setAttribute('aria-label', darkActive ? 'Switch to Mindpour theme' : 'Switch to Dark City theme');
             toggle.setAttribute('title', darkActive ? 'Switch to Mindpour theme' : 'Switch to Dark City theme');
             toggle.setAttribute('aria-pressed', darkActive ? 'true' : 'false');
         }
         if (icon) {
-            icon.setAttribute('class', activeTheme === DARK_THEME ? 'fas fa-sun' : 'fas fa-moon');
+            icon.setAttribute('class', darkActive ? 'fas fa-sun' : 'fas fa-moon');
         }
+        const legacyToggle = document.querySelector('.theme-toggle');
+        if (legacyToggle && !icon) {
+            legacyToggle.textContent = darkActive ? '\u2600\ufe0f' : '\ud83c\udf19';
+        }
+    }
+
+    function applyTheme(theme, persist) {
+        const activeTheme = theme === DARK_THEME ? DARK_THEME : 'mindpour';
+        if (transitionResetFrame) {
+            cancelAnimationFrame(transitionResetFrame);
+        }
+        root.classList.add('ui-theme-switching');
+        root.dataset.uiTheme = activeTheme;
+        transitionResetFrame = requestAnimationFrame(function () {
+            transitionResetFrame = requestAnimationFrame(function () {
+                root.classList.remove('ui-theme-switching');
+                transitionResetFrame = 0;
+            });
+        });
+
+        syncThemeControls(activeTheme);
 
         if (persist) {
             try {
@@ -46,7 +60,7 @@
     applyTheme(getTheme(), false);
 
     document.addEventListener('DOMContentLoaded', function () {
-        applyTheme(getTheme(), false);
+        syncThemeControls(root.dataset.uiTheme);
         const toggle = document.getElementById('themeToggle');
         if (toggle) {
             toggle.addEventListener('click', function () {

@@ -5,6 +5,11 @@
   --line-height-unit: 1;
 }
 
+html.ui-theme-switching,
+html.ui-theme-switching * {
+  transition: none !important;
+}
+
 ::selection {
   background: rgba(0, 191, 166, 0.28);
   /* your #00bfa6 but softened */
