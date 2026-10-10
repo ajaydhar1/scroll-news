@@ -85,8 +85,21 @@ section.py-5 h3 {
 }
 
 section#contact {
-    background-image: url(../../img/laptop-sparkle.jpg);
-    background-size: cover;
+    background-image: none;
+    padding: 0;
+}
+
+section#contact .home-editorial-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 480px) {
+    body.home-page #first-look .firstlook-head {
+        flex-wrap: wrap;
+    }
 }
 
 section#playlists {

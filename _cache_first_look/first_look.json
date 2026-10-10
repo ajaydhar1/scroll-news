@@ -1,20 +1,92 @@
 {
-    "fetched_at": 1791598628,
+    "fetched_at": 1791602115,
     "feeds": [
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "Get The Traitors look in your home: Interior design expert reveals how to banish the bland while remaining Faithful to your bank balance",
+                    "url": "https://www.dailymail.com/lifestyle/homes/article-16198061/traitors-interior-design-look-home.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791601960,
+                    "emo": "📰"
+                },
+                {
+                    "title": "'Cornell 7' frat boy told friends he was going to Thailand to 'find himself' after gang rape allegations... as his father is revealed to be a professor of Sharia Law and his privileged life unravels",
+                    "url": "https://www.dailymail.com/news/article-16196375/cornell-gang-rape-matthew-ingalls-thailand-father-sharia-law.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791600140,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "DEVELOPING: CAT 2 GULF",
+                    "url": "https://apnews.com/919a46d4bd705726b4e57f18ce677ac5",
+                    "ts": 1791600936,
+                    "emo": "📰"
+                },
+                {
+                    "title": "LIVE: STORM CHASERS",
+                    "url": "https://www.youtube.com/watch?v=naxJDOglaNs",
+                    "ts": 1791600936,
+                    "emo": "🔥"
+                }
+            ]
+        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Liberty’s season comes to crushing end as they’re swept out of WNBA semifinals by Dream",
-                    "url": "https://nypost.com/2026/10/09/sports/libertys-season-ends-with-crushing-semifinal-sweep-by-dream/",
-                    "ts": 1791598348,
+                    "title": "Garrett Whitlock pitched through a fractured tibia at end of season for Red Sox",
+                    "url": "https://nypost.com/2026/10/09/sports/garrett-whitlock-pitched-through-a-fractured-tibia-at-end-of-season-for-red-sox/",
+                    "ts": 1791600901,
                     "emo": "📰"
                 },
                 {
-                    "title": "Jennifer Meyer, Geoff Ogulesi to wed this weekend in Hawai’i",
-                    "url": "https://pagesix.com/2026/10/09/society/jennifer-meyer-geoff-ogulesi-to-wed-this-weekend-in-hawaii/",
-                    "ts": 1791598326,
+                    "title": "Trump mocks New York for switching ‘mother’ to ‘gestating parent’ in state law during Syracuse rally",
+                    "url": "https://nypost.com/2026/10/09/us-news/trump-mocks-new-york-for-switching-mother-for-gestating-parent-in-state-law-during-syracuse-rally/",
+                    "ts": 1791600890,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Trump asks Supreme Court to look at 2016 election lawsuit against Clinton: Report",
+                    "url": "https://thehill.com/homenews/administration/6140233-trump-supreme-court-clinton-lawsuit-appeal/",
+                    "ts": 1791600433,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Live updates: Trump rallies voters in upstate New York after Putin diesel deal announcement",
+                    "url": "https://thehill.com/homenews/administration/6138003-live-update-trump-vance-midterm-elections/",
+                    "ts": 1791591259,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Trump rallies New York crowd for Republican Bruce Blakeman's bid to replace Gov. Kathy Hochul",
+                    "url": "https://www.foxnews.com/politics/trump-rallies-new-york-crowd-republican-bruce-blakemans-bid-replace-gov-kathy-hochul",
+                    "ts": 1791600169,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "An NYC Curse: Rangers top goalie dragged off ice as New York sports nightmare deepens",
+                    "url": "https://www.foxnews.com/outkick-sports/nyc-curse-rangers-top-goalie-dragged-off-ice-new-york-sports-nightmare-deepens",
+                    "ts": 1791598542,
                     "emo": "📰"
                 }
             ]
@@ -34,60 +106,6 @@
                     "url": "https://www.cnbc.com/2026/10/09/american-debt-delinquency.html",
                     "ts": 1791573504,
                     "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "DEVELOPING: CAT 2 GULF",
-                    "url": "https://apnews.com/919a46d4bd705726b4e57f18ce677ac5",
-                    "ts": 1791597696,
-                    "emo": "📰"
-                },
-                {
-                    "title": "LIVE: STORM CHASERS",
-                    "url": "https://www.youtube.com/watch?v=naxJDOglaNs",
-                    "ts": 1791597696,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Ryan Reynolds' desperate attempt to save Blake Lively exposed in furious texts demanding Sony do his bidding... as studio bosses privately called his wife's behavior 'epic level stupid'",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16194485/Ryan-Reynolds-Sony-Blake-Lively-Justin-Baldoni.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791597054,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Dame Maureen Lipman reveals she 'extended an olive branch' to BBC actor after he quit West End show in protest over her pro-Israel views",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16196261/Dame-Maureen-Lipman-Gerard-McCarthy-West-End-protest-Israel.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791596873,
-                    "emo": "🎭"
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "Trump brings Mike Tyson on stage at Syracuse rally, jokes that he is Bruce Blakeman's personal security",
-                    "url": "https://www.foxnews.com/outkick-sports/trump-brings-mike-tyson-stage-syracuse-rally-jokes-bruce-blakeman-personal-security",
-                    "ts": 1791596743,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Gov Kathy Hochul signs New York onto Trump's school choice program despite teachers union opposition",
-                    "url": "https://www.foxnews.com/media/gov-kathy-hochul-signs-new-york-trump-school-choice-program-despite-teachers-union-opposition",
-                    "ts": 1791594192,
-                    "emo": "⚖️"
                 }
             ]
         },
@@ -146,24 +164,6 @@
             ]
         },
         {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Live updates: Trump rallies voters in upstate New York after Putin diesel deal announcement",
-                    "url": "https://thehill.com/homenews/administration/6138003-live-update-trump-vance-midterm-elections/",
-                    "ts": 1791591259,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "GOP priorities alienate MAHA supporters",
-                    "url": "https://thehill.com/newsletters/healthcare/6140164-gop-priorities-alienate-maha-supporters/",
-                    "ts": 1791590932,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
             "name": "NYT",
             "home": "https://www.nytimes.com",
             "items": [
@@ -174,10 +174,10 @@
                     "emo": "📰"
                 },
                 {
-                    "title": "Paxton Said in Deposition That Donor Gave Him Stocks to Please God",
-                    "url": "https://www.nytimes.com/2026/10/09/us/ken-paxton-deposition-investments.html",
-                    "ts": 1791581146,
-                    "emo": "💰"
+                    "title": "James Talarico Returns to Senate Campaign Trail in Texas After 10-Day Absence",
+                    "url": "https://www.nytimes.com/2026/10/09/us/james-talarico-absence-texas-senate.html",
+                    "ts": 1791584584,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -192,10 +192,10 @@
                     "emo": "🌪️"
                 },
                 {
-                    "title": "Trump: Russia will send diesel fuel to the U.S. to bring down prices",
-                    "url": "https://www.nbcnews.com/nightly-news/video/trump-russia-will-send-diesel-fuel-to-the-u-s-to-bring-down-prices-271372357511",
-                    "ts": 1791590867,
-                    "emo": "⚖️"
+                    "title": "Hurricane Isaias makes landfall in Florida",
+                    "url": "https://www.nbcnews.com/now/video/hurricane-isaias-makes-landfall-in-florida-271377477807",
+                    "ts": 1791598282,
+                    "emo": "🌪️"
                 }
             ]
         },
