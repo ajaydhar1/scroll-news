@@ -1543,10 +1543,13 @@ function endsWith($haystack, $needle)
  *   - 'range'       => '24h', 'older', 'all'
  *   - 'high_signal' => bool, limit to high-signal publishers (cnn, nbc, ...)
  */
-function search_nlp(PDO $db, ?string $q = '', array $opts = []): array
+function search_nlp(PDO $db, ?string $q = '', array $opts = [], ?int &$totalCount = null): array
 {
     global $SCROLL_HIGH_SIGNAL_PUBLISHERS;
 
+    $totalCount = 0;
+    $shufflePool = !empty($opts['shuffle_pool']);
+    $offset = max(0, (int) ($opts['offset'] ?? 0));
     $emotion      = $opts['emotion']     ?? null;
     $sentiment    = $opts['sentiment']   ?? null;
     $range        = $opts['range']       ?? 'all';
@@ -1681,6 +1684,10 @@ function search_nlp(PDO $db, ?string $q = '', array $opts = []): array
 
     $where = $conds ? ('WHERE ' . implode(' AND ', $conds)) : '';
 
+    $totalColumn = $shufflePool ? '' : ', COUNT(*) OVER() AS search_total_count';
+    $offsetSql = $shufflePool ? '' : ' OFFSET ' . $offset;
+    $orderBy = $shufflePool ? 'pub_date DESC' : 'pub_date DESC, id DESC';
+
     $sql = "
         SELECT
             id,
@@ -1690,17 +1697,31 @@ function search_nlp(PDO $db, ?string $q = '', array $opts = []): array
             media_url,
             pub_date,
             nlp
+            $totalColumn
         FROM articles
         $where
-        ORDER BY pub_date DESC
-        LIMIT 100
+        ORDER BY $orderBy
+        LIMIT 100$offsetSql
     ";
 
     try {
         $stmt = $db->prepare($sql);
         $stmt->execute($params);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($shufflePool) {
+            $totalCount = count($results);
+        } elseif (!empty($results)) {
+            $totalCount = (int) $results[0]['search_total_count'];
+            foreach ($results as &$result) {
+                unset($result['search_total_count']);
+            }
+            unset($result);
+        }
+
+        return $results;
     } catch (Throwable $e) {
+        $totalCount = 0;
         // Always log the real error server-side
         error_log('search_nlp ERROR: ' . $e->getMessage());
         error_log('search_nlp SQL: ' . $sql);
@@ -1719,10 +1740,13 @@ function search_nlp(PDO $db, ?string $q = '', array $opts = []): array
  *   - 'range'       => '24h', 'older', 'all'
  *   - 'high_signal' => bool, limit to high-signal publishers
  */
-function search_classic(PDO $db, string $q, array $opts = []): array
+function search_classic(PDO $db, string $q, array $opts = [], ?int &$totalCount = null): array
 {
     global $SCROLL_HIGH_SIGNAL_PUBLISHERS;
 
+    $totalCount = 0;
+    $shufflePool = !empty($opts['shuffle_pool']);
+    $offset = max(0, (int) ($opts['offset'] ?? 0));
     $range      = $opts['range']       ?? 'all';
     $highSignal = !empty($opts['high_signal']);
 
@@ -1773,7 +1797,8 @@ function search_classic(PDO $db, string $q, array $opts = []): array
 
     $where = $conds ? ('WHERE ' . implode(' AND ', $conds)) : '';
 
-    $sql = "
+    if ($shufflePool) {
+        $sql = "
         WITH matched AS (
             SELECT
                 ri.id,
@@ -1807,12 +1832,62 @@ function search_classic(PDO $db, string $q, array $opts = []): array
         ORDER BY
             m.pub_date DESC NULLS LAST,
             m.id DESC
-    ";
+        ";
+    } else {
+        $sql = "
+        WITH matched AS (
+            SELECT
+                ri.id,
+                ri.title,
+                ri.link,
+                ri.pub_date,
+                ri.media_url,
+                ri.feed_id
+            FROM rss_items ri
+            $where
+        ), paged AS (
+            SELECT
+                matched.*,
+                COUNT(*) OVER() AS search_total_count
+            FROM matched
+            ORDER BY pub_date DESC NULLS LAST, id DESC
+            LIMIT 100 OFFSET $offset
+        )
+        SELECT
+            m.id,
+            m.title,
+            m.link,
+            m.pub_date,
+            m.media_url,
+            f.name AS feed_name,
+            a.id AS article_id,
+            a.nlp,
+            m.search_total_count
+        FROM paged m
+        JOIN feeds f
+          ON f.id = m.feed_id AND f.deleted_at IS NULL
+        LEFT JOIN articles a
+          ON a.url = m.link
+         AND a.deleted_at IS NULL
+        ORDER BY m.pub_date DESC NULLS LAST, m.id DESC
+        ";
+    }
 
     $stmt = $db->prepare($sql);
     $stmt->execute($params);
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if ($shufflePool) {
+        $totalCount = count($results);
+    } elseif (!empty($results)) {
+        $totalCount = (int) $results[0]['search_total_count'];
+        foreach ($results as &$result) {
+            unset($result['search_total_count']);
+        }
+        unset($result);
+    }
+
+    return $results;
 }
 
 function load_search_shuffle_results(PDO $db, int $userId, string $shuffleSessionId): array

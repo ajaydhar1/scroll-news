@@ -366,6 +366,10 @@ body.search-page .sn-search-results-heading {
   font: 600 18px/1.45 "Montserrat", "Open Sans", sans-serif;
 }
 
+body.search-page #sn-search-results-heading {
+  scroll-margin-top: 92px;
+}
+
 body.search-page .sn-search-results-heading .fw-semibold {
   overflow-wrap: anywhere;
 }
@@ -373,6 +377,77 @@ body.search-page .sn-search-results-heading .fw-semibold {
 body.search-page .sn-search-result-count {
   color: var(--search-muted);
   font: 500 13px/1.4 "Open Sans", "Montserrat", sans-serif;
+}
+
+body.search-page .sn-search-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  margin: 24px 0 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--search-line-soft);
+}
+
+body.search-page .sn-search-page-summary {
+  color: var(--search-muted);
+  font-size: 13px;
+}
+
+body.search-page .sn-search-pagination ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.search-page .sn-search-pagination a,
+body.search-page .sn-search-pagination li > span:not(.sn-search-page-ellipsis) {
+  min-width: 38px;
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: var(--search-muted);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+body.search-page .sn-search-pagination a:hover,
+body.search-page .sn-search-pagination a:focus-visible {
+  border-color: var(--search-line);
+  background: var(--search-surface);
+  color: var(--search-accent);
+}
+
+body.search-page .sn-search-pagination li > span[aria-current="page"] {
+  border-color: var(--search-line);
+  background: var(--search-inset);
+  color: var(--search-ink);
+  font-weight: 700;
+}
+
+body.search-page .sn-search-pagination li > span[aria-disabled="true"] {
+  color: var(--search-muted);
+  opacity: 0.55;
+}
+
+body.search-page .sn-search-pagination .sn-search-page-ellipsis {
+  min-width: 22px;
+  color: var(--search-muted);
+  text-align: center;
+}
+
+body.search-page .sn-search-pagination a:focus-visible {
+  outline: 2px solid var(--search-accent);
+  outline-offset: 2px;
 }
 
 body.search-page .sn-search-empty-results {

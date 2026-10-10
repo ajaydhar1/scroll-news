@@ -199,6 +199,13 @@ $shuffleSessionId = $_GET['shuffle_session'] ?? '';
 $shuffleSessionId = is_string($shuffleSessionId) ? trim($shuffleSessionId) : '';
 
 $isSavedShuffleView = $shuffleSessionId !== '';
+$isShuffleRequest = !empty($_GET['shuffle']);
+$requestedPage = filter_var($_GET['page'] ?? 1, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+$page = ($isShuffleRequest || $isSavedShuffleView || $requestedPage === false)
+    ? 1
+    : min(1000000, (int) $requestedPage);
+$searchTotalCount = 0;
+$resultsPerPage = 100;
 
 // Decide if *any* filters are active (even without q)
 $hasFilters =
@@ -214,6 +221,11 @@ $searchHistoryId = null;
 $hasContext = isset($_GET['context']) && trim((string) $_GET['context']) !== '';
 $trackSearchHistory = !$hasContext;
 $showShuffleButton = !$hasContext;
+$runSearch = static function (array $options, ?int &$totalCount) use ($pdo, $mode, $q): array {
+    return $mode === 'nlp'
+        ? search_nlp($pdo, $q, $options, $totalCount)
+        : search_classic($pdo, $q, $options, $totalCount);
+};
 
 if (!$pdo) {
     $errorMsg = "Database connection not available.";
@@ -225,6 +237,7 @@ if (!$pdo) {
                 (int) $currentUser['id'],
                 $shuffleSessionId
             );
+            $searchTotalCount = count($results);
 
             $hasFilters = true;
 
@@ -239,31 +252,51 @@ if (!$pdo) {
                 'range'        => $range,
                 'high_signal'  => $highSignalOnly,           // <-- NEW
                 'deep_dive'    => $deepDive,
+                'shuffle_pool' => $isShuffleRequest,
+                'offset'       => $isShuffleRequest ? 0 : ($page - 1) * $resultsPerPage,
             ];
 
-            if ($mode === 'nlp') {
-                // NLP search on articles table
-                $results = search_nlp($pdo, $q, $options);
-            } else {
-                // Classic search on rss_items + feeds + articles
-                $results = search_classic($pdo, $q, $options);
+            $results = $runSearch($options, $searchTotalCount);
+
+            if (!$isShuffleRequest && $page > 1 && empty($results)) {
+                $firstPageOptions = $options;
+                $firstPageOptions['offset'] = 0;
+                $firstPageTotal = 0;
+                $runSearch($firstPageOptions, $firstPageTotal);
+
+                if ($firstPageTotal > 0) {
+                    $searchTotalCount = $firstPageTotal;
+                    $page = min($page, (int) ceil($searchTotalCount / $resultsPerPage));
+                    $options['offset'] = ($page - 1) * $resultsPerPage;
+                    $results = $runSearch($options, $searchTotalCount);
+                } else {
+                    $page = 1;
+                }
             }
 
-            if (!empty($_GET['shuffle'])) {
+            if ($isShuffleRequest) {
                 shuffle($results);
+                $searchTotalCount = count($results);
             }
 
-            if ($trackSearchHistory && $currentUser && $q !== '') {
-                $searchHistoryId = save_user_search_history(
-                    $pdo,
-                    (int) $currentUser['id'],
-                    [
-                        'query' => $q,
-                        'mode' => $mode ?? null,
-                        'range' => $range ?? null,
-                        'params' => $_GET,
-                    ]
-                );
+            if ($trackSearchHistory && $currentUser && $q !== '' && $page === 1) {
+                $historyParams = $_GET;
+                unset($historyParams['page']);
+
+                try {
+                    $searchHistoryId = save_user_search_history(
+                        $pdo,
+                        (int) $currentUser['id'],
+                        [
+                            'query' => $q,
+                            'mode' => $mode ?? null,
+                            'range' => $range ?? null,
+                            'params' => $historyParams,
+                        ]
+                    );
+                } catch (Throwable $historyError) {
+                    error_log('Search history save failed: ' . $historyError->getMessage());
+                }
             }
         } else {
             $results = [];
@@ -271,7 +304,8 @@ if (!$pdo) {
     } catch (Throwable $e) {
         $errorMsg = 'There was a problem running your search.';
         $results  = [];
-        // (Optional) error_log($e->getMessage());
+        $searchTotalCount = 0;
+        error_log('Search request failed: ' . $e->getMessage());
     }
 }
 
@@ -280,6 +314,17 @@ $shouldSaveSearchShuffle =
     !empty($_GET['shuffle']) &&
     $currentUser &&
     !empty($results);
+$totalPages = $searchTotalCount > 0
+    ? (int) ceil($searchTotalCount / $resultsPerPage)
+    : 0;
+
+$paginationParams = $_GET;
+unset($paginationParams['page'], $paginationParams['shuffle'], $paginationParams['shuffle_session']);
+$buildPaginationUrl = static function (int $targetPage) use ($paginationParams): string {
+    $params = $paginationParams;
+    $params['page'] = $targetPage;
+    return '/search.php?' . http_build_query($params) . '#sn-search-results-heading';
+};
 
 // From here down, render your HTML:
 // - use $q to populate the search box
@@ -523,7 +568,7 @@ $shouldSaveSearchShuffle =
                         <?php endif; ?>
 
 
-                        <h2 class="sn-search-results-heading">
+                        <h2 class="sn-search-results-heading" id="sn-search-results-heading">
 
                             <?php if ($isSavedShuffleView): ?>
 
@@ -550,12 +595,13 @@ $shouldSaveSearchShuffle =
                             <?php endif; ?>
 
                             <?php if (!empty($results)): ?>
-                                <span class="sn-search-result-count"><?php echo count($results); ?> found</span>
+                                <span class="sn-search-result-count"><?php echo number_format($searchTotalCount); ?> found</span>
                                 <?php
-                                $params = $_GET;
-                                $params['shuffle'] = 1;
+                                $shuffleParams = $_GET;
+                                unset($shuffleParams['page'], $shuffleParams['shuffle_session']);
+                                $shuffleParams['shuffle'] = 1;
 
-                                $explore_url = '?' . http_build_query($params);
+                                $explore_url = '?' . http_build_query($shuffleParams);
                                 ?>
 
                                 <?php if ($showShuffleButton): ?>
@@ -624,6 +670,60 @@ $shouldSaveSearchShuffle =
                                 ]);
                                 ?>
                             <?php endforeach; ?>
+                        <?php endif; ?>
+
+                        <?php if (!$isSavedShuffleView && !$isShuffleRequest && $totalPages > 0): ?>
+                            <?php
+                            $visiblePages = [];
+                            if ($page > 3) {
+                                $visiblePages[] = 1;
+                                if ($page > 4) {
+                                    $visiblePages[] = '…';
+                                }
+                            }
+
+                            $visiblePages = array_merge(
+                                $visiblePages,
+                                range(max(1, $page - 2), min($totalPages, $page + 2))
+                            );
+
+                            if ($page < $totalPages - 2) {
+                                if ($page < $totalPages - 3) {
+                                    $visiblePages[] = '…';
+                                }
+                                $visiblePages[] = $totalPages;
+                            }
+                            ?>
+                            <nav class="sn-search-pagination" aria-label="Search result pages">
+                                <span class="sn-search-page-summary">Page <?= $page ?> of <?= $totalPages ?></span>
+                                <ul>
+                                    <li>
+                                        <?php if ($page > 1): ?>
+                                            <a href="<?= htmlspecialchars($buildPaginationUrl($page - 1), ENT_QUOTES, 'UTF-8') ?>" aria-label="Previous page" data-sn-loading>Previous</a>
+                                        <?php else: ?>
+                                            <span aria-disabled="true">Previous</span>
+                                        <?php endif; ?>
+                                    </li>
+                                    <?php foreach ($visiblePages as $visiblePage): ?>
+                                        <li>
+                                            <?php if ($visiblePage === '…'): ?>
+                                                <span class="sn-search-page-ellipsis" aria-hidden="true">…</span>
+                                            <?php elseif ($visiblePage === $page): ?>
+                                                <span aria-current="page"><?= $visiblePage ?></span>
+                                            <?php else: ?>
+                                                <a href="<?= htmlspecialchars($buildPaginationUrl($visiblePage), ENT_QUOTES, 'UTF-8') ?>" aria-label="Page <?= $visiblePage ?>" data-sn-loading><?= $visiblePage ?></a>
+                                            <?php endif; ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                    <li>
+                                        <?php if ($page < $totalPages): ?>
+                                            <a href="<?= htmlspecialchars($buildPaginationUrl($page + 1), ENT_QUOTES, 'UTF-8') ?>" aria-label="Next page" data-sn-loading>Next</a>
+                                        <?php else: ?>
+                                            <span aria-disabled="true">Next</span>
+                                        <?php endif; ?>
+                                    </li>
+                                </ul>
+                            </nav>
                         <?php endif; ?>
                     </div>
                 </div>
