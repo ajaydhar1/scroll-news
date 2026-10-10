@@ -1,20 +1,56 @@
 {
-    "fetched_at": 1791602115,
+    "fetched_at": 1791602784,
     "feeds": [
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Get The Traitors look in your home: Interior design expert reveals how to banish the bland while remaining Faithful to your bank balance",
-                    "url": "https://www.dailymail.com/lifestyle/homes/article-16198061/traitors-interior-design-look-home.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791601960,
+                    "title": "'One of the finest dining rooms in London': TOM PARKER BOWLES reviews Hawksmoor's latest grand location",
+                    "url": "https://www.dailymail.com/lifestyle/food-drink/article-16190395/One-finest-dining-rooms-London-TOM-PARKER-BOWLES-reviews-Hawksmoors-latest-grand-location.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791602685,
                     "emo": "📰"
                 },
                 {
-                    "title": "'Cornell 7' frat boy told friends he was going to Thailand to 'find himself' after gang rape allegations... as his father is revealed to be a professor of Sharia Law and his privileged life unravels",
-                    "url": "https://www.dailymail.com/news/article-16196375/cornell-gang-rape-matthew-ingalls-thailand-father-sharia-law.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791600140,
+                    "title": "M&S boss tells Healey: Take the handcuffs off business and get Britain growing - as he savages Labour's 'crushing' tax policies just weeks ahead of first Burnham Budget",
+                    "url": "https://www.dailymail.com/news/article-16197765/M-S-boss-urges-Labour-handcuffs-business-policies-crushing-disappointment.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791602450,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "Liberty’s season ends with a disappointing dud — but the questions are just beginning",
+                    "url": "https://nypost.com/2026/10/09/sports/libertys-season-ends-in-a-disappointing-dud-as-questions-loom/",
+                    "ts": 1791602562,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Garrett Whitlock pitched through a fractured tibia at end of season for Red Sox",
+                    "url": "https://nypost.com/2026/10/09/sports/garrett-whitlock-pitched-through-a-fractured-tibia-at-end-of-season-for-red-sox/",
+                    "ts": 1791600901,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "‘I feel like a loser’: My stock portfolio is swinging wildly. Should I be worried?",
+                    "url": "https://www.marketwatch.com/story/i-feel-like-a-loser-my-etfs-go-up-one-day-and-crash-the-next-is-this-a-bad-sign-0c9848b2?mod=mw_rss_topstories",
+                    "ts": 1791602100,
+                    "emo": "📰"
+                },
+                {
+                    "title": "‘I have no children’: My aunt gave me $50,000 for a down payment. Now she wants me to leave my home to her two children.",
+                    "url": "https://www.marketwatch.com/story/i-have-no-children-my-aunt-gave-me-50-000-for-a-down-payment-she-wants-me-to-leave-my-home-to-her-two-children-24fad94c?mod=mw_rss_topstories",
+                    "ts": 1791591300,
                     "emo": "📰"
                 }
             ]
@@ -34,24 +70,6 @@
                     "url": "https://www.youtube.com/watch?v=naxJDOglaNs",
                     "ts": 1791600936,
                     "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "Garrett Whitlock pitched through a fractured tibia at end of season for Red Sox",
-                    "url": "https://nypost.com/2026/10/09/sports/garrett-whitlock-pitched-through-a-fractured-tibia-at-end-of-season-for-red-sox/",
-                    "ts": 1791600901,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Trump mocks New York for switching ‘mother’ to ‘gestating parent’ in state law during Syracuse rally",
-                    "url": "https://nypost.com/2026/10/09/us-news/trump-mocks-new-york-for-switching-mother-for-gestating-parent-in-state-law-during-syracuse-rally/",
-                    "ts": 1791600890,
-                    "emo": "⚖️"
                 }
             ]
         },
@@ -141,24 +159,6 @@
                     "title": "Best Madewell coupon codes we've tested in October 2026",
                     "url": "https://www.businessinsider.com/guides/deals/best-madewell-coupon-promo-codes",
                     "ts": 1791590461,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "‘I have no children’: My aunt gave me $50,000 for a down payment. Now she wants me to leave my home to her two children.",
-                    "url": "https://www.marketwatch.com/story/i-have-no-children-my-aunt-gave-me-50-000-for-a-down-payment-she-wants-me-to-leave-my-home-to-her-two-children-24fad94c?mod=mw_rss_topstories",
-                    "ts": 1791591300,
-                    "emo": "📰"
-                },
-                {
-                    "title": "‘I feel like a loser’: I check my ETFs every day. They’re up one minute, down the next. Should I be worried?",
-                    "url": "https://www.marketwatch.com/story/i-feel-like-a-loser-my-etfs-go-up-one-day-and-crash-the-next-is-this-a-bad-sign-0c9848b2?mod=mw_rss_topstories",
-                    "ts": 1791590400,
                     "emo": "📰"
                 }
             ]
