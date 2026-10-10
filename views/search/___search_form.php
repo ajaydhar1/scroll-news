@@ -11,89 +11,95 @@ $deepDiveActive = !empty($snSearch['deep_dive_active']);
 $highSignalActive = !empty($snSearch['high_signal_active']);
 ?>
 
-<form id="sn-search-form" method="get" action="search.php" class="mb-4">
-  <div class="row g-2 align-items-center search-toolbar">
-    <div class="col-md-6">
+<form id="sn-search-form" method="get" action="search.php" class="sn-search-form mb-4">
+  <div class="sn-search-panel">
+    <label class="sn-search-label" for="sn-search-query">Search headlines</label>
+    <div class="sn-search-query-row">
       <input
-        type="text"
+        type="search"
         name="q"
-        class="form-control"
-        placeholder="Search headlines…"
+        id="sn-search-query"
+        class="form-control sn-search-query"
+        placeholder="Try a name, company, place, or topic"
         value="<?= htmlspecialchars($q, ENT_QUOTES, 'UTF-8'); ?>"
       >
-    </div>
-
-    <div class="col-md-6 d-flex flex-wrap gap-2 justify-content-md-end mt-2 mt-md-0">
-
-      <!-- Mode pills -->
-      <div class="btn-group btn-group-sm me-2" role="group" aria-label="Search mode">
-        <button type="button"
-                class="btn <?= ($mode === 'classic') ? 'btn-primary' : 'btn-outline-secondary'; ?>"
-                data-sn-mode="classic">
-          Keyword
-        </button>
-
-        <button type="button"
-                class="btn <?= ($mode === 'nlp') ? 'btn-primary' : 'btn-outline-secondary'; ?>"
-                data-sn-mode="nlp">
-          Smart (NLP)
-        </button>
-      </div>
-
-      <!-- Range -->
-      <select name="range" class="form-select form-select-sm w-auto me-2" data-sn-autosubmit>
-        <option value="all"   <?= ($range === 'all')   ? 'selected' : ''; ?>>All time</option>
-        <option value="24h"   <?= ($range === '24h')   ? 'selected' : ''; ?>>Last 24 hours</option>
-        <option value="older" <?= ($range === 'older') ? 'selected' : ''; ?>>Older than 24 hours</option>
-      </select>
-
-      <?php if ($mode === 'nlp'): ?>
-        <!-- Sentiment -->
-        <select name="sentiment" class="form-select form-select-sm w-auto me-2" data-sn-autosubmit>
-          <option value=""         <?= empty($sentiment)         ? 'selected' : ''; ?>>Any sentiment</option>
-          <option value="positive" <?= ($sentiment === 'positive') ? 'selected' : ''; ?>>Positive</option>
-          <option value="neutral"  <?= ($sentiment === 'neutral')  ? 'selected' : ''; ?>>Neutral</option>
-          <option value="negative" <?= ($sentiment === 'negative') ? 'selected' : ''; ?>>Negative</option>
-        </select>
-
-        <!-- Emotion -->
-        <select name="emotion" class="form-select form-select-sm w-auto me-2" data-sn-autosubmit>
-          <option value=""      <?= empty($emotion)      ? 'selected' : ''; ?>>Any emotion</option>
-          <option value="Love"  <?= ($emotion === 'Love')  ? 'selected' : ''; ?>>Love</option>
-          <option value="Angry" <?= ($emotion === 'Angry') ? 'selected' : ''; ?>>Angry</option>
-          <option value="Ahah"  <?= ($emotion === 'Ahah')  ? 'selected' : ''; ?>>Ahah</option>
-          <option value="Wow"   <?= ($emotion === 'Wow')   ? 'selected' : ''; ?>>Wow</option>
-          <option value="Sad"   <?= ($emotion === 'Sad')   ? 'selected' : ''; ?>>Sad</option>
-        </select>
-      <?php endif; ?>
-
-      <button type="submit" class="btn btn-sm btn-success">
-        <i class="fa-solid fa-magnifying-glass mr-1" aria-hidden="true"></i>
-        Search
+      <button type="submit" class="sn-search-submit">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <span>Search</span>
       </button>
+    </div>
 
-      <div class="scroll-article-badges">
-        <?php if ($mode === 'nlp'): ?>
-          <button type="button"
-                  class="scroll-badge scroll-badge-deep-dive <?= $deepDiveActive ? 'scroll-badge-active' : ''; ?>"
-                  data-sn-toggle="deep_dive"
-                  data-sn-only-when-mode="nlp">
-            DEEP DIVE
+    <div class="sn-search-options">
+      <fieldset class="sn-search-mode">
+        <legend>Search mode</legend>
+        <div class="sn-search-segment" role="group" aria-label="Search mode">
+          <button type="button" class="sn-search-segment-option <?= ($mode === 'classic') ? 'is-selected' : ''; ?>"
+                  data-sn-mode="classic" aria-pressed="<?= ($mode === 'classic') ? 'true' : 'false'; ?>">
+            Keyword
           </button>
-        <?php endif; ?>
+          <button type="button" class="sn-search-segment-option <?= ($mode === 'nlp') ? 'is-selected' : ''; ?>"
+                  data-sn-mode="nlp" aria-pressed="<?= ($mode === 'nlp') ? 'true' : 'false'; ?>">
+            Smart
+          </button>
+        </div>
+      </fieldset>
 
-        <button type="button"
-                class="scroll-badge scroll-badge-high-signal-publisher <?= $highSignalActive ? 'scroll-badge-active' : ''; ?>"
-                data-sn-toggle="high_signal">
-          HIGH-SIGNAL PUBLISHER
-        </button>
+      <div class="sn-search-filter-grid">
+        <div class="sn-search-filter">
+          <label for="sn-search-range">Time range</label>
+          <select name="range" id="sn-search-range" class="form-select">
+            <option value="all"   <?= ($range === 'all')   ? 'selected' : ''; ?>>All time</option>
+            <option value="24h"   <?= ($range === '24h')   ? 'selected' : ''; ?>>Last 24 hours</option>
+            <option value="older" <?= ($range === 'older') ? 'selected' : ''; ?>>Older than 24 hours</option>
+          </select>
+        </div>
+
+        <div class="sn-search-smart-filters" data-sn-smart-filters <?= ($mode === 'nlp') ? '' : 'hidden'; ?>>
+          <div class="sn-search-filter">
+            <label for="sn-search-sentiment">Sentiment</label>
+            <select name="sentiment" id="sn-search-sentiment" class="form-select" <?= ($mode === 'nlp') ? '' : 'disabled'; ?>>
+              <option value=""         <?= empty($sentiment) ? 'selected' : ''; ?>>Any sentiment</option>
+              <option value="positive" <?= ($sentiment === 'positive') ? 'selected' : ''; ?>>Positive</option>
+              <option value="neutral"  <?= ($sentiment === 'neutral') ? 'selected' : ''; ?>>Neutral</option>
+              <option value="negative" <?= ($sentiment === 'negative') ? 'selected' : ''; ?>>Negative</option>
+            </select>
+          </div>
+
+          <div class="sn-search-filter">
+            <label for="sn-search-emotion">Emotion</label>
+            <select name="emotion" id="sn-search-emotion" class="form-select" <?= ($mode === 'nlp') ? '' : 'disabled'; ?>>
+              <option value=""      <?= empty($emotion) ? 'selected' : ''; ?>>Any emotion</option>
+              <option value="Love"  <?= ($emotion === 'Love') ? 'selected' : ''; ?>>Love</option>
+              <option value="Angry" <?= ($emotion === 'Angry') ? 'selected' : ''; ?>>Angry</option>
+              <option value="Ahah"  <?= ($emotion === 'Ahah') ? 'selected' : ''; ?>>Ahah</option>
+              <option value="Wow"   <?= ($emotion === 'Wow') ? 'selected' : ''; ?>>Wow</option>
+              <option value="Sad"   <?= ($emotion === 'Sad') ? 'selected' : ''; ?>>Sad</option>
+            </select>
+          </div>
+        </div>
       </div>
 
-      <!-- Hidden inputs -->
-      <input type="hidden" name="mode" id="mode-input" value="<?= htmlspecialchars($mode, ENT_QUOTES, 'UTF-8'); ?>">
-      <input type="hidden" name="deep_dive" id="deep-dive-input" value="<?= $deepDiveActive ? '1' : ''; ?>">
-      <input type="hidden" name="high_signal" id="high-signal-input" value="<?= $highSignalActive ? '1' : ''; ?>">
-
+      <fieldset class="sn-search-refinements">
+        <legend>Refine results</legend>
+        <div class="sn-search-toggles">
+          <button type="button" class="sn-search-toggle" data-sn-toggle="deep_dive"
+                  role="switch" aria-checked="<?= $deepDiveActive ? 'true' : 'false'; ?>"
+                  <?= ($mode === 'nlp') ? '' : 'hidden'; ?>>
+            <span>Deep Dive</span>
+            <span class="sn-search-switch" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="sn-search-toggle" data-sn-toggle="high_signal"
+                  role="switch" aria-checked="<?= $highSignalActive ? 'true' : 'false'; ?>">
+            <span>High-signal publishers</span>
+            <span class="sn-search-switch" aria-hidden="true"></span>
+          </button>
+        </div>
+      </fieldset>
     </div>
+
+    <input type="hidden" name="mode" id="mode-input" value="<?= htmlspecialchars($mode, ENT_QUOTES, 'UTF-8'); ?>">
+    <input type="hidden" name="deep_dive" id="deep-dive-input" value="<?= $deepDiveActive ? '1' : ''; ?>">
+    <input type="hidden" name="high_signal" id="high-signal-input" value="<?= $highSignalActive ? '1' : ''; ?>">
+    <p id="sn-search-loading" class="sn-search-status" role="status" aria-live="polite" aria-atomic="true" hidden>Searching headlines…</p>
   </div>
 </form>

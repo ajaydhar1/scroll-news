@@ -254,6 +254,7 @@ function sn_article_vm_from_row(array $row, array $ctx = []): array {
  *  - show_sentiment: bool (default true)
  *  - show_emotions: bool (default true)
  *  - show_analyze: bool (default true)
+ *  - read_button_class: string (default "btn btn-outline-secondary")
  *  - badge_href_builder: callable($badgeSlug, $vm, $opts) => string
  *  - analysis_window: '7d' etc (for tag links)
  */
@@ -264,6 +265,7 @@ function sn_render_article_card(array $vm, array $opts = []): void {
     $showSentiment = $opts['show_sentiment'] ?? true;
     $showEmotions  = $opts['show_emotions']  ?? true;
     $showAnalyze   = $opts['show_analyze']   ?? true;
+    $readButtonClass = (string)($opts['read_button_class'] ?? 'btn btn-outline-secondary');
 
     $title     = $vm['title'] ?? '';
     $readUrl   = $vm['read_url'] ?? '#';
@@ -420,7 +422,7 @@ function sn_render_article_card(array $vm, array $opts = []): void {
             ?>" role="group">
                 <a
                     href="<?= htmlspecialchars($readUrl, ENT_QUOTES, 'UTF-8'); ?>"
-                    class="btn btn-outline-secondary"
+                    class="<?= htmlspecialchars($readButtonClass, ENT_QUOTES, 'UTF-8'); ?>"
                     target="_blank"
                     rel="noopener"
                     data-article-url="<?= htmlspecialchars($readUrl, ENT_QUOTES, 'UTF-8'); ?>"

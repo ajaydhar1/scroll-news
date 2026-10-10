@@ -338,7 +338,10 @@ $shouldSaveSearchShuffle =
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
+    <link id="mindpour-theme" href="/assets/css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/mindpour.css'); ?>" rel="stylesheet" />
+    <link id="dark-theme" href="/assets/css/dark.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark.css'); ?>" rel="stylesheet" />
     <link id="dark-typography-theme" href="/assets/css/dark-typography.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark-typography.css'); ?>" rel="stylesheet" />
+    <link href="/assets/css/light-saas.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/light-saas.css'); ?>" rel="stylesheet" />
 
     <script src="/assets/js/dark-theme.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/dark-theme.js'); ?>"></script>
 
@@ -346,33 +349,23 @@ $shouldSaveSearchShuffle =
 
 </head>
 
-<body id="page-top" class="bg-dark">
-
-    <div id="sn-search-loading" class="sn-loading-overlay" aria-hidden="true">
-        <div class="sn-loading-spinner">
-            <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading…</span>
-            </div>
-        </div>
-    </div>
+<body id="page-top" class="sn-light-saas search-page">
 
     <!-- Top nav-->
     <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
-    <!-- Main content section, reusing services section styling -->
-    <section class="page-section" id="services" style="padding: 4rem 0;">
+    <main class="page sn-search-page">
+    <section class="sn-search-section" id="services" aria-labelledby="search-title">
         <div class="container">
-            <div class="row justify-content-center mb-4">
-                <div class="col-md-8 text-center">
-                    <h2 class="section-heading">🔎 Search Headlines</h2>
-                    <h3 class="section-subheading text-muted" style="margin-bottom: 1.5rem;">
-                        Find recent stories from Scroll News feeds, then read or analyze them.
-                    </h3>
+            <div class="sn-search-intro">
+                <div class="sn-search-intro-copy">
+                    <p class="sn-search-eyebrow">SCROLL NEWS / DISCOVERY</p>
+                    <h1 id="search-title">Search headlines</h1>
+                    <p>Find the stories shaping the conversation.</p>
                 </div>
             </div>
 
-            <div class="row mb-4">
-                <div class="col-md-8 mx-auto">
+            <div class="sn-search-main">
 
                     <?php
                     $snSearch = [
@@ -389,7 +382,7 @@ $shouldSaveSearchShuffle =
                     <?php require_once BASE_PATH . '/views/search/___search_form.php'; ?>
 
                     <?php if ($currentUser): ?>
-                        <div class="mb-3 d-flex flex-wrap align-items-center gap-2">
+                        <div class="sn-search-history mb-3 d-flex flex-wrap align-items-center gap-2">
 
                             <span class="text-muted small mr-2">
                                 Your discovery history:
@@ -410,12 +403,11 @@ $shouldSaveSearchShuffle =
                         </div>
                     <?php endif; ?>
 
-                </div>
             </div>
 
             <?php if ($errorMsg): ?>
                 <div class="row">
-                    <div class="col-md-8 mx-auto">
+                    <div class="col-lg-10 mx-auto">
                         <div class="alert alert-danger">
                             <?php echo htmlspecialchars($errorMsg, ENT_QUOTES, 'UTF-8'); ?>
                         </div>
@@ -427,76 +419,22 @@ $shouldSaveSearchShuffle =
                 <div class="row">
                     <div class="col-md-8 mx-auto text-center">
 
-                        <img src="/assets/img/stickers/radar.gif" class="radar" />
-
                         <?php
-                        // Curated starter searches (ship-now)
                         $searchChips = [
                             'AI',
-                            'Trump',
                             'Markets',
-                            'AI regulation',
-                            'Apple',
-                            'Microsoft',
-                            'Elon Musk',
-                            'Democrat',
-                            'Iran',
                             'Congress',
-                            'California',
-                            'Washington',
-                            'OpenAI',
-                            'NVIDIA',
                             'Ukraine',
-                            'Gaza',
                             'Supreme Court',
-                            'Los Angeles',
-                            'Republican',
-                            'Politics',
-                            'Business',
-                            'Policy',
-                            'Interest rates',
-                            'Inflation',
                             'Climate',
-                            'Taylor Swift',
-                            'Stock',
-                            'NFL',
-                            'NBA',
-                            'AI startups',
+                            'Inflation',
                             'Cybersecurity',
-                            'Robotics',
-                            'SpaceX',
-                            'Quantum computing',
-                            'EVs',
-                            'Semiconductors',
-                            'China',
-                            'London',
-                            'Africa',
-                            'UN',
-                            'Middle East',
-                            'Gen Z',
-                            'Dating',
-                            'Mental health',
-                            'Remote work',
-                            'Productivity',
-                            'Billionaires',
                             'Housing',
                             'Education',
-                            'Longevity',
-                            'Climate tech',
-                            'Neuroscience',
-                            'Future cities',
                             'Energy',
-                            'Biotechnology',
-                            'Movies',
-                            'Streaming',
-                            'YouTube',
-                            'Gaming',
-                            'Celebrities',
-                            'Music industry',
-                            'UFC',
-                            'Soccer',
-                            'Formula 1',
-                            'MLB'
+                            'Public health',
+                            'Technology',
+                            'Sports'
                         ];
 
 
@@ -513,7 +451,7 @@ $shouldSaveSearchShuffle =
                         };
                         ?>
 
-                        <h5 class="text-center mb-3">Discovery topic chips</h5>
+                        <h2 class="sn-search-discovery-title">Popular searches</h2>
 
                         <div class="sn-search-chips">
                             <?php foreach ($searchChips as $chip): ?>
@@ -523,14 +461,11 @@ $shouldSaveSearchShuffle =
                             <?php endforeach; ?>
                         </div>
 
-                        <blockquote class="small text-muted mt-5">
-                            Tip: try names, companies, locations, or big topics.
-                        </blockquote>
                     </div>
                 </div>
             <?php else: ?>
                 <div class="row">
-                    <div class="col-md-8 mx-auto">
+                    <div class="col-lg-10 mx-auto">
 
                         <?php
                         // Build a simple "Active filters" string
@@ -578,15 +513,17 @@ $shouldSaveSearchShuffle =
 
                         <?php elseif ($hasFilters && !empty($filterChips)): ?>
 
-                            <p class="text-muted mb-1">
-                                Active filters:
-                                <?php echo htmlspecialchars(implode(' · ', $filterChips), ENT_QUOTES, 'UTF-8'); ?>
-                            </p>
+                            <div class="sn-search-active-filters" aria-label="Active search filters">
+                                <span>Active filters</span>
+                                <?php foreach ($filterChips as $filterChip): ?>
+                                    <span class="sn-search-filter-chip"><?php echo htmlspecialchars($filterChip, ENT_QUOTES, 'UTF-8'); ?></span>
+                                <?php endforeach; ?>
+                            </div>
 
                         <?php endif; ?>
 
 
-                        <h2 class="h6 mb-3">
+                        <h2 class="sn-search-results-heading">
 
                             <?php if ($isSavedShuffleView): ?>
 
@@ -613,9 +550,7 @@ $shouldSaveSearchShuffle =
                             <?php endif; ?>
 
                             <?php if (!empty($results)): ?>
-                                <span class="text-muted">
-                                    · <?php echo count($results); ?> found
-                                </span>
+                                <span class="sn-search-result-count"><?php echo count($results); ?> found</span>
                                 <?php
                                 $params = $_GET;
                                 $params['shuffle'] = 1;
@@ -632,9 +567,11 @@ $shouldSaveSearchShuffle =
                         </h2>
 
                         <?php if (empty($results)): ?>
-                            <p class="text-muted">
+                            <p class="sn-search-empty-results">
                                 No results matched your search or filters. Try another keyword or a more general phrase, or loosen your filters.
                             </p>
+                            <?php $clearFiltersUrl = '/search.php' . ($q !== '' ? '?' . http_build_query(['q' => $q]) : ''); ?>
+                            <a class="sn-search-clear-filters" href="<?= htmlspecialchars($clearFiltersUrl, ENT_QUOTES, 'UTF-8') ?>">Clear filters</a>
                         <?php else: ?>
                             <?php foreach ($results as $row): ?>
                                 <?php
@@ -683,6 +620,7 @@ $shouldSaveSearchShuffle =
                                     'show_emotions' => true,
                                     'show_badges' => true,
                                     'show_analyze' => true,
+                                    'read_button_class' => 'btn btn-secondary',
                                 ]);
                                 ?>
                             <?php endforeach; ?>
@@ -692,6 +630,7 @@ $shouldSaveSearchShuffle =
             <?php endif; ?>
         </div>
     </section>
+    </main>
 
     <?php if ($shouldSaveSearchShuffle): ?>
         <script>
