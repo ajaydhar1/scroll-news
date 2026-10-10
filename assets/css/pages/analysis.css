@@ -283,3 +283,161 @@ html:not([data-ui-theme="dark"]) body.analysis-page .sn-categories-pills .btn.bt
 html:not([data-ui-theme="dark"]) body.analysis-page .sn-categories-pills .btn.btn-dark:focus-visible {
     box-shadow: 0 0 0 2px rgba(0, 191, 166, 0.35) !important;
 }
+
+/* ==== Dark theme: Trends only (shared --sn-* variables come from dark.css) ==== */
+html[data-ui-theme="dark"] body.analysis-page {
+    background: var(--sn-canvas) !important;
+}
+
+html[data-ui-theme="dark"] body.analysis-page > .container-fluid {
+    color: #e6e9ed;
+}
+
+html[data-ui-theme="dark"] body.analysis-page > .container-fluid h1,
+html[data-ui-theme="dark"] body.analysis-page > .container-fluid h3,
+html[data-ui-theme="dark"] body.analysis-page .kpi .val {
+    color: #e6e9ed;
+}
+
+html[data-ui-theme="dark"] body.analysis-page .note,
+html[data-ui-theme="dark"] body.analysis-page .analysis-desc p,
+html[data-ui-theme="dark"] body.analysis-page .card-eyebrow,
+html[data-ui-theme="dark"] body.analysis-page .kpi .label,
+html[data-ui-theme="dark"] body.analysis-page .sn-categories-title,
+html[data-ui-theme="dark"] body.analysis-page .muted {
+    color: var(--sn-muted);
+}
+
+/* Solid surface; selector outranks the global dark.css .card gradient and excludes modals */
+html[data-ui-theme="dark"] body.analysis-page > .container-fluid .card {
+    background: var(--sn-surface) !important;
+    border: 1px solid var(--sn-border) !important;
+    box-shadow: var(--sn-shadow);
+    color: #e6e9ed;
+}
+
+html[data-ui-theme="dark"] body.analysis-page .kpi {
+    background: var(--sn-surface-raised);
+    border-color: var(--sn-border);
+}
+
+html[data-ui-theme="dark"] body.analysis-page th,
+html[data-ui-theme="dark"] body.analysis-page td {
+    border-bottom-color: var(--sn-border);
+}
+
+html[data-ui-theme="dark"] body.analysis-page th {
+    color: var(--sn-muted);
+}
+
+html[data-ui-theme="dark"] body.analysis-page > .container-fluid a:not(.btn) {
+    color: #2dd4bf;
+}
+
+html[data-ui-theme="dark"] body.analysis-page > .container-fluid a:not(.btn):hover {
+    color: #5eead4;
+}
+
+/* Bars: teal tint, same on desktop row overlay and mobile cell fill */
+html[data-ui-theme="dark"] body.analysis-page .bar-table .bar-row::before,
+html[data-ui-theme="dark"] body.analysis-page .bar-table .bar-cell .bar-fill {
+    background: rgba(0, 191, 166, 0.16);
+}
+
+html[data-ui-theme="dark"] body.analysis-page .bar-table .bar-row:hover::before,
+html[data-ui-theme="dark"] body.analysis-page .bar-table tr:hover .bar-cell .bar-fill {
+    background: rgba(0, 191, 166, 0.26);
+}
+
+/* Category pills */
+html[data-ui-theme="dark"] body.analysis-page .sn-categories-pills {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.2rem;
+    max-width: 100%;
+    padding: 0.25rem;
+    background: var(--sn-surface);
+    border: 1px solid var(--sn-border);
+    border-radius: 6px;
+}
+
+html[data-ui-theme="dark"] body.analysis-page .sn-categories-pills .btn.btn-dark {
+    margin: 0 !important;
+    padding: 0.45rem 0.8rem;
+    background: transparent;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: none !important;
+    color: #cfd6dd;
+    font: 600 0.79rem/1.15 "Montserrat", "Open Sans", sans-serif;
+}
+
+html[data-ui-theme="dark"] body.analysis-page .sn-categories-pills .btn.btn-dark:hover,
+html[data-ui-theme="dark"] body.analysis-page .sn-categories-pills .btn.btn-dark:focus-visible,
+html[data-ui-theme="dark"] body.analysis-page .sn-categories-pills .btn.btn-dark:active {
+    background: rgba(0, 191, 166, 0.16);
+    color: #5eead4;
+    outline: none;
+}
+
+html[data-ui-theme="dark"] body.analysis-page .sn-categories-pills .btn.btn-dark:focus-visible {
+    box-shadow: 0 0 0 2px rgba(0, 191, 166, 0.5) !important;
+}
+
+/* Filter chips */
+html[data-ui-theme="dark"] body.analysis-page .corpus-chip {
+    border-color: rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.05);
+    color: #d5dbe1;
+}
+
+html[data-ui-theme="dark"] body.analysis-page .corpus-chip:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+html[data-ui-theme="dark"] body.analysis-page .corpus-chip:focus-visible {
+    outline-color: rgba(0, 191, 166, 0.6);
+}
+
+html[data-ui-theme="dark"] body.analysis-page .corpus-chip.is-active {
+    background: rgba(0, 191, 166, 0.2);
+    border-color: rgba(0, 191, 166, 0.55);
+    color: #e6fffb;
+}
+
+/* Active-filter badge (Bootstrap .bg-light / .text-dark are !important) */
+html[data-ui-theme="dark"] body.analysis-page .badge.bg-light {
+    background-color: rgba(0, 191, 166, 0.16) !important;
+    border: 1px solid rgba(0, 191, 166, 0.45) !important;
+    color: #e6fffb !important;
+}
+
+html[data-ui-theme="dark"] body.analysis-page .badge.bg-light .btn {
+    color: #e6fffb;
+    box-shadow: none !important;
+}
+
+/* Inputs and selects */
+html[data-ui-theme="dark"] body.analysis-page #corpusFilters .form-control,
+html[data-ui-theme="dark"] body.analysis-page #corpusFilters select {
+    background-color: var(--sn-canvas);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #e6e9ed;
+    color-scheme: dark;
+}
+
+html[data-ui-theme="dark"] body.analysis-page #corpusFilters .form-control::placeholder {
+    color: rgba(230, 233, 237, 0.55);
+}
+
+html[data-ui-theme="dark"] body.analysis-page #corpusFilters .form-control:focus,
+html[data-ui-theme="dark"] body.analysis-page #corpusFilters select:focus {
+    border-color: #00bfa6;
+    box-shadow: 0 0 0 2px rgba(0, 191, 166, 0.3);
+    outline: none;
+}
+
+html[data-ui-theme="dark"] body.analysis-page #corpusFilters label {
+    color: var(--sn-muted) !important;
+}
