@@ -29,7 +29,7 @@
 
         track.scrollBy({
           left: delta,
-          behavior: "smooth",
+          behavior: "auto",
         });
       });
     });
@@ -43,13 +43,13 @@
           e.preventDefault();
           track.scrollBy({
             left: track.clientWidth * 0.9,
-            behavior: "smooth",
+            behavior: "auto",
           });
         } else if (e.key === "ArrowLeft") {
           e.preventDefault();
           track.scrollBy({
             left: -track.clientWidth * 0.9,
-            behavior: "smooth",
+            behavior: "auto",
           });
         }
       });

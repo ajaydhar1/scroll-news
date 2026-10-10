@@ -11,6 +11,8 @@ $errorMsg      = null;
 $page          = max(1, (int)($_GET['page'] ?? 1));
 $totalPages    = 1;
 $days          = [];
+$rangeLabelStart = '';
+$rangeLabelEnd = '';
 
 $ARCHIVE_OLDEST_DATE = '2025-11-30'; // first day RSS ingestion started
 
@@ -45,12 +47,15 @@ if (!$pdo) {
             $page = $totalPages;
 
             $windowStart = $todayLocal->sub(new DateInterval('P' . (($page - 1) * $DAYS_PER_PAGE + ($DAYS_PER_PAGE - 1)) . 'D'));
-            $windowEnd   = $todayLocal->sub(new DateInterval('P' . (($page - 1) * $DAYS_PER_PAGE) . 'D'))
+            $windowEndExclusive = $todayLocal->sub(new DateInterval('P' . (($page - 1) * $DAYS_PER_PAGE) . 'D'))
                 ->add(new DateInterval('P1D'));
 
             $windowStartDate = $windowStart->format('Y-m-d');
-            $windowEndDate   = $windowEnd->format('Y-m-d');
+            $windowEndDate   = $windowEndExclusive->format('Y-m-d');
         }
+
+        $rangeLabelStart = $windowStart->format('F j, Y');
+        $rangeLabelEnd = $windowEndExclusive->sub(new DateInterval('P1D'))->format('F j, Y');
 
         $sql = "
             SELECT 
@@ -200,24 +205,17 @@ if (!$pdo) {
             <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
             <!-- Daily Scroll Archive -->
-            <section class="page-section" id="" style="padding: 4rem 0;">
+            <section class="page-section sn-archive-section" id="">
                 <div class="container-fluid px-3 px-md-4">
-                    <div class="row justify-content-center sn-archive-header mb-3">
-                        <div class="col-md-8 text-center">
-                            <h2 class="section-heading text-uppercase">Daily Scroll Archive</h2>
-                            <p class="section-subheading">
-                                Flip through every article Scroll News has captured, with one horizontal row of cards for each day.
-                            </p>
-                            <p class="section-subheading">
-                                Viewing page <?= (int)$page; ?> of <?= (int)$totalPages; ?> — a <?= $DAYS_PER_PAGE ?>-day slice of the Scroll News archive.
+                    <div class="sn-archive-header">
+                        <div class="sn-archive-heading-copy">
+                            <h1 class="sn-archive-title">Scroll Archive</h1>
+                            <p class="sn-archive-subtitle">
+                                Browse coverage day by day and revisit the stories shaping each news cycle.
                             </p>
                         </div>
+                        <a href="history.php" class="view-history">View your reading history <span aria-hidden="true">&rarr;</span></a>
                     </div>
-
-                    <p class="small text-muted text-center mb-3">
-                        Want to see only what <em>you’ve</em> read?
-                        <a href="history.php" class="view-history">View your reading history →</a>
-                    </p>
 
                     <?php if ($errorMsg): ?>
                         <div class="row">
@@ -236,18 +234,18 @@ if (!$pdo) {
                     <?php else: ?>
 
                         <!-- Filter bar -->
-                        <div class="sn-history-filters mt-5 mb-0">
+                        <div class="sn-history-filters mb-0" role="group" aria-label="Filter archived stories">
                             <div class="container-fluid px-0 px-md-1">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-4 col-lg-2 mb-2 filter-col">
+                                <div class="row">
+                                    <div class="col-md-4 mb-2 filter-col">
                                         <label for="historyFilterKeyword">Filter by keyword</label>
                                         <input id="historyFilterKeyword" type="text" class="form-control form-control-sm" placeholder="headline, topic, etc.">
                                     </div>
-                                    <div class="col-md-4 col-lg-2 mb-2 filter-col">
+                                    <div class="col-md-4 mb-2 filter-col">
                                         <label for="historyFilterDomain">Filter by domain</label>
                                         <input id="historyFilterDomain" type="text" class="form-control form-control-sm" placeholder="e.g. nytimes.com">
                                     </div>
-                                    <div class="col-md-4 col-lg-2 col-xl-2 mb-2 filter-col">
+                                    <div class="col-md-4 mb-2 filter-col">
                                         <label for="historyFilterTime">Time window</label>
                                         <select id="historyFilterTime" class="form-control form-control-sm">
                                             <option value="all">All time</option>
@@ -258,14 +256,10 @@ if (!$pdo) {
                             </div>
                         </div>
 
-                        <?php
-                        $rangeLabelStart = $windowStart->format('F j, Y');
-                        $rangeLabelEnd   = $windowEndExclusive->sub(new DateInterval('P1D'))->format('F j, Y');
-                        ?>
-                        <p class="small text-muted text-center mt-3 mb-0">
-                            Showing archive window: <strong><?php echo $rangeLabelStart; ?></strong>
-                            through
-                            <strong><?php echo $rangeLabelEnd; ?></strong>
+                        <p class="sn-archive-window" aria-live="polite">
+                            <span>Archive window</span>
+                            <strong><?php echo $rangeLabelStart; ?> <span aria-hidden="true">&ndash;</span> <?php echo $rangeLabelEnd; ?></strong>
+                            <span class="sn-archive-page-count">Page <?= (int)$page; ?> of <?= (int)$totalPages; ?></span>
                         </p>
 
                         <?php require_once BASE_PATH . "/core/config/interest.php"; ?>
