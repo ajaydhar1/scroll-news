@@ -1,20 +1,20 @@
 {
-    "fetched_at": 1791602784,
+    "fetched_at": 1791611245,
     "feeds": [
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "'One of the finest dining rooms in London': TOM PARKER BOWLES reviews Hawksmoor's latest grand location",
-                    "url": "https://www.dailymail.com/lifestyle/food-drink/article-16190395/One-finest-dining-rooms-London-TOM-PARKER-BOWLES-reviews-Hawksmoors-latest-grand-location.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791602685,
+                    "title": "Read the uncensored 'Cornell 7' Snapchat messages: Inside fraternity brothers' group chat... and Jane Doe's texts that came later",
+                    "url": "https://www.dailymail.com/news/article-16190423/cornell-jane-doe-text-messages-snapchat.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791609915,
                     "emo": "📰"
                 },
                 {
-                    "title": "M&S boss tells Healey: Take the handcuffs off business and get Britain growing - as he savages Labour's 'crushing' tax policies just weeks ahead of first Burnham Budget",
-                    "url": "https://www.dailymail.com/news/article-16197765/M-S-boss-urges-Labour-handcuffs-business-policies-crushing-disappointment.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791602450,
+                    "title": "The perils of wellies: They're the must-have boot for farmers, fashionistas and festivalgoers, but experts warn that they can lead to serious problems. Here's how to avoid risk",
+                    "url": "https://www.dailymail.com/health/article-16195763/wellies-boot-farmers-festivalgoers-problems-avoid-risk.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791609641,
                     "emo": "📰"
                 }
             ]
@@ -24,15 +24,69 @@
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Liberty’s season ends with a disappointing dud — but the questions are just beginning",
-                    "url": "https://nypost.com/2026/10/09/sports/libertys-season-ends-in-a-disappointing-dud-as-questions-loom/",
-                    "ts": 1791602562,
+                    "title": "‘Helluva Boss’ actor Brandon Rogers lashes out at heckler at NY Comic Con: ‘You need to shut the f–k up’",
+                    "url": "https://pagesix.com/2026/10/10/celebrity-news/helluva-boss-actor-brandon-rogers-lashes-out-at-heckler-at-new-york-comic-con-during-panel/",
+                    "ts": 1791608774,
                     "emo": "📰"
                 },
                 {
-                    "title": "Garrett Whitlock pitched through a fractured tibia at end of season for Red Sox",
-                    "url": "https://nypost.com/2026/10/09/sports/garrett-whitlock-pitched-through-a-fractured-tibia-at-end-of-season-for-red-sox/",
-                    "ts": 1791600901,
+                    "title": "‘Helluva Boss’ actor Brandon Rogers lashes out at heckler at NY Comic Con: ‘You need to shut the f–k up’",
+                    "url": "https://pagesix.com/2026/10/10/celebrity-news/helluva-boss-actor-brandon-rogers-lashes-out-at-heckler-at-new-york-comic-con-during-panel/",
+                    "ts": 1791608774,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "DEVELOPING: CAT 2 GULF",
+                    "url": "https://apnews.com/919a46d4bd705726b4e57f18ce677ac5",
+                    "ts": 1791607416,
+                    "emo": "📰"
+                },
+                {
+                    "title": "LIVE: STORM CHASERS",
+                    "url": "https://www.youtube.com/watch?v=naxJDOglaNs",
+                    "ts": 1791607416,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "Trump announces deal for Russian diesel as Zelensky calls it a gift to Putin",
+                    "url": "https://www.bbc.co.uk/news/articles/cm1dwgr666wno?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791607100,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Analysis: Trump's shock Russia deal highlights mounting pressure to curb fuel prices",
+                    "url": "https://www.bbc.co.uk/news/articles/c5lye9z4xw4yo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791585022,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Trump's AI rebrand is catching on with Elon Musk and Marc Benioff",
+                    "url": "https://www.businessinsider.com/trump-ai-rebrand-elon-musk-marc-benioff-2026-10",
+                    "ts": 1791604921,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "An NYU professor says OpenAI's mass release of math papers wiped out early-career researchers' projects",
+                    "url": "https://www.businessinsider.com/openais-math-dump-rattles-math-researchers-saw-programs-wiped-out-2026-10",
+                    "ts": 1791591390,
                     "emo": "📰"
                 }
             ]
@@ -56,38 +110,20 @@
             ]
         },
         {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "DEVELOPING: CAT 2 GULF",
-                    "url": "https://apnews.com/919a46d4bd705726b4e57f18ce677ac5",
-                    "ts": 1791600936,
-                    "emo": "📰"
-                },
-                {
-                    "title": "LIVE: STORM CHASERS",
-                    "url": "https://www.youtube.com/watch?v=naxJDOglaNs",
-                    "ts": 1791600936,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
             "name": "The Hill",
             "home": "https://thehill.com",
             "items": [
+                {
+                    "title": "Federal judge: DOJ cannot request states' voter lists for eligibility database",
+                    "url": "https://thehill.com/regulation/court-battles/6140273-judge-blocks-doj-voter-rolls-program/",
+                    "ts": 1791602022,
+                    "emo": "⚖️"
+                },
                 {
                     "title": "Trump asks Supreme Court to look at 2016 election lawsuit against Clinton: Report",
                     "url": "https://thehill.com/homenews/administration/6140233-trump-supreme-court-clinton-lawsuit-appeal/",
                     "ts": 1791600433,
                     "emo": "⚖️"
-                },
-                {
-                    "title": "Live updates: Trump rallies voters in upstate New York after Putin diesel deal announcement",
-                    "url": "https://thehill.com/homenews/administration/6138003-live-update-trump-vance-midterm-elections/",
-                    "ts": 1791591259,
-                    "emo": "🔥"
                 }
             ]
         },
@@ -110,6 +146,24 @@
             ]
         },
         {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Hurricane Isaias makes landfall in Florida",
+                    "url": "https://www.nbcnews.com/now/video/hurricane-isaias-makes-landfall-in-florida-271377477807",
+                    "ts": 1791598282,
+                    "emo": "🌪️"
+                },
+                {
+                    "title": "Hurricane Isaias makes landfall in Florida",
+                    "url": "https://www.nbcnews.com/now/video/hurricane-isaias-makes-landfall-in-florida-271377477807",
+                    "ts": 1791598282,
+                    "emo": "🌪️"
+                }
+            ]
+        },
+        {
             "name": "CNBC",
             "home": "https://www.cnbc.com",
             "items": [
@@ -120,46 +174,10 @@
                     "emo": "⚖️"
                 },
                 {
-                    "title": "Americans' debt problems are flashing a warning not seen since the Great Recession",
-                    "url": "https://www.cnbc.com/2026/10/09/american-debt-delinquency.html",
-                    "ts": 1791573504,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "Trump announces deal for Russian diesel as Zelensky calls it a gift to Putin",
-                    "url": "https://www.bbc.co.uk/news/articles/cm1dwgr666wno?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791593151,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Analysis: Trump's shock Russia deal highlights mounting pressure to curb fuel prices",
-                    "url": "https://www.bbc.co.uk/news/articles/c5lye9z4xw4yo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791585022,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "An NYU professor says OpenAI's mass release of math papers wiped out early-career researchers' projects",
-                    "url": "https://www.businessinsider.com/openais-math-dump-rattles-math-researchers-saw-programs-wiped-out-2026-10",
-                    "ts": 1791591390,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Best Madewell coupon codes we've tested in October 2026",
-                    "url": "https://www.businessinsider.com/guides/deals/best-madewell-coupon-promo-codes",
-                    "ts": 1791590461,
-                    "emo": "📰"
+                    "title": "The world needs Ukraine’s grain. Its farmers are running out of reasons to plant",
+                    "url": "https://www.cnbc.com/2026/10/10/ukraine-grain-exports-russia-harvest.html",
+                    "ts": 1791608401,
+                    "emo": "🌍"
                 }
             ]
         },
@@ -182,24 +200,6 @@
             ]
         },
         {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Florida and Alabama declare states of emergency as Hurricane Isaias nears Gulf Coast",
-                    "url": "https://www.nbcnews.com/now/video/florida-and-alabama-declare-states-of-emergency-as-hurricane-isaias-nears-gulf-coast-271352389806",
-                    "ts": 1791572213,
-                    "emo": "🌪️"
-                },
-                {
-                    "title": "Hurricane Isaias makes landfall in Florida",
-                    "url": "https://www.nbcnews.com/now/video/hurricane-isaias-makes-landfall-in-florida-271377477807",
-                    "ts": 1791598282,
-                    "emo": "🌪️"
-                }
-            ]
-        },
-        {
             "name": "The Guardian",
             "home": "https://www.theguardian.com",
             "items": [
@@ -210,10 +210,10 @@
                     "emo": "💰"
                 },
                 {
-                    "title": "Oil prices fall as Trump pauses Iran attacks, China restarts fuel exports – as it happened",
-                    "url": "https://www.theguardian.com/business/live/2026/oct/09/oil-prices-crude-brent-trump-iran-us-war-midterm-elections-stocks-bonds-business-live",
-                    "ts": 1791555126,
-                    "emo": "⚖️"
+                    "title": "France’s dilemma: protesters demand spending as markets require fiscal restraint",
+                    "url": "https://www.theguardian.com/world/2026/oct/10/france-caught-between-bond-markets-student-worker-blockades",
+                    "ts": 1791604847,
+                    "emo": "📰"
                 }
             ]
         }

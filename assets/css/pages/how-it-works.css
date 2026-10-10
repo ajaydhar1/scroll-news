@@ -105,7 +105,7 @@ html[data-ui-theme="dark"] body.how-page .sn-product-item .dropdown-item {
 body.how-page .how-progress {
     position: sticky;
     top: var(--how-progress-top, 75px);
-    z-index: 1031;
+    z-index: 1020;
     height: 3px;
     background: var(--how-line);
 }
