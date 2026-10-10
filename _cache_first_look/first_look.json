@@ -1,38 +1,38 @@
 {
-    "fetched_at": 1791657910,
+    "fetched_at": 1791658713,
     "feeds": [
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "Arvell Reese is already a Giants force — and making the Sonny Styles criticism an afterthought",
-                    "url": "https://nypost.com/2026/10/10/sports/arvell-reese-is-already-a-giants-force-after-sonny-styles-criticism/",
-                    "ts": 1791657783,
-                    "emo": "📰"
-                },
-                {
-                    "title": "‘9-1-1’ star Oliver Stark and 3 others suffer stunt-related injuries on set",
-                    "url": "https://pagesix.com/2026/10/10/entertainment/9-1-1-star-oliver-stark-and-3-others-injured-on-set/",
-                    "ts": 1791657667,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Deadly Hurricane Isaias claims its first victims as terrifying video shows moment tree crushes emergency worker: Live updates",
-                    "url": "https://www.dailymail.com/sciencetech/article-16198449/hurricane-isaias-southeast-winds-power.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791657517,
-                    "emo": "🔥"
+                    "title": "Shakespeare's Globe and National Space Academy are accused of 'discriminating' against private schools with two-tier pricing",
+                    "url": "https://www.dailymail.com/news/article-16198945/Shakespeares-Globe-National-Space-Academy-accused-discriminating-against-private-schools-two-tier-pricing.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791658519,
+                    "emo": "🧪"
                 },
                 {
-                    "title": "How Eamonn's formidable 'ex-wives club' have teamed up to help in his hour of need: It was dubbed the nastiest divorce in showbiz. But now Ruth has joined forces with frail star's first wife... as NEW girlfriend moves out",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16198701/eamonn-holmes-wife-frail-girlfriend-morning.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791657065,
+                    "title": "Moment 'hated' cycling vigilante dodges traffic jam by following police car on a 999 call",
+                    "url": "https://www.dailymail.com/news/article-16195377/Moment-hated-cycling-vigilante-dodges-traffic-jam-following-police-car-999-call.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791658356,
+                    "emo": "🚨"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "The clock is ticking on Aaron Judge’s entry into a dubious Yankees club",
+                    "url": "https://nypost.com/2026/10/10/sports/clock-is-ticking-on-aaron-judges-entry-into-dubious-yankees-club/",
+                    "ts": 1791658399,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "VJ Edgecombe reveals he’d rather play for Bahamas at Olympics than win NBA Finals",
+                    "url": "https://nypost.com/2026/10/10/sports/vj-edgecombe-reveals-hed-rather-play-for-bahamas-at-olympics-than-win-nba-finals/",
+                    "ts": 1791658365,
                     "emo": "📰"
                 }
             ]
