@@ -1,38 +1,38 @@
 {
-    "fetched_at": 1791595735,
+    "fetched_at": 1791598628,
     "feeds": [
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Stop hounding Ulster heroes, son of veteran who died while on trial tells minister",
-                    "url": "https://www.dailymail.com/news/article-16197875/Stop-hounding-Ulster-heroes-son-veteran-died-trial-tells-minister.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791595635,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Keely Hodgkinson defends her 'sexy' all-black running catsuit which feels like she's 'wearing nothing' - despite being banned from using it at Olympics",
-                    "url": "https://www.dailymail.com/sport/othersports/article-16195349/Keely-Hodgkinson-defends-sexy-running-catsuit-Olympic-champion.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791595234,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Dodgers slugger pulls curtain back on stunning use of AI in baseball",
-                    "url": "https://nypost.com/2026/10/09/sports/dodgers-max-muncy-pulls-curtain-back-on-stunning-use-of-ai-in-baseball/",
-                    "ts": 1791595512,
-                    "emo": "🧪"
+                    "title": "Liberty’s season comes to crushing end as they’re swept out of WNBA semifinals by Dream",
+                    "url": "https://nypost.com/2026/10/09/sports/libertys-season-ends-with-crushing-semifinal-sweep-by-dream/",
+                    "ts": 1791598348,
+                    "emo": "📰"
                 },
                 {
-                    "title": "George Clooney speaks out on Presley Gerber’s death",
-                    "url": "https://pagesix.com/2026/10/09/celebrity-news/george-clooney-speaks-out-on-presley-gerbers-death/",
-                    "ts": 1791595202,
+                    "title": "Jennifer Meyer, Geoff Ogulesi to wed this weekend in Hawai’i",
+                    "url": "https://pagesix.com/2026/10/09/society/jennifer-meyer-geoff-ogulesi-to-wed-this-weekend-in-hawaii/",
+                    "ts": 1791598326,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Trump's diesel agreement with Putin accused of contradicting Russia sanctions law",
+                    "url": "https://www.cnbc.com/2026/10/09/trump-putin-diesel-russia-sanctions-ukraine.html",
+                    "ts": 1791598140,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Americans' debt problems are flashing a warning not seen since the Great Recession",
+                    "url": "https://www.cnbc.com/2026/10/09/american-debt-delinquency.html",
+                    "ts": 1791573504,
                     "emo": "📰"
                 }
             ]
@@ -44,14 +44,32 @@
                 {
                     "title": "DEVELOPING: CAT 2 GULF",
                     "url": "https://apnews.com/919a46d4bd705726b4e57f18ce677ac5",
-                    "ts": 1791594456,
+                    "ts": 1791597696,
                     "emo": "📰"
                 },
                 {
                     "title": "LIVE: STORM CHASERS",
                     "url": "https://www.youtube.com/watch?v=naxJDOglaNs",
-                    "ts": 1791594456,
+                    "ts": 1791597696,
                     "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "Ryan Reynolds' desperate attempt to save Blake Lively exposed in furious texts demanding Sony do his bidding... as studio bosses privately called his wife's behavior 'epic level stupid'",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16194485/Ryan-Reynolds-Sony-Blake-Lively-Justin-Baldoni.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791597054,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Dame Maureen Lipman reveals she 'extended an olive branch' to BBC actor after he quit West End show in protest over her pro-Israel views",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16196261/Dame-Maureen-Lipman-Gerard-McCarthy-West-End-protest-Israel.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791596873,
+                    "emo": "🎭"
                 }
             ]
         },
@@ -60,16 +78,16 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
+                    "title": "Trump brings Mike Tyson on stage at Syracuse rally, jokes that he is Bruce Blakeman's personal security",
+                    "url": "https://www.foxnews.com/outkick-sports/trump-brings-mike-tyson-stage-syracuse-rally-jokes-bruce-blakeman-personal-security",
+                    "ts": 1791596743,
+                    "emo": "⚖️"
+                },
+                {
                     "title": "Gov Kathy Hochul signs New York onto Trump's school choice program despite teachers union opposition",
                     "url": "https://www.foxnews.com/media/gov-kathy-hochul-signs-new-york-trump-school-choice-program-despite-teachers-union-opposition",
                     "ts": 1791594192,
                     "emo": "⚖️"
-                },
-                {
-                    "title": "Lions head coach pays tribute to Mike Ditka after learning of his death from a press conference question",
-                    "url": "https://www.foxnews.com/outkick-sports/lions-head-coach-pays-tribute-mike-ditka-after-learning-his-death-press-conference-question",
-                    "ts": 1791593806,
-                    "emo": "📰"
                 }
             ]
         },
@@ -141,24 +159,6 @@
                     "title": "GOP priorities alienate MAHA supporters",
                     "url": "https://thehill.com/newsletters/healthcare/6140164-gop-priorities-alienate-maha-supporters/",
                     "ts": 1791590932,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Trump's diesel agreement with Putin accused of contradicting Russia sanctions law",
-                    "url": "https://www.cnbc.com/2026/10/09/trump-putin-diesel-russia-sanctions-ukraine.html",
-                    "ts": 1791587810,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Americans' debt problems are flashing a warning not seen since the Great Recession",
-                    "url": "https://www.cnbc.com/2026/10/09/american-debt-delinquency.html",
-                    "ts": 1791573504,
                     "emo": "📰"
                 }
             ]

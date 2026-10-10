@@ -230,8 +230,13 @@ html:not([data-ui-theme="dark"]) body.home-page .page .sn-intel-workspace {
     padding: 0.5rem 0 1.25rem;
     background: var(--sn-l-s1);
     border: 1px solid var(--sn-l-border);
-    border-top: 3px solid var(--sn-l-accent);
     border-radius: var(--sn-l-r-xl);
+}
+
+body.home-page .page .sn-intel-workspace .news-intel-panel .intel-sections > [class*="col-"]:nth-child(1) .intel-card,
+body.home-page .page .sn-intel-workspace .news-intel-panel .intel-sections > [class*="col-"]:nth-child(2) .intel-card,
+body.home-page .page .sn-intel-workspace .news-intel-panel .intel-sections > [class*="col-"]:nth-child(3) .intel-card {
+    border-top: 3px solid var(--brand-color) !important;
 }
 
 html:not([data-ui-theme="dark"]) body.home-page .page .sn-intel-workspace .news-intel-panel.bg-light-2 {
