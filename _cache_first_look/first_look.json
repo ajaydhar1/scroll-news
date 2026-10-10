@@ -1,74 +1,38 @@
 {
-    "fetched_at": 1791648190,
+    "fetched_at": 1791657910,
     "feeds": [
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Trump made diesel deal with Putin 'after Zelensky ignored US requests' to stop attacking Russian oil",
-                    "url": "https://www.dailymail.com/news/article-16198285/Zelensky-hits-Russian-oil-hub.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791648128,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Premier League LIVE: Chelsea thrash Bournemouth before Man United host Spurs",
-                    "url": "https://www.dailymail.com/sport/football/article-16195515/chelsea-bournemouth-premier-league-live.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791648042,
-                    "emo": "🔥"
-                }
-            ]
-        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "I watched Venezuela descend into socialist chaos before my family escaped — I see America going down the same road",
-                    "url": "https://nypost.com/2026/10/10/opinion/i-escaped-venezuelas-socialist-chaos-america-is-next/",
-                    "ts": 1791648036,
+                    "title": "Arvell Reese is already a Giants force — and making the Sonny Styles criticism an afterthought",
+                    "url": "https://nypost.com/2026/10/10/sports/arvell-reese-is-already-a-giants-force-after-sonny-styles-criticism/",
+                    "ts": 1791657783,
                     "emo": "📰"
                 },
                 {
-                    "title": "I’ve lived in LA 19 years without a car. Here’s the secrets I’ve learned and how much I’ve saved",
-                    "url": "https://nypost.com/2026/10/10/lifestyle/ive-lived-in-la-19-years-without-a-car-heres-the-secrets-ive-learned-and-how-much-ive-saved/",
-                    "ts": 1791648000,
+                    "title": "‘9-1-1’ star Oliver Stark and 3 others suffer stunt-related injuries on set",
+                    "url": "https://pagesix.com/2026/10/10/entertainment/9-1-1-star-oliver-stark-and-3-others-injured-on-set/",
+                    "ts": 1791657667,
                     "emo": "📰"
                 }
             ]
         },
         {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "A friend in her 80s fell down her basement stairs. Is this a hidden danger lurking in people’s home?",
-                    "url": "https://www.marketwatch.com/story/the-pain-was-excruciating-a-friend-in-her-80s-fell-down-her-basement-stairs-could-it-have-been-avoided-ce105db6?mod=mw_rss_topstories",
-                    "ts": 1791648000,
-                    "emo": "📰"
+                    "title": "Deadly Hurricane Isaias claims its first victims as terrifying video shows moment tree crushes emergency worker: Live updates",
+                    "url": "https://www.dailymail.com/sciencetech/article-16198449/hurricane-isaias-southeast-winds-power.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791657517,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "‘I have no children’: My aunt gave me $50,000 for a down payment. Now she wants me to leave my home to her two children.",
-                    "url": "https://www.marketwatch.com/story/i-have-no-children-my-aunt-gave-me-50-000-for-a-down-payment-she-wants-me-to-leave-my-home-to-her-two-children-24fad94c?mod=mw_rss_topstories",
-                    "ts": 1791646200,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "Christa Pike discharged from hospital and returned to prison, her lawyers say",
-                    "url": "https://www.bbc.co.uk/news/articles/cmlyle97pqd7o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791647886,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Man attacked by tiger at Yorkshire Wildlife Park",
-                    "url": "https://www.bbc.co.uk/news/articles/c6jrw8g1123vo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791646982,
+                    "title": "How Eamonn's formidable 'ex-wives club' have teamed up to help in his hour of need: It was dubbed the nastiest divorce in showbiz. But now Ruth has joined forces with frail star's first wife... as NEW girlfriend moves out",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16198701/eamonn-holmes-wife-frail-girlfriend-morning.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791657065,
                     "emo": "📰"
                 }
             ]
@@ -78,16 +42,124 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Katie Zacharia hits ground running, promises Trump diesel deal delivers cheaper gas for Americans",
-                    "url": "https://www.foxnews.com/media/incoming-press-chief-hits-ground-running-promises-trump-diesel-deal-delivers-cheaper-gas-americans",
-                    "ts": 1791647639,
+                    "title": "Bill Maher mocks Mamdani for pivoting to Israel criticism in Oct. 7 tribute, calls it 'tone deaf'",
+                    "url": "https://www.foxnews.com/media/bill-maher-mocks-mamdani-pivoting-israel-criticism-oct-7-tribute-calls-tone-deaf",
+                    "ts": 1791657184,
+                    "emo": "🌍"
+                },
+                {
+                    "title": "President Trump blasts Nobel Peace Prize snub with blistering list of accomplishments: 'WOW!'",
+                    "url": "https://www.foxnews.com/politics/president-trump-blasts-nobel-peace-prize-snub-blistering-list-accomplishments-wow",
+                    "ts": 1791656887,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "‘I feel like a loser’: My stock portfolio is swinging wildly. Is it finally time to worry?",
+                    "url": "https://www.marketwatch.com/story/i-feel-like-a-loser-my-etfs-go-up-one-day-and-crash-the-next-is-this-a-bad-sign-0c9848b2?mod=mw_rss_topstories",
+                    "ts": 1791657060,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Elon Musk is now richer than any American ever — and it’s not even close",
+                    "url": "https://www.marketwatch.com/story/elon-musk-is-now-richer-than-any-american-ever-and-its-not-even-close-58f31401?mod=mw_rss_topstories",
+                    "ts": 1791651000,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Trump rips Zelensky amid Russia diesel deal feud: 'I suggest they get a new leader'",
+                    "url": "https://thehill.com/homenews/administration/6140694-trump-defends-russian-diesel-deal/",
+                    "ts": 1791656764,
                     "emo": "⚖️"
                 },
                 {
-                    "title": "NFL coaches share incredible Mike Ditka stories as football world mourns the Bears legend",
-                    "url": "https://www.foxnews.com/outkick/nfl-coaches-share-incredible-mike-ditka-stories-football-world-mourns-bears-legend",
-                    "ts": 1791646991,
+                    "title": "The fight for EPA workers' rights is a fight for the American public",
+                    "url": "https://thehill.com/opinion/congress-blog/labor/6139141-epa-union-contract-lawsuit/",
+                    "ts": 1791655200,
                     "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "I moved my family from Australia to New York City 12 years ago. It's led to some very expensive regrets.",
+                    "url": "https://www.businessinsider.com/moved-family-to-new-york-city-from-australia-regrets-benefits-2026-10",
+                    "ts": 1791655981,
+                    "emo": "📰"
+                },
+                {
+                    "title": "I moved back to my boring hometown. As a parent, boring looks pretty good.",
+                    "url": "https://www.businessinsider.com/returned-hometown-raising-children-family-support-2026-10",
+                    "ts": 1791652441,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "Man dies after tiger attack at wildlife park",
+                    "url": "https://www.bbc.co.uk/news/articles/c6n9r3n7858zo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791655838,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "'Time for Ukraine to get new president,' says Trump after Zelensky condemns diesel deal",
+                    "url": "https://www.bbc.co.uk/news/articles/cqe8r5l7n92jo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791657383,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "WAR DAY 224: Loud blast at Riyadh airport as travellers evacuate...",
+                    "url": "https://www.yahoo.com/news/articles/loud-blast-heard-riyadh-airport-141257574.html",
+                    "ts": 1791653136,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "THE MORNING AFTER",
+                    "url": "https://www.foxweather.com/live-news/live-updates-hurricane-isaias-threatens-the-gulf-coast-with-dangerous-landfall-expected-tonight",
+                    "ts": 1791653136,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Hurricane Isaias leaves at least two people dead",
+                    "url": "https://www.nbcnews.com/now/video/hurricane-isaias-leaves-at-least-two-people-dead-271390277531",
+                    "ts": 1791649215,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "9 dead in Pennsylvania shooting, Erie officials say",
+                    "url": "https://www.nbcnews.com/news/us-news/erie-pennsylvania-mass-shooting-rcna602669",
+                    "ts": 1791653999,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -110,60 +182,6 @@
             ]
         },
         {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "WAR DAY 224: Loud blast at Riyadh airport as travellers evacuate...",
-                    "url": "https://www.yahoo.com/news/articles/loud-blast-heard-riyadh-airport-141257574.html",
-                    "ts": 1791646836,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "THE MORNING AFTER",
-                    "url": "https://www.foxweather.com/live-news/live-updates-hurricane-isaias-threatens-the-gulf-coast-with-dangerous-landfall-expected-tonight",
-                    "ts": 1791646836,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "A family of 4 lives in an RV full time. It's helping them pay off debt while traveling.",
-                    "url": "https://www.businessinsider.com/family-of-4-lives-in-rv-full-time-2026-10",
-                    "ts": 1791646561,
-                    "emo": "📰"
-                },
-                {
-                    "title": "We tried McDonald's Snack Wraps in the US and UK. We can see why the British are up in arms about the 'downgraded' item.",
-                    "url": "https://www.businessinsider.com/review-mcdonalds-snack-wrap-us-and-uk-2026-10",
-                    "ts": 1791644821,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Talarico makes first appearance in 13-days at music festival after flu absence",
-                    "url": "https://thehill.com/homenews/campaign/6140552-james-talarico-returns-flu-absence-campaign/",
-                    "ts": 1791645531,
-                    "emo": "🧪"
-                },
-                {
-                    "title": "Kalshi investigating suspicious bets tied to White house press secretary pick: Report",
-                    "url": "https://thehill.com/policy/technology/6140504-kalshi-investigates-press-secretary-bets/",
-                    "ts": 1791641382,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
             "name": "CNBC",
             "home": "https://www.cnbc.com",
             "items": [
@@ -177,24 +195,6 @@
                     "title": "Nvidia GPUs are everywhere. Here are the ways companies are accessing them",
                     "url": "https://www.cnbc.com/2026/10/10/nvidia-gpus-are-everywhere-heres-how-companies-access-them.html",
                     "ts": 1791630001,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Isaias pushes further inland with strong winds, heavy rain",
-                    "url": "https://www.nbcnews.com/video/isaias-pushes-further-inland-271385157665",
-                    "ts": 1791629049,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Backlash to livestream of firing squad execution",
-                    "url": "https://www.nbcnews.com/nightly-news/video/backlash-to-livestream-of-firing-squad-execution-271368773744",
-                    "ts": 1791586517,
                     "emo": "📰"
                 }
             ]

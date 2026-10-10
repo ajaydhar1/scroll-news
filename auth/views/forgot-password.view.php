@@ -28,6 +28,7 @@ if (isset($_GET['error'])) {
 <html lang="en">
 
 <head>
+    <script src="/assets/js/dark-theme.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/dark-theme.js'); ?>"></script>
     <?php require_once BASE_PATH . '/views/partials/___google_analytics.php'; ?>
 
     <!-- Basics -->
@@ -84,12 +85,6 @@ if (isset($_GET['error'])) {
         name="twitter:image"
         content="https://scrollnews.ai/assets/img/og/og-scrollnews-home-1200x630.png" />
 
-    <!-- Performance: Preload background -->
-    <link rel="preload" as="image" href="/assets/img/mind-pour_00.jpg">
-
-    <!-- jQuery min-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <!-- Icons -->
     <script
         src="https://use.fontawesome.com/releases/v6.7.2/js/all.js"
@@ -98,103 +93,66 @@ if (isset($_GET['error'])) {
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans&display=swap" rel="stylesheet" />
 
     <!-- Site CSS -->
     <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
     <link id="dark-typography-theme" href="/assets/css/dark-typography.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark-typography.css'); ?>" rel="stylesheet" />
-
-    <script src="/assets/js/dark-theme.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/dark-theme.js'); ?>"></script>
-
+    <link id="dark-theme" href="/assets/css/dark.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/auth.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/auth.css'); ?>" rel="stylesheet" />
 
 </head>
 
-<body id="page-top" class="auth-page">
+<body id="page-top" class="auth-page auth-page--foundation">
+    <div class="auth-layout">
+        <?php require BASE_PATH . '/auth/views/partials/auth-header.php'; ?>
 
-    <div class="page">
+        <main class="auth-main">
+            <section class="auth-panel" aria-labelledby="auth-title">
+                <header class="auth-panel__heading">
+                    <p class="auth-eyebrow">Account recovery</p>
+                    <h1 id="auth-title">Reset your password</h1>
+                    <p class="auth-intro">Enter your email and we’ll send you a link to reset your password.</p>
+                </header>
 
-        <!-- Top nav-->
-        <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
+                <?php if ($successMessage): ?>
+                    <div class="auth-message auth-message--success" role="status" aria-live="polite">
+                        <?= htmlspecialchars($successMessage, ENT_QUOTES, 'UTF-8') ?>
+                    </div>
+                <?php endif; ?>
 
-        <!-- Content area -->
-        <div class="auth-shell container my-5">
-            <div class="auth-card card border-0">
-                <div class="card-body p-5">
+                <?php if ($errorMessage): ?>
+                    <div class="auth-message auth-message--error" role="alert" aria-live="assertive">
+                        <?= htmlspecialchars($errorMessage, ENT_QUOTES, 'UTF-8') ?>
+                    </div>
+                <?php endif; ?>
 
-                    <header class="text-center mb-4">
-                        <img
-                            src="/assets/img/play-green.png"
-                            alt="Scroll News"
-                            class="auth-logo mb-3"
-                            style="height: 52px; width: auto;">
+                <form class="auth-form" method="post" action="/auth/handlers/forgot_password_handler.php">
+                    <div class="auth-field">
+                        <label class="auth-label" for="email">Email address</label>
+                        <input
+                            class="auth-input"
+                            type="email"
+                            id="email"
+                            name="email"
+                            autocomplete="email"
+                            inputmode="email"
+                            required>
+                    </div>
 
-                        <h1 class="h3 mb-2">
-                            Reset your password
-                        </h1>
+                    <button class="auth-button auth-button--primary" type="submit">Send Reset Link</button>
+                </form>
 
-                        <p class="text-muted mb-0">
-                            Enter your email and we’ll send you a link to reset your password.
-                        </p>
-                    </header>
-
-                    <?php if ($successMessage): ?>
-                        <div class="alert alert-success auth-alert" role="alert">
-                            <?= htmlspecialchars($successMessage, ENT_QUOTES, 'UTF-8') ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if ($errorMessage): ?>
-                        <div class="alert alert-danger auth-alert" role="alert">
-                            <?= htmlspecialchars($errorMessage, ENT_QUOTES, 'UTF-8') ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <form method="post" action="/auth/handlers/forgot_password_handler.php">
-
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-
-                            <input
-                                type="email"
-                                class="form-control"
-                                id="email"
-                                name="email"
-                                autocomplete="email"
-                                required>
-                        </div>
-
-                        <button type="submit" class="btn btn-green btn-block">
-                            Send Reset Link
-                        </button>
-
-                    </form>
-
-                    <hr class="my-4">
-
-                    <p class="text-center mb-0">
-                        Remembered your password?
-                        <a href="/auth/login.php">Sign in</a>
-                    </p>
-
+                <div class="auth-secondary-action">
+                    <span>Remembered your password?</span>
+                    <a class="auth-button auth-button--secondary" href="/auth/login.php">Sign in</a>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
 
-        <!-- Footer-->
-        <?php require_once BASE_PATH . '/views/partials/___footer.php'; ?>
-
+        <?php require BASE_PATH . '/auth/views/partials/auth-footer.php'; ?>
     </div>
-
-    <!-- Modals-->
-    <?php require_once BASE_PATH . '/views/partials/___modals.php'; ?>
-
-    <!-- Bootstrap core JS-->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>

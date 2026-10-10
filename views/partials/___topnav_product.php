@@ -10,9 +10,7 @@ require_once __DIR__ . '/../../auth/includes/auth_bootstrap.php';
 
 <link href="/assets/css/product-nav.css?v=<?= filemtime(BASE_PATH . '/assets/css/product-nav.css'); ?>" rel="stylesheet" />
 
-<div id="snProductLoadingOverlay" class="loading-overlay" aria-live="polite" aria-busy="true" hidden>
-    <div class="loading-spinner" role="status" aria-label="Loading"></div>
-</div>
+<?php require_once __DIR__ . '/___loading_indicator.php'; ?>
 
 <header class="sn-product-nav-shell sticky-top">
     <nav class="sn-product-nav container-fluid" aria-label="Main navigation">
@@ -109,9 +107,6 @@ require_once __DIR__ . '/../../auth/includes/auth_bootstrap.php';
     }
 
     (function() {
-        const overlay = document.getElementById('snProductLoadingOverlay');
-        const show = () => overlay && (overlay.hidden = false);
-        const hide = () => overlay && (overlay.hidden = true);
         const themeIcon = document.querySelector('.sn-product-theme-icon');
 
         function syncThemeIcon() {
@@ -125,24 +120,6 @@ require_once __DIR__ . '/../../auth/includes/auth_bootstrap.php';
                 window.FontAwesome.dom.i2svg({ node: themeIcon });
             }
         }
-
-        window.addEventListener('pageshow', hide);
-        document.addEventListener('click', function(event) {
-            const el = event.target.closest('[data-loading]');
-            if (!el || event.defaultPrevented) return;
-            if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
-
-            const link = el.closest('a');
-            if (link) {
-                const target = link.getAttribute('target');
-                if (target && target !== '_self') return;
-                if (link.hasAttribute('download')) return;
-                const href = link.getAttribute('href') || '';
-                // In-page anchors don't unload the page, so the overlay would never clear.
-                if (href === '' || href.charAt(0) === '#') return;
-            }
-            show();
-        });
 
         syncThemeIcon();
         new MutationObserver(syncThemeIcon).observe(document.documentElement, {

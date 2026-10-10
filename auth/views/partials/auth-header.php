@@ -1,6 +1,8 @@
+<?php require_once BASE_PATH . '/views/partials/___loading_indicator.php'; ?>
+
 <header class="auth-header">
     <div class="auth-header__inner">
-        <a class="auth-brand" href="/" aria-label="Scroll News home">
+        <a class="auth-brand" href="/" data-loading aria-label="Scroll News home">
             <img src="/assets/img/play-green.png" alt="" width="30" height="30">
             <span>Scroll News</span>
         </a>

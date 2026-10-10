@@ -291,6 +291,13 @@ html[data-ui-theme="dark"] .auth-panel {
     font-weight: 600;
 }
 
+.auth-field-hint {
+    margin: 0;
+    color: var(--auth-muted);
+    font-size: 0.82rem;
+    line-height: 1.45;
+}
+
 .auth-input {
     display: block;
     width: 100%;
