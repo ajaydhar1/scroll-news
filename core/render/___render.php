@@ -450,6 +450,8 @@ function sn_render_article_card(array $vm, array $opts = []): void {
 
 function sn_render_article_card_archive(array $vm, array $opts = []): void {
     $title    = $vm['title'] ?? '';
+    $description = trim(html_entity_decode(strip_tags((string)($vm['row']['description'] ?? '')), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+    $description = preg_replace('/\s+/u', ' ', $description) ?? $description;
     $url      = $vm['read_url'] ?? '#';
     $pubTime  = $vm['pub_human'] ?? '';     // in archive we made this g:i A
     $pubIso   = $vm['pub_iso'] ?? '';
@@ -507,6 +509,10 @@ function sn_render_article_card_archive(array $vm, array $opts = []): void {
 
         <div class="article-body">
             <h4 class="article-title mb-0"><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></h4>
+
+            <?php if ($description !== ''): ?>
+                <p class="sn-archive-description"><?= htmlspecialchars($description, ENT_QUOTES, 'UTF-8'); ?></p>
+            <?php endif; ?>
 
             <div class="article-meta">
                 <?= htmlspecialchars($pubTime, ENT_QUOTES, 'UTF-8'); ?>
@@ -575,6 +581,9 @@ function scroll_render_article_intel_item(array $article, array $opts = []): str
     $maxTopicChips  = (int)($opts['max_topic_chips'] ?? 2);
     $topicMinScore  = (float)($opts['topic_min_score'] ?? 0.2);
     $emotionMinPct  = (float)($opts['emotion_min_pct'] ?? 15.0);
+    $showDescription = !empty($opts['show_description']);
+    $description = trim(html_entity_decode(strip_tags((string)($article['description'] ?? '')), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+    $description = preg_replace('/\s+/u', ' ', $description) ?? $description;
 
     // --- Helpers local to this function (safe + contained)
 
@@ -744,6 +753,10 @@ function scroll_render_article_intel_item(array $article, array $opts = []): str
                 <span class="source-slug text-muted"> · <?= htmlspecialchars((string)$article['source_slug'], ENT_QUOTES, 'UTF-8') ?></span>
             <?php endif; ?>
         </a>
+
+        <?php if ($showDescription && $description !== ''): ?>
+            <p class="intel-article-description"><?= htmlspecialchars($description, ENT_QUOTES, 'UTF-8') ?></p>
+        <?php endif; ?>
 
         <?php if ($publisherDomain || $formattedDate): ?>
             <div class="intel-article-meta text-muted small mt-1 d-flex align-items-center gap-2 flex-wrap">

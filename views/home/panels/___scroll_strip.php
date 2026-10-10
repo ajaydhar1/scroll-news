@@ -15,6 +15,7 @@ try {
         SELECT 
             url,
             title,
+            description,
             source_slug,
             media_url AS image_url,
             pub_date,
@@ -84,6 +85,7 @@ try {
             $enriched[] = [
                 'url'             => $row['url'],
                 'title'           => $row['title'],
+                'description'     => trim(preg_replace('/\s+/u', ' ', html_entity_decode(strip_tags((string)($row['description'] ?? '')), ENT_QUOTES | ENT_HTML5, 'UTF-8')) ?? ''),
                 'source_slug'     => $row['source_slug'],
                 'image_url'       => $row['image_url'],
                 'pub_date'        => $row['pub_date'],

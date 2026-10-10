@@ -349,7 +349,7 @@ require_once BASE_PATH . "/core/___modules.php";
         <!-- Active Stories Panel-->
         <?php
         render_home_panel(
-            'homepage_active_stories',
+            'homepage_active_stories_descriptions_v1',
             30,
             300,
             BASE_PATH . '/views/home/panels/___active_stories.php',

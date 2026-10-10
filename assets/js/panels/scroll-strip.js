@@ -153,6 +153,7 @@
         "&size=64";
 
       const safeTitle = safeText(a.title || "");
+  const safeDescription = safeText(a.description || "");
 
       // NLP bits (DB only)
       const hashtags = Array.isArray(a.hashtags) ? a.hashtags : [];
@@ -247,6 +248,7 @@
           </div>
           <div class="sn-body">
             <div class="sn-title">${safeTitle} ▶️</div>
+            ${safeDescription ? `<div class="sn-description">${safeDescription}</div>` : ""}
             <div class="sn-meta">
               <span>${safeText(domainOrSource)}</span>
               ${sentimentEmoji ? `<span class="sn-dot" aria-hidden="true"></span><span>${sentimentEmoji}</span>` : ""}

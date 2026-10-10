@@ -374,6 +374,17 @@ body.search-page .sn-search-results-heading .fw-semibold {
   overflow-wrap: anywhere;
 }
 
+body.search-page .sn-search-card .sn-search-description {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0 0 0.75rem;
+  color: var(--search-muted);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
 body.search-page .sn-search-result-count {
   color: var(--search-muted);
   font: 500 13px/1.4 "Open Sans", "Montserrat", sans-serif;

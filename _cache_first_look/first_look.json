@@ -1,57 +1,75 @@
 {
-    "fetched_at": 1791611245,
+    "fetched_at": 1791644218,
     "feeds": [
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Read the uncensored 'Cornell 7' Snapchat messages: Inside fraternity brothers' group chat... and Jane Doe's texts that came later",
-                    "url": "https://www.dailymail.com/news/article-16190423/cornell-jane-doe-text-messages-snapchat.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791609915,
-                    "emo": "📰"
-                },
-                {
-                    "title": "The perils of wellies: They're the must-have boot for farmers, fashionistas and festivalgoers, but experts warn that they can lead to serious problems. Here's how to avoid risk",
-                    "url": "https://www.dailymail.com/health/article-16195763/wellies-boot-farmers-festivalgoers-problems-avoid-risk.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791609641,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "‘Helluva Boss’ actor Brandon Rogers lashes out at heckler at NY Comic Con: ‘You need to shut the f–k up’",
-                    "url": "https://pagesix.com/2026/10/10/celebrity-news/helluva-boss-actor-brandon-rogers-lashes-out-at-heckler-at-new-york-comic-con-during-panel/",
-                    "ts": 1791608774,
-                    "emo": "📰"
+                    "title": "Harrowing moment kayaker is pulled from Pacific as police share video of dramatic response",
+                    "url": "https://nypost.com/2026/10/10/us-news/kayaker-is-pulled-from-bay-area-waters-as-police-share-video-of-dramatic-response/",
+                    "ts": 1791644195,
+                    "emo": "🚨"
                 },
                 {
-                    "title": "‘Helluva Boss’ actor Brandon Rogers lashes out at heckler at NY Comic Con: ‘You need to shut the f–k up’",
-                    "url": "https://pagesix.com/2026/10/10/celebrity-news/helluva-boss-actor-brandon-rogers-lashes-out-at-heckler-at-new-york-comic-con-during-panel/",
-                    "ts": 1791608774,
+                    "title": "Peter King opens up to The Post about 40 years of never-told NFL stories",
+                    "url": "https://nypost.com/2026/10/10/sports/peter-king-opens-up-to-the-post-about-40-years-of-nfl-stories/",
+                    "ts": 1791643858,
                     "emo": "📰"
                 }
             ]
         },
         {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "DEVELOPING: CAT 2 GULF",
-                    "url": "https://apnews.com/919a46d4bd705726b4e57f18ce677ac5",
-                    "ts": 1791607416,
+                    "title": "Brooklyn Beckham hits back at haters with feisty Ross Geller Friends meme as his latest pasta cooking video is completely blasted by fans",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16198261/Brooklyn-Beckham-blasted-fans-cooking-video.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791644147,
                     "emo": "📰"
                 },
                 {
-                    "title": "LIVE: STORM CHASERS",
-                    "url": "https://www.youtube.com/watch?v=naxJDOglaNs",
-                    "ts": 1791607416,
-                    "emo": "🔥"
+                    "title": "Shocking moment man is mauled by tiger after entering zoo compound in front of stunned parkgoers before animal 'is shot' by staff",
+                    "url": "https://www.dailymail.com/news/article-16198683/Agitated-man-jumps-tiger-enclosure-zoo-witnesses-say-shots-fired.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791644139,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "A.I. Hurricane Models Were Front and Center as Isaias Headed Toward Land",
+                    "url": "https://www.nytimes.com/2026/10/09/weather/ai-models-hurricane-isaias.html",
+                    "ts": 1791643565,
+                    "emo": "🌪️"
+                },
+                {
+                    "title": "Economic Pain and an Unpopular Trump Put G.O.P. on its Heels With Three Weeks to Go",
+                    "url": "https://www.nytimes.com/2026/10/10/us/politics/trump-inflation-midterms-republicans.html",
+                    "ts": 1791634233,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "What WWE's Money in the Bank card says about the company's development of future superstars",
+                    "url": "https://www.foxnews.com/outkick-sports/wwe-money-in-the-bank-card-says-about-company-development-future-superstars",
+                    "ts": 1791642601,
+                    "emo": "📰"
+                },
+                {
+                    "title": "George Clooney says family is still processing Presley Gerber's tragic death",
+                    "url": "https://www.foxnews.com/entertainment/george-clooney-calls-presley-gerber-death-most-devastating-thing-happen-family",
+                    "ts": 1791640888,
+                    "emo": "📰"
                 }
             ]
         },
@@ -62,49 +80,13 @@
                 {
                     "title": "Trump announces deal for Russian diesel as Zelensky calls it a gift to Putin",
                     "url": "https://www.bbc.co.uk/news/articles/cm1dwgr666wno?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791607100,
+                    "ts": 1791642254,
                     "emo": "⚖️"
                 },
                 {
-                    "title": "Analysis: Trump's shock Russia deal highlights mounting pressure to curb fuel prices",
-                    "url": "https://www.bbc.co.uk/news/articles/c5lye9z4xw4yo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791585022,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Trump's AI rebrand is catching on with Elon Musk and Marc Benioff",
-                    "url": "https://www.businessinsider.com/trump-ai-rebrand-elon-musk-marc-benioff-2026-10",
-                    "ts": 1791604921,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "An NYU professor says OpenAI's mass release of math papers wiped out early-career researchers' projects",
-                    "url": "https://www.businessinsider.com/openais-math-dump-rattles-math-researchers-saw-programs-wiped-out-2026-10",
-                    "ts": 1791591390,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "‘I feel like a loser’: My stock portfolio is swinging wildly. Should I be worried?",
-                    "url": "https://www.marketwatch.com/story/i-feel-like-a-loser-my-etfs-go-up-one-day-and-crash-the-next-is-this-a-bad-sign-0c9848b2?mod=mw_rss_topstories",
-                    "ts": 1791602100,
-                    "emo": "📰"
-                },
-                {
-                    "title": "‘I have no children’: My aunt gave me $50,000 for a down payment. Now she wants me to leave my home to her two children.",
-                    "url": "https://www.marketwatch.com/story/i-have-no-children-my-aunt-gave-me-50-000-for-a-down-payment-she-wants-me-to-leave-my-home-to-her-two-children-24fad94c?mod=mw_rss_topstories",
-                    "ts": 1791591300,
+                    "title": "Watch: 'Cockroach' group leaders among hundreds detained in Delhi protest",
+                    "url": "https://www.bbc.co.uk/news/videos/cqwy7p2y20gxo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791641593,
                     "emo": "📰"
                 }
             ]
@@ -114,33 +96,87 @@
             "home": "https://thehill.com",
             "items": [
                 {
-                    "title": "Federal judge: DOJ cannot request states' voter lists for eligibility database",
-                    "url": "https://thehill.com/regulation/court-battles/6140273-judge-blocks-doj-voter-rolls-program/",
-                    "ts": 1791602022,
-                    "emo": "⚖️"
+                    "title": "Kalshi investigating suspicious bets tied to White house press secretary pick: Report",
+                    "url": "https://thehill.com/policy/technology/6140504-kalshi-investigates-press-secretary-bets/",
+                    "ts": 1791641382,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Trump asks Supreme Court to look at 2016 election lawsuit against Clinton: Report",
-                    "url": "https://thehill.com/homenews/administration/6140233-trump-supreme-court-clinton-lawsuit-appeal/",
-                    "ts": 1791600433,
-                    "emo": "⚖️"
+                    "title": "Special counsel gone wild: Jack Smith makes a splash at a 'No Kings' concert",
+                    "url": "https://thehill.com/opinion/criminal-justice/6138825-smith-no-kings-shirt/",
+                    "ts": 1791640800,
+                    "emo": "📰"
                 }
             ]
         },
         {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Trump rallies New York crowd for Republican Bruce Blakeman's bid to replace Gov. Kathy Hochul",
-                    "url": "https://www.foxnews.com/politics/trump-rallies-new-york-crowd-republican-bruce-blakemans-bid-replace-gov-kathy-hochul",
-                    "ts": 1791600169,
-                    "emo": "⚖️"
+                    "title": "I'm a Massachusetts native. Skip Salem and check out this less-crowded neighboring city for Halloween fun.",
+                    "url": "https://www.businessinsider.com/beverly-massachusetts-things-to-do-salem-dupe-halloween-2026-10",
+                    "ts": 1791641221,
+                    "emo": "📰"
                 },
                 {
-                    "title": "An NYC Curse: Rangers top goalie dragged off ice as New York sports nightmare deepens",
-                    "url": "https://www.foxnews.com/outkick-sports/nyc-curse-rangers-top-goalie-dragged-off-ice-new-york-sports-nightmare-deepens",
-                    "ts": 1791598542,
+                    "title": "We met on a 7th-grade field trip. Twenty years later, I secretly recreated it and we rekindled our romance.",
+                    "url": "https://www.businessinsider.com/marriage-after-baby-theme-park-date-reconnect-2026-10",
+                    "ts": 1791637021,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "ISAIAS SLAMS GULF",
+                    "url": "https://apnews.com/article/hurricane-isaias-flooding-power-outages-65ac97bf16477d89ec6f847b09ccb6fc",
+                    "ts": 1791638916,
+                    "emo": "📰"
+                },
+                {
+                    "title": "POWER OUTAGES MOUNT",
+                    "url": "https://www.accuweather.com/en/hurricane/live-news/live-isaias-drenches-southeast-after-landfall-as-flash-flooding-power-outages-mount/1943589",
+                    "ts": 1791638916,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "Flu season is already here. Here’s what to know about this year’s flu shots.",
+                    "url": "https://www.marketwatch.com/story/flu-season-is-already-here-heres-what-to-know-about-this-years-flu-shots-58aeb705?mod=mw_rss_topstories",
+                    "ts": 1791638340,
+                    "emo": "🧪"
+                },
+                {
+                    "title": "‘People in the U.S. need to wake up’: As a mortgage loan officer, I rejected applications from wealthy couples. Here’s why.",
+                    "url": "https://www.marketwatch.com/story/people-in-the-u-s-need-to-wake-up-as-a-mortgage-loan-officer-i-rejected-wealthy-couples-due-to-overspending-were-all-heading-for-trouble-6a52e04e?mod=mw_rss_topstories",
+                    "ts": 1791638100,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Nvidia GPUs are everywhere. Here are the ways companies are accessing them",
+                    "url": "https://www.cnbc.com/2026/10/10/nvidia-gpus-are-everywhere-heres-how-companies-access-them.html",
+                    "ts": 1791630001,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Vance says Microsoft replaced laid-off workers with foreign hires. Here’s what the visa data shows",
+                    "url": "https://www.cnbc.com/2026/10/10/vance-microsoft-h1b-layoffs-visa-data.html",
+                    "ts": 1791642143,
                     "emo": "📰"
                 }
             ]
@@ -150,52 +186,16 @@
             "home": "https://www.nbcnews.com",
             "items": [
                 {
-                    "title": "Hurricane Isaias makes landfall in Florida",
-                    "url": "https://www.nbcnews.com/now/video/hurricane-isaias-makes-landfall-in-florida-271377477807",
-                    "ts": 1791598282,
-                    "emo": "🌪️"
-                },
-                {
-                    "title": "Hurricane Isaias makes landfall in Florida",
-                    "url": "https://www.nbcnews.com/now/video/hurricane-isaias-makes-landfall-in-florida-271377477807",
-                    "ts": 1791598282,
-                    "emo": "🌪️"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Trump's diesel agreement with Putin accused of contradicting Russia sanctions law",
-                    "url": "https://www.cnbc.com/2026/10/09/trump-putin-diesel-russia-sanctions-ukraine.html",
-                    "ts": 1791598140,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "The world needs Ukraine’s grain. Its farmers are running out of reasons to plant",
-                    "url": "https://www.cnbc.com/2026/10/10/ukraine-grain-exports-russia-harvest.html",
-                    "ts": 1791608401,
-                    "emo": "🌍"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Private Medicare Plans Are Raising Costs And Forcing Millions To Find New Insurance",
-                    "url": "https://www.nytimes.com/2026/10/09/business/medicare-private-health-care-costs.html",
-                    "ts": 1791583482,
+                    "title": "Isaias pushes further inland with strong winds, heavy rain",
+                    "url": "https://www.nbcnews.com/video/isaias-pushes-further-inland-271385157665",
+                    "ts": 1791629049,
                     "emo": "📰"
                 },
                 {
-                    "title": "James Talarico Returns to Senate Campaign Trail in Texas After 10-Day Absence",
-                    "url": "https://www.nytimes.com/2026/10/09/us/james-talarico-absence-texas-senate.html",
-                    "ts": 1791584584,
-                    "emo": "⚖️"
+                    "title": "Backlash to livestream of firing squad execution",
+                    "url": "https://www.nbcnews.com/nightly-news/video/backlash-to-livestream-of-firing-squad-execution-271368773744",
+                    "ts": 1791586517,
+                    "emo": "📰"
                 }
             ]
         },
@@ -204,16 +204,16 @@
             "home": "https://www.theguardian.com",
             "items": [
                 {
-                    "title": "Send us your questions for economist Isabella Weber on inflation and affordability",
-                    "url": "https://www.theguardian.com/business/2026/oct/09/send-us-your-questions-for-economist-isabella-weber-on-inflation-and-affordability",
-                    "ts": 1791544135,
-                    "emo": "💰"
-                },
-                {
                     "title": "France’s dilemma: protesters demand spending as markets require fiscal restraint",
                     "url": "https://www.theguardian.com/world/2026/oct/10/france-caught-between-bond-markets-student-worker-blockades",
                     "ts": 1791604847,
                     "emo": "📰"
+                },
+                {
+                    "title": "Oil prices fall as Trump pauses Iran attacks, China restarts fuel exports – as it happened",
+                    "url": "https://www.theguardian.com/business/live/2026/oct/09/oil-prices-crude-brent-trump-iran-us-war-midterm-elections-stocks-bonds-business-live",
+                    "ts": 1791555126,
+                    "emo": "⚖️"
                 }
             ]
         }

@@ -233,6 +233,7 @@ try {
         SELECT jsonb_agg(
           jsonb_build_object(
             'title', x.title,
+            'description', x.description,
             'source', x.source_slug,
             'pub_date', x.pub_date,
             'url', x.url,
@@ -243,6 +244,7 @@ try {
         FROM (
           SELECT
             a.title,
+            a.description,
             a.source_slug,
             a.pub_date,
             a.url,
@@ -520,6 +522,8 @@ try {
                       <?php
                         $pUrl   = $p['url'] ?? '#';
                         $pTitle = $p['title'] ?? '(untitled)';
+                        $pDescription = trim(html_entity_decode(strip_tags((string)($p['description'] ?? '')), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                        $pDescription = preg_replace('/\s+/u', ' ', $pDescription) ?? $pDescription;
                         $pSource= $p['source'] ?? '';
                         $pDate  = $p['pub_date'] ?? '';
 
@@ -555,6 +559,10 @@ try {
                           <a class="headline-link" href="<?= htmlspecialchars($pUrl) ?>" target="_blank" rel="noopener">
                             <?= htmlspecialchars((fl_headline_emoji($pTitle) ?? '📰') . ' ' . $pTitle) ?>
                           </a>
+
+                          <?php if ($pDescription !== ''): ?>
+                            <p class="story-preview-description"><?= htmlspecialchars($pDescription, ENT_QUOTES, 'UTF-8') ?></p>
+                          <?php endif; ?>
                           
                           <?php
                               $publisherDomain = '';

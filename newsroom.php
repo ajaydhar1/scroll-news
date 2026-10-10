@@ -183,6 +183,16 @@ exit;
                                                                                                     } ?></strong></div>
                                 <div class="masthead-heading text-uppercase"><?php echo htmlspecialchars($title); ?></div>
                                 <?php
+                                $newsroomDescription = trim(html_entity_decode(strip_tags((string)$des), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+                                $newsroomDescription = preg_replace('/\s+/u', ' ', $newsroomDescription) ?? $newsroomDescription;
+                                if (strcasecmp($newsroomDescription, 'No description') === 0) {
+                                    $newsroomDescription = '';
+                                }
+                                ?>
+                                <?php if ($newsroomDescription !== ''): ?>
+                                    <p class="newsroom-article-description"><?= htmlspecialchars($newsroomDescription, ENT_QUOTES, 'UTF-8') ?></p>
+                                <?php endif; ?>
+                                <?php
                                 $badges = [];
                                 if ($fromDb && is_array($article)) {
                                     $badges = scroll_get_article_badges($article);

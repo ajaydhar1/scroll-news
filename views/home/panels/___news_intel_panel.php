@@ -56,6 +56,7 @@ try {
             id,
             url,
             title,
+            description,
             source_slug,
             media_url AS image_url,
             pub_date,
@@ -568,7 +569,7 @@ if (empty($intel_panel) || $intel_panel['entities'] === [] && $intel_panel['plac
                                         </div>
                                         <ul class="list-unstyled mb-0 medium intel-article-list">
                                             <?php foreach ($item['articles'] as $article): ?>
-                                                <?= scroll_render_article_intel_item($article, ['w' => '24h', 'db' => 1]); ?>
+                                                <?= scroll_render_article_intel_item($article, ['w' => '24h', 'db' => 1, 'show_description' => true]); ?>
                                             <?php endforeach; ?>
                                         </ul>
                                     </div>

@@ -56,6 +56,7 @@ if (!$pdo) {
             SELECT 
                 ri.id,
                 ri.title,
+                COALESCE(NULLIF(ri.description, ''), a.description) AS description,
                 ri.link,
                 ri.pub_date,
                 ri.media_url,

@@ -177,6 +177,30 @@ $results    = [];
 $errorMsg   = null;
 $hasFilters = false;
 
+function sn_render_search_article_card(array $vm, array $opts, string $description): void
+{
+    ob_start();
+    sn_render_article_card($vm, $opts);
+    $cardHtml = (string) ob_get_clean();
+
+    $descriptionText = trim(html_entity_decode(strip_tags($description), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+    $descriptionText = preg_replace('/\s+/u', ' ', $descriptionText) ?? $descriptionText;
+
+    if ($descriptionText !== '') {
+        $descriptionHtml = '<p class="sn-search-description">'
+            . htmlspecialchars($descriptionText, ENT_QUOTES, 'UTF-8')
+            . '</p>';
+        $headlineEnd = strpos($cardHtml, '</h5>');
+
+        if ($headlineEnd !== false) {
+            $headlineEnd += strlen('</h5>');
+            $cardHtml = substr_replace($cardHtml, $descriptionHtml, $headlineEnd, 0);
+        }
+    }
+
+    echo $cardHtml;
+}
+
 // Read query params
 $rawMode         = $_GET['mode']       ?? 'classic';
 $mode            = ($rawMode === 'nlp') ? 'nlp' : 'classic';  // sanitize
@@ -656,7 +680,7 @@ $buildPaginationUrl = static function (int $targetPage) use ($paginationParams):
                                 ?>
 
                                 <?php
-                                sn_render_article_card($vm, [
+                                sn_render_search_article_card($vm, [
                                     'card_class' => 'sn-search-card',
                                     'analysis_window' => '7d',
                                     'badge_href_builder' => $badgeHrefBuilder,
@@ -667,7 +691,7 @@ $buildPaginationUrl = static function (int $targetPage) use ($paginationParams):
                                     'show_badges' => true,
                                     'show_analyze' => true,
                                     'read_button_class' => 'btn btn-secondary',
-                                ]);
+                                ], (string) ($row['description'] ?? ''));
                                 ?>
                             <?php endforeach; ?>
                         <?php endif; ?>

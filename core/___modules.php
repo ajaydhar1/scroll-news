@@ -1692,6 +1692,7 @@ function search_nlp(PDO $db, ?string $q = '', array $opts = [], ?int &$totalCoun
         SELECT
             id,
             title,
+            description,
             url,
             source_slug,
             media_url,
@@ -1803,6 +1804,7 @@ function search_classic(PDO $db, string $q, array $opts = [], ?int &$totalCount 
             SELECT
                 ri.id,
                 ri.title,
+                ri.description,
                 ri.link,
                 ri.pub_date,
                 ri.media_url,
@@ -1817,6 +1819,7 @@ function search_classic(PDO $db, string $q, array $opts = [], ?int &$totalCount 
         SELECT
             m.id,
             m.title,
+            m.description,
             m.link,
             m.pub_date,
             m.media_url,
@@ -1839,6 +1842,7 @@ function search_classic(PDO $db, string $q, array $opts = [], ?int &$totalCount 
             SELECT
                 ri.id,
                 ri.title,
+                ri.description,
                 ri.link,
                 ri.pub_date,
                 ri.media_url,
@@ -1856,6 +1860,7 @@ function search_classic(PDO $db, string $q, array $opts = [], ?int &$totalCount 
         SELECT
             m.id,
             m.title,
+            m.description,
             m.link,
             m.pub_date,
             m.media_url,
@@ -1918,6 +1923,7 @@ function load_search_shuffle_results(PDO $db, int $userId, string $shuffleSessio
 
                 COALESCE(ri.id, s.saved_article_id) AS id,
                 COALESCE(ri.title, s.saved_title) AS title,
+                COALESCE(ri.description, a.description) AS description,
                 COALESCE(ri.link, s.saved_url) AS link,
                 COALESCE(ri.pub_date, s.saved_pub_date) AS pub_date,
                 COALESCE(ri.media_url, s.saved_image_url) AS media_url,
@@ -1943,6 +1949,7 @@ function load_search_shuffle_results(PDO $db, int $userId, string $shuffleSessio
         SELECT
             id,
             title,
+            description,
             link,
             pub_date,
             media_url,

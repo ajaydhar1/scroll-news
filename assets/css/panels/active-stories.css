@@ -184,6 +184,17 @@
   display:block;
 }
 
+.sn-card-active-stories .story-preview-description {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 4px 0 0;
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
 .story-preview-text .mini-meta{
   margin-top:2px;
 }

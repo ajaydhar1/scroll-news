@@ -48,6 +48,17 @@
     line-height: 1.35;
 }
 
+.news-intel-panel .intel-article-description {
+    display: -webkit-box;
+    overflow: hidden;
+    margin: 6px 0 7px 0;
+    color: var(--sn-l-muted, #c2ccce);
+    font-size: 14px;
+    line-height: 1.4;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
 .news-intel-panel .nlp-chip-row {
     display: flex;
     flex-wrap: wrap;
