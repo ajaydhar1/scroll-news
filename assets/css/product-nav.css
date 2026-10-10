@@ -464,7 +464,7 @@
 
 html[data-ui-theme="dark"] .sn-product-nav-shell {
   border-bottom-color: rgba(235, 246, 243, 0.14);
-  background: rgba(15, 22, 21, 0.96);
+  background: #0f1615;
   box-shadow: 0 5px 18px rgba(0, 0, 0, 0.3);
 }
 

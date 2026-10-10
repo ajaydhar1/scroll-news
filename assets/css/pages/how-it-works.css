@@ -83,7 +83,7 @@ body.how-page .sn-product-nav-shell {
 html[data-ui-theme="dark"] body.how-page .sn-product-nav-shell {
     border-top-color: #00bfa6;
     border-bottom-color: rgba(255, 255, 255, 0.14);
-    background: rgba(12, 22, 20, 0.97);
+    background: #0c1614;
 }
 
 html[data-ui-theme="dark"] body.how-page .sn-product-brand,
