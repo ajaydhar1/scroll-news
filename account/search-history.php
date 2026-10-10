@@ -152,6 +152,7 @@ function build_search_url(?string $paramsJson, string $fallbackQuery): string
 
     <link href="/assets/css/styles.css?v=<?= filemtime(BASE_PATH . '/assets/css/styles.css') ?>" rel="stylesheet" />
     <link href="/assets/css/custom.css?v=<?= filemtime(BASE_PATH . '/assets/css/custom.css') ?>" rel="stylesheet" />
+    <link id="dark-theme" href="/assets/css/dark.css?v=<?= filemtime(BASE_PATH . '/assets/css/dark.css') ?>" rel="stylesheet" />
     <link id="dark-typography-theme" href="/assets/css/dark-typography.css?v=<?= filemtime(BASE_PATH . '/assets/css/dark-typography.css') ?>" rel="stylesheet" />
 
     <script src="/assets/js/dark-theme.js?v=<?= filemtime(BASE_PATH . '/assets/js/dark-theme.js') ?>"></script>
@@ -244,7 +245,7 @@ function build_search_url(?string $paramsJson, string $fallbackQuery): string
     </style>
 </head>
 
-<body id="page-top" class="auth-page account-page">
+<body id="page-top" class="auth-page account-page account-data-page account-search-history-page">
 
     <div class="page">
 
