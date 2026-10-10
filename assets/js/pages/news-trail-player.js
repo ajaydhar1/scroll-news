@@ -11,6 +11,25 @@
 
     let currentIndex = 0;
     const frame = document.getElementById('trailFrame');
+    function syncFrameTheme() {
+        try {
+            const frameDocument = frame.contentDocument;
+            if (!frameDocument || !frameDocument.documentElement) return;
+
+            frameDocument.documentElement.dataset.uiTheme =
+                document.documentElement.dataset.uiTheme === 'dark' ? 'dark' : 'mindpour';
+        } catch (error) {
+            // Cross-origin publisher content is intentionally left alone.
+        }
+    }
+
+    frame.addEventListener('load', syncFrameTheme);
+    new MutationObserver(syncFrameTheme).observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-ui-theme']
+    });
+    syncFrameTheme();
+
     const frameWrap = document.getElementById('trailFrameWrap');
     const title = document.getElementById('trailTitle');
     const activityLabel = document.getElementById('trailActivityLabel');

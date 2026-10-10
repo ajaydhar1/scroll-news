@@ -521,6 +521,7 @@ function renderEmptyState(
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/assets/css/styles.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/styles.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/custom.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/custom.css'); ?>" rel="stylesheet" />
+    <link id="dark-theme" href="/assets/css/dark.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark.css'); ?>" rel="stylesheet" />
     <link id="dark-typography-theme" href="/assets/css/dark-typography.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark-typography.css'); ?>" rel="stylesheet" />
 
     <script src="/assets/js/dark-theme.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/dark-theme.js'); ?>"></script>
@@ -604,7 +605,7 @@ function renderEmptyState(
 
 </head>
 
-<body id="page-top" class="auth-page account-page">
+<body id="page-top" class="auth-page account-page news-trails-page">
 
     <!-- Top nav-->
     <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>

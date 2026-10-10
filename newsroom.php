@@ -105,6 +105,12 @@ exit;
         <script src="/assets/js/dark-theme.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/dark-theme.js'); ?>"></script>
     <?php endif; ?>
 
+    <?php if ($isTrailPlayer): ?>
+        <link id="dark-theme" href="/assets/css/dark.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark.css'); ?>" rel="stylesheet" />
+        <link id="dark-typography-theme" href="/assets/css/dark-typography.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark-typography.css'); ?>" rel="stylesheet" />
+        <script src="/assets/js/dark-theme.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/dark-theme.js'); ?>"></script>
+    <?php endif; ?>
+
     <!-- Add IntroJs styles -->
     <link href="/assets/css/introjs.css" rel="stylesheet">
 
@@ -118,6 +124,10 @@ exit;
     <style>
         <?php if ($isTrailPlayer): ?>body {
             background: linear-gradient(to bottom, #eef1f4, #e8edf1);
+        }
+
+        html[data-ui-theme="dark"] body {
+            background: var(--sn-canvas) !important;
         }
 
         .card-header {

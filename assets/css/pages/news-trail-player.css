@@ -407,3 +407,89 @@ body.trail-player-page {
         transition: none;
     }
 }
+
+html[data-ui-theme="dark"] body.trail-player-page {
+    --trail-ink: #e6e9ed;
+    --trail-muted: var(--sn-muted);
+    --trail-border: var(--sn-border);
+    --trail-surface: var(--sn-surface);
+    --trail-canvas: var(--sn-canvas);
+    --trail-accent: #75e2d2;
+    --trail-accent-soft: rgba(0, 191, 166, 0.14);
+    background: var(--trail-canvas);
+    color: var(--trail-ink);
+}
+
+html[data-ui-theme="dark"] body.trail-player-page .trail-player {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.32);
+}
+
+html[data-ui-theme="dark"] body.trail-player-page .trail-context {
+    border-bottom-color: var(--trail-border);
+}
+
+html[data-ui-theme="dark"] body.trail-player-page .trail-primary-action {
+    border-color: #087c6d;
+    background: #087c6d;
+    color: #fff;
+}
+
+html[data-ui-theme="dark"] body.trail-player-page .trail-primary-action:hover,
+html[data-ui-theme="dark"] body.trail-player-page .trail-primary-action:focus {
+    border-color: #0a927e;
+    background: #0a927e;
+    color: #fff;
+}
+
+html[data-ui-theme="dark"] body.trail-player-page .trail-primary-action:active {
+    border-color: #066b5c;
+    background: #066b5c;
+}
+
+html[data-ui-theme="dark"] body.trail-player-page .trail-primary-action:focus-visible,
+html[data-ui-theme="dark"] body.trail-player-page .trail-nav-button:focus-visible {
+    outline-color: rgba(117, 226, 210, 0.55);
+}
+
+html[data-ui-theme="dark"] body.trail-player-page .trail-progress-track {
+    background: #454d55;
+}
+
+html[data-ui-theme="dark"] body.trail-player-page .trail-iframe-wrap {
+    background: var(--sn-band);
+}
+
+html[data-ui-theme="dark"] body.trail-player-page .trail-iframe-wrap iframe {
+    background: var(--sn-surface);
+}
+
+html[data-ui-theme="dark"] body.trail-player-page .trail-activity-panel {
+    background-color: var(--sn-surface);
+    background-image: linear-gradient(135deg, rgba(48, 54, 61, 0.82), rgba(42, 47, 54, 0.96));
+}
+
+html[data-ui-theme="dark"] body.trail-player-page .trail-activity-symbol {
+    background: var(--sn-surface-raised);
+    border-color: var(--trail-border);
+}
+
+html[data-ui-theme="dark"] body.trail-player-page .trail-controls,
+html[data-ui-theme="dark"] body.trail-player-page .trail-nav-button {
+    background: var(--sn-surface-raised);
+}
+
+html[data-ui-theme="dark"] body.trail-player-page .trail-nav-button:hover:not(:disabled),
+html[data-ui-theme="dark"] body.trail-player-page .trail-nav-button:active:not(:disabled) {
+    border-color: var(--trail-accent);
+    background: rgba(0, 191, 166, 0.18);
+    color: #f4f7f7;
+}
+
+html[data-ui-theme="dark"] body.trail-player-page .trail-nav-button:disabled {
+    border-color: rgba(255, 255, 255, 0.08);
+    color: #7f8993;
+}
+
+html[data-ui-theme="dark"] body.trail-player-page.trail-controls-fixed .trail-controls {
+    box-shadow: 0 -5px 18px rgba(0, 0, 0, 0.38);
+}
