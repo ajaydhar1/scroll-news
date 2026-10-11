@@ -43,3 +43,10 @@ ErrorDocument 500 /500.html
 
 # Make sure Apache doesn't try to be clever with content negotiation
 Options -MultiViews
+
+# Keep the PWA entry points fresh so browser update checks see deployments.
+<FilesMatch "^(manifest\.json|service-worker\.js)$">
+	<IfModule mod_headers.c>
+		Header set Cache-Control "no-cache, no-store, must-revalidate"
+	</IfModule>
+</FilesMatch>

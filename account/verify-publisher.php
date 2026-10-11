@@ -49,5 +49,5 @@ if ($status === 'success' && $publisherId) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Publisher Verification — Scroll News</title><link href="/assets/css/styles.css" rel="stylesheet" /><link href="/assets/css/auth.css" rel="stylesheet" /></head>
+<html lang="en"><head><?php require_once BASE_PATH . '/views/partials/___pwa_head.php'; ?><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Publisher Verification — Scroll News</title><link href="/assets/css/styles.css" rel="stylesheet" /><link href="/assets/css/auth.css" rel="stylesheet" /></head>
 <body class="auth-page"><main class="auth-shell container my-5"><div class="auth-card card border-0"><div class="card-body p-4"><h1 class="h3">Publisher Verification</h1><div class="alert <?= $status === 'success' ? 'alert-success' : 'alert-danger'; ?>" role="alert"><?= publisher_h($message); ?></div><a class="btn btn-primary" href="/account/">Return to Account</a></div></div></main></body></html>

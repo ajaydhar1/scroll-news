@@ -77,6 +77,28 @@ The local configuration file is excluded from version control.
 4. Install dependencies.
 5. Run the application locally.
 
+## Install and Test the PWA
+
+The site can be installed over HTTPS. `localhost` and loopback addresses are also considered secure for development on the same device; for testing on a phone, use a reachable HTTPS host because the phone's `localhost` refers to the phone itself. The service worker caches only same-origin CSS and JavaScript files under `/assets/css/` and `/assets/js/` when their URL has exactly one numeric `v` version parameter, matching the existing PHP asset URLs. It does not cache pages, API responses, account/authentication routes, feeds, article data, or offline article content.
+
+### iOS Safari
+
+1. Open the Scroll News site in Safari on an iPhone or iPad.
+2. Use **Share** and choose **Add to Home Screen**, then confirm the name and add it.
+3. Launch Scroll News from the Home Screen. Confirm the page loads and the theme control, navigation, and sign-in flow behave as they do in Safari.
+4. In Safari Web Inspector, inspect the page's service worker and Cache Storage. Confirm only versioned local CSS/JavaScript assets appear. Web Push is not part of this phase.
+
+### Android Chrome
+
+1. Open the Scroll News site in Chrome on an Android device.
+2. Use the browser menu's **Install app** or **Add to Home screen** action and confirm installation.
+3. Launch the installed app. Confirm navigation, responsive layouts, theme selection, sign-in, and saved-headline behavior.
+4. In Chrome DevTools, inspect **Application > Manifest**, **Service Workers**, and **Cache Storage**. Confirm the manifest icons load and only versioned local CSS/JavaScript assets are cached.
+
+### Browser and privacy checks
+
+Test in a normal browser tab as well as the installed app. Sign in, open account pages, save a headline, and inspect Network and Cache Storage: PHP page navigations and API responses must remain network requests and must not appear in persistent caches. Repeat with a signed-out session, test light and dark themes, and verify responsive behavior. Offline article/page access is intentionally unsupported; only previously requested versioned static CSS/JavaScript can be served from cache.
+
 ## 📸 Demo
 
 ![Scroll News Demo](demo-image.png)  

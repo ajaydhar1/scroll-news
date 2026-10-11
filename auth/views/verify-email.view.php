@@ -5,6 +5,7 @@ $theme_experiment_enabled = true;
 <html lang="en">
 
 <head>
+    <?php require_once BASE_PATH . '/views/partials/___pwa_head.php'; ?>
     <script src="/assets/js/dark-theme.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/dark-theme.js'); ?>"></script>
     <!-- Basics -->
     <meta charset="utf-8" />

@@ -7,3 +7,4 @@
 
   gtag('config', 'G-KDV6P14MMM');
 </script>
+<?php require_once __DIR__ . '/___pwa_head.php'; ?>
