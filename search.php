@@ -13,6 +13,7 @@ require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
 
 require_once BASE_PATH . "/core/config/interest.php";
 require_once BASE_PATH . "/core/___modules.php";
+require_once BASE_PATH . "/core/search_database.php";
 
 function save_user_search_history(PDO $pdo, int $userId, array $data): ?int
 {
@@ -172,7 +173,7 @@ function save_search_shuffle_history(PDO $pdo, int $userId, array $results, arra
     }
 }
 
-$pdo        = _pdo_or_null();
+$pdo        = null;
 $results    = [];
 $errorMsg   = null;
 $hasFilters = false;
@@ -240,6 +241,9 @@ $hasFilters =
     $highSignalOnly ||                                       // <-- NEW
     $deepDive;
 
+$databaseContext = sn_search_database_context($hasFilters, $isSavedShuffleView);
+$pdo = $databaseContext['pdo'];
+
 $searchHistoryId = null;
 
 $hasContext = isset($_GET['context']) && trim((string) $_GET['context']) !== '';
@@ -251,8 +255,10 @@ $runSearch = static function (array $options, ?int &$totalCount) use ($pdo, $mod
         : search_classic($pdo, $q, $options, $totalCount);
 };
 
-if (!$pdo) {
-    $errorMsg = "Database connection not available.";
+if ($databaseContext['error_message'] !== null) {
+    $errorMsg = $databaseContext['error_message'];
+} elseif (!$databaseContext['required']) {
+    $results = [];
 } else {
     try {
         if ($isSavedShuffleView && $currentUser) {
