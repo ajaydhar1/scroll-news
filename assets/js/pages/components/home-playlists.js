@@ -17,6 +17,7 @@
 
   const embed = (plId) =>
     `https://www.youtube.com/embed/videoseries?list=${encodeURIComponent(plId)}&rel=0&modestbranding=1`;
+  let frameActivated = false;
 
   const channels = Array.from(sel.options).map((option, index) => {
     const label = option.textContent.trim();
@@ -65,11 +66,29 @@
   };
 
   const load = () => {
-    frame.src = embed(toPlaylistId(sel.value));
     updateActiveChannel();
+
+    if (frameActivated) {
+      frame.src = embed(toPlaylistId(sel.value));
+    }
   };
 
   sel.addEventListener('change', load);
   section.classList.add('is-enhanced');
   load();
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        frameActivated = true;
+        frame.src = embed(toPlaylistId(sel.value));
+        observer.disconnect();
+      }
+    }, { rootMargin: '300px 0px' });
+
+    observer.observe(section);
+  } else {
+    frameActivated = true;
+    frame.src = embed(toPlaylistId(sel.value));
+  }
 })();
