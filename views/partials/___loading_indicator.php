@@ -8,6 +8,8 @@
         const show = () => overlay && (overlay.hidden = false);
         const hide = () => overlay && (overlay.hidden = true);
 
+        window.SNProductLoadingOverlay = { show, hide };
+
         window.addEventListener('pageshow', hide);
         document.addEventListener('click', function(event) {
             const el = event.target.closest('[data-loading]');
