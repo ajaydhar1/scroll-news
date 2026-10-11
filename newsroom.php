@@ -70,7 +70,7 @@ sn_perf_phase('render');
     <link rel="preload" as="image" href="<?= $img ?>">
 
     <!-- jQuery min-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
 
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous" defer></script>
@@ -396,8 +396,8 @@ sn_perf_phase('render');
     <!-- Core JS (Bootstrap 4 requires jQuery first) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
-    <script type="text/javascript" src="/assets/js/intro.js"></script>
-    <script type="text/javascript" src="/assets/js/jquery.fancybox.min.js"></script>
+    <script type="text/javascript" src="/assets/js/intro.js" defer></script>
+    <script type="text/javascript" src="/assets/js/jquery.fancybox.min.js" defer></script>
 
     <script src="/assets/js/newsroom/handlers.js" defer></script>
     <!--<script src="/assets/js/newsroom/api_legacy.js" defer></script>-->
