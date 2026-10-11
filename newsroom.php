@@ -10,7 +10,6 @@ define('BASE_PATH', __DIR__);
 require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
 
 require_once BASE_PATH . "/core/config/interest.php";
-require_once BASE_PATH . "/core/___session_results.php";
 require_once BASE_PATH . "/core/___modules.php";
 
 require_once BASE_PATH . '/core/newsroom/___request_resolution_layer.php';
@@ -421,12 +420,6 @@ exit;
         window.NEWSROOM = <?= json_encode([
                                 'fromDb' => $cfg_fromDb,
                                 'url' => $cfg_url,
-                                'intro' => [
-                                    'shouldRun' =>
-                                    !$isTrailPlayer
-                                        && (($_SESSION['resultViewed'] ?? 999) < 2)
-                                        && (($_GET['siteSubmit'] ?? '') !== 'true')
-                                ],
                             ], JSON_UNESCAPED_SLASHES) ?>;
     </script>
 

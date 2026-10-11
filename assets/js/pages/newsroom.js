@@ -3,7 +3,7 @@
  * Consolidates all the inline JS from newsroom.php into one file.
  *
  * Requires on the page:
- *  - window.NEWSROOM = { fromDb: bool, url: string, intro?: { shouldRun?: bool }, ... }
+ *  - window.NEWSROOM = { fromDb: bool, url: string, ... }
  *  - jQuery + Bootstrap (popover)
  *  - introJs (optional)
  *
@@ -353,7 +353,7 @@
   }
 
   // -------------------------
-  // 5) IntroJS gating
+  // 5) IntroJS Guide action
   // -------------------------
   function startIntro() {
     if (typeof introJs !== 'function') return;
@@ -378,18 +378,6 @@
   }
 
   NS.startIntro = startIntro;
-
-  function maybeRunIntro() {
-    const cfg = window.NEWSROOM || {};
-    const shouldRun = !!(cfg.intro && cfg.intro.shouldRun);
-    if (!shouldRun || typeof introJs !== 'function') return;
-
-    // Run once per page load
-    if (window.__snIntroRan) return;
-    window.__snIntroRan = true;
-
-    startIntro();
-  }
 
   // -------------------------
   // 6) History write via #history-meta
@@ -568,7 +556,6 @@
   function initNewsroomPage() {
     setupLoadingOverlay();
     setupShotLoader();
-    maybeRunIntro();
     writeHistoryFromMeta();
     runAnalyzeFlowIfNeeded();
 
