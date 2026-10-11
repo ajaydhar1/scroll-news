@@ -301,9 +301,14 @@ function loadTrailSection(
         return $result['rows'];
     }
 
-    $total = fetchTrailTotal($pdo, $base, $currentUserId, $editorEmails);
-    $preview = selectTrailCards(fetchTrails($pdo, $base, $currentUserId, $editorEmails), $previewLimit);
-    $hasMore[$base] = $total > count($preview);
+    $previewRows = fetchTrails($pdo, $base, $currentUserId, $editorEmails);
+    $preview = selectTrailCards($previewRows, $previewLimit);
+    $hasMore[$base] = sn_trail_preview_has_more(
+        $base,
+        $previewRows,
+        count($preview),
+        static fn(): int => fetchTrailTotal($pdo, $base, $currentUserId, $editorEmails)
+    );
 
     return $preview;
 }
