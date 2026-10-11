@@ -117,6 +117,7 @@ require_once BASE_PATH . "/core/___modules.php";
     <script src="/assets/js/dark-theme.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/dark-theme.js'); ?>"></script>
     
     <link href="/assets/css/pages/home.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/home.css'); ?>" rel="stylesheet" />
+    <link href="/assets/css/pages/watch-desk.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/watch-desk.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/panels/news-intel-panel.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/news-intel-panel.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/panels/active-stories.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/active-stories.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/panels/scroll-strip.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/scroll-strip.css'); ?>" rel="stylesheet" />

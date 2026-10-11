@@ -27,3 +27,5 @@ if (($_GET['context'] ?? '') === 'trail-player') {
         </div>
     </footer>
 </div>
+
+<?php require_once BASE_PATH . '/views/partials/___mobile_bottom_nav.php'; ?>
