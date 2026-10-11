@@ -1,6 +1,7 @@
 <?php
 define('BASE_PATH', __DIR__);
 $theme_experiment_enabled = true;
+$product_nav_stylesheet_in_head = true;
 require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
 require_once BASE_PATH . "/core/___modules.php";
 sn_perf_phase('render');
@@ -41,9 +42,6 @@ sn_perf_phase('render');
     <meta name="twitter:title" content="Scroll News — Analyze, Browse, Search the news" />
     <meta name="twitter:description" content="A smarter way to catch up on the news. Analyze articles by URL, browse top stories by topic, and search the latest headlines." />
     <meta name="twitter:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-home-1200x630.png" />
-
-    <!-- Performance: Preload background -->
-    <link rel="preload" as="image" href="/assets/img/mind-pour_00.jpg">
 
     <script type="application/ld+json">
         {
@@ -98,13 +96,7 @@ sn_perf_phase('render');
     <!-- Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans&display=swap" rel="stylesheet" />
-    <!-- Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:wght@400;700&family=Open+Sans:wght@400&family=Poppins:wght@600&family=Roboto+Slab:wght@100;300;400;700&display=swap" rel="stylesheet" />
 
 
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -126,6 +118,7 @@ sn_perf_phase('render');
     <link id="home-light-saas" href="/assets/css/pages/home-light-saas.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/home-light-saas.css'); ?>" rel="stylesheet" />
 
     <link href="/assets/css/lightbox.css" rel="stylesheet" />
+    <link href="/assets/css/product-nav.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/product-nav.css'); ?>" rel="stylesheet" />
 
 </head>
 

@@ -8,7 +8,9 @@ require_once __DIR__ . '/../../auth/includes/auth_bootstrap.php';
 
 ?>
 
-<link href="/assets/css/product-nav.css?v=<?= filemtime(BASE_PATH . '/assets/css/product-nav.css'); ?>" rel="stylesheet" />
+<?php if (empty($product_nav_stylesheet_in_head)): ?>
+    <link href="/assets/css/product-nav.css?v=<?= filemtime(BASE_PATH . '/assets/css/product-nav.css'); ?>" rel="stylesheet" />
+<?php endif; ?>
 
 <?php require_once __DIR__ . '/___loading_indicator.php'; ?>
 
