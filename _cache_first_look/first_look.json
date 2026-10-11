@@ -1,56 +1,38 @@
 {
-    "fetched_at": 1791661161,
+    "fetched_at": 1791724723,
     "feeds": [
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "The communist despots who rejected the label —until they gained power",
-                    "url": "https://nypost.com/2026/10/10/us-news/fidel-future-dictators-socialist-denials-went-up-in-smoke/",
-                    "ts": 1791661090,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Mamdani snubs Brooklyn Columbus Day Parade, ghosts Queens organizers: ‘slap in the face’",
-                    "url": "https://nypost.com/2026/10/10/us-news/mamdani-snubs-brooklyn-columbus-day-parade-ghosts-queens-organizers/",
-                    "ts": 1791661077,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Gangster legend and Kray Twins 'enforcer' Freddie Foreman dies aged 94",
-                    "url": "https://www.dailymail.com/crime-desk/article-16199231/gangster-legend-Kray-Twins-Freddie-Foreman-dies-94.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791660975,
-                    "emo": "📰"
+                    "title": "Liverpool vs Manchester City - Premier League LIVE: Enzo Maresca's side braced for hostile Anfield reception, plus updates from the 2pm games",
+                    "url": "https://www.dailymail.com/sport/football/article-16195521/Liverpool-vs-Manchester-City-Premier-League-LIVE-Follow-build-action-reaction-Anfield-visitors-play-match-guilty-verdict.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791724582,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "Trump shuts down Pete Hegseth's giddy announcement on livestream of Fort Hood killer's execution as president says he alone will make the final call",
-                    "url": "https://www.dailymail.com/news/article-16199229/donald-trump-fort-hood-killer-execution-live.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791660797,
-                    "emo": "⚖️"
+                    "title": "More than one hundred migrants are dead including 15 children after boat capsizes off Djibouti",
+                    "url": "https://www.dailymail.com/news/article-16200333/migrants-dead-children-boat-capsizes-Djibouti.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791724570,
+                    "emo": "🔥"
                 }
             ]
         },
         {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
+            "name": "NY Post",
+            "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "WAR DAY 224: Saudi Closes Riyadh Airport After Damaging Houthi Attack...",
-                    "url": "https://www.wsj.com/world/middle-east/iran-backed-houthis-hit-saudi-capitals-airport-in-damaging-new-attack-d4c12236",
-                    "ts": 1791660516,
-                    "emo": "🔥"
+                    "title": "BetMGM bonus code POSTBET: Get up to $1,500 back in bonus bets for Texans vs. Titans",
+                    "url": "https://nypost.com/2026/10/11/betting/betmgm-bonus-code-postbet-get-up-to-1500-back-in-bonus-bets-for-texans-vs-titans/",
+                    "ts": 1791724500,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Missile strikes passenger terminal; Many wounded...",
-                    "url": "https://apnews.com/article/saudi-yemen-houthi-riyadh-airport-f0e0e6105f33400e37bb20bb9a8130af",
-                    "ts": 1791660516,
+                    "title": "Vikings vs. Saints prediction: Kyler Murray can’t keep up in the Big Easy",
+                    "url": "https://nypost.com/2026/10/11/betting/vikings-vs-saints-prediction-nfl-week-5-odds-picks-best-bets/",
+                    "ts": 1791723600,
                     "emo": "📰"
                 }
             ]
@@ -60,52 +42,16 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Pat Sajak makes rare public appearance after stepping away from 'Wheel of Fortune'",
-                    "url": "https://www.foxnews.com/entertainment/pat-sajak-makes-rare-public-appearance-after-stepping-away-from-wheel-fortune",
-                    "ts": 1791660422,
+                    "title": "Silent inflammation could be damaging your body — and 5 habits may help keep it in check",
+                    "url": "https://www.foxnews.com/health/silent-inflammation-damaging-body-5-habits-help-keep-check",
+                    "ts": 1791723647,
                     "emo": "📰"
                 },
                 {
-                    "title": "Watch as OutKick's Trey Wallace braves Hurricane Isaias' before Alabama-Georgia showdown in Tuscaloosa",
-                    "url": "https://www.foxnews.com/outkick-sports/outkick-trey-wallace-braves-hurricane-isaias-alabama-georgia-showdown-tuscaloosa",
-                    "ts": 1791660120,
-                    "emo": "🌪️"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "Man dies after tiger attack at wildlife park",
-                    "url": "https://www.bbc.co.uk/news/articles/c6n9r3n7858zo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791659399,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "'Time for Ukraine to get new president,' says Trump after Zelensky condemns diesel deal",
-                    "url": "https://www.bbc.co.uk/news/articles/cqe8r5l7n92jo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791660508,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Congress should seal eligible records that keep Americans out of work",
-                    "url": "https://thehill.com/opinion/criminal-justice/6139594-congress-clean-slate-act/",
-                    "ts": 1791658800,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Trump rips Zelensky amid Russia diesel deal feud: 'I suggest they get a new leader'",
-                    "url": "https://thehill.com/homenews/administration/6140694-trump-defends-russian-diesel-deal/",
-                    "ts": 1791656764,
-                    "emo": "⚖️"
+                    "title": "A child's question at a funeral reminded us death does not get the last word",
+                    "url": "https://www.foxnews.com/opinion/childs-question-funeral-reminded-us-death-does-not-get-last-word",
+                    "ts": 1791723634,
+                    "emo": "📰"
                 }
             ]
         },
@@ -114,15 +60,15 @@
             "home": "https://www.marketwatch.com",
             "items": [
                 {
-                    "title": "‘I feel like a loser’: My stock portfolio is swinging wildly. Is it finally time to worry?",
-                    "url": "https://www.marketwatch.com/story/i-feel-like-a-loser-my-etfs-go-up-one-day-and-crash-the-next-is-this-a-bad-sign-0c9848b2?mod=mw_rss_topstories",
-                    "ts": 1791657060,
-                    "emo": "📰"
+                    "title": "The bull market is turning 4 years old — but yields could crash the party",
+                    "url": "https://www.marketwatch.com/story/the-bull-market-is-turning-4-years-old-but-yields-could-crash-the-party-1305fe6c?mod=mw_rss_topstories",
+                    "ts": 1791723600,
+                    "emo": "💰"
                 },
                 {
-                    "title": "Elon Musk is now richer than any American ever — and it’s not even close",
-                    "url": "https://www.marketwatch.com/story/elon-musk-is-now-richer-than-any-american-ever-and-its-not-even-close-58f31401?mod=mw_rss_topstories",
-                    "ts": 1791651000,
+                    "title": "‘I feel like a loser’: My stock portfolio is swinging wildly. Is it finally time to worry?",
+                    "url": "https://www.marketwatch.com/story/i-feel-like-a-loser-my-etfs-go-up-one-day-and-crash-the-next-is-this-a-bad-sign-0c9848b2?mod=mw_rss_topstories",
+                    "ts": 1791721800,
                     "emo": "📰"
                 }
             ]
@@ -132,52 +78,70 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "I moved my family from Australia to New York City 12 years ago. It's led to some very expensive regrets.",
-                    "url": "https://www.businessinsider.com/moved-family-to-new-york-city-from-australia-regrets-benefits-2026-10",
-                    "ts": 1791655981,
+                    "title": "My mom was raising me and caring for her mom with Alzheimer's. Our neighbors became our village.",
+                    "url": "https://www.businessinsider.com/cohousing-alzheimers-caregiving-single-mom-community-2026-10",
+                    "ts": 1791722881,
                     "emo": "📰"
                 },
                 {
-                    "title": "I moved back to my boring hometown. As a parent, boring looks pretty good.",
-                    "url": "https://www.businessinsider.com/returned-hometown-raising-children-family-support-2026-10",
-                    "ts": 1791652441,
+                    "title": "My favorite hidden gem in California has incredible food and wine — and it's more affordable than Napa Valley",
+                    "url": "https://www.businessinsider.com/paso-robles-california-wine-tastings-hidden-gem-2026-10",
+                    "ts": 1791721682,
                     "emo": "📰"
                 }
             ]
         },
         {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
+            "name": "The Hill",
+            "home": "https://thehill.com",
             "items": [
                 {
-                    "title": "Hurricane Isaias leaves at least two people dead",
-                    "url": "https://www.nbcnews.com/now/video/hurricane-isaias-leaves-at-least-two-people-dead-271390277531",
-                    "ts": 1791649215,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "9 dead in Pennsylvania shooting, Erie officials say",
-                    "url": "https://www.nbcnews.com/news/us-news/erie-pennsylvania-mass-shooting-rcna602669",
-                    "ts": 1791653999,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "A.I. Hurricane Models Were Front and Center as Isaias Headed Toward Land",
-                    "url": "https://www.nytimes.com/2026/10/09/weather/ai-models-hurricane-isaias.html",
-                    "ts": 1791646889,
-                    "emo": "🌪️"
-                },
-                {
-                    "title": "Rebuking Ukraine Over Oil Strikes, Trump Says It Should ‘Get a New President’",
-                    "url": "https://www.nytimes.com/2026/10/10/world/europe/ukraine-russia-trump-diesel-talks.html",
-                    "ts": 1791660534,
+                    "title": "Trump names Katie Bailey as White House legislative affairs director",
+                    "url": "https://thehill.com/homenews/administration/6141177-trump-names-katie-bailey-legislative-director/",
+                    "ts": 1791722682,
                     "emo": "⚖️"
+                },
+                {
+                    "title": "Live updates: Zelensky set for Sunday interview amid backlash to Trump's Russia diesel deal",
+                    "url": "https://thehill.com/homenews/administration/6140988-live-updates-zelensky-set-for-sunday-interview-amid-backlash-to-trumps-russia-diesel-deal/",
+                    "ts": 1791721755,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "WAR DAY 225: 12 Killed, Hundreds Injured at Saudi Airport in Houthi Strikes...",
+                    "url": "https://www.drudgereport.com/hhttps://www.wsj.com/world/middle-east/iran-backed-houthis-hit-saudi-capitals-airport-in-damaging-new-attack-d4c12236",
+                    "ts": 1791718476,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Missile hits passenger terminal...",
+                    "url": "https://www.drudgereport.com/hhttps://www.wsj.com/world/middle-east/iran-backed-houthis-hit-saudi-capitals-airport-in-damaging-new-attack-d4c12236",
+                    "ts": 1791718476,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "Riyadh airport attack another dangerous moment in already tense conflict",
+                    "url": "https://www.bbc.co.uk/news/articles/cr4g1pwxxlq1o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791718370,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Buildings swept away as flash floods hit central Nepal",
+                    "url": "https://www.bbc.co.uk/news/videos/cwzrdnljedx0o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791714842,
+                    "emo": "📰"
                 }
             ]
         },
@@ -186,15 +150,51 @@
             "home": "https://www.cnbc.com",
             "items": [
                 {
-                    "title": "Vance says Microsoft replaced laid-off workers with foreign hires. Here’s what the visa data shows",
-                    "url": "https://www.cnbc.com/2026/10/10/vance-microsoft-h1b-layoffs-visa-data.html",
-                    "ts": 1791642143,
+                    "title": "AI’s quiet safety gatekeepers are stepping into the spotlight",
+                    "url": "https://www.cnbc.com/2026/10/11/ais-quiet-safety-gatekeepers-are-stepping-into-the-spotlight.html",
+                    "ts": 1791716401,
+                    "emo": "🧪"
+                },
+                {
+                    "title": "Trump says he is 'going to look at' joining Saudi Arabia in the fight against Iran-backed Houthis after deadly airport strike",
+                    "url": "https://www.cnbc.com/2026/10/11/trump-saudi-arabia-iran-houthis.html",
+                    "ts": 1791719521,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Major attack on Saudi airport kills 12 and leads Trump to weigh joining fight",
+                    "url": "https://www.nbcnews.com/world/middle-east/saudi-airport-attack-trump-us-join-fight-houthis-rcna602744",
+                    "ts": 1791713351,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Pope Leo says he will undergo surgery to remove a nodule on his lung",
+                    "url": "https://www.nbcnews.com/world/pope-leo-xiv/pope-leo-undergo-surgery-remove-nodule-lung-rcna602747",
+                    "ts": 1791714893,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Threats of Political Violence Have America’s Elected Officials Living in Fear",
+                    "url": "https://www.nytimes.com/2026/10/11/us/politics/elections-political-violence-harassment.html",
+                    "ts": 1791709239,
                     "emo": "📰"
                 },
                 {
-                    "title": "Nvidia GPUs are everywhere. Here are the ways companies are accessing them",
-                    "url": "https://www.cnbc.com/2026/10/10/nvidia-gpus-are-everywhere-heres-how-companies-access-them.html",
-                    "ts": 1791630001,
+                    "title": "After Many Threats, an Arizona Lawmaker Asks: ‘Is It Really Worth It?’",
+                    "url": "https://www.nytimes.com/2026/10/11/us/arizona-alma-hernandez-threats-violence.html",
+                    "ts": 1791709253,
                     "emo": "📰"
                 }
             ]
@@ -204,15 +204,15 @@
             "home": "https://www.theguardian.com",
             "items": [
                 {
-                    "title": "France’s dilemma: protesters demand spending as markets require fiscal restraint",
-                    "url": "https://www.theguardian.com/world/2026/oct/10/france-caught-between-bond-markets-student-worker-blockades",
-                    "ts": 1791604847,
-                    "emo": "📰"
+                    "title": "Developing nations face triple shock from energy crisis, El Niño and borrowing costs, UN warns",
+                    "url": "https://www.theguardian.com/business/2026/oct/11/developing-nations-triple-shock-energy-crisis-el-nino-borrowing-costs-un-warns",
+                    "ts": 1791691215,
+                    "emo": "🌍"
                 },
                 {
-                    "title": "Oil prices fall as Trump pauses Iran attacks, China restarts fuel exports – as it happened",
-                    "url": "https://www.theguardian.com/business/live/2026/oct/09/oil-prices-crude-brent-trump-iran-us-war-midterm-elections-stocks-bonds-business-live",
-                    "ts": 1791555126,
+                    "title": "US’s Reagan-era economic promises return as Trump’s AI-fueled growth fantasy",
+                    "url": "https://www.theguardian.com/business/2026/oct/11/trump-ai-economy-reagan",
+                    "ts": 1791716425,
                     "emo": "⚖️"
                 }
             ]
