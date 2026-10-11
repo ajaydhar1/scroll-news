@@ -5,6 +5,7 @@ $theme_experiment_enabled = true;
 
 require_once BASE_PATH . "/core/___modules.php";
 require_once BASE_PATH . '/core/community_trail_privacy.php';
+require_once BASE_PATH . '/core/news_trails_pagination.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -272,15 +273,35 @@ function loadTrailSection(
         return [];
     }
 
-    $total = fetchTrailTotal($pdo, $base, $currentUserId, $editorEmails);
-
     if ($isFilteredView) {
-        $totalPages = max(1, (int) ceil($total / $perPage));
-        $page = min($page, $totalPages);
+        $result = sn_resolve_filtered_trail_page(
+            $base,
+            $page,
+            $perPage,
+            static fn(string $requestedBase, int $requestedPage, int $limit): array => fetchTrails(
+                $pdo,
+                $requestedBase,
+                $currentUserId,
+                $editorEmails,
+                true,
+                $limit,
+                ($requestedPage - 1) * $limit
+            ),
+            static fn(string $requestedBase): int => fetchTrailTotal(
+                $pdo,
+                $requestedBase,
+                $currentUserId,
+                $editorEmails
+            )
+        );
 
-        return fetchTrails($pdo, $base, $currentUserId, $editorEmails, true, $perPage, ($page - 1) * $perPage);
+        $page = $result['page'];
+        $totalPages = $result['total_pages'];
+
+        return $result['rows'];
     }
 
+    $total = fetchTrailTotal($pdo, $base, $currentUserId, $editorEmails);
     $preview = selectTrailCards(fetchTrails($pdo, $base, $currentUserId, $editorEmails), $previewLimit);
     $hasMore[$base] = $total > count($preview);
 
