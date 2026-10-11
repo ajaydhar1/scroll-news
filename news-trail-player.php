@@ -353,10 +353,10 @@ $trailDateLabel = date('F j, Y', strtotime($trailDate));
         content="https://scrollnews.ai/assets/img/og/og-scrollnews-news-trails-1200x630.png" />
 
     <!-- jQuery min-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
 
     <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous" defer></script>
 
     <!-- Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

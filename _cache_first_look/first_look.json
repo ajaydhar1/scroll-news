@@ -1,21 +1,21 @@
 {
-    "fetched_at": 1791724723,
+    "fetched_at": 1791725813,
     "feeds": [
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Liverpool vs Manchester City - Premier League LIVE: Enzo Maresca's side braced for hostile Anfield reception, plus updates from the 2pm games",
-                    "url": "https://www.dailymail.com/sport/football/article-16195521/Liverpool-vs-Manchester-City-Premier-League-LIVE-Follow-build-action-reaction-Anfield-visitors-play-match-guilty-verdict.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791724582,
-                    "emo": "🔥"
+                    "title": "Man mauled to death by tiger at Yorkshire zoo 'made sign gesture for bad after entering enclosure' - as park confirms big cat won't be put down",
+                    "url": "https://www.dailymail.com/news/article-16200267/Man-mauled-death-tiger-Yorkshire-zoo-sign-language-bad.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791725772,
+                    "emo": "📰"
                 },
                 {
-                    "title": "More than one hundred migrants are dead including 15 children after boat capsizes off Djibouti",
-                    "url": "https://www.dailymail.com/news/article-16200333/migrants-dead-children-boat-capsizes-Djibouti.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791724570,
-                    "emo": "🔥"
+                    "title": "Pope Leo thanks well-wishers for their support as he prepares to undergo surgery 'in the coming days' after lump found on his lung",
+                    "url": "https://www.dailymail.com/news/article-16200285/Pope-Leo-surgery-nodule-detected-lung.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791725558,
+                    "emo": "📰"
                 }
             ]
         },
@@ -24,15 +24,15 @@
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "BetMGM bonus code POSTBET: Get up to $1,500 back in bonus bets for Texans vs. Titans",
-                    "url": "https://nypost.com/2026/10/11/betting/betmgm-bonus-code-postbet-get-up-to-1500-back-in-bonus-bets-for-texans-vs-titans/",
-                    "ts": 1791724500,
-                    "emo": "📰"
+                    "title": "Terrified shoppers flee supermarket as 7.7 earthquake hits Panama",
+                    "url": "https://nypost.com/video/terrified-shoppers-flee-supermarket-as-7-7-earthquake-hits-panama/",
+                    "ts": 1791725647,
+                    "emo": "🌪️"
                 },
                 {
-                    "title": "Vikings vs. Saints prediction: Kyler Murray can’t keep up in the Big Easy",
-                    "url": "https://nypost.com/2026/10/11/betting/vikings-vs-saints-prediction-nfl-week-5-odds-picks-best-bets/",
-                    "ts": 1791723600,
+                    "title": "Fanatics Sportsbook promo code NYPOST350: Bet $20, get $350 in FanCash for Jets vs. Browns",
+                    "url": "https://nypost.com/2026/10/11/betting/fanatics-sportsbook-promo-code-nypost350-bet-20-get-350-in-fancash-for-jets-vs-browns/",
+                    "ts": 1791725400,
                     "emo": "📰"
                 }
             ]
@@ -42,15 +42,15 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Silent inflammation could be damaging your body — and 5 habits may help keep it in check",
-                    "url": "https://www.foxnews.com/health/silent-inflammation-damaging-body-5-habits-help-keep-check",
-                    "ts": 1791723647,
+                    "title": "Kelly Clarkson slams Brooklyn store over ‘Pretty Woman’ treatment",
+                    "url": "https://www.foxnews.com/entertainment/kelly-clarkson-slams-brooklyn-store-pretty-woman-treatment",
+                    "ts": 1791725192,
                     "emo": "📰"
                 },
                 {
-                    "title": "A child's question at a funeral reminded us death does not get the last word",
-                    "url": "https://www.foxnews.com/opinion/childs-question-funeral-reminded-us-death-does-not-get-last-word",
-                    "ts": 1791723634,
+                    "title": "Silent inflammation could be damaging your body — and 5 habits may help keep it in check",
+                    "url": "https://www.foxnews.com/health/silent-inflammation-damaging-body-5-habits-help-keep-check",
+                    "ts": 1791723647,
                     "emo": "📰"
                 }
             ]
@@ -174,9 +174,9 @@
                     "emo": "🔥"
                 },
                 {
-                    "title": "Pope Leo says he will undergo surgery to remove a nodule on his lung",
-                    "url": "https://www.nbcnews.com/world/pope-leo-xiv/pope-leo-undergo-surgery-remove-nodule-lung-rcna602747",
-                    "ts": 1791714893,
+                    "title": "Abdul El-Sayed addresses past criticism of Obama: 'I was younger’ and ‘angry’",
+                    "url": "https://www.nbcnews.com/meet-the-press/video/abdul-el-sayed-addresses-past-criticism-of-obama-i-was-younger-and-angry-271404101895",
+                    "ts": 1791714399,
                     "emo": "📰"
                 }
             ]
