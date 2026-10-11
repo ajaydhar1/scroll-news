@@ -66,9 +66,6 @@ sn_perf_phase('render');
 
     <!-- Performance: Preload background -->
     <link rel="preload" as="image" href="/assets/img/mind-pour_00.jpg">
-    <?php if (!$isTrailPlayer): ?>
-        <link rel="preload" as="image" href="/assets/img/dark-city.gif">
-    <?php endif; ?>
 
     <link rel="preload" as="image" href="<?= $img ?>">
 

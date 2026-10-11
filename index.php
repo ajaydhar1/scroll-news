@@ -44,7 +44,6 @@ sn_perf_phase('render');
 
     <!-- Performance: Preload background -->
     <link rel="preload" as="image" href="/assets/img/mind-pour_00.jpg">
-    <link rel="preload" as="image" href="/assets/img/dark-city.gif">
 
     <script type="application/ld+json">
         {

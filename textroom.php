@@ -68,7 +68,6 @@ $title = mb_substr(preg_replace('/\s+/', ' ', $text), 0, 80);
 
         <!-- Performance: Preload background -->
         <link rel="preload" as="image" href="/assets/img/mind-pour_00.jpg">
-        <link rel="preload" as="image" href="/assets/img/dark-city.gif">
 
         <!-- jQuery min-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

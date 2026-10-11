@@ -1,20 +1,4 @@
-﻿html[data-ui-theme="dark"] {
-    background-image: url(../img/dark-city.gif) !important;
-}
-
-@-moz-document url-prefix() {
-  html[data-ui-theme="dark"] {
-        background-image: url(../img/dark-city.gif);
-  }
-}
-
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  html[data-ui-theme="dark"] {
-        background-image: url(../img/dark-city.gif);
-  }
-}
-
-html[data-ui-theme="dark"] .sn-top-nav {
+﻿html[data-ui-theme="dark"] .sn-top-nav {
     background: rgba(8, 13, 18, 0.78) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.14);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.24);
@@ -139,12 +123,6 @@ html[data-ui-theme="dark"] .theme-toggle span {
 @media (max-width: 767.98px) {
     html[data-ui-theme="dark"] .sn-top-nav {
         background: rgba(8, 13, 18, 0.88) !important;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    html[data-ui-theme="dark"] {
-        background-image: url(../img/mind-pour_00.jpg) !important;
     }
 }
 
