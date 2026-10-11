@@ -106,6 +106,7 @@ function shuffle_view_url(array $row): string
     return '#';
 }
 
+sn_perf_phase('render');
 ?>
 <!DOCTYPE html>
 <html lang="en">

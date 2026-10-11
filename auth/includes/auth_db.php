@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../../core/performance_diagnostics.php';
+
 /*
 |--------------------------------------------------------------------------
 | Authentication Database Connection
@@ -78,11 +80,13 @@ function auth_db(): PDO
 
     try {
 
-        $pdo = new PDO(
-            $dsn,
-            $username,
-            $password,
-            $options
+        $pdo = sn_perf_measure_connection(
+            static fn(): PDO => new PDO(
+                $dsn,
+                $username,
+                $password,
+                sn_perf_pdo_options($options)
+            )
         );
     } catch (PDOException $e) {
 

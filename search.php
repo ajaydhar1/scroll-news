@@ -355,6 +355,7 @@ $buildPaginationUrl = static function (int $targetPage) use ($paginationParams):
 // - use $mode to highlight classic vs NLP toggle
 // - optionally show $emotion/$sentiment/$range chips
 // - loop over $results to show cards
+sn_perf_phase('render');
 ?>
 <!DOCTYPE html>
 <html lang="en">

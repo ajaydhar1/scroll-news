@@ -33,6 +33,7 @@ echo '</pre>';
 exit;
 */
 
+sn_perf_phase('render');
 ?>
 <!DOCTYPE html>
 <html lang="en">

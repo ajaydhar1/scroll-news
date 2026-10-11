@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/performance_diagnostics.php';
 require_once __DIR__ . '/config/interest.php';
 require_once __DIR__ . '/utils/___sentiment.php';
 require_once __DIR__ . '/utils/___emotions.php';
@@ -55,11 +56,11 @@ function getPdo(): PDO
 
     $dsn = "pgsql:host={$host};port={$port};dbname={$db};sslmode={$sslmode}";
 
-    $pdo = new PDO($dsn, $user, $pass, [
+    $pdo = sn_perf_measure_connection(static fn(): PDO => new PDO($dsn, $user, $pass, sn_perf_pdo_options([
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_EMULATE_PREPARES   => false,
-    ]);
+    ])));
 
     return $pdo;
 }
@@ -129,11 +130,11 @@ function getPdoOrExplain(): ?PDO
             'sslmode' => $sslmode,
         ]);
 
-        $pdo = new PDO($dsn, $user, $pass, [
+        $pdo = sn_perf_measure_connection(static fn(): PDO => new PDO($dsn, $user, $pass, sn_perf_pdo_options([
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             PDO::ATTR_EMULATE_PREPARES   => false,
-        ]);
+        ])));
 
         $pdo->query('SELECT 1');
 

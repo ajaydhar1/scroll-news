@@ -4,6 +4,7 @@ $theme_experiment_enabled = true;
 
 require_once BASE_PATH . '/auth/includes/auth_bootstrap.php';
 require_once BASE_PATH . '/core/___modules.php';
+sn_perf_phase('render');
 ?>
 <!DOCTYPE html>
 <html lang="en">

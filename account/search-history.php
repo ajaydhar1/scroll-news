@@ -117,6 +117,7 @@ function build_search_url(?string $paramsJson, string $fallbackQuery): string
 
     return '/search.php?' . http_build_query($params) . '&context=search_history';
 }
+sn_perf_phase('render');
 ?>
 <!DOCTYPE html>
 <html lang="en">

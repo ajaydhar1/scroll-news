@@ -142,6 +142,7 @@ if ($publisher) {
 if (!$publisher) {
     http_response_code(403);
 }
+sn_perf_phase('render');
 ?>
 <!DOCTYPE html>
 <html lang="en">

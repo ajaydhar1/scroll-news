@@ -158,6 +158,7 @@ if ($recentArticle && !$recentArticleUrlHasControls && !$recentArticleUrlHasMalf
 
 $recentArticleUrlIsSafe = $recentArticleIsInternalUrl || $recentArticleIsExternalUrl;
 
+sn_perf_phase('render');
 ?>
 <!DOCTYPE html>
 <html lang="en">

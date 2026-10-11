@@ -126,6 +126,7 @@ function pageUrl(int $page): string
     return '/account/reading-history.php?' . http_build_query($params);
 }
 
+sn_perf_phase('render');
 ?>
 <!DOCTYPE html>
 <html lang="en">
