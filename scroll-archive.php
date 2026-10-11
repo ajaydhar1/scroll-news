@@ -165,7 +165,7 @@ if (!$pdo) {
         <link rel="preload" as="image" href="/assets/img/mind-pour_00.jpg">
 
         <!-- jQuery min-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
 
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.7.2/js/all.js" crossorigin="anonymous" defer></script>
@@ -405,7 +405,7 @@ if (!$pdo) {
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" defer></script>
 
         <!-- Core theme JS-->
-        <script src="/assets/js/scripts.js"></script>
+        <script src="/assets/js/scripts.js" defer></script>
         <script src="/assets/js/sn_history.js?v=<?= filemtime(BASE_PATH . '/assets/js/sn_history.js') ?>" defer></script>
         <script src="/assets/js/pages/scroll-archive.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/pages/scroll-archive.js'); ?>"></script>
     </body>
