@@ -7,7 +7,7 @@
   "scope": "/",
   "display": "standalone",
   "theme_color": "#00bfa6",
-  "background_color": "#ffffff",
+  "background_color": "#eef2f0",
   "icons": [
     {
       "src": "/assets/img/logos/scrollnews-app-icon-192.png",
