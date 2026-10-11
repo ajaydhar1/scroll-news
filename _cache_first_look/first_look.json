@@ -1,38 +1,74 @@
 {
-    "fetched_at": 1791725813,
+    "fetched_at": 1791728167,
     "feeds": [
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Man mauled to death by tiger at Yorkshire zoo 'made sign gesture for bad after entering enclosure' - as park confirms big cat won't be put down",
-                    "url": "https://www.dailymail.com/news/article-16200267/Man-mauled-death-tiger-Yorkshire-zoo-sign-language-bad.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791725772,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Pope Leo thanks well-wishers for their support as he prepares to undergo surgery 'in the coming days' after lump found on his lung",
-                    "url": "https://www.dailymail.com/news/article-16200285/Pope-Leo-surgery-nodule-detected-lung.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791725558,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Terrified shoppers flee supermarket as 7.7 earthquake hits Panama",
-                    "url": "https://nypost.com/video/terrified-shoppers-flee-supermarket-as-7-7-earthquake-hits-panama/",
-                    "ts": 1791725647,
-                    "emo": "🌪️"
+                    "title": "Polymarket promo code NYPMAX1: Deposit $10, get $25 for Eagles vs. Jaguars",
+                    "url": "https://nypost.com/2026/10/11/betting/polymarket-promo-code-nypmax1-deposit-10-get-25-for-eagles-vs-jaguars/",
+                    "ts": 1791728100,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Fanatics Sportsbook promo code NYPOST350: Bet $20, get $350 in FanCash for Jets vs. Browns",
-                    "url": "https://nypost.com/2026/10/11/betting/fanatics-sportsbook-promo-code-nypost350-bet-20-get-350-in-fancash-for-jets-vs-browns/",
-                    "ts": 1791725400,
+                    "title": "Missing kitten reunited with family after fire tears through California home",
+                    "url": "https://nypost.com/2026/10/11/us-news/california-firefighters-rescue-cat-from-blaze-and-reunite-it-with-tearful-family/",
+                    "ts": 1791728100,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "Reform vows to deploy Trump-style tariffs against countries that refuse to accept return of illegal migrants",
+                    "url": "https://www.dailymail.com/news/article-16200415/Reform-Trump-tariffs-countries-illegal-migrants-Channel.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791728027,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Liverpool vs Manchester City - Premier League LIVE: Enzo Maresca's side braced for hostile Anfield reception, plus updates from the 2pm games",
+                    "url": "https://www.dailymail.com/sport/football/article-16195521/Liverpool-vs-Manchester-City-Premier-League-LIVE-Follow-build-action-reaction-Anfield-visitors-play-match-guilty-verdict.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791727987,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "AI’s quiet safety gatekeepers are stepping into the spotlight",
+                    "url": "https://www.cnbc.com/2026/10/11/ais-quiet-safety-gatekeepers-are-stepping-into-the-spotlight.html",
+                    "ts": 1791727724,
+                    "emo": "🧪"
+                },
+                {
+                    "title": "Trump says he is 'going to look at' joining Saudi Arabia in the fight against Iran-backed Houthis after deadly airport strike",
+                    "url": "https://www.cnbc.com/2026/10/11/trump-saudi-arabia-iran-houthis.html",
+                    "ts": 1791727762,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "WAR DAY 225: 12 Killed, Hundreds Injured at Saudi Airport in Houthi Strikes...",
+                    "url": "https://www.drudgereport.com/hhttps://www.wsj.com/world/middle-east/iran-backed-houthis-hit-saudi-capitals-airport-in-damaging-new-attack-d4c12236",
+                    "ts": 1791727296,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Missile hits passenger terminal...",
+                    "url": "https://www.drudgereport.com/hhttps://www.wsj.com/world/middle-east/iran-backed-houthis-hit-saudi-capitals-airport-in-damaging-new-attack-d4c12236",
+                    "ts": 1791727296,
                     "emo": "📰"
                 }
             ]
@@ -42,15 +78,15 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Kelly Clarkson slams Brooklyn store over ‘Pretty Woman’ treatment",
-                    "url": "https://www.foxnews.com/entertainment/kelly-clarkson-slams-brooklyn-store-pretty-woman-treatment",
-                    "ts": 1791725192,
+                    "title": "Mysterious find beneath field leads man to massive treasure hidden for centuries",
+                    "url": "https://www.foxnews.com/travel/mysterious-find-beneath-field-leads-man-massive-treasure-hidden-centuries",
+                    "ts": 1791727216,
                     "emo": "📰"
                 },
                 {
-                    "title": "Silent inflammation could be damaging your body — and 5 habits may help keep it in check",
-                    "url": "https://www.foxnews.com/health/silent-inflammation-damaging-body-5-habits-help-keep-check",
-                    "ts": 1791723647,
+                    "title": "Torrie Wilson reminds everyone that she still has it, Sydney Sweeney's Halloween costume idea & Texas loses",
+                    "url": "https://www.foxnews.com/outkick-sports/torrie-wilson-reminds-everyone-still-has-it-sydney-sweeney-halloween-costume-idea-texas-loses",
+                    "ts": 1791727027,
                     "emo": "📰"
                 }
             ]
@@ -60,15 +96,33 @@
             "home": "https://www.marketwatch.com",
             "items": [
                 {
+                    "title": "We’re about to get a huge read on whether earnings can keep propping up the stock market",
+                    "url": "https://www.marketwatch.com/story/were-about-to-get-a-huge-read-on-whether-earnings-can-keep-propping-up-the-stock-market-459b565b?mod=mw_rss_topstories",
+                    "ts": 1791727200,
+                    "emo": "💰"
+                },
+                {
                     "title": "The bull market is turning 4 years old — but yields could crash the party",
                     "url": "https://www.marketwatch.com/story/the-bull-market-is-turning-4-years-old-but-yields-could-crash-the-party-1305fe6c?mod=mw_rss_topstories",
                     "ts": 1791723600,
                     "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Threats of Political Violence Have America’s Elected Officials Living in Fear",
+                    "url": "https://www.nytimes.com/2026/10/11/us/politics/elections-political-violence-harassment.html",
+                    "ts": 1791726950,
+                    "emo": "📰"
                 },
                 {
-                    "title": "‘I feel like a loser’: My stock portfolio is swinging wildly. Is it finally time to worry?",
-                    "url": "https://www.marketwatch.com/story/i-feel-like-a-loser-my-etfs-go-up-one-day-and-crash-the-next-is-this-a-bad-sign-0c9848b2?mod=mw_rss_topstories",
-                    "ts": 1791721800,
+                    "title": "After Many Threats, an Arizona Lawmaker Asks: ‘Is It Really Worth It?’",
+                    "url": "https://www.nytimes.com/2026/10/11/us/arizona-alma-hernandez-threats-violence.html",
+                    "ts": 1791709253,
                     "emo": "📰"
                 }
             ]
@@ -110,24 +164,6 @@
             ]
         },
         {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "WAR DAY 225: 12 Killed, Hundreds Injured at Saudi Airport in Houthi Strikes...",
-                    "url": "https://www.drudgereport.com/hhttps://www.wsj.com/world/middle-east/iran-backed-houthis-hit-saudi-capitals-airport-in-damaging-new-attack-d4c12236",
-                    "ts": 1791718476,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Missile hits passenger terminal...",
-                    "url": "https://www.drudgereport.com/hhttps://www.wsj.com/world/middle-east/iran-backed-houthis-hit-saudi-capitals-airport-in-damaging-new-attack-d4c12236",
-                    "ts": 1791718476,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
             "name": "BBC",
             "home": "https://www.bbc.com/news",
             "items": [
@@ -146,24 +182,6 @@
             ]
         },
         {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "AI’s quiet safety gatekeepers are stepping into the spotlight",
-                    "url": "https://www.cnbc.com/2026/10/11/ais-quiet-safety-gatekeepers-are-stepping-into-the-spotlight.html",
-                    "ts": 1791716401,
-                    "emo": "🧪"
-                },
-                {
-                    "title": "Trump says he is 'going to look at' joining Saudi Arabia in the fight against Iran-backed Houthis after deadly airport strike",
-                    "url": "https://www.cnbc.com/2026/10/11/trump-saudi-arabia-iran-houthis.html",
-                    "ts": 1791719521,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
             "name": "NBC",
             "home": "https://www.nbcnews.com",
             "items": [
@@ -177,24 +195,6 @@
                     "title": "Abdul El-Sayed addresses past criticism of Obama: 'I was younger’ and ‘angry’",
                     "url": "https://www.nbcnews.com/meet-the-press/video/abdul-el-sayed-addresses-past-criticism-of-obama-i-was-younger-and-angry-271404101895",
                     "ts": 1791714399,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Threats of Political Violence Have America’s Elected Officials Living in Fear",
-                    "url": "https://www.nytimes.com/2026/10/11/us/politics/elections-political-violence-harassment.html",
-                    "ts": 1791709239,
-                    "emo": "📰"
-                },
-                {
-                    "title": "After Many Threats, an Arizona Lawmaker Asks: ‘Is It Really Worth It?’",
-                    "url": "https://www.nytimes.com/2026/10/11/us/arizona-alma-hernandez-threats-violence.html",
-                    "ts": 1791709253,
                     "emo": "📰"
                 }
             ]
