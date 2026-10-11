@@ -5,60 +5,16 @@ $url      = $resolved['url'];
 $category = $resolved['category'] ?? '';
 $db = $resolved['db'] ?? '';
 
-// ✅ normalize db flag
+// Normalize the optional database-backed article flag.
 $dbFlag = ($db === '1' || $db === 'true' || $db === 'yes');
 
-// ✅ only DB mode if dbFlag OR category=db
-$fromDb = $dbFlag || (strtolower($category) === 'db');
-
-$article = null;
-
-if ($fromDb) {
-    $article = getArticleFromDBByUrl($url);
-
-    // If not found, degrade gracefully
-    if (!is_array($article) || empty($article)) {
-        $fromDb = false;
-        $article = null;
-    }
-}
-
-// Get meta data for article
-$meta           = [];
-$title          = '';
-$des            = '';
-$img            = '';
-$pub            = '';
-$pub_link       = '';
-$youtube_search = '';
-
-// If we're in "db mode", try to pull the article from the DB instead of scraping
-if (!empty($db)) {
-    $article = getArticleFromDBByUrl($url);
-
-    if (!empty($article) && is_array($article)) {
-        $dbMeta = build_meta_from_db_article($url, $article);
-        if (is_array($dbMeta)) {
-            $meta = $dbMeta;
-        }
-    }
-}
-
-// If we don't have an image yet (or $meta is still empty), fall back to scraping
-if (empty($meta['image'])) {
-    $scraped = newsroom_extract_meta($url);
-
-    if (is_array($scraped)) {
-        // Merge scraped meta in without nuking DB values that already exist
-        $meta = array_merge($meta, $scraped);
-        // If you want DB to win over scraped, flip the order:
-        // $meta = array_merge($meta, $scraped);
-
-        if (empty($meta['image'])) {
-            $meta['image'] = '/assets/img/news-placeholder.jpg';
-        }
-    }
-}
+// Database-backed articles use stored metadata; unresolved URLs retain OG scraping.
+$databaseRequested = $dbFlag || strtolower($category) === 'db';
+$articleData = newsroom_resolve_article_data($url, $databaseRequested);
+$article = $articleData['article'];
+$fromDb = $articleData['from_db'];
+$meta = $articleData['meta'];
+$source_slug = $article['source_slug'] ?? '';
 
 // Finally, hydrate the individual vars safely
 $title          = $meta['title']          ?? '';

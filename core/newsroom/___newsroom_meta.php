@@ -2,8 +2,8 @@
 // app/core/newsroom/og_meta.php
 require_once __DIR__ . '/___request_resolution_layer.php'; // ensures modules + OpenGraph loaded
 
-function newsroom_extract_meta(string $url): array {
-  $og = OpenGraph::fetch($url);
+function newsroom_extract_meta(string $url, ?callable $fetcher = null): array {
+  $og = $fetcher ? $fetcher($url) : OpenGraph::fetch($url);
 
   // Defaults
   $meta = [
@@ -61,23 +61,56 @@ function build_meta_from_db_article(string $url, array $article): array
     // Construct the main homepage URL (empty if we somehow have no host)
     $homepageUrl = $host !== '' ? $scheme . '://' . $host : '';
 
-    // Clean up the title a bit
-    $rawTitle   = $article['title'] ?? '';
-    /*
-    $cleanTitle = str_replace(
-        ["â", "", "�"],
-        ["'",   "",   ""],
-        $rawTitle
-    );
-    */
+    $rawTitle = trim((string) ($article['title'] ?? ''));
+    $source = trim((string) ($article['source_slug'] ?? ''));
 
     // Build $meta from DB row
     return [
-        'title'           => $article['title'] ?? '',
-        'description'     => $article['description']   ?? '',
-        'image'           => $article['media_url']     ?? '',
-        'publisher'       => $domain,
+        'title'           => $rawTitle !== '' ? $rawTitle : 'No Title',
+        'description'     => trim((string) ($article['description'] ?? '')),
+        'image'           => trim((string) ($article['media_url'] ?? '')),
+        'publisher'       => $source !== '' ? $source : ($domain ?: 'Unknown Publisher'),
         'publisher_link'  => $homepageUrl,
-        'youtube_search'  => $cleanTitle,
+        'youtube_search'  => $rawTitle,
+    ];
+}
+
+function newsroom_resolve_article_data(
+    string $url,
+    bool $databaseRequested,
+    ?callable $articleLookup = null,
+    ?callable $openGraphFetch = null
+): array {
+    $article = null;
+
+    if ($databaseRequested) {
+        try {
+            $lookup = $articleLookup ?? 'getArticleFromDBByUrl';
+            $candidate = $lookup($url);
+            if (is_array($candidate) && !empty($candidate)) {
+                $article = $candidate;
+            }
+        } catch (Throwable $e) {
+            error_log('Newsroom database article lookup failed: ' . $e->getMessage());
+        }
+    }
+
+    $fromDb = $article !== null;
+    if ($fromDb) {
+        $meta = build_meta_from_db_article($url, $article);
+        if ($meta['image'] === '') {
+            $meta['image'] = '/assets/img/news-placeholder.jpg';
+        }
+    } else {
+        $meta = newsroom_extract_meta($url, $openGraphFetch);
+        if (empty($meta['image'])) {
+            $meta['image'] = '/assets/img/news-placeholder.jpg';
+        }
+    }
+
+    return [
+        'article' => $article,
+        'from_db' => $fromDb,
+        'meta' => $meta,
     ];
 }
