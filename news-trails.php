@@ -679,7 +679,7 @@ function renderEmptyState(
                 <?php if ($isFilteredView): ?>
                     <?php renderTrailPagination('personal', $page, $totalPages); ?>
                 <?php elseif ($currentUserId && $hasMore['personal']): ?>
-                    <a href="/news-trails.php?base=personal" class="small">
+                    <a href="/news-trails.php?base=personal" class="small" data-loading>
                         View more personal trails
                     </a>
                 <?php endif; ?>
@@ -706,7 +706,7 @@ function renderEmptyState(
                 <?php if ($isFilteredView): ?>
                     <?php renderTrailPagination('editors', $page, $totalPages); ?>
                 <?php elseif ($hasMore['editors']): ?>
-                    <a href="/news-trails.php?base=editors" class="small">View more editor trails</a>
+                    <a href="/news-trails.php?base=editors" class="small" data-loading>View more editor trails</a>
                 <?php endif; ?>
             </section>
         <?php endif; ?>
@@ -752,7 +752,7 @@ function renderEmptyState(
                 <?php if ($isFilteredView): ?>
                     <?php renderTrailPagination('community', $page, $totalPages); ?>
                 <?php elseif ($hasMore['community']): ?>
-                    <a href="/news-trails.php?base=community" class="small">View more community trails</a>
+                    <a href="/news-trails.php?base=community" class="small" data-loading>View more community trails</a>
                 <?php endif; ?>
             </section>
         <?php endif; ?>
