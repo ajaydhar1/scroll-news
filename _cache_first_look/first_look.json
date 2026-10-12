@@ -1,200 +1,20 @@
 {
-    "fetched_at": 1791728167,
+    "fetched_at": 1791794830,
     "feeds": [
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "Polymarket promo code NYPMAX1: Deposit $10, get $25 for Eagles vs. Jaguars",
-                    "url": "https://nypost.com/2026/10/11/betting/polymarket-promo-code-nypmax1-deposit-10-get-25-for-eagles-vs-jaguars/",
-                    "ts": 1791728100,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Missing kitten reunited with family after fire tears through California home",
-                    "url": "https://nypost.com/2026/10/11/us-news/california-firefighters-rescue-cat-from-blaze-and-reunite-it-with-tearful-family/",
-                    "ts": 1791728100,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Reform vows to deploy Trump-style tariffs against countries that refuse to accept return of illegal migrants",
-                    "url": "https://www.dailymail.com/news/article-16200415/Reform-Trump-tariffs-countries-illegal-migrants-Channel.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791728027,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Liverpool vs Manchester City - Premier League LIVE: Enzo Maresca's side braced for hostile Anfield reception, plus updates from the 2pm games",
-                    "url": "https://www.dailymail.com/sport/football/article-16195521/Liverpool-vs-Manchester-City-Premier-League-LIVE-Follow-build-action-reaction-Anfield-visitors-play-match-guilty-verdict.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791727987,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "AI’s quiet safety gatekeepers are stepping into the spotlight",
-                    "url": "https://www.cnbc.com/2026/10/11/ais-quiet-safety-gatekeepers-are-stepping-into-the-spotlight.html",
-                    "ts": 1791727724,
-                    "emo": "🧪"
-                },
-                {
-                    "title": "Trump says he is 'going to look at' joining Saudi Arabia in the fight against Iran-backed Houthis after deadly airport strike",
-                    "url": "https://www.cnbc.com/2026/10/11/trump-saudi-arabia-iran-houthis.html",
-                    "ts": 1791727762,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "WAR DAY 225: 12 Killed, Hundreds Injured at Saudi Airport in Houthi Strikes...",
-                    "url": "https://www.drudgereport.com/hhttps://www.wsj.com/world/middle-east/iran-backed-houthis-hit-saudi-capitals-airport-in-damaging-new-attack-d4c12236",
-                    "ts": 1791727296,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Missile hits passenger terminal...",
-                    "url": "https://www.drudgereport.com/hhttps://www.wsj.com/world/middle-east/iran-backed-houthis-hit-saudi-capitals-airport-in-damaging-new-attack-d4c12236",
-                    "ts": 1791727296,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "Mysterious find beneath field leads man to massive treasure hidden for centuries",
-                    "url": "https://www.foxnews.com/travel/mysterious-find-beneath-field-leads-man-massive-treasure-hidden-centuries",
-                    "ts": 1791727216,
+                    "title": "How to save your marriage, by PAUL C BRUNSON: I've been there. But I now know silly arguments about chores aren't about domestic tasks - they're about respect...",
+                    "url": "https://www.dailymail.com/lifestyle/love-sex/article-16200513/how-save-marriage-arguments-respect-tips-PAUL-BRUNSON.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791794719,
                     "emo": "📰"
                 },
                 {
-                    "title": "Torrie Wilson reminds everyone that she still has it, Sydney Sweeney's Halloween costume idea & Texas loses",
-                    "url": "https://www.foxnews.com/outkick-sports/torrie-wilson-reminds-everyone-still-has-it-sydney-sweeney-halloween-costume-idea-texas-loses",
-                    "ts": 1791727027,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "We’re about to get a huge read on whether earnings can keep propping up the stock market",
-                    "url": "https://www.marketwatch.com/story/were-about-to-get-a-huge-read-on-whether-earnings-can-keep-propping-up-the-stock-market-459b565b?mod=mw_rss_topstories",
-                    "ts": 1791727200,
-                    "emo": "💰"
-                },
-                {
-                    "title": "The bull market is turning 4 years old — but yields could crash the party",
-                    "url": "https://www.marketwatch.com/story/the-bull-market-is-turning-4-years-old-but-yields-could-crash-the-party-1305fe6c?mod=mw_rss_topstories",
-                    "ts": 1791723600,
-                    "emo": "💰"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Threats of Political Violence Have America’s Elected Officials Living in Fear",
-                    "url": "https://www.nytimes.com/2026/10/11/us/politics/elections-political-violence-harassment.html",
-                    "ts": 1791726950,
-                    "emo": "📰"
-                },
-                {
-                    "title": "After Many Threats, an Arizona Lawmaker Asks: ‘Is It Really Worth It?’",
-                    "url": "https://www.nytimes.com/2026/10/11/us/arizona-alma-hernandez-threats-violence.html",
-                    "ts": 1791709253,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "My mom was raising me and caring for her mom with Alzheimer's. Our neighbors became our village.",
-                    "url": "https://www.businessinsider.com/cohousing-alzheimers-caregiving-single-mom-community-2026-10",
-                    "ts": 1791722881,
-                    "emo": "📰"
-                },
-                {
-                    "title": "My favorite hidden gem in California has incredible food and wine — and it's more affordable than Napa Valley",
-                    "url": "https://www.businessinsider.com/paso-robles-california-wine-tastings-hidden-gem-2026-10",
-                    "ts": 1791721682,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Trump names Katie Bailey as White House legislative affairs director",
-                    "url": "https://thehill.com/homenews/administration/6141177-trump-names-katie-bailey-legislative-director/",
-                    "ts": 1791722682,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Live updates: Zelensky set for Sunday interview amid backlash to Trump's Russia diesel deal",
-                    "url": "https://thehill.com/homenews/administration/6140988-live-updates-zelensky-set-for-sunday-interview-amid-backlash-to-trumps-russia-diesel-deal/",
-                    "ts": 1791721755,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "Riyadh airport attack another dangerous moment in already tense conflict",
-                    "url": "https://www.bbc.co.uk/news/articles/cr4g1pwxxlq1o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791718370,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Buildings swept away as flash floods hit central Nepal",
-                    "url": "https://www.bbc.co.uk/news/videos/cwzrdnljedx0o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791714842,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Major attack on Saudi airport kills 12 and leads Trump to weigh joining fight",
-                    "url": "https://www.nbcnews.com/world/middle-east/saudi-airport-attack-trump-us-join-fight-houthis-rcna602744",
-                    "ts": 1791713351,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Abdul El-Sayed addresses past criticism of Obama: 'I was younger’ and ‘angry’",
-                    "url": "https://www.nbcnews.com/meet-the-press/video/abdul-el-sayed-addresses-past-criticism-of-obama-i-was-younger-and-angry-271404101895",
-                    "ts": 1791714399,
+                    "title": "Chelsea star Cole Palmer under fire as he 'can't even be bothered to say hello' to desperate young fans swarming him and his girlfriend as they walk home",
+                    "url": "https://www.dailymail.com/sport/football/article-16201731/Chelseas-Cole-Palmer-fire-bothered-say-hello-desperate-young-fans.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791794546,
                     "emo": "📰"
                 }
             ]
@@ -204,16 +24,196 @@
             "home": "https://www.theguardian.com",
             "items": [
                 {
-                    "title": "Developing nations face triple shock from energy crisis, El Niño and borrowing costs, UN warns",
-                    "url": "https://www.theguardian.com/business/2026/oct/11/developing-nations-triple-shock-energy-crisis-el-nino-borrowing-costs-un-warns",
-                    "ts": 1791691215,
+                    "title": "UK inflation pressures hit three-year high; Nobel prize for economics awarded today – business live",
+                    "url": "https://www.theguardian.com/business/live/2026/oct/12/uk-growth-inflation-pressures-oil-price-sveriges-riksbank-nobel-prize-economic-sciences-awarded-latest-news-updates",
+                    "ts": 1791794602,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "IFS: budget will be ‘work of fiction’ without clear plan to cover UK’s £35bn spending pressures",
+                    "url": "https://www.theguardian.com/business/2026/oct/12/ifs-budget-report-spending-pressures-tax-inflation-john-healey",
+                    "ts": 1791784151,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Zelenskyy says Ukraine is ready to agree to energy ceasefire, but warns Russia must do same",
+                    "url": "https://www.cnbc.com/2026/10/12/russia-ukraine-energy-ceasefire-trump.html",
+                    "ts": 1791794241,
                     "emo": "🌍"
                 },
                 {
-                    "title": "US’s Reagan-era economic promises return as Trump’s AI-fueled growth fantasy",
-                    "url": "https://www.theguardian.com/business/2026/oct/11/trump-ai-economy-reagan",
-                    "ts": 1791716425,
+                    "title": "Judge orders Trump administration to immediately stop taxpayer-funded TV ads",
+                    "url": "https://www.cnbc.com/2026/10/11/trump-ads-dhs-judge-order.html",
+                    "ts": 1791772134,
                     "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "WAR DAY 226: SAUDIS SHAKEN...",
+                    "url": "https://www.semafor.com/article/10/11/2026/attacks-on-riyadh-threaten-saudi-confidence",
+                    "ts": 1791793536,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Houthis show military reach with missile strikes on Riyadh...",
+                    "url": "https://www.streetinsider.com/Reuters/Saudi+Arabia+reports+injuries+in+new+attack+at+Riyadh+airport%2C+day+after+strike+kills+13/27172796.html",
+                    "ts": 1791793536,
+                    "emo": "🎭"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "The giant cavity in America's dental care industry",
+                    "url": "https://www.businessinsider.com/america-dental-hygienist-shortage-patients-workplace-quality-2026-10",
+                    "ts": 1791793441,
+                    "emo": "📰"
+                },
+                {
+                    "title": "The small business drama involving Kelly Clarkson, a Brooklyn toy store, and an animatronic bird",
+                    "url": "https://www.businessinsider.com/kelly-clarkson-nyc-shop-internet-drama-reviews-pretty-woman-2026-10",
+                    "ts": 1791784227,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "Texas teen killed in horrific rollover crash just month before 19th birthday",
+                    "url": "https://nypost.com/2026/10/12/us-news/texas-teen-serenity-rangel-killed-in-horrific-rollover-crash-just-month-before-19th-birthday/",
+                    "ts": 1791793241,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Hurricane Simon pounds resorts and vulnerable towns along Mexico’s Pacific coast",
+                    "url": "https://nypost.com/2026/10/12/world-news/hurricane-simon-pounds-resorts-and-vulnerable-towns-along-mexicos-pacific-coast/",
+                    "ts": 1791791007,
+                    "emo": "🌪️"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "The blue wave looks real until you look a little closer",
+                    "url": "https://www.foxnews.com/opinion/blue-wave-looks-real-until-you-look-little-closer",
+                    "ts": 1791788407,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Suspect in deadly Philadelphia police ambush faces 76 charges, ordered held without bail",
+                    "url": "https://www.foxnews.com/us/philadelphia-police-ambush-eric-lewis-charges",
+                    "ts": 1791785776,
+                    "emo": "🚨"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "Deloitte helped in falsifying documents to evade tax on Abramovich’s wealth, BBC finds",
+                    "url": "https://www.bbc.co.uk/news/articles/c64g1l5389kvo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791781252,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Rejecting closer EU ties would be dereliction of duty, PM to say",
+                    "url": "https://www.bbc.co.uk/news/articles/c6lyk8e3lxz0o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791781282,
+                    "emo": "🌍"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Three signs that America is on the run",
+                    "url": "https://thehill.com/opinion/national-security/6141464-us-military-vulnerability-threats/",
+                    "ts": 1791779400,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Top Senate Republican calls Guilfoyle reports ‘very troubling’",
+                    "url": "https://thehill.com/homenews/senate/6142003-barrasso-concerns-guilfoyle-finances/",
+                    "ts": 1791774635,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Saudi and Yemeni Airports Hit in New Round of Strikes",
+                    "url": "https://www.nytimes.com/2026/10/11/world/middleeast/saudi-yemen-airports-houthis.html",
+                    "ts": 1791772062,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Saudi Arabia Has Few Options as Houthis Aim at Heart of Its Ambitions",
+                    "url": "https://www.nytimes.com/2026/10/11/world/middleeast/saudi-arabia-options-houthis.html",
+                    "ts": 1791748668,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Federal judge orders pro-Trump TV ads funded by taxpayers off air immediately",
+                    "url": "https://www.nbcnews.com/politics/trump-administration/federal-judge-orders-trump-tv-ads-funded-taxpayers-air-immediately-rcna602879",
+                    "ts": 1791766123,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "South Carolina Senate rivals spar over Iran, AI and Trump in debate",
+                    "url": "https://www.nbcnews.com/politics/2026-election/south-carolina-senate-rivals-spar-iran-war-ai-trump-fiery-debate-rcna602590",
+                    "ts": 1791769467,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "‘I have no children’: My aunt gave me $50,000 for a down payment. Now she wants me to leave my home to her two children.",
+                    "url": "https://www.marketwatch.com/story/i-have-no-children-my-aunt-gave-me-50-000-for-a-down-payment-she-wants-me-to-leave-my-home-to-her-two-children-24fad94c?mod=mw_rss_topstories",
+                    "ts": 1791749700,
+                    "emo": "📰"
+                },
+                {
+                    "title": "‘I feel like a loser’: My stock portfolio is swinging wildly. Is it finally time to worry?",
+                    "url": "https://www.marketwatch.com/story/i-feel-like-a-loser-my-etfs-go-up-one-day-and-crash-the-next-is-this-a-bad-sign-0c9848b2?mod=mw_rss_topstories",
+                    "ts": 1791748800,
+                    "emo": "📰"
                 }
             ]
         }

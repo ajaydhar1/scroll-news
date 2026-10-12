@@ -105,9 +105,9 @@ sn_perf_phase('render');
     <link id="mindpour-theme" href="/assets/css/mindpour.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/mindpour.css'); ?>" rel="stylesheet" />
     <link id="dark-theme" href="/assets/css/dark.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark.css'); ?>" rel="stylesheet" />
     <link id="dark-typography-theme" href="/assets/css/dark-typography.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/dark-typography.css'); ?>" rel="stylesheet" />
-    
+
     <script src="/assets/js/dark-theme.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/dark-theme.js'); ?>"></script>
-    
+
     <link href="/assets/css/pages/home.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/home.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/pages/watch-desk.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/watch-desk.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/panels/news-intel-panel.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/news-intel-panel.css'); ?>" rel="stylesheet" />
@@ -131,159 +131,171 @@ sn_perf_phase('render');
 
         <!-- INTRO ATMOSPHERE EXPERIMENT: remove this wrapper div (and its closing tag) to revert -->
         <div class="sn-intro-atmosphere">
-        <!-- Masthead-->
-        <header class="masthead bg-light-2">
-            <div class="container">
-                <div class="masthead-subheading">An intelligence layer between you and the news.</div>
-                <div class="masthead-heading text-uppercase">AI-Driven News<br><span>Insights</span></div>
-                <div class="cta-group text-center">
-                    <a id="scroll"
-                        class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black d-block d-md-inline-block btn-width-mobile-75 mx-auto mb-3 mb-sm-0 mr-md-2"
-                        href="/newsroom.php"
-                        data-loading>
-                        Launch Newsroom
-                    </a>
 
-                    <?php if (!empty($_SESSION['user_id'])): ?>
-                        <a class="btn btn-outline-secondary btn-lg btn-rectangle d-block d-md-inline-block btn-width-mobile-75 mx-auto mb-3 mb-md-0 mr-md-2"
-                            href="/news-trails.php"
-                            data-loading>
-                            Explore News Trails
-                        </a>
-                    <?php endif; ?>
-
-                    <?php if (empty($_SESSION['user_id'])): ?>
-                        <a class="btn btn-dark btn-dark-clean btn-lg btn-rectangle js-scroll-trigger d-block d-md-inline-block btn-width-mobile-75 w-md-auto mx-auto mb-3 mb-sm-0 mr-md-2"
-                            href="/auth/register.php">
-                            Sign Up
-                        </a>
-
-                        <a class="btn btn-light btn-lg btn-rectangle js-scroll-trigger text-black d-block d-md-inline-block btn-width-mobile-75 mx-auto"
-                            href="/auth/login.php">
-                            Login
-                        </a>
-                    <?php endif; ?>
-                </div>
-                <p class="home-how-link-wrap">
-                    <a class="home-how-link" href="how-it-works.php">Discover how Scroll News works <span aria-hidden="true">↗</span></a>
-                </p>
-            </div>
-        </header>
-
-        <!-- Reading Modes-->
-        <section class="reading-modes-section page-section bg-light-2 pt-5 pb-0">
-            <div class="container">
-                <div class="row mb-4">
-                    <div class="col-12 text-center">
-                        <h2 class="mb-2">Reading Modes</h2>
-                        <p class="text-muted mb-0">
-                            Two ways to reach the reporting you love — choose how you get there.
-                        </p>
+            <!-- Masthead -->
+            <header class="masthead bg-light-2">
+                <div class="container">
+                    <div class="masthead-subheading">
+                        An intelligence layer between you and the news.
                     </div>
-                </div>
 
-                <div class="row g-4">
-                    <!-- Deep Dive -->
-                    <div class="col-md-6 mb-3">
-                        <div class="card h-100 shadow-sm reading-mode-card">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center mb-2">
-                                    <span class="reading-mode-icon me-2">🔎</span>
-                                    <h3 class="h5 mb-0">Deep Dive</h3>
-                                </div>
-                                <div class="scroll-article-badges">
-                                    <a class="scroll-badge scroll-badge-deep-dive" href="/search.php?mode=nlp&amp;deep_dive=1" title="Articles with rich entity density (detailed topics)." data-loading="">
-                                        Deep dive
-                                    </a>
-                                </div>
-                                <p class="text-muted mb-2">
-                                    Thoughtful, entity-aware reporting that goes beyond headlines and reactions.
-                                </p>
-                                <p class="text-muted italic mb-4">
-                                    These are the pieces you sit with — fewer articles, more understanding.
-                                </p>
-                                <a href="/search.php?mode=nlp&deep_dive=1" class="btn btn-sm btn-green" data-loading>
-                                    Browse Deep Dives
-                                </a>
-                            </div>
+                    <div class="masthead-heading text-uppercase">
+                        Explore News<br><span>Differently.</span>
+                    </div>
+
+                    <div class="cta-group text-center">
+                        <a id="scroll"
+                            class="btn btn-green btn-lg btn-rectangle js-scroll-trigger text-black d-block d-md-inline-block btn-width-mobile-75 mx-auto mb-3 mb-sm-0 mr-md-2"
+                            href="/newsroom.php"
+                            data-loading>
+                            Launch Newsroom
+                        </a>
+
+                        <?php if (!empty($_SESSION['user_id'])): ?>
+                            <a class="btn btn-outline-secondary btn-lg btn-rectangle d-block d-md-inline-block btn-width-mobile-75 mx-auto mb-3 mb-md-0 mr-md-2"
+                                href="/news-trails.php"
+                                data-loading>
+                                Explore News Trails
+                            </a>
+                        <?php endif; ?>
+
+                        <?php if (empty($_SESSION['user_id'])): ?>
+                            <a class="btn btn-dark btn-dark-clean btn-lg btn-rectangle js-scroll-trigger d-block d-md-inline-block btn-width-mobile-75 w-md-auto mx-auto mb-3 mb-sm-0 mr-md-2"
+                                href="/auth/register.php">
+                                Sign Up
+                            </a>
+
+                            <a class="btn btn-light btn-lg btn-rectangle js-scroll-trigger text-black d-block d-md-inline-block btn-width-mobile-75 mx-auto"
+                                href="/auth/login.php">
+                                Login
+                            </a>
+                        <?php endif; ?>
+                    </div>
+
+                    <p class="home-how-link-wrap">
+                        <a class="home-how-link" href="how-it-works.php">
+                            Discover how Scroll News works
+                            <span aria-hidden="true">↗</span>
+                        </a>
+                    </p>
+                </div>
+            </header>
+
+
+            <!-- Reading Modes-->
+            <section class="reading-modes-section page-section bg-light-2 pt-5 pb-0">
+                <div class="container">
+                    <div class="row mb-4">
+                        <div class="col-12 text-center">
+                            <h2 class="mb-2">Reading Modes</h2>
+                            <p class="text-muted mb-0">
+                                Two ways to reach the reporting you love — choose how you get there.
+                            </p>
                         </div>
                     </div>
 
-                    <!-- High-Signal Publishers -->
-                    <div class="col-md-6 mb-3">
-                        <div class="card h-100 shadow-sm reading-mode-card">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center mb-2">
-                                    <span class="reading-mode-icon me-2">📡</span>
-                                    <h3 class="h5 mb-0">High-Signal Publishers</h3>
-                                </div>
-                                <div class="scroll-article-badges mb-2">
-                                    <a class="scroll-badge scroll-badge-high-signal-publisher" href="/search.php?high_signal=1" title="Top-tier outlets with high editorial signal." data-loading="">
-                                        High-Signal Publisher
+                    <div class="row g-4">
+                        <!-- Deep Dive -->
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 shadow-sm reading-mode-card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="reading-mode-icon me-2">🔎</span>
+                                        <h3 class="h5 mb-0">Deep Dive</h3>
+                                    </div>
+                                    <div class="scroll-article-badges">
+                                        <a class="scroll-badge scroll-badge-deep-dive" href="/search.php?mode=nlp&amp;deep_dive=1" title="Articles with rich entity density (detailed topics)." data-loading="">
+                                            Deep dive
+                                        </a>
+                                    </div>
+                                    <p class="text-muted mb-2">
+                                        Thoughtful, entity-aware reporting that goes beyond headlines and reactions.
+                                    </p>
+                                    <p class="text-muted italic mb-4">
+                                        These are the pieces you sit with — fewer articles, more understanding.
+                                    </p>
+                                    <a href="/search.php?mode=nlp&deep_dive=1" class="btn btn-sm btn-green" data-loading>
+                                        Browse Deep Dives
                                     </a>
                                 </div>
-                                <p class="text-muted mb-2">
-                                    A curated stream of outlets that consistently publish smart, compelling reporting.
-                                </p>
-                                <p class="text-muted italic mb-4">
-                                    Ideal when you want to browse without worrying if an article will be worth your time.
-                                </p>
-                                <a href="/search.php?high_signal=1" class="btn btn-sm btn-outline-secondary" data-loading>
-                                    View High-Signal Feed
-                                </a>
+                            </div>
+                        </div>
+
+                        <!-- High-Signal Publishers -->
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 shadow-sm reading-mode-card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="reading-mode-icon me-2">📡</span>
+                                        <h3 class="h5 mb-0">High-Signal Publishers</h3>
+                                    </div>
+                                    <div class="scroll-article-badges mb-2">
+                                        <a class="scroll-badge scroll-badge-high-signal-publisher" href="/search.php?high_signal=1" title="Top-tier outlets with high editorial signal." data-loading="">
+                                            High-Signal Publisher
+                                        </a>
+                                    </div>
+                                    <p class="text-muted mb-2">
+                                        A curated stream of outlets that consistently publish smart, compelling reporting.
+                                    </p>
+                                    <p class="text-muted italic mb-4">
+                                        Ideal when you want to browse without worrying if an article will be worth your time.
+                                    </p>
+                                    <a href="/search.php?high_signal=1" class="btn btn-sm btn-outline-secondary" data-loading>
+                                        View High-Signal Feed
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Category pills for the analysis page -->
-        <?php
+            <!-- Category pills for the analysis page -->
+            <?php
 
-        $categories = [
-            'politics'      => 'Politics',
-            'sports'        => 'Sports',
-            'business'      => 'Business',
-            'technology'    => 'Technology',
-            'science'       => 'Science',
-            'health'        => 'Health',
-            'entertainment' => 'Entertainment',
-        ];
+            $categories = [
+                'politics'      => 'Politics',
+                'sports'        => 'Sports',
+                'business'      => 'Business',
+                'technology'    => 'Technology',
+                'science'       => 'Science',
+                'health'        => 'Health',
+                'entertainment' => 'Entertainment',
+            ];
 
-        // optional: highlight the active category if you're already on analysis pages
-        $currentCtx = isset($_GET['context']) ? strtolower(trim((string)$_GET['context'])) : '';
-        $currentVal = isset($_GET['value'])   ? strtolower(trim((string)$_GET['value']))   : '';
-        ?>
-        <section class="container-fluid bg-light-2 py-3 text-center">
-            <div class="sn-categories-strip">
-                <div class="sn-categories-title">Analyze trends by category</div>
+            // optional: highlight the active category if you're already on analysis pages
+            $currentCtx = isset($_GET['context']) ? strtolower(trim((string)$_GET['context'])) : '';
+            $currentVal = isset($_GET['value'])   ? strtolower(trim((string)$_GET['value']))   : '';
+            ?>
+            <section class="container-fluid bg-light-2 py-3 text-center">
+                <div class="sn-categories-strip">
+                    <div class="sn-categories-title">Analyze trends by category</div>
 
-                <div class="sn-categories-pills">
-                    <?php foreach ($categories as $slug => $label):
-                        $params = $_GET; // preserve existing params (optional)
-                        $params['context'] = 'category';
-                        $params['value']   = $slug;
-                        $params['w']       = '7d';
+                    <div class="sn-categories-pills">
+                        <?php foreach ($categories as $slug => $label):
+                            $params = $_GET; // preserve existing params (optional)
+                            $params['context'] = 'category';
+                            $params['value']   = $slug;
+                            $params['w']       = '7d';
 
-                        // If you don't want to preserve homepage params, replace the 4 lines above with:
-                        // $params = ['context' => 'category', 'value' => $slug, 'w' => '7d'];
+                            // If you don't want to preserve homepage params, replace the 4 lines above with:
+                            // $params = ['context' => 'category', 'value' => $slug, 'w' => '7d'];
 
-                        $href = '/analysis.php?' . http_build_query($params);
+                            $href = '/analysis.php?' . http_build_query($params);
 
-                        $isActive = ($currentCtx === 'category' && $currentVal === $slug);
-                    ?>
-                        <a
-                            class="btn btn-dark mx-1 mb-2"
-                            href="<?= htmlspecialchars($href) ?>"
-                            title="Analyze <?= htmlspecialchars($label) ?>"
-                            data-loading>
-                            <?= htmlspecialchars($label) ?>
-                        </a>
-                    <?php endforeach; ?>
+                            $isActive = ($currentCtx === 'category' && $currentVal === $slug);
+                        ?>
+                            <a
+                                class="btn btn-dark mx-1 mb-2"
+                                href="<?= htmlspecialchars($href) ?>"
+                                title="Analyze <?= htmlspecialchars($label) ?>"
+                                data-loading>
+                                <?= htmlspecialchars($label) ?>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
         </div><!-- /.sn-intro-atmosphere -->
 
 
@@ -328,35 +340,36 @@ sn_perf_phase('render');
         <!-- Intelligence workspace wrapper (light SaaS experiment grouping; harmless without the experiment CSS) -->
         <div class="sn-intel-workspace">
 
-        <!-- News Intelligence Panel-->
-        <?php
-        render_home_panel(
-            'homepage_news_intel_panel',
-            60,
-            600,
-            BASE_PATH . '/views/home/panels/___news_intel_panel.php',
-            $bust,
-            $homepageCache
-        );
-        ?>
+            <!-- News Intelligence Panel-->
+            <?php
+            render_home_panel(
+                'homepage_news_intel_panel',
+                60,
+                600,
+                BASE_PATH . '/views/home/panels/___news_intel_panel.php',
+                $bust,
+                $homepageCache
+            );
+            ?>
 
-        <!-- Active Stories Panel-->
-        <?php
-        render_home_panel(
-            'homepage_active_stories_descriptions_v1',
-            30,
-            300,
-            BASE_PATH . '/views/home/panels/___active_stories.php',
-            $bust,
-            $homepageCache
-        );
-        ?>
+            <!-- Active Stories Panel-->
+            <?php
+            render_home_panel(
+                'homepage_active_stories_descriptions_v1',
+                30,
+                300,
+                BASE_PATH . '/views/home/panels/___active_stories.php',
+                $bust,
+                $homepageCache
+            );
+            ?>
 
-        <!-- Brief Me Bar-->
-        <?php // require_once BASE_PATH . '/views/home/partials/___brief_me.php'; ?>
+            <!-- Brief Me Bar-->
+            <?php // require_once BASE_PATH . '/views/home/partials/___brief_me.php'; 
+            ?>
 
-        <!-- First Look-->
-        <?php include BASE_PATH . '/views/home/panels/___first_look.php'; ?>
+            <!-- First Look-->
+            <?php include BASE_PATH . '/views/home/panels/___first_look.php'; ?>
 
         </div><!-- /.sn-intel-workspace -->
 
