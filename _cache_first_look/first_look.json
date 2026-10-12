@@ -1,24 +1,6 @@
 {
-    "fetched_at": 1791794830,
+    "fetched_at": 1791795840,
     "feeds": [
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "How to save your marriage, by PAUL C BRUNSON: I've been there. But I now know silly arguments about chores aren't about domestic tasks - they're about respect...",
-                    "url": "https://www.dailymail.com/lifestyle/love-sex/article-16200513/how-save-marriage-arguments-respect-tips-PAUL-BRUNSON.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791794719,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Chelsea star Cole Palmer under fire as he 'can't even be bothered to say hello' to desperate young fans swarming him and his girlfriend as they walk home",
-                    "url": "https://www.dailymail.com/sport/football/article-16201731/Chelseas-Cole-Palmer-fire-bothered-say-hello-desperate-young-fans.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791794546,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "The Guardian",
             "home": "https://www.theguardian.com",
@@ -26,7 +8,7 @@
                 {
                     "title": "UK inflation pressures hit three-year high; Nobel prize for economics awarded today – business live",
                     "url": "https://www.theguardian.com/business/live/2026/oct/12/uk-growth-inflation-pressures-oil-price-sveriges-riksbank-nobel-prize-economic-sciences-awarded-latest-news-updates",
-                    "ts": 1791794602,
+                    "ts": 1791795754,
                     "emo": "🔥"
                 },
                 {
@@ -38,13 +20,67 @@
             ]
         },
         {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "Dr. Phil lists his lavish Beverly Hills estate for a whopping $67.5 million",
+                    "url": "https://www.marketwatch.com/story/dr-phil-lists-his-lavish-beverly-hills-estate-for-a-whopping-67-5-million-5992b370?mod=mw_rss_topstories",
+                    "ts": 1791795720,
+                    "emo": "📰"
+                },
+                {
+                    "title": "‘I have no children’: My aunt gave me $50,000 for a down payment. Now she wants me to leave my home to her two children.",
+                    "url": "https://www.marketwatch.com/story/i-have-no-children-my-aunt-gave-me-50-000-for-a-down-payment-she-wants-me-to-leave-my-home-to-her-two-children-24fad94c?mod=mw_rss_topstories",
+                    "ts": 1791749700,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "Harry and Meghan's new life as 'private citizens': Sussexes will make first joint public appearance since moving back to UK with royal-style visit to three charities this week",
+                    "url": "https://www.dailymail.com/news/article-16201683/Harry-Meghans-new-life-private-citizens-Sussexes-make-joint-public-appearance-moving-UK-royal-style-visit-three-charities-week.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791795696,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Chelsea star Cole Palmer under fire as he 'can't even be bothered to say hello' to desperate young fans swarming him and his girlfriend as they walk home",
+                    "url": "https://www.dailymail.com/sport/football/article-16201731/Chelseas-Cole-Palmer-fire-bothered-say-hello-desperate-young-fans.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791795675,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "Radical wannabe rep Darializa Avila Chevalier just said the quiet part out loud about violent criminals",
+                    "url": "https://nypost.com/2026/10/12/opinion/radical-wannabe-rep-darializa-avila-chevalier-just-said-the-quiet-part-out-loud-about-violent-criminals/",
+                    "ts": 1791795600,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Texas teen killed in horrific rollover crash just month before 19th birthday",
+                    "url": "https://nypost.com/2026/10/12/us-news/texas-teen-serenity-rangel-killed-in-horrific-rollover-crash-just-month-before-19th-birthday/",
+                    "ts": 1791793241,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
             "name": "CNBC",
             "home": "https://www.cnbc.com",
             "items": [
                 {
                     "title": "Zelenskyy says Ukraine is ready to agree to energy ceasefire, but warns Russia must do same",
                     "url": "https://www.cnbc.com/2026/10/12/russia-ukraine-energy-ceasefire-trump.html",
-                    "ts": 1791794241,
+                    "ts": 1791794891,
                     "emo": "🌍"
                 },
                 {
@@ -88,24 +124,6 @@
                     "url": "https://www.businessinsider.com/kelly-clarkson-nyc-shop-internet-drama-reviews-pretty-woman-2026-10",
                     "ts": 1791784227,
                     "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "Texas teen killed in horrific rollover crash just month before 19th birthday",
-                    "url": "https://nypost.com/2026/10/12/us-news/texas-teen-serenity-rangel-killed-in-horrific-rollover-crash-just-month-before-19th-birthday/",
-                    "ts": 1791793241,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Hurricane Simon pounds resorts and vulnerable towns along Mexico’s Pacific coast",
-                    "url": "https://nypost.com/2026/10/12/world-news/hurricane-simon-pounds-resorts-and-vulnerable-towns-along-mexicos-pacific-coast/",
-                    "ts": 1791791007,
-                    "emo": "🌪️"
                 }
             ]
         },
@@ -196,24 +214,6 @@
                     "url": "https://www.nbcnews.com/politics/2026-election/south-carolina-senate-rivals-spar-iran-war-ai-trump-fiery-debate-rcna602590",
                     "ts": 1791769467,
                     "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "‘I have no children’: My aunt gave me $50,000 for a down payment. Now she wants me to leave my home to her two children.",
-                    "url": "https://www.marketwatch.com/story/i-have-no-children-my-aunt-gave-me-50-000-for-a-down-payment-she-wants-me-to-leave-my-home-to-her-two-children-24fad94c?mod=mw_rss_topstories",
-                    "ts": 1791749700,
-                    "emo": "📰"
-                },
-                {
-                    "title": "‘I feel like a loser’: My stock portfolio is swinging wildly. Is it finally time to worry?",
-                    "url": "https://www.marketwatch.com/story/i-feel-like-a-loser-my-etfs-go-up-one-day-and-crash-the-next-is-this-a-bad-sign-0c9848b2?mod=mw_rss_topstories",
-                    "ts": 1791748800,
-                    "emo": "📰"
                 }
             ]
         }

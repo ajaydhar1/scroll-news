@@ -263,7 +263,6 @@
       `;
     }).join("");
 
-    // Horizontal wheel scroll (desktop)
     if (!strip.dataset.publisherBound) {
       strip.dataset.publisherBound = "1";
       // The card is itself an <a>, so the publisher badge navigates via script instead of a nested anchor.
@@ -278,12 +277,6 @@
       strip.addEventListener("click", openPublisher);
       strip.addEventListener("keydown", openPublisher);
     }
-    strip.addEventListener("wheel", (e) => {
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        strip.scrollLeft += e.deltaY * 0.9;
-        e.preventDefault();
-      }
-    }, { passive: false });
 
     // Keyboard left/right when focused
     strip.tabIndex = 0;
