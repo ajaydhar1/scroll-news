@@ -65,9 +65,34 @@ require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
 
     <div class="page-container">
 
-        <video autoplay muted loop playsinline id="myVideo">
-            <source src="assets/videos/newsroom.mp4" type="video/mp4">
+        <video autoplay muted loop playsinline id="myVideo" poster="/assets/videos/newsroom-poster.webp" preload="none">
+            <source data-src="/assets/videos/newsroom-optimized.mp4" type="video/mp4">
         </video>
+        <script>
+            (function() {
+                const video = document.getElementById('myVideo');
+                const source = video.querySelector('source');
+                const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+                function syncBackgroundVideo() {
+                    if (motionPreference.matches) {
+                        video.pause();
+                        source.removeAttribute('src');
+                        video.removeAttribute('src');
+                        video.load();
+                        return;
+                    }
+
+                    if (!source.hasAttribute('src')) {
+                        source.src = source.dataset.src;
+                        video.load();
+                    }
+                }
+
+                syncBackgroundVideo();
+                motionPreference.addEventListener('change', syncBackgroundVideo);
+            })();
+        </script>
 
         <!-- Top nav-->
         <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>

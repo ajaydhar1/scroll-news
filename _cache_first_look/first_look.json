@@ -1,6 +1,60 @@
 {
-    "fetched_at": 1791795840,
+    "fetched_at": 1791797537,
     "feeds": [
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "Strictly Come Dancing is thrown into chaos as Love Island star Cach Mercer reveals he's made it through before results show airs",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16201747/Strictly-Come-Dancing-chaos-Love-Island-Cach-Mercer-results-airs.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791797464,
+                    "emo": "🎭"
+                },
+                {
+                    "title": "Andy Carroll praises girlfriend Lou Teasdale for bringing 'happiness into my world' after revealing 'traumatic' sexual assault",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16201717/Andy-Carroll-praises-girlfriend-Lou-Teasdale-bringing-happiness-world-revealing-traumatic-sexual-assault.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791797457,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "The bond market is doing the Fed’s job, and that could be good news for stocks, says Morgan Stanley strategist",
+                    "url": "https://www.marketwatch.com/story/the-bond-market-is-doing-the-feds-job-and-that-could-be-good-news-for-stocks-says-morgan-stanley-strategist-ec57b81a?mod=mw_rss_topstories",
+                    "ts": 1791796980,
+                    "emo": "💰"
+                },
+                {
+                    "title": "My sister moved in with our widowed mother, 78, and says she deserves the family home. Is she right?",
+                    "url": "https://www.marketwatch.com/story/my-sister-moved-in-with-our-widowed-mother-78-and-says-she-deserves-the-family-home-is-she-right-7981835d?mod=mw_rss_topstories",
+                    "ts": 1791796500,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Zelenskyy says Ukraine is ready to agree to energy ceasefire, but warns Russia must do same",
+                    "url": "https://www.cnbc.com/2026/10/12/russia-ukraine-energy-ceasefire-trump.html",
+                    "ts": 1791796832,
+                    "emo": "🌍"
+                },
+                {
+                    "title": "Trump turns to Russian diesel ahead of midterms, but analysts see little price relief",
+                    "url": "https://www.cnbc.com/2026/10/12/russia-ukraine-energy-ceasefire-diesel-prices.html",
+                    "ts": 1791797482,
+                    "emo": "⚖️"
+                }
+            ]
+        },
         {
             "name": "The Guardian",
             "home": "https://www.theguardian.com",
@@ -8,7 +62,7 @@
                 {
                     "title": "UK inflation pressures hit three-year high; Nobel prize for economics awarded today – business live",
                     "url": "https://www.theguardian.com/business/live/2026/oct/12/uk-growth-inflation-pressures-oil-price-sveriges-riksbank-nobel-prize-economic-sciences-awarded-latest-news-updates",
-                    "ts": 1791795754,
+                    "ts": 1791796643,
                     "emo": "🔥"
                 },
                 {
@@ -20,37 +74,37 @@
             ]
         },
         {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Dr. Phil lists his lavish Beverly Hills estate for a whopping $67.5 million",
-                    "url": "https://www.marketwatch.com/story/dr-phil-lists-his-lavish-beverly-hills-estate-for-a-whopping-67-5-million-5992b370?mod=mw_rss_topstories",
-                    "ts": 1791795720,
-                    "emo": "📰"
+                    "title": "A tech CEO who cut his staff from over 1,000 to 120 says AI is boosting the value of 'high-agency' generalists",
+                    "url": "https://www.businessinsider.com/bird-ceo-says-ai-is-empowering-high-agency-generalist-workers-2026-9",
+                    "ts": 1791796261,
+                    "emo": "🧪"
                 },
                 {
-                    "title": "‘I have no children’: My aunt gave me $50,000 for a down payment. Now she wants me to leave my home to her two children.",
-                    "url": "https://www.marketwatch.com/story/i-have-no-children-my-aunt-gave-me-50-000-for-a-down-payment-she-wants-me-to-leave-my-home-to-her-two-children-24fad94c?mod=mw_rss_topstories",
-                    "ts": 1791749700,
-                    "emo": "📰"
+                    "title": "How AI has raised the bar for Two Sigma internships and future hires",
+                    "url": "https://www.businessinsider.com/two-sigma-interns-productive-ai-skills-recruitment-2026-10",
+                    "ts": 1791796201,
+                    "emo": "🧪"
                 }
             ]
         },
         {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Harry and Meghan's new life as 'private citizens': Sussexes will make first joint public appearance since moving back to UK with royal-style visit to three charities this week",
-                    "url": "https://www.dailymail.com/news/article-16201683/Harry-Meghans-new-life-private-citizens-Sussexes-make-joint-public-appearance-moving-UK-royal-style-visit-three-charities-week.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791795696,
-                    "emo": "📰"
+                    "title": "Blue-state governor’s race defies expectations as Republican closes in: Power Rankings",
+                    "url": "https://www.foxnews.com/politics/blue-state-governors-race-defies-expectations-republican-closes-in-power-rankings",
+                    "ts": 1791795655,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "Chelsea star Cole Palmer under fire as he 'can't even be bothered to say hello' to desperate young fans swarming him and his girlfriend as they walk home",
-                    "url": "https://www.dailymail.com/sport/football/article-16201731/Chelseas-Cole-Palmer-fire-bothered-say-hello-desperate-young-fans.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791795675,
+                    "title": "I’ve spent 25 years at historic museums. Smithsonian should tell of America’s greatness",
+                    "url": "https://www.foxnews.com/opinion/spent-25-years-historic-museums-smithsonian-should-tell-americas-greatness",
+                    "ts": 1791795655,
                     "emo": "📰"
                 }
             ]
@@ -74,24 +128,6 @@
             ]
         },
         {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Zelenskyy says Ukraine is ready to agree to energy ceasefire, but warns Russia must do same",
-                    "url": "https://www.cnbc.com/2026/10/12/russia-ukraine-energy-ceasefire-trump.html",
-                    "ts": 1791794891,
-                    "emo": "🌍"
-                },
-                {
-                    "title": "Judge orders Trump administration to immediately stop taxpayer-funded TV ads",
-                    "url": "https://www.cnbc.com/2026/10/11/trump-ads-dhs-judge-order.html",
-                    "ts": 1791772134,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
             "name": "Drudge",
             "home": "https://drudgereport.com",
             "items": [
@@ -106,42 +142,6 @@
                     "url": "https://www.streetinsider.com/Reuters/Saudi+Arabia+reports+injuries+in+new+attack+at+Riyadh+airport%2C+day+after+strike+kills+13/27172796.html",
                     "ts": 1791793536,
                     "emo": "🎭"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "The giant cavity in America's dental care industry",
-                    "url": "https://www.businessinsider.com/america-dental-hygienist-shortage-patients-workplace-quality-2026-10",
-                    "ts": 1791793441,
-                    "emo": "📰"
-                },
-                {
-                    "title": "The small business drama involving Kelly Clarkson, a Brooklyn toy store, and an animatronic bird",
-                    "url": "https://www.businessinsider.com/kelly-clarkson-nyc-shop-internet-drama-reviews-pretty-woman-2026-10",
-                    "ts": 1791784227,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "The blue wave looks real until you look a little closer",
-                    "url": "https://www.foxnews.com/opinion/blue-wave-looks-real-until-you-look-little-closer",
-                    "ts": 1791788407,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Suspect in deadly Philadelphia police ambush faces 76 charges, ordered held without bail",
-                    "url": "https://www.foxnews.com/us/philadelphia-police-ambush-eric-lewis-charges",
-                    "ts": 1791785776,
-                    "emo": "🚨"
                 }
             ]
         },
@@ -204,16 +204,16 @@
             "home": "https://www.nbcnews.com",
             "items": [
                 {
-                    "title": "Federal judge orders pro-Trump TV ads funded by taxpayers off air immediately",
-                    "url": "https://www.nbcnews.com/politics/trump-administration/federal-judge-orders-trump-tv-ads-funded-taxpayers-air-immediately-rcna602879",
-                    "ts": 1791766123,
-                    "emo": "⚖️"
-                },
-                {
                     "title": "South Carolina Senate rivals spar over Iran, AI and Trump in debate",
                     "url": "https://www.nbcnews.com/politics/2026-election/south-carolina-senate-rivals-spar-iran-war-ai-trump-fiery-debate-rcna602590",
                     "ts": 1791769467,
                     "emo": "⚖️"
+                },
+                {
+                    "title": "Saudi airport struck again after deadly attack that killed American",
+                    "url": "https://www.nbcnews.com/nightly-news/video/saudi-airport-struck-again-after-deadly-attack-that-killed-american-271417925718",
+                    "ts": 1791758644,
+                    "emo": "🔥"
                 }
             ]
         }
