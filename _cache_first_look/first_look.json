@@ -1,20 +1,110 @@
 {
-    "fetched_at": 1791797537,
+    "fetched_at": 1791800258,
     "feeds": [
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Strictly Come Dancing is thrown into chaos as Love Island star Cach Mercer reveals he's made it through before results show airs",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16201747/Strictly-Come-Dancing-chaos-Love-Island-Cach-Mercer-results-airs.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791797464,
-                    "emo": "🎭"
+                    "title": "Chelsea star Cole Palmer under fire as he 'can't even be bothered to say hello' to desperate young fans swarming him and his girlfriend as they walk home",
+                    "url": "https://www.dailymail.com/sport/football/article-16201731/Chelseas-Cole-Palmer-fire-bothered-say-hello-desperate-young-fans.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791800177,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Andy Carroll praises girlfriend Lou Teasdale for bringing 'happiness into my world' after revealing 'traumatic' sexual assault",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16201717/Andy-Carroll-praises-girlfriend-Lou-Teasdale-bringing-happiness-world-revealing-traumatic-sexual-assault.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791797457,
+                    "title": "Boy, 14, 'shoots headmaster and teacher in school shotgun rampage' in France",
+                    "url": "https://www.dailymail.com/news/article-16202029/Boy-14-shoots-headmaster-teacher-school-shotgun-rampage-France.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791800173,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Guardian",
+            "home": "https://www.theguardian.com",
+            "items": [
+                {
+                    "title": "Nobel prize for economics awarded to two Americans, Hall and Woodford, for work on New Keynesian models – business live",
+                    "url": "https://www.theguardian.com/business/live/2026/oct/12/uk-growth-inflation-pressures-oil-price-sveriges-riksbank-nobel-prize-economic-sciences-awarded-latest-news-updates",
+                    "ts": 1791800080,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "EU deal with China limits imports of hybrid electric vehicles",
+                    "url": "https://www.theguardian.com/environment/2026/oct/12/eu-deal-china-limit-imports-hybrid-electric-vehicles",
+                    "ts": 1791799813,
+                    "emo": "🌍"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Brent tops $106 as doubts grow over supply boost from Trump’s ‘energy ceasefire’",
+                    "url": "https://www.cnbc.com/2026/10/12/oil-prics-today-iran-us-saudi-arabia-crude-.html",
+                    "ts": 1791799902,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Nobel prize in economics awarded to Robert E. Hall and Michael Woodford",
+                    "url": "https://www.cnbc.com/2026/10/12/nobel-economics-prize-winner-woodford-hall.html",
+                    "ts": 1791799624,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "Russell Brand arrives at a London court for his trial on rape and sexual assault charges",
+                    "url": "https://nypost.com/2026/10/12/entertainment/russell-brand-arrives-at-a-london-court-for-his-trial-on-rape-and-sexual-assault-charges/",
+                    "ts": 1791799720,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Which hair loss treatments really work — and what may be a waste of time and money",
+                    "url": "https://nypost.com/2026/10/12/health/which-hair-loss-treatments-really-work-and-which-are-a-waste/",
+                    "ts": 1791799200,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Secret Service leadership warn of 'massive increase' in threats against the president",
+                    "url": "https://www.foxnews.com/media/secret-service-leadership-warn-massive-increase-threats-president",
+                    "ts": 1791799583,
+                    "emo": "📰"
+                },
+                {
+                    "title": "EXCLUSIVE: Inside LA's homeless hellscape — unlikely critics blast Dems as GOP hopeful tours Skid Row",
+                    "url": "https://www.foxnews.com/politics/exclusive-inside-las-homeless-hellscape-unlikely-critics-blast-dems-gop-hopeful-tours-skid-row",
+                    "ts": 1791799211,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "GOP looks for midterm enthusiasm boost from pro sports stars ",
+                    "url": "https://thehill.com/newsletters/keeping-score/6139570-trump-uses-sports-figures-midterms/",
+                    "ts": 1791799200,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Will Rubio, Ossoff and Ocasio-Cortez run for president?",
+                    "url": "https://thehill.com/homenews/campaign/6139719-ossoff-whitmer-rubio-skip-2028/",
+                    "ts": 1791799200,
                     "emo": "📰"
                 }
             ]
@@ -38,42 +128,6 @@
             ]
         },
         {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Zelenskyy says Ukraine is ready to agree to energy ceasefire, but warns Russia must do same",
-                    "url": "https://www.cnbc.com/2026/10/12/russia-ukraine-energy-ceasefire-trump.html",
-                    "ts": 1791796832,
-                    "emo": "🌍"
-                },
-                {
-                    "title": "Trump turns to Russian diesel ahead of midterms, but analysts see little price relief",
-                    "url": "https://www.cnbc.com/2026/10/12/russia-ukraine-energy-ceasefire-diesel-prices.html",
-                    "ts": 1791797482,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "The Guardian",
-            "home": "https://www.theguardian.com",
-            "items": [
-                {
-                    "title": "UK inflation pressures hit three-year high; Nobel prize for economics awarded today – business live",
-                    "url": "https://www.theguardian.com/business/live/2026/oct/12/uk-growth-inflation-pressures-oil-price-sveriges-riksbank-nobel-prize-economic-sciences-awarded-latest-news-updates",
-                    "ts": 1791796643,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "IFS: budget will be ‘work of fiction’ without clear plan to cover UK’s £35bn spending pressures",
-                    "url": "https://www.theguardian.com/business/2026/oct/12/ifs-budget-report-spending-pressures-tax-inflation-john-healey",
-                    "ts": 1791784151,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
             "name": "BusinessInsider",
             "home": "https://www.businessinsider.com",
             "items": [
@@ -92,38 +146,20 @@
             ]
         },
         {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
             "items": [
                 {
-                    "title": "Blue-state governor’s race defies expectations as Republican closes in: Power Rankings",
-                    "url": "https://www.foxnews.com/politics/blue-state-governors-race-defies-expectations-republican-closes-in-power-rankings",
-                    "ts": 1791795655,
+                    "title": "Inside Elon Musk’s $276 Million Midterm Rescue Mission for Republicans",
+                    "url": "https://www.nytimes.com/2026/10/12/us/politics/elon-musk-midterms.html",
+                    "ts": 1791795743,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Who’s Winning the Race for Congress?",
+                    "url": "https://www.nytimes.com/2026/10/12/us/politics/whos-winning-the-race-for-congress.html",
+                    "ts": 1791795759,
                     "emo": "⚖️"
-                },
-                {
-                    "title": "I’ve spent 25 years at historic museums. Smithsonian should tell of America’s greatness",
-                    "url": "https://www.foxnews.com/opinion/spent-25-years-historic-museums-smithsonian-should-tell-americas-greatness",
-                    "ts": 1791795655,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "Radical wannabe rep Darializa Avila Chevalier just said the quiet part out loud about violent criminals",
-                    "url": "https://nypost.com/2026/10/12/opinion/radical-wannabe-rep-darializa-avila-chevalier-just-said-the-quiet-part-out-loud-about-violent-criminals/",
-                    "ts": 1791795600,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Texas teen killed in horrific rollover crash just month before 19th birthday",
-                    "url": "https://nypost.com/2026/10/12/us-news/texas-teen-serenity-rangel-killed-in-horrific-rollover-crash-just-month-before-19th-birthday/",
-                    "ts": 1791793241,
-                    "emo": "🔥"
                 }
             ]
         },
@@ -164,42 +200,6 @@
             ]
         },
         {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Three signs that America is on the run",
-                    "url": "https://thehill.com/opinion/national-security/6141464-us-military-vulnerability-threats/",
-                    "ts": 1791779400,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Top Senate Republican calls Guilfoyle reports ‘very troubling’",
-                    "url": "https://thehill.com/homenews/senate/6142003-barrasso-concerns-guilfoyle-finances/",
-                    "ts": 1791774635,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Saudi and Yemeni Airports Hit in New Round of Strikes",
-                    "url": "https://www.nytimes.com/2026/10/11/world/middleeast/saudi-yemen-airports-houthis.html",
-                    "ts": 1791772062,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Saudi Arabia Has Few Options as Houthis Aim at Heart of Its Ambitions",
-                    "url": "https://www.nytimes.com/2026/10/11/world/middleeast/saudi-arabia-options-houthis.html",
-                    "ts": 1791748668,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
             "name": "NBC",
             "home": "https://www.nbcnews.com",
             "items": [
@@ -210,10 +210,10 @@
                     "emo": "⚖️"
                 },
                 {
-                    "title": "Saudi airport struck again after deadly attack that killed American",
-                    "url": "https://www.nbcnews.com/nightly-news/video/saudi-airport-struck-again-after-deadly-attack-that-killed-american-271417925718",
-                    "ts": 1791758644,
-                    "emo": "🔥"
+                    "title": "Trump claims Russia and Ukraine agree to energy ceasefire, but Kyiv says strikes continue",
+                    "url": "https://www.nbcnews.com/world/ukraine/trump-russia-ukraine-agree-energy-ceasefire-zelenskyy-diesel-rcna602766",
+                    "ts": 1791730963,
+                    "emo": "⚖️"
                 }
             ]
         }

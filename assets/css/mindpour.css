@@ -1,10 +1,4 @@
 /* All pages */
-
-html {
-    /* background-image: url(../img/mind-pour_00.jpg); */
-    background-size: contain;
-}
-
 body {
     background-color: transparent;
     color: white;
@@ -16,18 +10,6 @@ a:hover {
 
 .page {
   position: relative;
-}
-
-@-moz-document url-prefix() {
-  html {
-        background-image: url(../img/mind-pour_00.jpg);
-  }
-}
-
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  html {
-        background-image: url(../img/mind-pour_00.jpg);
-  }
 }
 
 footer {

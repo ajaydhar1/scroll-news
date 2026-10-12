@@ -38,9 +38,6 @@ $theme_experiment_enabled = true;
         <meta name="twitter:description" content="Learn what Scroll News is, why it was created, and how it helps you analyze, browse, and search the news more intelligently." />
         <meta name="twitter:image" content="https://scrollnews.ai/assets/img/og/og-scrollnews-about-1200x630.png" />
 
-        <!-- Performance: Preload background -->
-        <link rel="preload" as="image" href="/assets/img/mind-pour_00.jpg">
-
         <!-- jQuery min-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 

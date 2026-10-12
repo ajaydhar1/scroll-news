@@ -64,9 +64,6 @@ sn_perf_phase('render');
     <meta property="og:image" content="<?php echo $img; ?>" />
     <meta property="og:site_name" content="Scroll News" />
 
-    <!-- Performance: Preload background -->
-    <link rel="preload" as="image" href="/assets/img/mind-pour_00.jpg">
-
     <link rel="preload" as="image" href="<?= $img ?>">
 
     <!-- jQuery min-->
