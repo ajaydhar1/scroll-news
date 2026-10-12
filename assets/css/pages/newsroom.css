@@ -114,6 +114,29 @@ span.link {
   word-break: break-all;
 }
 
+.newsroom-header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.newsroom-header-actions > .sn-product-link {
+  width: auto;
+  flex: 0 0 auto;
+}
+
+.newsroom-guide-action {
+    min-height: 42px;
+}
+
+html[data-ui-theme="dark"] body.newsroom-page .newsroom-stumble-action,
+html[data-ui-theme="dark"] body.newsroom-page .newsroom-stumble-action:hover,
+html[data-ui-theme="dark"] body.newsroom-page .newsroom-stumble-action:focus-visible {
+  color: #082d27;
+}
+
 /* SM Small Device :320px. */
 @media only screen and (min-width: 280px) and (max-width: 1024px) {
 

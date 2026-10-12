@@ -145,7 +145,13 @@ sn_perf_phase('render');
             <h2><?= $isTrailPlayer ? 'Article analysis' : '🧠 NLP Dashboard' ?></h2>
 
             <?php if (!$isTrailPlayer): ?>
-                <button class="btn btn-small btn-primary btn-rectangle" style="color: black; box-shadow: none !important;" onclick="ScrollNews.startIntro();"><i class="fa fa-play-circle" style=""></i><span>&nbsp;&nbsp;&nbsp;Guide</span></button>
+                <div class="newsroom-header-actions" role="group" aria-label="Newsroom actions">
+                    <a class="sn-product-link sn-product-stumble newsroom-stumble-action" href="/newsroom.php" onclick="trackStumbleClick('newsroom_header')" aria-label="Stumble to a random article" data-loading>
+                        <i class="fas fa-play" aria-hidden="true"></i>
+                        <span>Stumble</span>
+                    </a>
+                    <button class="sn-product-link newsroom-guide-action" type="button" onclick="ScrollNews.startIntro();"><i class="fa fa-play-circle" aria-hidden="true"></i><span>Guide</span></button>
+                </div>
             <?php endif; ?>
 
         </div>
