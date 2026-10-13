@@ -53,7 +53,7 @@
       { key: 'twitter', label: 'Twitter' },
       { key: 'google',  label: 'Google' },
       { key: 'youtube', label: 'Youtube' },
-      { key: 'search',  label: 'Scroll Search' },
+      { key: 'search',  label: 'Scroll' },
     ];
 
     function activate(key) {
