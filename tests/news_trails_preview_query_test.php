@@ -76,6 +76,28 @@ $personalOnlyOlder = sn_trail_preview_has_more(
 );
 $assert($personalOnlyOlder, 'Personal full-history fallback should show View More for trails older than preview window');
 
+$candidateTrails = [
+    ['user_id' => 12, 'trail_date' => '2026-10-13', 'total_records' => 4],
+    ['user_id' => 5, 'trail_date' => '2026-10-13', 'total_records' => 4],
+    ['user_id' => 2, 'trail_date' => '2026-10-13', 'total_records' => 5],
+    ['user_id' => 8, 'trail_date' => '2026-10-12', 'total_records' => 9],
+    ['user_id' => 3, 'trail_date' => '2026-10-11', 'total_records' => 7],
+    ['user_id' => 1, 'trail_date' => '2026-09-01', 'total_records' => 20],
+];
+$selectedTrails = sn_select_trail_cards($candidateTrails, 3);
+$selectedTrailKeys = array_map(
+    static fn(array $trail): string => $trail['trail_date'] . '|' . $trail['user_id'],
+    $selectedTrails
+);
+$assert(
+    $selectedTrailKeys === ['2026-10-13|2', '2026-10-13|5', '2026-10-13|12'],
+    'Default selection should consistently choose newest trails and order same-date ties by record count then user ID'
+);
+$assert(
+    sn_select_trail_cards($candidateTrails, 3) === $selectedTrails,
+    'Repeated default selections should return the same trails in the same order'
+);
+
 $route = file_get_contents(__DIR__ . '/../news-trails.php');
 $assert(str_contains($route, '$_GET[\'base\'] ?? \'all\''), 'Parameterless and explicit base=all share the all-view default selection');
 $assert(str_contains($route, '$currentUserId = isset($currentUser[\'id\']) && is_numeric($currentUser[\'id\'])'), 'Signed-in user identity comes from the shared authentication context');

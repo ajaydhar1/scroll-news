@@ -221,30 +221,6 @@ function fetchTrailTotal(PDO $pdo, string $base, ?int $currentUserId, array $edi
     return (int) ($rows[0]['total_trails'] ?? 0);
 }
 
-function selectTrailCards(array $trails, int $limit = 6): array
-{
-    if (empty($trails)) {
-        return [];
-    }
-
-    $latestDate = max(array_column($trails, 'trail_date'));
-    $latestWindowStart = date('Y-m-d', strtotime($latestDate . ' -14 days'));
-
-    $latestWindow = array_values(array_filter($trails, function ($trail) use ($latestWindowStart) {
-        return $trail['trail_date'] >= $latestWindowStart;
-    }));
-
-    shuffle($latestWindow);
-
-    $selected = array_slice($latestWindow, 0, $limit);
-
-    usort($selected, function ($a, $b) {
-        return strcmp($b['trail_date'], $a['trail_date']);
-    });
-
-    return $selected;
-}
-
 $personalTrails = [];
 $editorTrails = [];
 $communityTrails = [];
@@ -300,7 +276,7 @@ function loadTrailSection(
     }
 
     $previewRows = fetchTrails($pdo, $base, $currentUserId, $editorEmails);
-    $preview = selectTrailCards($previewRows, $previewLimit);
+    $preview = sn_select_trail_cards($previewRows, $previewLimit);
     $hasMore[$base] = sn_trail_preview_has_more(
         $base,
         $previewRows,

@@ -1,5 +1,35 @@
 <?php
 
+function sn_select_trail_cards(array $trails, int $limit = 6): array
+{
+    if (empty($trails) || $limit <= 0) {
+        return [];
+    }
+
+    $latestDate = max(array_column($trails, 'trail_date'));
+    $latestWindowStart = date('Y-m-d', strtotime($latestDate . ' -14 days'));
+
+    $latestWindow = array_values(array_filter($trails, static function ($trail) use ($latestWindowStart) {
+        return $trail['trail_date'] >= $latestWindowStart;
+    }));
+
+    usort($latestWindow, static function ($a, $b): int {
+        $dateOrder = strcmp($b['trail_date'], $a['trail_date']);
+        if ($dateOrder !== 0) {
+            return $dateOrder;
+        }
+
+        $recordOrder = (int) $b['total_records'] <=> (int) $a['total_records'];
+        if ($recordOrder !== 0) {
+            return $recordOrder;
+        }
+
+        return (int) $a['user_id'] <=> (int) $b['user_id'];
+    });
+
+    return array_slice($latestWindow, 0, $limit);
+}
+
 function sn_trail_preview_has_more(
     string $base,
     array $previewRows,
