@@ -52,6 +52,34 @@ function sn_trail_playback_authorized(
     return false;
 }
 
+function sn_browse_shuffle_replay_authorized(
+    PDO $pdo,
+    int $ownerId,
+    string $ownerEmail,
+    int $viewerId,
+    bool $activeBrowseSession,
+    bool $ownerIsActive,
+    bool $hasPublicTrailKey,
+    string $trailDate,
+    int $distinctActivityCount,
+    bool $shuffleBelongsToTrail,
+    ?DateTimeImmutable $now = null
+): bool {
+    if (!$activeBrowseSession || !$ownerIsActive) {
+        return false;
+    }
+
+    if ($ownerId === $viewerId) {
+        return true;
+    }
+
+    return $hasPublicTrailKey
+        && $shuffleBelongsToTrail
+        && $distinctActivityCount >= 3
+        && sn_community_trail_date_is_recent($trailDate, $now)
+        && sn_trail_playback_authorized($pdo, 'community', $ownerId, $ownerEmail, $viewerId);
+}
+
 function sn_community_trail_date_is_recent(string $trailDate, ?DateTimeImmutable $now = null): bool
 {
     $timezone = new DateTimeZone('UTC');

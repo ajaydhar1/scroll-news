@@ -148,8 +148,9 @@ $assert(
 $assert(
     str_contains($browseReplay, '/account/api/get-browse-shuffle-history.php')
         && str_contains($browseReplay, 'shuffle_session_id')
-        && str_contains($replayEndpoint, 'FROM shuffle_session_items')
-        && str_contains($replayEndpoint, 'WHERE shuffle_session_id = :shuffle_session_id')
+        && str_contains($replayEndpoint, 'FROM shuffle_session_items si')
+        && str_contains($replayEndpoint, 'WHERE ss.id = :shuffle_session_id')
+        && str_contains($replayEndpoint, 'ss.deleted_at IS NULL')
         && str_contains($replayEndpoint, '\'items\' => $items'),
     'Browse News replay still requests and renders the selected saved shuffle'
 );
