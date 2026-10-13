@@ -99,6 +99,7 @@ $assert(
 );
 
 $route = file_get_contents(__DIR__ . '/../news-trails.php');
+$playerRoute = file_get_contents(__DIR__ . '/../news-trail-player.php');
 $assert(str_contains($route, '$_GET[\'base\'] ?? \'all\''), 'Parameterless and explicit base=all share the all-view default selection');
 $assert(str_contains($route, '$currentUserId = isset($currentUser[\'id\']) && is_numeric($currentUser[\'id\'])'), 'Signed-in user identity comes from the shared authentication context');
 $assert(str_contains($route, 'if ($base === \'personal\' && !$currentUserId)'), 'Anonymous users remain excluded from Personal Trail queries');
@@ -122,6 +123,21 @@ $assert(str_contains($route, "'shuffle' => 'fa-shuffle'"), 'Shuffles use a disti
 $assert(str_contains($route, 'htmlspecialchars($stepTitle'), 'Displayed preview titles and search queries are HTML-escaped');
 $assert(str_contains($route, '$moreSteps = max(0, (int)'), 'The more-steps indicator uses the existing trail record count');
 $assert(str_contains($route, 'h.url, h.title, h.image'), 'Reading previews use their stored article image');
+$assert(str_contains($route, 'NULLIF(TRIM(publisher_feed.name), \'\') AS publisher'), 'Reading previews use the publisher label from the matched feed');
+$assert(str_contains($route, '$stepPublisher = ucfirst($stepPublisher)'), 'Preview publisher labels use initial capitalization');
+$assert(str_contains($route, 'publisher_item.id = h.rss_item_id'), 'Publisher lookup joins directly through the recorded RSS item ID');
+$assert(str_contains($route, 'publisher_feed.id = publisher_item.feed_id'), 'Publisher lookup joins the RSS item to its feed by ID');
+$assert(!str_contains($route, 'LOWER(TRIM(ri.link))'), 'Publisher lookup does not scan RSS URLs for each reading record');
+$assert(str_contains($route, '$stepPublisherUrl = $legacyPublisherUrl'), 'Missing feed metadata unwraps legacy newsroom URLs before the host fallback');
+$assert(!str_contains($route, 'h.source AS publisher'), 'Category context saved in source is not presented as publisher metadata');
+$assert(str_contains($route, 'h.viewed_at AS activity_at'), 'Reading previews use the recorded interaction timestamp');
+$assert(str_contains($route, "(new DateTimeImmutable(\$stepActivityAt))->format('M j, g:i A')"), 'Reading preview timestamps use a compact date and time');
+$assert(str_contains($route, 'class="trail-preview-meta"'), 'Reading preview metadata is rendered separately from the title');
+$assert(str_contains($playerRoute, 'NULLIF(TRIM(publisher_feed.name), \'\') AS source'), 'Player reading items use the same canonical feed publisher label');
+$assert(str_contains($playerRoute, 'publisher_item.id = reading_history.rss_item_id'), 'Player publisher lookup uses the recorded RSS item ID');
+$assert(!str_contains($playerRoute, 'source,\n            image,\n            pub_date,\n            viewed_at AS activity_at'), 'Player reading items do not use the category-valued reading source');
+$assert(str_contains($playerRoute, '$item[\'source\'] = ucfirst($publisher)'), 'Player publisher labels use matching initial capitalization');
+$assert(str_contains($playerRoute, 'source_slug AS source'), 'Saved items retain category metadata instead of being relabeled as publishers');
 $assert(str_contains($route, 'matched_item.media_url'), 'Saved previews use the matching RSS article image when available');
 $assert(str_contains($route, 'class="trail-preview-thumb"'), 'Article preview images use a dedicated compact thumbnail style');
 $assert(str_contains($route, 'loading="lazy"'), 'Article preview thumbnails load lazily');

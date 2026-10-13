@@ -92,7 +92,7 @@ if ($base === 'community' && !sn_community_trail_date_is_recent($trailDate)) {
     exit('Trail not found.');
 }
 
-$communityReadDateFilter = $base === 'community' ? "AND viewed_at >= NOW() - INTERVAL '2 months'" : '';
+$communityReadDateFilter = $base === 'community' ? "AND reading_history.viewed_at >= NOW() - INTERVAL '2 months'" : '';
 $communitySavedDateFilter = $base === 'community' ? "AND saved_at >= NOW() - INTERVAL '2 months'" : '';
 $communitySearchDateFilter = $base === 'community' ? "AND created_at >= NOW() - INTERVAL '2 months'" : '';
 $communityShuffleDateFilter = $base === 'community' ? "AND ss.created_at >= NOW() - INTERVAL '2 months'" : '';
@@ -102,20 +102,26 @@ $communityShuffleDateFilter = $base === 'community' ? "AND ss.created_at >= NOW(
 $stmt = $pdo->prepare("
     WITH trail_items_raw AS (
         SELECT
-            url,
-            title,
-            source,
-            image,
-            pub_date,
-            viewed_at AS activity_at,
+                        reading_history.url,
+                        reading_history.title,
+                        NULLIF(TRIM(publisher_feed.name), '') AS source,
+                        reading_history.image,
+                        reading_history.pub_date,
+                        reading_history.viewed_at AS activity_at,
             'reading' AS activity_type
-        FROM user_reading_history
-        WHERE user_id = :user_id
-          AND deleted_at IS NULL
-          AND url IS NOT NULL
-          AND url <> ''
+                FROM user_reading_history reading_history
+                LEFT JOIN rss_items publisher_item
+                    ON publisher_item.id = reading_history.rss_item_id
+                 AND publisher_item.deleted_at IS NULL
+                LEFT JOIN feeds publisher_feed
+                    ON publisher_feed.id = publisher_item.feed_id
+                 AND publisher_feed.deleted_at IS NULL
+                WHERE reading_history.user_id = :user_id
+                    AND reading_history.deleted_at IS NULL
+                    AND reading_history.url IS NOT NULL
+                    AND reading_history.url <> ''
           $communityReadDateFilter
-          AND (viewed_at - INTERVAL '4 hours')::date = :trail_date
+                    AND (reading_history.viewed_at - INTERVAL '4 hours')::date = :trail_date
 
         UNION ALL
 
@@ -275,6 +281,17 @@ foreach ($trailItems as $index => &$item) {
             $item['player_url'] = '/newsroom.php?' . http_build_query($playerParams);
         } else {
             $item['publisher_url'] = $item['url'];
+        }
+
+        if (($item['activity_type'] ?? '') === 'reading') {
+            $publisher = trim((string) ($item['source'] ?? ''));
+            if ($publisher === '') {
+                $publisherHost = parse_url($publisherUrl, PHP_URL_HOST);
+                $publisher = preg_replace('/^www\./i', '', strtolower((string) $publisherHost));
+            }
+            $item['source'] = ucfirst($publisher);
+        } elseif (($item['activity_type'] ?? '') === 'saved') {
+            $item['source'] = ucfirst(trim((string) ($item['source'] ?? '')));
         }
     }
 }

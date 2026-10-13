@@ -1,92 +1,38 @@
 {
-    "fetched_at": 1791901516,
+    "fetched_at": 1791916559,
     "feeds": [
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Anthea Turner, 66, shows off the results of her non-surgical facelift in a before-and-after shoot",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16202715/Anthea-Turner-results-non-surgical-facelift-shoot.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791901486,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Celebrity Traitors is hit by a race row as Industry star Myha'la claims 'unconscious racial bias' exists in the show's format",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16205497/Celebrity-Traitors-hit-race-row-Industry-star-Myhala-claims-unconscious-racial-bias-exists-shows-format.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791901327,
-                    "emo": "🎭"
-                }
-            ]
-        },
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Nantucket man arrested on ‘most disturbing’ child trafficking allegations in multi-agency operation: feds",
-                    "url": "https://nypost.com/2026/10/13/us-news/nantucket-man-arrested-on-most-disturbing-child-trafficking-allegations-in-multi-agency-operation-feds/",
-                    "ts": 1791901341,
+                    "title": "Marriage data reveals traditional nuclear families are disappearing across US — with a rate of just 13% in one major city",
+                    "url": "https://nypost.com/2026/10/13/lifestyle/marriage-data-reveals-traditional-nuclear-families-are-disappearing-across-us/",
+                    "ts": 1791916539,
                     "emo": "📰"
                 },
                 {
-                    "title": "Formula 1 will return to Africa for first time since 1993 with deal to host Grand Prix in Rwanda",
-                    "url": "https://nypost.com/2026/10/13/sports/formula-1-announces-return-to-africa-with-grand-prix-in-rwanda-in-early-2030s/",
-                    "ts": 1791901179,
+                    "title": "Bradley Chubb’s wife rubs salt in Rams wound after postgame fight, Bills win",
+                    "url": "https://nypost.com/2026/10/13/sports/bradley-chubbs-wife-rubs-in-bills-win-vs-rams-after-postgame-fight/",
+                    "ts": 1791916453,
                     "emo": "📰"
                 }
             ]
         },
         {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Who should pay for a birthday dinner? I always treat my guests.",
-                    "url": "https://www.marketwatch.com/story/who-should-pay-for-a-birthday-dinner-i-always-treat-my-guests-5bbd1880?mod=mw_rss_topstories",
-                    "ts": 1791901020,
-                    "emo": "📰"
+                    "title": "Atletico Madrid vs Manchester United and Arsenal vs Lille - Champions League LIVE: Carlos Baleba makes his full Red Devils debut, while Eberechi Eze starts for the Gunners",
+                    "url": "https://www.dailymail.com/sport/football/article-16204703/Atletico-Madrid-vs-Manchester-United-Arsenal-vs-Lille-Champions-League-LIVE-Premier-League-duo-return-European-action.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791916520,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "Why one hedge-fund billionaire believes stocks are heading for a ‘really challenging’ 2027",
-                    "url": "https://www.marketwatch.com/story/why-one-hedge-fund-billionaire-believes-stocks-are-heading-for-a-really-challenging-2027-bb68f19e?mod=mw_rss_topstories",
-                    "ts": 1791900600,
-                    "emo": "💰"
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "Massive bison rams pickup truck in Yellowstone after driver tries to avoid collision",
-                    "url": "https://www.foxnews.com/travel/massive-bison-rams-pickup-truck-yellowstone-after-driver-tries-avoid-collision",
-                    "ts": 1791900679,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Sean 'Diddy' Combs hospitalized with head injury while behind bars: report",
-                    "url": "https://www.foxnews.com/entertainment/sean-diddy-combs-hospitalized-head-injury-behind-bars-report",
-                    "ts": 1791900501,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "White House asks Kimberly Guilfoyle to resign as U.S. ambassador to Greece",
-                    "url": "https://www.nbcnews.com/politics/trump-administration/trump-kimberly-guilfoyle-resign-ambassador-greece-rcna603034",
-                    "ts": 1791900257,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Rep. Omar Reacts to Feds' Home Search: 'I Will Not Be Silenced'",
-                    "url": "https://www.today.com/video/rep-omar-reacts-to-feds-home-search-i-will-not-be-silenced-271483461837",
-                    "ts": 1791890541,
+                    "title": "Keri Russell reveals she and Matthew Rhys would have sex 'all the time' while wearing spy disguises on the set of The Americans",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16204701/Keri-Russell-reveals-Matthew-Rhys-sex-time-wearing-spy-disguises-set-Americans.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791916336,
                     "emo": "📰"
                 }
             ]
@@ -96,15 +42,15 @@
             "home": "https://thehill.com",
             "items": [
                 {
-                    "title": "Boebert: Iran war 'detrimental on many levels' ",
-                    "url": "https://thehill.com/homenews/campaign/6145050-lauren-boebert-iran-war-donald-trump-midterms/",
-                    "ts": 1791899766,
-                    "emo": "🔥"
+                    "title": "Melania Trump's student AI competition gets rebranded as SI Presidential Challenge",
+                    "url": "https://thehill.com/blogs/in-the-know/6146039-melania-trumps-student-ai-si-presidential-challenge/",
+                    "ts": 1791915790,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "Omar fundraising off federal investigation",
-                    "url": "https://thehill.com/homenews/campaign/6144996-omar-house-raid-investigation-fundraising/",
-                    "ts": 1791899704,
+                    "title": "Hillary Clinton launching podcast ahead of midterms",
+                    "url": "https://thehill.com/homenews/media/6145787-clinton-swisher-launch-high-stakes-podcast/",
+                    "ts": 1791913115,
                     "emo": "📰"
                 }
             ]
@@ -114,16 +60,106 @@
             "home": "https://www.cnbc.com",
             "items": [
                 {
-                    "title": "Paul Tudor Jones says 2027 could be a really challenging year for the stock market",
-                    "url": "https://www.cnbc.com/2026/10/13/paul-tudor-jones-2027-really-challenging-year.html",
-                    "ts": 1791898404,
-                    "emo": "💰"
+                    "title": "More Republicans come out against Trump's diesel deal with Putin",
+                    "url": "https://www.cnbc.com/2026/10/13/trump-russia-diesel-republicans.html",
+                    "ts": 1791915582,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "Iran reportedly fortifies nuclear sites as it prepares for possible U.S. strikes after midterms",
-                    "url": "https://www.cnbc.com/2026/10/13/iran-us-war-houthis-saudi-arabia-airport.html",
-                    "ts": 1791892425,
-                    "emo": "🌍"
+                    "title": "The latest inflation data is expected to show price increases are accelerating",
+                    "url": "https://www.cnbc.com/2026/10/13/september-consumer-price-index-inflation.html",
+                    "ts": 1791914757,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Dem making Senate comeback bid says he wouldn't support a Trump impeachment push",
+                    "url": "https://www.foxnews.com/politics/dem-making-senate-comeback-bid-says-he-wouldnt-support-trump-impeachment-push",
+                    "ts": 1791915277,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "BetMGM Bonus Code FOXNEWS Unlocks $1500 in Bonuses When Betting on This Week's MLB Playoff Action",
+                    "url": "https://www.foxnews.com/outkick-betting/betmgm-bonus-code-foxnews-unlocks-1500-bonuses-when-betting-weeks-mlb-playoff-action",
+                    "ts": 1791914710,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "Gen Z renters are the only group more likely to feel successful by investing than buying a house",
+                    "url": "https://www.marketwatch.com/story/gen-z-renters-are-the-only-group-more-likely-to-feel-successful-by-investing-than-buying-a-house-30ac5344?mod=mw_rss_topstories",
+                    "ts": 1791915060,
+                    "emo": "📰"
+                },
+                {
+                    "title": "New SEC rules would fleece everyday investors to enrich Wall Street",
+                    "url": "https://www.marketwatch.com/story/new-sec-rules-would-fleece-everyday-investors-to-enrich-wall-street-0a00fe03?mod=mw_rss_topstories",
+                    "ts": 1791914040,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "MAGA CHOP: GUILFOYLE OUT...",
+                    "url": "https://apnews.com/article/trump-ambassador-greece-guilfoyle-9da9d2e50e18bccc38946404c1ca756f",
+                    "ts": 1791913776,
+                    "emo": "📰"
+                },
+                {
+                    "title": "FINAL DAYS OF UNCHECKED POWER?",
+                    "url": "https://archive.is/tIWVO",
+                    "ts": 1791913776,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Kimberly Guilfoyle resigns as U.S. ambassador to Greece amid misconduct allegations",
+                    "url": "https://www.nbcnews.com/now/video/kimberly-guilfoyle-resigns-as-u-s-ambassador-to-greece-amid-misconduct-allegations-271500869816",
+                    "ts": 1791908189,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Cornell bans fraternity parties for the rest of the year amid sexual assault probe",
+                    "url": "https://www.nbcnews.com/news/us-news/cornell-bans-fraternity-parties-rest-year-sexual-assault-probe-rcna603220",
+                    "ts": 1791915416,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Trump Hands Victories to Putin, Who Offers More War in Return",
+                    "url": "https://www.nytimes.com/2026/10/13/world/europe/russia-putin-trump-diesel-ukraine.html",
+                    "ts": 1791908036,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "U.K. and Europe Recoil From Trump’s Diesel Deal With Putin",
+                    "url": "https://www.nytimes.com/2026/10/13/world/europe/trump-putin-diesel-uk-europe-gift.html",
+                    "ts": 1791902144,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -132,16 +168,16 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "Apple's first smart home device, the HomeView, is here",
-                    "url": "https://www.businessinsider.com/apple-homeview-smart-home-device-price-features-2026-10",
-                    "ts": 1791897086,
-                    "emo": "📰"
+                    "title": "Celebrity deaths in 2026: Remembering the famous people we lost this year",
+                    "url": "https://www.businessinsider.com/celebrity-deaths-famous-people-who-died-2026",
+                    "ts": 1791907249,
+                    "emo": "🎭"
                 },
                 {
-                    "title": "Delta delays first-ever direct US to Saudi Arabia flights after airport missile strikes",
-                    "url": "https://www.businessinsider.com/delta-air-lines-delays-us-saudi-arabia-route-houthi-attacks-2026-10",
-                    "ts": 1791896892,
-                    "emo": "📰"
+                    "title": "Google says Gemini 4 Argon is a 'powerhouse' AI model — and it's rolling out now",
+                    "url": "https://www.businessinsider.com/google-gemini-4-argon-ai-model-public-release-cost-2026-10",
+                    "ts": 1791907201,
+                    "emo": "🧪"
                 }
             ]
         },
@@ -152,13 +188,13 @@
                 {
                     "title": "MI5 chief warns of threats to UK from Russia, Iran and AI",
                     "url": "https://www.bbc.co.uk/news/articles/c60rl5vwpk02o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791895932,
+                    "ts": 1791906735,
                     "emo": "🧪"
                 },
                 {
                     "title": "Man killed in tiger attack identified as William Chapman",
                     "url": "https://www.bbc.co.uk/news/articles/c3ewegny45jvo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791897604,
+                    "ts": 1791909058,
                     "emo": "🔥"
                 }
             ]
@@ -178,42 +214,6 @@
                     "url": "https://www.theguardian.com/business/2026/oct/14/rba-keeps-hiking-interest-rates-but-are-rises-actually-working",
                     "ts": 1791900005,
                     "emo": "💰"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "FINAL DAYS OF UNCHECKED POWER?",
-                    "url": "https://archive.is/tIWVO",
-                    "ts": 1791893436,
-                    "emo": "📰"
-                },
-                {
-                    "title": "PEW: TRUMP APPROVAL DROPS TO 30%",
-                    "url": "https://www.pewresearch.org/politics/2026/10/08/with-americans-in-a-sour-mood-democratic-voters-are-more-engaged-in-midterms/",
-                    "ts": 1791893436,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "U.K. and Europe Recoil From Trump’s Diesel Deal With Putin",
-                    "url": "https://www.nytimes.com/2026/10/13/world/europe/trump-putin-diesel-uk-europe-gift.html",
-                    "ts": 1791882227,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Trump Gives Putin a Hand in Russia’s Economic War With Ukraine",
-                    "url": "https://www.nytimes.com/2026/10/12/world/europe/russia-diesel-trump.html",
-                    "ts": 1791825615,
-                    "emo": "🔥"
                 }
             ]
         }

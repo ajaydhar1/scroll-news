@@ -340,16 +340,24 @@ function loadTrailPreviews(PDO $pdo, array &$personalTrails, array &$editorTrail
         ),
         trail_items_raw AS (
             SELECT h.user_id, k.trail_date, h.url, h.title, h.image,
+                   NULLIF(TRIM(publisher_feed.name), '') AS publisher,
                    h.viewed_at AS activity_at, 'reading' AS activity_type
             FROM user_reading_history h
             JOIN trail_keys k ON k.user_id = h.user_id
                 AND (h.viewed_at - INTERVAL '4 hours')::date = k.trail_date
+            LEFT JOIN rss_items publisher_item
+                ON publisher_item.id = h.rss_item_id
+                AND publisher_item.deleted_at IS NULL
+            LEFT JOIN feeds publisher_feed
+                ON publisher_feed.id = publisher_item.feed_id
+                AND publisher_feed.deleted_at IS NULL
             WHERE h.deleted_at IS NULL AND h.url IS NOT NULL AND h.url <> ''
 
             UNION ALL
 
             SELECT h.user_id, k.trail_date, h.headline_url AS url, h.headline_title AS title,
                    COALESCE(NULLIF(matched_read.image, ''), NULLIF(matched_item.media_url, '')) AS image,
+                   NULL AS publisher,
                    h.saved_at AS activity_at, 'saved' AS activity_type
             FROM user_saved_headlines h
             JOIN trail_keys k ON k.user_id = h.user_id
@@ -382,7 +390,7 @@ function loadTrailPreviews(PDO $pdo, array &$personalTrails, array &$editorTrail
                        '&mode=' || COALESCE(h.mode, 'classic') ||
                        '&deep_dive=' || COALESCE(h.params_json->>'deep_dive', '') ||
                        '&high_signal=' || COALESCE(h.params_json->>'high_signal', '') AS url,
-                   'Search: ' || h.query AS title, NULL AS image,
+                   'Search: ' || h.query AS title, NULL AS image, NULL AS publisher,
                    h.created_at AS activity_at, 'search' AS activity_type
             FROM user_search_history h
             JOIN trail_keys k ON k.user_id = h.user_id
@@ -406,7 +414,7 @@ function loadTrailPreviews(PDO $pdo, array &$personalTrails, array &$editorTrail
                            THEN 'Browse shuffle' || COALESCE(': ' || NULLIF(COALESCE(
                                ss.filters_json->>'category', ss.filters_json->>'category_name'), ''), '')
                        ELSE 'News shuffle'
-                   END AS title, NULL AS image,
+                   END AS title, NULL AS image, NULL AS publisher,
                    ss.created_at AS activity_at, 'shuffle' AS activity_type
             FROM shuffle_sessions ss
             JOIN trail_keys k ON k.user_id = ss.user_id
@@ -421,14 +429,14 @@ function loadTrailPreviews(PDO $pdo, array &$personalTrails, array &$editorTrail
             ORDER BY user_id, trail_date, LOWER(TRIM(url)), activity_at DESC
         ),
         numbered_items AS (
-            SELECT user_id, trail_date, title, image, activity_type,
+            SELECT user_id, trail_date, url, title, image, publisher, activity_at, activity_type,
                    ROW_NUMBER() OVER (
                        PARTITION BY user_id, trail_date
                        ORDER BY activity_at ASC, LOWER(TRIM(url)) ASC
                    ) AS step_number
             FROM trail_items
         )
-        SELECT user_id, trail_date, title, image, activity_type, step_number
+        SELECT user_id, trail_date, url, title, image, publisher, activity_at, activity_type, step_number
         FROM numbered_items
         WHERE step_number <= 4
         ORDER BY user_id, trail_date, step_number
@@ -569,6 +577,32 @@ function renderTrailCard(array $trail, string $base): void
                         ][$stepType] ?? 'Trail step';
                         $stepTitle = trim((string) ($step['title'] ?? '')) ?: $stepFallback;
                         $isArticleStep = in_array($stepType, ['reading', 'saved'], true);
+                        $isReadingStep = $stepType === 'reading';
+                        $stepPublisher = $isReadingStep ? trim((string) ($step['publisher'] ?? '')) : '';
+                        if ($isReadingStep && $stepPublisher === '') {
+                            $stepPublisherUrl = trim((string) ($step['url'] ?? ''));
+                            $stepUrlParts = parse_url($stepPublisherUrl);
+                            if (is_array($stepUrlParts) && preg_match('~(?:^|/)newsroom\.php$~', $stepUrlParts['path'] ?? '')) {
+                                parse_str($stepUrlParts['query'] ?? '', $stepUrlParams);
+                                $legacyPublisherUrl = trim((string) ($stepUrlParams['url'] ?? ''));
+                                if (preg_match('~^https?://~i', $legacyPublisherUrl)) {
+                                    $stepPublisherUrl = $legacyPublisherUrl;
+                                }
+                            }
+                            $stepUrlParts = parse_url($stepPublisherUrl);
+                            $stepPublisher = preg_replace('/^www\./i', '', strtolower((string) ($stepUrlParts['host'] ?? '')));
+                        }
+                        $stepPublisher = ucfirst($stepPublisher);
+                        $stepActivityAt = $isReadingStep ? trim((string) ($step['activity_at'] ?? '')) : '';
+                        $stepActivityLabel = '';
+                        if ($stepActivityAt !== '') {
+                            try {
+                                $stepActivityLabel = (new DateTimeImmutable($stepActivityAt))->format('M j, g:i A');
+                            } catch (Exception $exception) {
+                                $stepActivityAt = '';
+                            }
+                        }
+                        $stepMetadata = implode(' · ', array_filter([$stepPublisher, $stepActivityLabel]));
                         $stepImage = trim((string) ($step['image'] ?? '')) ?: '/assets/img/news-placeholder.jpg';
                         ?>
                         <li class="trail-preview-step" title="<?= htmlspecialchars($stepTitle, ENT_QUOTES, 'UTF-8') ?>">
@@ -583,7 +617,12 @@ function renderTrailCard(array $trail, string $base): void
                             <?php endif; ?>
                             <div class="trail-preview-copy">
                                 <i class="fa-solid <?= htmlspecialchars($stepIcon, ENT_QUOTES, 'UTF-8') ?>" aria-hidden="true"></i>
-                                <span><?= htmlspecialchars($stepTitle, ENT_QUOTES, 'UTF-8') ?></span>
+                                <div class="trail-preview-text">
+                                    <span class="trail-preview-title"><?= htmlspecialchars($stepTitle, ENT_QUOTES, 'UTF-8') ?></span>
+                                    <?php if ($stepMetadata !== ''): ?>
+                                        <span class="trail-preview-meta"><?= htmlspecialchars($stepMetadata, ENT_QUOTES, 'UTF-8') ?></span>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </li>
                     <?php endforeach; ?>
@@ -812,16 +851,32 @@ function renderEmptyState(
             text-align: center;
         }
 
-        .trail-preview-copy span {
+        .trail-preview-text {
+            min-width: 0;
+        }
+
+        .trail-preview-title {
             display: -webkit-box;
             -webkit-box-orient: vertical;
+            line-clamp: 2;
             -webkit-line-clamp: 2;
             overflow: hidden;
             overflow-wrap: anywhere;
         }
 
-        .trail-preview-step:has(.trail-preview-thumb) .trail-preview-copy span {
+        .trail-preview-step:has(.trail-preview-thumb) .trail-preview-title {
+            line-clamp: 3;
             -webkit-line-clamp: 3;
+        }
+
+        .trail-preview-meta {
+            color: #7a858e;
+            display: block;
+            font-size: 0.75rem;
+            line-height: 1.3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .trail-preview-more {
@@ -835,7 +890,8 @@ function renderEmptyState(
         }
 
         html[data-ui-theme="dark"] body.news-trails-page .trail-preview-copy i,
-        html[data-ui-theme="dark"] body.news-trails-page .trail-preview-more {
+        html[data-ui-theme="dark"] body.news-trails-page .trail-preview-more,
+        html[data-ui-theme="dark"] body.news-trails-page .trail-preview-meta {
             color: var(--sn-muted);
         }
 
