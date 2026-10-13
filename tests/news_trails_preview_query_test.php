@@ -78,7 +78,7 @@ $assert($personalOnlyOlder, 'Personal full-history fallback should show View Mor
 
 $route = file_get_contents(__DIR__ . '/../news-trails.php');
 $assert(str_contains($route, '$_GET[\'base\'] ?? \'all\''), 'Parameterless and explicit base=all share the all-view default selection');
-$assert(str_contains($route, '$currentUserId = $_SESSION[\'user_id\'] ?? null;'), 'Signed-in user identity remains session-based');
+$assert(str_contains($route, '$currentUserId = isset($currentUser[\'id\']) && is_numeric($currentUser[\'id\'])'), 'Signed-in user identity comes from the shared authentication context');
 $assert(str_contains($route, 'if ($base === \'personal\' && !$currentUserId)'), 'Anonymous users remain excluded from Personal Trail queries');
 $assert(str_contains($route, 'if ($activeBase === \'all\' || $activeBase === \'personal\')'), 'All view and Personal view share the Personal section gate');
 $assert(str_contains($route, 'if ($activeBase === \'all\' || $activeBase === \'editors\')'), 'All view and Editor view share the Editor section gate');

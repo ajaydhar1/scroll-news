@@ -296,6 +296,10 @@ body.search-page .sn-search-status {
   font-weight: 600;
 }
 
+body.search-page .sn-search-status.text-danger {
+  color: #dc3545;
+}
+
 body.search-page .sn-search-history {
   margin-top: 16px;
 }

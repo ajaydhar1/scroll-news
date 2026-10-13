@@ -345,6 +345,7 @@ $shouldSaveSearchShuffle =
     !empty($_GET['shuffle']) &&
     $currentUser &&
     !empty($results);
+$shouldShowShuffleSaveStatus = !$hasContext && $isShuffleRequest && !empty($results);
 $totalPages = $searchTotalCount > 0
     ? (int) ceil($searchTotalCount / $resultsPerPage)
     : 0;
@@ -639,6 +640,12 @@ sn_perf_phase('render');
                             <?php endif; ?>
                         </h2>
 
+                        <?php if ($shouldShowShuffleSaveStatus): ?>
+                            <p id="snShuffleSaveStatus" class="sn-search-status" role="status" aria-live="polite"<?= $currentUser ? ' hidden' : '' ?>>
+                                <?php if (!$currentUser): ?>Sign in to save shuffle history.<?php endif; ?>
+                            </p>
+                        <?php endif; ?>
+
                         <?php if (empty($results)): ?>
                             <p class="sn-search-empty-results">
                                 No results matched your search or filters. Try another keyword or a more general phrase, or loosen your filters.
@@ -798,28 +805,47 @@ sn_perf_phase('render');
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
+                var status = document.getElementById('snShuffleSaveStatus');
+                if (!status) {
+                    return;
+                }
+
+                function showStatus(message, isError) {
+                    status.textContent = message;
+                    status.classList.toggle('text-danger', !!isError);
+                    status.hidden = false;
+                }
+
                 if (!window.scrollNewsShufflePayload) {
                     return;
                 }
 
+                showStatus('Saving shuffle...', false);
+
                 fetch('/account/api/save-shuffle-history.php', {
-                        method: 'POST',
-                        credentials: 'same-origin',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(window.scrollNewsShufflePayload)
-                    })
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(window.scrollNewsShufflePayload)
+                })
                     .then(function(response) {
-                        return response.json();
+                        return response.json().catch(function() {
+                            return {};
+                        }).then(function(data) {
+                            if (!response.ok || data.success !== true || !data.shuffle_session_id) {
+                                var error = new Error(data.error || 'Shuffle save failed.');
+                                error.status = response.status;
+                                throw error;
+                            }
+                            return data;
+                        });
                     })
                     .then(function(data) {
-                        if (!data.success) {
-                            console.warn('Shuffle history was not saved:', data.error);
-                            return;
-                        }
+                        showStatus('Shuffle saved.', false);
 
-                        if (!window.scrollNewsSearchHistoryId || !data.shuffle_session_id) {
+                        if (!window.scrollNewsSearchHistoryId) {
                             return;
                         }
 
@@ -833,26 +859,25 @@ sn_perf_phase('render');
                                 search_history_id: window.scrollNewsSearchHistoryId,
                                 shuffle_session_uuid: data.shuffle_session_id
                             })
+                        }).then(function(response) {
+                            return response.json().then(function(linkData) {
+                                if (!response.ok || linkData.success !== true) {
+                                    throw new Error('Search history link failed.');
+                                }
+                            }).catch(function(error) {
+                                console.warn('Search history was not linked to shuffle:', error);
+                                showStatus('Shuffle saved, but search history could not be linked.', true);
+                            });
                         });
-                    })
-                    .then(function(response) {
-                        if (!response) {
-                            return null;
-                        }
-
-                        return response.json();
-                    })
-                    .then(function(data) {
-                        if (!data) {
-                            return;
-                        }
-
-                        if (!data.success) {
-                            console.warn('Search history was not linked to shuffle:', data.error);
-                        }
                     })
                     .catch(function(error) {
                         console.warn('Shuffle history save/link failed:', error);
+                        showStatus(
+                            error.status === 401
+                                ? 'Your sign-in expired. Sign in again; this shuffle was not saved.'
+                                : 'This shuffle could not be saved. Please try again.',
+                            true
+                        );
                     });
             });
         </script>

@@ -3,12 +3,9 @@
 define('BASE_PATH', __DIR__);
 $theme_experiment_enabled = true;
 
+require_once BASE_PATH . '/auth/includes/auth_bootstrap.php';
 require_once BASE_PATH . "/core/___modules.php";
 require_once BASE_PATH . '/core/community_trail_privacy.php';
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 
 function normalize_trail_url(string $url): string
 {
@@ -81,8 +78,8 @@ if (!$trailOwner) {
 }
 
 $trailUserId = (int) $trailOwner['id'];
-$sessionUserId = isset($_SESSION['user_id']) && is_numeric($_SESSION['user_id'])
-    ? (int) $_SESSION['user_id']
+$sessionUserId = isset($currentUser['id']) && is_numeric($currentUser['id'])
+    ? (int) $currentUser['id']
     : null;
 
 if (!sn_trail_playback_authorized($pdo, $base, $trailUserId, (string) $trailOwner['email'], $sessionUserId)) {

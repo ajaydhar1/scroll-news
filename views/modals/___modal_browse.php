@@ -25,6 +25,7 @@
                 <button id="shuffleArticlesBtn" type="button" class="btn btn-light mb-2">
                   🔀 AI-powered Shuffle
                 </button>
+                <p id="browseShuffleStatus" class="small text-muted mb-2" role="status" aria-live="polite" hidden></p>
               </div>
             </div>
           </div>

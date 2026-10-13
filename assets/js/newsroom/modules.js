@@ -153,6 +153,16 @@ function fetchRSSArticles(feedUrl, category) {
 
 // Shuffle articles
 const shuffleBtn = document.getElementById("shuffleArticlesBtn");
+const shuffleStatus = document.getElementById("browseShuffleStatus");
+
+function setBrowseShuffleStatus(message, isError = false) {
+  if (!shuffleStatus) return;
+
+  shuffleStatus.textContent = message;
+  shuffleStatus.classList.toggle("text-danger", isError);
+  shuffleStatus.classList.toggle("text-muted", !isError);
+  shuffleStatus.hidden = !message;
+}
 
 function shuffleArticleCards() {
   const container = document.getElementById("rssArticles");
@@ -181,9 +191,11 @@ function shuffleArticleCards() {
 
   // Only save shuffle history for signed-in users
   if (!window.isLoggedIn) {
+    setBrowseShuffleStatus("Sign in to save shuffle history.", true);
     return;
   }
 
+  setBrowseShuffleStatus("Saving shuffle...");
 
   $.ajax({
     url: "/account/api/save-shuffle-history.php",
@@ -196,7 +208,12 @@ function shuffleArticleCards() {
       results: shuffledArticles
     }),
     success: function (response) {
-      console.log("Browse News shuffle saved:", response);
+      if (response && response.success === true && response.shuffle_session_id) {
+        setBrowseShuffleStatus("Shuffle saved.");
+        return;
+      }
+
+      setBrowseShuffleStatus("This shuffle could not be saved. Please try again.", true);
     },
     error: function (xhr, textStatus, errorThrown) {
       console.group("save browse shuffle ERROR");
@@ -205,6 +222,13 @@ function shuffleArticleCards() {
       console.log("HTTP status:", xhr.status);
       console.log("Response text:", xhr.responseText);
       console.groupEnd();
+
+      setBrowseShuffleStatus(
+        xhr.status === 401
+          ? "Your sign-in expired. Sign in again; this shuffle was not saved."
+          : "This shuffle could not be saved. Please try again.",
+        true
+      );
     }
   });
 }

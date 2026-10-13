@@ -2,13 +2,9 @@
 
 define('BASE_PATH', dirname(__DIR__, 2));
 
-require_once BASE_PATH . '/auth/includes/auth_db.php';
+require_once BASE_PATH . '/auth/includes/auth_bootstrap.php';
 
 header('Content-Type: application/json');
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -19,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-if (empty($_SESSION['user_id'])) {
+if (empty($currentUser['id'])) {
     http_response_code(401);
     echo json_encode([
         'success' => false,
@@ -40,7 +36,7 @@ if (!is_array($data)) {
     exit;
 }
 
-$userId = $_SESSION['user_id'];
+$userId = (int) $currentUser['id'];
 
 $sourceContext = $data['source_context'] ?? '';
 $shuffleType = $data['shuffle_type'] ?? '';

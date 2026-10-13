@@ -3,17 +3,15 @@
 define('BASE_PATH', __DIR__);
 $theme_experiment_enabled = true;
 
+require_once BASE_PATH . '/auth/includes/auth_bootstrap.php';
 require_once BASE_PATH . "/core/___modules.php";
 require_once BASE_PATH . '/core/community_trail_privacy.php';
 require_once BASE_PATH . '/core/news_trails_pagination.php';
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
 $pdo = _pdo_or_null();
-//$currentUser = current_user() ?? null;
-$currentUserId = $_SESSION['user_id'] ?? null;
+$currentUserId = isset($currentUser['id']) && is_numeric($currentUser['id'])
+    ? (int) $currentUser['id']
+    : null;
 
 $editorEmails = sn_community_trail_editor_emails();
 
