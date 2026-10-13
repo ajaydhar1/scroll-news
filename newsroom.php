@@ -129,6 +129,10 @@ sn_perf_phase('render');
             color: white;
         }
 
+        html[data-ui-theme="dark"] #side-by-side-panel .hashtags-card #sm-tags {
+            color: var(--sn-muted);
+        }
+
         <?php endif; ?>
     </style>
 
