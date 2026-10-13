@@ -217,51 +217,33 @@ sn_perf_phase('render');
 
         <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
-        <div class="auth-shell container my-5">
-            <div class="auth-card card border-0 rounded-3">
-                <div class="card-body">
+        <div class="auth-shell account-settings-shell container my-5">
+            <div class="account-settings-card">
+                <div class="card-body account-settings-body">
 
-                    <header class="text-center mb-4">
-                        <img
-                            src="/assets/img/play-green.png"
-                            alt="Scroll News"
-                            class="auth-logo mb-3"
-                            style="height: 52px; width: auto;">
-
-                        <h1 class="h3 mb-2">Your Scroll News Account</h1>
-                        <p class="text-muted mb-0">
-                            You’re signed in as
-                            <strong><?= htmlspecialchars($userEmail, ENT_QUOTES, 'UTF-8') ?></strong>
-                        </p>
-                        <div class="badges gap-2 mb-4 mt-1">
-                            <span class="badge bg-success">
-                                ✅ Verified Member
-                            </span>
-
-                            <span class="badge bg-dark">
-                                📅 Member Since <?= $memberSince ? htmlspecialchars(date('F Y', strtotime($memberSince)), ENT_QUOTES, 'UTF-8') : 'Unknown' ?>
-                            </span>
-
-                            <span class="badge bg-primary">
-                                📰 News Explorer
-                            </span>
+                    <header class="account-settings-header">
+                        <div class="account-settings-header__main">
+                            <span class="account-settings-eyebrow">ACCOUNT CENTER</span>
+                            <h1>Account settings</h1>
+                            <p>Manage your profile, privacy, and reading activity in one place.</p>
+                        </div>
+                        <div class="account-settings-identity">
+                            <span class="account-settings-identity__status"><span aria-hidden="true"></span>Verified member</span>
+                            <span class="account-settings-identity__email"><?= htmlspecialchars($userEmail, ENT_QUOTES, 'UTF-8') ?></span>
+                            <span class="account-settings-identity__since">Member since <?= $memberSince ? htmlspecialchars(date('F Y', strtotime($memberSince)), ENT_QUOTES, 'UTF-8') : 'Unknown' ?></span>
                         </div>
                     </header>
 
-                    <div class="alert alert-success auth-alert" role="alert">
-                        Your account settings and reader activity tools are ready to use.
-                    </div>
+                    <div class="account-settings-grid">
 
-                    <div class="row">
-
-                        <div class="col-md-6 mb-3">
-                            <div class="card h-100 border-0 shadow-sm">
+                        <section class="account-section-card account-section-card--profile">
                                 <div class="card-body">
-                                    <h2 class="h5 mb-2">
-                                        <i class="fa-solid fa-id-card mr-2"></i>Profile Information
+                                    <h2 class="account-section-heading">
+                                        <span class="account-section-heading__icon"><i class="fa-solid fa-id-card" aria-hidden="true"></i></span>
+                                        <span>Profile Information</span>
                                     </h2>
 
-                                    <p class="text-muted mb-3">
+                                    <p class="account-section-description">
                                         Update the name associated with your Scroll News account.
                                     </p>
 
@@ -277,7 +259,7 @@ sn_perf_phase('render');
                                     <form method="post" class="profile-information-form">
                                         <div class="row align-items-end profile-information-row">
                                             <div class="col-md-8">
-                                                <label class="small text-muted mb-1">
+                                                <label class="account-field-label small text-muted mb-1">
                                                     Display Name
                                                 </label>
 
@@ -290,27 +272,25 @@ sn_perf_phase('render');
                                             </div>
 
                                             <div class="col-md-4">
-                                                <button type="submit"
-                                                    class="btn btn-primary btn-block" data-loading>
+                                                <button type="submit" class="btn btn-primary btn-block" data-loading>
                                                     Save Changes
                                                 </button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-                            </div>
-                        </div>
+                        </section>
 
-                        <div class="col-md-6 mb-3">
-                            <div class="card h-100 border-0 shadow-sm">
+                        <section class="account-section-card">
                                 <div class="card-body">
-                                    <h2 class="h5 mb-2">
-                                        <i class="fa-solid fa-user mr-2"></i>Account & Security
+                                    <h2 class="account-section-heading">
+                                        <span class="account-section-heading__icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+                                        <span>Account &amp; Security</span>
                                     </h2>
-                                    <p class="text-muted mb-2">
+                                    <p class="account-section-description">
                                         Manage your email, password, and sign-in settings.
                                     </p>
-                                    <ul class="text-muted mb-3">
+                                    <ul class="account-detail-list text-muted mb-3">
                                         <li><strong>Email address:</strong> <?= trim($currentUser['email'] ?? '') ?></li>
                                         <li><strong>Email verification status:</strong> ✅</li>
 
@@ -390,28 +370,27 @@ sn_perf_phase('render');
                                         <li><a href="/auth/change-password.php" class="account-link">Change password</a></li>
                                     </ul>
                                 </div>
-                            </div>
-                        </div>
+                        </section>
 
-                        <div class="col-md-6 mb-3">
-                            <div class="card h-100 border-0 shadow-sm">
+                        <section class="account-section-card">
                                 <div class="card-body">
-                                    <h2 class="h5 mb-2">
-                                        <i class="fa-solid fa-route mr-2"></i>News Trails
-                                        <span class="badge badge-dark ml-1">New</span>
+                                    <h2 class="account-section-heading">
+                                        <span class="account-section-heading__icon"><i class="fa-solid fa-sliders" aria-hidden="true"></i></span>
+                                        <span>Preferences &amp; Privacy</span>
                                     </h2>
-                                    <p class="text-muted mb-2">
-                                        Trace AI-powered trails across related stories and narrative frames.
+                                    <p class="account-section-description">
+                                        Choose how your Community Trail activity is shared and explore personalized trails.
                                     </p>
-                                    <ul class="text-muted mb-3">
+                                    <h3 class="account-subsection-heading">News Trails</h3>
+                                    <ul class="account-feature-links text-muted mb-3">
                                         <li><a href="/news-trails.php?base=personal" class="account-link" data-loading>Personal Trails</a></li>
                                         <li><a href="/news-trails.php?base=editors" class="account-link" data-loading>Editor Trails</a></li>
                                         <li><a href="/news-trails.php?base=community" class="account-link" data-loading>Community Trails</a></li>
                                         <li><a href="/news-trails.php" class="account-link" data-loading>Signal paths through the news</a></li>
                                     </ul>
-                                    <div class="border rounded p-3 bg-light">
-                                        <h3 class="h6 mb-2">Community Trail sharing</h3>
-                                        <p class="text-muted small mb-3">
+                                    <div class="account-privacy-panel">
+                                        <h3 class="account-subsection-heading">Community Trail sharing</h3>
+                                        <p class="account-privacy-panel__description text-muted small">
                                             When enabled, other visitors can see your Community Trails, including activity dates and counts, opened or saved article titles and links, search queries, and shuffle activity. A portion of your display name may appear. Your account email is not shown as a profile field, but information you include in a search query or article link may be visible.
                                         </p>
                                         <?php if (isset($_GET['trail_sharing_updated'])): ?>
@@ -420,7 +399,7 @@ sn_perf_phase('render');
                                         <form method="post" action="/account/" class="mb-0">
                                             <input type="hidden" name="action" value="update_community_trail_sharing" />
                                             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(sn_community_trail_csrf_token(), ENT_QUOTES, 'UTF-8') ?>" />
-                                            <div class="form-check mb-3">
+                                            <div class="account-privacy-control form-check">
                                                 <input class="form-check-input" type="checkbox" id="accountCommunityTrailSharing" name="community_trail_sharing" value="1" <?= $communityTrailSharingEnabled ? 'checked' : '' ?> />
                                                 <label class="form-check-label" for="accountCommunityTrailSharing">Allow my Community Trails to be visible to other visitors</label>
                                             </div>
@@ -428,17 +407,15 @@ sn_perf_phase('render');
                                         </form>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                        </section>
 
-                        <div class="col-md-6 mb-3">
-                            <div class="card h-100 border-0 shadow-sm">
+                        <section class="account-section-card account-section-card--activity">
                                 <div class="card-body">
-                                    <h2 class="h5 mb-2">
-                                        <i class="fa-solid fa-wave-square mr-2"></i>Your Activity
-                                        <span class="badge badge-dark ml-1">New</span>
+                                    <h2 class="account-section-heading">
+                                        <span class="account-section-heading__icon"><i class="fa-solid fa-wave-square" aria-hidden="true"></i></span>
+                                        <span>Your Activity</span>
                                     </h2>
-                                    <p class="text-muted mb-2">
+                                    <p class="account-section-description">
                                         Saved articles, searches, and your reading history.
                                     </p>
                                     <div class="activity-stat-grid mb-3" aria-label="Recent activity statistics">
@@ -490,14 +467,11 @@ sn_perf_phase('render');
                                     </div>
                             
                                 </div>
-                            </div>
-                        </div>
+                        </section>
 
                     </div>
 
-                    <hr class="my-4">
-
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="account-settings-footer">
                         <a href="/" class="text-muted">← Back to Scroll News</a>
                         <a href="/auth/logout.php" class="btn btn-outline-secondary btn-sm">Sign Out</a>
                     </div>
