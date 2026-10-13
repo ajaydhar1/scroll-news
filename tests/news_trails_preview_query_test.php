@@ -90,6 +90,20 @@ $assert(str_contains($route, '$personalLimit = $isFilteredView ? 18 : 6'), 'Pers
 $assert(str_contains($route, '$editorLimit = $isFilteredView ? 18 : 6'), 'Editor preview limit remains unchanged');
 $assert(str_contains($route, '$communityLimit = $isFilteredView ? 24 : 9'), 'Community preview limit remains unchanged');
 $assert(str_contains($route, 'sn_resolve_filtered_trail_page('), 'Filtered pagination continues using its existing helper');
+$assert(str_contains($route, 'loadTrailPreviews($pdo, $personalTrails, $editorTrails, $communityTrails)'), 'All displayed trail sections share one batched preview load');
+$assert(str_contains($route, 'ROW_NUMBER() OVER ('), 'Preview steps are ranked within each user/date trail');
+$assert(str_contains($route, 'WHERE step_number <= 4'), 'The preview query returns at most four steps per trail');
+$assert(str_contains($route, "'reading' => 'fa-book-open'"), 'Article reads use a distinct preview icon');
+$assert(str_contains($route, "'saved' => 'fa-bookmark'"), 'Saved articles use a distinct preview icon');
+$assert(str_contains($route, "'search' => 'fa-magnifying-glass'"), 'Searches use a distinct preview icon');
+$assert(str_contains($route, "'shuffle' => 'fa-shuffle'"), 'Shuffles use a distinct preview icon');
+$assert(str_contains($route, 'htmlspecialchars($stepTitle'), 'Displayed preview titles and search queries are HTML-escaped');
+$assert(str_contains($route, '$moreSteps = max(0, (int)'), 'The more-steps indicator uses the existing trail record count');
+$assert(str_contains($route, 'h.url, h.title, h.image'), 'Reading previews use their stored article image');
+$assert(str_contains($route, 'matched_item.media_url'), 'Saved previews use the matching RSS article image when available');
+$assert(str_contains($route, 'class="trail-preview-thumb"'), 'Article preview images use a dedicated compact thumbnail style');
+$assert(str_contains($route, 'loading="lazy"'), 'Article preview thumbnails load lazily');
+$assert(str_contains($route, "this.onerror=null;this.src='/assets/img/news-placeholder.jpg';"), 'Broken preview images fall back to the standard news placeholder');
 
 foreach ($failures as $failure) {
     fwrite(STDERR, 'FAIL: ' . $failure . PHP_EOL);

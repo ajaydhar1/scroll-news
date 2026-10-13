@@ -325,6 +325,158 @@ if ($activeBase === 'all' || $activeBase === 'community') {
     $communityTrails = loadTrailSection($pdo, 'community', $currentUserId, $editorEmails, $isFilteredView, $communityLimit, $trailsPerPage, $page, $totalPages, $hasMore);
 }
 
+if ($pdo) {
+    loadTrailPreviews($pdo, $personalTrails, $editorTrails, $communityTrails);
+}
+
+function loadTrailPreviews(PDO $pdo, array &$personalTrails, array &$editorTrails, array &$communityTrails): void
+{
+    $sections = [&$personalTrails, &$editorTrails, &$communityTrails];
+    $trailKeys = [];
+
+    foreach ($sections as &$trails) {
+        foreach ($trails as $trail) {
+            if (empty($trail['user_id']) || empty($trail['trail_date'])) {
+                continue;
+            }
+
+            $key = (int) $trail['user_id'] . '|' . $trail['trail_date'];
+            $trailKeys[$key] = ['user_id' => (int) $trail['user_id'], 'trail_date' => $trail['trail_date']];
+        }
+    }
+    unset($trails);
+
+    if (!$trailKeys) {
+        return;
+    }
+
+    $valueRows = [];
+    $params = [];
+    foreach (array_values($trailKeys) as $index => $trailKey) {
+        $userParam = ':preview_user_' . $index;
+        $dateParam = ':preview_date_' . $index;
+        $valueRows[] = '(CAST(' . $userParam . ' AS BIGINT), CAST(' . $dateParam . ' AS DATE))';
+        $params[$userParam] = $trailKey['user_id'];
+        $params[$dateParam] = $trailKey['trail_date'];
+    }
+
+    $stmt = $pdo->prepare("
+        WITH trail_keys(user_id, trail_date) AS (
+            VALUES " . implode(', ', $valueRows) . "
+        ),
+        trail_items_raw AS (
+            SELECT h.user_id, k.trail_date, h.url, h.title, h.image,
+                   h.viewed_at AS activity_at, 'reading' AS activity_type
+            FROM user_reading_history h
+            JOIN trail_keys k ON k.user_id = h.user_id
+                AND (h.viewed_at - INTERVAL '4 hours')::date = k.trail_date
+            WHERE h.deleted_at IS NULL AND h.url IS NOT NULL AND h.url <> ''
+
+            UNION ALL
+
+            SELECT h.user_id, k.trail_date, h.headline_url AS url, h.headline_title AS title,
+                   COALESCE(NULLIF(matched_read.image, ''), NULLIF(matched_item.media_url, '')) AS image,
+                   h.saved_at AS activity_at, 'saved' AS activity_type
+            FROM user_saved_headlines h
+            JOIN trail_keys k ON k.user_id = h.user_id
+                AND (h.saved_at - INTERVAL '4 hours')::date = k.trail_date
+            LEFT JOIN LATERAL (
+                SELECT rh.image
+                FROM user_reading_history rh
+                WHERE rh.user_id = h.user_id
+                    AND rh.deleted_at IS NULL
+                    AND LOWER(TRIM(rh.url)) = LOWER(TRIM(h.headline_url))
+                    AND rh.image IS NOT NULL AND rh.image <> ''
+                ORDER BY rh.viewed_at DESC
+                LIMIT 1
+            ) matched_read ON TRUE
+            LEFT JOIN LATERAL (
+                SELECT ri.media_url
+                FROM rss_items ri
+                WHERE ri.link = h.headline_url
+                    AND ri.deleted_at IS NULL
+                    AND ri.media_url IS NOT NULL AND ri.media_url <> ''
+                LIMIT 1
+            ) matched_item ON TRUE
+            WHERE h.deleted_at IS NULL AND h.headline_url IS NOT NULL AND h.headline_url <> ''
+
+            UNION ALL
+
+            SELECT h.user_id, k.trail_date,
+                   '/search.php?q=' || replace(h.query, ' ', '+') ||
+                       '&range=' || COALESCE(h.range, 'all') ||
+                       '&mode=' || COALESCE(h.mode, 'classic') ||
+                       '&deep_dive=' || COALESCE(h.params_json->>'deep_dive', '') ||
+                       '&high_signal=' || COALESCE(h.params_json->>'high_signal', '') AS url,
+                   'Search: ' || h.query AS title, NULL AS image,
+                   h.created_at AS activity_at, 'search' AS activity_type
+            FROM user_search_history h
+            JOIN trail_keys k ON k.user_id = h.user_id
+                AND (h.created_at - INTERVAL '4 hours')::date = k.trail_date
+            WHERE h.deleted_at IS NULL AND h.shuffle_session_uuid IS NULL
+                AND h.query IS NOT NULL AND h.query <> ''
+
+            UNION ALL
+
+            SELECT ss.user_id, k.trail_date,
+                   CASE
+                       WHEN ss.source_context = 'search_results'
+                           THEN '/search.php?shuffle_session=' || ss.id::text
+                       WHEN ss.source_context = 'browse_news_modal'
+                           THEN '/browse-news.php?shuffle_session_id=' || ss.id::text
+                   END AS url,
+                   CASE
+                       WHEN ss.source_context = 'search_results'
+                           THEN 'Search shuffle' || COALESCE(': ' || NULLIF(ss.query, ''), '')
+                       WHEN ss.source_context = 'browse_news_modal'
+                           THEN 'Browse shuffle' || COALESCE(': ' || NULLIF(COALESCE(
+                               ss.filters_json->>'category', ss.filters_json->>'category_name'), ''), '')
+                       ELSE 'News shuffle'
+                   END AS title, NULL AS image,
+                   ss.created_at AS activity_at, 'shuffle' AS activity_type
+            FROM shuffle_sessions ss
+            JOIN trail_keys k ON k.user_id = ss.user_id
+                AND (ss.created_at - INTERVAL '4 hours')::date = k.trail_date
+            WHERE ss.deleted_at IS NULL
+                AND ss.source_context IN ('search_results', 'browse_news_modal')
+        ),
+        trail_items AS (
+            SELECT DISTINCT ON (user_id, trail_date, LOWER(TRIM(url))) *
+            FROM trail_items_raw
+            WHERE url IS NOT NULL AND url <> ''
+            ORDER BY user_id, trail_date, LOWER(TRIM(url)), activity_at DESC
+        ),
+        numbered_items AS (
+            SELECT user_id, trail_date, title, image, activity_type,
+                   ROW_NUMBER() OVER (
+                       PARTITION BY user_id, trail_date
+                       ORDER BY activity_at ASC, LOWER(TRIM(url)) ASC
+                   ) AS step_number
+            FROM trail_items
+        )
+        SELECT user_id, trail_date, title, image, activity_type, step_number
+        FROM numbered_items
+        WHERE step_number <= 4
+        ORDER BY user_id, trail_date, step_number
+    ");
+    $stmt->execute($params);
+
+    $previews = [];
+    foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $step) {
+        $key = (int) $step['user_id'] . '|' . $step['trail_date'];
+        $previews[$key][] = $step;
+    }
+
+    foreach ($sections as &$trails) {
+        foreach ($trails as &$trail) {
+            $key = (int) ($trail['user_id'] ?? 0) . '|' . ($trail['trail_date'] ?? '');
+            $trail['preview_steps'] = $previews[$key] ?? [];
+        }
+        unset($trail);
+    }
+    unset($trails);
+}
+
 function trailPageUrl(string $base, int $page): string
 {
     return '/news-trails.php?' . http_build_query(['base' => $base, 'page' => $page]);
@@ -423,6 +575,50 @@ function renderTrailCard(array $trail, string $base): void
                     <strong><?= (int) $trail['shuffle_count'] ?></strong> shuffles
                 </div>
             </div>
+
+            <?php if (!empty($trail['preview_steps'])): ?>
+                <ol class="trail-preview-list" aria-label="Trail preview">
+                    <?php foreach ($trail['preview_steps'] as $step): ?>
+                        <?php
+                        $stepType = $step['activity_type'] ?? '';
+                        $stepIcon = [
+                            'reading' => 'fa-book-open',
+                            'saved' => 'fa-bookmark',
+                            'search' => 'fa-magnifying-glass',
+                            'shuffle' => 'fa-shuffle',
+                        ][$stepType] ?? 'fa-circle';
+                        $stepFallback = [
+                            'reading' => 'Article read',
+                            'saved' => 'Saved article',
+                            'search' => 'Search',
+                            'shuffle' => 'News shuffle',
+                        ][$stepType] ?? 'Trail step';
+                        $stepTitle = trim((string) ($step['title'] ?? '')) ?: $stepFallback;
+                        $isArticleStep = in_array($stepType, ['reading', 'saved'], true);
+                        $stepImage = trim((string) ($step['image'] ?? '')) ?: '/assets/img/news-placeholder.jpg';
+                        ?>
+                        <li class="trail-preview-step" title="<?= htmlspecialchars($stepTitle, ENT_QUOTES, 'UTF-8') ?>">
+                            <?php if ($isArticleStep): ?>
+                                <img
+                                    class="trail-preview-thumb"
+                                    src="<?= htmlspecialchars($stepImage, ENT_QUOTES, 'UTF-8') ?>"
+                                    alt=""
+                                    loading="lazy"
+                                    decoding="async"
+                                    onerror="this.onerror=null;this.src='/assets/img/news-placeholder.jpg';" />
+                            <?php endif; ?>
+                            <div class="trail-preview-copy">
+                                <i class="fa-solid <?= htmlspecialchars($stepIcon, ENT_QUOTES, 'UTF-8') ?>" aria-hidden="true"></i>
+                                <span><?= htmlspecialchars($stepTitle, ENT_QUOTES, 'UTF-8') ?></span>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ol>
+                <?php $moreSteps = max(0, (int) ($trail['total_records'] ?? 0) - count($trail['preview_steps'])); ?>
+                <?php if ($moreSteps > 0): ?>
+                    <div class="trail-preview-more">+ <?= $moreSteps ?> more steps</div>
+                <?php endif; ?>
+            <?php endif; ?>
 
             <a href="<?= htmlspecialchars($url, ENT_QUOTES, 'UTF-8') ?>" class="trail-card-action btn btn-green btn-sm" data-loading>
                 <i class="fa-solid fa-play mr-1"></i> Open Trail
@@ -598,6 +794,75 @@ function renderEmptyState(
         .trail-meta-activities strong {
             color: #495057;
             font-weight: 600;
+        }
+
+        .trail-preview-list {
+            display: grid;
+            gap: 0.35rem;
+            list-style: none;
+            margin: 0 0 0.75rem;
+            padding: 0;
+        }
+
+        .trail-preview-step {
+            align-items: flex-start;
+            color: #495057;
+            display: flex;
+            font-size: 0.8125rem;
+            gap: 0.5rem;
+            line-height: 1.35;
+            min-width: 0;
+        }
+
+        .trail-preview-thumb {
+            aspect-ratio: 16 / 10;
+            border-radius: 4px;
+            flex: 0 0 88px;
+            height: 55px;
+            object-fit: cover;
+            width: 88px;
+        }
+
+        .trail-preview-copy {
+            align-items: flex-start;
+            display: flex;
+            gap: 0.5rem;
+            min-width: 0;
+        }
+
+        .trail-preview-copy i {
+            color: #7a858e;
+            flex: 0 0 0.9rem;
+            font-size: 0.75rem;
+            margin-top: 0.12rem;
+            text-align: center;
+        }
+
+        .trail-preview-copy span {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            overflow-wrap: anywhere;
+        }
+
+        .trail-preview-step:has(.trail-preview-thumb) .trail-preview-copy span {
+            -webkit-line-clamp: 3;
+        }
+
+        .trail-preview-more {
+            color: #7a858e;
+            font-size: 0.75rem;
+            margin: -0.35rem 0 0.75rem 1.4rem;
+        }
+
+        html[data-ui-theme="dark"] body.news-trails-page .trail-preview-step {
+            color: #c2ccd3;
+        }
+
+        html[data-ui-theme="dark"] body.news-trails-page .trail-preview-copy i,
+        html[data-ui-theme="dark"] body.news-trails-page .trail-preview-more {
+            color: var(--sn-muted);
         }
 
         .trail-card-action {
