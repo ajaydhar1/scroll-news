@@ -358,12 +358,6 @@
   function startIntro() {
     if (typeof introJs !== 'function') return;
 
-    const stumbleTarget = qs('.sn-product-stumble[data-intro]');
-    const shouldHideStumble = stumbleTarget && stumbleTarget.getClientRects().length === 0;
-    const originalDisplay = stumbleTarget ? stumbleTarget.style.display : '';
-
-    if (shouldHideStumble) stumbleTarget.style.display = 'none';
-
     try {
       introJs()
         .setOptions({
@@ -372,8 +366,6 @@
         })
         .start();
     } catch (_) {
-    } finally {
-      if (shouldHideStumble) stumbleTarget.style.display = originalDisplay;
     }
   }
 

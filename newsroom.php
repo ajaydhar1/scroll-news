@@ -146,7 +146,7 @@ sn_perf_phase('render');
 
             <?php if (!$isTrailPlayer): ?>
                 <div class="newsroom-header-actions" role="group" aria-label="Newsroom actions">
-                    <a class="sn-product-link sn-product-stumble newsroom-stumble-action" href="/newsroom.php" onclick="trackStumbleClick('newsroom_header')" aria-label="Stumble to a random article" data-loading>
+                    <a data-step="1" data-intro="Welcome to the Scroll News newsroom! Here we provide analytics for the latest news stories. Click this play button to stumble through trending articles." class="sn-product-link sn-product-stumble newsroom-stumble-action" href="/newsroom.php" onclick="trackStumbleClick('newsroom_header')" aria-label="Stumble to a random article" data-loading>
                         <i class="fas fa-play" aria-hidden="true"></i>
                         <span>Stumble</span>
                     </a>
