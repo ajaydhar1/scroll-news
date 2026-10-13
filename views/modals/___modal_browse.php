@@ -35,8 +35,3 @@
     </div>
   </div>
 </div>
-
-
-<script>
-  window.isLoggedIn = <?php echo !empty($currentUser) ? 'true' : 'false'; ?>;
-</script>

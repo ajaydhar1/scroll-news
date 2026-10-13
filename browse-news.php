@@ -74,10 +74,6 @@ define('BASE_PATH', __DIR__);
     <!-- Bootstrap core JS-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        window.isLoggedIn = <?php echo !empty($currentUser) ? 'true' : 'false'; ?>;
-    </script>
-
     <script src="/assets/js/newsroom/utils.js"></script>
     <script src="/assets/js/newsroom/modules.js"></script>
 

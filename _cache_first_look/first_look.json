@@ -1,74 +1,38 @@
 {
-    "fetched_at": 1791800258,
+    "fetched_at": 1791899050,
     "feeds": [
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Chelsea star Cole Palmer under fire as he 'can't even be bothered to say hello' to desperate young fans swarming him and his girlfriend as they walk home",
-                    "url": "https://www.dailymail.com/sport/football/article-16201731/Chelseas-Cole-Palmer-fire-bothered-say-hello-desperate-young-fans.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791800177,
+                    "title": "The 10 autumn wardrobe staples I swear by in my 50s: From jeans that make me look 2 inches taller to the shirt that makes you look like you've made an effort: VICKIE NEAVE",
+                    "url": "https://www.dailymail.com/lifestyle/fashion/article-16187473/The-10-autumn-wardrobe-staples-swear-50s-jeans-make-look-2-inches-taller-shirt-makes-you-look-like-youve-effort-VICKIE-NEAVE.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791898960,
                     "emo": "📰"
                 },
                 {
-                    "title": "Boy, 14, 'shoots headmaster and teacher in school shotgun rampage' in France",
-                    "url": "https://www.dailymail.com/news/article-16202029/Boy-14-shoots-headmaster-teacher-school-shotgun-rampage-France.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791800173,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "The Guardian",
-            "home": "https://www.theguardian.com",
-            "items": [
-                {
-                    "title": "Nobel prize for economics awarded to two Americans, Hall and Woodford, for work on New Keynesian models – business live",
-                    "url": "https://www.theguardian.com/business/live/2026/oct/12/uk-growth-inflation-pressures-oil-price-sveriges-riksbank-nobel-prize-economic-sciences-awarded-latest-news-updates",
-                    "ts": 1791800080,
+                    "title": "Parents who died alongside two of their children in 'arson' attack on their home are named - as witnesses describe hearing shouts of 'throw the kids down'",
+                    "url": "https://www.dailymail.com/news/article-16205305/Man-woman-two-children-killed-suspected-arson-Ireland.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791898953,
                     "emo": "🔥"
-                },
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
                 {
-                    "title": "EU deal with China limits imports of hybrid electric vehicles",
-                    "url": "https://www.theguardian.com/environment/2026/oct/12/eu-deal-china-limit-imports-hybrid-electric-vehicles",
-                    "ts": 1791799813,
+                    "title": "Micron’s stock extends declines as China competition heats up",
+                    "url": "https://www.marketwatch.com/story/microns-stock-extends-declines-as-china-competition-heats-up-b8ec25f0?mod=mw_rss_topstories",
+                    "ts": 1791898800,
                     "emo": "🌍"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Brent tops $106 as doubts grow over supply boost from Trump’s ‘energy ceasefire’",
-                    "url": "https://www.cnbc.com/2026/10/12/oil-prics-today-iran-us-saudi-arabia-crude-.html",
-                    "ts": 1791799902,
-                    "emo": "⚖️"
                 },
                 {
-                    "title": "Nobel prize in economics awarded to Robert E. Hall and Michael Woodford",
-                    "url": "https://www.cnbc.com/2026/10/12/nobel-economics-prize-winner-woodford-hall.html",
-                    "ts": 1791799624,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "Russell Brand arrives at a London court for his trial on rape and sexual assault charges",
-                    "url": "https://nypost.com/2026/10/12/entertainment/russell-brand-arrives-at-a-london-court-for-his-trial-on-rape-and-sexual-assault-charges/",
-                    "ts": 1791799720,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Which hair loss treatments really work — and what may be a waste of time and money",
-                    "url": "https://nypost.com/2026/10/12/health/which-hair-loss-treatments-really-work-and-which-are-a-waste/",
-                    "ts": 1791799200,
+                    "title": "This one move will save $20,000 on our wedding",
+                    "url": "https://www.marketwatch.com/story/this-one-move-will-save-20-000-on-our-wedding-d22e4d24?mod=mw_rss_topstories",
+                    "ts": 1791898500,
                     "emo": "📰"
                 }
             ]
@@ -78,15 +42,51 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Secret Service leadership warn of 'massive increase' in threats against the president",
-                    "url": "https://www.foxnews.com/media/secret-service-leadership-warn-massive-increase-threats-president",
-                    "ts": 1791799583,
+                    "title": "Stop losing photo quality when you share pictures",
+                    "url": "https://www.foxnews.com/tech/stop-losing-photo-quality-share-pictures",
+                    "ts": 1791898730,
                     "emo": "📰"
                 },
                 {
-                    "title": "EXCLUSIVE: Inside LA's homeless hellscape — unlikely critics blast Dems as GOP hopeful tours Skid Row",
-                    "url": "https://www.foxnews.com/politics/exclusive-inside-las-homeless-hellscape-unlikely-critics-blast-dems-gop-hopeful-tours-skid-row",
-                    "ts": 1791799211,
+                    "title": "Judge Judy fires back at critics over America remarks: ‘It’s gonna take a lot more’ to shut me up",
+                    "url": "https://www.foxnews.com/media/judge-judy-fires-back-critics-over-america-remarks-its-gonna-take-lot-more-shut-me-up",
+                    "ts": 1791898223,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Paul Tudor Jones says 2027 could be a really challenging year for the stock market",
+                    "url": "https://www.cnbc.com/2026/10/13/paul-tudor-jones-2027-really-challenging-year.html",
+                    "ts": 1791898404,
+                    "emo": "💰"
+                },
+                {
+                    "title": "Iran reportedly fortifies nuclear sites as it prepares for possible U.S. strikes after midterms",
+                    "url": "https://www.cnbc.com/2026/10/13/iran-us-war-houthis-saudi-arabia-airport.html",
+                    "ts": 1791892425,
+                    "emo": "🌍"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "NFL Power Rankings for Week 6: The growing pack of teams chasing the favorites",
+                    "url": "https://nypost.com/2026/10/13/sports/nfl-power-rankings-for-week-6-growing-pack-chasing-favorites/",
+                    "ts": 1791898215,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Collin Gosselin On ‘Special Forces’ And Taking Back His Story In “Therapeutic” Memoir: “I Always Knew My Childhood Wasn’t Quite Normal”",
+                    "url": "https://decider.com/2026/10/13/collin-gosselin-memoir-special-forces-interview/",
+                    "ts": 1791898200,
                     "emo": "📰"
                 }
             ]
@@ -96,33 +96,15 @@
             "home": "https://thehill.com",
             "items": [
                 {
-                    "title": "GOP looks for midterm enthusiasm boost from pro sports stars ",
-                    "url": "https://thehill.com/newsletters/keeping-score/6139570-trump-uses-sports-figures-midterms/",
-                    "ts": 1791799200,
+                    "title": "Kacey Musgraves fires back after Noem jab over Talarico",
+                    "url": "https://thehill.com/blogs/in-the-know/6144832-kacey-musgraves-kristi-noem-james-talarico-ken-paxton-texas-senate-ella-langley/",
+                    "ts": 1791897793,
                     "emo": "📰"
                 },
                 {
-                    "title": "Will Rubio, Ossoff and Ocasio-Cortez run for president?",
-                    "url": "https://thehill.com/homenews/campaign/6139719-ossoff-whitmer-rubio-skip-2028/",
-                    "ts": 1791799200,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "The bond market is doing the Fed’s job, and that could be good news for stocks, says Morgan Stanley strategist",
-                    "url": "https://www.marketwatch.com/story/the-bond-market-is-doing-the-feds-job-and-that-could-be-good-news-for-stocks-says-morgan-stanley-strategist-ec57b81a?mod=mw_rss_topstories",
-                    "ts": 1791796980,
-                    "emo": "💰"
-                },
-                {
-                    "title": "My sister moved in with our widowed mother, 78, and says she deserves the family home. Is she right?",
-                    "url": "https://www.marketwatch.com/story/my-sister-moved-in-with-our-widowed-mother-78-and-says-she-deserves-the-family-home-is-she-right-7981835d?mod=mw_rss_topstories",
-                    "ts": 1791796500,
+                    "title": "Office mandates don't just change where we work — they change how we think ",
+                    "url": "https://thehill.com/opinion/technology/6143872-rto-mandates-innovation-loss/",
+                    "ts": 1791896400,
                     "emo": "📰"
                 }
             ]
@@ -132,33 +114,51 @@
             "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "A tech CEO who cut his staff from over 1,000 to 120 says AI is boosting the value of 'high-agency' generalists",
-                    "url": "https://www.businessinsider.com/bird-ceo-says-ai-is-empowering-high-agency-generalist-workers-2026-9",
-                    "ts": 1791796261,
-                    "emo": "🧪"
+                    "title": "Apple's first smart home device, the HomeView, is here",
+                    "url": "https://www.businessinsider.com/apple-homeview-smart-home-device-price-features-2026-10",
+                    "ts": 1791897086,
+                    "emo": "📰"
                 },
                 {
-                    "title": "How AI has raised the bar for Two Sigma internships and future hires",
-                    "url": "https://www.businessinsider.com/two-sigma-interns-productive-ai-skills-recruitment-2026-10",
-                    "ts": 1791796201,
-                    "emo": "🧪"
+                    "title": "Delta delays first-ever direct US to Saudi Arabia flights after airport missile strikes",
+                    "url": "https://www.businessinsider.com/delta-air-lines-delays-us-saudi-arabia-route-houthi-attacks-2026-10",
+                    "ts": 1791896892,
+                    "emo": "📰"
                 }
             ]
         },
         {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
             "items": [
                 {
-                    "title": "Inside Elon Musk’s $276 Million Midterm Rescue Mission for Republicans",
-                    "url": "https://www.nytimes.com/2026/10/12/us/politics/elon-musk-midterms.html",
-                    "ts": 1791795743,
-                    "emo": "📰"
+                    "title": "MI5 chief warns of threats to UK from Russia, Iran and AI",
+                    "url": "https://www.bbc.co.uk/news/articles/c60rl5vwpk02o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791895932,
+                    "emo": "🧪"
                 },
                 {
-                    "title": "Who’s Winning the Race for Congress?",
-                    "url": "https://www.nytimes.com/2026/10/12/us/politics/whos-winning-the-race-for-congress.html",
-                    "ts": 1791795759,
+                    "title": "Man killed in tiger attack identified as William Chapman",
+                    "url": "https://www.bbc.co.uk/news/articles/c3ewegny45jvo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1791897604,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "The Guardian",
+            "home": "https://www.theguardian.com",
+            "items": [
+                {
+                    "title": "Threat of AI share crash puts world financial stability at risk, says IMF",
+                    "url": "https://www.theguardian.com/business/2026/oct/13/ai-share-crash-risk-global-imf-debt-corrowing-cyber-attacks",
+                    "ts": 1791894601,
+                    "emo": "🧪"
+                },
+                {
+                    "title": "Is punishing the poor Trump’s last hand to play?",
+                    "url": "https://www.theguardian.com/us-news/2026/oct/13/trump-aca-healthcare-politics-midterms",
+                    "ts": 1791889256,
                     "emo": "⚖️"
                 }
             ]
@@ -168,34 +168,16 @@
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "WAR DAY 226: SAUDIS SHAKEN...",
-                    "url": "https://www.semafor.com/article/10/11/2026/attacks-on-riyadh-threaten-saudi-confidence",
-                    "ts": 1791793536,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Houthis show military reach with missile strikes on Riyadh...",
-                    "url": "https://www.streetinsider.com/Reuters/Saudi+Arabia+reports+injuries+in+new+attack+at+Riyadh+airport%2C+day+after+strike+kills+13/27172796.html",
-                    "ts": 1791793536,
-                    "emo": "🎭"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "Deloitte helped in falsifying documents to evade tax on Abramovich’s wealth, BBC finds",
-                    "url": "https://www.bbc.co.uk/news/articles/c64g1l5389kvo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791781252,
+                    "title": "FINAL DAYS OF UNCHECKED POWER?",
+                    "url": "https://archive.is/tIWVO",
+                    "ts": 1791893436,
                     "emo": "📰"
                 },
                 {
-                    "title": "Rejecting closer EU ties would be dereliction of duty, PM to say",
-                    "url": "https://www.bbc.co.uk/news/articles/c6lyk8e3lxz0o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791781282,
-                    "emo": "🌍"
+                    "title": "PEW: TRUMP APPROVAL DROPS TO 30%",
+                    "url": "https://www.pewresearch.org/politics/2026/10/08/with-americans-in-a-sour-mood-democratic-voters-are-more-engaged-in-midterms/",
+                    "ts": 1791893436,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -204,16 +186,34 @@
             "home": "https://www.nbcnews.com",
             "items": [
                 {
-                    "title": "South Carolina Senate rivals spar over Iran, AI and Trump in debate",
-                    "url": "https://www.nbcnews.com/politics/2026-election/south-carolina-senate-rivals-spar-iran-war-ai-trump-fiery-debate-rcna602590",
-                    "ts": 1791769467,
+                    "title": "Rep. Omar Reacts to Feds' Home Search: 'I Will Not Be Silenced'",
+                    "url": "https://www.today.com/video/rep-omar-reacts-to-feds-home-search-i-will-not-be-silenced-271483461837",
+                    "ts": 1791890541,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Romance scammers are getting harder to catch. The consequences are costly.",
+                    "url": "https://www.nbcnews.com/tech/tech-news/romance-scammers-congressional-investigation-match-group-tinder-rcna602411",
+                    "ts": 1791885600,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "U.K. and Europe Recoil From Trump’s Diesel Deal With Putin",
+                    "url": "https://www.nytimes.com/2026/10/13/world/europe/trump-putin-diesel-uk-europe-gift.html",
+                    "ts": 1791882227,
                     "emo": "⚖️"
                 },
                 {
-                    "title": "Trump claims Russia and Ukraine agree to energy ceasefire, but Kyiv says strikes continue",
-                    "url": "https://www.nbcnews.com/world/ukraine/trump-russia-ukraine-agree-energy-ceasefire-zelenskyy-diesel-rcna602766",
-                    "ts": 1791730963,
-                    "emo": "⚖️"
+                    "title": "Trump Gives Putin a Hand in Russia’s Economic War With Ukraine",
+                    "url": "https://www.nytimes.com/2026/10/12/world/europe/russia-diesel-trump.html",
+                    "ts": 1791825615,
+                    "emo": "🔥"
                 }
             ]
         }

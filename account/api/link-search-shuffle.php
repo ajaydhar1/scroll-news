@@ -3,14 +3,11 @@
 define('BASE_PATH', dirname(__DIR__, 2));
 
 require_once BASE_PATH . "/core/___modules.php";
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+require_once BASE_PATH . '/auth/includes/auth_bootstrap.php';
 
 header('Content-Type: application/json');
 
-$currentUserId = $_SESSION['user_id'] ?? null;
+$currentUserId = $currentUser['id'] ?? null;
 
 if (!$currentUserId) {
     echo json_encode(['success' => false, 'error' => 'Not signed in']);

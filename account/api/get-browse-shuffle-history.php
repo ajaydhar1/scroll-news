@@ -2,16 +2,11 @@
 
 define('BASE_PATH', dirname(__DIR__, 2));
 
-require_once BASE_PATH . '/auth/includes/auth_db.php';
+require_once BASE_PATH . '/auth/includes/auth_bootstrap.php';
 
 header('Content-Type: application/json');
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-// Adjust this depending on your auth helper/session shape
-$userId = $_SESSION['user_id'] ?? null;
+$userId = $currentUser['id'] ?? null;
 
 if (!$userId) {
     http_response_code(401);

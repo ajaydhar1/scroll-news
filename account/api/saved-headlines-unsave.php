@@ -4,15 +4,11 @@ declare(strict_types=1);
 
 define('BASE_PATH', dirname(__DIR__, 2));
 
-require_once BASE_PATH . '/auth/includes/auth_db.php';
+require_once BASE_PATH . '/auth/includes/auth_bootstrap.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-$userId = $_SESSION['user_id'] ?? null;
+$userId = $currentUser['id'] ?? null;
 
 if (!$userId) {
     http_response_code(401);

@@ -189,12 +189,6 @@ function shuffleArticleCards() {
     article_description: card.dataset.description || ""
   }));
 
-  // Only save shuffle history for signed-in users
-  if (!window.isLoggedIn) {
-    setBrowseShuffleStatus("Sign in to save shuffle history.", true);
-    return;
-  }
-
   setBrowseShuffleStatus("Saving shuffle...");
 
   $.ajax({
@@ -225,7 +219,7 @@ function shuffleArticleCards() {
 
       setBrowseShuffleStatus(
         xhr.status === 401
-          ? "Your sign-in expired. Sign in again; this shuffle was not saved."
+          ? "You need to be signed in to save shuffle history. This shuffle was not saved."
           : "This shuffle could not be saved. Please try again.",
         true
       );
