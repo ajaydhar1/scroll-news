@@ -1,21 +1,39 @@
 {
-    "fetched_at": 1791899050,
+    "fetched_at": 1791901516,
     "feeds": [
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "The 10 autumn wardrobe staples I swear by in my 50s: From jeans that make me look 2 inches taller to the shirt that makes you look like you've made an effort: VICKIE NEAVE",
-                    "url": "https://www.dailymail.com/lifestyle/fashion/article-16187473/The-10-autumn-wardrobe-staples-swear-50s-jeans-make-look-2-inches-taller-shirt-makes-you-look-like-youve-effort-VICKIE-NEAVE.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791898960,
+                    "title": "Anthea Turner, 66, shows off the results of her non-surgical facelift in a before-and-after shoot",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16202715/Anthea-Turner-results-non-surgical-facelift-shoot.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791901486,
                     "emo": "📰"
                 },
                 {
-                    "title": "Parents who died alongside two of their children in 'arson' attack on their home are named - as witnesses describe hearing shouts of 'throw the kids down'",
-                    "url": "https://www.dailymail.com/news/article-16205305/Man-woman-two-children-killed-suspected-arson-Ireland.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791898953,
-                    "emo": "🔥"
+                    "title": "Celebrity Traitors is hit by a race row as Industry star Myha'la claims 'unconscious racial bias' exists in the show's format",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16205497/Celebrity-Traitors-hit-race-row-Industry-star-Myhala-claims-unconscious-racial-bias-exists-shows-format.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1791901327,
+                    "emo": "🎭"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "Nantucket man arrested on ‘most disturbing’ child trafficking allegations in multi-agency operation: feds",
+                    "url": "https://nypost.com/2026/10/13/us-news/nantucket-man-arrested-on-most-disturbing-child-trafficking-allegations-in-multi-agency-operation-feds/",
+                    "ts": 1791901341,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Formula 1 will return to Africa for first time since 1993 with deal to host Grand Prix in Rwanda",
+                    "url": "https://nypost.com/2026/10/13/sports/formula-1-announces-return-to-africa-with-grand-prix-in-rwanda-in-early-2030s/",
+                    "ts": 1791901179,
+                    "emo": "📰"
                 }
             ]
         },
@@ -24,16 +42,16 @@
             "home": "https://www.marketwatch.com",
             "items": [
                 {
-                    "title": "Micron’s stock extends declines as China competition heats up",
-                    "url": "https://www.marketwatch.com/story/microns-stock-extends-declines-as-china-competition-heats-up-b8ec25f0?mod=mw_rss_topstories",
-                    "ts": 1791898800,
-                    "emo": "🌍"
+                    "title": "Who should pay for a birthday dinner? I always treat my guests.",
+                    "url": "https://www.marketwatch.com/story/who-should-pay-for-a-birthday-dinner-i-always-treat-my-guests-5bbd1880?mod=mw_rss_topstories",
+                    "ts": 1791901020,
+                    "emo": "📰"
                 },
                 {
-                    "title": "This one move will save $20,000 on our wedding",
-                    "url": "https://www.marketwatch.com/story/this-one-move-will-save-20-000-on-our-wedding-d22e4d24?mod=mw_rss_topstories",
-                    "ts": 1791898500,
-                    "emo": "📰"
+                    "title": "Why one hedge-fund billionaire believes stocks are heading for a ‘really challenging’ 2027",
+                    "url": "https://www.marketwatch.com/story/why-one-hedge-fund-billionaire-believes-stocks-are-heading-for-a-really-challenging-2027-bb68f19e?mod=mw_rss_topstories",
+                    "ts": 1791900600,
+                    "emo": "💰"
                 }
             ]
         },
@@ -42,16 +60,52 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Stop losing photo quality when you share pictures",
-                    "url": "https://www.foxnews.com/tech/stop-losing-photo-quality-share-pictures",
-                    "ts": 1791898730,
+                    "title": "Massive bison rams pickup truck in Yellowstone after driver tries to avoid collision",
+                    "url": "https://www.foxnews.com/travel/massive-bison-rams-pickup-truck-yellowstone-after-driver-tries-avoid-collision",
+                    "ts": 1791900679,
                     "emo": "📰"
                 },
                 {
-                    "title": "Judge Judy fires back at critics over America remarks: ‘It’s gonna take a lot more’ to shut me up",
-                    "url": "https://www.foxnews.com/media/judge-judy-fires-back-critics-over-america-remarks-its-gonna-take-lot-more-shut-me-up",
-                    "ts": 1791898223,
-                    "emo": "⚖️"
+                    "title": "Sean 'Diddy' Combs hospitalized with head injury while behind bars: report",
+                    "url": "https://www.foxnews.com/entertainment/sean-diddy-combs-hospitalized-head-injury-behind-bars-report",
+                    "ts": 1791900501,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "White House asks Kimberly Guilfoyle to resign as U.S. ambassador to Greece",
+                    "url": "https://www.nbcnews.com/politics/trump-administration/trump-kimberly-guilfoyle-resign-ambassador-greece-rcna603034",
+                    "ts": 1791900257,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Rep. Omar Reacts to Feds' Home Search: 'I Will Not Be Silenced'",
+                    "url": "https://www.today.com/video/rep-omar-reacts-to-feds-home-search-i-will-not-be-silenced-271483461837",
+                    "ts": 1791890541,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Boebert: Iran war 'detrimental on many levels' ",
+                    "url": "https://thehill.com/homenews/campaign/6145050-lauren-boebert-iran-war-donald-trump-midterms/",
+                    "ts": 1791899766,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Omar fundraising off federal investigation",
+                    "url": "https://thehill.com/homenews/campaign/6144996-omar-house-raid-investigation-fundraising/",
+                    "ts": 1791899704,
+                    "emo": "📰"
                 }
             ]
         },
@@ -70,42 +124,6 @@
                     "url": "https://www.cnbc.com/2026/10/13/iran-us-war-houthis-saudi-arabia-airport.html",
                     "ts": 1791892425,
                     "emo": "🌍"
-                }
-            ]
-        },
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "NFL Power Rankings for Week 6: The growing pack of teams chasing the favorites",
-                    "url": "https://nypost.com/2026/10/13/sports/nfl-power-rankings-for-week-6-growing-pack-chasing-favorites/",
-                    "ts": 1791898215,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Collin Gosselin On ‘Special Forces’ And Taking Back His Story In “Therapeutic” Memoir: “I Always Knew My Childhood Wasn’t Quite Normal”",
-                    "url": "https://decider.com/2026/10/13/collin-gosselin-memoir-special-forces-interview/",
-                    "ts": 1791898200,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Kacey Musgraves fires back after Noem jab over Talarico",
-                    "url": "https://thehill.com/blogs/in-the-know/6144832-kacey-musgraves-kristi-noem-james-talarico-ken-paxton-texas-senate-ella-langley/",
-                    "ts": 1791897793,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Office mandates don't just change where we work — they change how we think ",
-                    "url": "https://thehill.com/opinion/technology/6143872-rto-mandates-innovation-loss/",
-                    "ts": 1791896400,
-                    "emo": "📰"
                 }
             ]
         },
@@ -156,10 +174,10 @@
                     "emo": "🧪"
                 },
                 {
-                    "title": "Is punishing the poor Trump’s last hand to play?",
-                    "url": "https://www.theguardian.com/us-news/2026/oct/13/trump-aca-healthcare-politics-midterms",
-                    "ts": 1791889256,
-                    "emo": "⚖️"
+                    "title": "The RBA keeps hiking interest rates – but are the rate rises actually working?",
+                    "url": "https://www.theguardian.com/business/2026/oct/14/rba-keeps-hiking-interest-rates-but-are-rises-actually-working",
+                    "ts": 1791900005,
+                    "emo": "💰"
                 }
             ]
         },
@@ -178,24 +196,6 @@
                     "url": "https://www.pewresearch.org/politics/2026/10/08/with-americans-in-a-sour-mood-democratic-voters-are-more-engaged-in-midterms/",
                     "ts": 1791893436,
                     "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Rep. Omar Reacts to Feds' Home Search: 'I Will Not Be Silenced'",
-                    "url": "https://www.today.com/video/rep-omar-reacts-to-feds-home-search-i-will-not-be-silenced-271483461837",
-                    "ts": 1791890541,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Romance scammers are getting harder to catch. The consequences are costly.",
-                    "url": "https://www.nbcnews.com/tech/tech-news/romance-scammers-congressional-investigation-match-group-tinder-rcna602411",
-                    "ts": 1791885600,
-                    "emo": "📰"
                 }
             ]
         },

@@ -10504,3 +10504,114 @@ section#contact form#contactForm :-ms-input-placeholder {
   font-size: 0.9rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+
+html[data-ui-theme="dark"] .modal > .modal-dialog > .modal-content :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="file"]):not([type="image"]):not([type="color"]):not([type="range"]),
+  textarea,
+  select
+) {
+  background-color: var(--sn-surface, #2a2f36);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #f4f7f7;
+  color-scheme: dark;
+}
+
+html[data-ui-theme="dark"] .modal > .modal-dialog > .modal-content :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="file"]):not([type="image"]):not([type="color"]):not([type="range"]),
+  textarea,
+  select
+):focus {
+  background-color: var(--sn-surface, #2a2f36);
+  border-color: var(--brand-color, #00bfa6);
+  box-shadow: 0 0 0 0.2rem rgba(0, 191, 166, 0.25);
+  color: #f4f7f7;
+}
+
+html[data-ui-theme="dark"] .modal > .modal-dialog > .modal-content :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="file"]):not([type="image"]):not([type="color"]):not([type="range"]),
+  textarea,
+  select
+)::placeholder {
+  color: var(--sn-muted, #a9b1ba);
+  opacity: 1;
+}
+
+html[data-ui-theme="dark"] .modal > .modal-dialog > .modal-content select option {
+  background-color: var(--sn-surface, #2a2f36);
+  color: #f4f7f7;
+}
+
+html[data-ui-theme="dark"] .modal > .modal-dialog > .modal-content :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="file"]):not([type="image"]):not([type="color"]):not([type="range"])
+):-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--sn-surface, #2a2f36) inset;
+  -webkit-text-fill-color: #f4f7f7;
+  caret-color: #f4f7f7;
+}
+
+html[data-ui-theme="dark"] .modal > .modal-dialog > .modal-content :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="file"]):not([type="image"]):not([type="color"]):not([type="range"])
+):-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--sn-surface, #2a2f36) inset, 0 0 0 0.2rem rgba(0, 191, 166, 0.25);
+}
+
+html[data-ui-theme="dark"] .modal > .modal-dialog > .modal-content :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="file"]):not([type="image"]):not([type="color"]):not([type="range"]),
+  textarea,
+  select
+):disabled {
+  background-color: var(--sn-surface-raised, #30363d);
+  color: var(--sn-muted, #a9b1ba);
+}
+
+html[data-ui-theme="dark"] .modal > .modal-dialog > .modal-content form.was-validated :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="file"]):not([type="image"]):not([type="color"]):not([type="range"]),
+  textarea,
+  select
+):invalid,
+html[data-ui-theme="dark"] .modal > .modal-dialog > .modal-content :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="file"]):not([type="image"]):not([type="color"]):not([type="range"]),
+  textarea,
+  select
+).is-invalid {
+  border-color: #dc3545;
+}
+
+html[data-ui-theme="dark"] .modal > .modal-dialog > .modal-content form.was-validated :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="file"]):not([type="image"]):not([type="color"]):not([type="range"]),
+  textarea,
+  select
+):valid:not(:disabled),
+html[data-ui-theme="dark"] .modal > .modal-dialog > .modal-content :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="file"]):not([type="image"]):not([type="color"]):not([type="range"]),
+  textarea,
+  select
+).is-valid:not(:disabled) {
+  border-color: #28a745;
+}
+
+html[data-ui-theme="dark"] .modal > .modal-dialog > .modal-content form.was-validated :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="file"]):not([type="image"]):not([type="color"]):not([type="range"]),
+  textarea,
+  select
+):invalid:focus,
+html[data-ui-theme="dark"] .modal > .modal-dialog > .modal-content :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="file"]):not([type="image"]):not([type="color"]):not([type="range"]),
+  textarea,
+  select
+).is-invalid:focus {
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+html[data-ui-theme="dark"] .modal > .modal-dialog > .modal-content form.was-validated :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="file"]):not([type="image"]):not([type="color"]):not([type="range"]),
+  textarea,
+  select
+):valid:not(:disabled):focus,
+html[data-ui-theme="dark"] .modal > .modal-dialog > .modal-content :is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="hidden"]):not([type="file"]):not([type="image"]):not([type="color"]):not([type="range"]),
+  textarea,
+  select
+).is-valid:not(:disabled):focus {
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
