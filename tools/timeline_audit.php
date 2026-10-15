@@ -28,14 +28,45 @@ foreach (sn_tl_all_stories() as $story) {
     if ($slug && $story['slug'] !== $slug) {
         continue;
     }
-    $rows = sn_tl_fetch_candidates($pdo, $story);
-    $model = sn_tl_assemble($story, $rows);
+    $meta = [];
+    $rows = sn_tl_fetch_candidates($pdo, $story, $meta);
+    $model = sn_tl_assemble($story, $rows, $meta);
     $s = $model['stats'];
-    echo str_repeat('=', 70) . "\n{$story['title']} ({$story['slug']})  candidates=" . count($rows) . "\n";
+    $active = ($story['status'] ?? '') === 'active';
+    echo str_repeat('=', 70) . "\n{$story['title']} ({$story['slug']}, {$story['status']})  candidates=" . count($rows) . "\n";
     printf("core=%d related=%d rejected=%d dupes=%d publishers=%d days=%d peak=%s(%d)\n",
         $s['core_articles'], $s['related_articles'], $s['rejected'], $s['duplicates_removed'],
         $s['publishers'], $s['days_active'], $s['peak_day'], $s['peak_count']);
     printf("top publisher: %s (%.0f%%)\n", $s['top_publisher'], $s['top_publisher_share'] * 100);
+    $units = array_unique(array_column($model['series'], 'unit'));
+    printf("window=%s..%s open=%s  series=%s buckets=%d  latest_core=%d uncovered_core=%d\n",
+        $meta['window']['from'] ?? '?', $meta['window']['to'] ?? '?', !empty($meta['window']['open']) ? 'yes' : 'no',
+        implode('/', $units), count($model['series']), $s['latest_core'] ?? 0, $s['uncovered_core'] ?? 0);
+    $limit = (int)($meta['limit'] ?? 0);
+    printf("fetch: %d rows of limit %d (%.0f%% of cap)%s\n", $meta['fetched'] ?? count($rows), $limit,
+        $limit ? 100 * ($meta['fetched'] ?? count($rows)) / $limit : 0,
+        !empty($meta['truncated']) ? '  TRUNCATED, reliable from ' . ($meta['coverage_from'] ?? '?') : '');
+    if (!empty($meta['truncated'])) {
+        $problems++;
+        echo "      PROBLEM candidate limit reached; raise max_candidates or narrow the matching rules\n";
+    } elseif ($limit && ($meta['fetched'] ?? 0) > 0.7 * $limit) {
+        echo "      WARN candidate set is over 70% of max_candidates\n";
+    }
+    if (!empty($s['trimmed'])) {
+        echo "      WARN {$s['trimmed']} items trimmed by max_items\n";
+    }
+    if ($active) {
+        if (!empty($story['window']['to'])) {
+            $problems++;
+            echo "      PROBLEM active story has a fixed window.to; it will not self-update\n";
+        }
+        $newest = $model['days'] ? end($model['days'])['date'] : null;
+        $age = $newest ? (int)((strtotime(sn_tl_today()) - strtotime($newest)) / 86400) : null;
+        printf("newest article day: %s (%s days ago)\n", $newest ?? 'none', $age ?? '?');
+        if ($age === null || $age > 3) {
+            echo "      WARN newest matching article is stale; check ingestion or matching rules\n";
+        }
+    }
     foreach ($model['gaps'] as $g) {
         echo "gap: {$g['days']} quiet days before {$g['before']}\n";
     }

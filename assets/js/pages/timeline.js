@@ -10,7 +10,7 @@
   var select = document.getElementById('snTlPublisher');
   var bars = Array.prototype.slice.call(document.querySelectorAll('.sn-tl-spark a[data-day]'));
   var chapterLinks = Array.prototype.slice.call(document.querySelectorAll('.sn-tl-minimap a[data-chapter]'));
-  var chapters = Array.prototype.slice.call(document.querySelectorAll('.sn-tl-chapter'));
+  var chapters = Array.prototype.slice.call(document.querySelectorAll('.sn-tl-chapter, .sn-tl-latest'));
 
   // Reveal on scroll
   var revealables = days.concat(chapters);
@@ -53,11 +53,16 @@
   function setCurrent(day) {
     var date = day.getAttribute('data-day');
     days.forEach(function (d) { d.classList.toggle('is-current', d === day); });
-    bars.forEach(function (b) { b.classList.toggle('is-active', b.getAttribute('data-day') === date); });
+    bars.forEach(function (b) {
+      // Weekly/monthly bars cover a date range; daily bars have from == to == day
+      var from = b.getAttribute('data-from') || b.getAttribute('data-day');
+      var to = b.getAttribute('data-to') || from;
+      b.classList.toggle('is-active', date >= from && date <= to);
+    });
     var chapterIdx = null;
     var node = day;
     while (node) {
-      if (node.classList && node.classList.contains('sn-tl-chapter')) {
+      if (node.classList && (node.classList.contains('sn-tl-chapter') || node.classList.contains('sn-tl-latest'))) {
         chapterIdx = node.id.replace('chapter-', '');
         break;
       }

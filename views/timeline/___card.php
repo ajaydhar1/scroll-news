@@ -72,7 +72,7 @@ function sn_tl_render_card(array $a, array $story): void
     <?php
 }
 
-/** Inline SVG volume bars. $link adds anchors to day sections. */
+/** Inline SVG volume bars. With $opts['link'], each bar jumps to the first core day in its bucket. */
 function sn_tl_render_sparkline(array $series, array $opts = []): void
 {
     if (!$series) {
@@ -85,19 +85,24 @@ function sn_tl_render_sparkline(array $series, array $opts = []): void
         $max = max($max, $p['core']);
     }
     $n = count($series);
-    $bw = 10;
-    $gap = 3;
+    $unit = $series[0]['unit'] ?? 'day';
+    $bw = $n > 120 ? 6 : 10;
+    $gap = $n > 120 ? 2 : 3;
     $w = $n * ($bw + $gap);
     ?>
     <svg class="sn-tl-spark" viewBox="0 0 <?= $w ?> <?= $h ?>" preserveAspectRatio="none" role="img"
-         aria-label="Core coverage volume by day, <?= $n ?> days">
+         aria-label="Core coverage volume by <?= sn_tl_e($unit) ?>, <?= $n ?> <?= sn_tl_e($unit) ?>s">
         <?php foreach ($series as $i => $p):
             $bh = $p['core'] > 0 ? max(3, (int)round($p['core'] / $max * ($h - 2))) : 1;
             $x = $i * ($bw + $gap);
-            $rect = '<rect class="sn-tl-bar' . ($p['core'] ? '' : ' is-empty') . '" x="' . $x . '" y="' . ($h - $bh) . '" width="' . $bw . '" height="' . $bh . '" rx="2"></rect>';
-            $label = sn_tl_fmt_day($p['date'], 'M j') . ': ' . $p['core'] . ' article' . ($p['core'] === 1 ? '' : 's');
-            if ($link && $p['core'] > 0): ?>
-                <a href="#day-<?= sn_tl_e($p['date']) ?>" data-day="<?= sn_tl_e($p['date']) ?>"><title><?= sn_tl_e($label) ?></title><?= $rect ?></a>
+            $cls = 'sn-tl-bar' . ($p['core'] ? '' : ' is-empty') . (!empty($p['latest']) ? ' is-latest' : '');
+            $rect = '<rect class="' . $cls . '" x="' . $x . '" y="' . ($h - $bh) . '" width="' . $bw . '" height="' . $bh . '" rx="2"></rect>';
+            $range = $unit === 'day' ? sn_tl_fmt_day($p['date'], 'M j') : ($unit === 'week'
+                ? 'Week of ' . sn_tl_fmt_day($p['date'], 'M j')
+                : sn_tl_fmt_day($p['date'], 'F Y'));
+            $label = $range . ': ' . $p['core'] . ' article' . ($p['core'] === 1 ? '' : 's');
+            if ($link && $p['core'] > 0 && !empty($p['target'])): ?>
+                <a href="#day-<?= sn_tl_e($p['target']) ?>" data-day="<?= sn_tl_e($p['target']) ?>" data-from="<?= sn_tl_e($p['date']) ?>" data-to="<?= sn_tl_e($p['to']) ?>"><title><?= sn_tl_e($label) ?></title><?= $rect ?></a>
             <?php else: ?>
                 <g><title><?= sn_tl_e($label) ?></title><?= $rect ?></g>
             <?php endif;

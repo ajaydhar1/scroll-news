@@ -24,24 +24,34 @@ $visibleStack = 6;
                 <div><dt>Days with coverage</dt><dd><?= (int)$s['days_active'] ?></dd></div>
                 <div><dt>Busiest day</dt><dd><?= sn_tl_e(sn_tl_fmt_day($s['peak_day'], 'M j')) ?> <small>(<?= (int)$s['peak_count'] ?>)</small></dd></div>
             </dl>
-            <p class="sn-tl-tag-line"><span class="sn-tl-tag sn-tl-tag-data">From the data</span> Counts are computed from archived articles in this timeline, not editorial judgement.</p>
+            <p class="sn-tl-tag-line"><span class="sn-tl-tag sn-tl-tag-data">From the data</span> Counts are computed from archived articles in this timeline, not editorial judgement.
+                <?php if ($story['status'] === 'active' && !empty($m['generated_at'])): ?>
+                    This timeline updates automatically as articles are archived; newest article <?= sn_tl_e(sn_tl_fmt_day($s['last_day'], 'M j')) ?>, refreshed <?= sn_tl_e((new DateTimeImmutable('@' . (int)$m['generated_at']))->setTimezone(new DateTimeZone(SN_TL_TZ))->format('M j, g:i A T')) ?>.
+                <?php endif; ?>
+            </p>
         <?php endif; ?>
     </header>
 
     <?php if (!$m || !$s || $s['core_articles'] === 0): ?>
         <div class="sn-tl-notice" role="status">This timeline isn’t available right now. Please try again shortly.</div>
     <?php else: ?>
+    <?php
+    $series = $m['series'];
+    $unit = $series[0]['unit'] ?? 'day';
+    $latestFrom = $m['review']['latest_from'] ?? null;
+    $hasLatest = $latestFrom !== null && ($s['latest_core'] ?? 0) > 0;
+    ?>
 
     <div class="sn-tl-shell">
         <input type="checkbox" id="snTlRelated" class="sn-tl-related-toggle"<?= !empty($_GET['related']) ? ' checked' : '' ?>>
 
         <div class="sn-tl-controls">
-            <div class="sn-tl-scrubber" aria-label="Coverage volume. Select a bar to jump to that day.">
-                <?php sn_tl_render_sparkline($m['series'], ['link' => true, 'height' => 40]); ?>
+            <div class="sn-tl-scrubber" aria-label="Coverage volume. Select a bar to jump to that <?= sn_tl_e($unit) ?>.">
+                <?php sn_tl_render_sparkline($series, ['link' => true, 'height' => 40]); ?>
                 <div class="sn-tl-scrubber-axis">
-                    <span><?= sn_tl_e(sn_tl_fmt_day($s['first_day'], 'M j')) ?></span>
-                    <span class="sn-tl-scrubber-cap">Articles per day</span>
-                    <span><?= sn_tl_e(sn_tl_fmt_day($s['last_day'], 'M j')) ?></span>
+                    <span><?= sn_tl_e(sn_tl_fmt_day($s['first_day'], $unit === 'day' ? 'M j' : 'M j, Y')) ?></span>
+                    <span class="sn-tl-scrubber-cap">Articles per <?= sn_tl_e($unit) ?></span>
+                    <span><?= sn_tl_e(sn_tl_fmt_day($s['last_day'], $unit === 'day' ? 'M j' : 'M j, Y')) ?></span>
                 </div>
             </div>
             <div class="sn-tl-filters">
@@ -82,6 +92,15 @@ $visibleStack = 6;
                             </span>
                         </a></li>
                     <?php endforeach; ?>
+                    <?php if ($hasLatest): ?>
+                        <li><a href="#latest" data-chapter="latest" class="sn-tl-minimap-latest">
+                            <span class="sn-tl-minimap-dot" aria-hidden="true"></span>
+                            <span class="sn-tl-minimap-text">
+                                <strong>Latest coverage</strong>
+                                <small>Awaiting review · <?= (int)$s['latest_core'] ?> articles</small>
+                            </span>
+                        </a></li>
+                    <?php endif; ?>
                 </ol>
             </aside>
 
@@ -113,6 +132,15 @@ $visibleStack = 6;
                                 </div>
                             </li>
                         <?php endif;
+                        if ($hasLatest && $date === $latestFrom): ?>
+                            <li class="sn-tl-latest" id="latest">
+                                <div class="sn-tl-latest-inner">
+                                    <p class="sn-tl-chapter-label"><span class="sn-tl-tag sn-tl-tag-pending">Awaiting editorial review</span> Since <?= sn_tl_e(sn_tl_fmt_day($date, 'M j')) ?></p>
+                                    <h2>Latest coverage</h2>
+                                    <p>These articles were archived after the last reviewed chapter. They are shown as published; editors have not yet placed them in the story’s narrative.</p>
+                                </div>
+                            </li>
+                        <?php endif;
                         if ($coreOnly && isset($m['gaps'][$date])): $g = $m['gaps'][$date]; ?>
                             <li class="sn-tl-gap" aria-label="Gap in coverage">
                                 <span>No high-confidence coverage for <?= (int)$g['days'] ?> day<?= $g['days'] === 1 ? '' : 's' ?></span>
@@ -121,6 +149,7 @@ $visibleStack = 6;
                         <li class="sn-tl-day<?= $coreOnly ? '' : ' is-related-only' ?>" id="day-<?= sn_tl_e($date) ?>" data-day="<?= sn_tl_e($date) ?>">
                             <div class="sn-tl-day-head">
                                 <time datetime="<?= sn_tl_e($date) ?>"><?= sn_tl_e(sn_tl_fmt_day($date, 'l, F j')) ?></time>
+                                <?php if (($day['review'] ?? '') === 'uncovered' && $coreOnly): ?><span class="sn-tl-tag sn-tl-tag-pending" title="No chapter covers this day yet">Not in a chapter</span><?php endif; ?>
                                 <span class="sn-tl-day-count"><?= (int)$day['core'] ?> article<?= $day['core'] === 1 ? '' : 's' ?><?= $day['related'] ? ' <span class="sn-tl-day-rel">+ ' . (int)$day['related'] . ' related</span>' : '' ?></span>
                             </div>
                             <?php
@@ -167,6 +196,15 @@ $visibleStack = 6;
                 <p class="sn-tl-method-nums">
                     <?= (int)$s['core_articles'] ?> articles shown · <?= (int)$s['related_articles'] ?> related · <?= (int)$s['rejected'] ?> candidates rejected · <?= (int)$s['duplicates_removed'] ?> duplicate<?= $s['duplicates_removed'] === 1 ? '' : 's' ?> removed
                 </p>
+                <?php if ($story['status'] === 'active'): ?>
+                    <p><span class="sn-tl-tag sn-tl-tag-data">From the data</span> This is a developing story. New matching articles are added automatically (the page refreshes its data about every <?= (int)round(max(120, (int)($story['cache_ttl'] ?? 600)) / 60) ?> minutes). Articles after the last reviewed chapter appear under “Latest coverage” until an editor reviews them.</p>
+                <?php endif; ?>
+                <?php if (!empty($m['fetch']['truncated'])): ?>
+                    <p class="sn-tl-note">• Very large story: coverage before <?= sn_tl_e(sn_tl_fmt_day((string)$m['fetch']['coverage_from'], 'M j, Y')) ?> is not shown.</p>
+                <?php endif; ?>
+                <?php if (!empty($s['trimmed'])): ?>
+                    <p class="sn-tl-note">• <?= (int)$s['trimmed'] ?> of the oldest articles were left out to keep this page fast.</p>
+                <?php endif; ?>
                 <p>Publisher mix (top <?= count($s['publisher_mix']) ?>):
                     <?php $mix = []; foreach ($s['publisher_mix'] as $h => $n) { $mix[] = sn_tl_e($h) . ' ' . (int)$n; } echo implode(' · ', $mix); ?>
                     <?php if ($s['top_publisher_share'] >= 0.4): ?>
