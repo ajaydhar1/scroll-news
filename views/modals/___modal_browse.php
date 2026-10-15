@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-lg-5">
+          <div class="col-lg-7">
             <div class="mb-3">
               <label for="categorySelect">Select Category:</label>
               <div class="d-flex align-items-center flex-wrap">
