@@ -440,6 +440,8 @@ try {
     $ENTITY_MIN_COUNT = 2;   // mentions of an entity inside one article
     $TOPIC_MIN_SCORE  = 0.2; // ignore weak topic scores
     $TOPICS_MAX_COUNT = 6;   // skip articles that are tagged with too many topics
+    // Noisy entities hidden from the Signal Map only (case-insensitive exact match, trimmed)
+    $ENTITY_EXCLUDE = ['whatsapp', 'email print copy'];
 
     // lens => key => [article index => true]. Keyed by index so an article counts once per signal.
     $maps   = ['entities' => [], 'places' => [], 'topics' => []];
@@ -472,6 +474,7 @@ try {
 
             $name = $ent['text'] ?? null;
             if (!$name) continue;
+            if (in_array(mb_strtolower(trim((string)$name)), $ENTITY_EXCLUDE, true)) continue;
 
             $type = $ent['label'] ?? null;
 
