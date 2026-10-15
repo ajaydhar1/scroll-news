@@ -14,7 +14,7 @@ if (file_exists($localConfig)) {
     require_once $localConfig;
 }
 
-$CACHE_VER = 'v16';
+$CACHE_VER = 'v17';
 
 date_default_timezone_set('America/New_York');
 
