@@ -195,6 +195,13 @@
   -webkit-line-clamp: 1;
 }
 
+@media (max-width: 767px) {
+  .sn-card-active-stories .story-preview-description {
+    -webkit-line-clamp: 3;
+    overflow-wrap: anywhere;
+  }
+}
+
 .story-preview-text .mini-meta{
   margin-top:2px;
 }

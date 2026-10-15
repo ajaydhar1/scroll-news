@@ -1,20 +1,20 @@
 {
-    "fetched_at": 1792021859,
+    "fetched_at": 1792024076,
     "feeds": [
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Second 9/11 victim ID’d using cutting-edge genetic technology, investigators say",
-                    "url": "https://nypost.com/2026/10/14/us-news/second-9-11-victim-idd-using-cutting-edge-genetic-technology-investigators-say/",
-                    "ts": 1792021813,
+                    "title": "Hall of Fame QB uncovers real reasons for Chargers star Justin Herbert’s massive fall from grace",
+                    "url": "https://nypost.com/2026/10/14/sports/kurt-warner-justin-herbert-chargers-struggles-mike-mcdaniel/",
+                    "ts": 1792023913,
                     "emo": "📰"
                 },
                 {
-                    "title": "Map: Where to see Burbank’s best Halloween decorations",
-                    "url": "https://nypost.com/2026/10/14/lifestyle/map-where-to-see-the-best-halloween-decorations-in-burbank/",
-                    "ts": 1792021696,
+                    "title": "Rangers’ $10 million in Igor Shesterkin cap relief can make biggest dreams reality",
+                    "url": "https://nypost.com/2026/10/14/sports/rangers-10-million-in-igor-shesterkin-cap-relief-comes-with-big-dreams/",
+                    "ts": 1792023635,
                     "emo": "📰"
                 }
             ]
@@ -24,15 +24,15 @@
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "I won £200K in High Court battle over a hedge... but I'm still out of pocket: Ex-rally driver faces huge legal bill after neighbour boundary dispute dragged on for five years",
-                    "url": "https://www.dailymail.com/news/article-16195659/200K-High-Court-battle-hedge-Ex-rally-driver-bill.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792021725,
-                    "emo": "⚖️"
+                    "title": "Is YOUR surname dying out? Use our search tool to find out - as official figures reveal how traditional British names are falling out of fashion",
+                    "url": "https://www.dailymail.com/news/article-16205559/surname-search-tool-popularity.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792023733,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Russell Brand is a ruthless 'sexual predator' who raped victims while pursuing a 'goal' of bedding 5,000 women, court hears",
-                    "url": "https://www.dailymail.com/crime-desk/article-16209613/Russell-Brand-ruthless-sexual-predator-rape-court.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792021697,
+                    "title": "Zelensky accuses Trump of 'betrayal' as Musk points the finger at US President for satellite 'sabotage'",
+                    "url": "https://www.dailymail.com/news/article-16210061/Zelensky-accuses-Trump-betrayal-Musk-US-President-satellite.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792023358,
                     "emo": "⚖️"
                 }
             ]
@@ -42,16 +42,16 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Los Angeles Dodgers openly mock sad MLB fans by selling #RuiningBaseball margaritas at home games",
-                    "url": "https://www.foxnews.com/outkick-sports/los-angeles-dodgers-mock-sad-mlb-fans-selling-ruiningbaseball-margaritas-home-games",
-                    "ts": 1792021380,
+                    "title": "Elizabeth Hurley sizzles in bathrobe as diamond ring sparks Billy Ray Cyrus romance speculation",
+                    "url": "https://www.foxnews.com/entertainment/elizabeth-hurley-sizzles-bathrobe-diamond-ring-sparks-billy-ray-cyrus-romance-speculation",
+                    "ts": 1792023324,
                     "emo": "📰"
                 },
                 {
-                    "title": "Rogan warns Trump's voters feel betrayed by Iran war with 'no easy way out'",
-                    "url": "https://www.foxnews.com/media/rogan-warns-trumps-voters-feel-betrayed-iran-war-no-easy-way-out",
-                    "ts": 1792021005,
-                    "emo": "🔥"
+                    "title": "Trump torches Democrats at Arizona rally, warns they will ‘destroy our country’ ahead of midterms",
+                    "url": "https://www.foxnews.com/politics/trump-torches-democrats-arizona-rally-warns-destroy-country-ahead-midterms",
+                    "ts": 1792022791,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -60,34 +60,16 @@
             "home": "https://www.marketwatch.com",
             "items": [
                 {
+                    "title": "Rocket Lab’s stock slides as the company pushes back Neutron’s first launch",
+                    "url": "https://www.marketwatch.com/story/rocket-labs-stock-slides-as-the-company-pushes-back-neutrons-first-launch-afd2932a?mod=mw_rss_topstories",
+                    "ts": 1792022520,
+                    "emo": "📰"
+                },
+                {
                     "title": "The AI trade is splintering as inflation fears rattle hyped-up tech stocks",
                     "url": "https://www.marketwatch.com/story/the-ai-trade-is-splintering-as-inflation-fears-rattle-hyped-up-tech-stocks-dbf49369?mod=mw_rss_topstories",
                     "ts": 1792020960,
                     "emo": "💰"
-                },
-                {
-                    "title": "My sister moved in with our mother, 78, and says she deserves the $925,000 family home. Is she right?",
-                    "url": "https://www.marketwatch.com/story/my-sister-moved-in-with-our-widowed-mother-78-and-says-she-deserves-the-family-home-is-she-right-7981835d?mod=mw_rss_topstories",
-                    "ts": 1792017900,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Ukraine’s Exposure Grows as Satellite Use Is Restricted and Russia Escalates",
-                    "url": "https://www.nytimes.com/2026/10/14/world/europe/ukraine-starlink-energy.html",
-                    "ts": 1792020602,
-                    "emo": "🌍"
-                },
-                {
-                    "title": "What Is Starshield, SpaceX’s Military-Grade Satellite Internet Service Ukraine Relies On?",
-                    "url": "https://www.nytimes.com/2026/10/14/business/starshield-spacex-ukraine-starlink-satellites-musk.html",
-                    "ts": 1792016450,
-                    "emo": "🌍"
                 }
             ]
         },
@@ -96,15 +78,51 @@
             "home": "https://thehill.com",
             "items": [
                 {
+                    "title": "Trump announces Taiwan's plans to buy US gas",
+                    "url": "https://thehill.com/newsletters/energy-environment/6149640-taiwan-buys-alaska-gas/",
+                    "ts": 1792021537,
+                    "emo": "⚖️"
+                },
+                {
                     "title": "Lisa Cook's lawyers call Trump's investigation committee 'demonstrably biased'",
                     "url": "https://thehill.com/business/6149573-cook-challenges-trump-inquiry-bias/",
                     "ts": 1792019811,
                     "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "The Trump Administration and the Shrinking Number of Women in Top Roles",
+                    "url": "https://www.nytimes.com/2026/10/14/us/politics/trump-administration-kimberly-guilfoyle-women.html",
+                    "ts": 1792020292,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "Amid leadership shake-up, Hegseth addresses Army convention",
-                    "url": "https://thehill.com/newsletters/defense-national-security/6149566-hegseth-army-convention-protest/",
-                    "ts": 1792018309,
+                    "title": "Kimberly Guilfoyle’s Rise and Fall as Trump’s Ambassador to Greece",
+                    "url": "https://www.nytimes.com/2026/10/13/us/politics/kimberly-guilfoyle-resigns-trump-ambassador-greece.html",
+                    "ts": 1791987447,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Inside Michigan’s critical midterm Senate battle",
+                    "url": "https://www.nbcnews.com/nightly-news/video/inside-michigan-s-critical-midterm-senate-battle-271594053925",
+                    "ts": 1792019625,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Justice Department threatens legal action against California over alleged noncitizen voters",
+                    "url": "https://www.nbcnews.com/politics/2026-election/justice-department-threatens-legal-action-california-noncitizens-rcna603536",
+                    "ts": 1792003057,
                     "emo": "📰"
                 }
             ]
@@ -168,7 +186,7 @@
             "home": "https://www.bbc.com/news",
             "items": [
                 {
-                    "title": "Musk says any limits on Ukraine's Starlink access down to US, not his firm",
+                    "title": "Musk says US government may be behind slowdown of Ukraine drone speeds",
                     "url": "https://www.bbc.co.uk/news/articles/c8wy9veedgygo?at_medium=RSS&at_campaign=rss",
                     "ts": 1792011324,
                     "emo": "🌍"
@@ -178,24 +196,6 @@
                     "url": "https://www.bbc.co.uk/news/articles/cm0rl1gkz97do?at_medium=RSS&at_campaign=rss",
                     "ts": 1792005748,
                     "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Justice Department threatens legal action against California over alleged noncitizen voters",
-                    "url": "https://www.nbcnews.com/politics/2026-election/justice-department-threatens-legal-action-california-noncitizens-rcna603536",
-                    "ts": 1792003057,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Feds seized Rep. Ilhan Omar’s phone, subpoenaed family members in immigration status probe",
-                    "url": "https://www.nbcnews.com/politics/trump-administration/doj-issues-subpoenas-probe-rep-ilhan-omars-immigration-status-family-m-rcna603444",
-                    "ts": 1791999641,
-                    "emo": "⚖️"
                 }
             ]
         },
