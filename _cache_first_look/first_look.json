@@ -1,39 +1,75 @@
 {
-    "fetched_at": 1792024076,
+    "fetched_at": 1792039653,
     "feeds": [
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Hall of Fame QB uncovers real reasons for Chargers star Justin Herbert’s massive fall from grace",
-                    "url": "https://nypost.com/2026/10/14/sports/kurt-warner-justin-herbert-chargers-struggles-mike-mcdaniel/",
-                    "ts": 1792023913,
-                    "emo": "📰"
+                    "title": "US military weighs use of ‘mother of all bombs’ in future strikes on Iran: report",
+                    "url": "https://nypost.com/2026/10/15/world-news/us-military-weighs-use-of-mother-of-all-bombs-in-future-strikes-on-iran-report/",
+                    "ts": 1792038966,
+                    "emo": "🌍"
                 },
                 {
-                    "title": "Rangers’ $10 million in Igor Shesterkin cap relief can make biggest dreams reality",
-                    "url": "https://nypost.com/2026/10/14/sports/rangers-10-million-in-igor-shesterkin-cap-relief-comes-with-big-dreams/",
-                    "ts": 1792023635,
+                    "title": "Florida ICU nurse accused of stealing fentanyl from critically ill patient’s IV",
+                    "url": "https://nypost.com/2026/10/15/us-news/florida-icu-nurse-accused-of-stealing-fentanyl-from-critically-ill-patients-iv/",
+                    "ts": 1792038366,
                     "emo": "📰"
                 }
             ]
         },
         {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
             "items": [
                 {
-                    "title": "Is YOUR surname dying out? Use our search tool to find out - as official figures reveal how traditional British names are falling out of fashion",
-                    "url": "https://www.dailymail.com/news/article-16205559/surname-search-tool-popularity.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792023733,
+                    "title": "Musk says US government may be behind slowdown of Ukraine drone speeds",
+                    "url": "https://www.bbc.co.uk/news/articles/c8wy9veedgygo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1792038608,
+                    "emo": "🌍"
+                },
+                {
+                    "title": "Why Zelensky's meeting with Burnham matters",
+                    "url": "https://www.bbc.co.uk/news/videos/c65yngxdzdd5o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1792010463,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Elon Musk says Trump is 'ultimately' responsible for any curbs on Ukraine's Starshield systems",
+                    "url": "https://www.cnbc.com/2026/10/15/elon-musk-starlink-ukraine-trump-energy-ceasefire.html",
+                    "ts": 1792037512,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Oil falls as investors assess Mideast tensions, International Energy Agency's report",
+                    "url": "https://www.cnbc.com/2026/10/15/oil-prices-today-brent-wti.html",
+                    "ts": 1792037358,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "USA Deploying Hundreds of Troops to Latin America... Developing...",
+                    "url": "https://www.nytimes.com/2026/10/14/us/politics/us-troops-latin-america.html?unlocked_article_code=1.IlE.Wmi3.55tvebpJaDEn&smid=url-share",
+                    "ts": 1792036896,
                     "emo": "📰"
                 },
                 {
-                    "title": "Zelensky accuses Trump of 'betrayal' as Musk points the finger at US President for satellite 'sabotage'",
-                    "url": "https://www.dailymail.com/news/article-16210061/Zelensky-accuses-Trump-betrayal-Musk-US-President-satellite.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792023358,
-                    "emo": "⚖️"
+                    "title": "PRESIDENT LOSES THE PLOT",
+                    "url": "https://www.mediaite.com/online/his-brain-is-cooked-media-world-appalled-by-trump-parodying-fatal-tiger-mauling-video/",
+                    "ts": 1792036896,
+                    "emo": "📰"
                 }
             ]
         },
@@ -42,34 +78,34 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Elizabeth Hurley sizzles in bathrobe as diamond ring sparks Billy Ray Cyrus romance speculation",
-                    "url": "https://www.foxnews.com/entertainment/elizabeth-hurley-sizzles-bathrobe-diamond-ring-sparks-billy-ray-cyrus-romance-speculation",
-                    "ts": 1792023324,
+                    "title": "Brewers steal Game 3 on Dodgers' home turf to go up 3-0, pushing LA to brink of elimination",
+                    "url": "https://www.foxnews.com/outkick-sports/brewers-steal-game-3-dodgers-home-turf-go-up-3-0-pushing-la-brink-elimination",
+                    "ts": 1792036740,
                     "emo": "📰"
                 },
                 {
-                    "title": "Trump torches Democrats at Arizona rally, warns they will ‘destroy our country’ ahead of midterms",
-                    "url": "https://www.foxnews.com/politics/trump-torches-democrats-arizona-rally-warns-destroy-country-ahead-midterms",
-                    "ts": 1792022791,
+                    "title": "Trump wishes Pope Leo speedy recovery after lung cancer diagnosis, speaks highly of pontiff's brother",
+                    "url": "https://www.foxnews.com/world/trump-wishes-pope-leo-speedy-recovery-after-lung-cancer-diagnosis-speaks-highly-pontiffs-brother",
+                    "ts": 1792035527,
                     "emo": "⚖️"
                 }
             ]
         },
         {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Rocket Lab’s stock slides as the company pushes back Neutron’s first launch",
-                    "url": "https://www.marketwatch.com/story/rocket-labs-stock-slides-as-the-company-pushes-back-neutrons-first-launch-afd2932a?mod=mw_rss_topstories",
-                    "ts": 1792022520,
+                    "title": "White House Press Secretary Katie Zacharia 'did not pass bar exam' as she battles questions over her resume",
+                    "url": "https://www.dailymail.com/news/article-16210419/White-House-Press-Secretary-Katie-Zacharia-bar-exam-questions-resume.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792036082,
                     "emo": "📰"
                 },
                 {
-                    "title": "The AI trade is splintering as inflation fears rattle hyped-up tech stocks",
-                    "url": "https://www.marketwatch.com/story/the-ai-trade-is-splintering-as-inflation-fears-rattle-hyped-up-tech-stocks-dbf49369?mod=mw_rss_topstories",
-                    "ts": 1792020960,
-                    "emo": "💰"
+                    "title": "Halle Berry's custody war with ex Olivier Martinez intensifies as it's revealed their 13-year-old son will be allowed to testify amid shocking abuse claims",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16210359/halle-berry-olivier-martinez-son-testify.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792031618,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -78,16 +114,52 @@
             "home": "https://thehill.com",
             "items": [
                 {
-                    "title": "Trump announces Taiwan's plans to buy US gas",
-                    "url": "https://thehill.com/newsletters/energy-environment/6149640-taiwan-buys-alaska-gas/",
-                    "ts": 1792021537,
+                    "title": "Trump on Iran talks: ‘I don’t know who the hell we’re negotiating with’",
+                    "url": "https://thehill.com/homenews/administration/6149753-trump-montana-rally-iran-war/",
+                    "ts": 1792034373,
                     "emo": "⚖️"
                 },
                 {
-                    "title": "Lisa Cook's lawyers call Trump's investigation committee 'demonstrably biased'",
-                    "url": "https://thehill.com/business/6149573-cook-challenges-trump-inquiry-bias/",
-                    "ts": 1792019811,
+                    "title": "Trump’s approval rating hits record low in Fox News poll",
+                    "url": "https://thehill.com/homenews/administration/6149735-trumps-approval-rating-hits-record-low-in-fox-news-poll/",
+                    "ts": 1792033270,
                     "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "8 states are suing OpenAI, saying ChatGPT harms kids. Here are their demands, from data deletion to halting AI testing.",
+                    "url": "https://www.businessinsider.com/eight-states-sue-openai-saying-chatgpt-harms-children-2026-10",
+                    "ts": 1792028939,
+                    "emo": "🧪"
+                },
+                {
+                    "title": "Anthropic's quarterly revenue leaps to $16.8 billion as IPO looms",
+                    "url": "https://www.businessinsider.com/anthropic-reveals-16-8b-revenue-amid-ipo-preparations-2026-10",
+                    "ts": 1792021117,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "Anthropic’s slowing growth could be the AI trade’s latest red flag",
+                    "url": "https://www.marketwatch.com/story/anthropics-slowing-growth-could-be-the-ai-trades-latest-red-flag-292d0169?mod=mw_rss_topstories",
+                    "ts": 1792026420,
+                    "emo": "🧪"
+                },
+                {
+                    "title": "Rocket Lab’s stock slides as the company pushes back Neutron’s first launch",
+                    "url": "https://www.marketwatch.com/story/rocket-labs-stock-slides-as-the-company-pushes-back-neutrons-first-launch-afd2932a?mod=mw_rss_topstories",
+                    "ts": 1792022520,
+                    "emo": "📰"
                 }
             ]
         },
@@ -98,13 +170,13 @@
                 {
                     "title": "The Trump Administration and the Shrinking Number of Women in Top Roles",
                     "url": "https://www.nytimes.com/2026/10/14/us/politics/trump-administration-kimberly-guilfoyle-women.html",
-                    "ts": 1792020292,
+                    "ts": 1792026346,
                     "emo": "⚖️"
                 },
                 {
-                    "title": "Kimberly Guilfoyle’s Rise and Fall as Trump’s Ambassador to Greece",
-                    "url": "https://www.nytimes.com/2026/10/13/us/politics/kimberly-guilfoyle-resigns-trump-ambassador-greece.html",
-                    "ts": 1791987447,
+                    "title": "Katie Zacharia Is Trump’s New Press Secretary. But Is She a Lawyer?",
+                    "url": "https://www.nytimes.com/2026/10/14/us/politics/trump-press-secretary-katie-zacharia-lawyer.html",
+                    "ts": 1792035179,
                     "emo": "⚖️"
                 }
             ]
@@ -120,45 +192,9 @@
                     "emo": "⚖️"
                 },
                 {
-                    "title": "Justice Department threatens legal action against California over alleged noncitizen voters",
+                    "title": "DOJ threatens legal action against California over alleged noncitizen voters",
                     "url": "https://www.nbcnews.com/politics/2026-election/justice-department-threatens-legal-action-california-noncitizens-rcna603536",
                     "ts": 1792003057,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "A gifted engineer. A love for Saudi Arabia. A bugging device wrapped in toilet paper.",
-                    "url": "https://www.businessinsider.com/openai-engineer-accused-of-bugging-office-saudi-arabia-silicon-valley-2026-10",
-                    "ts": 1792019067,
-                    "emo": "📰"
-                },
-                {
-                    "title": "The best video doorbells for home security without hidden costs",
-                    "url": "https://www.businessinsider.com/guides/tech/best-video-doorbells",
-                    "ts": 1792016636,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "USA Deploying Hundreds of Troops to Latin America... Developing...",
-                    "url": "https://www.nytimes.com/2026/10/14/us/politics/us-troops-latin-america.html?unlocked_article_code=1.IlE.Wmi3.55tvebpJaDEn&smid=url-share",
-                    "ts": 1792018356,
-                    "emo": "📰"
-                },
-                {
-                    "title": "PRESIDENT LOSES THE PLOT",
-                    "url": "https://www.mediaite.com/online/his-brain-is-cooked-media-world-appalled-by-trump-parodying-fatal-tiger-mauling-video/",
-                    "ts": 1792018356,
                     "emo": "📰"
                 }
             ]
@@ -178,42 +214,6 @@
                     "url": "https://www.theguardian.com/news/2026/oct/14/the-problem-with-living-in-a-rich-mans-world",
                     "ts": 1791994741,
                     "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "Musk says US government may be behind slowdown of Ukraine drone speeds",
-                    "url": "https://www.bbc.co.uk/news/articles/c8wy9veedgygo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1792011324,
-                    "emo": "🌍"
-                },
-                {
-                    "title": "We are behind you and that will not change, PM tells Zelensky",
-                    "url": "https://www.bbc.co.uk/news/articles/cm0rl1gkz97do?at_medium=RSS&at_campaign=rss",
-                    "ts": 1792005748,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "How high inflation became a 'fact of life' in the U.S.",
-                    "url": "https://www.cnbc.com/2026/10/14/high-inflation-fed-expectations.html",
-                    "ts": 1791998423,
-                    "emo": "💰"
-                },
-                {
-                    "title": "OpenAI bugging suspect booked one-way ticket to Saudi Arabia with family before arrest",
-                    "url": "https://www.cnbc.com/2026/10/14/openai-alfozan-recording-raed-ventures.html",
-                    "ts": 1792012693,
-                    "emo": "🚨"
                 }
             ]
         }

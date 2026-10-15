@@ -1,5 +1,6 @@
 <?php
 // ___active_headlines.php
+// "Live wire": slim headline strip rendered beneath the News Intelligence board.
 
 require_once BASE_PATH . '/core/headlines/___emoji_headlines.php';
 
@@ -27,7 +28,7 @@ function active_headlines_fetch_url(string $url): string|false
             ],
         ]);
 
-        if ($_SERVER['SERVER_NAME'] === 'localhost') {
+        if (($_SERVER['SERVER_NAME'] ?? '') === 'localhost') {
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         }
@@ -182,209 +183,39 @@ function scrollnews_fetch_active_headlines(): array
 }
 
 $activeHeadlines = scrollnews_fetch_active_headlines();
+
+$lwProfile = function_exists('sn_publisher_profile_url') ? (sn_publisher_profile_url('nbcnews.com') ?: '#') : '#';
 ?>
-
-<style>
-
-/* Shell – inherit your existing card style but allow it to be a little denser */
-.sn-card-active-headlines {
-    /* if your base .sn-card already has padding/bg/rounded/shadow,
-       you can leave this mostly empty, or just tweak spacing */
-}
-
-/* Header layout */
-.sn-card-header-inline {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-}
-
-.sn-card-header-left {
-    min-width: 0; /* so the title can truncate nicely */
-}
-
-.sn-card-title {
-    font-size: 0.95rem; /* smaller, dashboard-y */
-    margin: 0;
-}
-
-.sn-card-subtitle {
-    display: block;
-    font-size: 0.75rem;
-    opacity: 0.7;
-    margin-top: 0.15rem;
-}
-
-/* LIVE pill */
-.sn-live-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.15rem 0.55rem;
-    border-radius: 999px;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    background: rgba(255, 0, 0, 0.15);
-    border: 1px solid rgba(255, 0, 0, 0.45);
-}
-
-.sn-live-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 999px;
-    background: #ff4a4a;
-    box-shadow: 0 0 0 4px rgba(255, 74, 74, 0.35);
-    animation: sn-live-pulse 1.4s ease-out infinite;
-}
-
-@keyframes sn-live-pulse {
-    0% {
-        transform: scale(0.8);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(1.4);
-        opacity: 0;
-    }
-}
-
-/* Body / list */
-.sn-card-body-tight {
-    padding-top: 0.6rem; /* if you want slightly tighter body in this card */
-}
-
-.sn-headline-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.sn-headline-item + .sn-headline-item {
-    margin-top: 0.45rem;
-    padding-top: 0.45rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.06); /* tweak for theme */
-}
-
-.sn-headline-link {
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 1.4;
-    display: inline-block;
-}
-
-.sn-headline-link:hover {
-    text-decoration: underline;
-}
-
-.sn-headline-meta {
-    font-size: 0.72rem;
-    opacity: 0.7;
-    margin-top: 0.1rem;
-}
-
-.sn-headline-source {
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 500;
-}
-
-
-
-.sn-time-marker {
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #6c757d; /* muted gray */
-    margin-bottom: 0.15rem;
-}
-
-
-.sn-headline-meta {
-    line-height: 1.2;
-}
-
-.sn-headline-favicon {
-    border-radius: 3px;
-    margin-right: 1px;
-}
-
-</style>
-
-<div class="sn-card-active-headlines mb-4">
-    <div class="sn-card-header sn-card-header-inline">
-        <div class="sn-card-header-left">
-            <div class="sn-time-marker">NOW</div>
-            <h2 class="sn-card-title">
-                Breaking News
-            </h2>
-            <span class="sn-card-subtitle">Live from NBC News (cached ~5 min)</span>
-        </div>
-        <div class="sn-card-header-right">
-            <span class="sn-live-pill">
-                <span class="sn-live-dot"></span>
-                LIVE
-            </span>
-        </div>
+<aside class="sn-lw" aria-labelledby="snLwTitle">
+    <div class="sn-lw-head">
+        <span class="sn-lw-live"><span class="sn-lw-dot" aria-hidden="true"></span>Live</span>
+        <h3 class="sn-lw-title" id="snLwTitle">Live wire</h3>
+        <a class="sn-lw-src" href="<?= htmlspecialchars($lwProfile, ENT_QUOTES, 'UTF-8') ?>" data-loading>
+            <img src="https://www.google.com/s2/favicons?sz=64&amp;domain=nbcnews.com" alt="" width="14" height="14" loading="lazy" decoding="async">
+            <span>NBC News</span>
+        </a>
     </div>
 
     <?php if (empty($activeHeadlines)): ?>
-        <div class="sn-card-body">
-            <p class="sn-muted small mb-0">
-                No active headlines available right now. Please try again in a moment.
-            </p>
-        </div>
+        <p class="sn-lw-empty">No live headlines available right now. Please try again in a moment.</p>
     <?php else: ?>
-        <div class="sn-card-body sn-card-body-tight">
-            <ul class="sn-headline-list">
-                <?php foreach ($activeHeadlines as $headline): ?>
-                    <li class="sn-headline-item">
-                        <a
-                            href="<?php echo htmlspecialchars($headline['link'], ENT_QUOTES, 'UTF-8'); ?>"
-                            class="sn-headline-link"
-                            target="_blank"
-                            rel="noopener"
-                        >
-                            <?php
-                                $titleRaw = (string)($headline['title'] ?? '');
-                                $titleUi  = headline_with_emojis($titleRaw, 1);
-                                echo htmlspecialchars($titleUi, ENT_QUOTES, 'UTF-8');
-                            ?>
-                        </a>
-
-                        <?php if (!empty($headline['pub_human'])): ?>
-                            <div class="sn-headline-meta d-flex align-items-center gap-1 flex-wrap">
-
-                                <a href="<?= htmlspecialchars(sn_publisher_profile_url('nbcnews.com') ?: '#', ENT_QUOTES, 'UTF-8') ?>"
-                                   class="d-inline-flex align-items-center gap-1"
-                                   style="color: inherit; text-decoration: none;"
-                                   data-loading>
-                                <!-- NBC Favicon -->
-                                <img src="https://www.google.com/s2/favicons?sz=64&domain=nbcnews.com"
-                                    alt="NBC News"
-                                    width="15"
-                                    height="15"
-                                    class="sn-headline-favicon">
-
-                                <span class="sn-headline-source">
-                                    <?php echo htmlspecialchars($headline['source'], ENT_QUOTES, 'UTF-8'); ?>
-                                </span>
-                                </a>
-
-                                ·
-
-                                <span class="sn-headline-time">
-                                    <?php echo htmlspecialchars($headline['pub_human'], ENT_QUOTES, 'UTF-8'); ?>
-                                </span>
-
-                            </div>
-                        <?php endif; ?>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
+        <ul class="sn-lw-list">
+            <?php foreach ($activeHeadlines as $headline): ?>
+                <?php
+                $titleUi = headline_with_emojis((string)($headline['title'] ?? ''), 1);
+                $pubTs   = (int)($headline['pub_ts'] ?? 0);
+                ?>
+                <li class="sn-lw-item">
+                    <a class="sn-lw-link"
+                       href="<?= htmlspecialchars((string)$headline['link'], ENT_QUOTES, 'UTF-8') ?>"
+                       target="_blank" rel="noopener">
+                        <span class="sn-lw-t"><?= htmlspecialchars($titleUi, ENT_QUOTES, 'UTF-8') ?></span><span class="sn-nip-sr"> (opens in a new tab)</span>
+                    </a>
+                    <?php if (!empty($headline['pub_human'])): ?>
+                        <time class="sn-lw-time"<?= $pubTs > 0 ? ' datetime="' . gmdate('c', $pubTs) . '" data-sn-rel' : '' ?>><?= htmlspecialchars((string)$headline['pub_human'], ENT_QUOTES, 'UTF-8') ?></time>
+                    <?php endif; ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
     <?php endif; ?>
-</div>
+</aside>

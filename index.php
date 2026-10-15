@@ -111,6 +111,7 @@ sn_perf_phase('render');
     <link href="/assets/css/pages/home.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/home.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/pages/watch-desk.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/watch-desk.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/panels/news-intel-panel.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/news-intel-panel.css'); ?>" rel="stylesheet" />
+    <link href="/assets/css/panels/news-intel-signal-map.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/news-intel-signal-map.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/panels/active-stories.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/active-stories.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/panels/scroll-strip.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/scroll-strip.css'); ?>" rel="stylesheet" />
     <!-- HOMEPAGE LIGHT SaaS EXPERIMENT: remove these two lines and the sn-light-saas body class to revert -->
@@ -424,6 +425,7 @@ sn_perf_phase('render');
 
     <script src="/assets/js/sn_history.js?v=<?= filemtime(BASE_PATH . '/assets/js/sn_history.js') ?>" defer></script>
     <script src="/assets/js/pages/home-timeline.js?v=<?= filemtime(BASE_PATH . '/assets/js/pages/home-timeline.js') ?>" defer></script>
+    <script src="/assets/js/pages/home-news-intel.js?v=<?= filemtime(BASE_PATH . '/assets/js/pages/home-news-intel.js') ?>" defer></script>
 
 
 </body>
