@@ -14,7 +14,7 @@
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Analyze Article</div>
-                        <!--<div class="portfolio-caption-subheading text-muted">Illustration</div>-->
+                                                <div class="portfolio-caption-subheading text-muted small mt-1">Understand how an article is framed.</div>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Browse News</div>
-                        <!--<div class="portfolio-caption-subheading text-muted">Graphic Design</div>-->
+                                                <div class="portfolio-caption-subheading text-muted small mt-1">Explore the latest headlines by category.</div>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">NLP Dashboard</div>
-                        <!--<div class="portfolio-caption-subheading text-muted">Branding</div>-->
+                                                <div class="portfolio-caption-subheading text-muted small mt-1">See the entities and frames in a story.</div>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Search Headlines</div>
-                        <!--<div class="portfolio-caption-subheading text-muted">Identity</div>-->
+                                                <div class="portfolio-caption-subheading text-muted small mt-1">Find the stories shaping the conversation.</div>
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Scroll Archive</div>
-                        <!--<div class="portfolio-caption-subheading text-muted">Website Design</div>-->
+                                                <div class="portfolio-caption-subheading text-muted small mt-1">Revisit coverage day by day.</div>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Coverage Analysis</div>
-                        <!--<div class="portfolio-caption-subheading text-muted">Photography</div>-->
+                                                <div class="portfolio-caption-subheading text-muted small mt-1">Track top entities and sources.</div>
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">News Trails</div>
-                        <!--<div class="portfolio-caption-subheading text-muted">Photography</div>-->
+                                                <div class="portfolio-caption-subheading text-muted small mt-1">Follow grouped news journeys.</div>
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Coverage Timelines</div>
-                        <!--<div class="portfolio-caption-subheading text-muted small mt-1">Explore how major news stories unfold over time.</div>-->
+                        <div class="portfolio-caption-subheading text-muted small mt-1">Explore how major news stories unfold over time.</div>
                     </div>
                 </div>
             </div>
