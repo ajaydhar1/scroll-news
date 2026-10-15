@@ -194,6 +194,10 @@ html[data-ui-theme="dark"] .sn-body {
     margin-top: auto;
 }
 
+html[data-ui-theme="dark"] .sn-description {
+    color: #f3f4f6;
+}
+
 /* Keep source badge above the overlay */
 html[data-ui-theme="dark"] .sn-badge {
     z-index: 3;
