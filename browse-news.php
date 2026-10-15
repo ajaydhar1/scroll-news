@@ -196,7 +196,7 @@ define('BASE_PATH', __DIR__);
                                             class="btn btn-secondary mt-auto w-100"
                                             target="_blank">
 
-                                            Read Story
+                                            <span class="btn-label-words"><span>Read</span> <span>Story</span></span>
 
                                         </a>
 

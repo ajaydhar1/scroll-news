@@ -208,6 +208,24 @@ sn_perf_phase('render');
 
     <link href="/assets/css/auth.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/auth.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/account.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/account.css'); ?>" rel="stylesheet" />
+    <style>
+        .account-settings-save-btn {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: clip;
+        }
+
+        /* One-line box: words that don't fit wrap onto a hidden second line */
+        .account-settings-save-btn .btn-label-words {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            column-gap: 0.25em;
+            height: 1.5em;
+            line-height: 1.5;
+            overflow: hidden;
+        }
+    </style>
 
 </head>
 
@@ -272,8 +290,8 @@ sn_perf_phase('render');
                                             </div>
 
                                             <div class="col-md-4">
-                                                <button type="submit" class="btn btn-primary btn-block" data-loading>
-                                                    Save Changes
+                                                <button type="submit" class="                                                btn btn-primary btn-block account-settings-save-btn" data-loading>
+                                                    <span class="btn-label-words"><span>Save</span> <span>Changes</span></span>
                                                 </button>
                                             </div>
                                         </div>

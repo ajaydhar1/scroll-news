@@ -584,6 +584,23 @@ footer .text-lg-right a:hover {
   padding-right: .15rem;
 }
 
+.browse-card-btn-col > a.btn-secondary {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+/* One-line box: words that don't fit wrap onto a hidden second line */
+.browse-card-btn-col .btn-label-words {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 0.25em;
+  height: 1.5em;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
 
 .page-item.active .page-link {
   background-color: var(--brand-color);

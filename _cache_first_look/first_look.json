@@ -1,20 +1,20 @@
 {
-    "fetched_at": 1791916559,
+    "fetched_at": 1792021859,
     "feeds": [
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Marriage data reveals traditional nuclear families are disappearing across US — with a rate of just 13% in one major city",
-                    "url": "https://nypost.com/2026/10/13/lifestyle/marriage-data-reveals-traditional-nuclear-families-are-disappearing-across-us/",
-                    "ts": 1791916539,
+                    "title": "Second 9/11 victim ID’d using cutting-edge genetic technology, investigators say",
+                    "url": "https://nypost.com/2026/10/14/us-news/second-9-11-victim-idd-using-cutting-edge-genetic-technology-investigators-say/",
+                    "ts": 1792021813,
                     "emo": "📰"
                 },
                 {
-                    "title": "Bradley Chubb’s wife rubs salt in Rams wound after postgame fight, Bills win",
-                    "url": "https://nypost.com/2026/10/13/sports/bradley-chubbs-wife-rubs-in-bills-win-vs-rams-after-postgame-fight/",
-                    "ts": 1791916453,
+                    "title": "Map: Where to see Burbank’s best Halloween decorations",
+                    "url": "https://nypost.com/2026/10/14/lifestyle/map-where-to-see-the-best-halloween-decorations-in-burbank/",
+                    "ts": 1792021696,
                     "emo": "📰"
                 }
             ]
@@ -24,52 +24,16 @@
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Atletico Madrid vs Manchester United and Arsenal vs Lille - Champions League LIVE: Carlos Baleba makes his full Red Devils debut, while Eberechi Eze starts for the Gunners",
-                    "url": "https://www.dailymail.com/sport/football/article-16204703/Atletico-Madrid-vs-Manchester-United-Arsenal-vs-Lille-Champions-League-LIVE-Premier-League-duo-return-European-action.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791916520,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Keri Russell reveals she and Matthew Rhys would have sex 'all the time' while wearing spy disguises on the set of The Americans",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16204701/Keri-Russell-reveals-Matthew-Rhys-sex-time-wearing-spy-disguises-set-Americans.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1791916336,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Melania Trump's student AI competition gets rebranded as SI Presidential Challenge",
-                    "url": "https://thehill.com/blogs/in-the-know/6146039-melania-trumps-student-ai-si-presidential-challenge/",
-                    "ts": 1791915790,
+                    "title": "I won £200K in High Court battle over a hedge... but I'm still out of pocket: Ex-rally driver faces huge legal bill after neighbour boundary dispute dragged on for five years",
+                    "url": "https://www.dailymail.com/news/article-16195659/200K-High-Court-battle-hedge-Ex-rally-driver-bill.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792021725,
                     "emo": "⚖️"
                 },
                 {
-                    "title": "Hillary Clinton launching podcast ahead of midterms",
-                    "url": "https://thehill.com/homenews/media/6145787-clinton-swisher-launch-high-stakes-podcast/",
-                    "ts": 1791913115,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "More Republicans come out against Trump's diesel deal with Putin",
-                    "url": "https://www.cnbc.com/2026/10/13/trump-russia-diesel-republicans.html",
-                    "ts": 1791915582,
+                    "title": "Russell Brand is a ruthless 'sexual predator' who raped victims while pursuing a 'goal' of bedding 5,000 women, court hears",
+                    "url": "https://www.dailymail.com/crime-desk/article-16209613/Russell-Brand-ruthless-sexual-predator-rape-court.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792021697,
                     "emo": "⚖️"
-                },
-                {
-                    "title": "The latest inflation data is expected to show price increases are accelerating",
-                    "url": "https://www.cnbc.com/2026/10/13/september-consumer-price-index-inflation.html",
-                    "ts": 1791914757,
-                    "emo": "💰"
                 }
             ]
         },
@@ -78,16 +42,16 @@
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Dem making Senate comeback bid says he wouldn't support a Trump impeachment push",
-                    "url": "https://www.foxnews.com/politics/dem-making-senate-comeback-bid-says-he-wouldnt-support-trump-impeachment-push",
-                    "ts": 1791915277,
-                    "emo": "⚖️"
+                    "title": "Los Angeles Dodgers openly mock sad MLB fans by selling #RuiningBaseball margaritas at home games",
+                    "url": "https://www.foxnews.com/outkick-sports/los-angeles-dodgers-mock-sad-mlb-fans-selling-ruiningbaseball-margaritas-home-games",
+                    "ts": 1792021380,
+                    "emo": "📰"
                 },
                 {
-                    "title": "BetMGM Bonus Code FOXNEWS Unlocks $1500 in Bonuses When Betting on This Week's MLB Playoff Action",
-                    "url": "https://www.foxnews.com/outkick-betting/betmgm-bonus-code-foxnews-unlocks-1500-bonuses-when-betting-weeks-mlb-playoff-action",
-                    "ts": 1791914710,
-                    "emo": "📰"
+                    "title": "Rogan warns Trump's voters feel betrayed by Iran war with 'no easy way out'",
+                    "url": "https://www.foxnews.com/media/rogan-warns-trumps-voters-feel-betrayed-iran-war-no-easy-way-out",
+                    "ts": 1792021005,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -96,15 +60,69 @@
             "home": "https://www.marketwatch.com",
             "items": [
                 {
-                    "title": "Gen Z renters are the only group more likely to feel successful by investing than buying a house",
-                    "url": "https://www.marketwatch.com/story/gen-z-renters-are-the-only-group-more-likely-to-feel-successful-by-investing-than-buying-a-house-30ac5344?mod=mw_rss_topstories",
-                    "ts": 1791915060,
+                    "title": "The AI trade is splintering as inflation fears rattle hyped-up tech stocks",
+                    "url": "https://www.marketwatch.com/story/the-ai-trade-is-splintering-as-inflation-fears-rattle-hyped-up-tech-stocks-dbf49369?mod=mw_rss_topstories",
+                    "ts": 1792020960,
+                    "emo": "💰"
+                },
+                {
+                    "title": "My sister moved in with our mother, 78, and says she deserves the $925,000 family home. Is she right?",
+                    "url": "https://www.marketwatch.com/story/my-sister-moved-in-with-our-widowed-mother-78-and-says-she-deserves-the-family-home-is-she-right-7981835d?mod=mw_rss_topstories",
+                    "ts": 1792017900,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Ukraine’s Exposure Grows as Satellite Use Is Restricted and Russia Escalates",
+                    "url": "https://www.nytimes.com/2026/10/14/world/europe/ukraine-starlink-energy.html",
+                    "ts": 1792020602,
+                    "emo": "🌍"
+                },
+                {
+                    "title": "What Is Starshield, SpaceX’s Military-Grade Satellite Internet Service Ukraine Relies On?",
+                    "url": "https://www.nytimes.com/2026/10/14/business/starshield-spacex-ukraine-starlink-satellites-musk.html",
+                    "ts": 1792016450,
+                    "emo": "🌍"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Lisa Cook's lawyers call Trump's investigation committee 'demonstrably biased'",
+                    "url": "https://thehill.com/business/6149573-cook-challenges-trump-inquiry-bias/",
+                    "ts": 1792019811,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Amid leadership shake-up, Hegseth addresses Army convention",
+                    "url": "https://thehill.com/newsletters/defense-national-security/6149566-hegseth-army-convention-protest/",
+                    "ts": 1792018309,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "A gifted engineer. A love for Saudi Arabia. A bugging device wrapped in toilet paper.",
+                    "url": "https://www.businessinsider.com/openai-engineer-accused-of-bugging-office-saudi-arabia-silicon-valley-2026-10",
+                    "ts": 1792019067,
                     "emo": "📰"
                 },
                 {
-                    "title": "New SEC rules would fleece everyday investors to enrich Wall Street",
-                    "url": "https://www.marketwatch.com/story/new-sec-rules-would-fleece-everyday-investors-to-enrich-wall-street-0a00fe03?mod=mw_rss_topstories",
-                    "ts": 1791914040,
+                    "title": "The best video doorbells for home security without hidden costs",
+                    "url": "https://www.businessinsider.com/guides/tech/best-video-doorbells",
+                    "ts": 1792016636,
                     "emo": "📰"
                 }
             ]
@@ -114,15 +132,51 @@
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "MAGA CHOP: GUILFOYLE OUT...",
-                    "url": "https://apnews.com/article/trump-ambassador-greece-guilfoyle-9da9d2e50e18bccc38946404c1ca756f",
-                    "ts": 1791913776,
+                    "title": "USA Deploying Hundreds of Troops to Latin America... Developing...",
+                    "url": "https://www.nytimes.com/2026/10/14/us/politics/us-troops-latin-america.html?unlocked_article_code=1.IlE.Wmi3.55tvebpJaDEn&smid=url-share",
+                    "ts": 1792018356,
                     "emo": "📰"
                 },
                 {
-                    "title": "FINAL DAYS OF UNCHECKED POWER?",
-                    "url": "https://archive.is/tIWVO",
-                    "ts": 1791913776,
+                    "title": "PRESIDENT LOSES THE PLOT",
+                    "url": "https://www.mediaite.com/online/his-brain-is-cooked-media-world-appalled-by-trump-parodying-fatal-tiger-mauling-video/",
+                    "ts": 1792018356,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Guardian",
+            "home": "https://www.theguardian.com",
+            "items": [
+                {
+                    "title": "Will Trump’s economy sink Republicans in the US midterm elections? Our reporters answer your questions",
+                    "url": "https://www.theguardian.com/community/live/2026/oct/14/us-economy-affordability-midterm-elections-republicans-trump",
+                    "ts": 1792015813,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "The problem with living in a rich man’s world | Letters",
+                    "url": "https://www.theguardian.com/news/2026/oct/14/the-problem-with-living-in-a-rich-mans-world",
+                    "ts": 1791994741,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "Musk says any limits on Ukraine's Starlink access down to US, not his firm",
+                    "url": "https://www.bbc.co.uk/news/articles/c8wy9veedgygo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1792011324,
+                    "emo": "🌍"
+                },
+                {
+                    "title": "We are behind you and that will not change, PM tells Zelensky",
+                    "url": "https://www.bbc.co.uk/news/articles/cm0rl1gkz97do?at_medium=RSS&at_campaign=rss",
+                    "ts": 1792005748,
                     "emo": "📰"
                 }
             ]
@@ -132,88 +186,34 @@
             "home": "https://www.nbcnews.com",
             "items": [
                 {
-                    "title": "Kimberly Guilfoyle resigns as U.S. ambassador to Greece amid misconduct allegations",
-                    "url": "https://www.nbcnews.com/now/video/kimberly-guilfoyle-resigns-as-u-s-ambassador-to-greece-amid-misconduct-allegations-271500869816",
-                    "ts": 1791908189,
+                    "title": "Justice Department threatens legal action against California over alleged noncitizen voters",
+                    "url": "https://www.nbcnews.com/politics/2026-election/justice-department-threatens-legal-action-california-noncitizens-rcna603536",
+                    "ts": 1792003057,
                     "emo": "📰"
                 },
                 {
-                    "title": "Cornell bans fraternity parties for the rest of the year amid sexual assault probe",
-                    "url": "https://www.nbcnews.com/news/us-news/cornell-bans-fraternity-parties-rest-year-sexual-assault-probe-rcna603220",
-                    "ts": 1791915416,
+                    "title": "Feds seized Rep. Ilhan Omar’s phone, subpoenaed family members in immigration status probe",
+                    "url": "https://www.nbcnews.com/politics/trump-administration/doj-issues-subpoenas-probe-rep-ilhan-omars-immigration-status-family-m-rcna603444",
+                    "ts": 1791999641,
                     "emo": "⚖️"
                 }
             ]
         },
         {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
             "items": [
                 {
-                    "title": "Trump Hands Victories to Putin, Who Offers More War in Return",
-                    "url": "https://www.nytimes.com/2026/10/13/world/europe/russia-putin-trump-diesel-ukraine.html",
-                    "ts": 1791908036,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "U.K. and Europe Recoil From Trump’s Diesel Deal With Putin",
-                    "url": "https://www.nytimes.com/2026/10/13/world/europe/trump-putin-diesel-uk-europe-gift.html",
-                    "ts": 1791902144,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "Celebrity deaths in 2026: Remembering the famous people we lost this year",
-                    "url": "https://www.businessinsider.com/celebrity-deaths-famous-people-who-died-2026",
-                    "ts": 1791907249,
-                    "emo": "🎭"
-                },
-                {
-                    "title": "Google says Gemini 4 Argon is a 'powerhouse' AI model — and it's rolling out now",
-                    "url": "https://www.businessinsider.com/google-gemini-4-argon-ai-model-public-release-cost-2026-10",
-                    "ts": 1791907201,
-                    "emo": "🧪"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "MI5 chief warns of threats to UK from Russia, Iran and AI",
-                    "url": "https://www.bbc.co.uk/news/articles/c60rl5vwpk02o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791906735,
-                    "emo": "🧪"
-                },
-                {
-                    "title": "Man killed in tiger attack identified as William Chapman",
-                    "url": "https://www.bbc.co.uk/news/articles/c3ewegny45jvo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1791909058,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "The Guardian",
-            "home": "https://www.theguardian.com",
-            "items": [
-                {
-                    "title": "Threat of AI share crash puts world financial stability at risk, says IMF",
-                    "url": "https://www.theguardian.com/business/2026/oct/13/ai-share-crash-risk-global-imf-debt-corrowing-cyber-attacks",
-                    "ts": 1791894601,
-                    "emo": "🧪"
-                },
-                {
-                    "title": "The RBA keeps hiking interest rates – but are the rate rises actually working?",
-                    "url": "https://www.theguardian.com/business/2026/oct/14/rba-keeps-hiking-interest-rates-but-are-rises-actually-working",
-                    "ts": 1791900005,
+                    "title": "How high inflation became a 'fact of life' in the U.S.",
+                    "url": "https://www.cnbc.com/2026/10/14/high-inflation-fed-expectations.html",
+                    "ts": 1791998423,
                     "emo": "💰"
+                },
+                {
+                    "title": "OpenAI bugging suspect booked one-way ticket to Saudi Arabia with family before arrest",
+                    "url": "https://www.cnbc.com/2026/10/14/openai-alfozan-recording-raed-ventures.html",
+                    "ts": 1792012693,
+                    "emo": "🚨"
                 }
             ]
         }

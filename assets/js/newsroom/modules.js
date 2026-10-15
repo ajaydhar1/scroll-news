@@ -82,7 +82,7 @@ function fetchRSSArticles(feedUrl, category) {
             "&size=64";
 
           const card = `
-            <div class="col-md-4 mb-4 browse-article-card"
+            <div class="col-md-6 col-lg-4 mb-4 browse-article-card"
                 data-article-id="${articleId}"
                 data-article-url="${article.link || ""}"
                 data-article-title="${article.title || ""}"
@@ -108,7 +108,7 @@ function fetchRSSArticles(feedUrl, category) {
                   <p class="card-text">${article.description || ""}</p>
                   <div class="row g-2 mt-auto">
                     <div class="col-6 d-grid browse-card-btn-col">
-                      <a href="${article.link}" class="btn btn-secondary mt-auto w-100" target="_blank">Read Story</a>
+                      <a href="${article.link}" class="btn btn-secondary mt-auto w-100" target="_blank"><span class="btn-label-words"><span>Read</span> <span>Story</span></span></a>
                     </div>
                     <div class="col-6 d-grid browse-card-btn-col">
                       <a href="/newsroom.php?url=${encodeURIComponent(article.link)}&category=${category}&pub_date=${article.pubDateForLink || ""}&db=1"
