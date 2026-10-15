@@ -112,7 +112,7 @@ sn_perf_phase('render');
     <link href="/assets/css/pages/watch-desk.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/watch-desk.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/panels/news-intel-panel.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/news-intel-panel.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/panels/news-intel-signal-map.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/news-intel-signal-map.css'); ?>" rel="stylesheet" />
-    <link href="/assets/css/panels/active-stories.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/active-stories.css'); ?>" rel="stylesheet" />
+    <link href="/assets/css/panels/story-threads.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/story-threads.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/panels/scroll-strip.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/panels/scroll-strip.css'); ?>" rel="stylesheet" />
     <!-- HOMEPAGE LIGHT SaaS EXPERIMENT: remove these two lines and the sn-light-saas body class to revert -->
     <link id="light-saas" href="/assets/css/light-saas.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/light-saas.css'); ?>" rel="stylesheet" />
@@ -451,13 +451,13 @@ sn_perf_phase('render');
             );
             ?>
 
-            <!-- Active Stories Panel-->
+            <!-- Story Threads Panel-->
             <?php
             render_home_panel(
-                'homepage_active_stories_descriptions_v1',
-                30,
-                300,
-                BASE_PATH . '/views/home/panels/___active_stories.php',
+                'homepage_story_threads',
+                120,
+                600,
+                BASE_PATH . '/views/home/panels/___story_threads.php',
                 $bust,
                 $homepageCache
             );
@@ -521,6 +521,7 @@ sn_perf_phase('render');
     <script src="/assets/js/pages/home-timeline.js?v=<?= filemtime(BASE_PATH . '/assets/js/pages/home-timeline.js') ?>" defer></script>
     <script src="/assets/js/pages/home-reading-lens.js?v=<?= filemtime(BASE_PATH . '/assets/js/pages/home-reading-lens.js') ?>" defer></script>
     <script src="/assets/js/pages/home-news-intel.js?v=<?= filemtime(BASE_PATH . '/assets/js/pages/home-news-intel.js') ?>" defer></script>
+<script src="/assets/js/pages/home-story-threads.js?v=<?= filemtime(BASE_PATH . '/assets/js/pages/home-story-threads.js') ?>" defer></script>
 
 
 </body>

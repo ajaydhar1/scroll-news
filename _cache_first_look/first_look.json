@@ -1,39 +1,21 @@
 {
-    "fetched_at": 1792041318,
+    "fetched_at": 1792044221,
     "feeds": [
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "Texas thief steals terminally ill boy’s seizure meds at state fair — hero steps in to cover cost",
-                    "url": "https://nypost.com/2026/10/15/us-news/texas-thief-steals-terminally-ill-boys-seizure-meds-at-state-fair-hero-steps-in-to-cover-cost/",
-                    "ts": 1792040872,
-                    "emo": "📰"
-                },
-                {
-                    "title": "US military weighs use of ‘mother of all bombs’ in future strikes on Iran: report",
-                    "url": "https://nypost.com/2026/10/15/world-news/us-military-weighs-use-of-mother-of-all-bombs-in-future-strikes-on-iran-report/",
-                    "ts": 1792038966,
-                    "emo": "🌍"
-                }
-            ]
-        },
         {
             "name": "The Guardian",
             "home": "https://www.theguardian.com",
             "items": [
                 {
-                    "title": "Poland looks to economic heights in a country transformed since Soviet days",
-                    "url": "https://www.theguardian.com/world/2026/oct/15/poland-economy-heights-transformed-regional-tech-hub",
-                    "ts": 1792040422,
-                    "emo": "📰"
+                    "title": "Tech stock sell-off intensifies as markets fret about AI; UK growth beats forecasts in August – business live",
+                    "url": "https://www.theguardian.com/business/live/2026/oct/15/tech-stock-sell-off-markets-uk-gdp-economy-august-imf-latest-news-updates",
+                    "ts": 1792044193,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "The global economy is muddling through against the odds. But a storm is coming | Larry Elliott",
-                    "url": "https://www.theguardian.com/commentisfree/2026/oct/15/global-economy-multilateral-cooperation-crisis-imf",
-                    "ts": 1792040422,
-                    "emo": "🌪️"
+                    "title": "Poland looks to economic heights in a country transformed since Soviet days",
+                    "url": "https://www.theguardian.com/world/2026/oct/15/poland-economy-heights-transformed-regional-tech-hub",
+                    "ts": 1792043772,
+                    "emo": "📰"
                 }
             ]
         },
@@ -42,15 +24,51 @@
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Woman who 'used sunbeds to compete with her friends for the best tan' dies of skin cancer aged 30",
-                    "url": "https://www.dailymail.com/news/article-16210235/Woman-sunbeds-tan-dies-skin-cancer.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792040015,
-                    "emo": "🧪"
+                    "title": "Emily Atack and Mathew Horne share a passionate kiss in star-studded Debenhams Christmas advert with appearances from Kym Marsh and Gabrielle",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16208873/Emily-Atack-Mathew-Horne-passionate-kiss-star-studded-Debenhams-Christmas-advert.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792044156,
+                    "emo": "📰"
                 },
                 {
-                    "title": "White House Press Secretary Katie Zacharia 'did not pass bar exam' as she battles questions over her resume",
-                    "url": "https://www.dailymail.com/news/article-16210419/White-House-Press-Secretary-Katie-Zacharia-bar-exam-questions-resume.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792036082,
+                    "title": "Zelensky accuses Trump of 'betrayal' as Musk points the finger at US President for satellite 'sabotage'",
+                    "url": "https://www.dailymail.com/news/article-16210061/Zelensky-accuses-Trump-betrayal-Musk-US-President-satellite.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792043984,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "Trump torches Democrats at Arizona rally, warns they will ‘destroy our country’ ahead of midterms",
+                    "url": "https://nypost.com/2026/10/15/us-news/trump-torches-democrats-at-arizona-rally-warns-they-will-destroy-our-country-ahead-of-midterms/",
+                    "ts": 1792042979,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Texas thief steals terminally ill boy’s seizure meds at state fair — hero steps in to cover cost",
+                    "url": "https://nypost.com/2026/10/15/us-news/texas-thief-steals-terminally-ill-boys-seizure-meds-at-state-fair-hero-steps-in-to-cover-cost/",
+                    "ts": 1792040872,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Pentagon sends hundreds of Army troops to Latin America for training as drug-trafficking campaign expands",
+                    "url": "https://www.foxnews.com/world/pentagon-sends-hundreds-army-troops-latin-america-training-drug-trafficking-campaign-expands",
+                    "ts": 1792041612,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Brewers steal Game 3 on Dodgers' home turf to go up 3-0, pushing LA to brink of elimination",
+                    "url": "https://www.foxnews.com/outkick-sports/brewers-steal-game-3-dodgers-home-turf-go-up-3-0-pushing-la-brink-elimination",
+                    "ts": 1792036740,
                     "emo": "📰"
                 }
             ]
@@ -66,9 +84,9 @@
                     "emo": "🌍"
                 },
                 {
-                    "title": "Why Zelensky's meeting with Burnham matters",
-                    "url": "https://www.bbc.co.uk/news/videos/c65yngxdzdd5o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1792010463,
+                    "title": "UK threatens to ban Eritreans over migrant return policy",
+                    "url": "https://www.bbc.co.uk/news/articles/c30rl1q1j200o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1792013413,
                     "emo": "📰"
                 }
             ]
@@ -84,10 +102,10 @@
                     "emo": "⚖️"
                 },
                 {
-                    "title": "Oil falls as investors assess Mideast tensions, International Energy Agency's report",
-                    "url": "https://www.cnbc.com/2026/10/15/oil-prices-today-brent-wti.html",
-                    "ts": 1792037358,
-                    "emo": "💰"
+                    "title": "TSMC posts record profit for a sixth straight quarter, beating estimates on AI boom",
+                    "url": "https://www.cnbc.com/2026/10/15/tsmc-third-quarter-profit-global-ai-.html",
+                    "ts": 1792043997,
+                    "emo": "🧪"
                 }
             ]
         },
@@ -106,24 +124,6 @@
                     "url": "https://www.mediaite.com/online/his-brain-is-cooked-media-world-appalled-by-trump-parodying-fatal-tiger-mauling-video/",
                     "ts": 1792036896,
                     "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "Brewers steal Game 3 on Dodgers' home turf to go up 3-0, pushing LA to brink of elimination",
-                    "url": "https://www.foxnews.com/outkick-sports/brewers-steal-game-3-dodgers-home-turf-go-up-3-0-pushing-la-brink-elimination",
-                    "ts": 1792036740,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Trump wishes Pope Leo speedy recovery after lung cancer diagnosis, speaks highly of pontiff's brother",
-                    "url": "https://www.foxnews.com/world/trump-wishes-pope-leo-speedy-recovery-after-lung-cancer-diagnosis-speaks-highly-pontiffs-brother",
-                    "ts": 1792035527,
-                    "emo": "⚖️"
                 }
             ]
         },
@@ -210,10 +210,10 @@
                     "emo": "⚖️"
                 },
                 {
-                    "title": "DOJ threatens legal action against California over alleged noncitizen voters",
-                    "url": "https://www.nbcnews.com/politics/2026-election/justice-department-threatens-legal-action-california-noncitizens-rcna603536",
-                    "ts": 1792003057,
-                    "emo": "📰"
+                    "title": "Trump touts booming economy at Montana rally, but supporters feel the pinch",
+                    "url": "https://www.nbcnews.com/politics/donald-trump/trump-touts-booming-economy-montana-rally-supporters-feel-pinch-rcna603000",
+                    "ts": 1792041634,
+                    "emo": "⚖️"
                 }
             ]
         }
