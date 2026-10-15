@@ -41,7 +41,7 @@ require_once __DIR__ . '/../../auth/includes/auth_bootstrap.php';
                     <div class="dropdown-menu" aria-labelledby="snProductBrowseDropdown">
                         <button class="dropdown-item" type="button" data-toggle="modal" data-target="#browseNewsModal" aria-label="Browse news by topic">Browse by Topic</button>
                         <a class="dropdown-item" href="/scroll-archive.php" data-loading>Scroll Archive</a>
-                    </div>
+                                                <a class="dropdown-item" href="/timeline.php" data-loading>Coverage Timelines</a>                    </div>
                 </li>
 
                 <li class="sn-product-item">

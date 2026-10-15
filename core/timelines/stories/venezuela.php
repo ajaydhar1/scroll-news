@@ -1,0 +1,73 @@
+<?php
+// Curated story: Venezuela / Maduro. The archive starts 2025-12-01, so earlier build-up is not covered.
+return [
+    'slug'   => 'venezuela',
+    'order'  => 3,
+    'title'  => 'Venezuela & Maduro',
+    'kicker' => 'US–Venezuela',
+    'dek'    => 'From the US pressure campaign and oil blockade to the capture of Nicolás Maduro and its aftermath.',
+    'status' => 'closed',
+    'window' => ['from' => '2025-12-01', 'to' => '2026-01-31'],
+    'aliases' => ['venezuela', 'maduro', 'nicolas maduro', 'nicolás maduro', 'venezuela maduro'],
+    'terms'  => ['venezuela', 'maduro'],
+    'exclude_categories' => ['sports', 'entertainment'],
+    'core_entity_min'    => 10,
+    'related_entity_min' => 3,
+    'match' => [
+        'primary' => '/\b(maduro|venezuela(n|ns)?)\b/iu',
+        'entity'  => '/^(nicol[aá]s )?maduro(\'s)?$/u',
+        'related' => [],
+    ],
+    'pins' => [],
+    'excludes' => [
+        10968 => 'Greenland piece; Venezuela in description only',
+        12159 => 'Greenland poll',
+        11817 => 'Iran protests piece',
+        12009 => 'Iran analysis',
+        10667 => 'Local Tulsa business roundup',
+        11187 => 'Local human-interest; not about the US action',
+        11231 => 'New York politics column',
+        11649 => 'Florida politics weekly roundup',
+        10773 => 'Opinion segment; not about the events',
+        11580 => 'Regional weekly roundup',
+        11665 => 'Podcast roundup with multiple topics',
+    ],
+    'gap_min_days' => 3,
+    'hero_image' => true,
+    'notes' => [
+        'The Scroll News archive begins on Dec 1, 2025, so earlier build-up is not shown.',
+        'Wording of chapters is editorial interpretation, not article content.',
+    ],
+    'chapters' => [
+        [
+            'from' => '2025-12-01', 'to' => '2025-12-16',
+            'title' => 'Pressure builds',
+            'summary' => 'Coverage tracks the administration’s Venezuela deliberations and debate over the legality of strikes on boats.',
+            'basis' => [6075, 6207, 7407, 7487],
+        ],
+        [
+            'from' => '2025-12-17', 'to' => '2025-12-31',
+            'title' => 'Blockade and tanker pursuits',
+            'summary' => 'An oil blockade, tanker pursuits and a reported CIA strike on a port facility escalate the confrontation.',
+            'basis' => [8293, 8828, 9545, 9932],
+        ],
+        [
+            'from' => '2026-01-01', 'to' => '2026-01-04',
+            'title' => 'The strike and the capture',
+            'summary' => 'The US announces a strike and the capture of Maduro; legal and political reaction begins.',
+            'basis' => [10567, 10637, 10687],
+        ],
+        [
+            'from' => '2026-01-05', 'to' => '2026-01-13',
+            'title' => 'Who governs, and who profits',
+            'summary' => 'Attention turns to the US plan for Venezuela, oil executives, congressional pushback and legal justification.',
+            'basis' => [10785, 11251, 11448, 11956],
+        ],
+        [
+            'from' => '2026-01-14', 'to' => '2026-01-31',
+            'title' => 'Prisoner releases and a new government',
+            'summary' => 'Venezuela’s acting government announces prisoner releases and amnesty legislation as Washington debates its role.',
+            'basis' => [12126, 13461, 13619, 14144],
+        ],
+    ],
+];

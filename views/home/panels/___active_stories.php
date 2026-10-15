@@ -1,6 +1,7 @@
 <?php
 // ___active_stories.php
 // Active Stories panel (Power Centers + Story Clusters) sourced from SQL
+require_once BASE_PATH . '/core/timelines/___timelines.php';
 
 $ACTIVE_STORIES_DEBUG = true; // set true temporarily while testing
 
@@ -444,6 +445,7 @@ try {
                 $scrollNlp = $build_search_url($q, 'nlp');
                 $google = $build_google_url($q);
                 $yt = $build_youtube_url($q);
+                $tlStory = sn_tl_find_story_by_alias((string)$entity);
               ?>
               <div class="power-center">
                 <span class="entity-name"><?= htmlspecialchars($label) ?></span>
@@ -458,6 +460,9 @@ try {
                   </a>
                   <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($google) ?>" target="_blank" rel="noopener">Google</a>
                   <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($yt) ?>" target="_blank" rel="noopener">YouTube</a>
+                  <?php if ($tlStory): ?>
+                    <a class="btn btn-outline-secondary btn-xs" href="/timeline.php?story=<?= rawurlencode($tlStory['slug']) ?>" data-loading>Timeline</a>
+                  <?php endif; ?>
                 </div>
               </div>
             <?php endforeach; ?>
@@ -486,6 +491,7 @@ try {
                 $synopsis = $build_synopsis_url($q);
                 $google = $build_google_url($q);
                 $yt = $build_youtube_url($q);
+                $tlStory = sn_tl_find_story_by_alias((string)($row['entity'] ?? $label));
 
                 $previews = $decode_previews($row['previews'] ?? null);
 
@@ -514,9 +520,12 @@ try {
                   <a class="btn btn-green btn-gray-border btn-xs" href="<?= htmlspecialchars($synopsis) ?>" target="_blank" rel="noopener" title="AI summary of this ongoing story">Synopsis</a>
                   <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($google) ?>" target="_blank" rel="noopener">Google</a>
                   <a class="btn btn-outline-secondary btn-xs" href="<?= htmlspecialchars($yt) ?>" target="_blank" rel="noopener">YouTube</a>
-                </div>
+                                    <?php if ($tlStory): ?>
+                                      <a class="btn btn-outline-secondary btn-xs" href="/timeline.php?story=<?= rawurlencode($tlStory['slug']) ?>" data-loading>Timeline</a>
+                                    <?php endif; ?>
+                                  </div>
 
-                <?php if (!empty($previews)): ?>
+                                  <?php if (!empty($previews)): ?>
                   <ul class="list-unstyled mb-0 mt-2">
                     <?php foreach ($previews as $p): ?>
                       <?php

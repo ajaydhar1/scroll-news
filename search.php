@@ -454,6 +454,16 @@ sn_perf_phase('render');
 
                     <?php require_once BASE_PATH . '/views/search/___search_form.php'; ?>
 
+                    <?php
+                    require_once BASE_PATH . '/core/timelines/___timelines.php';
+                    $snTlMatch = $q !== '' ? sn_tl_find_story_by_alias($q) : null;
+                    ?>
+                    <?php if ($snTlMatch): ?>
+                        <p class="small mb-3">
+                            <a href="/timeline.php?story=<?= rawurlencode($snTlMatch['slug']) ?>" data-loading>View the coverage timeline: <?= htmlspecialchars($snTlMatch['title'], ENT_QUOTES, 'UTF-8') ?> &rarr;</a>
+                        </p>
+                    <?php endif; ?>
+
                     <?php if ($currentUser): ?>
                         <div class="sn-search-history mb-3 d-flex flex-wrap align-items-center gap-2">
 

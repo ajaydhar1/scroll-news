@@ -25,6 +25,9 @@
 - 🔗 **Sharable URLs**  
   Each analysis is bookmarkable and linkable with a query parameter for the article URL.
 
+- 🕰️ **Coverage Timelines**  
+  Curated, chronological timelines for developing stories (`/timeline`), built from archived articles with confirmed metadata kept separate from editorial chapters. Stories are defined in `core/timelines/stories/`; run `php tools/timeline_audit.php` to validate them against the database (read-only).
+
 - 👤 **Authentication System**  
   User accounts with authentication, profiles, reading history, saved articles, and personalized News Trails.
 
