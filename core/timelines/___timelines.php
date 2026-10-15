@@ -14,6 +14,15 @@ if (!defined('SN_TL_TZ')) {
     define('SN_TL_TZ', 'America/New_York');
 }
 
+// Bump when the stored model format (not the engine logic, which is hashed) changes.
+if (!defined('SN_TL_MODEL_FORMAT')) {
+    define('SN_TL_MODEL_FORMAT', 'sntl1');
+}
+// The local file cache sits in front of the database cache and only needs to be short-lived.
+if (!defined('SN_TL_LOCAL_TTL')) {
+    define('SN_TL_LOCAL_TTL', 60);
+}
+
 function sn_tl_stories_dir(): string
 {
     return __DIR__ . '/stories';
@@ -551,72 +560,341 @@ function sn_tl_cache_read(string $file): ?array
 }
 
 /**
- * Build the model for a story.
+ * Content-based version of a model: changes only when the story definition or this engine file
+ * changes, so ordinary deployments keep valid cached models while edits invalidate them.
+ */
+function sn_tl_model_version(array $story): string
+{
+    static $memo = [];
+    $file = $story['_file'] ?? null;
+    if ($file !== null && isset($memo[$file])) {
+        return $memo[$file];
+    }
+    $read = static fn(string $f): string => str_replace("\r\n", "\n", (string)@file_get_contents($f));
+    $storyPart = ($file !== null && is_file($file))
+        ? $read($file)
+        : (string)json_encode($story, JSON_PARTIAL_OUTPUT_ON_ERROR);
+    $v = substr(sha1(SN_TL_MODEL_FORMAT . '|' . ($story['slug'] ?? '') . '|' . $storyPart . '|' . $read(__FILE__)), 0, 12);
+    if ($file !== null) {
+        $memo[$file] = $v;
+    }
+    return $v;
+}
+
+function sn_tl_model_ttl(array $story): int
+{
+    return ($story['status'] ?? 'closed') === 'active' ? max(120, (int)($story['cache_ttl'] ?? 600)) : 86400;
+}
+
+/** Local file prefix for a story, keyed by content version. */
+function sn_tl_cache_base(array $story): string
+{
+    return sn_tl_cache_dir() . '/sn_tl_' . $story['slug'] . '_' . sn_tl_model_version($story);
+}
+
+/** A cached model is usable only if it has the expected shape and real DateTime article stamps. */
+function sn_tl_model_valid(array $m, string $slug): bool
+{
+    foreach (['days', 'gaps', 'chapters', 'stats', 'review', 'series'] as $k) {
+        if (!isset($m[$k]) || !is_array($m[$k])) {
+            return false;
+        }
+    }
+    if (!isset($m['generated_at']) || !is_int($m['generated_at']) || ($m['story']['slug'] ?? null) !== $slug) {
+        return false;
+    }
+    foreach ($m['days'] as $day) {
+        foreach ($day['articles'] ?? [] as $a) {
+            if (!($a['dt'] ?? null) instanceof DateTimeInterface) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function sn_tl_json_prepare(mixed $v): mixed
+{
+    if ($v instanceof DateTimeInterface) {
+        return ['__dt' => $v->format('Y-m-d\TH:i:s.uP')];
+    }
+    if (is_array($v)) {
+        return array_map('sn_tl_json_prepare', $v);
+    }
+    return $v;
+}
+
+function sn_tl_json_restore(mixed $v): mixed
+{
+    if (is_array($v)) {
+        if (count($v) === 1 && isset($v['__dt']) && is_string($v['__dt'])) {
+            return (new DateTimeImmutable($v['__dt']))->setTimezone(new DateTimeZone(SN_TL_TZ));
+        }
+        return array_map('sn_tl_json_restore', $v);
+    }
+    return $v;
+}
+
+/** Model -> "sntl1:<sha1>:<base64(gzip(json))>", or null if it cannot be represented. */
+function sn_tl_model_encode(array $model, string $slug): ?string
+{
+    $model['story'] = ['slug' => $slug];
+    $json = json_encode(sn_tl_json_prepare($model), JSON_INVALID_UTF8_SUBSTITUTE | JSON_UNESCAPED_SLASHES);
+    $z = $json === false ? false : gzencode($json, 6);
+    if ($z === false) {
+        return null;
+    }
+    $b64 = base64_encode($z);
+    return SN_TL_MODEL_FORMAT . ':' . sha1($b64) . ':' . $b64;
+}
+
+/** Inverse of sn_tl_model_encode; returns null for anything truncated, tampered or malformed. */
+function sn_tl_model_decode(string $payload, string $slug): ?array
+{
+    $parts = explode(':', $payload, 3);
+    if (count($parts) !== 3 || $parts[0] !== SN_TL_MODEL_FORMAT || !hash_equals($parts[1], sha1($parts[2]))) {
+        return null;
+    }
+    $z = base64_decode($parts[2], true);
+    $json = $z === false ? false : @gzdecode($z, 64 * 1024 * 1024);
+    $data = $json === false || $json === null ? null : json_decode($json, true, 64);
+    if (!is_array($data)) {
+        return null;
+    }
+    $model = sn_tl_json_restore($data);
+    return sn_tl_model_valid($model, $slug) ? $model : null;
+}
+
+/** @return array{model:array,age:int}|null the local file copy for the current version */
+function sn_tl_local_read(array $story): ?array
+{
+    $file = sn_tl_cache_base($story) . '.ser';
+    if (!is_file($file)) {
+        return null;
+    }
+    $m = sn_tl_cache_read($file);
+    if ($m === null || !sn_tl_model_valid($m, $story['slug'])) {
+        return null;
+    }
+    return ['model' => $m, 'age' => max(0, time() - (int)@filemtime($file))];
+}
+
+function sn_tl_local_write(array $story, array $model): void
+{
+    $file = sn_tl_cache_base($story) . '.ser';
+    $model['story'] = ['slug' => $story['slug']];
+    $tmp = $file . '.' . getmypid() . '.tmp';
+    if (@file_put_contents($tmp, serialize($model)) !== false && !@rename($tmp, $file)) {
+        @unlink($tmp);
+    }
+}
+
+function sn_tl_db_pdo(?PDO $pdo): ?PDO
+{
+    return $pdo ?: (function_exists('_pdo_or_null') ? _pdo_or_null() : null);
+}
+
+/**
+ * Database copy (scrollnews_cache, group timeline_model). Rejects version-mismatched or invalid
+ * rows; expired but version-compatible rows are returned with fresh=false so callers can serve
+ * them if a refresh fails.
  *
- * Cache protections:
- *  - TTL: 10 minutes for active stories (story option cache_ttl, min 120s), 24h for closed.
- *  - Single-flight: one request refreshes while others keep serving the previous model.
- *  - Stale-on-error: if the database fails, the last good model is served and retries are
- *    suppressed for 60 seconds so a database outage is not hammered.
- *  - Cache files are written atomically.
+ * @return array{model:array,fresh:bool}|null
+ */
+function sn_tl_db_read(array $story, ?PDO $pdo): ?array
+{
+    if (!$pdo) {
+        return null;
+    }
+    try {
+        $st = $pdo->prepare(
+            "SELECT html, build_version, (expires_at IS NULL OR expires_at > NOW()) AS is_fresh
+               FROM scrollnews_cache
+              WHERE cache_key = :k AND cache_group = 'timeline_model' AND deleted_at IS NULL
+              LIMIT 1"
+        );
+        $st->execute([':k' => 'timeline_model:' . $story['slug']]);
+        $row = $st->fetch(PDO::FETCH_ASSOC);
+    } catch (Throwable $e) {
+        error_log('timeline db cache read failed (' . $story['slug'] . '): ' . $e->getMessage());
+        return null;
+    }
+    if (!$row || (string)($row['build_version'] ?? '') !== sn_tl_model_version($story)) {
+        return null;
+    }
+    $model = sn_tl_model_decode((string)($row['html'] ?? ''), $story['slug']);
+    if ($model === null) {
+        error_log('timeline db cache row invalid (' . $story['slug'] . ')');
+        return null;
+    }
+    return ['model' => $model, 'fresh' => in_array($row['is_fresh'] ?? false, [true, 't', 'true', '1', 1], true)];
+}
+
+function sn_tl_db_write(array $story, array $model, ?PDO $pdo): bool
+{
+    if (!$pdo) {
+        return false;
+    }
+    $payload = sn_tl_model_encode($model, $story['slug']);
+    if ($payload === null || sn_tl_model_decode($payload, $story['slug']) === null) {
+        error_log('timeline model could not be encoded (' . $story['slug'] . ')');
+        return false;
+    }
+    try {
+        $st = $pdo->prepare(
+            "INSERT INTO scrollnews_cache (cache_key, cache_group, html, generated_at, expires_at, build_version, meta, deleted_at)
+             VALUES (:k, 'timeline_model', :html, NOW(), NOW() + (:ttl || ' seconds')::interval, :v, :meta::jsonb, NULL)
+             ON CONFLICT (cache_key) DO UPDATE SET
+                 html = EXCLUDED.html, generated_at = NOW(), expires_at = EXCLUDED.expires_at,
+                 build_version = EXCLUDED.build_version, meta = EXCLUDED.meta, deleted_at = NULL"
+        );
+        return $st->execute([
+            ':k'    => 'timeline_model:' . $story['slug'],
+            ':html' => $payload,
+            ':ttl'  => sn_tl_model_ttl($story),
+            ':v'    => sn_tl_model_version($story),
+            ':meta' => json_encode([
+                'slug' => $story['slug'],
+                'core_articles' => $model['stats']['core_articles'] ?? null,
+                'last_day' => $model['stats']['last_day'] ?? null,
+                'bytes' => strlen($payload),
+                'generated_by' => 'sn_tl_build_model',
+            ]),
+        ]);
+    } catch (Throwable $e) {
+        error_log('timeline db cache write failed (' . $story['slug'] . '): ' . $e->getMessage());
+        return false;
+    }
+}
+
+/**
+ * Cached-only model lookup for latency-sensitive callers (the homepage). Never rebuilds: reads the
+ * short-lived local copy, then the database copy (one indexed row), and returns the newest valid
+ * model however old, or null if none exists.
+ */
+function sn_tl_peek_model(array $story, ?PDO $pdo = null): ?array
+{
+    $local = sn_tl_local_read($story);
+    if ($local && $local['age'] < min(SN_TL_LOCAL_TTL, sn_tl_model_ttl($story))) {
+        return ['story' => $story] + $local['model'];
+    }
+    $db = sn_tl_db_read($story, sn_tl_db_pdo($pdo));
+    if ($db) {
+        if ($db['fresh']) {
+            sn_tl_local_write($story, $db['model']);
+        }
+        return ['story' => $story] + $db['model'];
+    }
+    return $local ? ['story' => $story] + $local['model'] : null;
+}
+
+/**
+ * Choose the story to feature on the homepage.
+ *
+ * 1. A story with 'featured' => true wins (manual override; first by order).
+ * 2. Otherwise the most active qualifying ACTIVE story: newest core article within 7 days and at
+ *    least 5 core articles in the last 14 days (ranked by core articles in the last 7 days).
+ * 3. Otherwise a closed story, rotating by calendar day (ET).
+ *
+ * @param array<string,array|null> $models cached models by slug (null when not cached)
+ * @return array{story:array,model:?array,reason:string}|null
+ */
+function sn_tl_pick_featured(array $stories, array $models, ?DateTimeImmutable $now = null): ?array
+{
+    if (!$stories) {
+        return null;
+    }
+    foreach ($stories as $slug => $s) {
+        if (!empty($s['featured'])) {
+            return ['story' => $s, 'model' => $models[$slug] ?? null, 'reason' => 'manual'];
+        }
+    }
+    $tz = new DateTimeZone(SN_TL_TZ);
+    $today = sn_tl_today($now);
+    $d7 = (new DateTimeImmutable($today, $tz))->modify('-7 days')->format('Y-m-d');
+    $d14 = (new DateTimeImmutable($today, $tz))->modify('-13 days')->format('Y-m-d');
+    $best = null;
+    $bestScore = -1;
+    foreach ($stories as $slug => $s) {
+        $m = $models[$slug] ?? null;
+        if (($s['status'] ?? 'closed') !== 'active' || !$m) {
+            continue;
+        }
+        $last = $m['stats']['last_day'] ?? null;
+        if (!$last || $last < $d7) {
+            continue;
+        }
+        $n7 = 0;
+        $n14 = 0;
+        foreach ($m['days'] as $d => $info) {
+            if ($d >= $d14) {
+                $n14 += $info['core'];
+            }
+            if ($d >= $d7) {
+                $n7 += $info['core'];
+            }
+        }
+        if ($n14 >= 5 && $n7 > $bestScore) {
+            $best = $s;
+            $bestScore = $n7;
+        }
+    }
+    if ($best) {
+        return ['story' => $best, 'model' => $models[$best['slug']], 'reason' => 'active'];
+    }
+    $closed = array_values(array_filter($stories, static fn($s) => ($s['status'] ?? 'closed') !== 'active'));
+    if (!$closed) {
+        $closed = array_values($stories);
+    }
+    $dayNo = (int)floor((new DateTimeImmutable($today, new DateTimeZone('UTC')))->getTimestamp() / 86400);
+    $pick = $closed[$dayNo % count($closed)];
+    return ['story' => $pick, 'model' => $models[$pick['slug']] ?? null, 'reason' => 'rotation'];
+}
+
+/**
+ * Get the model for a story, building it only when no fresh copy exists.
+ *
+ * Layers: short-lived local file (SN_TL_LOCAL_TTL) -> PostgreSQL copy (scrollnews_cache, group
+ * timeline_model, TTL 10 minutes for active stories / 24h for closed) -> rebuild from articles.
+ *
+ * Protections:
+ *  - Version: copies are keyed by a content hash of the story file and this engine, so ordinary
+ *    deployments keep them and any definition/engine edit rejects them.
+ *  - Single-flight: one process per container rebuilds while others serve the previous model.
+ *  - Stale-on-error: if the rebuild fails, the newest valid version-compatible copy (even
+ *    expired) is served and retries are suppressed for 60 seconds.
+ *  - Writes are atomic (single-row upsert with checksum; renamed local file); reads validate.
  */
 function sn_tl_build_model(array $story, ?PDO $pdo = null): ?array
 {
-    $mtime = max((int)@filemtime($story['_file'] ?? __FILE__), (int)@filemtime(__FILE__));
-    $isActive = ($story['status'] ?? 'closed') === 'active';
-    $ttl = $isActive ? max(120, (int)($story['cache_ttl'] ?? 600)) : 86400;
-    $base = sn_tl_cache_dir() . '/sn_tl_' . $story['slug'] . '_' . $mtime;
-    $cacheFile = $base . '.ser';
+    $ttl = sn_tl_model_ttl($story);
+    $localTtl = min(SN_TL_LOCAL_TTL, $ttl);
+    $base = sn_tl_cache_base($story);
     $failFile = $base . '.fail';
+    $pdo = sn_tl_db_pdo($pdo);
 
-    $fresh = static fn() => is_file($cacheFile) && (time() - (int)filemtime($cacheFile)) < $ttl;
-    $serve = static function (?array $m) use ($story): ?array {
-        if ($m === null) {
-            return null;
-        }
-        $m['story'] = $story;
-        return $m;
-    };
+    $serve = static fn(?array $m): ?array => $m === null ? null : ['story' => $story] + $m;
 
-    if ($fresh()) {
-        $m = sn_tl_cache_read($cacheFile);
-        if ($m !== null) {
-            return $serve($m);
-        }
+    $local = sn_tl_local_read($story);
+    if ($local && $local['age'] < $localTtl) {
+        return $serve($local['model']);
     }
-    $stale = static fn() => $serve(sn_tl_cache_read($cacheFile));
+    $db = sn_tl_db_read($story, $pdo);
+    if ($db && $db['fresh']) {
+        sn_tl_local_write($story, $db['model']);
+        return $serve($db['model']);
+    }
+    $stale = static function () use (&$local, &$db, $serve): ?array {
+        $c = array_values(array_filter([$local['model'] ?? null, $db['model'] ?? null]));
+        usort($c, static fn($a, $b) => $b['generated_at'] <=> $a['generated_at']);
+        return $serve($c[0] ?? null);
+    };
 
     if (is_file($failFile) && (time() - (int)filemtime($failFile)) < 60) {
         return $stale();
     }
 
     $lock = @fopen($base . '.lock', 'c');
-    if ($lock) {
-        if (!flock($lock, LOCK_EX | LOCK_NB)) {
-            $existing = $stale();
-            if ($existing !== null) {
-                fclose($lock);
-                return $existing;
-            }
-            flock($lock, LOCK_EX); // nothing to serve yet: wait for the refresher
-            if ($fresh()) {
-                $m = sn_tl_cache_read($cacheFile);
-                flock($lock, LOCK_UN);
-                fclose($lock);
-                if ($m !== null) {
-                    return $serve($m);
-                }
-                $lock = null;
-            }
-        } elseif ($fresh()) {
-            $m = sn_tl_cache_read($cacheFile);
-            if ($m !== null) {
-                flock($lock, LOCK_UN);
-                fclose($lock);
-                return $serve($m);
-            }
-        }
-    }
     $release = static function () use (&$lock): void {
         if ($lock) {
             @flock($lock, LOCK_UN);
@@ -624,8 +902,22 @@ function sn_tl_build_model(array $story, ?PDO $pdo = null): ?array
             $lock = null;
         }
     };
+    if ($lock) {
+        if (!flock($lock, LOCK_EX | LOCK_NB)) {
+            $existing = $stale();
+            if ($existing !== null) {
+                $release();
+                return $existing;
+            }
+            flock($lock, LOCK_EX); // nothing to serve yet: wait for the refresher
+        }
+        $again = sn_tl_local_read($story);
+        if ($again && $again['age'] < $localTtl) {
+            $release();
+            return $serve($again['model']);
+        }
+    }
 
-    $pdo = $pdo ?: (function_exists('_pdo_or_null') ? _pdo_or_null() : null);
     try {
         if (!$pdo) {
             throw new RuntimeException('database unavailable');
@@ -640,18 +932,13 @@ function sn_tl_build_model(array $story, ?PDO $pdo = null): ?array
         return $stale();
     }
 
-    $toCache = $model;
-    $toCache['story'] = ['slug' => $story['slug']];
-    $tmp = $cacheFile . '.' . getmypid() . '.tmp';
-    if (@file_put_contents($tmp, serialize($toCache)) !== false) {
-        if (!@rename($tmp, $cacheFile)) {
-            @unlink($tmp);
-        }
-    }
+    sn_tl_local_write($story, $model);
+    sn_tl_db_write($story, $model, $pdo);
     @unlink($failFile);
     $release();
     return $model;
 }
+
 
 function sn_tl_fmt_day(string $ymd, string $fmt = 'D, M j'): string
 {

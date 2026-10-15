@@ -98,6 +98,27 @@ warm_and_store_panel(
     BASE_PATH . '/views/home/panels/___active_stories.php'
 );
 
+// Featured Coverage Timeline: build/refresh every story model here so the homepage
+// (which only peeks at cached models) never has to. Same key as index.php.
+require_once BASE_PATH . '/core/timelines/___timelines.php';
+foreach (sn_tl_all_stories() as $tlStory) {
+    try {
+        // Reads the DB copy first: active stories rebuild only after their 10-minute TTL,
+        // archived stories only when missing, invalidated by a content change, or expired.
+        if (sn_tl_build_model($tlStory) === null) {
+            error_log('warm_home: no timeline model available for ' . $tlStory['slug']);
+        }
+    } catch (Throwable $e) {
+        error_log('warm_home: timeline model failed (' . $tlStory['slug'] . '): ' . $e->getMessage());
+    }
+}
+warm_and_store_panel(
+    'homepage_featured_timeline',
+    300,
+    900,
+    BASE_PATH . '/views/home/panels/___featured_timeline.php'
+);
+
 // 1) Prime First Look JSON cache
 ob_start();
 

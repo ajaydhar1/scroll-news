@@ -116,6 +116,7 @@ sn_perf_phase('render');
     <!-- HOMEPAGE LIGHT SaaS EXPERIMENT: remove these two lines and the sn-light-saas body class to revert -->
     <link id="light-saas" href="/assets/css/light-saas.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/light-saas.css'); ?>" rel="stylesheet" />
     <link id="home-light-saas" href="/assets/css/pages/home-light-saas.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/home-light-saas.css'); ?>" rel="stylesheet" />
+    <link href="/assets/css/pages/home-timeline.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/home-timeline.css'); ?>" rel="stylesheet" />
 
     <link href="/assets/css/lightbox.css" rel="stylesheet" />
     <link href="/assets/css/product-nav.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/product-nav.css'); ?>" rel="stylesheet" />
@@ -337,6 +338,9 @@ sn_perf_phase('render');
 
         ?>
 
+        <?php // Featured Coverage Timeline band: cached model only, same key as the warm job (___warm_home.php) ?>
+        <?php render_home_panel('homepage_featured_timeline', 300, 900, BASE_PATH . '/views/home/panels/___featured_timeline.php', $bust, $homepageCache); ?>
+
         <!-- Intelligence workspace wrapper (light SaaS experiment grouping; harmless without the experiment CSS) -->
         <div class="sn-intel-workspace">
 
@@ -419,6 +423,7 @@ sn_perf_phase('render');
     <script type="text/javascript" src="/assets/js/lightbox.js"></script>
 
     <script src="/assets/js/sn_history.js?v=<?= filemtime(BASE_PATH . '/assets/js/sn_history.js') ?>" defer></script>
+    <script src="/assets/js/pages/home-timeline.js?v=<?= filemtime(BASE_PATH . '/assets/js/pages/home-timeline.js') ?>" defer></script>
 
 
 </body>

@@ -46,7 +46,8 @@ html[data-ui-theme="dark"] body.sn-tl-page {
 .sn-tl-theme-greenland { --tl-story: #3d9bd1; }
 .sn-tl-theme-alex-pretti { --tl-story: #8a94a8; }
 .sn-tl-theme-venezuela { --tl-story: #d9902f; }
-.sn-tl-theme-greenland, .sn-tl-theme-alex-pretti, .sn-tl-theme-venezuela {
+.sn-tl-theme-iran { --tl-story: #c8553d; }
+.sn-tl-theme-greenland, .sn-tl-theme-alex-pretti, .sn-tl-theme-venezuela, .sn-tl-theme-iran {
     --tl-hero-a: color-mix(in srgb, var(--tl-story) 22%, transparent);
     --tl-hero-b: color-mix(in srgb, var(--tl-story) 3%, transparent);
     --tl-accent: var(--tl-story);

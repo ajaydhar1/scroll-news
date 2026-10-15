@@ -122,15 +122,51 @@ class TlFakeStmt extends PDOStatement
         return $this->rows;
     }
 }
+class TlCacheStmt extends PDOStatement
+{
+    public array $row = [];
+    public function __construct(public TlFakePdo $pdo, public string $sql) {}
+    public function execute(?array $params = null): bool
+    {
+        if ($this->pdo->cacheFail) {
+            throw $this->pdo->cacheFail;
+        }
+        $p = $params ?? [];
+        if (stripos($this->sql, 'INSERT INTO') !== false) {
+            $this->pdo->cacheWrites++;
+            if ($this->pdo->cacheWriteFail) {
+                throw $this->pdo->cacheWriteFail;
+            }
+            $this->pdo->cacheRows[$p[':k']] = ['html' => $p[':html'], 'build_version' => $p[':v'], 'expires' => time() + (int)$p[':ttl'], 'meta' => $p[':meta']];
+            return true;
+        }
+        $this->pdo->cacheReads++;
+        $r = $this->pdo->cacheRows[$p[':k']] ?? null;
+        $this->row = $r ? ['html' => $r['html'], 'build_version' => $r['build_version'], 'is_fresh' => $r['expires'] > time()] : [];
+        return true;
+    }
+    public function fetch(int $mode = PDO::FETCH_DEFAULT, int $cursorOrientation = PDO::FETCH_ORI_NEXT, int $cursorOffset = 0): mixed
+    {
+        return $this->row ?: false;
+    }
+}
 class TlFakePdo extends PDO
 {
     public array $rows = [];
     public string $sql = '';
     public int $prepared = 0;
     public ?Throwable $fail = null;
+    public array $cacheRows = [];
+    public int $cacheReads = 0;
+    public int $cacheWrites = 0;
+    public ?Throwable $cacheFail = null;
+    public ?Throwable $cacheWriteFail = null;
     public function __construct() {}
     public function prepare(string $query, array $options = []): PDOStatement|false
     {
+        if (stripos($query, 'scrollnews_cache') !== false) {
+            return new TlCacheStmt($this, $query);
+        }
         $this->sql = $query;
         $this->prepared++;
         $st = new TlFakeStmt();
@@ -264,22 +300,180 @@ $cStory = $tstory + ['cache_ttl' => 120];
 $cStory['slug'] = 'tl-cache';
 $okPdo = new TlFakePdo();
 $okPdo->rows = [$dbRow(1, 'Foo cached', '2026-10-13T15:00:00Z')];
+$wipe = static function (): void {
+    foreach (glob(SN_TL_CACHE_DIR . '/*') as $f) {
+        @unlink($f);
+    }
+};
+$prevLog = ini_set('error_log', sys_get_temp_dir() . '/sn_tl_test.log');
+$cacheKey = 'timeline_model:tl-cache';
+
+// Cold cache: builds from articles, then writes both the local file and the database row
 $built = sn_tl_build_model($cStory, $okPdo);
-$assert($built !== null && $okPdo->prepared === 1, 'First build queries the database');
+$assert($built !== null && $okPdo->prepared === 1, 'Cold build queries the articles once');
+$assert($okPdo->cacheWrites === 1 && isset($okPdo->cacheRows[$cacheKey]), 'Cold build stores the model in the database cache');
+$row = $okPdo->cacheRows[$cacheKey];
+$assert(str_starts_with($row['html'], 'sntl1:') && $row['build_version'] === sn_tl_model_version($cStory), 'Stored row is a versioned, checksummed payload');
+$assert($row['expires'] - time() > 100 && $row['expires'] - time() <= 120, 'Row expiry follows the story TTL');
 $again = sn_tl_build_model($cStory, $okPdo);
-$assert($again !== null && $okPdo->prepared === 1, 'Second build within the TTL is served from cache');
+$assert($again !== null && $okPdo->prepared === 1 && $okPdo->cacheReads === 1, 'Warm local cache answers without the database');
+
+// Warm database, cold local (new container after a deploy): no article query and no rebuild
+$wipe();
+$coldPdo = new TlFakePdo();
+$coldPdo->cacheRows = $okPdo->cacheRows;
+$fromDb = sn_tl_build_model($cStory, $coldPdo);
+$assert($fromDb !== null && $coldPdo->prepared === 0 && $coldPdo->cacheWrites === 0 && $coldPdo->cacheReads === 1, 'Fresh database model is served without rebuilding');
+$assert($fromDb['stats']['core_articles'] === $built['stats']['core_articles'] && $fromDb['story']['slug'] === 'tl-cache', 'Database model matches the built model');
+$assert($fromDb['days'] == $built['days'], 'Database model days survive the round trip');
+sn_tl_build_model($cStory, $coldPdo);
+$assert($coldPdo->cacheReads === 1, 'Database hit repopulates the local cache');
+
+// JSON round trip
+$enc = sn_tl_model_encode($built, 'tl-cache');
+$dec = sn_tl_model_decode($enc, 'tl-cache');
+$expect = ['story' => ['slug' => 'tl-cache']] + $built;
+$assert($dec !== null && json_encode($dec) === json_encode($expect), 'Model JSON round trip is lossless (types, keys and DateTime stamps)');
+$firstArt = reset($dec['days'])['articles'][0];
+$assert($firstArt['dt'] instanceof DateTimeImmutable && $firstArt['dt']->getTimezone()->getName() === SN_TL_TZ, 'Article timestamps are restored as ET DateTimeImmutable');
+$rtMany = sn_tl_assemble(['max_items' => 100, 'related_entity_min' => 3, 'core_entity_min' => 20] + $tstory, $many);
+$rtMany['story'] = ['slug' => 'big'];
+$decBig = sn_tl_model_decode(sn_tl_model_encode($rtMany, 'big'), 'big');
+$assert($decBig !== null && json_encode($decBig) === json_encode($rtMany), 'A multi-day model with related items round-trips losslessly');
+$assert(strlen($enc) < strlen(serialize($built)), 'Stored payload is smaller than the serialized model');
+
+// Invalid or tampered payloads are rejected
+$parts = explode(':', $enc, 3);
+$assert(sn_tl_model_decode(substr($enc, 0, -40), 'tl-cache') === null, 'Truncated payload is rejected');
+$assert(sn_tl_model_decode($parts[0] . ':' . $parts[1] . ':' . strtr($parts[2], 'A', 'B'), 'tl-cache') === null, 'Checksum mismatch is rejected');
+$garbage = base64_encode('not gzip');
+$assert(sn_tl_model_decode('sntl1:' . sha1($garbage) . ':' . $garbage, 'tl-cache') === null, 'Valid checksum with a non-gzip body is rejected');
+$notModel = base64_encode(gzencode('{"a":1}'));
+$assert(sn_tl_model_decode('sntl1:' . sha1($notModel) . ':' . $notModel, 'tl-cache') === null, 'Valid JSON of the wrong shape is rejected');
+$assert(sn_tl_model_decode($enc, 'other-slug') === null, 'A payload for a different story is rejected');
+$assert(sn_tl_model_decode('', 'tl-cache') === null && sn_tl_model_decode('sntl0:x:y', 'tl-cache') === null, 'Empty and unknown formats are rejected');
+$wipe();
+$badRowPdo = new TlFakePdo();
+$badRowPdo->cacheRows = [$cacheKey => ['html' => substr($enc, 0, -40), 'build_version' => sn_tl_model_version($cStory), 'expires' => time() + 500, 'meta' => null]];
+$assert(sn_tl_db_read($cStory, $badRowPdo) === null && sn_tl_peek_model($cStory, $badRowPdo) === null, 'A corrupt database row is never served');
+$badRowPdo->rows = [$dbRow(1, 'Foo cached', '2026-10-13T15:00:00Z')];
+$healed = sn_tl_build_model($cStory, $badRowPdo);
+$assert($healed !== null && $badRowPdo->prepared === 1 && sn_tl_model_decode($badRowPdo->cacheRows[$cacheKey]['html'], 'tl-cache') !== null, 'A corrupt row triggers a rebuild that replaces it');
+
+// Versioning: content-based, so edits invalidate and unchanged definitions do not
+$v1 = sn_tl_model_version($cStory);
+$assert($v1 === sn_tl_model_version($cStory) && preg_match('/^[0-9a-f]{12}$/', $v1) === 1, 'Version is a stable short hash');
+$changed = ['dek' => 'An edited dek'] + $cStory;
+$assert(sn_tl_model_version($changed) !== $v1, 'Editing a story definition changes its version');
+$assert(sn_tl_model_version(sn_tl_get_story('iran')) !== sn_tl_model_version(sn_tl_get_story('greenland')), 'Different stories have different versions');
+$assert(sn_tl_model_version(sn_tl_get_story('iran')) === sn_tl_model_version(sn_tl_get_story('iran')), 'Real story versions are deterministic');
+$wipe();
+$verPdo = new TlFakePdo();
+$verPdo->cacheRows = $okPdo->cacheRows;
+$verPdo->rows = [$dbRow(1, 'Foo cached', '2026-10-13T15:00:00Z')];
+$assert(sn_tl_db_read($changed, $verPdo) === null && sn_tl_peek_model($changed, $verPdo) === null, 'A version-mismatched row is rejected even when unexpired');
+$rebuilt = sn_tl_build_model($changed, $verPdo);
+$assert($rebuilt !== null && $verPdo->prepared === 1 && $verPdo->cacheRows[$cacheKey]['build_version'] === sn_tl_model_version($changed), 'A version mismatch rebuilds and stores the new version');
+
+// TTLs
+$assert(sn_tl_model_ttl(['status' => 'active']) === 600 && sn_tl_model_ttl(['status' => 'active', 'cache_ttl' => 30]) === 120 && sn_tl_model_ttl(['status' => 'closed']) === 86400, 'Active stories refresh every 10 minutes, archived every 24 hours');
+
+// Expired but version-compatible rows are served only when the refresh fails
+$wipe();
+$exp = new TlFakePdo();
+$exp->cacheRows = $okPdo->cacheRows;
+$exp->cacheRows[$cacheKey]['expires'] = time() - 30;
+$exp->rows = [$dbRow(1, 'Foo cached', '2026-10-13T15:00:00Z'), $dbRow(2, 'Foo newer', '2026-10-13T16:00:00Z')];
+$refreshed = sn_tl_build_model($cStory, $exp);
+$assert($refreshed['stats']['core_articles'] === 2 && $exp->prepared === 1 && $exp->cacheWrites === 1, 'An expired row is refreshed from articles when possible');
+$wipe();
+$exp2 = new TlFakePdo();
+$exp2->cacheRows = $okPdo->cacheRows;
+$exp2->cacheRows[$cacheKey]['expires'] = time() - 30;
+$exp2->fail = new RuntimeException('articles unavailable');
+$staleDb = sn_tl_build_model($cStory, $exp2);
+$assert($staleDb !== null && $exp2->prepared === 1 && $staleDb['stats']['core_articles'] === $built['stats']['core_articles'], 'An expired compatible row is served when the refresh fails');
+sn_tl_build_model($cStory, $exp2);
+$assert($exp2->prepared === 1, 'Failure back-off applies to database-backed models');
+$assert(sn_tl_peek_model($cStory, $exp2) !== null, 'Peek serves an expired compatible row');
+
+// Local stale copy when the database is unavailable
+foreach (glob(SN_TL_CACHE_DIR . '/sn_tl_tl-cache_*.ser') as $f) {
+    @unlink($f);
+}
+$wipe();
+sn_tl_build_model($cStory, $okPdo);
 foreach (glob(SN_TL_CACHE_DIR . '/sn_tl_tl-cache_*.ser') as $f) {
     touch($f, time() - 3600);
 }
 $badPdo = new TlFakePdo();
 $badPdo->fail = new RuntimeException('db down');
-$prevLog = ini_set('error_log', sys_get_temp_dir() . '/sn_tl_test.log');
+$badPdo->cacheFail = new RuntimeException('db down');
 $stale = sn_tl_build_model($cStory, $badPdo);
-$assert($stale !== null && $stale['stats']['core_articles'] === $built['stats']['core_articles'], 'Expired cache is served stale when the database fails');
+$assert($stale !== null && $stale['stats']['core_articles'] === $built['stats']['core_articles'], 'Expired local copy is served stale when the database fails');
 $assert($badPdo->prepared === 1, 'A failed rebuild tried the database once');
 sn_tl_build_model($cStory, $badPdo);
 $assert($badPdo->prepared === 1, 'Failure back-off prevents hammering the database');
+
+// Database-cache failures never break page builds
+$wipe();
+$noCache = new TlFakePdo();
+$noCache->rows = [$dbRow(1, 'Foo cached', '2026-10-13T15:00:00Z')];
+$noCache->cacheFail = new RuntimeException('cache table missing');
+$viaFiles = sn_tl_build_model($cStory, $noCache);
+$assert($viaFiles !== null && $noCache->prepared === 1, 'A broken cache table falls back to building from articles');
+$wipe();
+$wf = new TlFakePdo();
+$wf->rows = [$dbRow(1, 'Foo cached', '2026-10-13T15:00:00Z')];
+$wf->cacheWriteFail = new RuntimeException('read-only');
+$wfm = sn_tl_build_model($cStory, $wf);
+$assert($wfm !== null && sn_tl_local_read($cStory) !== null, 'A failed database write still returns and locally caches the model');
+$assert(sn_tl_build_model($cStory, null) !== null, 'No database at all still serves the local copy');
+$wipe();
+$assert(sn_tl_build_model($cStory, null) === null, 'No database and no copy yields null (the page shows its unavailable state)');
 ini_set('error_log', (string)$prevLog);
+
+// Peek: never rebuilds or queries articles
+$wipe();
+$peekPdo = new TlFakePdo();
+$assert(sn_tl_peek_model($cStory, $peekPdo) === null && sn_tl_peek_model(['slug' => 'tl-never-built'] + $cStory, $peekPdo) === null, 'sn_tl_peek_model returns null when nothing is cached');
+$peekPdo->cacheRows = $okPdo->cacheRows;
+$peeked = sn_tl_peek_model($cStory, $peekPdo);
+$assert($peeked !== null && $peeked['story']['slug'] === 'tl-cache' && $peeked['stats']['core_articles'] === $built['stats']['core_articles'], 'sn_tl_peek_model returns the database model on a cold local cache');
+$assert($peekPdo->prepared === 0 && $peekPdo->cacheWrites === 0, 'sn_tl_peek_model never queries articles or writes the database');
+
+
+// Featured-story selection
+$fm = static function (string $last, array $perDay): array {
+    $days = [];
+    foreach ($perDay as $d => $n) {
+        $days[$d] = ['core' => $n];
+    }
+    return ['stats' => ['last_day' => $last], 'days' => $days];
+};
+$nowFeat = new DateTimeImmutable('2026-10-14 12:00:00', new DateTimeZone('America/New_York'));
+$fa = ['slug' => 'fa', 'status' => 'active'];
+$fb = ['slug' => 'fb', 'status' => 'active'];
+$fc1 = ['slug' => 'fc1', 'status' => 'closed'];
+$fc2 = ['slug' => 'fc2', 'status' => 'closed'];
+$fstories = ['fa' => $fa, 'fb' => $fb, 'fc1' => $fc1, 'fc2' => $fc2];
+$pick = sn_tl_pick_featured($fstories, ['fa' => $fm('2026-10-12', ['2026-10-12' => 3, '2026-10-05' => 3])], $nowFeat);
+$assert($pick && $pick['story']['slug'] === 'fa' && $pick['reason'] === 'active', 'A fresh, busy active story is featured');
+$pick = sn_tl_pick_featured($fstories, ['fa' => $fm('2026-10-12', ['2026-10-12' => 3, '2026-10-05' => 3]), 'fb' => $fm('2026-10-13', ['2026-10-13' => 6, '2026-10-12' => 2])], $nowFeat);
+$assert($pick['story']['slug'] === 'fb', 'The active story with more core articles in the last 7 days wins');
+$pick = sn_tl_pick_featured($fstories, ['fa' => $fm('2026-10-05', ['2026-10-05' => 9])], $nowFeat);
+$assert($pick['reason'] === 'rotation', 'An active story older than 7 days is not featured');
+$pick = sn_tl_pick_featured($fstories, ['fa' => $fm('2026-10-13', ['2026-10-13' => 4])], $nowFeat);
+$assert($pick['reason'] === 'rotation', 'An active story with fewer than 5 core articles in 14 days is not featured');
+$pick = sn_tl_pick_featured($fstories, [], $nowFeat);
+$assert($pick['reason'] === 'rotation' && in_array($pick['story']['slug'], ['fc1', 'fc2'], true) && $pick['model'] === null, 'Without models the rotation falls back to a closed story');
+$day1 = sn_tl_pick_featured($fstories, [], $nowFeat)['story']['slug'];
+$day1b = sn_tl_pick_featured($fstories, [], $nowFeat->modify('+3 hours'))['story']['slug'];
+$day2 = sn_tl_pick_featured($fstories, [], $nowFeat->modify('+1 day'))['story']['slug'];
+$assert($day1 === $day1b && $day1 !== $day2, 'Rotation is stable within a day and advances daily');
+$pick = sn_tl_pick_featured(['fa' => $fa, 'fc2' => $fc2 + ['featured' => true]], ['fa' => $fm('2026-10-13', ['2026-10-13' => 9])], $nowFeat);
+$assert($pick['story']['slug'] === 'fc2' && $pick['reason'] === 'manual', 'A featured flag overrides freshness and rotation');
+$assert(sn_tl_pick_featured([], []) === null, 'No stories yields no featured story');
 foreach (glob(SN_TL_CACHE_DIR . '/*') as $f) {
     @unlink($f);
 }
