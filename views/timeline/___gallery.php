@@ -16,7 +16,7 @@
         <?php foreach (sn_tl_all_stories() as $slug => $story):
             $m = $tl_models[$slug] ?? null;
             $s = $m['stats'] ?? null; ?>
-            <a class="sn-tl-gcard sn-tl-theme-<?= sn_tl_e($slug) ?>" href="/timeline?story=<?= sn_tl_e($slug) ?>" data-loading>
+            <a class="sn-tl-gcard sn-tl-theme-<?= sn_tl_e($slug) ?>" href="/timeline.php?story=<?= sn_tl_e($slug) ?>" data-loading>
                 <span class="sn-tl-gcard-kicker"><?= sn_tl_e($story['kicker']) ?>
                     <span class="sn-tl-status sn-tl-status-<?= sn_tl_e($story['status']) ?>"><?= $story['status'] === 'active' ? 'Developing' : 'Archived' ?></span>
                 </span>

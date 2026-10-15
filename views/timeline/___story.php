@@ -8,7 +8,7 @@ $maxStack = 8;
 $visibleStack = 6;
 ?>
 <section class="sn-tl-story sn-tl-theme-<?= sn_tl_e($slug) ?>">
-    <a class="sn-tl-back" href="/timeline" data-loading><span aria-hidden="true">←</span> All timelines</a>
+    <a class="sn-tl-back" href="/timeline.php" data-loading><span aria-hidden="true">←</span> All timelines</a>
 
     <header class="sn-tl-hero">
         <p class="sn-tl-eyebrow"><?= sn_tl_e($story['kicker']) ?>
