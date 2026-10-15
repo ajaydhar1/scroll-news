@@ -8,9 +8,9 @@
 
     function getTheme() {
         try {
-            return window.localStorage.getItem(STORAGE_KEY) === DARK_THEME ? DARK_THEME : 'mindpour';
+            return window.localStorage.getItem(STORAGE_KEY) === 'mindpour' ? 'mindpour' : DARK_THEME;
         } catch (error) {
-            return 'mindpour';
+            return DARK_THEME;
         }
     }
 
