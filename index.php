@@ -363,7 +363,7 @@ sn_perf_phase('render');
             ?>
             <section class="container-fluid bg-light-2 py-3 text-center">
                 <div class="sn-categories-strip">
-                    <p class="sn-rl-topic-intro" id="snTopicIntro">Or start with a topic</p>                    <div class="sn-categories-title">Analyze trends by category</div>
+                    <p class="sn-rl-topic-intro" id="snTopicIntro">Or start with a topic</p>                    <div class="sn-categories-title">Browse news by category</div>
 
                     <div class="sn-categories-pills" role="group" aria-labelledby="snTopicIntro">
                         <?php foreach ($categories as $slug => $label):
@@ -379,13 +379,15 @@ sn_perf_phase('render');
 
                             $isActive = ($currentCtx === 'category' && $currentVal === $slug);
                         ?>
-                            <a
-                                class="btn btn-dark mx-1 mb-2"
-                                href="<?= htmlspecialchars($href) ?>"
-                                title="Analyze <?= htmlspecialchars($label) ?>"
-                                data-loading>
+                            <button
+                                type="button"
+                                class="btn btn-dark mx-1 mb-2 category-link"
+                                data-category="<?= htmlspecialchars($label) ?>"
+                                data-category-url="/rss.php?category=<?= htmlspecialchars($label) ?>"
+                                aria-haspopup="dialog"
+                                title="Browse <?= htmlspecialchars($label) ?> news">
                                 <?= htmlspecialchars($label) ?>
-                            </a>
+                            </button>
                         <?php endforeach; ?>
                     </div>
                 </div>

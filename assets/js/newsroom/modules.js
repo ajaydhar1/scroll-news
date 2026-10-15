@@ -258,7 +258,7 @@ $(document).on("click", ".category-link", function (e) {
     $("#browseNewsModal").modal("show");
 
     // Trigger the article fetch
-    fetchRSSArticles(rssUrl);
+    fetchRSSArticles(rssUrl, category);
 
   }
 });
