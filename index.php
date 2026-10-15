@@ -118,6 +118,7 @@ sn_perf_phase('render');
     <link id="light-saas" href="/assets/css/light-saas.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/light-saas.css'); ?>" rel="stylesheet" />
     <link id="home-light-saas" href="/assets/css/pages/home-light-saas.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/home-light-saas.css'); ?>" rel="stylesheet" />
     <link href="/assets/css/pages/home-timeline.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/home-timeline.css'); ?>" rel="stylesheet" />
+    <link href="/assets/css/pages/home-reading-lens.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/home-reading-lens.css'); ?>" rel="stylesheet" />
 
     <link href="/assets/css/lightbox.css" rel="stylesheet" />
     <link href="/assets/css/product-nav.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/product-nav.css'); ?>" rel="stylesheet" />
@@ -184,69 +185,160 @@ sn_perf_phase('render');
             </header>
 
 
-            <!-- Reading Modes-->
-            <section class="reading-modes-section page-section bg-light-2 pt-5 pb-0">
+            <!-- Reading Lens -->
+            <?php
+            // Presets are the single source of truth for the lens: flags and URLs.
+            // The "everything" preset has no filters, but a bare /search.php is only a
+            // landing page, so it opens the last 24 hours instead.
+            $rlPresets = [
+                'worth' => [
+                    'label'   => 'Worth your time',
+                    'desc'    => 'Dense reporting from trusted outlets.',
+                    'summary' => 'Deep-dive reporting from high-signal publishers.',
+                    'deep'    => true,
+                    'trusted' => true,
+                    'href'    => '/search.php?mode=nlp&deep_dive=1&high_signal=1',
+                ],
+                'deep' => [
+                    'label'   => 'Go deep',
+                    'desc'    => 'Detailed, specific reporting from any source.',
+                    'summary' => 'Deep-dive reporting from any publisher.',
+                    'deep'    => true,
+                    'trusted' => false,
+                    'href'    => '/search.php?mode=nlp&deep_dive=1',
+                ],
+                'trusted' => [
+                    'label'   => 'Trusted outlets',
+                    'desc'    => 'Every story from our curated publishers.',
+                    'summary' => 'Any article from high-signal publishers.',
+                    'deep'    => false,
+                    'trusted' => true,
+                    'href'    => '/search.php?high_signal=1',
+                ],
+                'everything' => [
+                    'label'   => 'Everything',
+                    'desc'    => 'The full, unfiltered stream from the last 24 hours.',
+                    'summary' => 'Every headline from the last 24 hours, unfiltered.',
+                    'deep'    => false,
+                    'trusted' => false,
+                    'href'    => '/search.php?range=24h',
+                ],
+            ];
+            $rlDefaultKey = 'worth';
+            $rlDefault    = $rlPresets[$rlDefaultKey];
+
+            $rlPublisherNames = [
+                'nbcnews.com'    => 'NBC News',
+                'cbsnews.com'    => 'CBS News',
+                'abcnews.go.com' => 'ABC News',
+                'npr.org'        => 'NPR',
+                'axios.com'      => 'Axios',
+                'apnews.com'     => 'Associated Press',
+            ];
+            $rlPublishers = [];
+            foreach (array_keys($SCROLL_HIGH_SIGNAL_PUBLISHERS ?? []) as $rlDomain) {
+                $rlPublishers[] = $rlPublisherNames[$rlDomain] ?? $rlDomain;
+            }
+
+            // Illustrative article field: d = deep dive, t = trusted outlet, b = both, . = neither
+            $rlField = [
+                'd.d.b.d..dt.',
+                '.d..d.b.d.d.',
+                'd.t.d.d.b..d',
+                '.d.d..b.dt.d',
+            ];
+            ?>
+            <section class="reading-modes-section sn-rl-section page-section bg-light-2 pt-5 pb-0" aria-labelledby="snRlTitle">
                 <div class="container">
-                    <div class="row mb-4">
-                        <div class="col-12 text-center">
-                            <h2 class="mb-2">Reading Modes</h2>
-                            <p class="text-muted mb-0">
-                                Two ways to reach the reporting you love — choose how you get there.
-                            </p>
-                        </div>
-                    </div>
+                    <div class="sn-rl" id="snRl" data-default="<?= htmlspecialchars($rlDefaultKey) ?>">
+                        <header class="sn-rl-head">
+                            <p class="sn-rl-eyebrow">Reading Lens</p>
+                            <h2 class="sn-rl-title" id="snRlTitle">Find a read worth your time</h2>
+                            <p class="sn-rl-sub">Narrow the feed by depth and by source. Pick a starting point, then fine-tune it.</p>
+                        </header>
 
-                    <div class="row g-4">
-                        <!-- Deep Dive -->
-                        <div class="col-md-6 mb-3">
-                            <div class="card h-100 shadow-sm reading-mode-card">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <span class="reading-mode-icon me-2">🔎</span>
-                                        <h3 class="h5 mb-0">Deep Dive</h3>
-                                    </div>
-                                    <div class="scroll-article-badges">
-                                        <a class="scroll-badge scroll-badge-deep-dive" href="/search.php?mode=nlp&amp;deep_dive=1" title="Articles with rich entity density (detailed topics)." data-loading="">
-                                            Deep dive
-                                        </a>
-                                    </div>
-                                    <p class="text-muted mb-2">
-                                        Thoughtful, entity-aware reporting that goes beyond headlines and reactions.
-                                    </p>
-                                    <p class="text-muted italic mb-4">
-                                        These are the pieces you sit with — fewer articles, more understanding.
-                                    </p>
-                                    <a href="/search.php?mode=nlp&deep_dive=1" class="btn btn-sm btn-green" data-loading>
-                                        Browse Deep Dives
-                                    </a>
+                        <div class="sn-rl-panel">
+                            <div class="sn-rl-choose">
+                                <ul class="sn-rl-presets" id="snRlPresets" aria-label="Reading lens presets">
+                                    <?php foreach ($rlPresets as $rlKey => $rlPreset): ?>
+                                        <li>
+                                            <a class="sn-rl-preset"
+                                                href="<?= htmlspecialchars($rlPreset['href']) ?>"
+                                                data-preset="<?= htmlspecialchars($rlKey) ?>"
+                                                data-deep="<?= $rlPreset['deep'] ? '1' : '0' ?>"
+                                                data-trusted="<?= $rlPreset['trusted'] ? '1' : '0' ?>"
+                                                data-summary="<?= htmlspecialchars($rlPreset['summary']) ?>"
+                                                data-loading>
+                                                <span class="sn-rl-mark" aria-hidden="true"></span>
+                                                <span class="sn-rl-preset-text">
+                                                    <span class="sn-rl-preset-name">
+                                                        <?= htmlspecialchars($rlPreset['label']) ?>
+                                                        <?php if ($rlKey === $rlDefaultKey): ?>
+                                                            <span class="sn-rl-tag">Suggested</span>
+                                                        <?php endif; ?>
+                                                    </span>
+                                                    <span class="sn-rl-preset-desc"><?= htmlspecialchars($rlPreset['desc']) ?></span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+
+                            <div class="sn-rl-stage">
+                                <div class="sn-rl-field"
+                                    id="snRlField"
+                                    data-deep="<?= $rlDefault['deep'] ? '1' : '0' ?>"
+                                    data-trusted="<?= $rlDefault['trusted'] ? '1' : '0' ?>"
+                                    aria-hidden="true">
+                                    <?php foreach ($rlField as $rlRow): ?>
+                                        <?php foreach (str_split($rlRow) as $rlCell): ?>
+                                            <i class="sn-rl-dot"
+                                                data-deep="<?= ($rlCell === 'd' || $rlCell === 'b') ? '1' : '0' ?>"
+                                                data-trusted="<?= ($rlCell === 't' || $rlCell === 'b') ? '1' : '0' ?>"></i>
+                                        <?php endforeach; ?>
+                                    <?php endforeach; ?>
                                 </div>
+                                <p class="sn-rl-caption">Each dot is an article. Lit dots match your lens (illustrative).</p>
+
+                                <p class="sn-rl-summary" id="snRlSummary" aria-live="polite">
+                                    <?= htmlspecialchars($rlDefault['summary']) ?>
+                                </p>
+
+                                <div class="sn-rl-tune" id="snRlTune" role="group" aria-label="Fine-tune your lens" hidden>
+                                    <button type="button" class="sn-rl-switch" role="switch" aria-checked="<?= $rlDefault['deep'] ? 'true' : 'false' ?>" data-switch="deep">
+                                        <span class="sn-rl-switch-track" aria-hidden="true"></span>
+                                        <span class="sn-rl-switch-text">
+                                            <span class="sn-rl-switch-axis">Depth</span>
+                                            <span class="sn-rl-switch-label">Deep dives only</span>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="sn-rl-switch" role="switch" aria-checked="<?= $rlDefault['trusted'] ? 'true' : 'false' ?>" data-switch="trusted">
+                                        <span class="sn-rl-switch-track" aria-hidden="true"></span>
+                                        <span class="sn-rl-switch-text">
+                                            <span class="sn-rl-switch-axis">Source</span>
+                                            <span class="sn-rl-switch-label">High-signal publishers only</span>
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <a class="sn-rl-cta" id="snRlCta" href="<?= htmlspecialchars($rlDefault['href']) ?>" data-loading>
+                                    Open this feed <span aria-hidden="true">→</span>
+                                </a>
                             </div>
                         </div>
 
-                        <!-- High-Signal Publishers -->
-                        <div class="col-md-6 mb-3">
-                            <div class="card h-100 shadow-sm reading-mode-card">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <span class="reading-mode-icon me-2">📡</span>
-                                        <h3 class="h5 mb-0">High-Signal Publishers</h3>
-                                    </div>
-                                    <div class="scroll-article-badges mb-2">
-                                        <a class="scroll-badge scroll-badge-high-signal-publisher" href="/search.php?high_signal=1" title="Top-tier outlets with high editorial signal." data-loading="">
-                                            High-Signal Publisher
-                                        </a>
-                                    </div>
-                                    <p class="text-muted mb-2">
-                                        A curated stream of outlets that consistently publish smart, compelling reporting.
-                                    </p>
-                                    <p class="text-muted italic mb-4">
-                                        Ideal when you want to browse without worrying if an article will be worth your time.
-                                    </p>
-                                    <a href="/search.php?high_signal=1" class="btn btn-sm btn-outline-secondary" data-loading>
-                                        View High-Signal Feed
-                                    </a>
-                                </div>
-                            </div>
+                        <div class="sn-rl-notes">
+                            <details class="sn-rl-note">
+                                <summary>What counts as a deep dive?</summary>
+                                <p>An article that mentions a lot of specific people, places and organizations (32 or more mentions). It's a signal of detailed reporting, not a guarantee of quality.</p>
+                            </details>
+                            <?php if (!empty($rlPublishers)): ?>
+                                <details class="sn-rl-note">
+                                    <summary>Which publishers are high-signal?</summary>
+                                    <p><?= htmlspecialchars(implode(', ', $rlPublishers)) ?>. A curated list of outlets with consistently strong reporting.</p>
+                                </details>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -271,9 +363,9 @@ sn_perf_phase('render');
             ?>
             <section class="container-fluid bg-light-2 py-3 text-center">
                 <div class="sn-categories-strip">
-                    <div class="sn-categories-title">Analyze trends by category</div>
+                    <p class="sn-rl-topic-intro" id="snTopicIntro">Or start with a topic</p>                    <div class="sn-categories-title">Analyze trends by category</div>
 
-                    <div class="sn-categories-pills">
+                    <div class="sn-categories-pills" role="group" aria-labelledby="snTopicIntro">
                         <?php foreach ($categories as $slug => $label):
                             $params = $_GET; // preserve existing params (optional)
                             $params['context'] = 'category';
@@ -425,6 +517,7 @@ sn_perf_phase('render');
 
     <script src="/assets/js/sn_history.js?v=<?= filemtime(BASE_PATH . '/assets/js/sn_history.js') ?>" defer></script>
     <script src="/assets/js/pages/home-timeline.js?v=<?= filemtime(BASE_PATH . '/assets/js/pages/home-timeline.js') ?>" defer></script>
+    <script src="/assets/js/pages/home-reading-lens.js?v=<?= filemtime(BASE_PATH . '/assets/js/pages/home-reading-lens.js') ?>" defer></script>
     <script src="/assets/js/pages/home-news-intel.js?v=<?= filemtime(BASE_PATH . '/assets/js/pages/home-news-intel.js') ?>" defer></script>
 
 

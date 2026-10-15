@@ -1,20 +1,56 @@
 {
-    "fetched_at": 1792039653,
+    "fetched_at": 1792041318,
     "feeds": [
         {
             "name": "NY Post",
             "home": "https://nypost.com",
             "items": [
                 {
+                    "title": "Texas thief steals terminally ill boy’s seizure meds at state fair — hero steps in to cover cost",
+                    "url": "https://nypost.com/2026/10/15/us-news/texas-thief-steals-terminally-ill-boys-seizure-meds-at-state-fair-hero-steps-in-to-cover-cost/",
+                    "ts": 1792040872,
+                    "emo": "📰"
+                },
+                {
                     "title": "US military weighs use of ‘mother of all bombs’ in future strikes on Iran: report",
                     "url": "https://nypost.com/2026/10/15/world-news/us-military-weighs-use-of-mother-of-all-bombs-in-future-strikes-on-iran-report/",
                     "ts": 1792038966,
                     "emo": "🌍"
+                }
+            ]
+        },
+        {
+            "name": "The Guardian",
+            "home": "https://www.theguardian.com",
+            "items": [
+                {
+                    "title": "Poland looks to economic heights in a country transformed since Soviet days",
+                    "url": "https://www.theguardian.com/world/2026/oct/15/poland-economy-heights-transformed-regional-tech-hub",
+                    "ts": 1792040422,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Florida ICU nurse accused of stealing fentanyl from critically ill patient’s IV",
-                    "url": "https://nypost.com/2026/10/15/us-news/florida-icu-nurse-accused-of-stealing-fentanyl-from-critically-ill-patients-iv/",
-                    "ts": 1792038366,
+                    "title": "The global economy is muddling through against the odds. But a storm is coming | Larry Elliott",
+                    "url": "https://www.theguardian.com/commentisfree/2026/oct/15/global-economy-multilateral-cooperation-crisis-imf",
+                    "ts": 1792040422,
+                    "emo": "🌪️"
+                }
+            ]
+        },
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "Woman who 'used sunbeds to compete with her friends for the best tan' dies of skin cancer aged 30",
+                    "url": "https://www.dailymail.com/news/article-16210235/Woman-sunbeds-tan-dies-skin-cancer.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792040015,
+                    "emo": "🧪"
+                },
+                {
+                    "title": "White House Press Secretary Katie Zacharia 'did not pass bar exam' as she battles questions over her resume",
+                    "url": "https://www.dailymail.com/news/article-16210419/White-House-Press-Secretary-Katie-Zacharia-bar-exam-questions-resume.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792036082,
                     "emo": "📰"
                 }
             ]
@@ -92,20 +128,20 @@
             ]
         },
         {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
             "items": [
                 {
-                    "title": "White House Press Secretary Katie Zacharia 'did not pass bar exam' as she battles questions over her resume",
-                    "url": "https://www.dailymail.com/news/article-16210419/White-House-Press-Secretary-Katie-Zacharia-bar-exam-questions-resume.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792036082,
-                    "emo": "📰"
+                    "title": "South Korea's stock rout reveals a double threat to the AI boom",
+                    "url": "https://www.businessinsider.com/kospi-stock-index-price-today-sk-hynix-samsung-stock-selloff-2026-10",
+                    "ts": 1792035337,
+                    "emo": "🧪"
                 },
                 {
-                    "title": "Halle Berry's custody war with ex Olivier Martinez intensifies as it's revealed their 13-year-old son will be allowed to testify amid shocking abuse claims",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16210359/halle-berry-olivier-martinez-son-testify.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792031618,
-                    "emo": "🔥"
+                    "title": "8 states are suing OpenAI, saying ChatGPT harms kids. Here are their demands, from data deletion to halting AI testing.",
+                    "url": "https://www.businessinsider.com/eight-states-sue-openai-saying-chatgpt-harms-children-2026-10",
+                    "ts": 1792028939,
+                    "emo": "🧪"
                 }
             ]
         },
@@ -124,24 +160,6 @@
                     "url": "https://thehill.com/homenews/administration/6149735-trumps-approval-rating-hits-record-low-in-fox-news-poll/",
                     "ts": 1792033270,
                     "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "8 states are suing OpenAI, saying ChatGPT harms kids. Here are their demands, from data deletion to halting AI testing.",
-                    "url": "https://www.businessinsider.com/eight-states-sue-openai-saying-chatgpt-harms-children-2026-10",
-                    "ts": 1792028939,
-                    "emo": "🧪"
-                },
-                {
-                    "title": "Anthropic's quarterly revenue leaps to $16.8 billion as IPO looms",
-                    "url": "https://www.businessinsider.com/anthropic-reveals-16-8b-revenue-amid-ipo-preparations-2026-10",
-                    "ts": 1792021117,
-                    "emo": "📰"
                 }
             ]
         },
@@ -176,7 +194,7 @@
                 {
                     "title": "Katie Zacharia Is Trump’s New Press Secretary. But Is She a Lawyer?",
                     "url": "https://www.nytimes.com/2026/10/14/us/politics/trump-press-secretary-katie-zacharia-lawyer.html",
-                    "ts": 1792035179,
+                    "ts": 1792041169,
                     "emo": "⚖️"
                 }
             ]
@@ -195,24 +213,6 @@
                     "title": "DOJ threatens legal action against California over alleged noncitizen voters",
                     "url": "https://www.nbcnews.com/politics/2026-election/justice-department-threatens-legal-action-california-noncitizens-rcna603536",
                     "ts": 1792003057,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "The Guardian",
-            "home": "https://www.theguardian.com",
-            "items": [
-                {
-                    "title": "Will Trump’s economy sink Republicans in the US midterm elections? Our reporters answer your questions",
-                    "url": "https://www.theguardian.com/community/live/2026/oct/14/us-economy-affordability-midterm-elections-republicans-trump",
-                    "ts": 1792015813,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "The problem with living in a rich man’s world | Letters",
-                    "url": "https://www.theguardian.com/news/2026/oct/14/the-problem-with-living-in-a-rich-mans-world",
-                    "ts": 1791994741,
                     "emo": "📰"
                 }
             ]

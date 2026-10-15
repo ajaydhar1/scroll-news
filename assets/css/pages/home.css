@@ -167,14 +167,6 @@ html[data-ui-theme="dark"] body.home-page #team .team-member .btn.btn-social:foc
     background: #f8f9fa; /* or whatever your light panel bg is */
 }
 
-.reading-mode-card {
-    border-radius: 0.75rem;
-}
-
-.reading-mode-icon {
-    font-size: 1.4rem;
-}
-
 .medium {
     font-size: 18px;
 }
