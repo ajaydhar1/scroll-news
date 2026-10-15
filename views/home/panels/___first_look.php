@@ -75,7 +75,7 @@ if (!$hasCache) {
       <?php // <a class="firstlook-more" href="/first-look.php">See more →</a> 
       ?>
     </div>
-    <div style="color:rgba(255,255,255,.6);font-size:12px;padding:0 4px 6px;">
+    <div style="color:var(--fl-muted, #5d6d68);font-size:12px;padding:0 4px 6px;">
       First Look is building its cache. Refresh in a moment.
     </div>
   </div>
@@ -265,6 +265,247 @@ if (!is_array($feedsData) || count($feedsData) === 0) {
   .firstlook-link {
     flex: 1;
     min-width: 0;
+  }
+</style>
+
+<style>
+  /* First Look redesign: theme tokens + editorial layout (scoped to #first-look to win over legacy rules) */
+  #first-look {
+    --fl-surface: #ffffff;
+    --fl-card: #f8faf9;
+    --fl-card-hover: #ffffff;
+    --fl-border: rgba(23, 60, 53, .12);
+    --fl-hair: rgba(23, 60, 53, .09);
+    --fl-text: #17302b;
+    --fl-muted: #5d6d68;
+    --fl-accent: #067466;
+    --fl-accent-soft: rgba(6, 116, 102, .10);
+    --fl-shadow: 0 5px 18px rgba(18, 39, 34, .07);
+  }
+
+  html[data-ui-theme="dark"] #first-look {
+    --fl-surface: #171d23;
+    --fl-card: #1d252c;
+    --fl-card-hover: #222c34;
+    --fl-border: rgba(255, 255, 255, .10);
+    --fl-hair: rgba(255, 255, 255, .08);
+    --fl-text: #edf2f2;
+    --fl-muted: #9aa8a8;
+    --fl-accent: #4fd8c4;
+    --fl-accent-soft: rgba(79, 216, 196, .12);
+    --fl-shadow: 0 8px 24px rgba(0, 0, 0, .28);
+  }
+
+  #first-look .firstlook-box {
+    margin-top: 0;
+    padding: 1.5rem;
+    border-radius: 14px;
+    border: 1px solid var(--fl-border);
+    background: var(--fl-surface);
+    box-shadow: var(--fl-shadow);
+    color: var(--fl-text);
+  }
+
+  #first-look .firstlook-head {
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+    padding: 0 0 1.1rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--fl-hair);
+  }
+
+  #first-look .firstlook-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -.01em;
+    color: var(--fl-text);
+  }
+
+  #first-look .firstlook-sub {
+    margin-top: .3rem;
+    font-size: .85rem;
+    white-space: normal;
+    color: var(--fl-muted);
+  }
+
+  #first-look .firstlook-more {
+    display: inline-flex;
+    align-items: center;
+    padding: .45rem .95rem;
+    border: 1px solid var(--fl-border);
+    border-radius: 999px;
+    font-size: .85rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--fl-accent);
+    background: transparent;
+    transition: background .15s ease, border-color .15s ease;
+  }
+
+  #first-look .firstlook-more:hover,
+  #first-look .firstlook-more:focus-visible {
+    background: var(--fl-accent-soft);
+    border-color: var(--fl-accent);
+    text-decoration: none;
+  }
+
+  #first-look .firstlook-grid {
+    gap: 1rem;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  @media (min-width: 640px) {
+    #first-look .firstlook-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 901px) {
+    #first-look .firstlook-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1201px) {
+    #first-look .firstlook-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  #first-look .firstlook-col {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--fl-border);
+    border-radius: 12px;
+    background: var(--fl-card);
+    transition: background .15s ease, transform .15s ease;
+  }
+
+  #first-look .firstlook-col:hover {
+    background: var(--fl-card-hover);
+  }
+
+  #first-look .firstlook-colhead {
+    padding: .8rem 1rem;
+    border-bottom: 1px solid var(--fl-hair);
+  }
+
+  #first-look .firstlook-pill {
+    padding: .25rem .7rem;
+    border: 0;
+    background: var(--fl-accent-soft);
+    color: var(--fl-accent);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  #first-look .firstlook-pill:hover {
+    text-decoration: underline;
+  }
+
+  #first-look .firstlook-count {
+    min-width: 1.4rem;
+    padding: .1rem .45rem;
+    border-radius: 999px;
+    text-align: center;
+    font-size: .72rem;
+    font-weight: 600;
+    color: var(--fl-muted);
+    background: var(--fl-hair);
+  }
+
+  #first-look .firstlook-list {
+    flex: 1;
+    gap: 0;
+    padding: 0 1rem;
+  }
+
+  #first-look .firstlook-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "title title" "time act";
+    align-items: center;
+    gap: .55rem .5rem;
+    padding: .9rem 0;
+  }
+
+  #first-look .firstlook-item + .firstlook-item {
+    border-top: 1px solid var(--fl-hair);
+  }
+
+  #first-look .firstlook-item a {
+    grid-area: title;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--fl-text);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  #first-look .firstlook-item a:hover,
+  #first-look .firstlook-item a:focus-visible {
+    color: var(--fl-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  #first-look .firstlook-time {
+    grid-area: time;
+    margin: 0;
+    font-size: .75rem;
+    font-weight: 500;
+    color: var(--fl-muted);
+  }
+
+  #first-look .firstlook-save-btn {
+    grid-area: act;
+    justify-self: end;
+    padding: .2rem .7rem;
+    border: 1px solid var(--fl-border);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--fl-muted);
+    font-size: .75rem;
+    font-weight: 600;
+    transition: color .15s ease, border-color .15s ease, background .15s ease;
+  }
+
+  #first-look .firstlook-save-btn:hover,
+  #first-look .firstlook-save-btn:focus-visible {
+    color: var(--fl-accent);
+    border-color: var(--fl-accent);
+    background: var(--fl-accent-soft);
+  }
+
+  #first-look .firstlook-save-btn.is-saved {
+    color: var(--fl-accent);
+    border-color: var(--fl-accent);
+    background: var(--fl-accent-soft);
+  }
+
+  #first-look .firstlook-foot {
+    margin-top: 1.1rem;
+    padding: .9rem 0 0;
+    border-top: 1px solid var(--fl-hair);
+    color: var(--fl-muted);
+    font-size: .8rem;
+  }
+
+  @media (max-width: 575.98px) {
+    #first-look .firstlook-box {
+      padding: 1rem;
+    }
+
+    #first-look .firstlook-title {
+      font-size: 1.5rem;
+    }
   }
 </style>
 

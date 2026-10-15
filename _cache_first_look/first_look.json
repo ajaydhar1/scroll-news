@@ -1,21 +1,21 @@
 {
-    "fetched_at": 1792073394,
+    "fetched_at": 1792074289,
     "feeds": [
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "'I'm an architect and you're just a dumb air hostess': Drunk female passenger who beat stewardess and called her racist on Virgin flight from Dubai is on the run",
-                    "url": "https://www.dailymail.com/news/article-16211855/drunk-architect-beat-stewardess-racist-Virgin-flight-Dubai.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792073301,
-                    "emo": "📰"
+                    "title": "Man and woman are arrested over arson attack that killed Irish couple and two of their children",
+                    "url": "https://www.dailymail.com/news/article-16212079/Man-woman-arrested-arson-attack-killed-Irish-couple-two-children.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792074223,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "Russell Brand rape trial live: Victim feared she may be pregnant after alleged hotel rape and recalled how comedian was 'lizard-like', court hears",
-                    "url": "https://www.dailymail.com/crime-desk/article-16189165/Russell-Brand-trial-liveblog-latest-updates.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792073293,
-                    "emo": "🔥"
+                    "title": "'I'm an architect and you're just a hostess': Hunt for drunk passenger who assaulted attendant and accused her of racism",
+                    "url": "https://www.dailymail.com/news/article-16211855/drunk-architect-beat-stewardess-racist-Virgin-flight-Dubai.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792074218,
+                    "emo": "📰"
                 }
             ]
         },
@@ -24,16 +24,16 @@
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Powerful storm to slam the Northeast with rain, dangerous winds before first major fall freeze",
-                    "url": "https://nypost.com/2026/10/15/us-news/powerful-storm-to-slam-the-northeast-with-rain-dangerous-winds-before-first-major-fall-freeze/",
-                    "ts": 1792073300,
-                    "emo": "🌪️"
+                    "title": "Trump announces execution of Fort Hood terrorist Nidal Hasan will not be livestreamed",
+                    "url": "https://nypost.com/2026/10/15/us-news/trump-announces-execution-of-evil-fort-hood-shooter-nidal-hasan-will-not-be-livestreamed/",
+                    "ts": 1792074144,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "Novig promo code NYPOST: Deposit $10, get $50 in trade credits for Seahawks vs. Broncos",
-                    "url": "https://nypost.com/2026/10/15/betting/novig-promo-code-nypost-deposit-10-get-50-in-trade-credits-for-seahawks-vs-broncos/",
-                    "ts": 1792073024,
-                    "emo": "📰"
+                    "title": "KJ Biermann asks court to reconsider ruling in sexual battery, sodomy case",
+                    "url": "https://pagesix.com/2026/10/15/celebrity-news/kj-biermann-asks-court-to-reconsider-ruling-in-sexual-battery-sodomy-case/",
+                    "ts": 1792074122,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -44,7 +44,7 @@
                 {
                     "title": "Wall Street drops after jump in US producer inflation; John Healey says UK banks are part of ‘jewel in the crown’ – business live",
                     "url": "https://www.theguardian.com/business/live/2026/oct/15/tech-stock-sell-off-markets-uk-gdp-economy-august-imf-latest-news-updates",
-                    "ts": 1792072991,
+                    "ts": 1792073720,
                     "emo": "🔥"
                 },
                 {
@@ -52,6 +52,24 @@
                     "url": "https://www.theguardian.com/business/2026/oct/15/trump-economy-midterm-elections",
                     "ts": 1792065612,
                     "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "Fox",
+            "home": "https://www.foxnews.com",
+            "items": [
+                {
+                    "title": "Midair scare as cracked window forces emergency diversion back to airport",
+                    "url": "https://www.foxnews.com/travel/midair-scare-cracked-window-forces-emergency-diversion-back-airport",
+                    "ts": 1792073601,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Fox News ‘Antisemitism Exposed’ Newsletter: Israel haters admit what they really want",
+                    "url": "https://www.foxnews.com/us/fox-news-antisemitism-exposed-newsletter-israel-haters-admit-what-really-want",
+                    "ts": 1792072830,
+                    "emo": "🌍"
                 }
             ]
         },
@@ -70,24 +88,6 @@
                     "url": "https://www.nytimes.com/2026/10/15/world/europe/russia-ukraine-winter-energy.html",
                     "ts": 1792071952,
                     "emo": "🌍"
-                }
-            ]
-        },
-        {
-            "name": "Fox",
-            "home": "https://www.foxnews.com",
-            "items": [
-                {
-                    "title": "Fox News ‘Antisemitism Exposed’ Newsletter: Israel haters admit what they really want",
-                    "url": "https://www.foxnews.com/us/fox-news-antisemitism-exposed-newsletter-israel-haters-admit-what-really-want",
-                    "ts": 1792072830,
-                    "emo": "🌍"
-                },
-                {
-                    "title": "Collins insists socialist rival won't beat her as Maine's money machine: 'You'll lose big time'",
-                    "url": "https://www.foxnews.com/politics/collins-insists-socialist-rival-wont-beat-her-maines-money-machine-youll-lose-big-time",
-                    "ts": 1792072120,
-                    "emo": "📰"
                 }
             ]
         },
@@ -140,7 +140,7 @@
                 {
                     "title": "U.S. reportedly considers use of 'mother of all bombs' as Iran vows to fight on",
                     "url": "https://www.cnbc.com/2026/10/15/us-iran-war-trump-hormuz.html",
-                    "ts": 1792072859,
+                    "ts": 1792073966,
                     "emo": "🌍"
                 }
             ]
