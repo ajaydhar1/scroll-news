@@ -1,39 +1,21 @@
 {
-    "fetched_at": 1792044221,
+    "fetched_at": 1792046734,
     "feeds": [
-        {
-            "name": "The Guardian",
-            "home": "https://www.theguardian.com",
-            "items": [
-                {
-                    "title": "Tech stock sell-off intensifies as markets fret about AI; UK growth beats forecasts in August – business live",
-                    "url": "https://www.theguardian.com/business/live/2026/oct/15/tech-stock-sell-off-markets-uk-gdp-economy-august-imf-latest-news-updates",
-                    "ts": 1792044193,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Poland looks to economic heights in a country transformed since Soviet days",
-                    "url": "https://www.theguardian.com/world/2026/oct/15/poland-economy-heights-transformed-regional-tech-hub",
-                    "ts": 1792043772,
-                    "emo": "📰"
-                }
-            ]
-        },
         {
             "name": "Daily Mail",
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Emily Atack and Mathew Horne share a passionate kiss in star-studded Debenhams Christmas advert with appearances from Kym Marsh and Gabrielle",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16208873/Emily-Atack-Mathew-Horne-passionate-kiss-star-studded-Debenhams-Christmas-advert.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792044156,
+                    "title": "Russell Brand trial RECAP: Star made his friends leave in a rush after he 'got laid' at Labour Conference and told them 'things got a bit heated and out of hand' and he 'maybe did go a little bit too far', rape trial hears",
+                    "url": "https://www.dailymail.com/crime-desk/article-16189165/Russell-Brand-trial-liveblog-latest-updates.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792046599,
                     "emo": "📰"
                 },
                 {
-                    "title": "Zelensky accuses Trump of 'betrayal' as Musk points the finger at US President for satellite 'sabotage'",
-                    "url": "https://www.dailymail.com/news/article-16210061/Zelensky-accuses-Trump-betrayal-Musk-US-President-satellite.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792043984,
-                    "emo": "⚖️"
+                    "title": "Woman in her 30s 'is raped in GP surgery car park': Four men are arrested",
+                    "url": "https://www.dailymail.com/news/article-16209529/Woman-30s-raped-GP-surgery-Four-arrested.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792046506,
+                    "emo": "📰"
                 }
             ]
         },
@@ -42,15 +24,33 @@
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Trump torches Democrats at Arizona rally, warns they will ‘destroy our country’ ahead of midterms",
-                    "url": "https://nypost.com/2026/10/15/us-news/trump-torches-democrats-at-arizona-rally-warns-they-will-destroy-our-country-ahead-of-midterms/",
-                    "ts": 1792042979,
-                    "emo": "⚖️"
+                    "title": "Cops investigating death of 5-year-old NYC girl  after responding to 911 call for assault",
+                    "url": "https://nypost.com/2026/10/15/us-news/5-year-old-girl-dies-in-nyc-after-cops-respond-to-911-assault-call/",
+                    "ts": 1792045978,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Texas thief steals terminally ill boy’s seizure meds at state fair — hero steps in to cover cost",
-                    "url": "https://nypost.com/2026/10/15/us-news/texas-thief-steals-terminally-ill-boys-seizure-meds-at-state-fair-hero-steps-in-to-cover-cost/",
-                    "ts": 1792040872,
+                    "title": "Coach goes viral for awkward interview as he fails to look at glamorous reporter",
+                    "url": "https://nypost.com/2026/10/15/sports/czech-soccer-coach-david-oulehla-goes-viral-for-awkward-interview-as-he-fails-to-look-at-glamorous-reporter-sabina-jaksova/",
+                    "ts": 1792045890,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Guardian",
+            "home": "https://www.theguardian.com",
+            "items": [
+                {
+                    "title": "Tech stock sell-off intensifies as markets fret about AI; UK growth beats forecasts in August – business live",
+                    "url": "https://www.theguardian.com/business/live/2026/oct/15/tech-stock-sell-off-markets-uk-gdp-economy-august-imf-latest-news-updates",
+                    "ts": 1792045836,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "UK economy unexpectedly grows 0.1% in August despite fall in consumer spending",
+                    "url": "https://www.theguardian.com/business/2026/oct/15/uk-economy-unexpectedly-grows-01-in-august-despite-fuel-hit-to-household-budgets",
+                    "ts": 1792044317,
                     "emo": "📰"
                 }
             ]
@@ -61,7 +61,7 @@
             "items": [
                 {
                     "title": "Pentagon sends hundreds of Army troops to Latin America for training as drug-trafficking campaign expands",
-                    "url": "https://www.foxnews.com/world/pentagon-sends-hundreds-army-troops-latin-america-training-drug-trafficking-campaign-expands",
+                    "url": "https://www.foxnews.com/politics/pentagon-sends-hundreds-army-troops-latin-america-training-drug-trafficking-campaign-expands",
                     "ts": 1792041612,
                     "emo": "📰"
                 },

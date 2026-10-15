@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
                 <!-- Portfolio item 6-->
                 <div class="portfolio-item">
                     <a href="/news-trails.php" data-loading>
@@ -87,6 +87,18 @@
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">News Trails</div>
                         <!--<div class="portfolio-caption-subheading text-muted">Photography</div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+                <!-- Portfolio item 8-->
+                <div class="portfolio-item">
+                    <a href="/timeline.php" data-loading>
+                        <img class="img-fluid" src="assets/img/portfolio/coverage-timelines.jpg" width="600" height="450" loading="lazy" decoding="async" alt="Screenshot of the Greenland Coverage Timeline showing the chronological chapter rail and editorial chapters"/>
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">Coverage Timelines</div>
+                        <!--<div class="portfolio-caption-subheading text-muted small mt-1">Explore how major news stories unfold over time.</div>-->
                     </div>
                 </div>
             </div>
