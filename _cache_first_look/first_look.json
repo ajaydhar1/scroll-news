@@ -1,5 +1,5 @@
 {
-    "fetched_at": 1792151380,
+    "fetched_at": 1792163181,
     "feeds": [
         {
             "name": "Fox",
@@ -12,9 +12,27 @@
                     "emo": "🌍"
                 },
                 {
-                    "title": "You're probably cooking rice wrong, and chefs reveal the simple mistake to avoid",
-                    "url": "https://www.foxnews.com/food-drink/youre-probably-cooking-rice-wrong-chefs-reveal-simple-mistake-avoid",
-                    "ts": 1792150207,
+                    "title": "I lost half my right lung to cancer. Pope Leo's diagnosis gives me hope",
+                    "url": "https://www.foxnews.com/opinion/lost-half-right-lung-cancer-pope-leo-diagnosis-gives-hope",
+                    "ts": 1792170046,
+                    "emo": "🧪"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "Father of three stabbed to death while getting snacks for kids waiting at park",
+                    "url": "https://nypost.com/2026/10/16/us-news/father-of-three-stabbed-to-death-while-getting-snacks-for-kids-waiting-at-park/",
+                    "ts": 1792163160,
+                    "emo": "📰"
+                },
+                {
+                    "title": "49ers reporter Grant Cohn shreds San Francisco writer David Lombardi in wild rant: ‘Hugging the players!’",
+                    "url": "https://nypost.com/2026/10/16/sports/49ers-reporter-grant-cohn-shreds-david-lombardi-for-hugging-the-players/",
+                    "ts": 1792163129,
                     "emo": "📰"
                 }
             ]
@@ -24,15 +42,105 @@
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Russell Brand tried to pull me into toilets with 'a wild look in his eye', woman tells court: live updates",
-                    "url": "https://www.dailymail.com/crime-desk/article-16189165/Russell-Brand-trial-liveblog-latest-updates.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792151289,
-                    "emo": "🔥"
+                    "title": "Katie Zacharia throws Trump under the bus in stunning response about her legal qualifications amid fake 'attorney' outrage",
+                    "url": "https://www.dailymail.com/news/article-16214785/katie-zacharia-trump-response-legal-qualifications.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792163089,
+                    "emo": "⚖️"
                 },
                 {
-                    "title": "Anyone for seabass and chips? Scientists urge Brits to replace classic cod, haddock and hake with more sustainable alternatives",
-                    "url": "https://www.dailymail.com/sciencetech/article-16214189/seabass-chips-Scientists-Brits-replace-classic-cod.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792151261,
+                    "title": "Are days already numbered for Katie Zacharia? Trump's new press secretary is put through brutal interview by his Fox News favourite",
+                    "url": "https://www.dailymail.com/news/article-16214059/Are-days-numbered-Katie-Zacharia-Trumps-new-press-secretary-brutal-interview-Fox-News-favourite.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792163052,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "I’m 64 with two sons, but only one works in the family firm. Should I leave him 70% of the business?",
+                    "url": "https://www.marketwatch.com/story/im-64-years-old-with-two-sons-but-only-one-works-in-the-family-firm-should-i-leave-him-70-of-the-business-2fe6c382?mod=mw_rss_topstories",
+                    "ts": 1792162800,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Retiring abroad? Don’t cut these financial ties to the U.S.",
+                    "url": "https://www.marketwatch.com/story/retiring-abroad-dont-cut-these-financial-ties-to-the-u-s-5e7e4fc2?mod=mw_rss_topstories",
+                    "ts": 1792162800,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BBC",
+            "home": "https://www.bbc.com/news",
+            "items": [
+                {
+                    "title": "Zelensky says Ukraine has right to defend itself after Trump calls refinery strikes a 'disgrace'",
+                    "url": "https://www.bbc.co.uk/news/articles/c58jz174w89ro?at_medium=RSS&at_campaign=rss",
+                    "ts": 1792161851,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Norwegian teen 'hitman' detained for UK murder plot",
+                    "url": "https://www.bbc.co.uk/news/articles/cw8rzpl1ldkdo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1792158201,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Bolton: Zelensky lecturing Trump won't end well",
+                    "url": "https://thehill.com/policy/international/6153675-bolton-criticizes-zelensky-trump/",
+                    "ts": 1792161356,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Warsh offers no fresh signals on interest rates",
+                    "url": "https://thehill.com/business/6153621-fed-kevin-warsh-interest-rate-forecast/",
+                    "ts": 1792161112,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Tesla unveils long-delayed Roadster developed with SpaceX, fueling merger speculation",
+                    "url": "https://www.cnbc.com/2026/10/15/tesla-roadster-reveal-what-to-know-about-the-delayed-ev.html",
+                    "ts": 1792158292,
+                    "emo": "📰"
+                },
+                {
+                    "title": "OpenAI Saudi national bugging case shows threat to U.S. leadership in AI: DNI Clayton",
+                    "url": "https://www.cnbc.com/2026/10/16/ai-espionage-openai-jay-clayton.html",
+                    "ts": 1792162894,
+                    "emo": "🧪"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "As a Texas local, I skip the crowds in Austin and head west to a charming nearby city with amazing wineries",
+                    "url": "https://www.businessinsider.com/texas-favorite-small-city-to-visit-fredericksburg-local-recommendations-2026-10",
+                    "ts": 1792157867,
+                    "emo": "📰"
+                },
+                {
+                    "title": "I'm not scared of aging. I'm having more fun in my 60s than I did in my 20s.",
+                    "url": "https://www.businessinsider.com/having-more-fun-as-i-get-older-2026-10",
+                    "ts": 1792157659,
                     "emo": "📰"
                 }
             ]
@@ -44,68 +152,14 @@
                 {
                     "title": "BLOODBATH AT OREGON ELEMENTARY SCHOOL...",
                     "url": "https://www.cbsnews.com/live-updates/oregon-silver-rail-elementary-shooting-bend/",
-                    "ts": 1792151016,
+                    "ts": 1792155516,
                     "emo": "📰"
                 },
                 {
                     "title": "5 DEAD...",
                     "url": "https://apnews.com/b0642ec5cd3da0db24227a2798e2c6ce",
-                    "ts": 1792151016,
+                    "ts": 1792155516,
                     "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "The system failed Jane Doe. Congress can fix it.",
-                    "url": "https://thehill.com/opinion/criminal-justice/6152924-cornell-sexual-assault-outrage/",
-                    "ts": 1792150200,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Vance and Ocasio-Cortez face off in Michigan, previewing possible 2028 match-up",
-                    "url": "https://thehill.com/newsletters/morning-report/6153128-jd-vance-alexandria-ocasio-cortez-michigan-face-up-2028-preview-midterms-trump-defense-guilfoyle/",
-                    "ts": 1792148864,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "‘It’s a wait-and-see situation’: I’m 63 and diagnosed with lymphoma. Should I take my Social Security next year?",
-                    "url": "https://www.marketwatch.com/story/its-a-wait-and-see-situation-im-63-and-diagnosed-with-lymphoma-should-i-take-my-social-security-next-year-ea88b419?mod=mw_rss_topstories",
-                    "ts": 1792150200,
-                    "emo": "📰"
-                },
-                {
-                    "title": "My wife says we can’t afford to retire. I vetoed her $8,000 trip to Italy. We’re in our 60s and have $4 million. Do I keep working?",
-                    "url": "https://www.marketwatch.com/story/my-wife-says-we-cant-afford-to-retire-we-have-4-million-do-i-just-keep-working-f1b6b085?mod=mw_rss_topstories",
-                    "ts": 1792149300,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "Jennifer Meyer speaks out on ex-husband Tobey Maguire officiating her wedding to Geoffrey Ogunlesi",
-                    "url": "https://pagesix.com/2026/10/16/celebrity-news/jennifer-meyer-speaks-out-on-ex-husband-tobey-maguire-officiating-her-wedding-to-geoffrey-ogunlesi/",
-                    "ts": 1792149348,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Jennifer Meyer speaks out on ex-husband Tobey Maguire officiating her wedding to Geoffrey Ogunlesi",
-                    "url": "https://pagesix.com/2026/10/16/celebrity-news/jennifer-meyer-speaks-out-on-ex-husband-tobey-maguire-officiating-her-wedding-to-geoffrey-ogunlesi/",
-                    "ts": 1792149348,
-                    "emo": "📰"
                 }
             ]
         },
@@ -120,64 +174,10 @@
                     "emo": "📰"
                 },
                 {
-                    "title": "‘This is a horrible day’: Oregon Gov. Kotek offers support to Bend community following shooting",
-                    "url": "https://www.nbcnews.com/now/video/oregon-gov-kotek-offers-support-to-bend-community-following-shooting-271666245989",
-                    "ts": 1792112221,
+                    "title": "Oregon police say four victims dead, including three children, in school shooting",
+                    "url": "https://www.nbcnews.com/video/oregon-police-say-four-victims-dead-including-three-children-in-school-shooting-271665733617",
+                    "ts": 1792111336,
                     "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "The world reacts to Elon Musk’s flying car",
-                    "url": "https://www.businessinsider.com/reactions-elon-musk-roadster-flying-car-2026-10",
-                    "ts": 1792148467,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Microsoft president warns Trump's immigration crackdown could drive top AI talent abroad",
-                    "url": "https://www.businessinsider.com/microsoft-president-pushes-back-trump-immigration-crackdown-ai-talent-visas-2026-10",
-                    "ts": 1792147602,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "BBC",
-            "home": "https://www.bbc.com/news",
-            "items": [
-                {
-                    "title": "British father fined for causing his two-year-old son's death in Cyprus hotel fall",
-                    "url": "https://www.bbc.co.uk/news/articles/cvj6j1klez88o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1792146536,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Israeli settlers attack Palestinians in West Bank during olive harvest",
-                    "url": "https://www.bbc.co.uk/news/videos/cqn06zx2r15jo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1792150841,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Trump says he won't use nuclear weapons or send ground troops to Iran",
-                    "url": "https://www.cnbc.com/2026/10/16/us-iran-war-trump-hormuz.html",
-                    "ts": 1792144014,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Fed's Warsh withholds rate signal, praises recent global tightening with 'no free riders'",
-                    "url": "https://www.cnbc.com/2026/10/16/feds-warsh-says-ai-development-path-will-be-very-bumpy-.html",
-                    "ts": 1792148210,
-                    "emo": "💰"
                 }
             ]
         },
@@ -192,10 +192,10 @@
                     "emo": "📰"
                 },
                 {
-                    "title": "Elon Musk Spends Heavily to Back Ken Paxton’s Senate Bid in Texas",
-                    "url": "https://www.nytimes.com/2026/10/16/us/politics/elon-musk-ken-paxton-texas-senate-race.html",
-                    "ts": 1792126277,
-                    "emo": "⚖️"
+                    "title": "A.I.-Generated Ads Flood the Midterms, and Teenager Kills 4 at Oregon Elementary School",
+                    "url": "https://www.nytimes.com/2026/10/16/podcasts/the-headlines/ai-ads-midterms-oregon-elementary-school-shooting.html",
+                    "ts": 1792144807,
+                    "emo": "🌪️"
                 }
             ]
         },
@@ -212,7 +212,7 @@
                 {
                     "title": "IMF suggests UK should cut spending rather than raise taxes on banks, as Healey prepares budget raid – business live",
                     "url": "https://www.theguardian.com/business/live/2026/oct/16/john-healey-set-to-raise-bank-taxes-shares-profits-stock-markets-imf-latest-news-updates",
-                    "ts": 1792150271,
+                    "ts": 1792162410,
                     "emo": "🔥"
                 }
             ]

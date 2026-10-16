@@ -556,6 +556,15 @@ a.nlp-chip.nlp-chip-frame:hover {
   font-size: 14px;
 }
 
+/* Modal surface is light in both themes; beats mindpour.css's near-white .text-muted */
+#browseNewsModal #browseShuffleStatus.text-muted {
+  color: #495057 !important;
+}
+
+#browseNewsModal #browseShuffleStatus.text-danger {
+  color: #b02a37 !important;
+}
+
 .card-img-top.news-modal {
   height: 230px;
   object-fit: cover;
