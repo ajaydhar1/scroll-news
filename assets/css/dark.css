@@ -233,6 +233,15 @@ html[data-ui-theme="dark"] #browseNewsModal .card-text.text-muted {
     color: #6c757d !important;
 }
 
+/* Shuffle status sits on the light modal surface; keep it readable in dark theme */
+html[data-ui-theme="dark"] #browseNewsModal #browseShuffleStatus.text-muted {
+    color: #495057 !important;
+}
+
+html[data-ui-theme="dark"] #browseNewsModal #browseShuffleStatus.text-danger {
+    color: #b02a37 !important;
+}
+
 /* ==== SHARED DARK SURFACE SYSTEM (charcoal canvas, solid cards) — delete this block to revert ==== */
 html[data-ui-theme="dark"] {
     --sn-canvas: #1f2328;

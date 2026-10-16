@@ -1,147 +1,39 @@
 {
-    "fetched_at": 1792074289,
+    "fetched_at": 1792149285,
     "feeds": [
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Man and woman are arrested over arson attack that killed Irish couple and two of their children",
-                    "url": "https://www.dailymail.com/news/article-16212079/Man-woman-arrested-arson-attack-killed-Irish-couple-two-children.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792074223,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "'I'm an architect and you're just a hostess': Hunt for drunk passenger who assaulted attendant and accused her of racism",
-                    "url": "https://www.dailymail.com/news/article-16211855/drunk-architect-beat-stewardess-racist-Virgin-flight-Dubai.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792074218,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "Trump announces execution of Fort Hood terrorist Nidal Hasan will not be livestreamed",
-                    "url": "https://nypost.com/2026/10/15/us-news/trump-announces-execution-of-evil-fort-hood-shooter-nidal-hasan-will-not-be-livestreamed/",
-                    "ts": 1792074144,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "KJ Biermann asks court to reconsider ruling in sexual battery, sodomy case",
-                    "url": "https://pagesix.com/2026/10/15/celebrity-news/kj-biermann-asks-court-to-reconsider-ruling-in-sexual-battery-sodomy-case/",
-                    "ts": 1792074122,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "The Guardian",
-            "home": "https://www.theguardian.com",
-            "items": [
-                {
-                    "title": "Wall Street drops after jump in US producer inflation; John Healey says UK banks are part of ‘jewel in the crown’ – business live",
-                    "url": "https://www.theguardian.com/business/live/2026/oct/15/tech-stock-sell-off-markets-uk-gdp-economy-august-imf-latest-news-updates",
-                    "ts": 1792073720,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Bad news for Trump ahead of the midterms: it’s still the economy, stupid",
-                    "url": "https://www.theguardian.com/business/2026/oct/15/trump-economy-midterm-elections",
-                    "ts": 1792065612,
-                    "emo": "⚖️"
-                }
-            ]
-        },
         {
             "name": "Fox",
             "home": "https://www.foxnews.com",
             "items": [
                 {
-                    "title": "Midair scare as cracked window forces emergency diversion back to airport",
-                    "url": "https://www.foxnews.com/travel/midair-scare-cracked-window-forces-emergency-diversion-back-airport",
-                    "ts": 1792073601,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Fox News ‘Antisemitism Exposed’ Newsletter: Israel haters admit what they really want",
-                    "url": "https://www.foxnews.com/us/fox-news-antisemitism-exposed-newsletter-israel-haters-admit-what-really-want",
-                    "ts": 1792072830,
+                    "title": "Jerry Seinfeld turns tables on radical anti-Israel agitators after chaotic Chicago stunt backfires",
+                    "url": "https://www.foxnews.com/media/jerry-seinfeld-turns-tables-radical-anti-israel-agitators-chaotic-chicago-stunt-backfires",
+                    "ts": 1792231248,
                     "emo": "🌍"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Zelensky Says Ukraine Will Resume Russian Refinery Strikes, Defying Trump",
-                    "url": "https://www.nytimes.com/2026/10/15/world/europe/ukraine-russia-oil-strikes-zelensky-us-intelligence.html",
-                    "ts": 1792072978,
-                    "emo": "⚖️"
                 },
                 {
-                    "title": "Why Russia Sees a Window to Bomb Ukraine Into Submission This Winter",
-                    "url": "https://www.nytimes.com/2026/10/15/world/europe/russia-ukraine-winter-energy.html",
-                    "ts": 1792071952,
-                    "emo": "🌍"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "United finally made it easier to see if your flight has Starlink",
-                    "url": "https://www.businessinsider.com/united-airlines-starlink-check-if-flight-has-wifi-2026-10",
-                    "ts": 1792072568,
-                    "emo": "📰"
-                },
-                {
-                    "title": "I grew up in Paris. Here are 12 of the biggest mistakes I see tourists make when they visit.",
-                    "url": "https://www.businessinsider.com/paris-things-you-should-never-do-local-tips-mistakes-2026-10",
-                    "ts": 1792072253,
+                    "title": "JONATHAN TURLEY: Sherrod Brown's pledge turns advice and consent into a punchline",
+                    "url": "https://www.foxnews.com/opinion/jonathan-turley-browns-pledge-turns-advice-consent-punchline",
+                    "ts": 1792148442,
                     "emo": "📰"
                 }
             ]
         },
         {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Micron, Nvidia and other chip stocks face renewed pressure as AI fears swell",
-                    "url": "https://www.marketwatch.com/story/micron-nvidia-and-other-chip-stocks-face-renewed-pressure-as-ai-fears-swell-4e0dc989?mod=mw_rss_topstories",
-                    "ts": 1792072080,
-                    "emo": "💰"
+                    "title": "Tiger seen for first time since mauling man to death: Dozens of visitors queue to see Altai in his enclosure as zoo reopens to the public days after attack",
+                    "url": "https://www.dailymail.com/news/article-16214165/Altai-tiger-man-mauled-death-zoo-reopens.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792149034,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "My wife says we can’t afford to retire. I vetoed her $8,000 trip to Italy. We’re in our 60s and have $4 million. Do I keep working?",
-                    "url": "https://www.marketwatch.com/story/my-wife-says-we-cant-afford-to-retire-we-have-4-million-do-i-just-keep-working-f1b6b085?mod=mw_rss_topstories",
-                    "ts": 1792070160,
+                    "title": "Paul Bettany reveals he hasn't spoken to Johnny Depp since being dragged into the Amber Heard trial when their text exchange about 'burning and drowning' the actress was read out",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16213939/Paul-Bettany-reveals-spoken-Johnny-Depp-dragged-Amber-Heard-trial-graphic-text-exchange-read-out.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792148987,
                     "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Wholesale prices jumped 6.3% annually in September, biggest gain since 2022",
-                    "url": "https://www.cnbc.com/2026/10/15/september-producer-price-index-retail-sales-data.html",
-                    "ts": 1792071996,
-                    "emo": "📰"
-                },
-                {
-                    "title": "U.S. reportedly considers use of 'mother of all bombs' as Iran vows to fight on",
-                    "url": "https://www.cnbc.com/2026/10/15/us-iran-war-trump-hormuz.html",
-                    "ts": 1792073966,
-                    "emo": "🌍"
                 }
             ]
         },
@@ -150,15 +42,69 @@
             "home": "https://thehill.com",
             "items": [
                 {
-                    "title": "Judge extends block on taxpayer-funded Trump ads until after midterms",
-                    "url": "https://thehill.com/regulation/court-battles/6150263-donald-trump-taxpayer-funded-ads-block-extended/",
-                    "ts": 1792071881,
-                    "emo": "⚖️"
+                    "title": "Vance and Ocasio-Cortez face off in Michigan, previewing possible 2028 match-up",
+                    "url": "https://thehill.com/newsletters/morning-report/6153128-jd-vance-alexandria-ocasio-cortez-michigan-face-up-2028-preview-midterms-trump-defense-guilfoyle/",
+                    "ts": 1792148864,
+                    "emo": "📰"
                 },
                 {
-                    "title": "ICE rejects push for automatically activated body cameras",
-                    "url": "https://thehill.com/homenews/administration/6150219-ice-rejects-automated-camera-activation/",
-                    "ts": 1792071177,
+                    "title": "'President Bezos' — primed to save America in 2028?",
+                    "url": "https://thehill.com/opinion/6152050-make-america-amazon-campaign/",
+                    "ts": 1792148400,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "The world reacts to Elon Musk’s flying car",
+                    "url": "https://www.businessinsider.com/reactions-elon-musk-roadster-flying-car-2026-10",
+                    "ts": 1792148467,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Microsoft president warns Trump's immigration crackdown could drive top AI talent abroad",
+                    "url": "https://www.businessinsider.com/microsoft-president-pushes-back-trump-immigration-crackdown-ai-talent-visas-2026-10",
+                    "ts": 1792147602,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "Can a $55,000-plus robot load the dishwasher? Inside my afternoon with two humanoid housekeepers.",
+                    "url": "https://www.marketwatch.com/story/can-a-55-000-plus-robot-load-the-dishwasher-inside-my-afternoon-with-two-humanoid-housekeepers-0a9569ab?mod=mw_rss_topstories",
+                    "ts": 1792148400,
+                    "emo": "🧪"
+                },
+                {
+                    "title": "Nearly 40% of the S&P 500 is in a bear market. Here are 10 of those stocks that analysts say can gain up to 81%.",
+                    "url": "https://www.marketwatch.com/story/nearly-40-of-the-s-p-500-is-in-a-bear-market-here-are-10-of-those-stocks-that-analysts-say-can-gain-up-to-81-93a51af6?mod=mw_rss_topstories",
+                    "ts": 1792148160,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "What’s David Zaslav up now after WBD sale? It’s the latest parlor game in media circles",
+                    "url": "https://nypost.com/2026/10/16/media/whats-david-zaslav-up-to-now-its-the-latest-parlor-game-in-media-circles/",
+                    "ts": 1792148400,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Don’t hibernate just yet!  NYC’s fall street fairs are back — here’s where to find them",
+                    "url": "https://nypost.com/2026/10/16/lifestyle/10-nyc-fall-street-fairs-to-visit-in-october-and-november/",
+                    "ts": 1792148400,
                     "emo": "📰"
                 }
             ]
@@ -168,15 +114,15 @@
             "home": "https://www.bbc.com/news",
             "items": [
                 {
-                    "title": "Former DUP leader Donaldson sentenced to 15 years in prison for child sex abuse",
-                    "url": "https://www.bbc.co.uk/news/articles/cwdr8grnykrlo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1792070006,
+                    "title": "British father fined for causing his two-year-old son's death in Cyprus hotel fall",
+                    "url": "https://www.bbc.co.uk/news/articles/cvj6j1klez88o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1792146536,
                     "emo": "📰"
                 },
                 {
-                    "title": "Man killed by tiger climbed two fences before suffering multiple injuries, inquest hears",
-                    "url": "https://www.bbc.co.uk/news/articles/cxr5y83v1eldo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1792068322,
+                    "title": "Children aged 5, 8 and 11 killed in US school shooting before suspect shot by bystander",
+                    "url": "https://www.bbc.co.uk/news/articles/cm89zp48k4kzo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1792147010,
                     "emo": "🔥"
                 }
             ]
@@ -186,16 +132,70 @@
             "home": "https://drudgereport.com",
             "items": [
                 {
-                    "title": "AI MEDDLING WITH OUR MEMORIES...",
-                    "url": "https://www.washingtonpost.com/health/2026/10/15/scientists-are-finding-ai-may-make-us-remember-things-that-never-happened/",
-                    "ts": 1792068756,
-                    "emo": "🧪"
+                    "title": "BLOODBATH AT OREGON ELEMENTARY SCHOOL...",
+                    "url": "https://www.cbsnews.com/live-updates/oregon-silver-rail-elementary-shooting-bend/",
+                    "ts": 1792144896,
+                    "emo": "📰"
                 },
                 {
-                    "title": "RECALLING THINGS THAT NEVER HAPPENED...",
-                    "url": "https://www.washingtonpost.com/health/2026/10/15/scientists-are-finding-ai-may-make-us-remember-things-that-never-happened/",
-                    "ts": 1792068756,
+                    "title": "5 DEAD...",
+                    "url": "https://apnews.com/b0642ec5cd3da0db24227a2798e2c6ce",
+                    "ts": 1792144896,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Trump says he won't use nuclear weapons or send ground troops to Iran",
+                    "url": "https://www.cnbc.com/2026/10/16/us-iran-war-trump-hormuz.html",
+                    "ts": 1792144014,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Fed's Warsh withholds rate signal, praises recent global tightening with 'no free riders'",
+                    "url": "https://www.cnbc.com/2026/10/16/feds-warsh-says-ai-development-path-will-be-very-bumpy-.html",
+                    "ts": 1792148210,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Avalanche of G.O.P. Cash Keeps the Party Competitive Despite Its Problems",
+                    "url": "https://www.nytimes.com/2026/10/16/us/avalanche-of-gop-cash-keeps-the-party-competitive-despite-its-problems.html",
+                    "ts": 1792141357,
                     "emo": "📰"
+                },
+                {
+                    "title": "Elon Musk Spends Heavily to Back Ken Paxton’s Senate Bid in Texas",
+                    "url": "https://www.nytimes.com/2026/10/16/us/politics/elon-musk-ken-paxton-texas-senate-race.html",
+                    "ts": 1792126277,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "The Guardian",
+            "home": "https://www.theguardian.com",
+            "items": [
+                {
+                    "title": "Repairing Brexit economic damage should be Burnham’s top priority, business chief says",
+                    "url": "https://www.theguardian.com/business/2026/oct/16/brexit-economic-damage-andy-burnham-uk-business-eu-trading-relationship",
+                    "ts": 1792126851,
+                    "emo": "📰"
+                },
+                {
+                    "title": "IMF suggests UK should cut spending rather than raise taxes on banks, as Healey prepares budget raid – business live",
+                    "url": "https://www.theguardian.com/business/live/2026/oct/16/john-healey-set-to-raise-bank-taxes-shares-profits-stock-markets-imf-latest-news-updates",
+                    "ts": 1792148844,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -204,16 +204,16 @@
             "home": "https://www.nbcnews.com",
             "items": [
                 {
-                    "title": "Ukraine Blames Elon Musk for Internet Outage Amid Russian Strike",
-                    "url": "https://www.today.com/video/musk-suggests-trump-is-behind-internet-outage-in-ukraine-271612997848",
-                    "ts": 1792063654,
-                    "emo": "🌍"
+                    "title": "Oregon police say four victims dead, including three children, in school shooting",
+                    "url": "https://www.nbcnews.com/video/oregon-police-say-four-victims-dead-including-three-children-in-school-shooting-271665733617",
+                    "ts": 1792111336,
+                    "emo": "🔥"
                 },
                 {
-                    "title": "Inside Michigan’s critical midterm Senate battle",
-                    "url": "https://www.nbcnews.com/nightly-news/video/inside-michigan-s-critical-midterm-senate-battle-271594053925",
-                    "ts": 1792019625,
-                    "emo": "⚖️"
+                    "title": "‘This is a horrible day’: Oregon Gov. Kotek offers support to Bend community following shooting",
+                    "url": "https://www.nbcnews.com/now/video/oregon-gov-kotek-offers-support-to-bend-community-following-shooting-271666245989",
+                    "ts": 1792112221,
+                    "emo": "🔥"
                 }
             ]
         }
