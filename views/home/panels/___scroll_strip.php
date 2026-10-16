@@ -13,6 +13,7 @@ try {
     // Pull recent articles + NLP
     $sql = "
         SELECT 
+            id,
             url,
             title,
             description,
@@ -30,12 +31,52 @@ try {
             AND jsonb_array_length(nlp->'entities') > 0
             AND deleted_at IS NULL
         ORDER BY pub_date DESC
-        LIMIT 12
+        LIMIT 60
     ";
 
     $stmt = $db->prepare($sql);
     $stmt->execute();
-    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $allRows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // The articles table can hold several rows for the same URL, so dedupe
+    // (by id and normalized URL) before taking the 12 newest unique stories.
+    $normalizeUrl = static function (string $url): string {
+        $url = trim($url);
+        $p = parse_url($url);
+        if (!$p || empty($p['host'])) {
+            return $url === '' ? '' : strtolower($url);
+        }
+        $host = preg_replace('/^www\./', '', strtolower($p['host']));
+        $path = rtrim($p['path'] ?? '', '/');
+        // Only strip known tracking params; every other query pair is kept verbatim.
+        $pairs = [];
+        foreach (explode('&', (string)($p['query'] ?? '')) as $pair) {
+            if ($pair === '') continue;
+            $name = strtolower(urldecode(explode('=', $pair, 2)[0]));
+            if (strpos($name, 'utm_') === 0 || $name === 'fbclid' || $name === 'gclid') continue;
+            $pairs[] = $pair;
+        }
+        sort($pairs);
+        return $host . $path . ($pairs ? '?' . implode('&', $pairs) : '');
+    };
+
+    $rows = [];
+    $seenIds = [];
+    $seenUrls = [];
+    foreach ($allRows as $r) {
+        $id = $r['id'] ?? null;
+        $key = $normalizeUrl((string)$r['url']);
+        if ($key === '') {
+            continue;
+        }
+        if (($id !== null && isset($seenIds[$id])) || isset($seenUrls[$key])) {
+            continue;
+        }
+        if ($id !== null) $seenIds[$id] = true;
+        $seenUrls[$key] = true;
+        $rows[] = $r;
+        if (count($rows) >= 12) break;
+    }
 
     if ($rows && count($rows) > 0) {
         $enriched = [];

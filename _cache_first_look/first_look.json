@@ -1,5 +1,5 @@
 {
-    "fetched_at": 1792163181,
+    "fetched_at": 1792178220,
     "feeds": [
         {
             "name": "Fox",
@@ -12,10 +12,10 @@
                     "emo": "🌍"
                 },
                 {
-                    "title": "I lost half my right lung to cancer. Pope Leo's diagnosis gives me hope",
-                    "url": "https://www.foxnews.com/opinion/lost-half-right-lung-cancer-pope-leo-diagnosis-gives-hope",
-                    "ts": 1792170046,
-                    "emo": "🧪"
+                    "title": "Philly gay sports bar canceled by its own for not being gay enough on eve of WNBA Finals",
+                    "url": "https://www.foxnews.com/outkick-sports/philly-gay-sports-bar-canceled-own-not-gay-enough-eve-wnba-finals",
+                    "ts": 1792177829,
+                    "emo": "📰"
                 }
             ]
         },
@@ -24,15 +24,15 @@
             "home": "https://nypost.com",
             "items": [
                 {
-                    "title": "Father of three stabbed to death while getting snacks for kids waiting at park",
-                    "url": "https://nypost.com/2026/10/16/us-news/father-of-three-stabbed-to-death-while-getting-snacks-for-kids-waiting-at-park/",
-                    "ts": 1792163160,
+                    "title": "‘I served with Ilhan Omar’s father in the Somali military — people were scared of him’ ex-officer claims",
+                    "url": "https://nypost.com/2026/10/16/us-news/i-served-with-ilhan-omars-father-in-the-somali-military-people-were-scared-of-him-ex-officer-claims/",
+                    "ts": 1792178125,
                     "emo": "📰"
                 },
                 {
-                    "title": "49ers reporter Grant Cohn shreds San Francisco writer David Lombardi in wild rant: ‘Hugging the players!’",
-                    "url": "https://nypost.com/2026/10/16/sports/49ers-reporter-grant-cohn-shreds-david-lombardi-for-hugging-the-players/",
-                    "ts": 1792163129,
+                    "title": "Stream It Or Skip It: ‘Money Trap: The Karun Treasure’ On Netflix, A Madcap Adventure That Involves A Con Artist, A Violent Criminal, And A Treasure Map",
+                    "url": "https://decider.com/2026/10/16/money-trap-the-karun-treasure-netflix-review/",
+                    "ts": 1792178100,
                     "emo": "📰"
                 }
             ]
@@ -42,16 +42,34 @@
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Katie Zacharia throws Trump under the bus in stunning response about her legal qualifications amid fake 'attorney' outrage",
-                    "url": "https://www.dailymail.com/news/article-16214785/katie-zacharia-trump-response-legal-qualifications.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792163089,
-                    "emo": "⚖️"
+                    "title": "Oregon school shooter John J Griffin, 16, who murdered four and shot girl, 7, in wheelchair is pictured after his mother insisted he was a 'good boy'",
+                    "url": "https://www.dailymail.com/news/article-16215405/john-j-griffin-silver-rail-shooting-oregon.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792178101,
+                    "emo": "📰"
                 },
                 {
-                    "title": "Are days already numbered for Katie Zacharia? Trump's new press secretary is put through brutal interview by his Fox News favourite",
-                    "url": "https://www.dailymail.com/news/article-16214059/Are-days-numbered-Katie-Zacharia-Trumps-new-press-secretary-brutal-interview-Fox-News-favourite.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792163052,
-                    "emo": "⚖️"
+                    "title": "Hero father Kaylub Giamanco, who brought down Oregon school shooter, happened to be driving by when he heard shots fired... and feels 'guilty' he wasn't there in time to save four victims",
+                    "url": "https://www.dailymail.com/news/article-16215473/hero-father-kaylub-giamanco-killed-oregon-school-shooter.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792178094,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Democrats rake in cash, Musk takes center stage for GOP: 5 takeaways from latest fundraising hauls",
+                    "url": "https://thehill.com/homenews/campaign/6154467-democrats-cash-musk-donations-fundraising-takeaways/",
+                    "ts": 1792177554,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Scaramucci on Zacharia's reported firing: 'Records are made to be broken'",
+                    "url": "https://thehill.com/homenews/administration/6154556-anthony-scaramucci-katie-zacharia-donald-trump-white-house-tenure/",
+                    "ts": 1792176307,
+                    "emo": "📰"
                 }
             ]
         },
@@ -60,16 +78,106 @@
             "home": "https://www.marketwatch.com",
             "items": [
                 {
-                    "title": "I’m 64 with two sons, but only one works in the family firm. Should I leave him 70% of the business?",
-                    "url": "https://www.marketwatch.com/story/im-64-years-old-with-two-sons-but-only-one-works-in-the-family-firm-should-i-leave-him-70-of-the-business-2fe6c382?mod=mw_rss_topstories",
-                    "ts": 1792162800,
+                    "title": "My sister moved in with our mother, 78, and says she deserves the $925,000 family home. Is she right?",
+                    "url": "https://www.marketwatch.com/story/my-sister-moved-in-with-our-widowed-mother-78-and-says-she-deserves-the-family-home-is-she-right-7981835d?mod=mw_rss_topstories",
+                    "ts": 1792177200,
                     "emo": "📰"
                 },
                 {
-                    "title": "Retiring abroad? Don’t cut these financial ties to the U.S.",
-                    "url": "https://www.marketwatch.com/story/retiring-abroad-dont-cut-these-financial-ties-to-the-u-s-5e7e4fc2?mod=mw_rss_topstories",
-                    "ts": 1792162800,
+                    "title": "AI investors have woken up to the bond market’s warning signs",
+                    "url": "https://www.marketwatch.com/story/ai-investors-have-woken-up-to-the-bond-markets-warning-signs-6f604c61?mod=mw_rss_topstories",
+                    "ts": 1792176720,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Katie Zacharia, Trump’s New Press Secretary, Is Fired After 5 Days",
+                    "url": "https://www.nytimes.com/2026/10/16/us/politics/katie-zacharia-fired-press-secretary.html",
+                    "ts": 1792175399,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "U.S. Budget Deficit Nears $2 Trillion, a Reality Check for Trump’s Cost Cutting",
+                    "url": "https://www.nytimes.com/2026/10/16/business/us-budget-deficit.html",
+                    "ts": 1792175301,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Special Report: Katie Zacharia out as White House press secretary after 5 days on job",
+                    "url": "https://www.nbcnews.com/video/katie-zacharia-out-as-white-house-press-secretary-after-5-days-on-job-271706181697",
+                    "ts": 1792174972,
                     "emo": "📰"
+                },
+                {
+                    "title": "Police identify 16-year-old suspect in deadly Oregon school shooting",
+                    "url": "https://www.nbcnews.com/now/video/police-identify-16-year-old-suspect-in-deadly-oregon-school-shooting-271699013510",
+                    "ts": 1792167575,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "A US Army general says he had a change of heart about high-flying balloons after seeing them in action",
+                    "url": "https://www.businessinsider.com/us-army-eyes-bigger-role-for-balloons-in-warfare-2026-10",
+                    "ts": 1792174701,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Katie Zacharia is out after 5 days as White House press secretary",
+                    "url": "https://www.businessinsider.com/katie-zacharia-fired-white-house-press-secretary-job-trump-statement-2026-10",
+                    "ts": 1792174301,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "ZACHARIA CHOP...",
+                    "url": "https://www.nytimes.com/2026/10/16/us/politics/katie-zacharia-fired-press-secretary.html?unlocked_article_code=1.JFE.Nh3M.wFBQzJnhqRL2&smid=url-share",
+                    "ts": 1792173876,
+                    "emo": "📰"
+                },
+                {
+                    "title": "FIRED AFTER 5 DAYS...",
+                    "url": "https://www.nytimes.com/2026/10/16/us/politics/katie-zacharia-fired-press-secretary.html?unlocked_article_code=1.JFE.Nh3M.wFBQzJnhqRL2&smid=url-share",
+                    "ts": 1792173876,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "U.S. budget deficit swells to almost $2 trillion for fiscal 2026, up 12% in a single year",
+                    "url": "https://www.cnbc.com/2026/10/16/us-budget-deficit-2026.html",
+                    "ts": 1792173615,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Katie Zacharia out as Trump's White House press secretary",
+                    "url": "https://www.cnbc.com/2026/10/16/trump-katie-zacharia-white-house.html",
+                    "ts": 1792176924,
+                    "emo": "⚖️"
                 }
             ]
         },
@@ -80,122 +188,14 @@
                 {
                     "title": "Zelensky says Ukraine has right to defend itself after Trump calls refinery strikes a 'disgrace'",
                     "url": "https://www.bbc.co.uk/news/articles/c58jz174w89ro?at_medium=RSS&at_campaign=rss",
-                    "ts": 1792161851,
+                    "ts": 1792166370,
                     "emo": "⚖️"
                 },
                 {
-                    "title": "Norwegian teen 'hitman' detained for UK murder plot",
-                    "url": "https://www.bbc.co.uk/news/articles/cw8rzpl1ldkdo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1792158201,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Bolton: Zelensky lecturing Trump won't end well",
-                    "url": "https://thehill.com/policy/international/6153675-bolton-criticizes-zelensky-trump/",
-                    "ts": 1792161356,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Warsh offers no fresh signals on interest rates",
-                    "url": "https://thehill.com/business/6153621-fed-kevin-warsh-interest-rate-forecast/",
-                    "ts": 1792161112,
-                    "emo": "💰"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Tesla unveils long-delayed Roadster developed with SpaceX, fueling merger speculation",
-                    "url": "https://www.cnbc.com/2026/10/15/tesla-roadster-reveal-what-to-know-about-the-delayed-ev.html",
-                    "ts": 1792158292,
-                    "emo": "📰"
-                },
-                {
-                    "title": "OpenAI Saudi national bugging case shows threat to U.S. leadership in AI: DNI Clayton",
-                    "url": "https://www.cnbc.com/2026/10/16/ai-espionage-openai-jay-clayton.html",
-                    "ts": 1792162894,
-                    "emo": "🧪"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "As a Texas local, I skip the crowds in Austin and head west to a charming nearby city with amazing wineries",
-                    "url": "https://www.businessinsider.com/texas-favorite-small-city-to-visit-fredericksburg-local-recommendations-2026-10",
-                    "ts": 1792157867,
-                    "emo": "📰"
-                },
-                {
-                    "title": "I'm not scared of aging. I'm having more fun in my 60s than I did in my 20s.",
-                    "url": "https://www.businessinsider.com/having-more-fun-as-i-get-older-2026-10",
-                    "ts": 1792157659,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "BLOODBATH AT OREGON ELEMENTARY SCHOOL...",
-                    "url": "https://www.cbsnews.com/live-updates/oregon-silver-rail-elementary-shooting-bend/",
-                    "ts": 1792155516,
-                    "emo": "📰"
-                },
-                {
-                    "title": "5 DEAD...",
-                    "url": "https://apnews.com/b0642ec5cd3da0db24227a2798e2c6ce",
-                    "ts": 1792155516,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "16-Year-Old Opens Fire at Elementary School, Killing 4",
-                    "url": "https://www.today.com/video/16-year-old-opens-fire-at-elementary-school-killing-4-271679557734",
-                    "ts": 1792149306,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Oregon police say four victims dead, including three children, in school shooting",
-                    "url": "https://www.nbcnews.com/video/oregon-police-say-four-victims-dead-including-three-children-in-school-shooting-271665733617",
-                    "ts": 1792111336,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Avalanche of G.O.P. Cash Keeps the Party Competitive Despite Its Problems",
-                    "url": "https://www.nytimes.com/2026/10/16/us/avalanche-of-gop-cash-keeps-the-party-competitive-despite-its-problems.html",
-                    "ts": 1792141357,
-                    "emo": "📰"
-                },
-                {
-                    "title": "A.I.-Generated Ads Flood the Midterms, and Teenager Kills 4 at Oregon Elementary School",
-                    "url": "https://www.nytimes.com/2026/10/16/podcasts/the-headlines/ai-ads-midterms-oregon-elementary-school-shooting.html",
-                    "ts": 1792144807,
-                    "emo": "🌪️"
+                    "title": "Watch: BBC follows Ukraine's Operation Vivaldi pushing Russia back on frontline",
+                    "url": "https://www.bbc.co.uk/news/videos/cm1ex06026e8o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1792172513,
+                    "emo": "🌍"
                 }
             ]
         },
@@ -210,10 +210,10 @@
                     "emo": "📰"
                 },
                 {
-                    "title": "IMF suggests UK should cut spending rather than raise taxes on banks, as Healey prepares budget raid – business live",
-                    "url": "https://www.theguardian.com/business/live/2026/oct/16/john-healey-set-to-raise-bank-taxes-shares-profits-stock-markets-imf-latest-news-updates",
-                    "ts": 1792162410,
-                    "emo": "🔥"
+                    "title": "Extreme heatwaves in Europe not changing Britons’ holiday plans, say travel bosses",
+                    "url": "https://www.theguardian.com/business/2026/oct/16/extreme-heatwaves-in-europe-not-changing-brits-holiday-plans-say-travel-bosses",
+                    "ts": 1792167385,
+                    "emo": "📰"
                 }
             ]
         }
