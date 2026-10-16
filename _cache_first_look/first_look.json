@@ -1,5 +1,5 @@
 {
-    "fetched_at": 1792149285,
+    "fetched_at": 1792151380,
     "feeds": [
         {
             "name": "Fox",
@@ -12,9 +12,9 @@
                     "emo": "🌍"
                 },
                 {
-                    "title": "JONATHAN TURLEY: Sherrod Brown's pledge turns advice and consent into a punchline",
-                    "url": "https://www.foxnews.com/opinion/jonathan-turley-browns-pledge-turns-advice-consent-punchline",
-                    "ts": 1792148442,
+                    "title": "You're probably cooking rice wrong, and chefs reveal the simple mistake to avoid",
+                    "url": "https://www.foxnews.com/food-drink/youre-probably-cooking-rice-wrong-chefs-reveal-simple-mistake-avoid",
+                    "ts": 1792150207,
                     "emo": "📰"
                 }
             ]
@@ -24,16 +24,34 @@
             "home": "https://www.dailymail.co.uk",
             "items": [
                 {
-                    "title": "Tiger seen for first time since mauling man to death: Dozens of visitors queue to see Altai in his enclosure as zoo reopens to the public days after attack",
-                    "url": "https://www.dailymail.com/news/article-16214165/Altai-tiger-man-mauled-death-zoo-reopens.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792149034,
+                    "title": "Russell Brand tried to pull me into toilets with 'a wild look in his eye', woman tells court: live updates",
+                    "url": "https://www.dailymail.com/crime-desk/article-16189165/Russell-Brand-trial-liveblog-latest-updates.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792151289,
                     "emo": "🔥"
                 },
                 {
-                    "title": "Paul Bettany reveals he hasn't spoken to Johnny Depp since being dragged into the Amber Heard trial when their text exchange about 'burning and drowning' the actress was read out",
-                    "url": "https://www.dailymail.com/tvshowbiz/article-16213939/Paul-Bettany-reveals-spoken-Johnny-Depp-dragged-Amber-Heard-trial-graphic-text-exchange-read-out.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792148987,
+                    "title": "Anyone for seabass and chips? Scientists urge Brits to replace classic cod, haddock and hake with more sustainable alternatives",
+                    "url": "https://www.dailymail.com/sciencetech/article-16214189/seabass-chips-Scientists-Brits-replace-classic-cod.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792151261,
                     "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Drudge",
+            "home": "https://drudgereport.com",
+            "items": [
+                {
+                    "title": "BLOODBATH AT OREGON ELEMENTARY SCHOOL...",
+                    "url": "https://www.cbsnews.com/live-updates/oregon-silver-rail-elementary-shooting-bend/",
+                    "ts": 1792151016,
+                    "emo": "📰"
+                },
+                {
+                    "title": "5 DEAD...",
+                    "url": "https://apnews.com/b0642ec5cd3da0db24227a2798e2c6ce",
+                    "ts": 1792151016,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -42,16 +60,70 @@
             "home": "https://thehill.com",
             "items": [
                 {
+                    "title": "The system failed Jane Doe. Congress can fix it.",
+                    "url": "https://thehill.com/opinion/criminal-justice/6152924-cornell-sexual-assault-outrage/",
+                    "ts": 1792150200,
+                    "emo": "⚖️"
+                },
+                {
                     "title": "Vance and Ocasio-Cortez face off in Michigan, previewing possible 2028 match-up",
                     "url": "https://thehill.com/newsletters/morning-report/6153128-jd-vance-alexandria-ocasio-cortez-michigan-face-up-2028-preview-midterms-trump-defense-guilfoyle/",
                     "ts": 1792148864,
                     "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "‘It’s a wait-and-see situation’: I’m 63 and diagnosed with lymphoma. Should I take my Social Security next year?",
+                    "url": "https://www.marketwatch.com/story/its-a-wait-and-see-situation-im-63-and-diagnosed-with-lymphoma-should-i-take-my-social-security-next-year-ea88b419?mod=mw_rss_topstories",
+                    "ts": 1792150200,
+                    "emo": "📰"
                 },
                 {
-                    "title": "'President Bezos' — primed to save America in 2028?",
-                    "url": "https://thehill.com/opinion/6152050-make-america-amazon-campaign/",
-                    "ts": 1792148400,
+                    "title": "My wife says we can’t afford to retire. I vetoed her $8,000 trip to Italy. We’re in our 60s and have $4 million. Do I keep working?",
+                    "url": "https://www.marketwatch.com/story/my-wife-says-we-cant-afford-to-retire-we-have-4-million-do-i-just-keep-working-f1b6b085?mod=mw_rss_topstories",
+                    "ts": 1792149300,
                     "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "Jennifer Meyer speaks out on ex-husband Tobey Maguire officiating her wedding to Geoffrey Ogunlesi",
+                    "url": "https://pagesix.com/2026/10/16/celebrity-news/jennifer-meyer-speaks-out-on-ex-husband-tobey-maguire-officiating-her-wedding-to-geoffrey-ogunlesi/",
+                    "ts": 1792149348,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Jennifer Meyer speaks out on ex-husband Tobey Maguire officiating her wedding to Geoffrey Ogunlesi",
+                    "url": "https://pagesix.com/2026/10/16/celebrity-news/jennifer-meyer-speaks-out-on-ex-husband-tobey-maguire-officiating-her-wedding-to-geoffrey-ogunlesi/",
+                    "ts": 1792149348,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "16-Year-Old Opens Fire at Elementary School, Killing 4",
+                    "url": "https://www.today.com/video/16-year-old-opens-fire-at-elementary-school-killing-4-271679557734",
+                    "ts": 1792149306,
+                    "emo": "📰"
+                },
+                {
+                    "title": "‘This is a horrible day’: Oregon Gov. Kotek offers support to Bend community following shooting",
+                    "url": "https://www.nbcnews.com/now/video/oregon-gov-kotek-offers-support-to-bend-community-following-shooting-271666245989",
+                    "ts": 1792112221,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -74,42 +146,6 @@
             ]
         },
         {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "Can a $55,000-plus robot load the dishwasher? Inside my afternoon with two humanoid housekeepers.",
-                    "url": "https://www.marketwatch.com/story/can-a-55-000-plus-robot-load-the-dishwasher-inside-my-afternoon-with-two-humanoid-housekeepers-0a9569ab?mod=mw_rss_topstories",
-                    "ts": 1792148400,
-                    "emo": "🧪"
-                },
-                {
-                    "title": "Nearly 40% of the S&P 500 is in a bear market. Here are 10 of those stocks that analysts say can gain up to 81%.",
-                    "url": "https://www.marketwatch.com/story/nearly-40-of-the-s-p-500-is-in-a-bear-market-here-are-10-of-those-stocks-that-analysts-say-can-gain-up-to-81-93a51af6?mod=mw_rss_topstories",
-                    "ts": 1792148160,
-                    "emo": "💰"
-                }
-            ]
-        },
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "What’s David Zaslav up now after WBD sale? It’s the latest parlor game in media circles",
-                    "url": "https://nypost.com/2026/10/16/media/whats-david-zaslav-up-to-now-its-the-latest-parlor-game-in-media-circles/",
-                    "ts": 1792148400,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Don’t hibernate just yet!  NYC’s fall street fairs are back — here’s where to find them",
-                    "url": "https://nypost.com/2026/10/16/lifestyle/10-nyc-fall-street-fairs-to-visit-in-october-and-november/",
-                    "ts": 1792148400,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
             "name": "BBC",
             "home": "https://www.bbc.com/news",
             "items": [
@@ -120,27 +156,9 @@
                     "emo": "📰"
                 },
                 {
-                    "title": "Children aged 5, 8 and 11 killed in US school shooting before suspect shot by bystander",
-                    "url": "https://www.bbc.co.uk/news/articles/cm89zp48k4kzo?at_medium=RSS&at_campaign=rss",
-                    "ts": 1792147010,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "Drudge",
-            "home": "https://drudgereport.com",
-            "items": [
-                {
-                    "title": "BLOODBATH AT OREGON ELEMENTARY SCHOOL...",
-                    "url": "https://www.cbsnews.com/live-updates/oregon-silver-rail-elementary-shooting-bend/",
-                    "ts": 1792144896,
-                    "emo": "📰"
-                },
-                {
-                    "title": "5 DEAD...",
-                    "url": "https://apnews.com/b0642ec5cd3da0db24227a2798e2c6ce",
-                    "ts": 1792144896,
+                    "title": "Israeli settlers attack Palestinians in West Bank during olive harvest",
+                    "url": "https://www.bbc.co.uk/news/videos/cqn06zx2r15jo?at_medium=RSS&at_campaign=rss",
+                    "ts": 1792150841,
                     "emo": "🔥"
                 }
             ]
@@ -194,25 +212,7 @@
                 {
                     "title": "IMF suggests UK should cut spending rather than raise taxes on banks, as Healey prepares budget raid – business live",
                     "url": "https://www.theguardian.com/business/live/2026/oct/16/john-healey-set-to-raise-bank-taxes-shares-profits-stock-markets-imf-latest-news-updates",
-                    "ts": 1792148844,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Oregon police say four victims dead, including three children, in school shooting",
-                    "url": "https://www.nbcnews.com/video/oregon-police-say-four-victims-dead-including-three-children-in-school-shooting-271665733617",
-                    "ts": 1792111336,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "‘This is a horrible day’: Oregon Gov. Kotek offers support to Bend community following shooting",
-                    "url": "https://www.nbcnews.com/now/video/oregon-gov-kotek-offers-support-to-bend-community-following-shooting-271666245989",
-                    "ts": 1792112221,
+                    "ts": 1792150271,
                     "emo": "🔥"
                 }
             ]

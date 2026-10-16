@@ -109,7 +109,7 @@ html[data-ui-theme="dark"] .sn-ftl {
 .sn-ftl-node-latest .sn-ftl-pt { border-style: dashed; width: 18px; height: 18px; animation: sn-ftl-pulse 2.4s ease-in-out infinite; }
 .sn-ftl-tip {
     position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translate(-50%, 4px);
-    width: max-content; max-width: 220px; padding: .45rem .65rem; border-radius: 9px;
+    width: max-content; max-width: min(220px, 60vw); padding: .45rem .65rem; border-radius: 9px;
     background: var(--ftl-bg-2); border: 1px solid var(--ftl-border); box-shadow: var(--ftl-shadow);
     font-size: .76rem; line-height: 1.3; text-align: left; opacity: 0; pointer-events: none; transition: opacity .15s ease, transform .15s ease;
     display: flex; flex-direction: column; gap: .15rem;
@@ -161,8 +161,14 @@ html[data-ui-theme="dark"] .sn-ftl {
     .sn-ftl-js .sn-ftl-sky .sn-tl-bar { transform: none; }
 }
 
+.sn-ftl-main, .sn-ftl-viz { min-width: 0; }
+.sn-ftl-title, .sn-ftl-dek, .sn-ftl-item-title, .sn-ftl-chip-t { overflow-wrap: anywhere; }
+.sn-ftl-stats { flex-wrap: wrap; }
+.sn-ftl-item-meta { flex-wrap: wrap; }
+
 @media (max-width: 991.98px) {
-    .sn-ftl-grid { grid-template-columns: 1fr; }
+    /* minmax(0,…) stops the nowrap chip strip's intrinsic width from stretching the track */
+    .sn-ftl-grid { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 576px) {
     .sn-ftl { padding: 0 .65rem; margin-top: 1rem; }
@@ -185,7 +191,7 @@ html[data-ui-theme="dark"] .sn-ftl {
     .sn-ftl-chip-n { grid-row: span 2; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; font-size: .68rem; font-weight: 800; border: 2px solid var(--ftl-accent); }
     .sn-ftl-chip-t { font-size: .78rem; font-weight: 700; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .sn-ftl-chip-d { font-size: .68rem; color: var(--ftl-muted); }
-    .sn-ftl-cta { display: flex; justify-content: center; width: 100%; }
+    .sn-ftl-cta { display: flex; justify-content: center; width: 100%; box-sizing: border-box; }
     .sn-ftl-thumb { display: none; }
     .sn-ftl-item:nth-child(n+3) { display: none; }
     .sn-ftl-stats { gap: 1.1rem; }
