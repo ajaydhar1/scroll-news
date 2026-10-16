@@ -221,7 +221,7 @@ sn_perf_phase('render');
                     'summary' => 'Every headline from the last 24 hours, unfiltered.',
                     'deep'    => false,
                     'trusted' => false,
-                    'href'    => '/search.php?range=24h',
+                    'href'    => '/search.php?browse=everything&range=24h',
                 ],
             ];
             $rlDefaultKey = 'worth';

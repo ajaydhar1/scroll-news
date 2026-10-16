@@ -100,6 +100,9 @@ $highSignalActive = !empty($snSearch['high_signal_active']);
     <input type="hidden" name="mode" id="mode-input" value="<?= htmlspecialchars($mode, ENT_QUOTES, 'UTF-8'); ?>">
     <input type="hidden" name="deep_dive" id="deep-dive-input" value="<?= $deepDiveActive ? '1' : ''; ?>">
     <input type="hidden" name="high_signal" id="high-signal-input" value="<?= $highSignalActive ? '1' : ''; ?>">
+    <?php if (!empty($snSearch['browse_everything'])): ?>
+      <input type="hidden" name="browse" value="everything">
+    <?php endif; ?>
     <p id="sn-search-loading" class="sn-search-status" role="status" aria-live="polite" aria-atomic="true" hidden>Searching headlines…</p>
   </div>
 </form>

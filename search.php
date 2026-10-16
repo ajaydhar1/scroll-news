@@ -214,6 +214,10 @@ $emotion         = $_GET['emotion']    ?? null;              // e.g. 'Sad', 'Lov
 $sentiment       = $_GET['sentiment']  ?? null;              // e.g. 'positive', 'negative'
 $range           = $_GET['range']      ?? 'all';             // '24h', 'older', 'all'
 
+// Explicit browse mode: lists recent articles without a keyword.
+// A keyword always wins, so normal keyword searches never pick up browse behavior.
+$browseEverything = ($_GET['browse'] ?? '') === 'everything' && $q === '';
+
 $deepDiveActive    = !empty($_GET['deep_dive']);
 $highSignalActive  = !empty($_GET['high_signal']);
 
@@ -236,6 +240,7 @@ $resultsPerPage = 100;
 // Decide if *any* filters are active (even without q)
 $hasFilters =
     ($q !== '') ||
+    $browseEverything ||
     !empty($emotion) ||
     !empty($sentiment) ||
     ($range !== 'all') ||
@@ -283,6 +288,7 @@ if ($databaseContext['error_message'] !== null) {
                 'range'        => $range,
                 'high_signal'  => $highSignalOnly,           // <-- NEW
                 'deep_dive'    => $deepDive,
+                'browse_everything' => $browseEverything,
                 'shuffle_pool' => $isShuffleRequest,
                 'offset'       => $isShuffleRequest ? 0 : ($page - 1) * $resultsPerPage,
             ];
@@ -449,6 +455,7 @@ sn_perf_phase('render');
                         'emotion' => $emotion,
                         'deep_dive_active' => $deepDiveActive,
                         'high_signal_active' => $highSignalActive,
+                        'browse_everything' => $browseEverything,
                     ];
                     ?>
 
@@ -625,6 +632,10 @@ sn_perf_phase('render');
                                 "<span class="fw-semibold">
                                     <?php echo htmlspecialchars($q, ENT_QUOTES, 'UTF-8'); ?>
                                 </span>"
+
+                            <?php elseif ($browseEverything): ?>
+
+                                Everything
 
                             <?php else: ?>
 

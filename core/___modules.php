@@ -1751,9 +1751,10 @@ function search_classic(PDO $db, string $q, array $opts = [], ?int &$totalCount 
     $offset = max(0, (int) ($opts['offset'] ?? 0));
     $range      = $opts['range']       ?? 'all';
     $highSignal = !empty($opts['high_signal']);
+    $browseEverything = !empty($opts['browse_everything']);
 
-    // If no query AND not filtering by high-signal, nothing to search
-    if ($q === '' && !$highSignal) {
+    // If no query AND not filtering by high-signal or browsing, nothing to search
+    if ($q === '' && !$highSignal && !$browseEverything) {
         return [];
     }
 
@@ -1799,6 +1800,17 @@ function search_classic(PDO $db, string $q, array $opts = [], ?int &$totalCount 
 
     $where = $conds ? ('WHERE ' . implode(' AND ', $conds)) : '';
 
+    // Browse mode collapses the same URL syndicated through several feeds.
+    $fromSql = "rss_items ri $where";
+    if ($browseEverything) {
+        $fromSql = "(
+                SELECT DISTINCT ON (ri.link) ri.*
+                FROM rss_items ri
+                $where
+                ORDER BY ri.link, ri.pub_date DESC NULLS LAST, ri.id DESC
+            ) ri";
+    }
+
     if ($shufflePool) {
         $sql = "
         WITH matched AS (
@@ -1810,8 +1822,7 @@ function search_classic(PDO $db, string $q, array $opts = [], ?int &$totalCount 
                 ri.pub_date,
                 ri.media_url,
                 ri.feed_id
-            FROM rss_items ri
-            $where
+            FROM $fromSql
             ORDER BY
                 ri.pub_date DESC NULLS LAST,
                 ri.id DESC
@@ -1848,8 +1859,7 @@ function search_classic(PDO $db, string $q, array $opts = [], ?int &$totalCount 
                 ri.pub_date,
                 ri.media_url,
                 ri.feed_id
-            FROM rss_items ri
-            $where
+            FROM $fromSql
         ), paged AS (
             SELECT
                 matched.*,
