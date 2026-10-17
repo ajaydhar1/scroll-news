@@ -8,7 +8,18 @@
   <url><loc>https://scrollnews.ai/control-room</loc></url>
   <url><loc>https://scrollnews.ai/scroll-archive</loc></url>
   <url><loc>https://scrollnews.ai/timeline</loc></url>
+  <url><loc>https://scrollnews.ai/timeline?story=iran</loc></url>
+  <url><loc>https://scrollnews.ai/timeline?story=greenland</loc></url>
+  <url><loc>https://scrollnews.ai/timeline?story=alex-pretti</loc></url>
+  <url><loc>https://scrollnews.ai/timeline?story=venezuela</loc></url>
   <url><loc>https://scrollnews.ai/search</loc></url>
+
+  <url><loc>https://scrollnews.ai/topic.php?topic=trump</loc></url>
+  <url><loc>https://scrollnews.ai/topic.php?topic=iran</loc></url>
+  <url><loc>https://scrollnews.ai/topic.php?topic=artificial-intelligence</loc></url>
+  <url><loc>https://scrollnews.ai/topic.php?topic=economy</loc></url>
+  <url><loc>https://scrollnews.ai/topic.php?topic=ukraine</loc></url>
+  <url><loc>https://scrollnews.ai/topic.php?topic=climate</loc></url>
 
   <url><loc>https://scrollnews.ai/auth/login</loc></url>
   <url><loc>https://scrollnews.ai/auth/register</loc></url>

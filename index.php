@@ -122,6 +122,7 @@ sn_perf_phase('render');
 
     <link href="/assets/css/lightbox.css" rel="stylesheet" />
     <link href="/assets/css/product-nav.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/product-nav.css'); ?>" rel="stylesheet" />
+    <link href="/assets/css/components/topic-nav.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/components/topic-nav.css'); ?>" rel="stylesheet" />
 
 </head>
 
@@ -134,6 +135,8 @@ sn_perf_phase('render');
 
         <!-- INTRO ATMOSPHERE EXPERIMENT: remove this wrapper div (and its closing tag) to revert -->
         <div class="sn-intro-atmosphere">
+
+            <?php require BASE_PATH . '/views/topics/___topic_nav.php'; ?>
 
             <!-- Masthead -->
             <header class="masthead bg-light-2">

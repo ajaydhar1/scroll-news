@@ -1741,6 +1741,14 @@ function search_nlp(PDO $db, ?string $q = '', array $opts = [], ?int &$totalCoun
  * $opts:
  *   - 'range'       => '24h', 'older', 'all'
  *   - 'high_signal' => bool, limit to high-signal publishers
+ *
+ * Additive options (used by topic pages; all default to the legacy behaviour):
+ *   - 'terms'         => string[], OR'd keyword set (works with an empty $q)
+ *   - 'word_match'    => bool, match terms on word boundaries instead of substrings
+ *   - 'exclude'       => string[], drop rows matching any of these terms
+ *   - 'since_hours'   => int, only rows published within the last N hours
+ *   - 'limit'         => int, page size (1-100, default 100)
+ *   - 'distinct_link' => bool, collapse the same URL syndicated through several feeds
  */
 function search_classic(PDO $db, string $q, array $opts = [], ?int &$totalCount = null): array
 {
@@ -1753,8 +1761,15 @@ function search_classic(PDO $db, string $q, array $opts = [], ?int &$totalCount 
     $highSignal = !empty($opts['high_signal']);
     $browseEverything = !empty($opts['browse_everything']);
 
-    // If no query AND not filtering by high-signal or browsing, nothing to search
-    if ($q === '' && !$highSignal && !$browseEverything) {
+    $terms = array_values(array_filter(array_map('trim', (array) ($opts['terms'] ?? [])), 'strlen'));
+    $excludeTerms = array_values(array_filter(array_map('trim', (array) ($opts['exclude'] ?? [])), 'strlen'));
+    $wordMatch = !empty($opts['word_match']);
+    $sinceHours = max(0, (int) ($opts['since_hours'] ?? 0));
+    $pageLimit = max(1, min(100, (int) ($opts['limit'] ?? 100)));
+    $distinctLink = $browseEverything || !empty($opts['distinct_link']);
+
+    // If no query AND not filtering by high-signal, terms or browsing, nothing to search
+    if ($q === '' && !$highSignal && !$browseEverything && !$terms) {
         return [];
     }
 
@@ -1768,6 +1783,38 @@ function search_classic(PDO $db, string $q, array $opts = [], ?int &$totalCount 
             OR ri.description ILIKE :q
         )";
         $params[':q'] = '%' . $q . '%';
+    }
+
+    // Topic term sets: any include term matches, no exclude term matches
+    $termPattern = static function (string $term) use ($wordMatch): string {
+        if (!$wordMatch) {
+            return '%' . addcslashes($term, '%_\\') . '%';
+        }
+        $escaped = preg_replace('/[^\p{L}\p{N}\s]/u', '\\\\$0', $term);
+        $start = preg_match('/^[\p{L}\p{N}_]/u', $term) ? '\\m' : '';
+        $end = preg_match('/[\p{L}\p{N}_]$/u', $term) ? '\\M' : '';
+        return $start . $escaped . $end;
+    };
+    $termMatchSql = $wordMatch ? '~*' : 'ILIKE';
+
+    if ($terms) {
+        $termConds = [];
+        foreach ($terms as $i => $term) {
+            $ph = ":tm{$i}";
+            $termConds[] = "(ri.title $termMatchSql $ph OR ri.description $termMatchSql $ph)";
+            $params[$ph] = $termPattern($term);
+        }
+        $conds[] = '(' . implode(' OR ', $termConds) . ')';
+    }
+
+    foreach ($excludeTerms as $i => $term) {
+        $ph = ":ex{$i}";
+        $conds[] = "NOT (ri.title $termMatchSql $ph OR ri.description $termMatchSql $ph)";
+        $params[$ph] = $termPattern($term);
+    }
+
+    if ($sinceHours > 0) {
+        $conds[] = "ri.pub_date >= NOW() - INTERVAL '{$sinceHours} hours'";
     }
 
     // Optional time range filter on rss_items.pub_date
@@ -1802,7 +1849,7 @@ function search_classic(PDO $db, string $q, array $opts = [], ?int &$totalCount 
 
     // Browse mode collapses the same URL syndicated through several feeds.
     $fromSql = "rss_items ri $where";
-    if ($browseEverything) {
+    if ($distinctLink) {
         $fromSql = "(
                 SELECT DISTINCT ON (ri.link) ri.*
                 FROM rss_items ri
@@ -1866,7 +1913,7 @@ function search_classic(PDO $db, string $q, array $opts = [], ?int &$totalCount 
                 COUNT(*) OVER() AS search_total_count
             FROM matched
             ORDER BY pub_date DESC NULLS LAST, id DESC
-            LIMIT 100 OFFSET $offset
+            LIMIT $pageLimit OFFSET $offset
         )
         SELECT
             m.id,
