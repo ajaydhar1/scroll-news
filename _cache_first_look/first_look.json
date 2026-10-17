@@ -1,5 +1,5 @@
 {
-    "fetched_at": 1792202785,
+    "fetched_at": 1792206148,
     "feeds": [
         {
             "name": "Fox",
@@ -12,10 +12,82 @@
                     "emo": "🌍"
                 },
                 {
-                    "title": "Jalen Brunson is afraid to open the bag containing his NBA championship hat because of horrors inside",
-                    "url": "https://www.foxnews.com/outkick-sports/jalen-brunson-afraid-open-bag-containing-nba-championship-hat-horrors-inside",
-                    "ts": 1792202406,
+                    "title": "Rain forces MLB to postpone Guardians-Rays ALCS Game 4 in Cleveland",
+                    "url": "https://www.foxnews.com/outkick-sports/rain-forces-mlb-postpone-guardians-rays-alcs-game-4-cleveland",
+                    "ts": 1792204094,
                     "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "Elizabeth Hurley sparks Billy Ray Cyrus engagement rumors by flaunting massive diamond ring",
+                    "url": "https://www.dailymail.com/tvshowbiz/article-16215979/elizabeth-hurley-billy-ray-cyrus-engagement-diamond-ring.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792206075,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Youngest victim of Oregon elementary school shooting that killed four named as Rhoam Summer, five, as dad says: 'Today has been the worst day of my life'",
+                    "url": "https://www.dailymail.com/news/article-16214953/rhoam-summer-silver-rail-elementary-oregon-bend-shooting.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792205839,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "What Dodgers should read into Shohei Ohtani’s remarks on two-way role",
+                    "url": "https://nypost.com/2026/10/16/sports/dodgers-shohei-ohtani-remarks-two-way-role/",
+                    "ts": 1792205385,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Titans CEO apologizes to fans for abysmal start — but still believes in Robert Saleh",
+                    "url": "https://nypost.com/2026/10/16/sports/titans-ceo-apologizes-to-fans-for-abysmal-start-but-still-believes-in-robert-saleh/",
+                    "ts": 1792205208,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "Trump waives Russian sanctions outlined in Graham Act before they took effect",
+                    "url": "https://thehill.com/homenews/administration/6155621-trump-waives-russian-sanctions-act-tariffs/",
+                    "ts": 1792205216,
+                    "emo": "⚖️"
+                },
+                {
+                    "title": "Zacharia speaks out after White House press secretary exit: 'It was an honor'",
+                    "url": "https://thehill.com/homenews/administration/6155603-katie-zacharia-press-secretary-exit-statement/",
+                    "ts": 1792204185,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "School Shooting in Bend, Ore., Has Heroes and Pain, But Few Answers",
+                    "url": "https://www.nytimes.com/2026/10/16/us/bend-shooting-hero-teacher-dad.html",
+                    "ts": 1792202784,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Teacher Killed in Oregon School Shooting Was Working Her ‘Dream Job,’ Family Says",
+                    "url": "https://www.nytimes.com/2026/10/16/us/bend-school-shooting-victims-megan-lambert-rhoam-summer.html",
+                    "ts": 1792199559,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -38,42 +110,6 @@
             ]
         },
         {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "Ex-Dallas cop Amber Guyger is sprung from prison after mistakenly shooting her neighbor",
-                    "url": "https://nypost.com/2026/10/16/us-news/ex-dallas-cop-amber-guyger-is-sprung-from-prison-after-mistakenly-shooting-her-neighbor/",
-                    "ts": 1792202626,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Nets still have defensive woes to address despite positive preseason",
-                    "url": "https://nypost.com/2026/10/16/sports/nets-still-have-defensive-woes-to-address-despite-positive-preseason/",
-                    "ts": 1792202210,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Hero father Kaylub Giamanco, who brought down Oregon school shooter, happened to be driving by when he heard shots fired... and feels 'guilty' he wasn't there in time to save four victims",
-                    "url": "https://www.dailymail.com/news/article-16215473/hero-father-kaylub-giamanco-killed-oregon-school-shooter.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792201578,
-                    "emo": "📰"
-                },
-                {
-                    "title": "The grief that dare not speak its name: It's only whispered for fear of accusations of racism. But the pain and bewilderment felt by the generation who lived through war at how mass immigration has transformed the Britain they fought for is very real",
-                    "url": "https://www.dailymail.com/debate/article-16215913/grief-dare-not-speak-whispered-fear-accusations-racism-war-mass-immigration-Britain-fought.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792201070,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
             "name": "BBC",
             "home": "https://www.bbc.com/news",
             "items": [
@@ -88,42 +124,6 @@
                     "url": "https://www.bbc.co.uk/news/articles/c6e3xnjlz12do?at_medium=RSS&at_campaign=rss",
                     "ts": 1792184538,
                     "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Teacher Killed in Oregon School Shooting Was Working Her ‘Dream Job,’ Family Says",
-                    "url": "https://www.nytimes.com/2026/10/16/us/bend-school-shooting-victims-megan-lambert-rhoam-summer.html",
-                    "ts": 1792199559,
-                    "emo": "🔥"
-                },
-                {
-                    "title": "Katie Zacharia, Trump’s New Press Secretary, Is Ousted After 5 Days",
-                    "url": "https://www.nytimes.com/2026/10/16/us/politics/katie-zacharia-fired-press-secretary.html",
-                    "ts": 1792187861,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "More lawmakers report suspicious packages at offices",
-                    "url": "https://thehill.com/homenews/house/6155515-lawmakers-report-suspicious-mailings/",
-                    "ts": 1792195618,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Centcom commander says naval blockade cost Iran $25B in oil revenue",
-                    "url": "https://thehill.com/newsletters/defense-national-security/6155474-centcom-commander-says-naval-blockade-cost-iran-25b-in-oil-revenue/",
-                    "ts": 1792192368,
-                    "emo": "💰"
                 }
             ]
         },

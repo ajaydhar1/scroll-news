@@ -50,13 +50,13 @@ function sn_st_stop_entities(): array
 function sn_st_standing_defs(): array
 {
     return [
-        'donald trump' => ['label' => 'Donald Trump', 'type' => 'PERSON'],
-        'u.s.'         => ['label' => 'U.S.',         'type' => 'GPE'],
-        'washington'   => ['label' => 'Washington',   'type' => 'GPE'],
-        'congress'     => ['label' => 'Congress',     'type' => 'ORG'],
-        'house'        => ['label' => 'House',        'type' => 'ORG'],
-        'senate'       => ['label' => 'Senate',       'type' => 'ORG'],
-        'white house'  => ['label' => 'White House',  'type' => 'ORG'],
+        'donald trump' => ['label' => 'Donald Trump', 'type' => 'PERSON', 'topic' => 'trump'],
+        'u.s.'         => ['label' => 'U.S.',         'type' => 'GPE',    'topic' => 'us'],
+        'washington'   => ['label' => 'Washington',   'type' => 'GPE',    'topic' => 'washington'],
+        'congress'     => ['label' => 'Congress',     'type' => 'ORG',    'topic' => 'congress'],
+        'house'        => ['label' => 'House',        'type' => 'ORG',    'topic' => 'house'],
+        'senate'       => ['label' => 'Senate',       'type' => 'ORG',    'topic' => 'senate'],
+        'white house'  => ['label' => 'White House',  'type' => 'ORG',    'topic' => 'white-house'],
     ];
 }
 
@@ -582,7 +582,7 @@ function sn_st_build_model(array $rows, DateTimeImmutable $now, array $opts = []
     $topics = [];
     foreach ($standing as $name => $def) {
         if (!empty($index[$name])) {
-            $topics[] = ['entity' => $name, 'label' => $def['label'], 'n' => count($index[$name]), 'series' => $seriesOf($index[$name])];
+            $topics[] = ['entity' => $name, 'label' => $def['label'], 'topic' => $def['topic'], 'n' => count($index[$name]), 'series' => $seriesOf($index[$name])];
         }
     }
     usort($topics, static fn($a, $b) => $b['n'] <=> $a['n']);

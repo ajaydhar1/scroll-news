@@ -84,4 +84,91 @@ return [
         'order' => 60,
         'accent' => '#3f8a3a',
     ],
+
+    
+    // Story Threads — Always in the News
+    // Available as Topic pages, but hidden from homepage chips.
+
+    [
+        'slug' => 'us',
+        'name' => 'U.S.',
+        'query' => 'United States',
+        'terms' => [
+            'United States',
+            'U.S.',
+            'USA',
+            'American',
+        ],
+        'home' => false,
+        'order' => 100,
+        'accent' => '#426b91',
+    ],
+    [
+        'slug' => 'senate',
+        'name' => 'Senate',
+        'query' => 'Senate',
+        'terms' => [
+            'Senate',
+            'U.S. Senate',
+            'senator',
+            'senators',
+        ],
+        'home' => false,
+        'order' => 110,
+        'accent' => '#526b91',
+    ],
+    [
+        'slug' => 'washington',
+        'name' => 'Washington',
+        'query' => 'Washington',
+        'terms' => [
+            'Washington',
+            'Washington D.C.',
+            'Capitol Hill',
+        ],
+        'home' => false,
+        'order' => 120,
+        'accent' => '#65758b',
+    ],
+    [
+        'slug' => 'congress',
+        'name' => 'Congress',
+        'query' => 'Congress',
+        'terms' => [
+            'Congress',
+            'congressional',
+            'U.S. Congress',
+        ],
+        'home' => false,
+        'order' => 130,
+        'accent' => '#675b91',
+    ],
+    [
+        'slug' => 'house',
+        'name' => 'House',
+        'query' => 'House',
+        'terms' => [
+            'House of Representatives',
+            'U.S. House',
+            'House Speaker',
+            'House Republicans',
+            'House Democrats',
+        ],
+        'home' => false,
+        'order' => 140,
+        'accent' => '#397b79',
+    ],
+    [
+        'slug' => 'white-house',
+        'name' => 'White House',
+        'query' => 'White House',
+        'terms' => [
+            'White House',
+            'White House administration',
+        ],
+        'home' => false,
+        'order' => 150,
+        'accent' => '#866c55',
+    ],
+
 ];

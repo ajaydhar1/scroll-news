@@ -4,6 +4,7 @@
 // Output is cached as HTML by the 2-minute home warmer (key: homepage_story_threads).
 require_once BASE_PATH . '/core/timelines/___timelines.php';
 require_once BASE_PATH . '/core/story_threads/___story_threads.php';
+require_once BASE_PATH . '/core/topics/___topics.php';
 
 $stE = static fn($v): string => htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8');
 
@@ -302,7 +303,7 @@ $stUpdated = $stModel['asof'];
             }
         ?>
           <li class="sn-st-topic">
-            <a href="<?= $stE($stNlp($tp['label'])) ?>" data-loading>
+            <a href="<?= $stE(sn_topic_url($tp['topic'])) ?>" data-loading>
               <span class="sn-st-topic-name"><?= $stE($tp['label']) ?></span>
               <span class="sn-st-topic-n"><?= (int)$tp['n'] ?><span class="sn-st-sr"> articles in 21 days</span></span>
               <svg class="sn-st-spark" viewBox="0 0 80 15" aria-hidden="true" focusable="false"><polyline points="<?= $stE(implode(' ', $pts)) ?>"/></svg>

@@ -15,11 +15,18 @@
   <url><loc>https://scrollnews.ai/search</loc></url>
 
   <url><loc>https://scrollnews.ai/topic.php?topic=trump</loc></url>
+  <url><loc>https://scrollnews.ai/topic.php?topic=elections</loc></url>
   <url><loc>https://scrollnews.ai/topic.php?topic=iran</loc></url>
   <url><loc>https://scrollnews.ai/topic.php?topic=artificial-intelligence</loc></url>
   <url><loc>https://scrollnews.ai/topic.php?topic=economy</loc></url>
   <url><loc>https://scrollnews.ai/topic.php?topic=ukraine</loc></url>
   <url><loc>https://scrollnews.ai/topic.php?topic=climate</loc></url>
+  <url><loc>https://scrollnews.ai/topic.php?topic=us</loc></url>
+  <url><loc>https://scrollnews.ai/topic.php?topic=senate</loc></url>
+  <url><loc>https://scrollnews.ai/topic.php?topic=washington</loc></url>
+  <url><loc>https://scrollnews.ai/topic.php?topic=congress</loc></url>
+  <url><loc>https://scrollnews.ai/topic.php?topic=house</loc></url>
+  <url><loc>https://scrollnews.ai/topic.php?topic=white-house</loc></url>
 
   <url><loc>https://scrollnews.ai/auth/login</loc></url>
   <url><loc>https://scrollnews.ai/auth/register</loc></url>
