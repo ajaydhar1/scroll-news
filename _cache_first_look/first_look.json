@@ -1,5 +1,5 @@
 {
-    "fetched_at": 1792180320,
+    "fetched_at": 1792202785,
     "feeds": [
         {
             "name": "Fox",
@@ -12,153 +12,9 @@
                     "emo": "🌍"
                 },
                 {
-                    "title": "Fanatics Sportsbook Promo Code FOXNEWS350: Bet $20, Get $350 Promo for Guardians-Rays ALCS Game 4",
-                    "url": "https://www.foxnews.com/outkick-betting/fanatics-sportsbook-promo-code-foxnews350-bet-20-get-350-promo-guardians-rays-alcs-game-4",
-                    "ts": 1792178726,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NY Post",
-            "home": "https://nypost.com",
-            "items": [
-                {
-                    "title": "Kasey Redfern’s wife says former NFL punter ‘received many miracles’ before tragic death at 35: ‘Shouldn’t have lived as long as he did’",
-                    "url": "https://nypost.com/2026/10/16/sports/kasey-redferns-wife-says-ex-nfl-punter-received-many-miracles-before-tragic-death-at-35/",
-                    "ts": 1792180295,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Inside the $12.5M Colorado estate with hidden mountainside car gallery",
-                    "url": "https://nypost.com/2026/10/16/real-estate/inside-the-12-5m-colorado-estate-with-hideen-mountainside-car-gallery/",
-                    "ts": 1792180125,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "Daily Mail",
-            "home": "https://www.dailymail.co.uk",
-            "items": [
-                {
-                    "title": "Katie Zacharia is out as Trump's White House press secretary after disastrous first week on the job",
-                    "url": "https://www.dailymail.com/news/article-16215485/Trump-asks-Katie-Zacharia-reconsider-role-White-House-press-secretary-one-tumultuous-week-job.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792180195,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Oregon school shooter John J Griffin, 16, who murdered four and shot girl, 7, in wheelchair is pictured after his mother insisted he was a 'good boy'",
-                    "url": "https://www.dailymail.com/news/article-16215405/john-j-griffin-silver-rail-shooting-oregon.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
-                    "ts": 1792180137,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "MarketWatch",
-            "home": "https://www.marketwatch.com",
-            "items": [
-                {
-                    "title": "Are we spending our retirement money in the right order? Our plan is: Social Security, annuities, cash — then IRA.",
-                    "url": "https://www.marketwatch.com/story/are-we-spending-our-retirement-money-in-the-right-order-our-plan-is-social-security-annuities-cash-then-ira-02cec336?mod=mw_rss_topstories",
-                    "ts": 1792179960,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Your Social Security check will rise an average of $75 a month — will it be able to keep up with inflation?",
-                    "url": "https://www.marketwatch.com/story/social-securitys-cola-will-be-3-6-in-2027-as-inflation-persists-f7c9dff2?mod=mw_rss_topstories",
-                    "ts": 1792179900,
-                    "emo": "💰"
-                }
-            ]
-        },
-        {
-            "name": "CNBC",
-            "home": "https://www.cnbc.com",
-            "items": [
-                {
-                    "title": "Brent oil touches $110 as Iran escalates Hormuz attacks, Ukraine vows to hit Russian refineries",
-                    "url": "https://www.cnbc.com/2026/10/16/oil-price-today-iran-strait-hormuz-ukraine-russia.html",
-                    "ts": 1792179941,
-                    "emo": "💰"
-                },
-                {
-                    "title": "Katie Zacharia out as Trump's White House press secretary",
-                    "url": "https://www.cnbc.com/2026/10/16/trump-katie-zacharia-white-house.html",
-                    "ts": 1792180046,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "The Hill",
-            "home": "https://thehill.com",
-            "items": [
-                {
-                    "title": "Ocasio-Cortez makes $1M donation to El-Sayed Senate bid",
-                    "url": "https://thehill.com/homenews/campaign/6154747-ocasio-cortez-abdul-el-sayed-michigan-senate-race/",
-                    "ts": 1792179257,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "Mamdani, New York Democrats call on private parking lot owners to ban ICE officers",
-                    "url": "https://thehill.com/homenews/state-watch/6154673-democrats-mamdani-parking-lot-ice-ban/",
-                    "ts": 1792178102,
-                    "emo": "📰"
-                }
-            ]
-        },
-        {
-            "name": "NYT",
-            "home": "https://www.nytimes.com",
-            "items": [
-                {
-                    "title": "Katie Zacharia, Trump’s New Press Secretary, Is Fired After 5 Days",
-                    "url": "https://www.nytimes.com/2026/10/16/us/politics/katie-zacharia-fired-press-secretary.html",
-                    "ts": 1792175400,
-                    "emo": "⚖️"
-                },
-                {
-                    "title": "U.S. Budget Deficit Nears $2 Trillion, a Reality Check for Trump’s Cost Cutting",
-                    "url": "https://www.nytimes.com/2026/10/16/business/us-budget-deficit.html",
-                    "ts": 1792175301,
-                    "emo": "⚖️"
-                }
-            ]
-        },
-        {
-            "name": "NBC",
-            "home": "https://www.nbcnews.com",
-            "items": [
-                {
-                    "title": "Special Report: Katie Zacharia out as White House press secretary after 5 days on job",
-                    "url": "https://www.nbcnews.com/video/katie-zacharia-out-as-white-house-press-secretary-after-5-days-on-job-271706181697",
-                    "ts": 1792174972,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Police identify 16-year-old suspect in deadly Oregon school shooting",
-                    "url": "https://www.nbcnews.com/now/video/police-identify-16-year-old-suspect-in-deadly-oregon-school-shooting-271699013510",
-                    "ts": 1792167575,
-                    "emo": "🔥"
-                }
-            ]
-        },
-        {
-            "name": "BusinessInsider",
-            "home": "https://www.businessinsider.com",
-            "items": [
-                {
-                    "title": "A US Army general says he had a change of heart about high-flying balloons after seeing them in action",
-                    "url": "https://www.businessinsider.com/us-army-eyes-bigger-role-for-balloons-in-warfare-2026-10",
-                    "ts": 1792174701,
-                    "emo": "📰"
-                },
-                {
-                    "title": "Katie Zacharia is out after 5 days as White House press secretary",
-                    "url": "https://www.businessinsider.com/katie-zacharia-fired-white-house-press-secretary-job-trump-statement-2026-10",
-                    "ts": 1792174301,
+                    "title": "Jalen Brunson is afraid to open the bag containing his NBA championship hat because of horrors inside",
+                    "url": "https://www.foxnews.com/outkick-sports/jalen-brunson-afraid-open-bag-containing-nba-championship-hat-horrors-inside",
+                    "ts": 1792202406,
                     "emo": "📰"
                 }
             ]
@@ -170,14 +26,50 @@
                 {
                     "title": "ZACHARIA CHOP...",
                     "url": "https://www.nytimes.com/2026/10/16/us/politics/katie-zacharia-fired-press-secretary.html?unlocked_article_code=1.JFE.Nh3M.wFBQzJnhqRL2&smid=url-share",
-                    "ts": 1792173876,
+                    "ts": 1792202676,
                     "emo": "📰"
                 },
                 {
                     "title": "FIRED AFTER 5 DAYS...",
                     "url": "https://www.nytimes.com/2026/10/16/us/politics/katie-zacharia-fired-press-secretary.html?unlocked_article_code=1.JFE.Nh3M.wFBQzJnhqRL2&smid=url-share",
-                    "ts": 1792173876,
+                    "ts": 1792202676,
                     "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "NY Post",
+            "home": "https://nypost.com",
+            "items": [
+                {
+                    "title": "Ex-Dallas cop Amber Guyger is sprung from prison after mistakenly shooting her neighbor",
+                    "url": "https://nypost.com/2026/10/16/us-news/ex-dallas-cop-amber-guyger-is-sprung-from-prison-after-mistakenly-shooting-her-neighbor/",
+                    "ts": 1792202626,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Nets still have defensive woes to address despite positive preseason",
+                    "url": "https://nypost.com/2026/10/16/sports/nets-still-have-defensive-woes-to-address-despite-positive-preseason/",
+                    "ts": 1792202210,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "Daily Mail",
+            "home": "https://www.dailymail.co.uk",
+            "items": [
+                {
+                    "title": "Hero father Kaylub Giamanco, who brought down Oregon school shooter, happened to be driving by when he heard shots fired... and feels 'guilty' he wasn't there in time to save four victims",
+                    "url": "https://www.dailymail.com/news/article-16215473/hero-father-kaylub-giamanco-killed-oregon-school-shooter.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792201578,
+                    "emo": "📰"
+                },
+                {
+                    "title": "The grief that dare not speak its name: It's only whispered for fear of accusations of racism. But the pain and bewilderment felt by the generation who lived through war at how mass immigration has transformed the Britain they fought for is very real",
+                    "url": "https://www.dailymail.com/debate/article-16215913/grief-dare-not-speak-whispered-fear-accusations-racism-war-mass-immigration-Britain-fought.html?ns_mchannel=rss&ito=1490&ns_campaign=1490",
+                    "ts": 1792201070,
+                    "emo": "🔥"
                 }
             ]
         },
@@ -186,16 +78,124 @@
             "home": "https://www.bbc.com/news",
             "items": [
                 {
-                    "title": "Zelensky says Ukraine has right to defend itself after Trump calls refinery strikes a 'disgrace'",
-                    "url": "https://www.bbc.co.uk/news/articles/c58jz174w89ro?at_medium=RSS&at_campaign=rss",
-                    "ts": 1792166370,
-                    "emo": "⚖️"
+                    "title": "Oregon teacher fought school attacker before armed dad shot suspect 'multiple times'",
+                    "url": "https://www.bbc.co.uk/news/articles/cv98zw1k8kp3o?at_medium=RSS&at_campaign=rss",
+                    "ts": 1792199944,
+                    "emo": "🚨"
                 },
                 {
-                    "title": "Watch: BBC follows Ukraine's Operation Vivaldi pushing Russia back on frontline",
-                    "url": "https://www.bbc.co.uk/news/videos/cm1ex06026e8o?at_medium=RSS&at_campaign=rss",
-                    "ts": 1792172513,
-                    "emo": "🌍"
+                    "title": "Analysis: Zacharia was thrown into a whirlwind - and failed at a critical time for Trump",
+                    "url": "https://www.bbc.co.uk/news/articles/c6e3xnjlz12do?at_medium=RSS&at_campaign=rss",
+                    "ts": 1792184538,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "NYT",
+            "home": "https://www.nytimes.com",
+            "items": [
+                {
+                    "title": "Teacher Killed in Oregon School Shooting Was Working Her ‘Dream Job,’ Family Says",
+                    "url": "https://www.nytimes.com/2026/10/16/us/bend-school-shooting-victims-megan-lambert-rhoam-summer.html",
+                    "ts": 1792199559,
+                    "emo": "🔥"
+                },
+                {
+                    "title": "Katie Zacharia, Trump’s New Press Secretary, Is Ousted After 5 Days",
+                    "url": "https://www.nytimes.com/2026/10/16/us/politics/katie-zacharia-fired-press-secretary.html",
+                    "ts": 1792187861,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "The Hill",
+            "home": "https://thehill.com",
+            "items": [
+                {
+                    "title": "More lawmakers report suspicious packages at offices",
+                    "url": "https://thehill.com/homenews/house/6155515-lawmakers-report-suspicious-mailings/",
+                    "ts": 1792195618,
+                    "emo": "📰"
+                },
+                {
+                    "title": "Centcom commander says naval blockade cost Iran $25B in oil revenue",
+                    "url": "https://thehill.com/newsletters/defense-national-security/6155474-centcom-commander-says-naval-blockade-cost-iran-25b-in-oil-revenue/",
+                    "ts": 1792192368,
+                    "emo": "💰"
+                }
+            ]
+        },
+        {
+            "name": "BusinessInsider",
+            "home": "https://www.businessinsider.com",
+            "items": [
+                {
+                    "title": "Katie Zacharia had the shortest tenure as press secretary in history. Here are the others who didn't last long.",
+                    "url": "https://www.businessinsider.com/katie-zacharia-shortest-serving-press-secretary-who-are-others-2026-10",
+                    "ts": 1792194926,
+                    "emo": "📰"
+                },
+                {
+                    "title": "The new White House press secretary is out, and Anthony Scaramucci has thoughts",
+                    "url": "https://www.businessinsider.com/anthony-scaramucci-mooch-katie-zacharia-exit-memes-2026-10",
+                    "ts": 1792192067,
+                    "emo": "📰"
+                }
+            ]
+        },
+        {
+            "name": "MarketWatch",
+            "home": "https://www.marketwatch.com",
+            "items": [
+                {
+                    "title": "Nowhere to hide: Tech selloff hits software and chip stocks alike",
+                    "url": "https://www.marketwatch.com/story/nowhere-to-hide-tech-selloff-hits-software-and-chip-stocks-alike-6d96773c?mod=mw_rss_topstories",
+                    "ts": 1792187940,
+                    "emo": "💰"
+                },
+                {
+                    "title": "This Senate race where data centers are a crucial issue has more spending than any other midterm clash",
+                    "url": "https://www.marketwatch.com/story/this-senate-race-where-data-centers-are-a-crucial-issue-has-more-spending-than-any-other-midterm-clash-5152b43d?mod=mw_rss_topstories",
+                    "ts": 1792186980,
+                    "emo": "⚖️"
+                }
+            ]
+        },
+        {
+            "name": "NBC",
+            "home": "https://www.nbcnews.com",
+            "items": [
+                {
+                    "title": "Oregon police say teacher tackled suspected shooter, who previously attended Silver Rail Elementary",
+                    "url": "https://www.nbcnews.com/video/oregon-police-say-teacher-tackled-suspected-shooter-who-previously-attended-silver-rail-elementary-271718469831",
+                    "ts": 1792186820,
+                    "emo": "🚨"
+                },
+                {
+                    "title": "Father of two and teacher credited for saving lives at deadly school shooting that killed four",
+                    "url": "https://www.nbcnews.com/nightly-news/video/father-of-two-and-teacher-credited-for-saving-lives-at-deadly-school-shooting-that-killed-four-271725125719",
+                    "ts": 1792192771,
+                    "emo": "🔥"
+                }
+            ]
+        },
+        {
+            "name": "CNBC",
+            "home": "https://www.cnbc.com",
+            "items": [
+                {
+                    "title": "Brent oil touches $110 as Iran escalates Hormuz attacks, Ukraine vows to hit Russian refineries",
+                    "url": "https://www.cnbc.com/2026/10/16/oil-price-today-iran-strait-hormuz-ukraine-russia.html",
+                    "ts": 1792180941,
+                    "emo": "💰"
+                },
+                {
+                    "title": "Katie Zacharia out as Trump's White House press secretary",
+                    "url": "https://www.cnbc.com/2026/10/16/trump-katie-zacharia-white-house.html",
+                    "ts": 1792185975,
+                    "emo": "⚖️"
                 }
             ]
         },

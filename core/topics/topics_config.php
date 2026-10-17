@@ -30,6 +30,20 @@ return [
         'accent' => '#b4452f',
     ],
     [
+        'slug' => 'elections',
+        'name' => 'Elections',
+        'query' => 'Elections',
+        'terms' => [
+            'election',
+            'elections',
+            'voting',
+            'ballot',
+            'midterms',
+        ],
+        'order' => 15,
+        'accent' => '#635b9e',
+    ],
+    [
         'slug' => 'iran',
         'name' => 'Iran',
         'query' => 'Iran',
