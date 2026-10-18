@@ -2,6 +2,9 @@
 // Try to pull recent articles from the DB first
 $scroll_strip_articles = [];
 
+// This panel may be included from inside a function (cache warmers), so pull in the shared blocklist.
+global $filter_out;
+
 try {
 
     $db = _pdo_or_null();
@@ -9,6 +12,16 @@ try {
     if (!$db) {
         throw new Exception("DB handle not available");
     }
+
+    // Shared publisher blocklist (substring match, as elsewhere) plus Scroll Strip-only host exclusions,
+    // applied in SQL so excluded rows never use up the LIMIT.
+    [$notLikeSql, $exclusionParams] = buildNotILikeNamed(is_array($filter_out) ? $filter_out : []);
+    $exclusionConds = $notLikeSql !== '' ? [$notLikeSql] : [];
+    foreach (array_values(SCROLL_STRIP_EXCLUDED_HOSTS) as $i => $host) {
+        $exclusionConds[] = "url !~* :xh{$i}";
+        $exclusionParams[":xh{$i}"] = scrollStripHostExclusionRegex($host);
+    }
+    $exclusionSql = $exclusionConds ? 'AND ' . implode(' AND ', $exclusionConds) : '';
 
     // Pull recent articles + NLP
     $sql = "
@@ -30,12 +43,13 @@ try {
             AND jsonb_typeof(nlp->'entities') = 'array'
             AND jsonb_array_length(nlp->'entities') > 0
             AND deleted_at IS NULL
+            $exclusionSql
         ORDER BY pub_date DESC
         LIMIT 60
     ";
 
     $stmt = $db->prepare($sql);
-    $stmt->execute();
+    $stmt->execute($exclusionParams);
     $allRows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // The articles table can hold several rows for the same URL, so dedupe
@@ -64,9 +78,6 @@ try {
     $seenIds = [];
     $seenUrls = [];
     foreach ($allRows as $r) {
-        if (sn_is_excluded_domain((string)$r['url'])) {
-            continue;
-        }
         $id = $r['id'] ?? null;
         $key = $normalizeUrl((string)$r['url']);
         if ($key === '') {

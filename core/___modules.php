@@ -753,25 +753,17 @@ function buildNotILikeNamed(array $needles, string $col = 'url'): array
     return [implode(' AND ', $parts), $params];
 }
 
-// Publisher hostnames (lowercase, www-insensitive) whose articles are kept out of the Scroll Strip.
-const SCROLL_STRIP_EXCLUDED_DOMAINS = [
+// Scroll Strip only: hostnames (www-insensitive) excluded together with their subdomains.
+const SCROLL_STRIP_EXCLUDED_HOSTS = [
     'www.uco.es',
 ];
 
-function sn_is_excluded_domain(?string $url, ?array $domains = null): bool
+// Postgres/PCRE-compatible regex matching a URL whose host is $host or a subdomain of it.
+function scrollStripHostExclusionRegex(string $host): string
 {
-    if ($domains === null) {
-        $domains = SCROLL_STRIP_EXCLUDED_DOMAINS;
-    }
-    $host = parse_url(trim((string) $url), PHP_URL_HOST);
-    if (!$host) return false;
-    $norm = static fn(string $h): string => preg_replace('/^www\./', '', rtrim(strtolower($h), '.'));
-    $host = $norm($host);
-    foreach ($domains as $d) {
-        $d = $norm((string) $d);
-        if ($d !== '' && ($host === $d || substr($host, -strlen($d) - 1) === '.' . $d)) return true;
-    }
-    return false;
+    $host = preg_replace('/^www\./', '', rtrim(strtolower(trim($host)), '.'));
+    $quoted = str_replace('.', '\\.', preg_replace('/[^a-z0-9.-]/', '', $host));
+    return '^[a-z][a-z0-9+.-]*://([^/?#@]*@)?([^/?#@:]*\\.)?' . $quoted . '\\.?([:/?#]|$)';
 }
 
 // Obtain PDO the same way you already do.
