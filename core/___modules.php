@@ -754,15 +754,14 @@ function buildNotILikeNamed(array $needles, string $col = 'url'): array
 }
 
 // Publisher hostnames (lowercase, www-insensitive) whose articles are kept out of the Scroll Strip.
-$SCROLL_STRIP_EXCLUDED_DOMAINS = [
+const SCROLL_STRIP_EXCLUDED_DOMAINS = [
     'www.uco.es',
 ];
 
 function sn_is_excluded_domain(?string $url, ?array $domains = null): bool
 {
     if ($domains === null) {
-        global $SCROLL_STRIP_EXCLUDED_DOMAINS;
-        $domains = $SCROLL_STRIP_EXCLUDED_DOMAINS ?? [];
+        $domains = SCROLL_STRIP_EXCLUDED_DOMAINS;
     }
     $host = parse_url(trim((string) $url), PHP_URL_HOST);
     if (!$host) return false;
