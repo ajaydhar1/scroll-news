@@ -84,7 +84,7 @@ function sn_topic_render_actions(array $it): void
     <?php
 }
 
-/** Image that quietly disappears (and lets the text breathe) if it fails to load. */
+/** Failed or tiny images fall back to the site placeholder once; if that fails too, the image disappears (and lets the text breathe). */
 function sn_topic_render_media(array $it, string $class): void
 {
     if (empty($it['image'])) {
@@ -93,7 +93,8 @@ function sn_topic_render_media(array $it, string $class): void
     ?>
     <a <?= sn_topic_read_attrs($it, 'sn-tp-media ' . $class) ?> tabindex="-1" aria-hidden="true">
         <img src="<?= sn_topic_e($it['image']) ?>" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer"
-             onerror="var a=this.closest('.sn-tp-media');a.parentNode.classList.add('is-imageless');a.remove();">
+             onload="if(this.naturalWidth<80||this.naturalHeight<80){if(this.dataset.fb){var a=this.closest('.sn-tp-media');a.parentNode.classList.add('is-imageless');a.remove();}else{this.dataset.fb=1;this.src='/assets/img/news-placeholder.jpg';}}"
+             onerror="if(this.dataset.fb){var a=this.closest('.sn-tp-media');a.parentNode.classList.add('is-imageless');a.remove();}else{this.dataset.fb=1;this.src='/assets/img/news-placeholder.jpg';}">
     </a>
     <?php
 }
