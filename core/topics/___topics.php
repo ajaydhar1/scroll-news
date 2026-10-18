@@ -207,6 +207,12 @@ function sn_topic_image_url($raw): ?string
     if ($url === '' || !preg_match('#^https?://[^\s"\'<>]+$#i', $url)) {
         return null;
     }
+    // Temporary workaround: LA Times' Brightspot on-demand resize URLs intermittently redirect to a 1x1
+    // placeholder PNG, which renders as a gray box. Treat them as imageless (text-only) until fixed upstream.
+    $parts = parse_url($url);
+    if (strtolower($parts['host'] ?? '') === 'ca-times.brightspotcdn.com' && str_starts_with($parts['path'] ?? '', '/dims4/')) {
+        return null;
+    }
     return $url;
 }
 

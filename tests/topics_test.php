@@ -48,6 +48,14 @@ $assert(sn_topic_window_label(24) === 'past 24 hours' && sn_topic_window_label(1
 
 // --- Items -------------------------------------------------------------
 $assert(sn_topic_image_url('javascript:alert(1)') === null && sn_topic_image_url('') === null, 'Non-http images are rejected');
+$laTimesResize = 'https://ca-times.brightspotcdn.com/dims4/default/a46dc97/2147483647/strip/true/crop/4000x2100+0+566/resize/1200x630!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F10%2F0a%2Fx%2Fa.jpg';
+$assert(sn_topic_image_url($laTimesResize) === null, 'LA Times Brightspot resize URLs are not image-eligible');
+$assert(sn_topic_image_url('https://ca-times.brightspotcdn.com/10/0a/x/a.jpg') !== null, 'Other LA Times CDN paths stay eligible');
+$assert(sn_topic_image_url('https://other.brightspotcdn.com/dims4/default/a/b/resize/1200x630!/?url=x') !== null, 'Other Brightspot publishers stay eligible');
+$laTimesItems = [['title' => 'LAT', 'image' => sn_topic_image_url($laTimesResize)], ['title' => 'Other', 'image' => 'https://i.example.com/o.jpg']];
+$laTimesPlan = sn_topic_plan_layout($laTimesItems, ['hero' => 'auto', 'density' => 'standard'], 1);
+$assert($laTimesPlan['lead']['title'] === 'Other' && $laTimesPlan['lead_mode'] === 'image', 'Planner skips LA Times resize image for the featured lead');
+$assert($laTimesPlan['support'][0]['title'] === 'LAT' && empty($laTimesPlan['support'][0]['image']), 'LA Times story stays visible as text-only');
 $assert(sn_topic_image_url('https://img.example.com/a.jpg') === 'https://img.example.com/a.jpg', 'https images are accepted');
 $now = 1_800_000_000;
 $assert(sn_topic_relative_time($now - 30, $now) === 'Just now', 'Relative time: just now');
