@@ -73,7 +73,7 @@
                         <img class="img-fluid" src="assets/img/portfolio/coverage-analysis.jpg" alt="Screenshot of politics coverage analysis"/>
                     </a>
                     <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading">Coverage Analysis</div>
+                        <div class="portfolio-caption-heading">Trends</div>
                                                 <div class="portfolio-caption-subheading text-muted small mt-1">Track top entities and sources.</div>
                     </div>
                 </div>
