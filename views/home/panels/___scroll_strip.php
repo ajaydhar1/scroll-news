@@ -64,6 +64,9 @@ try {
     $seenIds = [];
     $seenUrls = [];
     foreach ($allRows as $r) {
+        if (sn_is_excluded_domain((string)$r['url'])) {
+            continue;
+        }
         $id = $r['id'] ?? null;
         $key = $normalizeUrl((string)$r['url']);
         if ($key === '') {
