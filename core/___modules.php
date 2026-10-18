@@ -753,6 +753,19 @@ function buildNotILikeNamed(array $needles, string $col = 'url'): array
     return [implode(' AND ', $parts), $params];
 }
 
+// Scroll Strip only: hostnames (www-insensitive) excluded together with their subdomains.
+const SCROLL_STRIP_EXCLUDED_HOSTS = [
+    'www.uco.es',
+];
+
+// Postgres/PCRE-compatible regex matching a URL whose host is $host or a subdomain of it.
+function scrollStripHostExclusionRegex(string $host): string
+{
+    $host = preg_replace('/^www\./', '', rtrim(strtolower(trim($host)), '.'));
+    $quoted = str_replace('.', '\\.', preg_replace('/[^a-z0-9.-]/', '', $host));
+    return '^[a-z][a-z0-9+.-]*://([^/?#@]*@)?([^/?#@:]*\\.)?' . $quoted . '\\.?([:/?#]|$)';
+}
+
 // Obtain PDO the same way you already do.
 // If you have getPdoOrExplain(), this will use it; otherwise falls back to getPdo().
 function _pdo_or_null(): ?PDO
