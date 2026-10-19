@@ -1,0 +1,712 @@
+/* ==== NEWSROOM "READING DESK" (milestone 1: page bar + compact story header) ====
+   Loaded only for the normal Newsroom (never ?context=trail-player) and scoped to body.newsroom-page.
+   Colours come from the existing theme tokens: --sn-l-* (light) and --sn-* (dark, from dark.css).
+   Revert: remove this <link> and the new header markup branch in newsroom.php. */
+
+body.newsroom-page {
+    --nr-surface: var(--sn-l-s2, #ffffff);
+    --nr-surface-2: var(--sn-l-s3, #f0f4f2);
+    --nr-border: var(--sn-l-border, rgba(23, 60, 53, 0.14));
+    --nr-border-soft: var(--sn-l-border-soft, rgba(23, 60, 53, 0.08));
+    --nr-text: var(--sn-l-text, #17302b);
+    --nr-muted: var(--sn-l-muted, #54645f);
+    --nr-link: var(--sn-l-link, #067466);
+    --nr-accent: #00bfa6;
+    --nr-accent-ink: #082d27;
+    --nr-accent-soft: rgba(0, 191, 166, 0.12);
+    --nr-shadow: var(--sn-l-shadow, 0 5px 18px rgba(18, 39, 34, 0.07));
+    --nr-track: rgba(23, 60, 53, 0.09);
+    --nr-neg: #c2493d;
+    --nr-font: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html[data-ui-theme="dark"] body.newsroom-page {
+    --nr-surface: var(--sn-surface, #2a2f36);
+    --nr-surface-2: var(--sn-surface-raised, #30363d);
+    --nr-border: rgba(255, 255, 255, 0.1);
+    --nr-border-soft: rgba(255, 255, 255, 0.06);
+    --nr-text: #e6e9ed;
+    --nr-muted: var(--sn-muted, #a9b1ba);
+    --nr-link: #75e2d2;
+    --nr-accent-soft: rgba(0, 191, 166, 0.16);
+    --nr-shadow: var(--sn-shadow, 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.18));
+    --nr-track: rgba(255, 255, 255, 0.09);
+    --nr-neg: #ef7b6f;
+}
+
+body.newsroom-page .newsroom-shell {
+    max-width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* ---- Page bar ---- */
+body.newsroom-page .newsroom-pagebar {
+    padding: 1.1rem 0 0.4rem;
+}
+
+body.newsroom-page .newsroom-pagebar .newsroom-shell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+body.newsroom-page .newsroom-crumbs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    color: var(--nr-muted);
+    font: 500 13px/1.4 var(--nr-font);
+}
+
+body.newsroom-page .newsroom-crumb-root {
+    font-weight: 600;
+}
+
+body.newsroom-page .newsroom-category-tag {
+    padding: 2px 10px;
+    border-radius: 999px;
+    background: var(--nr-accent-soft);
+    color: var(--nr-link);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+body.newsroom-page .newsroom-category-tag:hover,
+body.newsroom-page .newsroom-category-tag:focus-visible {
+    color: var(--nr-link);
+    text-decoration: underline;
+}
+
+body.newsroom-page .newsroom-pagebar .newsroom-header-actions {
+    justify-content: flex-end;
+}
+
+body.newsroom-page .newsroom-pagebar .sn-product-link {
+    min-height: 40px;
+    padding: 0 1rem;
+    border: 1px solid var(--nr-border);
+    border-radius: 999px;
+    background: var(--nr-surface);
+    color: var(--nr-text);
+    font-family: var(--nr-font);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+body.newsroom-page .newsroom-pagebar .sn-product-link:hover,
+body.newsroom-page .newsroom-pagebar .sn-product-link:focus-visible {
+    border-color: var(--nr-accent);
+    background: var(--nr-accent-soft);
+    color: var(--nr-link);
+}
+
+body.newsroom-page .newsroom-pagebar .newsroom-stumble-action {
+    border-color: #00a890;
+    background: var(--nr-accent);
+    color: var(--nr-accent-ink);
+    font-weight: 700;
+}
+
+body.newsroom-page .newsroom-pagebar .newsroom-stumble-action:hover,
+body.newsroom-page .newsroom-pagebar .newsroom-stumble-action:focus-visible {
+    border-color: #00a890;
+    background: #11d0b5;
+    color: #062a24;
+}
+
+body.newsroom-page .newsroom-story-action i {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+/* ---- Compact story header ---- */
+body.newsroom-page .newsroom-story {
+    padding: 0.6rem 0 1.1rem;
+}
+
+body.newsroom-page .newsroom-story-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 420px;
+    align-items: center;
+    gap: 1.75rem;
+    padding: 1.75rem;
+    border: 1px solid var(--nr-border);
+    border-radius: 16px;
+    background: var(--nr-surface);
+    box-shadow: var(--nr-shadow);
+    color: var(--nr-text);
+}
+
+body.newsroom-page .newsroom-story-card--no-media {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+body.newsroom-page .newsroom-story-copy {
+    min-width: 0;
+}
+
+body.newsroom-page .newsroom-story-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+    color: var(--nr-muted);
+    font: 500 13px/1.4 var(--nr-font);
+}
+
+body.newsroom-page .newsroom-story-publisher {
+    color: var(--nr-text);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+body.newsroom-page .newsroom-story-publisher:hover,
+body.newsroom-page .newsroom-story-publisher:focus-visible {
+    color: var(--nr-link);
+    text-decoration: underline;
+}
+
+body.newsroom-page .newsroom-story-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--nr-muted);
+}
+
+body.newsroom-page .newsroom-story-title {
+    margin: 0 0 0.75rem;
+    color: var(--nr-text);
+    font-family: var(--nr-font);
+    font-size: clamp(1.6rem, 1.1rem + 2vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.12 !important;
+    text-transform: none;
+    overflow-wrap: anywhere;
+}
+
+body.newsroom-page .newsroom-story .newsroom-article-description {
+    max-width: 62ch;
+    margin: 0 0 1rem;
+    color: var(--nr-muted);
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+body.newsroom-page .newsroom-story-badges {
+    margin: 0 0 0.85rem;
+    gap: 0.5rem;
+}
+
+body.newsroom-page .newsroom-story .scroll-badge {
+    padding: 0.2rem 0.65rem;
+    border: 1px solid var(--nr-accent);
+    background: var(--nr-accent-soft);
+    color: var(--nr-link);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    text-decoration: none;
+}
+
+body.newsroom-page .newsroom-story a.scroll-badge:hover,
+body.newsroom-page .newsroom-story a.scroll-badge:focus-visible {
+    background: var(--nr-accent);
+    color: var(--nr-accent-ink);
+}
+
+body.newsroom-page .newsroom-story-url {
+    display: block;
+    color: var(--nr-muted);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+body.newsroom-page .newsroom-story-media {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid var(--nr-border-soft);
+    border-radius: 12px;
+    background: var(--nr-surface-2);
+}
+
+body.newsroom-page .newsroom-story-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ---- Analysis area: full width under the header, no nested scrolling ---- */
+body.newsroom-page .newsroom-analysis-shell {
+    padding-top: 0.25rem;
+}
+
+body.newsroom-page #side-by-side-panel .newsroom-sidebar {
+    overflow: visible;
+}
+
+/* ================= Analysis area (milestone 2) =================
+   `body#page-top.newsroom-page` (two ids) out-ranks the shared light/dark card rules without new !important wars.
+   Only the normal Newsroom gets this stylesheet; the trail player keeps the original layout. */
+
+body#page-top.newsroom-page #analytics {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    border-radius: 0;
+}
+
+body#page-top.newsroom-page #side-by-side-panel .nr-analysis {
+    display: grid !important;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 18px;
+    margin: 0;
+    padding-bottom: 1rem;
+}
+
+body#page-top.newsroom-page #side-by-side-panel .nr-col-group,
+body#page-top.newsroom-page #side-by-side-panel .nr-col-group-row {
+    display: contents !important;
+}
+
+body#page-top.newsroom-page #side-by-side-panel .nr-col {
+    display: flex !important;
+    flex: none;
+    width: auto;
+    max-width: none;
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0;
+}
+
+body#page-top.newsroom-page #side-by-side-panel .nr-col--wiki { grid-column: 1 / 6; grid-row: 1; }
+body#page-top.newsroom-page #side-by-side-panel .nr-col--hashtags { grid-column: 6 / 13; grid-row: 1; }
+body#page-top.newsroom-page #side-by-side-panel .nr-col--frames { grid-column: 1 / 8; grid-row: 2 / 4; }
+body#page-top.newsroom-page #side-by-side-panel .nr-col--emotions { grid-column: 8 / 13; grid-row: 2; }
+body#page-top.newsroom-page #side-by-side-panel .nr-col--sentiment { grid-column: 8 / 13; grid-row: 3; }
+
+/* Card surface */
+body#page-top.newsroom-page #side-by-side-panel .nr-analysis .card {
+    margin: 0 !important;
+    min-width: 0;
+    border-radius: 14px;
+    box-shadow: var(--nr-shadow) !important;
+    font-family: var(--nr-font);
+    color: var(--nr-text);
+}
+
+body#page-top.newsroom-page #side-by-side-panel .nr-analysis .card-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--nr-border-soft);
+    border-radius: 14px 14px 0 0;
+    background: transparent !important;
+}
+
+body#page-top.newsroom-page #side-by-side-panel .nr-analysis .card-header h5,
+body#page-top.newsroom-page #side-by-side-panel .nr-analysis .card-header h5.m-0.font-weight-bold {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--nr-text) !important;
+    font-family: var(--nr-font);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+}
+
+body#page-top.newsroom-page #side-by-side-panel .nr-analysis .card-header h5::before {
+    content: "";
+    flex: 0 0 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--nr-accent);
+}
+
+body#page-top.newsroom-page #side-by-side-panel .nr-title-emoji {
+    display: none;
+}
+
+body#page-top.newsroom-page #side-by-side-panel .nr-analysis .card-body {
+    padding: 18px;
+    max-height: none;
+    overflow: visible;
+}
+
+/* ---- Hashtags ---- */
+body#page-top.newsroom-page #side-by-side-panel .hashtags-scroll {
+    max-height: none;
+    overflow: visible;
+}
+
+body#page-top.newsroom-page #side-by-side-panel .hashtags-toolbar {
+    margin-bottom: 0.9rem !important;
+    gap: 0.75rem;
+}
+
+body#page-top.newsroom-page #side-by-side-panel #sm-tags {
+    margin: 0 !important;
+    color: var(--nr-text);
+    font-family: var(--nr-font);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+body#page-top.newsroom-page #side-by-side-panel #sm-tags::before {
+    content: "Searching on ";
+    color: var(--nr-muted);
+    font-weight: 500;
+}
+
+body#page-top.newsroom-page #side-by-side-panel span#hash-icons {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    margin: 0 !important;
+    padding: 3px;
+    border: 1px solid var(--nr-border-soft);
+    border-radius: 999px;
+    background: var(--nr-surface-2);
+}
+
+body#page-top.newsroom-page #side-by-side-panel span#hash-icons a.item {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 28px;
+    margin: 0 !important;
+    border-radius: 999px;
+    text-decoration: none;
+}
+
+body#page-top.newsroom-page #side-by-side-panel span#hash-icons a.item:focus-visible {
+    outline: 2px solid var(--nr-accent);
+    outline-offset: 1px;
+}
+
+/* The platform script marks the active icon with an inline brand-colour; mirror that state */
+body#page-top.newsroom-page #side-by-side-panel span#hash-icons :is(em, svg) {
+    color: var(--nr-muted) !important;
+    font-size: 14px;
+}
+
+body#page-top.newsroom-page #side-by-side-panel span#hash-icons :is(em, svg)[style*="brand-color"] {
+    color: var(--nr-link) !important;
+}
+
+body#page-top.newsroom-page #side-by-side-panel span#hash-icons a.item:has([style*="brand-color"]) {
+    background: var(--nr-accent-soft);
+    box-shadow: inset 0 0 0 1px var(--nr-accent);
+}
+
+body#page-top.newsroom-page #side-by-side-panel .tag-cloud-sidebar {
+    padding: 0;
+    line-height: 1;
+}
+
+body#page-top.newsroom-page #side-by-side-panel .tag-cloud-sidebar .hashtag {
+    display: inline-block;
+    margin: 0 8px 8px 0;
+}
+
+body#page-top.newsroom-page #side-by-side-panel .tag-cloud-sidebar .hashtag a {
+    display: inline-block;
+    padding: 6px 12px;
+    border: 1px solid var(--nr-border-soft);
+    border-radius: 999px;
+    background: var(--nr-surface-2);
+    color: var(--nr-text);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+body#page-top.newsroom-page #side-by-side-panel .tag-cloud-sidebar .hashtag a:hover,
+body#page-top.newsroom-page #side-by-side-panel .tag-cloud-sidebar .hashtag a:focus-visible {
+    border-color: var(--nr-accent);
+    background: var(--nr-accent-soft);
+    color: var(--nr-text);
+    text-decoration: none;
+}
+
+/* ---- Wikipedia ---- */
+body#page-top.newsroom-page #side-by-side-panel #wikipedia ol {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body#page-top.newsroom-page #side-by-side-panel #wikipedia li {
+    min-width: 0;
+}
+
+body#page-top.newsroom-page #side-by-side-panel #wikipedia a.js-wiki {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--nr-border-soft);
+    border-radius: 10px;
+    background: var(--nr-surface-2);
+    color: var(--nr-text);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    transition: border-color 0.15s ease;
+}
+
+body#page-top.newsroom-page #side-by-side-panel #wikipedia a.js-wiki::after {
+    content: attr(data-label);
+    flex: 0 0 auto;
+    color: var(--nr-muted);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+body#page-top.newsroom-page #side-by-side-panel #wikipedia a.js-wiki:hover,
+body#page-top.newsroom-page #side-by-side-panel #wikipedia a.js-wiki:focus-visible {
+    border-color: var(--nr-accent);
+    color: var(--nr-link);
+}
+
+/* ---- Narrative Frames: real percentages, plus a bar driven by the same value ---- */
+body#page-top.newsroom-page #side-by-side-panel #narrative-frames ul {
+    margin: 0;
+    padding: 0 !important;
+    list-style: none;
+}
+
+body#page-top.newsroom-page #side-by-side-panel #narrative-frames li {
+    padding: 6px 0;
+    color: var(--nr-text);
+    font-size: 14px;
+}
+
+body#page-top.newsroom-page #side-by-side-panel #narrative-frames .left-view {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+body#page-top.newsroom-page #side-by-side-panel #narrative-frames .right-view {
+    float: none;
+    flex: 0 0 auto;
+    color: var(--nr-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+body#page-top.newsroom-page #side-by-side-panel #narrative-frames li::after {
+    content: "";
+    display: block;
+    height: 5px;
+    margin-top: 6px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--nr-accent) 0, var(--nr-accent) var(--v, 0%), var(--nr-track) var(--v, 0%), var(--nr-track) 100%);
+}
+
+body#page-top.newsroom-page #side-by-side-panel #narrative-frames li.rec-list-head {
+    margin-top: 0.9rem;
+    padding-top: 0;
+}
+
+body#page-top.newsroom-page #side-by-side-panel #narrative-frames > ul > li.rec-list-head:first-child {
+    margin-top: 0;
+}
+
+body#page-top.newsroom-page #side-by-side-panel #narrative-frames li.rec-list-head .right-view {
+    color: var(--nr-text);
+}
+
+body#page-top.newsroom-page #side-by-side-panel #narrative-frames li.rec-list-head::after {
+    height: 8px;
+}
+
+body#page-top.newsroom-page #side-by-side-panel #narrative-frames ul ul {
+    margin: 2px 0 0 !important;
+    padding-left: 14px !important;
+    border-left: 2px solid var(--nr-border-soft);
+}
+
+body#page-top.newsroom-page #side-by-side-panel #narrative-frames ul ul li {
+    font-size: 13px;
+    color: var(--nr-muted);
+}
+
+body#page-top.newsroom-page #side-by-side-panel #narrative-frames ul ul li::after {
+    height: 4px;
+    background: var(--nr-track);
+}
+
+/* ---- Emotional Reaction ---- */
+body#page-top.newsroom-page #side-by-side-panel .sn-emo {
+    gap: 0.35rem;
+}
+
+body#page-top.newsroom-page #side-by-side-panel .sn-emo-row {
+    grid-template-columns: 82px minmax(0, 1fr) 44px;
+    padding: 5px 0;
+}
+
+body#page-top.newsroom-page #side-by-side-panel .sn-emo-label {
+    color: var(--nr-text);
+    font-size: 14px;
+}
+
+body#page-top.newsroom-page #side-by-side-panel .sn-emo-val {
+    color: var(--nr-muted);
+    font-size: 13px;
+    opacity: 1;
+}
+
+body#page-top.newsroom-page #side-by-side-panel .sn-emo-bar {
+    height: 10px;
+    border: 0;
+    background: var(--nr-track);
+}
+
+body#page-top.newsroom-page #side-by-side-panel .sn-emo-fill {
+    background: var(--nr-accent);
+}
+
+body#page-top.newsroom-page #side-by-side-panel .sn-emo-row[data-emo="angry"] .sn-emo-fill {
+    background: var(--nr-neg);
+}
+
+/* ---- Sentiment: the selected state is carried by the existing inline pill; restyle it ---- */
+body#page-top.newsroom-page #side-by-side-panel #sentiment {
+    display: grid;
+    gap: 8px;
+    height: auto !important;
+    text-align: left;
+}
+
+body#page-top.newsroom-page #side-by-side-panel #sentiment p {
+    margin: 0 !important;
+    text-align: left;
+}
+
+body#page-top.newsroom-page #side-by-side-panel #sentiment p > span {
+    display: block;
+    padding: 9px 12px;
+    border: 1px solid var(--nr-border-soft);
+    border-radius: 10px;
+    color: var(--nr-muted);
+    font-size: 14px;
+}
+
+body#page-top.newsroom-page #side-by-side-panel #sentiment p > span[style*="background"] {
+    padding: 9px 12px !important;
+    border: 1px solid var(--nr-accent) !important;
+    border-radius: 10px !important;
+    background: var(--nr-accent-soft) !important;
+    color: var(--nr-text) !important;
+    font-weight: 700;
+}
+
+/* ---- Loading skeleton and empty state ---- */
+body#page-top.newsroom-page .analytics-loader {
+    border: 1px solid var(--nr-border);
+    border-radius: 14px;
+    background: var(--nr-surface);
+    color: var(--nr-text);
+}
+
+body#page-top.newsroom-page .sk-card {
+    border: 1px solid var(--nr-border-soft);
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--nr-surface-2) 25%, var(--nr-track) 50%, var(--nr-surface-2) 75%);
+    background-size: 200% 100%;
+}
+
+body#page-top.newsroom-page #analytics .empty-analytics {
+    max-width: 720px;
+}
+
+@media (max-width: 1100px) {
+    body#page-top.newsroom-page #side-by-side-panel .nr-col--hashtags,
+    body#page-top.newsroom-page #side-by-side-panel .nr-col--wiki,
+    body#page-top.newsroom-page #side-by-side-panel .nr-col--frames,
+    body#page-top.newsroom-page #side-by-side-panel .nr-col--emotions,
+    body#page-top.newsroom-page #side-by-side-panel .nr-col--sentiment {
+        grid-column: 1 / -1;
+        grid-row: auto;
+    }
+
+    body#page-top.newsroom-page #side-by-side-panel .nr-col--wiki {
+        order: -1;
+    }
+}
+
+@media (max-width: 575.98px) {
+    body#page-top.newsroom-page #side-by-side-panel .nr-analysis {
+        gap: 14px;
+    }
+
+    body#page-top.newsroom-page #side-by-side-panel .nr-analysis .card-body {
+        padding: 14px;
+    }
+
+    body#page-top.newsroom-page #side-by-side-panel #wikipedia ol {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    body#page-top.newsroom-page #side-by-side-panel .sn-emo-row {
+        grid-template-columns: 70px minmax(0, 1fr) 40px;
+    }
+}
+
+@media (max-width: 1100px) {
+    body.newsroom-page .newsroom-story-card {
+        grid-template-columns: minmax(0, 1fr) 320px;
+        padding: 1.4rem;
+    }
+}
+
+@media (max-width: 800px) {
+    body.newsroom-page .newsroom-story-card {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.1rem;
+        padding: 1.1rem;
+    }
+
+    body.newsroom-page .newsroom-story-media {
+        order: -1;
+    }
+
+    body.newsroom-page .newsroom-pagebar .newsroom-header-actions {
+        width: 100%;
+        justify-content: stretch;
+    }
+
+    body.newsroom-page .newsroom-pagebar .newsroom-header-actions > .sn-product-link {
+        flex: 1 1 auto;
+    }
+}
+
+@media (max-width: 575.98px) {
+    body.newsroom-page .newsroom-shell {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+}

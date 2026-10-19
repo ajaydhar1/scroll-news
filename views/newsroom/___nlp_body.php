@@ -1,19 +1,19 @@
 
-        <div class="row mt-2 d-flex align-items-stretch">
+        <div class="row mt-2 d-flex align-items-stretch nr-analysis">
 
-          <div class="col-12 col-md-12 col-lg-12 col-xl-4 d-flex align-items-stretch mb-3">
+          <div class="col-12 col-md-12 col-lg-12 col-xl-4 d-flex align-items-stretch mb-3 nr-col nr-col--hashtags">
 
-            <div data-step="2" data-intro="Hashtags of people, places, and organizations." class="card hashtags-card w-100 shadow mb-3">
+            <div data-step="3" data-intro="Hashtags of people, places, and organizations." class="card hashtags-card w-100 shadow mb-3">
               <!-- Card Header - Dropdown -->
               <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
-                <h5 class="m-0 font-weight-bold">🏷️ Hashtags</h5>
+                <h5 class="m-0 font-weight-bold"><span class="nr-title-emoji" aria-hidden="true">🏷️</span> Hashtags</h5>
               </div>
               <!-- Card Body -->
               <div class="card-body hashtags-scroll">
                 <div id="hashtags" class="hashtags-panel">
                   <div class="hashtags-toolbar basement_title mb-2">
                     <span class="h5 mb-1" id="sm-tags">Google</span>
-                    <span id="hash-icons" class="mb-2" data-step="3" data-intro="Click an icon to change the platform for the hashtags">
+                    <span id="hash-icons" class="mb-2" data-step="4" data-intro="Click an icon to change the platform for the hashtags">
                       <a id="google-link" class="item google-highlight waves-effect waves-light mr-1" href="javascript:void(0)">
                         <em id="google-icon" style="color:var(--brand-color);" class="fab fa-google" title="Search hashtag on Google"></em>
                       </a>
@@ -77,10 +77,10 @@
             </div>
           </div>
 
-          <div class="col-12 col-md-12 col-lg-12 col-xl-8 d-flex align-items-stretch">
-            <div class="row d-flex align-items-stretch">
-                <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch" style="">
-                    <div data-step="4" data-intro="Wikipedia articles." class="card w-100 shadow mb-3">
+          <div class="col-12 col-md-12 col-lg-12 col-xl-8 d-flex align-items-stretch nr-col-group">
+            <div class="row d-flex align-items-stretch nr-col-group-row">
+                <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch nr-col nr-col--wiki" style="">
+                    <div data-step="2" data-intro="Wikipedia articles." class="card w-100 shadow mb-3">
                       <!-- Card Header - Dropdown -->
                       <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
                         <h5 class="m-0 font-weight-bold">Wikipedia</h5>
@@ -106,7 +106,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch">
+                  <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch nr-col nr-col--frames">
                     <div data-step="5" data-intro="The major narrative angles used to frame the story in the article." class="card w-100 shadow mb-3">
                       <!-- Card Header - Dropdown -->
                       <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
@@ -221,7 +221,7 @@
                                 $parentPct = number_format($g['total'] * 100, 2);
 
                                 echo '
-                                  <li class="rec-list-head">
+                                  <li class="rec-list-head" style="--v: ' . round(min(1, max(0, $g['total'])) * 100, 2) . '%;">
                                     <div class="left-view">
                                       <b>' . htmlspecialchars($parent) . '</b>
                                       <span class="right-view"><b>' . $parentPct . '%</b></span>
@@ -235,7 +235,7 @@
                                   $childPct = number_format($childScore * 100, 2);
 
                                   echo '
-                                    <li class="rec-list">
+                                    <li class="rec-list" style="--v: ' . round(min(1, max(0, $childScore)) * 100, 2) . '%;">
                                       <div class="left-view">
                                         ' . htmlspecialchars($childLabel) . '
                                         <span class="right-view">' . $childPct . '%</span>
@@ -254,7 +254,7 @@
                     </div>
 
                   </div>
-                  <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch">
+                  <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch nr-col nr-col--emotions">
                     <div data-step="6" data-intro="Emotions evoked." class="card w-100 shadow mb-3">
                       <!-- Card Header - Dropdown -->
                       <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">
@@ -364,7 +364,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch">
+                  <div class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex align-items-stretch nr-col nr-col--sentiment">
                     <div data-step="7" data-intro="Author's tone." class="card w-100 shadow mb-3">
                       <!-- Card Header - Dropdown -->
                       <div class="card-header d-flex flex-row align-items-center justify-content-between bg-gradient">

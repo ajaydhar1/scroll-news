@@ -33,6 +33,49 @@ echo '</pre>';
 exit;
 */
 
+// Shared header/history values (used by the masthead, Go to Story link and #history-meta)
+$category = isset($_GET['category']) ? trim((string) $_GET['category']) : '';
+$hasCategoryLink = $category !== '' && isset($rss_feeds) && is_array($rss_feeds) && array_key_exists($category, $rss_feeds);
+
+$historySource = '';
+if ($category !== '' && strtolower($category) !== 'db') {
+    $historySource = strtolower($category);
+} elseif (!empty($source_slug)) {
+    $historySource = strtolower($source_slug);
+} elseif (!empty($url)) {
+    $host = parse_url($url, PHP_URL_HOST) ?: '';
+    if ($host) {
+        $historySource = preg_replace('/^www\./i', '', strtolower($host));
+    }
+}
+
+$pubDateParam = $_GET['pub_date'] ?? null;
+$pubIso = '';
+$pub_ts = null;
+if (is_numeric($pubDateParam)) {
+    $pub_ts = (int) $pubDateParam;
+    if ($pub_ts > 0) {
+        $pubIso = gmdate(DATE_ATOM, $pub_ts);
+    }
+} elseif (is_string($pubDateParam) && $pubDateParam !== '') {
+    $tmp = strtotime($pubDateParam);
+    if ($tmp !== false) {
+        $pub_ts = $tmp;
+        $pubIso = gmdate(DATE_ATOM, $pub_ts);
+    }
+}
+
+$newsroomDescription = trim(html_entity_decode(strip_tags((string) $des), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+$newsroomDescription = preg_replace('/\s+/u', ' ', $newsroomDescription) ?? $newsroomDescription;
+if (strcasecmp($newsroomDescription, 'No description') === 0) {
+    $newsroomDescription = '';
+}
+
+$badges = [];
+if ($fromDb && is_array($article)) {
+    $badges = scroll_get_article_badges($article);
+}
+
 sn_perf_phase('render');
 ?>
 <!DOCTYPE html>
@@ -97,6 +140,7 @@ sn_perf_phase('render');
         <link href="/assets/css/pages/nlp-dashboard-light-saas.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/nlp-dashboard-light-saas.css'); ?>" rel="stylesheet" />
 
         <script src="/assets/js/dark-theme.js?v=<?php echo filemtime(BASE_PATH . '/assets/js/dark-theme.js'); ?>"></script>
+        <link href="/assets/css/pages/newsroom-reading-desk.css?v=<?php echo filemtime(BASE_PATH . '/assets/css/pages/newsroom-reading-desk.css'); ?>" rel="stylesheet" />
     <?php endif; ?>
 
     <?php if ($isTrailPlayer): ?>
@@ -133,6 +177,28 @@ sn_perf_phase('render');
             color: var(--sn-muted);
         }
 
+        /* Embedded dark mode: dark.css leaves Bootstrap's #212529 body text on the charcoal cards */
+        html[data-ui-theme="dark"] .page > .text-center h2,
+        html[data-ui-theme="dark"] #side-by-side-panel .card-body {
+            color: #e6e9ed;
+        }
+
+        html[data-ui-theme="dark"] #side-by-side-panel #narrative-frames ul ul li,
+        html[data-ui-theme="dark"] #side-by-side-panel .sn-emo-val {
+            color: var(--sn-muted);
+        }
+
+        /* Embedded light mode: light-saas.css isn't loaded here, so use its accessible link teal (--sn-l-link) */
+        html:not([data-ui-theme="dark"]) #side-by-side-panel .hashtag a,
+        html:not([data-ui-theme="dark"]) #side-by-side-panel a.js-wiki {
+            color: #067466;
+        }
+
+        html:not([data-ui-theme="dark"]) #side-by-side-panel .hashtag a:hover,
+        html:not([data-ui-theme="dark"]) #side-by-side-panel a.js-wiki:hover {
+            color: #04554b;
+        }
+
         <?php endif; ?>
     </style>
 
@@ -145,24 +211,35 @@ sn_perf_phase('render');
         <!-- Top nav-->
         <?php require_once BASE_PATH . '/views/partials/___topnav_product.php'; ?>
 
-        <div class="text-center my-3">
-            <h2><?= $isTrailPlayer ? 'Article analysis' : '🧠 NLP Dashboard' ?></h2>
-
-            <?php if (!$isTrailPlayer): ?>
-                <div class="newsroom-header-actions" role="group" aria-label="Newsroom actions">
-                    <a data-step="1" data-intro="Welcome to the Scroll News newsroom! Here we provide analytics for the latest news stories. Click this play button to stumble through trending articles." class="sn-product-link sn-product-stumble newsroom-stumble-action" href="/newsroom.php" onclick="trackStumbleClick('newsroom_header')" aria-label="Stumble to a random article" data-loading>
-                        <i class="fas fa-play" aria-hidden="true"></i>
-                        <span>Stumble</span>
-                    </a>
-                    <button class="sn-product-link newsroom-guide-action" type="button" onclick="ScrollNews.startIntro();"><i class="fa fa-play-circle" aria-hidden="true"></i><span>Guide</span></button>
+        <?php if ($isTrailPlayer): ?>
+            <div class="text-center my-3">
+                <h2>Article analysis</h2>
+            </div>
+        <?php else: ?>
+            <div class="newsroom-pagebar">
+                <div class="container-fluid newsroom-shell">
+                    <div class="newsroom-crumbs" aria-label="Newsroom">
+                        <span class="newsroom-crumb-root">Newsroom</span>
+                        <?php if ($hasCategoryLink): ?>
+                            <span class="newsroom-crumb-sep" aria-hidden="true">›</span>
+                            <a href="" class="category-link newsroom-category-tag" data-category="<?= htmlspecialchars($category, ENT_QUOTES, 'UTF-8') ?>" data-category-url="<?= htmlspecialchars((string) $rss_feeds[$category], ENT_QUOTES, 'UTF-8') ?>">#<?= htmlspecialchars($category, ENT_QUOTES, 'UTF-8') ?></a>
+                        <?php endif; ?>
+                    </div>
+                    <div class="newsroom-header-actions" role="group" aria-label="Newsroom actions">
+                        <a data-step="1" data-intro="Welcome to the Scroll News newsroom! Here we provide analytics for the latest news stories. Click this play button to stumble through trending articles." class="sn-product-link sn-product-stumble newsroom-stumble-action" href="/newsroom.php" onclick="trackStumbleClick('newsroom_header')" aria-label="Stumble to a random article" data-loading>
+                            <i class="fas fa-play" aria-hidden="true"></i>
+                            <span>Stumble</span>
+                        </a>
+                        <button class="sn-product-link newsroom-guide-action" type="button" onclick="ScrollNews.startIntro();"><i class="fa fa-play-circle" aria-hidden="true"></i><span>Guide</span></button>
+                        <a class="sn-product-link newsroom-story-action" target="_blank" rel="noopener" href="<?= htmlspecialchars((string) $url, ENT_QUOTES, 'UTF-8') ?>"
+                            data-article-url="<?= htmlspecialchars($url) ?>"
+                            data-article-title="<?= htmlspecialchars($title) ?>"
+                            data-article-source="<?= htmlspecialchars($historySource) ?>"
+                            data-article-image="<?= htmlspecialchars($img ?? '') ?>"
+                            data-article-pub-date="<?= htmlspecialchars($pubIso) ?>"
+                            data-article-kind="external"><span>Go to Story</span><i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                    </div>
                 </div>
-            <?php endif; ?>
-
-        </div>
-
-        <?php if (!$isTrailPlayer): ?>
-            <div class="container-fluid text-center">
-                <span class="link"><?= $url ?></span>
             </div>
         <?php endif; ?>
 
@@ -177,12 +254,56 @@ sn_perf_phase('render');
             </div>
         <?php endif; ?>
 
+        <?php if (!$isTrailPlayer): ?>
+            <section class="newsroom-story" aria-labelledby="newsroom-headline">
+                <div class="container-fluid newsroom-shell">
+                    <div class="newsroom-story-card<?= $img === '' ? ' newsroom-story-card--no-media' : '' ?>">
+                        <div class="newsroom-story-copy">
+                            <div class="newsroom-story-meta">
+                                <a href="<?= htmlspecialchars(sn_publisher_profile_url((string) $domain) ?: '#', ENT_QUOTES, 'UTF-8') ?>" class="newsroom-story-publisher" data-loading><?= htmlspecialchars($domain, ENT_QUOTES, 'UTF-8') ?></a>
+                                <?php if (isset($_GET['pub_date'])): ?>
+                                    <span class="newsroom-story-dot" aria-hidden="true"></span>
+                                    <span class="newsroom-story-date"><?= format_news_date($_GET['pub_date']) ?></span>
+                                <?php endif; ?>
+                            </div>
+                            <h1 class="newsroom-story-title" id="newsroom-headline"><?= htmlspecialchars($title) ?></h1>
+                            <?php if ($newsroomDescription !== ''): ?>
+                                <p class="newsroom-article-description"><?= htmlspecialchars($newsroomDescription, ENT_QUOTES, 'UTF-8') ?></p>
+                            <?php endif; ?>
+                            <?php if (!empty($badges)) : ?>
+                                <div class="scroll-article-badges newsroom-story-badges">
+                                    <?php foreach ($badges as $badge): ?>
+                                        <?php
+                                        $slug = $badge['slug'] ?? '';
+                                        $badgeHref = ($slug === 'deep-dive') ? '/search.php?mode=nlp&deep_dive=1' : '/search.php?high_signal=1';
+                                        ?>
+                                        <a class="scroll-badge scroll-badge-<?= htmlspecialchars($slug) ?>"
+                                            href="<?= htmlspecialchars($badgeHref) ?>" title="<?= htmlspecialchars($badge['tooltip']) ?>" data-loading>
+                                            <?= htmlspecialchars($badge['label']) ?>
+                                        </a>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+                            <span class="link newsroom-story-url"><?= htmlspecialchars((string) $url) ?></span>
+                        </div>
+                        <?php if ($img !== ''): ?>
+                            <div class="newsroom-story-media">
+                                <img id="shot" src="<?= htmlspecialchars($img, ENT_QUOTES, 'UTF-8') ?>" alt="" data-fallback-src="/assets/img/news-placeholder.jpg">
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </section>
+        <?php endif; ?>
+
         <div id="side-by-side-panel"> <?php // class="mb-4" style="min-height:480px;" 
                                         ?>
-            <div class="container-fluid" style="padding-top: 30px;">
-                <div id="panel-inner-row newsroom-layout" class="row"> <?php //  style="height: 95vh;" 
+            <div class="container-fluid<?= $isTrailPlayer ? '' : ' newsroom-shell newsroom-analysis-shell' ?>"<?= $isTrailPlayer ? ' style="padding-top: 30px;"' : '' ?>>
+                <?php // Trail player keeps the original (space-containing) id so its existing CSS behaviour is unchanged ?>
+                <div id="<?= $isTrailPlayer ? 'panel-inner-row newsroom-layout' : 'panel-inner-row' ?>" class="row<?= $isTrailPlayer ? '' : ' newsroom-layout' ?>"> <?php //  style="height: 95vh;" 
                                                                         ?>
                     <!-- NLP Dashboard Panel -->
+                    <?php if ($isTrailPlayer): ?>
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 panel newsroom-main" style="overflow-y: auto;">
 
                         <!-- Masthead-->
@@ -302,8 +423,10 @@ sn_perf_phase('render');
 
                     </div>
 
+                    <?php endif; ?>
+
                     <!-- Article Image Panel -->
-                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 panel newsroom-sidebar" style="height: 100%; overflow-y: auto;"> <?php //background-color: #fcfcfc; 
+                    <div class="<?= $isTrailPlayer ? 'col-xxl-6 col-xl-6 col-lg-6 col-md-12' : 'col-12' ?> panel newsroom-sidebar"<?= $isTrailPlayer ? ' style="height: 100%; overflow-y: auto;"' : '' ?>> <?php //background-color: #fcfcfc; 
                                                                                                                                         ?>
                         <div id="analytics" class="skeleton">
 
