@@ -577,7 +577,6 @@ try {
                               $publisherDomain = '';
                               $faviconUrl = '';
                               $publisherAnalysisUrl = '';
-                              $categoryAnalysisUrl = '';
 
                               if (!empty($pUrl)) {
                                   $parsed = parse_url($pUrl);
@@ -590,11 +589,6 @@ try {
                                   }
                               }
 
-                              if (!empty($pSource)) {
-                                  $categorySlug = strtolower(trim($pSource));
-                                  $categorySlug = preg_replace('/\s+/', '-', $categorySlug);
-                                  $categoryAnalysisUrl = "/analysis.php?context=category&value=" . urlencode($categorySlug) . "&w=30d";
-                              }
                           ?>
 
                           <div class="mini-meta d-flex align-items-center gap-1 flex-wrap small">
@@ -617,12 +611,10 @@ try {
                                   ·
                               <?php endif; ?>
 
-                              <?php if ($pSource && $categoryAnalysisUrl): ?>
-                                  <a href="<?= htmlspecialchars($categoryAnalysisUrl) ?>"
-                                    class="story-meta-link text-decoration-none"
-                                    data-loading>
+                              <?php if ($pSource): ?>
+                                  <span class="story-meta-link">
                                       <?= htmlspecialchars($pSource) ?>
-                                  </a>
+                                  </span>
                               <?php endif; ?>
 
                               <?php if ($pDate): ?>

@@ -203,14 +203,11 @@ function sn_article_vm_from_row(array $row, array $ctx = []): array {
         );
     }
 
-    // Default category URL builder
+    // Categories are labels, not equivalent to keyword searches.
     $categoryUrl = null;
     if ($feedNameLower !== '') {
         if (isset($ctx['category_url_builder']) && is_callable($ctx['category_url_builder'])) {
             $categoryUrl = (string)call_user_func($ctx['category_url_builder'], $feedNameLower, $ctx['analysis_window'] ?? '7d');
-        } else {
-            $w = $ctx['analysis_window'] ?? '7d';
-            $categoryUrl = "/analysis.php?context=category&value=" . urlencode($feedNameLower) . "&w=" . urlencode($w);
         }
     }
 
@@ -371,13 +368,12 @@ function sn_render_article_card(array $vm, array $opts = []): void {
                         <?php
                         $raw = (string)$tag;
                         $clean = trim(ltrim($raw, "# \t\n\r\0\x0B"));
-                        $w = $opts['analysis_window'] ?? '7d';
-                        $href = sn_analysis_url($clean, $w, 'entity');
+                        $href = sn_search_url($clean);
                         ?>
                         <a class="sn-hashtag-chip"
                             href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
-                            title="Analyze entity: <?= htmlspecialchars($clean, ENT_QUOTES, 'UTF-8') ?>"
-                            aria-label="Analyze entity: <?= htmlspecialchars($clean, ENT_QUOTES, 'UTF-8') ?>"
+                            title="Search headlines: <?= htmlspecialchars($clean, ENT_QUOTES, 'UTF-8') ?>"
+                            aria-label="Search headlines: <?= htmlspecialchars($clean, ENT_QUOTES, 'UTF-8') ?>"
                             data-loading>
                                 <?= htmlspecialchars($raw, ENT_QUOTES, 'UTF-8') ?>
                         </a>
@@ -587,7 +583,7 @@ function scroll_render_article_intel_item(array $article, array $opts = []): str
 
     // --- Helpers local to this function (safe + contained)
 
-    // 1) Bucket from score (same logic as analysis.php)
+    // 1) Bucket from score using the shared thresholds
     $sentimentBucket = function ($score): string {
         if ($score === null || $score === '' || !is_numeric($score)) return 'unknown';
         $s = (float)$score;
@@ -809,33 +805,21 @@ function scroll_render_article_intel_item(array $article, array $opts = []): str
                 <?php foreach ($entityChips as $name): ?>
                     <?php
                         $clean = trim(strtolower($name));
-                        $href  = function_exists('sn_analysis_url')
-                            ? sn_analysis_url($clean, $w, 'entity')
-                            : ("/analysis.php?context=entity&value=" . urlencode($clean) . "&w=" . urlencode($w));
+                        $href = sn_search_url($clean);
                     ?>
                     <a class="nlp-chip nlp-chip-entity"
                         href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
-                        title="Analyze entity: <?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?>"
-                        aria-label="Analyze entity: <?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?>"
+                        title="Search headlines: <?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?>"
+                        aria-label="Search headlines: <?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?>"
                         data-loading>
                         #<?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?>
                     </a>
                 <?php endforeach; ?>
 
                 <?php foreach ($topicChips as $topicName): ?>
-                    <?php
-                        $clean = trim($topicName);
-                        $href  = function_exists('sn_analysis_url')
-                            ? sn_analysis_url($clean, $w, 'narrative_frame')
-                            : ("/analysis.php?context=narrative_frame&value=" . urlencode($clean) . "&w=" . urlencode($w));
-                    ?>
-                    <a class="nlp-chip nlp-chip-frame"
-                        href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
-                        title="Explore narrative frame: <?= htmlspecialchars($topicName, ENT_QUOTES, 'UTF-8') ?>"
-                        aria-label="Explore narrative frame: <?= htmlspecialchars($topicName, ENT_QUOTES, 'UTF-8') ?>"
-                        data-loading>
+                    <span class="nlp-chip nlp-chip-frame">
                         <?= htmlspecialchars($topicName, ENT_QUOTES, 'UTF-8') ?>
-                    </a>
+                    </span>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
@@ -933,12 +917,12 @@ function sn_render_article_nlp_extras(array $vm, array $opts = []): void {
                 <?php
                 $raw = (string)$tag;
                 $clean = trim(ltrim($raw, "# \t\n\r\0\x0B"));
-                $href = sn_analysis_url($clean, $analysisWindow, 'entity');
+                $href = sn_search_url($clean);
                 ?>
                 <a class="sn-hashtag-chip"
                     href="<?= htmlspecialchars($href, ENT_QUOTES, 'UTF-8') ?>"
-                    title="Analyze entity: <?= htmlspecialchars($clean, ENT_QUOTES, 'UTF-8') ?>"
-                    aria-label="Analyze entity: <?= htmlspecialchars($clean, ENT_QUOTES, 'UTF-8') ?>"
+                    title="Search headlines: <?= htmlspecialchars($clean, ENT_QUOTES, 'UTF-8') ?>"
+                    aria-label="Search headlines: <?= htmlspecialchars($clean, ENT_QUOTES, 'UTF-8') ?>"
                     data-loading>
                         <?= htmlspecialchars($raw, ENT_QUOTES, 'UTF-8') ?>
                 </a>

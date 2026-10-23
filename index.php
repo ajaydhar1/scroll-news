@@ -347,7 +347,7 @@ sn_perf_phase('render');
                 </div>
             </section>
 
-            <!-- Category pills for the analysis page -->
+            <!-- Browse news by category -->
             <?php
 
             $categories = [
@@ -360,9 +360,6 @@ sn_perf_phase('render');
                 'entertainment' => 'Entertainment',
             ];
 
-            // optional: highlight the active category if you're already on analysis pages
-            $currentCtx = isset($_GET['context']) ? strtolower(trim((string)$_GET['context'])) : '';
-            $currentVal = isset($_GET['value'])   ? strtolower(trim((string)$_GET['value']))   : '';
             ?>
             <section class="container-fluid bg-light-2 py-3 text-center">
                 <div class="sn-categories-strip">
@@ -370,17 +367,6 @@ sn_perf_phase('render');
 
                     <div class="sn-categories-pills" role="group" aria-labelledby="snTopicIntro">
                         <?php foreach ($categories as $slug => $label):
-                            $params = $_GET; // preserve existing params (optional)
-                            $params['context'] = 'category';
-                            $params['value']   = $slug;
-                            $params['w']       = '7d';
-
-                            // If you don't want to preserve homepage params, replace the 4 lines above with:
-                            // $params = ['context' => 'category', 'value' => $slug, 'w' => '7d'];
-
-                            $href = '/analysis.php?' . http_build_query($params);
-
-                            $isActive = ($currentCtx === 'category' && $currentVal === $slug);
                         ?>
                             <button
                                 type="button"

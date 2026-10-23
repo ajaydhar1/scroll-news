@@ -218,11 +218,14 @@ button.sn-nip-sel:hover { background: color-mix(in srgb, var(--c) 6%, transparen
 .sn-nip-tp { display: inline-flex; align-items: center; gap: .3rem; }
 .sn-nip-badges { margin-top: .5rem; }
 .sn-nip-chips { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .55rem; }
-.sn-nip a.sn-nip-chip {
+.sn-nip a.sn-nip-chip,
+.sn-nip span.sn-nip-chip {
     display: inline-flex; align-items: center; padding: .15rem .55rem; border: 1px solid var(--nip-border); border-radius: 999px;
     color: var(--nip-muted); font-size: .74rem; font-weight: 500; transition: border-color .15s ease, color .15s ease;
 }
-.sn-nip a.sn-nip-chip.is-frame { border-color: color-mix(in srgb, var(--c-topics) 45%, transparent); color: var(--ci-topics); }
+.sn-nip a.sn-nip-chip.is-frame,
+.sn-nip span.sn-nip-chip.is-frame { border-color: color-mix(in srgb, var(--c-topics) 45%, transparent); color: var(--ci-topics); }
+.sn-nip span.sn-nip-chip { cursor: default; }
 .sn-nip a.sn-nip-chip:hover { border-color: var(--ci); color: var(--nip-text); }
 .sn-nip-emo { margin: .45rem 0 0; color: var(--nip-muted); font-size: .76rem; }
 
@@ -362,7 +365,7 @@ button.sn-nip-sel:hover { background: color-mix(in srgb, var(--c) 6%, transparen
 
 /* ---------- Touch, motion, contrast ---------- */
 @media (pointer: coarse) {
-    .sn-nip a.sn-nip-rchip, .sn-nip a.sn-nip-chip { min-height: 44px; }
+    .sn-nip a.sn-nip-rchip, .sn-nip a.sn-nip-chip, .sn-nip span.sn-nip-chip { min-height: 44px; }
     .sn-nip-tab { min-height: 56px; }
     .sn-nip a.sn-lw-link { padding: .1rem 0; }
 }

@@ -80,6 +80,28 @@ The local configuration file is excluded from version control.
 4. Install dependencies.
 5. Run the application locally.
 
+### Retired corpus Analysis page
+
+`analysis.php` returns a standalone HTTP 410 Gone response for all parameters,
+without shared modules, authentication, or database initialization. GET includes
+Search and Newsroom links; HEAD returns no body. Individual-article analysis
+and `api/analyze.php` are unaffected.
+
+The former implementation was verified unchanged against committed Git blob
+`2a9112276b5328b474cfffc3ad35917b6dfba265` before retirement. It is recoverable
+from commit `e4a3c10ab88e6697c6c2265e024f4bfbac96d589` with
+`git show e4a3c10ab88e6697c6c2265e024f4bfbac96d589:analysis.php`.
+Its supporting modules remain in place; no public legacy copy exists.
+Restoring public execution requires an explicit product/reliability decision,
+not a query-string bypass. Roll back retirement changes selectively rather than
+resetting unrelated application changes.
+
+Entity/hashtag chips now search headline text. Narrative-frame and category
+labels remain plain text where a keyword search would misrepresent the filter.
+Previously cached HTML may retain old links until normal refresh; the 410
+endpoint protects them without cache invalidation. The sitemap and robots rules
+are unchanged. Run `php tests/analysis_retirement_test.php` for offline checks.
+
 ## Install and Test the PWA
 
 The site can be installed over HTTPS. `localhost` and loopback addresses are also considered secure for development on the same device; for testing on a phone, use a reachable HTTPS host because the phone's `localhost` refers to the phone itself. The service worker caches only same-origin CSS and JavaScript files under `/assets/css/` and `/assets/js/` when their URL has exactly one numeric `v` version parameter, matching the existing PHP asset URLs. It does not cache pages, API responses, account/authentication routes, feeds, article data, or offline article content.

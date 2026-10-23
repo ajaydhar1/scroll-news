@@ -51,14 +51,8 @@ require_once __DIR__ . '/../../auth/includes/auth_bootstrap.php';
                     </a>
                 </li>
 
-                <li class="sn-product-item dropdown">
-                    <button class="sn-product-link dropdown-toggle" id="snProductAnalyzeDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Analyze
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="snProductAnalyzeDropdown">
-                        <button class="dropdown-item" type="button" data-toggle="modal" data-target="#analyzeModal" aria-label="Analyze an article by URL">Analyze Article</button>
-                        <a class="dropdown-item" href="/analysis.php?context=category&amp;value=politics&amp;w=7d" data-loading>Trends</a>
-                    </div>
+                <li class="sn-product-item">
+                    <button class="sn-product-link" type="button" data-toggle="modal" data-target="#analyzeModal" aria-label="Analyze an article by URL">Analyze Article</button>
                 </li>
 
                 <li class="sn-product-item">

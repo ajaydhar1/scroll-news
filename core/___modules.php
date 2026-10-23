@@ -2348,8 +2348,18 @@ function fl_headline_emoji(string $title): string
 }
 
 
+function sn_search_url(string $term): string
+{
+    return '/search.php?' . http_build_query(
+        ['q' => trim($term), 'mode' => 'classic'],
+        '',
+        '&',
+        PHP_QUERY_RFC3986
+    );
+}
+
 /**
- * Build a link to analysis.php with consistent query params.
+ * Legacy URL builder retained for compatibility; public Analysis is retired.
  *
  * @param string $term     The entity/place/topic text (no leading #).
  * @param string $window   Time window like "24h", "7d", "3w", etc.

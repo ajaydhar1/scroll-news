@@ -59,14 +59,6 @@ if (!function_exists('sn_nip_e')) {
         ]);
     }
 
-    function sn_nip_analysis_href(string $value, string $context, string $w = '24h'): string
-    {
-        if (function_exists('sn_analysis_url')) {
-            return sn_analysis_url($value, $w, $context);
-        }
-        return '/analysis.php?context=' . urlencode($context) . '&value=' . urlencode($value) . '&w=' . urlencode($w);
-    }
-
     function sn_nip_domain(array $a): string
     {
         $host = parse_url((string)($a['url'] ?? ''), PHP_URL_HOST) ?: '';
@@ -172,10 +164,10 @@ if (!function_exists('sn_nip_e')) {
         if ($entityChips || $topicChips) {
             $h .= '<div class="sn-nip-chips">';
             foreach ($entityChips as $name) {
-                $h .= '<a class="sn-nip-chip" href="' . sn_nip_e(sn_nip_analysis_href(trim(strtolower($name)), 'entity', $w)) . '" title="Analyze entity: ' . sn_nip_e($name) . '" data-loading>#' . sn_nip_e($name) . '</a>';
+                $h .= '<a class="sn-nip-chip" href="' . sn_nip_e(sn_search_url($name)) . '" title="Search headlines: ' . sn_nip_e($name) . '" data-loading>#' . sn_nip_e($name) . '</a>';
             }
             foreach ($topicChips as $name) {
-                $h .= '<a class="sn-nip-chip is-frame" href="' . sn_nip_e(sn_nip_analysis_href(trim($name), 'narrative_frame', $w)) . '" title="Explore narrative frame: ' . sn_nip_e($name) . '" data-loading>' . sn_nip_e($name) . '</a>';
+                $h .= '<span class="sn-nip-chip is-frame">' . sn_nip_e($name) . '</span>';
             }
             $h .= '</div>';
         }
@@ -221,7 +213,11 @@ if (!function_exists('sn_nip_e')) {
 
         $h .= '<header class="sn-nip-sh">';
         $h .= '<p class="sn-nip-kicker">' . sn_nip_e($meta['label']) . ' · No. ' . ((int)$t['n'] + 1) . '</p>';
-        $h .= '<h4 class="sn-nip-st" id="snNipH-' . sn_nip_e($t['id']) . '"><a href="' . sn_nip_e($t['analysis_url']) . '" title="Analyze: ' . sn_nip_e($t['label']) . '" data-loading>' . sn_nip_e($t['label']) . ' <span aria-hidden="true">→</span><span class="sn-nip-sr"> full analysis</span></a></h4>';
+        $heading = sn_nip_e($t['label']);
+        if ($t['lens'] !== 'topics') {
+            $heading = '<a href="' . sn_nip_e(sn_search_url($t['label'])) . '" title="Search headlines: ' . sn_nip_e($t['label']) . '" data-loading>' . $heading . ' <span aria-hidden="true">→</span></a>';
+        }
+        $h .= '<h4 class="sn-nip-st" id="snNipH-' . sn_nip_e($t['id']) . '">' . $heading . '</h4>';
         $h .= '<p class="sn-nip-sstat"><strong>' . $total . '</strong> ' . ($total === 1 ? 'article' : 'articles') . ' in the last 24 hours' . ($peakTxt !== '' ? ' · busiest ' . $peakTxt : '') . '</p>';
         $h .= '</header>';
 
@@ -576,8 +572,6 @@ try {
             }
 
             $label = $labels[$lens][$key] ?? ucwords(str_replace('-', ' ', (string)$key));
-            $value = preg_replace('/\s+/', ' ', trim($label));
-
             $terms[$lens][] = [
                 'id'           => $lens . '-' . $n,
                 'n'            => $n,
@@ -588,11 +582,6 @@ try {
                 'set'          => $maps[$lens][$key],
                 'hours'        => $hours,
                 'tone'         => $tone,
-                'analysis_url' => '/analysis.php?' . http_build_query([
-                    'context' => $cfg['context'],
-                    'value'   => $value,
-                    'w'       => '24h',
-                ]),
                 'articles'     => array_map(fn($i) => ['row' => $rows[$i], 'tone' => $artMeta[$i]['tone']], $picked),
                 'related'      => [],
             ];

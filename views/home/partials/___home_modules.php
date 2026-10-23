@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+            <div class="col-lg-3 col-sm-6 mb-4">
                 <!-- Portfolio item 4-->
                 <div class="portfolio-item">
                     <a href="/newsroom.php" data-loading>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6 mb-4 mb-sm-0">
+            <div class="col-lg-4 col-sm-6 mb-4">
                 <!-- Portfolio item 5-->
                 <div class="portfolio-item">
                     <a href="scroll-archive.php" data-loading>
@@ -66,19 +66,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-                <!-- Portfolio item 6-->
-                <div class="portfolio-item">
-                    <a href="analysis.php?context=category&value=politics&w=7d" data-loading>
-                        <img class="img-fluid" src="assets/img/portfolio/coverage-analysis.jpg" alt="Screenshot of politics coverage analysis"/>
-                    </a>
-                    <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading">Trends</div>
-                                                <div class="portfolio-caption-subheading text-muted small mt-1">Track top entities and sources.</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+            <div class="col-lg-4 col-sm-6 mb-4">
                 <!-- Portfolio item 6-->
                 <div class="portfolio-item">
                     <a href="/news-trails.php" data-loading>
@@ -90,7 +78,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+            <div class="col-lg-4 col-sm-6 mb-4">
                 <!-- Portfolio item 8-->
                 <div class="portfolio-item">
                     <a href="/timeline.php" data-loading>

@@ -269,7 +269,7 @@ $stUpdated = $stModel['asof'];
                          data-article-pub-date="<?= $stE($iso) ?>"
                          data-article-kind="external">Read story</a>
                       <a class="sn-st-link" href="/newsroom.php?<?= $stE($qs) ?>" data-loading>Analyze</a>
-                      <?php if ($catSlug !== ''): ?><a class="sn-st-link is-quiet" href="/analysis.php?<?= $stE(http_build_query(['context' => 'category', 'value' => $catSlug, 'w' => '30d'])) ?>" data-loading><?= $stE($cat) ?></a><?php endif; ?>
+                      <?php if ($catSlug !== ''): ?><span class="sn-st-link is-quiet"><?= $stE($cat) ?></span><?php endif; ?>
                     </p>
                   </div>
                 </article>

@@ -182,7 +182,7 @@ require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
                 <div data-reveal>
                     <p class="how-index">07 / ENTITIES</p>
                     <h2 id="title-entities">Stories connect through people, places, and organizations.</h2>
-                    <p class="how-copy">Select an entity in Scroll News to open its analysis across articles. Follow how the surrounding coverage and sentiment shift over time.</p>
+                    <p class="how-copy">Use entity and hashtag links to search headlines for related coverage. Narrative-frame labels describe the article rather than opening a separate dashboard.</p>
                 </div>
                 <figure class="how-entity-figure" data-reveal>
                     <figcaption>Illustrative connections around the example event</figcaption>
@@ -201,15 +201,15 @@ require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
             <div class="how-inner how-two-column">
                 <div data-reveal>
                     <p class="how-index">08 / TIME MATTERS</p>
-                    <h2 id="title-time">Change the window.<br>See a different span.</h2>
-                    <p class="how-copy">Analysis can look across the last 24 hours, 7 days, or 30 days. A wider window gives more history to compare: coverage, sentiment, and narratives can all move.</p>
+                    <h2 id="title-time">Read the latest.<br>Explore the context.</h2>
+                    <p class="how-copy">Search headlines from the last 24 hours or explore older reporting. Open an article in the Newsroom for its individual analysis.</p>
                 </div>
                 <div class="how-time-figure" data-reveal>
-                    <p class="how-time-label">Open live Politics trends</p>
-                    <div class="how-time-option"><span>24h</span><span class="how-time-rule" aria-hidden="true"></span><a href="/analysis.php?context=category&amp;value=politics&amp;w=24h" data-loading>Last 24 hours</a></div>
-                    <div class="how-time-option"><span>7d</span><span class="how-time-rule" aria-hidden="true"></span><a href="/analysis.php?context=category&amp;value=politics&amp;w=7d" data-loading>Last 7 days</a></div>
-                    <div class="how-time-option"><span>30d</span><span class="how-time-rule" aria-hidden="true"></span><a href="/analysis.php?context=category&amp;value=politics&amp;w=30d" data-loading>Last 30 days</a></div>
-                    <p class="how-caption">These links open the current category analysis for Politics. The rules above illustrate the selected window, not article counts.</p>
+                    <p class="how-time-label">Search politics headlines</p>
+                    <div class="how-time-option"><span>24h</span><span class="how-time-rule" aria-hidden="true"></span><a href="/search.php?q=politics&amp;mode=classic&amp;range=24h" data-loading>Last 24 hours</a></div>
+                    <div class="how-time-option"><span>Past</span><span class="how-time-rule" aria-hidden="true"></span><a href="/search.php?q=politics&amp;mode=classic&amp;range=older" data-loading>Older headlines</a></div>
+                    <div class="how-time-option"><span>All</span><span class="how-time-rule" aria-hidden="true"></span><a href="/search.php?q=politics&amp;mode=classic&amp;range=all" data-loading>All headlines</a></div>
+                    <p class="how-caption">These links search headline text for politics; they are not category-wide analytical reports.</p>
                 </div>
             </div>
         </section>
@@ -225,7 +225,7 @@ require_once BASE_PATH . "/auth/includes/auth_bootstrap.php";
                     <li><span>02</span>Scan sentiment and emotional signals.</li>
                     <li><span>03</span>Examine the narrative frames.</li>
                     <li><span>04</span>Open an entity to explore related coverage.</li>
-                    <li><span>05</span>Change the analysis time window.</li>
+                    <li><span>05</span>Use Search to find more headlines.</li>
                 </ol>
                 <p class="how-flow-close" data-reveal>Move from reading an article<br><em>to analyzing coverage.</em></p>
                 <p class="how-flow-benefits" data-reveal>Spot differences in perspective. Track how stories develop. Compare tone. Ask why coverage feels the way it does.</p>

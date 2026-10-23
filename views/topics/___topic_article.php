@@ -66,7 +66,7 @@ function sn_topic_render_entities(array $it): void
     ?>
     <ul class="sn-tp-entities" aria-label="Related people and organizations">
         <?php foreach ($it['entities'] as $entity): ?>
-            <li><a href="<?= sn_topic_e(sn_analysis_url($entity, '7d', 'entity')) ?>" data-loading><?= sn_topic_e($entity) ?></a></li>
+            <li><a href="<?= sn_topic_e(sn_search_url($entity)) ?>" data-loading><?= sn_topic_e($entity) ?></a></li>
         <?php endforeach; ?>
     </ul>
     <?php
